@@ -17,7 +17,12 @@ build_script:
   - cmd: dotnet build --configuration %CONFIGURATION%
 
 test_script:
-  - cmd: dotnet test Pidgin.Tests\Pidgin.Tests.csproj
+  - cmd: dotnet test --configuration %CONFIGURATION% Pidgin.Tests\Pidgin.Tests.csproj
+  - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj
 
 after_test:
-  - cmd: dotnet pack Pidgin\Pidgin.csproj --configuration Release --output ..\nupkgs
+  - cmd: dotnet pack Pidgin\Pidgin.csproj --configuration %CONFIGURATION% --output ..\nupkgs
+
+artifacts:
+  - path: nupkgs
+  - path: BenchmarkDotNet.Artifacts
