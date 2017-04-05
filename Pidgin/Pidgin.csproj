@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
   </PropertyGroup>
-
-  <VersionSuffix>$(VersionSuffix)</VersionSuffix>
 
 </Project>
