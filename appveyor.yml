@@ -1,0 +1,25 @@
+version: 1.0.{build}
+configuration: Release
+
+nuget:
+  project_feed: true
+  disable_publish_on_pr: true
+
+install:
+  - ps: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
+  - ps: .\dotnet-install.ps1 -Version 1.0.0
+  - ps: Import-Module .\Set-Version.psm1
+  - ps: Set-Version -CsprojPattern "*/*.csproj" -Version $env:APPVEYOR_BUILD_VERSION
+
+before_build:
+  - cmd: dotnet --info
+  - cmd: dotnet restore --verbosity Minimal
+
+build_script:
+  - cmd: dotnet build --configuration %CONFIGURATION%
+
+test_script:
+  - cmd: dotnet test Pidgin.Tests\Pidgin.Tests.csproj
+
+after_build:
+  - cmd: dotnet pack Pidgin\Pidgin.csproj --configuration Release --output ..\nupkgs
