@@ -24,5 +24,6 @@ after_test:
   - cmd: dotnet pack Pidgin\Pidgin.csproj --configuration %CONFIGURATION% --output ..\nupkgs --include-symbols --version-suffix %APPVEYOR_BUILD_NUMBER%
 
 artifacts:
-  - path: nupkgs/*.nupkg
+  - type: NuGetPackage
+    path: nupkgs/*.nupkg
   - path: BenchmarkDotNet.Artifacts
