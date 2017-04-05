@@ -19,10 +19,10 @@ namespace Pidgin.Bench
         [Setup]
         public void Setup()
         {
-            _bigJson = BuildJson(4, 4, 4).ToString();
-            _longJson = BuildJson(1000, 1, 1).ToString();
-            _wideJson = BuildJson(1, 1, 1000).ToString();
-            _deepJson = BuildJson(1, 1000, 1).ToString();
+            _bigJson = BuildJson(2, 4, 4).ToString();
+            _longJson = BuildJson(500, 1, 1).ToString();
+            _wideJson = BuildJson(1, 1, 500).ToString();
+            _deepJson = BuildJson(1, 500, 1).ToString();
         }
 
         [Benchmark]
