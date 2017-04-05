@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Pidgin/Pidgin.csproj" />
+    <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sprache" Version="2.1.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.3" />
+  </ItemGroup>
+</Project>
