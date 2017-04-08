@@ -17,6 +17,10 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser which applies the current parser followed by a specified parser, applying a function to the two results.
         /// </summary>
+        /// <remarks>
+        /// This is a synonym for <see cref="Parser.Map{TToken, T1, T2, R}(Func{T1, T2, R}, Parser{TToken, T1}, Parser{TToken, T2})"/>
+        /// with the arguments rearranged.
+        /// </remarks>
         /// <typeparam name="U">The return type of the second parser</typeparam>
         /// <typeparam name="R">The return type of the composed parser</typeparam>
         /// <param name="parser">A parser to apply after applying the current parser</param>

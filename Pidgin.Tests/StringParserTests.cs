@@ -52,7 +52,7 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("b"), new Expected<char>[]{ }, new SourcePos(1,1), false);
             }
             {
-                var parser = Any();
+                var parser = Any;
                 AssertSuccess(parser.Parse("a"), 'a', true);
                 AssertSuccess(parser.Parse("b"), 'b', true);
                 AssertSuccess(parser.Parse("ab"), 'a', true);
@@ -107,23 +107,23 @@ namespace Pidgin.Tests
         {
             {
                 // any two equal characters
-                var parser = Any().Then(c => Token(c.Equals));
+                var parser = Any.Then(c => Token(c.Equals));
                 AssertSuccess(parser.Parse("aa"), 'a', true);
                 AssertFailure(parser.Parse("ab"), new Expected<char>[]{ }, new SourcePos(1,2), true);
             }
             {
-                var parser = Any().Bind(c => Token(c.Equals), (x, y) => new { x, y });
+                var parser = Any.Bind(c => Token(c.Equals), (x, y) => new { x, y });
                 AssertSuccess(parser.Parse("aa"), new { x = 'a', y = 'a' }, true);
                 AssertFailure(parser.Parse("ab"), new Expected<char>[]{ }, new SourcePos(1,2), true);
             }
             {
-                var parser = Any().Then(c => Token(c.Equals), (x, y) => new { x, y });
+                var parser = Any.Then(c => Token(c.Equals), (x, y) => new { x, y });
                 AssertSuccess(parser.Parse("aa"), new { x = 'a', y = 'a' }, true);
                 AssertFailure(parser.Parse("ab"), new Expected<char>[]{ }, new SourcePos(1,2), true);
             }
             {
                 var parser =
-                    from x in Any()
+                    from x in Any
                     from y in Token(x.Equals)
                     select new { x, y };
                 AssertSuccess(parser.Parse("aa"), new { x = 'a', y = 'a' }, true);

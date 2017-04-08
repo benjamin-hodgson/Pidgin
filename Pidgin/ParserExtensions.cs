@@ -111,7 +111,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
         /// <returns>The result of parsing</returns>
-        public static T ParseListOrThrow<TToken, T>(this Parser<TToken, T> parser, IList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
+        public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
         /// <returns>The result of parsing</returns>
-        public static T ParseEnumerableOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerable<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
+        public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerable<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
         /// <returns>The result of parsing</returns>
-        public static T ParseEnumeratorOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerator<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
+        public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerator<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
 
         /// <summary>
