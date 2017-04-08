@@ -40,7 +40,7 @@ Assert.AreEqual('a', Any.ParseOrThrow("a"));
 Assert.AreEqual('b', Any.ParseOrThrow("b"));
 ```
 
-`Char(char charater)`, an alias for `Token(TToken token)` consumes a _particular_ character and returns that character. If it encounters some other character then it fails.
+`Char`, an alias for `Token` consumes a _particular_ character and returns that character. If it encounters some other character then it fails.
 
 ```csharp
 Parser<char, char> parser = Char('a');
@@ -54,7 +54,7 @@ Assert.AreEqual('3', Digit.ParseOrThrow("3"));
 Assert.Throws<ParseException>(() => Digit.ParseOrThrow("a"));
 ```
 
-`String(string str)` parses and returns a particular string. If you give it input other than the string it was expecting it fails.
+`String` parses and returns a particular string. If you give it input other than the string it was expecting it fails.
 
 ```csharp
 Parser<char, string> parser = String("foo");
