@@ -31,7 +31,7 @@ using static Pidgin.Parser;
 using static Pidgin.Parser<char>;  // we'll be parsing strings - sequences of of characters. For other applications (eg parsing binary file formats) TToken may be some other type (eg byte).
 ```
 
-### Primitive parsers
+### Primitive parsers
 
 Now we can create some simple parsers. `Any` represents a parser which consumes a single character and returns that character.
 
@@ -125,7 +125,7 @@ Parser<char, char> parser =
 
 Parsers written like this look like a simple imperative script. "Run the `Any` parser and name its result `c`, then run `Char(c)` and name its result `c2`, then return `c2`."
 
-### Choosing from alternatives
+### Choosing from alternatives
 
 `Or` represents a parser which can parse one of two alternatives. It runs the left parser first, and if it fails it tries the right parser.
 
