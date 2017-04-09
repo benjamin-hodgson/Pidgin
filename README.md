@@ -212,10 +212,10 @@ Tips
 Pidgin is designed to be fast and produce a minimum of garbage. A carefully written Pidgin parser can be as fast as a hand-written recursive descent parser. If you find that parsing is a bottleneck in your code, here are some tips for minimising the runtime of your parser.
 
 * Avoid LINQ query syntax. Query comprehensions are defined by translation into core C# using `SelectMany`, however, for long queries the translation can allocate a large number of anonymous objects. This generates a lot of garbage; while those objects often won't survive the nursery it's still preferable to avoid allocating them!
-* Avoid backtracking
-* Use specialised parsers where possible
-* Avoid `Bind` and `SelectMany`
-* Build your parser statically
+* Avoid backtracking where possible.
+* Use specialised parsers where possible: the provided `Skip*` parsers can be used when the result of parsing is not required. They typically run faster than their counterparts because they don't need to save the values generated.
+* Avoid `Bind` and `SelectMany` where possible. These functions build parsers dynamically, based on the result of the previous parser. Building a parser can be an expensive operation. Many practical grammars are _context-free_ and can therefore be written purely with `Map`. If you do have a context-sensitive grammar, it may make sense to parse it in a context-free fashion and then run a semantic checker over the result.
+* Build your parser statically where possible.
 
 Comparison to other tools
 -------------------------
@@ -227,6 +227,7 @@ Comparison to other tools
 * Sprache's input must be a string. This makes it inappropriate for parsing binary protocols or tokenised inputs. Pidgin supports input tokens of arbitrary type.
 * Sprache's input must be a string - an _in-memory_ array of characters. Pidgin supports streaming inputs.
 * Sprache automatically backtracks on failure. Pidgin uses a special combinator to enable backtracking because backtracking can be a costly operation.
+* Pidgin comes bundled with operator-precedence tools for parsing expression languages with associative infix operators.
 * Pidgin is faster and allocates less memory than Sprache.
 * Pidgin has more documentation coverage than Sprache.
 
