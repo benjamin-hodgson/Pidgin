@@ -26,7 +26,7 @@ namespace Pidgin
         public Parser<TToken, IEnumerable<T>> SeparatedAtLeastOnce<U>(Parser<TToken, U> separator)
             => new SeparatedAtLeastOnceParser<U>(this, separator);
 
-        private class SeparatedAtLeastOnceParser<U> : ManyParserBase
+        private sealed class SeparatedAtLeastOnceParser<U> : ManyParserBase
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, T> _remainderParser;
@@ -92,7 +92,7 @@ namespace Pidgin
         public Parser<TToken, IEnumerable<T>> SeparatedAndOptionallyTerminatedAtLeastOnce<U>(Parser<TToken, U> separator)
             => new SeparatedAndOptionallyTerminatedAtLeastOnceParser<U>(this, separator);
 
-        private class SeparatedAndOptionallyTerminatedAtLeastOnceParser<U> : Parser<TToken, IEnumerable<T>>
+        private sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParser<U> : Parser<TToken, IEnumerable<T>>
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _separator;

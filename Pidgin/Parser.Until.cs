@@ -51,7 +51,7 @@ namespace Pidgin
         public Parser<TToken, Unit> SkipAtLeastOnceUntil<U>(Parser<TToken, U> terminator)
             => new AtLeastOnceUntilParser<U>(this, terminator, false).Then(_returnUnit);
 
-        private class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>>
+        private sealed class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>>
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _terminator;

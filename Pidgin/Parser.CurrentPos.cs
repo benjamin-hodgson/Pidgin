@@ -11,7 +11,7 @@ namespace Pidgin
         public static Parser<TToken, SourcePos> CurrentPos { get; }
             = new CurrentPosParser();
 
-        private class CurrentPosParser : Parser<TToken, SourcePos>
+        private sealed class CurrentPosParser : Parser<TToken, SourcePos>
         {
             public CurrentPosParser() : base(ExpectedUtil<TToken>.Nil)
             {

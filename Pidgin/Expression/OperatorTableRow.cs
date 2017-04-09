@@ -9,7 +9,7 @@ namespace Pidgin.Expression
     /// Represents a row in a table of operators.
     /// Contains a collection of parsers for operators at a single precendence level.
     /// </summary>
-    public class OperatorTableRow<TToken, T>
+    public sealed class OperatorTableRow<TToken, T>
     {
         /// <summary>
         /// A collection of parsers for the non-associative infix operators at this precedence level
@@ -84,7 +84,7 @@ namespace Pidgin.Expression
         internal Parser<TToken, T> Build(Parser<TToken, T> term)
             => new Builder(term, this).Build();
 
-        private class Builder
+        private sealed class Builder
         {
             private static readonly IEnumerable<Parser<TToken, Func<T, T>>> _returnIdentity
                 = new[]{ Parser<TToken>.Return<Func<T,T>>(x => x) };
@@ -98,7 +98,6 @@ namespace Pidgin.Expression
                 _row = row;
             }
 
-            // TODO: make it faster by implementing the infix parsers with a loop rather than recursion
             public Parser<TToken, T> Build()
                 => PTerm.Then(x => OneOf(
                     InfixN(x),

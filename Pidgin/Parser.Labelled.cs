@@ -19,7 +19,7 @@ namespace Pidgin
         private Parser<TToken, T> WithExpected(SortedSet<Expected<TToken>> expected)
             => new WithExpectedParser(this, expected);
 
-        private class WithExpectedParser : Parser<TToken, T>
+        private sealed class WithExpectedParser : Parser<TToken, T>
         {
             private readonly Parser<TToken, T> _parser;
 
