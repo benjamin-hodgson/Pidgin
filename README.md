@@ -162,10 +162,11 @@ Assert.AreEqual("foul", parser.ParseOrThrow("foul"));
 Almost any non-trivial programming language, markup language, or data interchange language will feature some sort of recursive structure. C# doesn't support recursive values: a recursive referral to a variable currently being initialised will return `null`. So we need some sort of deferred execution of recursive parsers, which Pidgin enables using the `Rec` combinator. Here's a simple parser which parses arbitrarily nested parentheses with a single digit inside them.
 
 ```csharp
+Parser<char, char> expr = null;
 Parser<char, char> parenthesised = Char('(')
     .Then(Rec(() => expr))  // using a lambda to (mutually) recursively refer to expr
     .Before(Char(')'));
-Parser<char, char> expr = Digit.Or(parenthesised);
+expr = Digit.Or(parenthesised);
 Assert.AreEqual('1', expr.ParseOrThrow("1"));
 Assert.AreEqual('1', expr.ParseOrThrow("(1)"));
 Assert.AreEqual('1', expr.ParseOrThrow("(((1)))"));
@@ -174,13 +175,14 @@ Assert.AreEqual('1', expr.ParseOrThrow("(((1)))"));
 However, Pidgin does not support left recursion. A parser must consume some input before making a recursive call. The following example will produce a stack overflow because a recursive call to `arithmetic` occurs before any input can be consumed by `Digit` or `Char('+')`:
 
 ```csharp
+Parser<char, int> arithmetic = null;
 Parser<char, int> addExpr = Map(
     (x, y) => x + y,
     Rec(() => arithmetic),
     Char('+'),
     Rec(() => arithmetic)
 );
-Parser<char, int> arithmetic = addExpr.Or(Digit.Select(char.GetNumericValue));
+arithmetic = addExpr.Or(Digit.Select(char.GetNumericValue));
 
 arithmetic.Parse("2+2");  // stack overflow!
 ```
