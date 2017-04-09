@@ -196,6 +196,10 @@ Parser<TToken, T> InBraces<TToken, T, U, V>(this Parser<TToken, T> parser, Parse
     => before.Then(parser).Before(after);
 ```
 
+### Parsing expressions
+
+Pidgin features operator-precedence parsing tools, for parsing expression grammars with associative infix operators. The `ExpressionParser` class builds a parser from a parser to parse a single expression term and a table of operators with rules to combine expressions.
+
 ### More examples
 
 Examples, such as parsing (a subset of) JSON and XML into document structures, can be found in the `Pidgin.Examples` project.

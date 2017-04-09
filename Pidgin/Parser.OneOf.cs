@@ -55,10 +55,6 @@ namespace Pidgin
                 : base(ExpectedUtil.Union(parsers.Select(p => p.Expected)))
             {
                 _parsers = parsers.ToList();
-                if (!_parsers.Any())
-                {
-                    throw new ArgumentException("Enumerable used as argument to OneOf contained no elements", nameof(parsers));
-                }
             }
 
             internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
