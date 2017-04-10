@@ -238,5 +238,5 @@ Comparison to other tools
 * FParsec is an F# library and consuming it from C# can be awkward. Pidgin is implemented in pure C#, and is designed for C# consumers.
 * FParsec only supports character input streams.
 * FParsec supports stateful parsing - it has an extra type parameter for an arbitrary user-defined state - which can make it easier to parse context-sensitive grammars.
-* FParsec is faster than Sprache (though we hope to catch up!)
+* FParsec is faster than Pidgin (though we hope to catch up!)
 
