@@ -27,3 +27,12 @@ artifacts:
   - type: NuGetPackage
     path: nupkgs/*.nupkg
   - path: BenchmarkDotNet.Artifacts
+
+deploy:
+  provider: NuGet
+  skip_symbols: false
+  artifact: /nupkgs\/[^\.]*\.nupkg/
+  api_key:
+    secure: MMVrVYGgJHFAFV4ENMvXWF2NuioBvUc0NleeHFldSEzDhZrTHxBYoeZEHRwCFwQK
+  on:
+    appveyor_repo_tag: true
