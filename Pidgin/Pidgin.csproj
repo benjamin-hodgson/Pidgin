@@ -1,9 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.2;net451</TargetFrameworks>
     <Version>1.0.3</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
+    <TargetFrameworks>netstandard1.2;net451</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(APPVEYOR)' == ''">
+    <TargetFrameworks>netstandard1.2</TargetFrameworks>
   </PropertyGroup>
 
 </Project>
