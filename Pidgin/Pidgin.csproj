@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.2</TargetFramework>
+    <Version>1.0.1</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
   </PropertyGroup>
 
