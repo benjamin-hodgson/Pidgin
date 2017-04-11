@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
-    <Version>1.0.1</Version>
+    <TargetFrameworks>netstandard1.2;net451</TargetFrameworks>
+    <Version>1.0.3</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
   </PropertyGroup>
 
