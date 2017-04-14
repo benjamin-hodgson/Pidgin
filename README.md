@@ -28,7 +28,7 @@ In order to start building parsers we need to import two classes which contain f
 ```csharp
 using Pidgin;
 using static Pidgin.Parser;
-using static Pidgin.Parser<char>;  // we'll be parsing strings - sequences of of characters. For other applications (eg parsing binary file formats) TToken may be some other type (eg byte).
+using static Pidgin.Parser<char>;  // we'll be parsing strings - sequences of characters. For other applications (eg parsing binary file formats) TToken may be some other type (eg byte).
 ```
 
 ### Primitive parsers
