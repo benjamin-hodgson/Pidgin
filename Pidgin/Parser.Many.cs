@@ -8,8 +8,6 @@ namespace Pidgin
     {
         private static readonly Parser<TToken, IEnumerable<T>> _returnEmptyEnumerable
             = Parser<TToken>.Return(Enumerable.Empty<T>());
-        private static readonly Parser<TToken, Unit> _returnUnit
-            = Parser<TToken>.Return(Unit.Value);
 
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times.
@@ -36,7 +34,7 @@ namespace Pidgin
         /// <returns>A parser which applies the current parser zero or more times</returns>
         public Parser<TToken, Unit> SkipMany()
             => this.SkipAtLeastOnce()
-                .Or(_returnUnit);
+                .Or(Parser<TToken>.ReturnUnit);
 
         /// <summary>
         /// Creates a parser that applies the current parser one or more times, discarding the results.
@@ -45,7 +43,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser that applies the current parser one or more times, discarding the results</returns>
         public Parser<TToken, Unit> SkipAtLeastOnce()
-            => new AtLeastOnceParser(this, false).Then(_returnUnit);
+            => new AtLeastOnceParser(this, false).Then(Parser<TToken>.ReturnUnit);
 
         private abstract class ManyParserBase : Parser<TToken, IEnumerable<T>>
         {

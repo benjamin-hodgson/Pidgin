@@ -81,134 +81,49 @@ namespace Pidgin.Expression
                 PostfixOps.Concat(otherRow.PostfixOps)
             );
 
+        private static readonly IEnumerable<Parser<TToken, Func<T, T>>> _returnIdentity
+            = new[]{ Parser<TToken>.Return<Func<T,T>>(x => x) };
         internal Parser<TToken, T> Build(Parser<TToken, T> term)
-            => new Builder(term, this).Build();
-
-        private sealed class Builder
         {
-            private static readonly IEnumerable<Parser<TToken, Func<T, T>>> _returnIdentity
-                = new[]{ Parser<TToken>.Return<Func<T,T>>(x => x) };
+            var pTerm = Map(
+                (pre, tm, post) => post(pre(tm)),
+                OneOf(PrefixOps.Concat(_returnIdentity)),
+                term,
+                OneOf(PostfixOps.Concat(_returnIdentity))
+            );
 
-            private readonly Parser<TToken, T> _term;
-            private readonly OperatorTableRow<TToken, T> _row;
+            var infixNOp = OneOf(InfixNOps);
+            Parser<TToken, T> InfixN(T x)
+                => Map(
+                    (f, y) => f(x, y),
+                    infixNOp,
+                    pTerm
+                );
 
-            public Builder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
-            {
-                _term = term;
-                _row = row;
-            }
-
-            public Parser<TToken, T> Build()
-                => PTerm.Then(x => OneOf(
-                    InfixN(x),
-                    InfixL(x),
-                    InfixR(x),
-                    Parser<TToken>.Return(x)
-                ));
-
-            private Parser<TToken, T> _pTerm;
-            private Parser<TToken, T> PTerm
-            {
-                get
-                {
-                    if (_pTerm == null)
-                    {
-                        _pTerm = Map(
-                            (pre, tm, post) => post(pre(tm)),
-                            OneOf(_row.PrefixOps.Concat(_returnIdentity)),
-                            _term,
-                            OneOf(_row.PostfixOps.Concat(_returnIdentity))
-                        );
-                    }
-                    return _pTerm;
-                }
-            }
+            var infixLOp = OneOf(InfixLOps);
+            Parser<TToken, T> InfixL(T x)
+                => Map(
+                    (f, y) => f(x, y),
+                    infixLOp,
+                    pTerm
+                ).Then(r => InfixL(r).Or(Parser<TToken>.Return(r)));
             
-            private Parser<TToken, Func<T, T, T>> _infixNOp;
-            private Parser<TToken, Func<T, T, T>> InfixNOp
-            {
-                get
-                {
-                    if (_infixNOp == null)
-                    {
-                        _infixNOp = OneOf(_row.InfixNOps);
-                    }
-                    return _infixNOp;
-                }
-            }
-            private Parser<TToken, T> InfixN(T x)
+            var infixROp = OneOf(InfixROps);
+            Parser<TToken, T> infixRTail = null;
+            Parser<TToken, T> InfixR(T x)
                 => Map(
                     (f, y) => f(x, y),
-                    InfixNOp,
-                    PTerm
+                    infixROp,
+                    infixRTail
                 );
+            infixRTail = pTerm.Then(r => InfixR(r).Or(Parser<TToken>.Return(r)));
 
-            private Parser<TToken, Func<T, T, T>> _infixLOp;
-            private Parser<TToken, Func<T, T, T>> InfixLOp
-            {
-                get
-                {
-                    if (_infixLOp == null)
-                    {
-                        _infixLOp = OneOf(_row.InfixLOps);
-                    }
-                    return _infixLOp;
-                }
-            }
-            private Func<T, Parser<TToken, T>> _infixLTail;
-            private Func<T, Parser<TToken, T>> InfixLTail
-            {
-                get
-                {
-                    if (_infixLTail == null)
-                    {
-                        _infixLTail = r =>
-                            InfixL(r)
-                                .Or(Parser<TToken>.Return(r));
-                    }
-                    return _infixLTail;
-                }
-            }
-            private Parser<TToken, T> InfixL(T x)
-                => Map(
-                    (f, y) => f(x, y),
-                    InfixLOp,
-                    PTerm
-                ).Then(InfixLTail);
-
-            private Parser<TToken, Func<T, T, T>> _infixROp;
-            private Parser<TToken, Func<T, T, T>> InfixROp
-            {
-                get
-                {
-                    if (_infixROp == null)
-                    {
-                        _infixROp = OneOf(_row.InfixROps);
-                    }
-                    return _infixROp;
-                }
-            }
-            private Func<T, Parser<TToken, T>> _infixRTail;
-            private Func<T, Parser<TToken, T>> InfixRTail
-            {
-                get
-                {
-                    if (_infixRTail == null)
-                    {
-                        _infixRTail = t =>
-                            InfixR(t)
-                                .Or(Parser<TToken>.Return(t)
-                        );
-                    }
-                    return _infixRTail;
-                }
-            }
-            private Parser<TToken, T> InfixR(T x)
-                => Map(
-                    (f, y) => f(x, y),
-                    InfixROp,
-                    PTerm.Then(InfixRTail)
-                );
+            return pTerm.Then(x => OneOf(
+                InfixN(x),
+                InfixL(x),
+                InfixR(x),
+                Parser<TToken>.Return(x)
+            ));
         }
     }
 }

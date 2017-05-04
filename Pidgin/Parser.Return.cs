@@ -13,6 +13,9 @@ namespace Pidgin
         public static Parser<TToken, T> Return<T>(T value)
             => new ReturnParser<T>(value);
 
+        internal static Parser<TToken, Unit> ReturnUnit { get; }
+            = Parser<TToken>.Return(Unit.Value);
+
         private sealed class ReturnParser<T> : Parser<TToken, T>
         {
             private readonly T _value;
