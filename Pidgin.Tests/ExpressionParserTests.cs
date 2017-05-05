@@ -152,5 +152,53 @@ namespace Pidgin.Tests
                 true
             );
         }
+
+        [Fact]
+        public void TestPrefix()
+        {
+            Parser<char, bool> parser = null;
+            var termParser =
+                String("false").Select(_ => false)
+                    .Or(String("true").Select(_ => true))
+                    .Or(Rec(() => parser).Between(Char('('), Char(')')));
+            parser = ExpressionParser.Build(
+                termParser,
+                new[]
+                {
+                    new[]
+                    {
+                        Operator.Prefix(
+                            Char('!').Select<Func<bool, bool>>(_ => b => !b)
+                        )
+                    }
+                }
+            );
+
+            AssertSuccess(parser.Parse("true"), true, true);
+            AssertSuccess(parser.Parse("!true"), false, true);
+            AssertSuccess(parser.Parse("!(!true)"), true, true);
+        }
+
+        [Fact]
+        public void TestPostfix()
+        {
+            Func<dynamic> f = () => true;
+
+            Parser<char, dynamic> parser = null;
+            var termParser = String("f").Select<dynamic>(_ => f);
+            parser = ExpressionParser.Build(
+                termParser,
+                new[]
+                {
+                    new[]
+                    {
+                        Operator.Postfix(String("()").Select<Func<dynamic, dynamic>>(_ => g => g()))
+                    }
+                }
+            );
+
+            AssertSuccess(parser.Parse("f"), f, true);
+            AssertSuccess(parser.Parse("f()"), f(), true);
+        }
     }
 }

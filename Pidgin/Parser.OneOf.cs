@@ -43,17 +43,17 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers to choose between</param>
         /// <returns>A parser which applies one of the specified parsers</returns>
         public static Parser<TToken, T> OneOf<TToken, T>(IEnumerable<Parser<TToken, T>> parsers)
-            => new OneOfParser<TToken, T>(parsers);
+            => new OneOfParser<TToken, T>(parsers.ToList());
 
 
         private sealed class OneOfParser<TToken, T> : Parser<TToken, T>
         {
             private readonly List<Parser<TToken, T>> _parsers;
 
-            public OneOfParser(IEnumerable<Parser<TToken, T>> parsers)
+            public OneOfParser(List<Parser<TToken, T>> parsers)
                 : base(ExpectedUtil.Union(parsers.Select(p => p.Expected)))
             {
-                _parsers = parsers.ToList();
+                _parsers = parsers;
             }
 
             internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
