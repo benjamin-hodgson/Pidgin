@@ -12,8 +12,8 @@ namespace Pidgin.Expression
 
         private readonly Parser<TToken, T> _pTerm;
         private readonly Parser<TToken, Func<T, T, T>> _infixNOp;
-        private readonly Parser<TToken, IEnumerable<FuncAndArg>> _lOpSequence;
-        private readonly Parser<TToken, IEnumerable<FuncAndArg>> _rOpSequence;
+        private readonly Parser<TToken, IEnumerable<Partial>> _lOpSequence;
+        private readonly Parser<TToken, IEnumerable<Partial>> _rOpSequence;
 
         public ExpressionParserBuilder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {
@@ -24,16 +24,8 @@ namespace Pidgin.Expression
                 OneOf(row.PostfixOps.Concat(_returnIdentity))
             );
             _infixNOp = OneOf(row.InfixNOps);
-            _lOpSequence = Map(
-                (f, y) => new FuncAndArg(f, y),
-                OneOf(row.InfixLOps),
-                _pTerm
-            ).AtLeastOnce();
-            _rOpSequence = Map(
-                (f, y) => new FuncAndArg(f, y),
-                OneOf(row.InfixROps),
-                _pTerm
-            ).AtLeastOnce();
+            _lOpSequence = Associative(row.InfixLOps);
+            _rOpSequence = Associative(row.InfixROps);
         }
 
         public Parser<TToken, T> Build()
@@ -58,25 +50,33 @@ namespace Pidgin.Expression
             );
 
         private Parser<TToken, T> InfixR(T x)
-            => _rOpSequence.Select(fxs => {
-                var reassociated = fxs is IList<FuncAndArg>
-                    ? new List<FuncAndArg>(((IList<FuncAndArg>)fxs).Count)
-                    : new List<FuncAndArg>();
-                foreach (var fx in fxs)
+            => _rOpSequence.Select(fxs =>
                 {
-                    reassociated.Add(new FuncAndArg(fx.Func, x));
-                    x = fx.Arg;
+                    var reassociated = fxs is IList<Partial>
+                        ? new List<Partial>(((IList<Partial>)fxs).Count)
+                        : new List<Partial>();
+                    foreach (var fx in fxs)
+                    {
+                        reassociated.Add(new Partial(fx.Func, x));
+                        x = fx.Arg;
+                    }
+                    reassociated.Reverse();
+                    return reassociated.Aggregate(x, (z, fx) => fx.Func(fx.Arg, z));
                 }
-                reassociated.Add(new FuncAndArg((y, _) => y, x));
-                reassociated.Reverse();
-                return reassociated.Aggregate(default(T), (z, fx) => fx.Func(fx.Arg, z));
-            });
+            );
+        
+        private Parser<TToken, IEnumerable<Partial>> Associative(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
+            => Map(
+                (f, y) => new Partial(f, y),
+                OneOf(ops),
+                _pTerm
+            ).AtLeastOnce();
 
-        private struct FuncAndArg
+        private struct Partial
         {
             public Func<T, T, T> Func { get; }
             public T Arg { get; }
-            public FuncAndArg(Func<T, T, T> func, T arg)
+            public Partial(Func<T, T, T> func, T arg)
             {
                 Func = func;
                 Arg = arg;
