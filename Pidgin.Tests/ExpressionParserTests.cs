@@ -71,6 +71,38 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestInfixN()
+        {
+            Parser<char, Expr> parser = null;
+            var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
+            parser = ExpressionParser.Build2(
+                termParser,
+                new[]
+                {
+                    Operator.InfixN(
+                        Char('*').Then(Return<Func<Expr, Expr, Expr>>((x, y) => new Times(x, y)))
+                    )
+                }
+            );
+
+            AssertSuccess(
+                parser.Parse("1"),
+                new Lit(1),
+                true
+            );
+            AssertSuccess(
+                parser.Parse("1*2"),
+                new Times(new Lit(1), new Lit(2)),
+                true
+            );
+            AssertSuccess(
+                parser.Parse("1*2*3"),
+                new Times(new Lit(1), new Lit(2)),
+                true
+            );
+        }
+
+        [Fact]
         public void TestInfixL()
         {
             Parser<char, Expr> parser = null;
@@ -91,6 +123,11 @@ namespace Pidgin.Tests
                 }
             );
 
+            AssertSuccess(
+                parser.Parse("1"),
+                new Lit(1),
+                true
+            );
             AssertSuccess(
                 parser.Parse("1+2+3+4"),
                 new Plus(new Plus(new Plus(new Lit(1), new Lit(2)), new Lit(3)), new Lit(4)),
@@ -135,6 +172,11 @@ namespace Pidgin.Tests
                 }
             );
 
+            AssertSuccess(
+                parser.Parse("1"),
+                new Lit(1),
+                true
+            );
             AssertSuccess(
                 parser.Parse("1+2+3+4"),
                 new Plus(new Lit(1), new Plus(new Lit(2), new Plus(new Lit(3), new Lit(4)))),
