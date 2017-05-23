@@ -13,7 +13,7 @@ namespace Pidgin.Expression
         private readonly Parser<TToken, T> _pTerm;
         private readonly Parser<TToken, Func<T, T, T>> _infixNOp;
         private readonly Parser<TToken, IEnumerable<FuncAndArg>> _lOpSequence;
-        private Parser<TToken, IEnumerable<FuncAndArg>> _rOpSequence;
+        private readonly Parser<TToken, IEnumerable<FuncAndArg>> _rOpSequence;
 
         public ExpressionParserBuilder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {

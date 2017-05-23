@@ -6,7 +6,6 @@ namespace Pidgin.Expression
     /// <summary>
     /// Contains tools for parsing expression languages with associative infix operators.
     /// </summary>
-    // TODO: needz moar tests
     public static class ExpressionParser
     {
         /// <summary>
@@ -36,6 +35,6 @@ namespace Pidgin.Expression
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
             IEnumerable<OperatorTableRow<TToken, T>> operatorTable
-        ) => operatorTable.Aggregate(term, (tm, row) => row.Build(tm));
+        ) => operatorTable.Aggregate(term, (tm, row) => new ExpressionParserBuilder<TToken, T>(term, row).Build());
     }
 }

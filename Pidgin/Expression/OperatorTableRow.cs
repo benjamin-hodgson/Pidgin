@@ -79,8 +79,5 @@ namespace Pidgin.Expression
                 PrefixOps.Concat(otherRow.PrefixOps),
                 PostfixOps.Concat(otherRow.PostfixOps)
             );
-
-        internal Parser<TToken, T> Build(Parser<TToken, T> term)
-            => new ExpressionParserBuilder<TToken, T>(term, this).Build();
     }
 }
