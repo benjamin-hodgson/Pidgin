@@ -12,9 +12,6 @@ namespace Pidgin.Expression
 
         private readonly Parser<TToken, T> _pTerm;
         private readonly Parser<TToken, Func<T, T, T>> _infixNOp;
-        private readonly Parser<TToken, Func<T, T, T>> _infixLOp;
-        private readonly Parser<TToken, Func<T, T, T>> _infixROp;
-        private readonly Parser<TToken, T> _infixRTail;
         private readonly Parser<TToken, IEnumerable<FuncAndArg>> _lOpSequence;
         private Parser<TToken, IEnumerable<FuncAndArg>> _rOpSequence;
 
@@ -27,17 +24,14 @@ namespace Pidgin.Expression
                 OneOf(row.PostfixOps.Concat(_returnIdentity))
             );
             _infixNOp = OneOf(row.InfixNOps);
-            _infixLOp = OneOf(row.InfixLOps);
-            _infixROp = OneOf(row.InfixROps);
-            _infixRTail = _pTerm.Then(t => InfixR(t).Or(Parser<TToken>.Return(t)));
             _lOpSequence = Map(
                 (f, y) => new FuncAndArg(f, y),
-                _infixLOp,
+                OneOf(row.InfixLOps),
                 _pTerm
             ).AtLeastOnce();
             _rOpSequence = Map(
                 (f, y) => new FuncAndArg(f, y),
-                _infixROp,
+                OneOf(row.InfixROps),
                 _pTerm
             ).AtLeastOnce();
         }
@@ -47,13 +41,6 @@ namespace Pidgin.Expression
                 InfixN(x),
                 InfixL(x),
                 InfixR(x),
-                Parser<TToken>.Return(x)
-            ));
-        public Parser<TToken, T> Build2()
-            => _pTerm.Then(x => OneOf(
-                InfixN(x),
-                InfixL2(x),
-                InfixR2(x),
                 Parser<TToken>.Return(x)
             ));
 
@@ -66,25 +53,11 @@ namespace Pidgin.Expression
             );
 
         private Parser<TToken, T> InfixL(T x)
-            => Map(
-                (f, y) => f(x, y),
-                _infixLOp,
-                _pTerm
-            ).Then(r => InfixL(r).Or(Parser<TToken>.Return(r)));
-
-        private Parser<TToken, T> InfixL2(T x)
             => _lOpSequence.Select(
                 fxs => fxs.Aggregate(x, (z, fx) => fx.Func(z, fx.Arg))
             );
 
         private Parser<TToken, T> InfixR(T x)
-            => Map(
-                (f, y) => f(x, y),
-                _infixROp,
-                _infixRTail
-            );
-
-        private Parser<TToken, T> InfixR2(T x)
             => _rOpSequence.Select(fxs => {
                 var reassociated = fxs is IList<FuncAndArg>
                     ? new List<FuncAndArg>(((IList<FuncAndArg>)fxs).Count)

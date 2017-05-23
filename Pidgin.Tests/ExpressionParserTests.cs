@@ -75,7 +75,7 @@ namespace Pidgin.Tests
         {
             Parser<char, Expr> parser = null;
             var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build2(
+            parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
@@ -107,7 +107,7 @@ namespace Pidgin.Tests
         {
             Parser<char, Expr> parser = null;
             var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build2(
+            parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
@@ -150,7 +150,7 @@ namespace Pidgin.Tests
         {
             Parser<char, Expr> parser = null;
             var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build2(
+            parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
@@ -203,7 +203,7 @@ namespace Pidgin.Tests
                 String("false").Select(_ => false)
                     .Or(String("true").Select(_ => true))
                     .Or(Rec(() => parser).Between(Char('('), Char(')')));
-            parser = ExpressionParser.Build2(
+            parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
@@ -228,7 +228,7 @@ namespace Pidgin.Tests
 
             Parser<char, dynamic> parser = null;
             var termParser = String("f").Select<dynamic>(_ => f);
-            parser = ExpressionParser.Build2(
+            parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {

@@ -82,7 +82,5 @@ namespace Pidgin.Expression
 
         internal Parser<TToken, T> Build(Parser<TToken, T> term)
             => new ExpressionParserBuilder<TToken, T>(term, this).Build();
-        internal Parser<TToken, T> Build2(Parser<TToken, T> term)
-            => new ExpressionParserBuilder<TToken, T>(term, this).Build2();
     }
 }

@@ -24,13 +24,6 @@ namespace Pidgin.Expression
             term,
             operatorTable.Select(r => r.Aggregate(OperatorTableRow<TToken, T>.Empty, (p, q) => p.And(q)))
         );
-        public static Parser<TToken, T> Build2<TToken, T>(
-            Parser<TToken, T> term,
-            IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>> operatorTable
-        ) => Build2(
-            term,
-            operatorTable.Select(r => r.Aggregate(OperatorTableRow<TToken, T>.Empty, (p, q) => p.And(q)))
-        );
 
         /// <summary>
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTable"/>.
@@ -44,9 +37,5 @@ namespace Pidgin.Expression
             Parser<TToken, T> term,
             IEnumerable<OperatorTableRow<TToken, T>> operatorTable
         ) => operatorTable.Aggregate(term, (tm, row) => row.Build(tm));
-        public static Parser<TToken, T> Build2<TToken, T>(
-            Parser<TToken, T> term,
-            IEnumerable<OperatorTableRow<TToken, T>> operatorTable
-        ) => operatorTable.Aggregate(term, (tm, row) => row.Build2(tm));
     }
 }
