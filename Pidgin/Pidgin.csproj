@@ -3,10 +3,13 @@
   <PropertyGroup>
     <Version>1.0.4</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
   <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
     <TargetFrameworks>netstandard1.2;net451</TargetFrameworks>
   </PropertyGroup>
+  
   <PropertyGroup Condition="'$(APPVEYOR)' == ''">
     <TargetFrameworks>netstandard1.2</TargetFrameworks>
   </PropertyGroup>
