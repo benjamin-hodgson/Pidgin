@@ -22,6 +22,12 @@ namespace Pidgin
         public Parser<TToken, T> Assert(Func<T, bool> predicate, string message)
             => Assert(predicate, _ => message);
 
+        /// <summary>
+        /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
+        /// </summary>
+        /// <param name="predicate">The predicate to apply to the value returned by the current parser</param>
+        /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate</param>
+        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate, Func<T, string> message)
             => new AssertParser(this, predicate, message);
 

@@ -49,27 +49,33 @@ namespace Pidgin
                         ? string.Concat('"', string.Concat(Tokens), '"')
                         : string.Concat('"', string.Join(", ", Tokens), '"');
 
+        /// <inheritdoc/>
         public override string ToString()
             => IsEof
                 ? "EOF"
                 : (Label != null ? "Label: " : "Tokens: ") + Render();
 
+        /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
             => object.Equals(Label, other.Label)
             && ((ReferenceEquals(null, Tokens) && ReferenceEquals(null, other.Tokens))
                 || (!ReferenceEquals(null, Tokens) && !ReferenceEquals(null, other.Tokens) && Tokens.SequenceEqual(other.Tokens))
             );
 
+        /// <inheritdoc/>
         public override bool Equals(object other)
             => !ReferenceEquals(null, other)
             && other is Expected<TToken>
             && Equals((Expected<TToken>)other);
 
+        /// <inheritdoc/>
         public static bool operator ==(Expected<TToken> left, Expected<TToken> right)
             => left.Equals(right);
+        /// <inheritdoc/>
         public static bool operator !=(Expected<TToken> left, Expected<TToken> right)
             => !left.Equals(right);
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
@@ -81,6 +87,7 @@ namespace Pidgin
             }
         }
 
+        /// <inheritdoc/>
         public int CompareTo(Expected<TToken> other)
         {
             // Label < Tokens < EOF
@@ -111,12 +118,16 @@ namespace Pidgin
             return 1;
         }
 
+        /// <inheritdoc/>
         public static bool operator >(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) > 0;
+        /// <inheritdoc/>
         public static bool operator <(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) < 0;
+        /// <inheritdoc/>
         public static bool operator >=(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) >= 0;
+        /// <inheritdoc/>
         public static bool operator <=(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) <= 0;
     }

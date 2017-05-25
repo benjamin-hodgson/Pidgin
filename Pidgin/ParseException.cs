@@ -5,17 +5,17 @@ namespace Pidgin
     /// <summary>
     /// Thrown when a parse error is encountered during parsing
     /// </summary>
-    public class ParseException : Exception
+    public sealed class ParseException : Exception
     {
-        public ParseException()
+        internal ParseException()
         {
         }
 
-        public ParseException(string message) : base(message)
+        internal ParseException(string message) : base(message)
         {
         }
 
-        public ParseException(string message, Exception innerException) : base(message, innerException)
+        internal ParseException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }

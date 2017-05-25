@@ -124,6 +124,7 @@ namespace Pidgin
             sb.Append(last.Render());
         }
 
+        /// <inheritdoc/>
         public bool Equals(ParseError<TToken> other)
             => this.Unexpected.Equals(other.Expected)
             && this.EOF == other.EOF
@@ -131,15 +132,19 @@ namespace Pidgin
             && this.ErrorPos.Equals(other.ErrorPos)
             && object.Equals(this.Message, other.Message);
         
+        /// <inheritdoc/>
         public override bool Equals(object other)
             => other is ParseError<TToken>
             && Equals((ParseError<TToken>)other);
         
+        /// <inheritdoc/>
         public static bool operator ==(ParseError<TToken> left, ParseError<TToken> right)
             => left.Equals(right);
+        /// <inheritdoc/>
         public static bool operator !=(ParseError<TToken> left, ParseError<TToken> right)
             => !left.Equals(right);
         
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked

@@ -8,6 +8,7 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser which lazily calls the supplied function and applies the resulting parser.
         /// This is primarily useful to allow mutual recursion in parsers.
+        /// <seealso cref="Rec{TToken,T}(Lazy{Parser{TToken, T}})"/>
         /// </summary>
         /// <param name="parser">A function which returns a parser</param>
         /// <typeparam name="TToken">The type of tokens in the parser's input stream</typeparam>
@@ -17,7 +18,7 @@ namespace Pidgin
         /// This example shows how to use mutual recursion to create a parser equivalent to <see cref="Parser{TToken, T}.Many()"/>
         /// <code>
         /// // many is equivalent to String("foo").Separated(Char(' '))
-        /// Parser<char, string> separator = null;
+        /// Parser&lt;char, string&gt; separator = null;
         /// var many = String("foo").Then(Rec(() => separator).Optional(), (x, y) => x + y.GetValueOrDefault(""));
         /// separator = Char(' ').Then(Rec(() => many));
         /// </code>
@@ -28,7 +29,7 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser which lazily calls the supplied function and applies the resulting parser.
         /// This is primarily useful to allow mutual recursion in parsers.
-        /// <seealso cref="Rec(Func<Parser<TToken, T>>)"/>
+        /// <seealso cref="Rec{TToken,T}(Func{Parser{TToken, T}})"/>
         /// </summary>
         /// <param name="parser">A lazy parser value</param>
         /// <typeparam name="TToken">The type of tokens in the parser's input stream</typeparam>

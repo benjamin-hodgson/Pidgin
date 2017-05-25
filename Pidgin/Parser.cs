@@ -23,7 +23,7 @@ namespace Pidgin
     /// A parser can either succeed, and return a value of type <typeparamref name="T"/>, or fail and return a <see cref="ParseError{TToken}"/>.
     /// </summary>
     /// <typeparam name="TToken">The type of the tokens in the parser's input stream</typeparam>
-    /// <typeparam name="TToken">The type of the value returned by the parser</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser</typeparam>
     /// <remarks>This type is not intended to be subclassed by users of the library</remarks>
     public abstract partial class Parser<TToken, T>
     {

@@ -9,7 +9,6 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that parses and returns a single token
         /// </summary>
-        /// <typeparam name="TToken">The type of the token</typeparam>
         /// <param name="token">The token to parse</param>
         /// <returns>A parser that parses and returns a single token</returns>
         public static Parser<TToken, TToken> Token(TToken token)
@@ -64,7 +63,6 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that parses and returns a single token satisfying a predicate
         /// </summary>
-        /// <typeparam name="TToken">The type of the token</typeparam>
         /// <param name="predicate">A predicate function to apply to a token</param>
         /// <returns>A parser that parses and returns a single token satisfying a predicate</returns>
         public static Parser<TToken, TToken> Token(Func<TToken, bool> predicate)

@@ -9,7 +9,6 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that parses and returns a literal sequence of tokens
         /// </summary>
-        /// <typeparam name="TToken">The type of tokens to parse</typeparam>
         /// <param name="tokens">A sequence of tokens</param>
         /// <returns>A parser that parses a literal sequence of tokens</returns>
         public static Parser<TToken, TToken[]> Sequence(params TToken[] tokens)
@@ -18,7 +17,6 @@ namespace Pidgin
         /// Creates a parser that parses and returns a literal sequence of tokens.
         /// The input enumerable is enumerated and copied to a list.
         /// </summary>
-        /// <typeparam name="TToken">The type of tokens to parse</typeparam>
         /// <typeparam name="TEnumerable">The type of tokens to parse</typeparam>
         /// <param name="tokens">A sequence of tokens</param>
         /// <returns>A parser that parses a literal sequence of tokens</returns>

@@ -37,8 +37,8 @@ namespace Pidgin
         /// <param name="selector">A transformation function which returns a parser to apply after applying the current parser</param>
         /// <typeparam name="U">The type of the return value of the second parser</typeparam>
         /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function.</returns>
-        public Parser<TToken, U> Then<U>(Func<T, Parser<TToken, U>> func)
-            => Bind(func);
+        public Parser<TToken, U> Then<U>(Func<T, Parser<TToken, U>> selector)
+            => Bind(selector);
         /// <summary>
         /// Creates a parser that applies a transformation function to the return value of the current parser.
         /// The transformation function dynamically chooses a second parser, which is applied after applying the current parser.
@@ -49,7 +49,7 @@ namespace Pidgin
         /// <typeparam name="U">The type of the return value of the second parser</typeparam>
         /// <typeparam name="R">The type of the return value of the resulting parser</typeparam>
         /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function</returns>
-        public Parser<TToken, R> Then<U, R>(Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
-            => Bind(func, result);
+        public Parser<TToken, R> Then<U, R>(Func<T, Parser<TToken, U>> selector, Func<T, U, R> result)
+            => Bind(selector, result);
     }
 }

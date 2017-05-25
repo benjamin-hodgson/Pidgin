@@ -156,19 +156,24 @@ namespace Pidgin
         public Maybe<U> OfType<U>()
             => HasValue && _value is U ? Maybe.Just((U)(object)_value) : Maybe.Nothing<U>();
 
+        /// <inheritdoc/>
         public bool Equals(Maybe<T> other)
             => (this.HasValue && other.HasValue && object.Equals(this.Value, other.Value))
             || (!this.HasValue && !other.HasValue);
 
+        /// <inheritdoc/>
         public override bool Equals(object other)
             => other is Maybe<T>
             && Equals((Maybe<T>)other);
         
+        /// <inheritdoc/>
         public static bool operator ==(Maybe<T> left, Maybe<T> right)
             => left.Equals(right);
+        /// <inheritdoc/>
         public static bool operator !=(Maybe<T> left, Maybe<T> right)
             => !left.Equals(right);
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked

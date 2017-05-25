@@ -2,6 +2,9 @@ using System;
 
 namespace Pidgin.Expression
 {
+    /// <summary>
+    /// Methods to create <see cref="OperatorTableRow{TToken, T}"/> values.
+    /// </summary>
     public static class Operator
     {
         /// <summary>

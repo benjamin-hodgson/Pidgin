@@ -5,6 +5,9 @@ using Pidgin.ParseStates;
 
 namespace Pidgin
 {
+    /// <summary>
+    /// Extension methods for running parsers
+    /// </summary>
     public static class ParserExtensions
     {
         /// <summary>
@@ -98,7 +101,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input string</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<T>(this Parser<char, T> parser, string input, Func<char, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
@@ -109,7 +112,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input list</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
@@ -120,7 +123,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input list</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseReadOnlyListOrThrow<TToken, T>(this Parser<TToken, T> parser, IReadOnlyList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.ParseReadOnlyList(input, calculatePos));
@@ -131,7 +134,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input enumerable</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerable<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
@@ -142,7 +145,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input enumerator</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, IEnumerator<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
@@ -153,7 +156,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input stream</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<T>(this Parser<byte, T> parser, Stream input, Func<byte, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
@@ -164,7 +167,7 @@ namespace Pidgin
         /// <param name="parser">A parser</param>
         /// <param name="input">An input reader</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
-        /// <exception cref="ParseException">Thrown when an error occurs during parsing<exception/>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<T>(this Parser<char, T> parser, TextReader input, Func<char, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));

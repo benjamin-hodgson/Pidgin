@@ -44,20 +44,25 @@ namespace Pidgin
         public SourcePos NewLine()
             => new SourcePos(Line + 1, 1);
 
+        /// <inheritdoc/>
         public bool Equals(SourcePos other)
             => Line == other.Line
             && Col == other.Col;
 
+        /// <inheritdoc/>
         public override bool Equals(object other)
             => !ReferenceEquals(null, other)
             && other is SourcePos
             && Equals((SourcePos)other);
 
+        /// <inheritdoc/>
         public static bool operator ==(SourcePos left, SourcePos right)
             => left.Equals(right);
+        /// <inheritdoc/>
         public static bool operator !=(SourcePos left, SourcePos right)
             => !left.Equals(right);
         
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
@@ -69,6 +74,7 @@ namespace Pidgin
             }
         }
 
+        /// <inheritdoc/>
         public int CompareTo(SourcePos other)
         {
             var lineCmp = Line.CompareTo(other.Line);
@@ -79,12 +85,16 @@ namespace Pidgin
             return lineCmp;
         }
 
+        /// <inheritdoc/>
         public static bool operator >(SourcePos left, SourcePos right)
             => left.CompareTo(right) > 0;
+        /// <inheritdoc/>
         public static bool operator <(SourcePos left, SourcePos right)
             => left.CompareTo(right) < 0;
+        /// <inheritdoc/>
         public static bool operator >=(SourcePos left, SourcePos right)
             => left.CompareTo(right) >= 0;
+        /// <inheritdoc/>
         public static bool operator <=(SourcePos left, SourcePos right)
             => left.CompareTo(right) <= 0;
     }
