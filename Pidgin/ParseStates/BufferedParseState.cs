@@ -94,13 +94,13 @@ namespace Pidgin.ParseStates
             if (_bufPos != _bufSize)
             {
                 // we're not at the end of the buffer
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Please report this as a bug in Pidgin! https://github.com/benjamin-hodgson/Pidgin/issues");
             }
             if (_bufSize == Buffer.Length)
             {
                 // the array is full, allocate a new bigger one
                 var newBuf = BufferPool<TToken>.Acquire(Buffer.Length * 2);
-                Buffer.CopyTo(newBuf, 0);
+                Buffer.CopyTo(newBuf, 0);  // i wonder if a linked-list style paged approach would be faster here?
                 BufferPool<TToken>.Release(Buffer);
                 _buffer = newBuf;
             }
