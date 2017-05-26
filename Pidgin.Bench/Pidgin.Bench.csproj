@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="../Pidgin/Pidgin.csproj" />
     <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
+    <ProjectReference Include="../Pidgin.Bench.FParsec/Pidgin.Bench.FParsec.fsproj" />
   </ItemGroup>
 
   <ItemGroup>

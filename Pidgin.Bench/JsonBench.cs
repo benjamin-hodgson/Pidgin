@@ -35,6 +35,11 @@ namespace Pidgin.Bench
         {
             SpracheJsonParser.Parse(_bigJson);
         }
+        [Benchmark]
+        public void BigJson_FParsec()
+        {
+            Pidgin.Bench.FParsec.JsonParser.parse(_bigJson);
+        }
 
         [Benchmark]
         public void LongJson_Pidgin()
@@ -45,6 +50,11 @@ namespace Pidgin.Bench
         public void LongJson_Sprache()
         {
             SpracheJsonParser.Parse(_longJson);
+        }
+        [Benchmark]
+        public void LongJson_FParsec()
+        {
+            Pidgin.Bench.FParsec.JsonParser.parse(_longJson);
         }
 
         [Benchmark]
@@ -57,6 +67,11 @@ namespace Pidgin.Bench
         {
             SpracheJsonParser.Parse(_deepJson);
         }
+        [Benchmark]
+        public void DeepJson_FParsec()
+        {
+            Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
+        }
 
         [Benchmark]
         public void WideJson_Pidgin()
@@ -67,6 +82,11 @@ namespace Pidgin.Bench
         public void WideJson_Sprache()
         {
             SpracheJsonParser.Parse(_wideJson);
+        }
+        [Benchmark]
+        public void WideJson_FParsec()
+        {
+            Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
         }
         
         private static IJson BuildJson(int length, int depth, int width)

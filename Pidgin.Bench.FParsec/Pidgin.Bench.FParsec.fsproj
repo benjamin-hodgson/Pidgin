@@ -1,0 +1,22 @@
+﻿<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="JsonParser.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="4.1.*" />
+    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.*" PrivateAssets="All" />
+    <PackageReference Include="FParsec" Version="1.0.3-beta-20170521" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.3.1" />
+  </ItemGroup>
+
+</Project>
