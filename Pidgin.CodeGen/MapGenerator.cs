@@ -8,7 +8,7 @@ namespace Pidgin.CodeGen
     {
         public static void Generate()
         {
-            File.WriteAllText("Pidgin/Parser.Map.cs", GenerateClassPart());
+            File.WriteAllText("Pidgin/Parser.Map.Generated.cs", GenerateClassPart());
         }
 
         private static string GenerateClassPart()
