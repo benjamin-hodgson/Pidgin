@@ -149,7 +149,7 @@ Parser<char, string> parser = String("food").Or("foul");
 Assert.Throws<ParseError>(() => parser.ParseOrThrow("foul"));  // why didn't it choose the second option?
 ```
 
-What happened here? When a parser successfully parses a character from the input stream, it advances the input stream to the next character. `Or` only chooses the next alternative if the given parser fails _without consuming any input_, so that the state Pidgin does not perform any lookahead or backtracking by default. Backtracking is enabled using the `Try` function.
+What happened here? When a parser successfully parses a character from the input stream, it advances the input stream to the next character. `Or` only chooses the next alternative if the given parser fails _without consuming any input_; Pidgin does not perform any lookahead or backtracking by default. Backtracking is enabled using the `Try` function.
 
 ```csharp
 // apply Try to the first option, so we can return to the beginning if it fails
@@ -212,10 +212,10 @@ Tips
 Pidgin is designed to be fast and produce a minimum of garbage. A carefully written Pidgin parser can be as fast as a hand-written recursive descent parser. If you find that parsing is a bottleneck in your code, here are some tips for minimising the runtime of your parser.
 
 * Avoid LINQ query syntax. Query comprehensions are defined by translation into core C# using `SelectMany`, however, for long queries the translation can allocate a large number of anonymous objects. This generates a lot of garbage; while those objects often won't survive the nursery it's still preferable to avoid allocating them!
-* Avoid backtracking where possible.
+* Avoid backtracking where possible. If consuming a streaming input like a `TextReader` or an `IEnumerable`, `Try` _buffers_ its input to enable backtracking, which can be expensive.
 * Use specialised parsers where possible: the provided `Skip*` parsers can be used when the result of parsing is not required. They typically run faster than their counterparts because they don't need to save the values generated.
-* Avoid `Bind` and `SelectMany` where possible. These functions build parsers dynamically, based on the result of the previous parser. Building a parser can be an expensive operation. Many practical grammars are _context-free_ and can therefore be written purely with `Map`. If you do have a context-sensitive grammar, it may make sense to parse it in a context-free fashion and then run a semantic checker over the result.
-* Build your parser statically where possible.
+* Build your parser statically where possible. Pidgin is designed under the assumption that parser scripts are executed more than they are written; building a parser can be an expensive operation.
+* Avoid `Bind` and `SelectMany` where possible. Many practical grammars are _context-free_ and can therefore be written purely with `Map`. If you do have a context-sensitive grammar, it may make sense to parse it in a context-free fashion and then run a semantic checker over the result.
 
 Comparison to other tools
 -------------------------
