@@ -218,7 +218,7 @@ class Derived : Base {}
 Parser<char, Base> p = Return(new Derived());  // Cannot implicitly convert type 'Pidgin.Parser<char, Derived>' to 'Pidgin.Parser<char, Base>'
 ```
 
-This would be possible if `Parser` were defined as a _covariant_ in its second type parameter (ie. `interface Parser<TToken, out T>`. For the purposes of efficiency, Pidgin parsers return a struct. Structs and classes aren't allowed to have variant type parameters (only interfaces and delegates); since a Pidgin parser's return value isn't variant, nor can the parser itself.
+This would be possible if `Parser` were defined as a _covariant_ in its second type parameter (ie `interface Parser<TToken, out T>`). For the purposes of efficiency, Pidgin parsers return a struct. Structs and classes aren't allowed to have variant type parameters (only interfaces and delegates); since a Pidgin parser's return value isn't variant, nor can the parser itself.
 
 In my experience, this crops up most frequently when returning a node of a syntax tree from a parser using `Select`. The least verbose way of rectifying this is to explicitly set `Select`'s type parameter to the supertype:
 
