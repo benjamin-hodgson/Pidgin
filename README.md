@@ -207,9 +207,28 @@ Examples, such as parsing (a subset of) JSON and XML into document structures, c
 Tips
 ----
 
+### A note on variance
+
+Why doesn't this code compile?
+
+```csharp
+class Base {}
+class Derived : Base {}
+
+Parser<char, Base> p = Return(new Derived());  // Cannot implicitly convert type 'Pidgin.Parser<char, Derived>' to 'Pidgin.Parser<char, Base>'
+```
+
+For the purposes of efficiency, Pidgin parsers return a struct. Structs and concrete classes aren't allowed to have variant type parameters; since a Pidgin parser's return value isn't variant, nor can the parser itself.
+
+In my experience, this crops up most frequently when returning a node of a syntax tree from a parser using `Select`. The least verbose way of rectifying this is to explicitly set `Select`'s type parameter to the supertype:
+
+```csharp
+Parser<char, Base> p = Any.Select<Base>(() => new Derived());
+```
+
 ### Speed tips
 
-Pidgin is designed to be fast and produce a minimum of garbage. A carefully written Pidgin parser can be as fast as a hand-written recursive descent parser. If you find that parsing is a bottleneck in your code, here are some tips for minimising the runtime of your parser.
+Pidgin is designed to be fast and produce a minimum of garbage. A carefully written Pidgin parser can be competitive with a hand-written recursive descent parser. If you find that parsing is a bottleneck in your code, here are some tips for minimising the runtime of your parser.
 
 * Avoid LINQ query syntax. Query comprehensions are defined by translation into core C# using `SelectMany`, however, for long queries the translation can allocate a large number of anonymous objects. This generates a lot of garbage; while those objects often won't survive the nursery it's still preferable to avoid allocating them!
 * Avoid backtracking where possible. If consuming a streaming input like a `TextReader` or an `IEnumerable`, `Try` _buffers_ its input to enable backtracking, which can be expensive.
