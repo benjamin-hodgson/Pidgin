@@ -46,22 +46,20 @@ namespace Pidgin.Expression
 
         private Parser<TToken, T> InfixL(T x)
             => _lOpSequence.Select(
-                fxs => fxs.Aggregate(x, (z, fx) => fx.Func(z, fx.Arg))
+                fxs => fxs.Aggregate(x, (z, fx) => fx.Apply(z))
             );
 
         private Parser<TToken, T> InfixR(T x)
             => _rOpSequence.Select(fxs =>
                 {
-                    var reassociated = fxs is IList<Partial>
-                        ? new List<Partial>(((IList<Partial>)fxs).Count)
-                        : new List<Partial>();
-                    foreach (var fx in fxs)
+                    var list = fxs is IList<Partial> l ? l : fxs.ToList();
+                    var p = new Partial((y, _) => y, default(T));
+                    for (var i = list.Count - 1; i >= 0; i--)
                     {
-                        reassociated.Add(new Partial(fx.Func, x));
-                        x = fx.Arg;
+                        var partial = list[i];
+                        p = new Partial(partial.Func, p.Apply(partial.Arg));
                     }
-                    reassociated.Reverse();
-                    return reassociated.Aggregate(x, (z, fx) => fx.Func(fx.Arg, z));
+                    return p.Apply(x);
                 }
             );
         
@@ -81,6 +79,7 @@ namespace Pidgin.Expression
                 Func = func;
                 Arg = arg;
             }
+            public T Apply(T arg) => Func(arg, Arg);
         }
     }
 }
