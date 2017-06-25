@@ -15,7 +15,9 @@ namespace Pidgin.CodeGen
         {
             var methodsAndClasses = Enumerable.Range(1, 8).Select(n => GenerateMethodAndClass(n));
 
-            return $@"using System;
+            return $@"#region GeneratedCode
+using System;
+using System.Collections.Generic;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -31,12 +33,19 @@ namespace Pidgin
     // but this lower-level approach saves on allocations
     public static partial class Parser
     {{
-#region GeneratedCode
+        private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
+        {{
+            protected MapParserBase(SortedSet<Expected<TToken>> expected) : base(expected)
+            {{
+            }}
+
+            internal abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
+        }}
+
         {string.Join(Environment.NewLine, methodsAndClasses)}
-#endregion
     }}
 }}
-
+#endregion
 ";
         }
 
@@ -52,9 +61,16 @@ namespace Pidgin
             var results = nums.Select(n => $"result{n}.GetValueOrDefault()");
             var types = string.Join(", ", nums.Select(n => "T" + n));
             var parts = nums.Select(GenerateMethodBodyPart);
+            var mapMethodBody = num == 1
+                ? $@"parser1 is MapParserBase<TToken, T1> p
+                ? p.Map(func)
+                : new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})"
+                : $"new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})";
+            var funcArgNames = nums.Select(n => "x" + n);
 
             var typeParamDocs = nums.Select(n => $"<typeparam name=\"T{n}\">The return type of the {EnglishNumber(n)} parser</typeparam>");
             var paramDocs = nums.Select(n => $"<param name=\"parser{n}\">The {EnglishNumber(n)} parser</param>");
+
 
             return $@"
         /// <summary>
@@ -68,9 +84,9 @@ namespace Pidgin
         public static Parser<TToken, R> Map<TToken, {types}, R>(
             Func<{types}, R> func,
             {string.Join($",{Environment.NewLine}            ", parserParams)}
-        ) => new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)});
+        ) => {mapMethodBody};
         
-        private sealed class Map{num}Parser<TToken, {types}, R> : Parser<TToken, R>
+        private sealed class Map{num}Parser<TToken, {types}, R> : MapParserBase<TToken, R>
         {{
             private readonly Func<{types}, R> _func;
             {string.Join($"{Environment.NewLine}            ", parserFields)}
@@ -94,6 +110,12 @@ namespace Pidgin
                     {string.Join($",{Environment.NewLine}                    ", results)}
                 ), consumedInput);
             }}
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map{num}Parser<TToken, {types}, U>(
+                    ({string.Join(", ", funcArgNames)}) => func(_func({string.Join(", ", funcArgNames)})),
+                    {string.Join($",{Environment.NewLine}                    ", parserFieldNames)}
+                );
         }}";
         }
 

@@ -1,4 +1,6 @@
+#region GeneratedCode
 using System;
+using System.Collections.Generic;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -14,7 +16,15 @@ namespace Pidgin
     // but this lower-level approach saves on allocations
     public static partial class Parser
     {
-#region GeneratedCode
+        private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
+        {
+            protected MapParserBase(SortedSet<Expected<TToken>> expected) : base(expected)
+            {
+            }
+
+            internal abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
+        }
+
         
         /// <summary>
         /// Creates a parser that applies the specified parsers sequentially and applies the specified transformation function to their results.
@@ -27,9 +37,11 @@ namespace Pidgin
         public static Parser<TToken, R> Map<TToken, T1, R>(
             Func<T1, R> func,
             Parser<TToken, T1> parser1
-        ) => new Map1Parser<TToken, T1, R>(func, parser1);
+        ) => parser1 is MapParserBase<TToken, T1> p
+                ? p.Map(func)
+                : new Map1Parser<TToken, T1, R>(func, parser1);
         
-        private sealed class Map1Parser<TToken, T1, R> : Parser<TToken, R>
+        private sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -62,6 +74,12 @@ namespace Pidgin
                     result1.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map1Parser<TToken, T1, U>(
+                    (x1) => func(_func(x1)),
+                    _p1
+                );
         }
 
         /// <summary>
@@ -80,7 +98,7 @@ namespace Pidgin
             Parser<TToken, T2> parser2
         ) => new Map2Parser<TToken, T1, T2, R>(func, parser1, parser2);
         
-        private sealed class Map2Parser<TToken, T1, T2, R> : Parser<TToken, R>
+        private sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -127,6 +145,13 @@ namespace Pidgin
                     result2.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map2Parser<TToken, T1, T2, U>(
+                    (x1, x2) => func(_func(x1, x2)),
+                    _p1,
+                    _p2
+                );
         }
 
         /// <summary>
@@ -148,7 +173,7 @@ namespace Pidgin
             Parser<TToken, T3> parser3
         ) => new Map3Parser<TToken, T1, T2, T3, R>(func, parser1, parser2, parser3);
         
-        private sealed class Map3Parser<TToken, T1, T2, T3, R> : Parser<TToken, R>
+        private sealed class Map3Parser<TToken, T1, T2, T3, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -209,6 +234,14 @@ namespace Pidgin
                     result3.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map3Parser<TToken, T1, T2, T3, U>(
+                    (x1, x2, x3) => func(_func(x1, x2, x3)),
+                    _p1,
+                    _p2,
+                    _p3
+                );
         }
 
         /// <summary>
@@ -233,7 +266,7 @@ namespace Pidgin
             Parser<TToken, T4> parser4
         ) => new Map4Parser<TToken, T1, T2, T3, T4, R>(func, parser1, parser2, parser3, parser4);
         
-        private sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : Parser<TToken, R>
+        private sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, T4, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -308,6 +341,15 @@ namespace Pidgin
                     result4.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map4Parser<TToken, T1, T2, T3, T4, U>(
+                    (x1, x2, x3, x4) => func(_func(x1, x2, x3, x4)),
+                    _p1,
+                    _p2,
+                    _p3,
+                    _p4
+                );
         }
 
         /// <summary>
@@ -335,7 +377,7 @@ namespace Pidgin
             Parser<TToken, T5> parser5
         ) => new Map5Parser<TToken, T1, T2, T3, T4, T5, R>(func, parser1, parser2, parser3, parser4, parser5);
         
-        private sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : Parser<TToken, R>
+        private sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, T4, T5, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -424,6 +466,16 @@ namespace Pidgin
                     result5.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map5Parser<TToken, T1, T2, T3, T4, T5, U>(
+                    (x1, x2, x3, x4, x5) => func(_func(x1, x2, x3, x4, x5)),
+                    _p1,
+                    _p2,
+                    _p3,
+                    _p4,
+                    _p5
+                );
         }
 
         /// <summary>
@@ -454,7 +506,7 @@ namespace Pidgin
             Parser<TToken, T6> parser6
         ) => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R>(func, parser1, parser2, parser3, parser4, parser5, parser6);
         
-        private sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : Parser<TToken, R>
+        private sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, T4, T5, T6, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -557,6 +609,17 @@ namespace Pidgin
                     result6.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, U>(
+                    (x1, x2, x3, x4, x5, x6) => func(_func(x1, x2, x3, x4, x5, x6)),
+                    _p1,
+                    _p2,
+                    _p3,
+                    _p4,
+                    _p5,
+                    _p6
+                );
         }
 
         /// <summary>
@@ -590,7 +653,7 @@ namespace Pidgin
             Parser<TToken, T7> parser7
         ) => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7);
         
-        private sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser<TToken, R>
+        private sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, T4, T5, T6, T7, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -707,6 +770,18 @@ namespace Pidgin
                     result7.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, U>(
+                    (x1, x2, x3, x4, x5, x6, x7) => func(_func(x1, x2, x3, x4, x5, x6, x7)),
+                    _p1,
+                    _p2,
+                    _p3,
+                    _p4,
+                    _p5,
+                    _p6,
+                    _p7
+                );
         }
 
         /// <summary>
@@ -743,7 +818,7 @@ namespace Pidgin
             Parser<TToken, T8> parser8
         ) => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
         
-        private sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Parser<TToken, R>
+        private sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : MapParserBase<TToken, R>
         {
             private readonly Func<T1, T2, T3, T4, T5, T6, T7, T8, R> _func;
             private readonly Parser<TToken, T1> _p1;
@@ -874,8 +949,20 @@ namespace Pidgin
                     result8.GetValueOrDefault()
                 ), consumedInput);
             }
+
+            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+                => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, U>(
+                    (x1, x2, x3, x4, x5, x6, x7, x8) => func(_func(x1, x2, x3, x4, x5, x6, x7, x8)),
+                    _p1,
+                    _p2,
+                    _p3,
+                    _p4,
+                    _p5,
+                    _p6,
+                    _p7,
+                    _p8
+                );
         }
-#endregion
     }
 }
-
+#endregion
