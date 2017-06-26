@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="JsonParser.fs" />
+    <Compile Include="ExpressionParser.fs" />
   </ItemGroup>
 
   <ItemGroup>

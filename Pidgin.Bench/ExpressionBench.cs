@@ -35,14 +35,24 @@ namespace Pidgin.Bench
         }
     
         [Benchmark]
-        public void InfixL()
+        public void InfixL_Pidgin()
         {
             _leftAssoc.ParseOrThrow(_bigExpression);
         }
         [Benchmark]
-        public void InfixR()
+        public void InfixR_Pidgin()
         {
             _rightAssoc.ParseOrThrow(_bigExpression);
+        }
+        [Benchmark]
+        public void InfixL_FParsec()
+        {
+            Pidgin.Bench.FParsec.ExpressionParser.parseL(_bigExpression);
+        }
+        [Benchmark]
+        public void InfixR_FParsec()
+        {
+            Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
         }
     }
 }
