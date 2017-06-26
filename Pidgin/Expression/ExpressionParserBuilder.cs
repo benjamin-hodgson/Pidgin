@@ -51,16 +51,10 @@ namespace Pidgin.Expression
 
         private Parser<TToken, T> InfixR(T x)
             => _rOpSequence.Select(fxs =>
-                {
-                    var list = fxs is IList<Partial> l ? l : fxs.ToList();
-                    var p = new Partial((y, _) => y, default(T));
-                    for (var i = list.Count - 1; i >= 0; i--)
-                    {
-                        var partial = list[i];
-                        p = new Partial(partial.Func, p.Apply(partial.Arg));
-                    }
-                    return p.Apply(x);
-                }
+                fxs.AggregateR(
+                    new Partial((y, _) => y, default(T)),
+                    (fx, p) => new Partial(fx.Func, p.Apply(fx.Arg))
+                ).Apply(x)
             );
         
         private Parser<TToken, IEnumerable<Partial>> Associative(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
