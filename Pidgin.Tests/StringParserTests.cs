@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -318,6 +319,10 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("abc"), Enumerable.Empty<char>(), false);
                 AssertSuccess(parser.Parse(""), Enumerable.Empty<char>(), false);
             }
+            {
+                var parser = Return(1).Many();
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+            }
         }
 
         [Fact]
@@ -341,6 +346,10 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("abc"), Unit.Value, false);
                 AssertSuccess(parser.Parse(""), Unit.Value, false);
             }
+            {
+                var parser = Return(1).SkipMany();
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+            }
         }
 
         [Fact]
@@ -356,6 +365,10 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,6), true);
             }
+            {
+                var parser = Return(1).AtLeastOnce();
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+            }
         }
 
         [Fact]
@@ -370,6 +383,10 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("food"), Unit.Value, true);
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,6), true);
+            }
+            {
+                var parser = Return(1).SkipAtLeastOnce();
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
             }
         }
 
@@ -388,6 +405,10 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("food"), new[] { new Expected<char>(new[] { ' ' }), new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,4), true);
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,6), true);
+            }
+            {
+                var parser = Return(1).Until(Char(' '));
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
             }
         }
 
@@ -410,6 +431,10 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo ".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo ".ToCharArray()) }, new SourcePos(1,6), true);
             }
+            {
+                var parser = Return(1).SkipUntil(Char(' '));
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+            }
         }
 
         [Fact]
@@ -428,6 +453,10 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,6), true);
             }
+            {
+                var parser = Return(1).AtLeastOnceUntil(Char(' '));
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+            }
         }
 
         [Fact]
@@ -445,6 +474,10 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("food"), new[] { new Expected<char>("foo ".ToCharArray()) }, new SourcePos(1,4), true);
                 AssertFailure(parser.Parse("foul"), new[] { new Expected<char>("foo ".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse("foofoul"), new[] { new Expected<char>("foo ".ToCharArray()) }, new SourcePos(1,6), true);
+            }
+            {
+                var parser = Return(1).SkipAtLeastOnceUntil(Char(' '));
+                Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
             }
         }
 

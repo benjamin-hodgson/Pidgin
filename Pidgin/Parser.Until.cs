@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pidgin.ParseStates;
 
@@ -74,21 +75,24 @@ namespace Pidgin
                 Result<TToken, U> terminatorResult;
                 do
                 {
-                    var tResult = _parser.Parse(state);
-                    consumedInput = consumedInput || tResult.ConsumedInput;
-                    if (!tResult.Success)
+                    var itemResult = _parser.Parse(state);
+                    consumedInput = consumedInput || itemResult.ConsumedInput;
+                    if (!itemResult.Success)
                     {
-                        if (tResult.ConsumedInput)
+                        if (itemResult.ConsumedInput)
                         {
-                            return Result.Failure<TToken, IEnumerable<T>>(tResult.Error, consumedInput);
+                            return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error, consumedInput);
                         }
-                        return Result.Failure<TToken, IEnumerable<T>>(tResult.Error.WithExpected(firstTime ? Expected : _round2Expected), consumedInput);
+                        return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error.WithExpected(firstTime ? Expected : _round2Expected), consumedInput);
                     }
-                    ts?.Add(tResult.GetValueOrDefault());
+                    if (!itemResult.ConsumedInput)
+                    {
+                        throw new InvalidOperationException("Until() used with a parser which consumed no input");
+                    }
+                    ts?.Add(itemResult.GetValueOrDefault());
 
 
                     terminatorResult = _terminator.Parse(state);
-                    consumedInput = consumedInput || terminatorResult.ConsumedInput;
                     if (terminatorResult.ConsumedInput && !terminatorResult.Success)
                     {
                         return Result.Failure<TToken, IEnumerable<T>>(terminatorResult.Error, consumedInput);

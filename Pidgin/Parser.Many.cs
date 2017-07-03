@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pidgin.ParseStates;
@@ -56,18 +57,22 @@ namespace Pidgin
             protected Result<TToken, IEnumerable<T>> ManyImpl(Parser<TToken, T> parser, IParseState<TToken> state, List<T> ts, bool consumedInput)
             {
                 var result = parser.Parse(state);
-                while (result.ConsumedInput)
+                while (result.Success)
                 {
-                    consumedInput = true;
-                    if (!result.Success)
+                    if (!result.ConsumedInput)
                     {
-                        return Result.Failure<TToken, IEnumerable<T>>(
-                            result.Error,
-                            consumedInput
-                        );
+                        throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
+                    consumedInput = true;
                     ts?.Add(result.Value);
                     result = parser.Parse(state);
+                }
+                if (result.ConsumedInput)  // the most recent parser failed after consuming input
+                {
+                    return Result.Failure<TToken, IEnumerable<T>>(
+                        result.Error,
+                        true
+                    );
                 }
                 return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
             }
