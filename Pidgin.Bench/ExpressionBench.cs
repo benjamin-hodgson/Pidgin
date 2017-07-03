@@ -18,8 +18,7 @@ namespace Pidgin.Bench
         [Setup]
         public void Setup()
         {
-            var numbers = Enumerable.Range(1, 1000);
-            _bigExpression = "0" + numbers.Aggregate("", (x, y) => x + "+" + y);
+            _bigExpression = string.Join("+", Enumerable.Range(1, 1000));
 
             var term = Parser.Digit.Many().Select(cs => int.Parse(string.Concat(cs)));
             var infixL = Operator.InfixL(Parser.Char('+').Then(Return<Func<int, int, int>>((x, y) => x + y)));
