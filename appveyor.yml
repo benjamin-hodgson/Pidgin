@@ -10,6 +10,9 @@ install:
   - ps: .\dotnet-install.ps1 -Version 1.0.1
 
 before_build:
+  - ps:
+      $lastTag = git describe --abbrev=0
+      Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
   - cmd: dotnet --info
   - cmd: dotnet restore --verbosity Minimal
 
