@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Pidgin.Expression;
 using Xunit;
 using static Pidgin.Parser;
@@ -12,7 +14,45 @@ namespace Pidgin.Tests
         {
             public override bool Equals(object other)
                 => other is Expr && this.Equals((Expr)other);
-            public abstract bool Equals(Expr other);
+            public bool Equals(Expr other)
+            {
+                // I had a normal recursive-virtual-method implementation
+                // but it blew the stack on big inputs
+                var stack = new Stack<(Expr, Expr)>();
+                stack.Push((this, other));
+                while (stack.Any())
+                {
+                    var (l, r) = stack.Pop();
+
+                    if (l is Lit l1 && r is Lit l2)
+                    {
+                        if (l1.Value != l2.Value)
+                        {
+                            return false;
+                        }
+                    }
+                    else if (l is Plus p1 && r is Plus p2)
+                    {
+                        stack.Push((p1.Left, p2.Left));
+                        stack.Push((p1.Right, p2.Right));
+                    }
+                    else if (l is Minus m1 && r is Minus m2)
+                    {
+                        stack.Push((m1.Left, m2.Left));
+                        stack.Push((m1.Right, m2.Right));
+                    }
+                    else if (l is Times t1 && r is Times t2)
+                    {
+                        stack.Push((t1.Left, t2.Left));
+                        stack.Push((t1.Right, t2.Right));
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
 
             public override int GetHashCode() => 0;  // doesn't matter
         }
@@ -23,9 +63,6 @@ namespace Pidgin.Tests
             {
                 Value = value;
             }
-            public override bool Equals(Expr other)
-                => other is Lit
-                && ((Lit)other).Value == this.Value;
         }
         private class Plus : Expr
         {
@@ -36,10 +73,6 @@ namespace Pidgin.Tests
                 Left = left;
                 Right = right;
             }
-            public override bool Equals(Expr other)
-                => other is Plus
-                && ((Plus)other).Left.Equals(this.Left)
-                && ((Plus)other).Right.Equals(this.Right);
         }
         private class Minus : Expr
         {
@@ -50,10 +83,6 @@ namespace Pidgin.Tests
                 Left = left;
                 Right = right;
             }
-            public override bool Equals(Expr other)
-                => other is Minus
-                && ((Minus)other).Left.Equals(this.Left)
-                && ((Minus)other).Right.Equals(this.Right);
         }
         private class Times : Expr
         {
@@ -64,10 +93,6 @@ namespace Pidgin.Tests
                 Left = left;
                 Right = right;
             }
-            public override bool Equals(Expr other)
-                => other is Times
-                && ((Times)other).Left.Equals(this.Left)
-                && ((Times)other).Right.Equals(this.Right);
         }
 
         [Fact]
@@ -143,6 +168,19 @@ namespace Pidgin.Tests
                 new Plus(new Times(new Times(new Lit(1), new Lit(2)), new Lit(3)), new Times(new Lit(4), new Lit(5))),
                 true
             );
+            
+            // should work with large inputs
+            var numbers = Enumerable.Repeat(1, 100000);
+            var input = string.Join("+", numbers);
+            var expected = numbers
+                .Select(n => new Lit(n))
+                .Cast<Expr>()
+                .Aggregate((Expr)null, (acc, x) => acc == null ? x : new Plus(acc, x));
+            AssertSuccess(
+                parser.Parse(input),
+                expected,
+                true
+            );
         }
 
         [Fact]
@@ -191,6 +229,19 @@ namespace Pidgin.Tests
             AssertSuccess(
                 parser.Parse("1*2*3+4*5"),
                 new Plus(new Times(new Lit(1), new Times(new Lit(2), new Lit(3))), new Times(new Lit(4), new Lit(5))),
+                true
+            );
+            
+            // should work with large inputs
+            var numbers = Enumerable.Repeat(1, 100000);
+            var input = string.Join("+", numbers);
+            var expected = numbers
+                .Select(n => new Lit(n))
+                .Cast<Expr>()
+                .AggregateR((Expr)null, (x, acc) => acc == null ? x : new Plus(x, acc));
+            AssertSuccess(
+                parser.Parse(input),
+                expected,
                 true
             );
         }
