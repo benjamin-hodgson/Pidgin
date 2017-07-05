@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pidgin.ParseStates;
 
@@ -26,7 +27,7 @@ namespace Pidgin
         public Parser<TToken, IEnumerable<T>> SeparatedAtLeastOnce<U>(Parser<TToken, U> separator)
             => new SeparatedAtLeastOnceParser<U>(this, separator);
 
-        private sealed class SeparatedAtLeastOnceParser<U> : ManyParserBase
+        private sealed class SeparatedAtLeastOnceParser<U> : Parser<TToken, IEnumerable<T>>
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, T> _remainderParser;
@@ -47,7 +48,30 @@ namespace Pidgin
                         result.ConsumedInput
                     );
                 }
-                return ManyImpl(_remainderParser, state, new List<T> { result.Value }, result.ConsumedInput);
+                return Rest(_remainderParser, state, new List<T> { result.Value }, result.ConsumedInput);
+            }
+
+            private Result<TToken, IEnumerable<T>> Rest(Parser<TToken, T> parser, IParseState<TToken> state, List<T> ts, bool consumedInput)
+            {
+                var result = parser.Parse(state);
+                while (result.Success)
+                {
+                    if (!result.ConsumedInput)
+                    {
+                        throw new InvalidOperationException("Many() used with a parser which consumed no input");
+                    }
+                    consumedInput = true;
+                    ts?.Add(result.Value);
+                    result = parser.Parse(state);
+                }
+                if (result.ConsumedInput)  // the most recent parser failed after consuming input
+                {
+                    return Result.Failure<TToken, IEnumerable<T>>(
+                        result.Error,
+                        true
+                    );
+                }
+                return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
             }
         }
 

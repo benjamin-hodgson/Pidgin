@@ -11,8 +11,8 @@ namespace Pidgin.Expression
             = new[]{ Parser<TToken>.Return<Func<T,T>>(x => x) };
 
         private readonly Parser<TToken, T> _pTerm;
-        private readonly Parser<TToken, Func<T, T, T>> _infixNOp;
-        private readonly Parser<TToken, IEnumerable<Partial>> _lOpSequence;
+        private readonly Parser<TToken, Partial> _nOp;
+        private readonly Parser<TToken, Partial> _lOp;
         private readonly Parser<TToken, IEnumerable<Partial>> _rOpSequence;
 
         public ExpressionParserBuilder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
@@ -23,9 +23,9 @@ namespace Pidgin.Expression
                 term,
                 OneOf(row.PostfixOps.Concat(_returnIdentity))
             );
-            _infixNOp = OneOf(row.InfixNOps);
-            _lOpSequence = Associative(row.InfixLOps);
-            _rOpSequence = Associative(row.InfixROps);
+            _nOp = Op(row.InfixNOps);
+            _lOp = Op(row.InfixLOps);
+            _rOpSequence = Op(row.InfixROps).AtLeastOnce();
         }
 
         public Parser<TToken, T> Build()
@@ -38,15 +38,12 @@ namespace Pidgin.Expression
 
         
         private Parser<TToken, T> InfixN(T x)
-            => Map(
-                (f, y) => f(x, y),
-                _infixNOp,
-                _pTerm
-            );
+            => _nOp.Select(p => p.Apply(x));
 
         private Parser<TToken, T> InfixL(T x)
-            => _lOpSequence.Select(
-                fxs => fxs.Aggregate(x, (z, fx) => fx.Apply(z))
+            => _lOp.ChainAtLeastOnceL(
+                () => x,
+                (z, fx) => fx.Apply(z)
             );
 
         private Parser<TToken, T> InfixR(T x)
@@ -57,12 +54,12 @@ namespace Pidgin.Expression
                 ).Apply(x)
             );
         
-        private Parser<TToken, IEnumerable<Partial>> Associative(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
+        private Parser<TToken, Partial> Op(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
             => Map(
                 (f, y) => new Partial(f, y),
                 OneOf(ops),
                 _pTerm
-            ).AtLeastOnce();
+            );
 
         private struct Partial
         {
