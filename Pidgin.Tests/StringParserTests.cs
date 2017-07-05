@@ -83,6 +83,26 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestNumber()
+        {
+            {
+                var parser = Parser.Int;
+                AssertSuccess(parser.Parse("0"), 0, true);
+                AssertSuccess(parser.Parse("+0"), +0, true);
+                AssertSuccess(parser.Parse("-0"), -0, true);
+                AssertSuccess(parser.Parse("1"), 1, true);
+                AssertSuccess(parser.Parse("+1"), +1, true);
+                AssertSuccess(parser.Parse("-1"), -1, true);
+                AssertSuccess(parser.Parse("12345"), 12345, true);
+                AssertSuccess(parser.Parse("1a"), 1, true);
+                AssertFailure(parser.Parse(""), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
+                AssertFailure(parser.Parse("a"), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
+                AssertFailure(parser.Parse("+"), new[] { new Expected<char>("number") }, new SourcePos(1, 2), true);
+                AssertFailure(parser.Parse("-"), new[] { new Expected<char>("number") }, new SourcePos(1, 2), true);
+            }
+        }
+
+        [Fact]
         public void TestSequence()
         {
             {

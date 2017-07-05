@@ -20,15 +20,14 @@ namespace Pidgin.Bench
         {
             _bigExpression = string.Join("+", Enumerable.Range(1, 1000));
 
-            var term = Parser.Digit.Many().Select(cs => int.Parse(string.Concat(cs)));
             var infixL = Operator.InfixL(Parser.Char('+').Then(Return<Func<int, int, int>>((x, y) => x + y)));
             _leftAssoc = ExpressionParser.Build(
-                term,
+                Parser.Int,
                 new[] { new[] { infixL } }
             );
             var infixR = Operator.InfixR(Parser.Char('+').Then(Return<Func<int, int, int>>((x, y) => x + y)));
             _rightAssoc = ExpressionParser.Build(
-                term,
+                Parser.Int,
                 new[] { new[] { infixR } }
             );
         }
