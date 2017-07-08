@@ -13,7 +13,7 @@ namespace Pidgin.Expression
         private readonly Parser<TToken, T> _pTerm;
         private readonly Parser<TToken, Partial> _nOp;
         private readonly Parser<TToken, Partial> _lOp;
-        private readonly Parser<TToken, IEnumerable<Partial>> _rOpSequence;
+        private readonly Parser<TToken, Partial> _infixR;
 
         public ExpressionParserBuilder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {
@@ -25,7 +25,14 @@ namespace Pidgin.Expression
             );
             _nOp = Op(row.InfixNOps);
             _lOp = Op(row.InfixLOps);
-            _rOpSequence = Op(row.InfixROps).AtLeastOnce();
+            _infixR = Op(row.InfixROps)
+                .AtLeastOnce()
+                .Select(fxs =>
+                    fxs.AggregateR(
+                        new Partial((y, _) => y, default(T)),
+                        (fx, p) => new Partial(fx.Func, p.Apply(fx.Arg))
+                    )
+                );
         }
 
         public Parser<TToken, T> Build()
@@ -47,12 +54,7 @@ namespace Pidgin.Expression
             );
 
         private Parser<TToken, T> InfixR(T x)
-            => _rOpSequence.Select(fxs =>
-                fxs.AggregateR(
-                    new Partial((y, _) => y, default(T)),
-                    (fx, p) => new Partial(fx.Func, p.Apply(fx.Arg))
-                ).Apply(x)
-            );
+            => _infixR.Select(p => p.Apply(x));
         
         private Parser<TToken, Partial> Op(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
             => Map(
