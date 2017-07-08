@@ -2,6 +2,10 @@ namespace Pidgin
 {
     public static partial class Parser
     {
+        /// <summary>
+        /// A parser which parses a base-10 integer with an optional sign
+        /// </summary>
+        /// <returns>A parser which parses a base-10 integer with an optional sign</returns>
         public static Parser<char, int> Int { get; } =
             Map(
                 (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
