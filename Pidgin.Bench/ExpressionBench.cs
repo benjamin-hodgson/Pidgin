@@ -22,12 +22,12 @@ namespace Pidgin.Bench
 
             var infixL = Operator.InfixL(Parser.Char('+').Then(Return<Func<int, int, int>>((x, y) => x + y)));
             _leftAssoc = ExpressionParser.Build(
-                Parser.Int,
+                Parser.Num,
                 new[] { new[] { infixL } }
             );
             var infixR = Operator.InfixR(Parser.Char('+').Then(Return<Func<int, int, int>>((x, y) => x + y)));
             _rightAssoc = ExpressionParser.Build(
-                Parser.Int,
+                Parser.Num,
                 new[] { new[] { infixR } }
             );
         }

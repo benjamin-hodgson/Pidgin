@@ -86,7 +86,7 @@ namespace Pidgin.Tests
         public void TestNumber()
         {
             {
-                var parser = Parser.Int;
+                var parser = Num;
                 AssertSuccess(parser.Parse("0"), 0, true);
                 AssertSuccess(parser.Parse("+0"), +0, true);
                 AssertSuccess(parser.Parse("-0"), -0, true);
@@ -94,6 +94,38 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("+1"), +1, true);
                 AssertSuccess(parser.Parse("-1"), -1, true);
                 AssertSuccess(parser.Parse("12345"), 12345, true);
+                AssertSuccess(parser.Parse("1a"), 1, true);
+                AssertFailure(parser.Parse(""), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
+                AssertFailure(parser.Parse("a"), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
+                AssertFailure(parser.Parse("+"), new[] { new Expected<char>("number") }, new SourcePos(1, 2), true);
+                AssertFailure(parser.Parse("-"), new[] { new Expected<char>("number") }, new SourcePos(1, 2), true);
+            }
+            {
+                var parser = HexNum;
+                AssertSuccess(parser.Parse("ab"), 0xab, true);
+                AssertSuccess(parser.Parse("cd"), 0xcd, true);
+                AssertSuccess(parser.Parse("ef"), 0xef, true);
+                AssertSuccess(parser.Parse("AB"), 0xAB, true);
+                AssertSuccess(parser.Parse("CD"), 0xCD, true);
+                AssertSuccess(parser.Parse("EF"), 0xEF, true);
+                AssertFailure(parser.Parse("g"), new[] { new Expected<char>("hexadecimal number") }, new SourcePos(1, 1), false);
+            }
+            {
+                var parser = OctalNum;
+                AssertSuccess(parser.Parse("7"), 7, true);
+                AssertFailure(parser.Parse("8"), new[] { new Expected<char>("octal number") }, new SourcePos(1, 1), false);
+            }
+            {
+                var parser = LongNum;
+                AssertSuccess(parser.Parse("0"), 0L, true);
+                AssertSuccess(parser.Parse("+0"), +0L, true);
+                AssertSuccess(parser.Parse("-0"), -0L, true);
+                AssertSuccess(parser.Parse("1"), 1L, true);
+                AssertSuccess(parser.Parse("+1"), +1L, true);
+                AssertSuccess(parser.Parse("-1"), -1L, true);
+                AssertSuccess(parser.Parse("12345"), 12345L, true);
+                var tooBigForInt = ((long)int.MaxValue) + 1;
+                AssertSuccess(parser.Parse(tooBigForInt.ToString()), tooBigForInt, true);
                 AssertSuccess(parser.Parse("1a"), 1, true);
                 AssertFailure(parser.Parse(""), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
                 AssertFailure(parser.Parse("a"), new[] { new Expected<char>("number") }, new SourcePos(1, 1), false);
