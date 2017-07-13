@@ -7,10 +7,10 @@ namespace Pidgin
     public static partial class Parser
     {
         /// <summary>
-        /// Creates a parser which attempts to apply the specified parser and only succeeds if that parser fails.
+        /// Creates a parser which negates the result of the specied parser.
         /// </summary>
-        /// <param name="parser">The parser to apply if the current parser fails without consuming any input</param>
-        /// <returns>A parser which tries to apply the current parser, and applies <paramref name="parser"/> if the current parser fails without consuming any input.</returns>
+        /// <param name="parser">The parser that should be negated</param>
+        /// <returns>A parser which negates the result of the specified parser.</returns>
         public static Parser<TToken, Unit> Not<TToken, T>(Parser<TToken, T> parser) {
             return new NegatedParser<TToken, T>(parser);
         }
@@ -37,7 +37,7 @@ namespace Pidgin
                                 false,
                                 null,
                                 startingPosition,
-                                "unexpected token"
+                                null
                             ),
                             true
                         );
