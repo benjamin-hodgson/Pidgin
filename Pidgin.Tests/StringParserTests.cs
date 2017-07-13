@@ -46,6 +46,11 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("b"), new[]{ new Expected<char>(new[]{ 'a' }) }, new SourcePos(1,1), false);
             }
             {
+                var parser = AnyCharExcept('a', 'b', 'c');
+                AssertSuccess(parser.Parse("e"), 'e', true);
+                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), false);
+            }
+            {
                 var parser = Token('a'.Equals);
                 AssertSuccess(parser.Parse("a"), 'a', true);
                 AssertSuccess(parser.Parse("ab"), 'a', true);
@@ -300,16 +305,6 @@ namespace Pidgin.Tests
             {
                 var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
                 AssertSuccess<char, Unit>(parser.Parse("e"), Unit.Value, false);
-                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
-            }
-        }
-
-        [Fact]
-        public void TestNoneOf()
-        {
-            {
-                var parser = NoneOf('a', 'b', 'c');
-                AssertSuccess(parser.Parse("e"), 'e', true);
                 AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
             }
         }
