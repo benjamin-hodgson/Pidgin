@@ -39,7 +39,7 @@ namespace Pidgin
                                 startingPosition,
                                 null
                             ),
-                            true
+                            result.ConsumedInput
                         );
                 }
 

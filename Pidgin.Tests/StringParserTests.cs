@@ -307,6 +307,10 @@ namespace Pidgin.Tests
                 AssertSuccess<char, Unit>(parser.Parse("e"), Unit.Value, false);
                 AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
             }
+            {
+                var parser = Not(Return('f'));
+                AssertUnexpectedFailure<char, Unit>(parser.Parse("foobar"), new Maybe<char>('f'), new SourcePos(1, 1), false);
+            }
         }
 
         [Fact]
