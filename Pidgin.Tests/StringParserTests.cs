@@ -46,6 +46,11 @@ namespace Pidgin.Tests
                 AssertFailure(parser.Parse("b"), new[]{ new Expected<char>(new[]{ 'a' }) }, new SourcePos(1,1), false);
             }
             {
+                var parser = AnyCharExcept('a', 'b', 'c');
+                AssertSuccess(parser.Parse("e"), 'e', true);
+                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), false);
+            }
+            {
                 var parser = Token('a'.Equals);
                 AssertSuccess(parser.Parse("a"), 'a', true);
                 AssertSuccess(parser.Parse("ab"), 'a', true);
@@ -287,6 +292,24 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("bar"), "bar", true);
                 AssertFailure(parser.Parse("quux"), new[]{ new Expected<char>("bar".ToCharArray()), new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
                 AssertFailure(parser.Parse("foul"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+            }
+        }
+
+        [Fact]
+        public void TestNot()
+        {
+            {
+                var parser = Not(String("food")).Then(String("bar"));
+                AssertSuccess(parser.Parse("foobar"), "bar", true);
+            }
+            {
+                var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
+                AssertSuccess<char, Unit>(parser.Parse("e"), Unit.Value, false);
+                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
+            }
+            {
+                var parser = Not(Return('f'));
+                AssertUnexpectedFailure<char, Unit>(parser.Parse("foobar"), new Maybe<char>('f'), new SourcePos(1, 1), false);
             }
         }
 

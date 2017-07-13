@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using static Pidgin.Parser<char>;
 
 namespace Pidgin
@@ -10,6 +13,22 @@ namespace Pidgin
         /// <param name="character">The character to parse</param>
         /// <returns>A parser which parses and returns a single character</returns>
         public static Parser<char, char> Char(char character) => Token(character);
+
+        /// <summary>
+        /// Creates a parser which parses and returns a character except if it is one of the specified characters.
+        /// </summary>
+        /// <param name="chars">A sequence of characters that should not be matched</param>
+        /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
+        public static Parser<char, char> AnyCharExcept(params char[] chars)
+            => Parser<char>.Token(c => Array.IndexOf(chars, c) == -1);
+
+        /// <summary>
+        /// Creates a parser which parses and returns a character except if it is one of the specified characters.
+        /// </summary>
+        /// <param name="chars">A sequence of characters that should not be matched</param>
+        /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
+        public static Parser<char, char> AnyCharExcept(IEnumerable<char> chars)
+            => AnyCharExcept(chars.ToArray());
 
         /// <summary>
         /// A parser that parses and returns a single digit character (0-9)

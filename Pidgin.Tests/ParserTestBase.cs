@@ -19,5 +19,13 @@ namespace Pidgin.Tests
             Assert.Equal(errorPos, result.Error.ErrorPos);
             Assert.Equal(consumedInput, result.ConsumedInput);
         }
+
+        protected void AssertUnexpectedFailure<TToken, T>(Result<TToken, T> result, Maybe<TToken> unexpected, SourcePos errorPos, bool consumedInput)
+        {
+            Assert.False(result.Success);
+            Assert.Equal(unexpected, result.Error.Unexpected);
+            Assert.Equal(errorPos, result.Error.ErrorPos);
+            Assert.Equal(consumedInput, result.ConsumedInput);
+        }
     }
 }
