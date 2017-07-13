@@ -294,8 +294,12 @@ namespace Pidgin.Tests
         public void TestNot()
         {
             {
+                var parser = Not(String("food")).Then(String("bar"));
+                AssertSuccess(parser.Parse("foobar"), "bar", true);
+            }
+            {
                 var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
-                AssertSuccess(parser.Parse("e"), 'e', true);
+                AssertSuccess<char, Unit>(parser.Parse("e"), Unit.Value, false);
                 AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
             }
         }

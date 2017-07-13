@@ -11,28 +11,29 @@ namespace Pidgin
         /// </summary>
         /// <param name="parser">The parser to apply if the current parser fails without consuming any input</param>
         /// <returns>A parser which tries to apply the current parser, and applies <paramref name="parser"/> if the current parser fails without consuming any input.</returns>
-        public static Parser<TToken, TToken> Not<TToken>(Parser<TToken, TToken> parser) {
-            return new NegatedParser<TToken>(parser);
+        public static Parser<TToken, Unit> Not<TToken, T>(Parser<TToken, T> parser) {
+            return new NegatedParser<TToken, T>(parser);
         }
         
-        private sealed class NegatedParser<TToken> : Parser<TToken, TToken>
+        private sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
         {
-            private readonly Parser<TToken, TToken> _parser;
+            private readonly Parser<TToken, T> _parser;
 
-            public NegatedParser(Parser<TToken, TToken> parser) : base(parser.Expected)
+            public NegatedParser(Parser<TToken, T> parser) : base(ExpectedUtil<TToken>.Empty)
             {
                 _parser = parser;
             }
 
-            internal sealed override Result<TToken, TToken> Parse(IParseState<TToken> state)
+            internal sealed override Result<TToken, Unit> Parse(IParseState<TToken> state)
             {
                 var startingPosition = state.SourcePos;
+                var token = state.Peek();
                 var result = _parser.Parse(state);
                 if (result.Success)
                 {
-                    return Result.Failure<TToken, TToken>(
+                    return Result.Failure<TToken, Unit>(
                             new ParseError<TToken>(
-                                new Maybe<TToken>(result.Value),
+                                token,
                                 false,
                                 null,
                                 startingPosition,
@@ -42,16 +43,10 @@ namespace Pidgin
                         );
                 }
 
-                var token = state.Peek();
-                if (token.HasValue) {
-                    state.Advance();
-                    return Result.Success<TToken, TToken>(
-                            token.Value,
-                            true
-                        );
-                }
-                
-                return Result.Failure<TToken, TToken>(new ParseError<TToken>(), false);
+                return Result.Success<TToken, Unit>(
+                        Unit.Value,
+                        result.ConsumedInput
+                    );
             }
         }
     }
