@@ -291,6 +291,26 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestNot()
+        {
+            {
+                var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
+                AssertSuccess(parser.Parse("e"), 'e', true);
+                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
+            }
+        }
+
+        [Fact]
+        public void TestNoneOf()
+        {
+            {
+                var parser = NoneOf('a', 'b', 'c');
+                AssertSuccess(parser.Parse("e"), 'e', true);
+                AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
+            }
+        }
+
+        [Fact]
         public void TestTryUsingStaticExample()
         {
             {
