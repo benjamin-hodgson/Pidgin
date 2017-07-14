@@ -78,11 +78,12 @@ namespace Pidgin.Bench
         {
             SpracheJsonParser.Parse(_deepJson);
         }
-        [Benchmark]
-        public void DeepJson_Superpower()
-        {
-            SuperpowerJsonParser.Parse(_deepJson);
-        }
+        // this one blows the stack
+        // [Benchmark]
+        // public void DeepJson_Superpower()
+        // {
+        //     SuperpowerJsonParser.Parse(_deepJson);
+        // }
         [Benchmark]
         public void DeepJson_FParsec()
         {
