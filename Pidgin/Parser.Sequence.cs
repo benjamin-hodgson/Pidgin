@@ -87,7 +87,7 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers</param>
         /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(params Parser<TToken, T>[] parsers)
-            => Sequence((IEnumerable<Parser<TToken, T>>)parsers);
+            => Sequence(parsers.AsEnumerable());
 
         /// <summary>
         /// Creates a parser that applies a sequence of parsers and collects the results.
@@ -101,11 +101,11 @@ namespace Pidgin
 
         private sealed class SequenceParser<T> : Parser<TToken, IEnumerable<T>>
         {
-            private readonly List<Parser<TToken, T>> _parsers;
+            private readonly Parser<TToken, T>[] _parsers;
 
             public SequenceParser(IEnumerable<Parser<TToken, T>> parsers) : base(ExpectedUtil.Concat(parsers.Select(p => p.Expected)))
             {
-                _parsers = parsers.ToList();
+                _parsers = parsers.ToArray();
             }
 
             internal sealed override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)

@@ -15,20 +15,25 @@ namespace Pidgin
         public static Parser<char, char> Char(char character) => Token(character);
 
         /// <summary>
-        /// Creates a parser which parses and returns a character except if it is one of the specified characters.
+        /// Creates a parser which parses and returns a character if it is not one of the specified characters.
+        /// When the character is one of the given characters, the parser fails without consuming input.
         /// </summary>
         /// <param name="chars">A sequence of characters that should not be matched</param>
         /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
         public static Parser<char, char> AnyCharExcept(params char[] chars)
-            => Parser<char>.Token(c => Array.IndexOf(chars, c) == -1);
+            => AnyCharExcept(chars.AsEnumerable());
 
         /// <summary>
-        /// Creates a parser which parses and returns a character except if it is one of the specified characters.
+        /// Creates a parser which parses and returns a character if it is not one of the specified characters.
+        /// When the character is one of the given characters, the parser fails without consuming input.
         /// </summary>
         /// <param name="chars">A sequence of characters that should not be matched</param>
         /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
         public static Parser<char, char> AnyCharExcept(IEnumerable<char> chars)
-            => AnyCharExcept(chars.ToArray());
+        {
+            var cs = chars.ToArray();
+            return Parser<char>.Token(c => Array.IndexOf(cs, c) == -1);
+        }
 
         /// <summary>
         /// A parser that parses and returns a single digit character (0-9)

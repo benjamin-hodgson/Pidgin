@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Xunit;
 using static Pidgin.Parser;
@@ -28,7 +29,7 @@ namespace Pidgin.Tests
         [Fact]
         public void TestEnumerator()
         {
-            DoTest((p, x) => p.Parse(x), x => x, x => (IEnumerable<char>)x);
+            DoTest((p, x) => p.Parse(x), x => x, x => x.AsEnumerable());
         }
         [Fact]
         public void TestReader()

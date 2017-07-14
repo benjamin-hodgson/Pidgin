@@ -7,13 +7,13 @@ namespace Pidgin
     public static partial class Parser
     {
         /// <summary>
-        /// Creates a parser which negates the result of the specied parser.
+        /// Creates a parser which succeeds only if the given parser fails.
+        /// The resulting parser does not perform any backtracking; it consumes the same amount of input as the supplied parser.
         /// </summary>
-        /// <param name="parser">The parser that should be negated</param>
-        /// <returns>A parser which negates the result of the specified parser.</returns>
-        public static Parser<TToken, Unit> Not<TToken, T>(Parser<TToken, T> parser) {
-            return new NegatedParser<TToken, T>(parser);
-        }
+        /// <param name="parser">The parser that is expected to fail</param>
+        /// <returns>A parser which succeeds only if the given parser fails.</returns>
+        public static Parser<TToken, Unit> Not<TToken, T>(Parser<TToken, T> parser)
+            => new NegatedParser<TToken, T>(parser);
         
         private sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
         {

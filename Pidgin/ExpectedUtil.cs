@@ -18,7 +18,7 @@ namespace Pidgin
     internal static class ExpectedUtil
     {
         public static SortedSet<T> Union<T>(params SortedSet<T>[] input)
-            => Union((IEnumerable<SortedSet<T>>)input);
+            => Union(input.AsEnumerable());
         public static SortedSet<T> Union<T>(IEnumerable<SortedSet<T>> input)
         {
             var s = new SortedSet<T>();
@@ -32,7 +32,7 @@ namespace Pidgin
         }
 
         public static SortedSet<Expected<TToken>> Concat<TToken>(params IEnumerable<Expected<TToken>>[] sets)
-            => Concat((IEnumerable<IEnumerable<Expected<TToken>>>)sets);
+            => Concat(sets.AsEnumerable());
         public static SortedSet<Expected<TToken>> Concat<TToken>(IEnumerable<IEnumerable<Expected<TToken>>> sets)
             => new SortedSet<Expected<TToken>>(sets.Aggregate((z, s) => z.SelectMany(_ => s, ConcatExpected)));
         private static Expected<TToken> ConcatExpected<TToken>(Expected<TToken> left, Expected<TToken> right)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pidgin.ParseStates;
@@ -12,7 +13,7 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters to choose between</param>
         /// <returns>A parser which parses and returns one of the specified characters</returns>
         public static Parser<char, char> OneOf(params char[] chars)
-            => OneOf((IEnumerable<char>)chars);
+            => OneOf(chars.AsEnumerable());
 
         /// <summary>
         /// Creates a parser which parses and returns one of the specified characters.
@@ -20,7 +21,10 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters to choose between</param>
         /// <returns>A parser which parses and returns one of the specified characters</returns>
         public static Parser<char, char> OneOf(IEnumerable<char> chars)
-            => OneOf(chars.Select(c => Char(c)));
+        {
+            var cs = chars.ToArray();
+            return Parser<char>.Token(c => Array.IndexOf(cs, c) != -1);
+        }
 
         /// <summary>
         /// Creates a parser which applies one of the specified parsers.
@@ -31,7 +35,7 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers to choose between</param>
         /// <returns>A parser which applies one of the specified parsers</returns>
         public static Parser<TToken, T> OneOf<TToken, T>(params Parser<TToken, T>[] parsers)
-            => OneOf((IEnumerable<Parser<TToken, T>>)parsers);
+            => OneOf(parsers.AsEnumerable());
 
         /// <summary>
         /// Creates a parser which applies one of the specified parsers.
@@ -43,14 +47,14 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers to choose between</param>
         /// <returns>A parser which applies one of the specified parsers</returns>
         public static Parser<TToken, T> OneOf<TToken, T>(IEnumerable<Parser<TToken, T>> parsers)
-            => OneOfParser<TToken, T>.Create(parsers.ToList());
+            => OneOfParser<TToken, T>.Create(parsers);
 
 
         private sealed class OneOfParser<TToken, T> : Parser<TToken, T>
         {
-            private readonly List<Parser<TToken, T>> _parsers;
+            private readonly Parser<TToken, T>[] _parsers;
 
-            private OneOfParser(List<Parser<TToken, T>> parsers)
+            private OneOfParser(Parser<TToken, T>[] parsers)
                 : base(ExpectedUtil.Union(parsers.Select(p => p.Expected)))
             {
                 _parsers = parsers;
@@ -96,7 +100,7 @@ namespace Pidgin
                         list.Add(p);
                     }
                 }
-                return new OneOfParser<TToken, T>(list);
+                return new OneOfParser<TToken, T>(list.ToArray());
             }
         }
     }
