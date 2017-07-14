@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using Pidgin.Bench.SpracheParsers;
+using Pidgin.Bench.SuperpowerParsers;
 using Pidgin.Examples.Json;
 
 namespace Pidgin.Bench
@@ -36,6 +37,11 @@ namespace Pidgin.Bench
             SpracheJsonParser.Parse(_bigJson);
         }
         [Benchmark]
+        public void BigJson_Superpower()
+        {
+            SuperpowerJsonParser.Parse(_bigJson);
+        }
+        [Benchmark]
         public void BigJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_bigJson);
@@ -50,6 +56,11 @@ namespace Pidgin.Bench
         public void LongJson_Sprache()
         {
             SpracheJsonParser.Parse(_longJson);
+        }
+        [Benchmark]
+        public void LongJson_Superpower()
+        {
+            SuperpowerJsonParser.Parse(_longJson);
         }
         [Benchmark]
         public void LongJson_FParsec()
@@ -68,6 +79,11 @@ namespace Pidgin.Bench
             SpracheJsonParser.Parse(_deepJson);
         }
         [Benchmark]
+        public void DeepJson_Superpower()
+        {
+            SuperpowerJsonParser.Parse(_deepJson);
+        }
+        [Benchmark]
         public void DeepJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
@@ -82,6 +98,11 @@ namespace Pidgin.Bench
         public void WideJson_Sprache()
         {
             SpracheJsonParser.Parse(_wideJson);
+        }
+        [Benchmark]
+        public void WideJson_Superpower()
+        {
+            SuperpowerJsonParser.Parse(_wideJson);
         }
         [Benchmark]
         public void WideJson_FParsec()
