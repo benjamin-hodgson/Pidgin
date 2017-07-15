@@ -1,11 +1,14 @@
 using System;
+using System.Buffers;
 
 namespace Pidgin.ParseStates
 {
     internal abstract class BufferedParseState<TToken> : BookmarkParseState<TToken, Positioned<int>>
     {
-        // TODO: what is a good size for initialCapacity?
-        private const int InitialCapacity = 16;
+        private static readonly int InitialCapacity =
+            typeof(TToken).Equals(typeof(char))
+                ? 4096 / sizeof(char)
+                : 4096;
 
         private int _bufSize = 0;
         private int _bufPos = 0;
@@ -21,7 +24,7 @@ namespace Pidgin.ParseStates
             {
                 if (_buffer == null)
                 {
-                    _buffer = BufferPool<TToken>.Acquire(InitialCapacity);
+                    _buffer = ArrayPool<TToken>.Shared.Rent(InitialCapacity);
                 }
                 return _buffer;
             }
@@ -58,7 +61,7 @@ namespace Pidgin.ParseStates
                 // and we're not currently writing to the buffer,
                 // so the buffer can be discarded
                 _bufPos = _bufSize = 0;
-                BufferPool<TToken>.Release(Buffer);
+                ArrayPool<TToken>.Shared.Return(Buffer);
                 _buffer = null;
             }
             else if (_current.HasValue)
@@ -99,9 +102,9 @@ namespace Pidgin.ParseStates
             if (_bufSize == Buffer.Length)
             {
                 // the array is full, allocate a new bigger one
-                var newBuf = BufferPool<TToken>.Acquire(Buffer.Length * 2);
+                var newBuf = ArrayPool<TToken>.Shared.Rent(Buffer.Length * 2);
                 Buffer.CopyTo(newBuf, 0);  // i wonder if a linked-list style paged approach would be faster here?
-                BufferPool<TToken>.Release(Buffer);
+                ArrayPool<TToken>.Shared.Return(Buffer);
                 _buffer = newBuf;
             }
             Buffer[_bufSize++] = token;
@@ -117,7 +120,7 @@ namespace Pidgin.ParseStates
         {
             if (_buffer != null)
             {
-                BufferPool<TToken>.Release(_buffer);
+                ArrayPool<TToken>.Shared.Return(_buffer);
             }
             _buffer = null;
         }

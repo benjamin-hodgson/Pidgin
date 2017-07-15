@@ -14,4 +14,8 @@
     <TargetFrameworks>netstandard1.2</TargetFrameworks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Buffers" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>
