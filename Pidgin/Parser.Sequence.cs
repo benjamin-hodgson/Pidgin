@@ -28,19 +28,19 @@ namespace Pidgin
             where TEnumerable : IEnumerable<TToken>
         {
             private readonly TEnumerable _value;
-            private readonly List<TToken> _valueList;
+            private readonly TToken[] _valueTokens;
 
             public SequenceTokenParser(TEnumerable value)
                 : base(new SortedSet<Expected<TToken>>{ new Expected<TToken>(value) })
             {
                 _value = value;
-                _valueList = value.ToList();
+                _valueTokens = value.ToArray();
             }
 
             internal sealed override Result<TToken, TEnumerable> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
-                foreach (var x in _valueList)
+                foreach (var x in _valueTokens)
                 {
                     var result = state.Peek();
                     if (!result.HasValue)
