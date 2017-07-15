@@ -23,7 +23,9 @@ namespace Pidgin
         public static Parser<char, char> OneOf(IEnumerable<char> chars)
         {
             var cs = chars.ToArray();
-            return Parser<char>.Token(c => Array.IndexOf(cs, c) != -1);
+            return Parser<char>
+                .Token(c => Array.IndexOf(cs, c) != -1)
+                .WithExpected(new SortedSet<Expected<char>>(cs.Select(c => new Expected<char>(new[] { c }))));
         }
 
         /// <summary>

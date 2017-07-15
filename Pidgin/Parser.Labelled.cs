@@ -16,7 +16,7 @@ namespace Pidgin
         public Parser<TToken, T> Labelled(string label)
             => WithExpected(new SortedSet<Expected<TToken>> { new Expected<TToken>(label) });
             
-        private Parser<TToken, T> WithExpected(SortedSet<Expected<TToken>> expected)
+        internal Parser<TToken, T> WithExpected(SortedSet<Expected<TToken>> expected)
             => new WithExpectedParser(this, expected);
 
         private sealed class WithExpectedParser : Parser<TToken, T>
