@@ -304,12 +304,27 @@ namespace Pidgin.Tests
             }
             {
                 var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
-                AssertSuccess<char, Unit>(parser.Parse("e"), Unit.Value, false);
+                AssertSuccess(parser.Parse("e"), Unit.Value, false);
                 AssertUnexpectedFailure(parser.Parse("a"), new Maybe<char>('a'), new SourcePos(1,1), true);
             }
             {
                 var parser = Not(Return('f'));
-                AssertUnexpectedFailure<char, Unit>(parser.Parse("foobar"), new Maybe<char>('f'), new SourcePos(1, 1), false);
+                AssertUnexpectedFailure(parser.Parse("foobar"), new Maybe<char>('f'), new SourcePos(1, 1), false);
+            }
+        }
+
+        [Fact]
+        public void TestLookahead()
+        {
+            {
+                var parser = Lookahead(String("foo"));
+                AssertSuccess(parser.Parse("foo"), "foo", false);
+                AssertFailure(parser.Parse("bar"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
+                AssertFailure(parser.Parse("foe"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+            }
+            {
+                var parser = Lookahead(String("foo")).Then(String("food"));
+                AssertSuccess(parser.Parse("food"), "food", true);
             }
         }
 
