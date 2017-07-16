@@ -427,6 +427,14 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("fo"), "f", true);
             }
             {
+                var parser = String("f").ManyString();
+                AssertSuccess(parser.Parse(""), "", false);
+                AssertSuccess(parser.Parse("bar"), "", false);
+                AssertSuccess(parser.Parse("f"), "f", true);
+                AssertSuccess(parser.Parse("ff"), "ff", true);
+                AssertSuccess(parser.Parse("fo"), "f", true);
+            }
+            {
                 var parser = Return('f').ManyString();
                 Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
             }
@@ -483,6 +491,14 @@ namespace Pidgin.Tests
         {
             {
                 var parser = Char('f').AtLeastOnceString();
+                AssertFailure(parser.Parse(""), new[] { new Expected<char>(new[] { 'f' }) }, new SourcePos(1,1), false);
+                AssertFailure(parser.Parse("b"), new[] { new Expected<char>(new[] { 'f' }) }, new SourcePos(1,1), false);
+                AssertSuccess(parser.Parse("f"), "f", true);
+                AssertSuccess(parser.Parse("ff"), "ff", true);
+                AssertSuccess(parser.Parse("fg"), "f", true);
+            }
+            {
+                var parser = String("f").AtLeastOnceString();
                 AssertFailure(parser.Parse(""), new[] { new Expected<char>(new[] { 'f' }) }, new SourcePos(1,1), false);
                 AssertFailure(parser.Parse("b"), new[] { new Expected<char>(new[] { 'f' }) }, new SourcePos(1,1), false);
                 AssertSuccess(parser.Parse("f"), "f", true);
