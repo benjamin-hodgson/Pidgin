@@ -111,7 +111,8 @@ namespace Pidgin
             internal sealed override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
-                var ts = new List<T>();
+                var ts = new T[_parsers.Length];
+                var i = 0;
                 foreach (var p in _parsers)
                 {
                     var result = p.Parse(state);
@@ -123,7 +124,8 @@ namespace Pidgin
                             consumedInput
                         );
                     }
-                    ts.Add(result.GetValueOrDefault());
+                    ts[i] = result.GetValueOrDefault();
+                    i++;
                 }
                 return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
             }
