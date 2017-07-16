@@ -29,6 +29,31 @@ namespace Pidgin
         }
 
         /// <summary>
+        /// Creates a parser which parses and returns one of the specified characters, in a case insensitive manner.
+        /// The parser returns the actual character parsed.
+        /// </summary>
+        /// <param name="chars">A sequence of characters to choose between</param>
+        /// <returns>A parser which parses and returns one of the specified characters, in a case insensitive manner.</returns>
+        public static Parser<char, char> CIOneOf(params char[] chars)
+            => OneOf(chars.AsEnumerable());
+
+        /// <summary>
+        /// Creates a parser which parses and returns one of the specified characters, in a case insensitive manner.
+        /// The parser returns the actual character parsed.
+        /// </summary>
+        /// <param name="chars">A sequence of characters to choose between</param>
+        /// <returns>A parser which parses and returns one of the specified characters, in a case insensitive manner.</returns>
+        public static Parser<char, char> CIOneOf(IEnumerable<char> chars)
+        {
+            var cs = chars.Select(char.ToLowerInvariant).ToArray();
+            var expected = cs.Select(c => new Expected<char>(new[] { char.ToLowerInvariant(c) }))
+                .Concat(cs.Select(c => new Expected<char>(new[] { char.ToUpperInvariant(c) })));
+            return Parser<char>
+                .Token(c => Array.IndexOf(cs, char.ToLowerInvariant(c)) != -1)
+                .WithExpected(new SortedSet<Expected<char>>(expected));
+        }
+
+        /// <summary>
         /// Creates a parser which applies one of the specified parsers.
         /// The resulting parser fails if all of the input parsers fail without consuming input, or if one of them fails after consuming input
         /// </summary>

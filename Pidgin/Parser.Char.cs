@@ -15,6 +15,24 @@ namespace Pidgin
         public static Parser<char, char> Char(char character) => Token(character);
 
         /// <summary>
+        /// Creates a parser which parses and returns a single character, in a case insensitive manner.
+        /// The parser returns the actual character parsed.
+        /// </summary>
+        /// <param name="character">The character to parse</param>
+        /// <returns>A parser which parses and returns a single character</returns>
+        public static Parser<char, char> CIChar(char character)
+        {
+            var theChar = char.ToLowerInvariant(character);
+            var expected = new SortedSet<Expected<char>>
+            {
+                new Expected<char>(new[]{ char.ToUpperInvariant(character) }),
+                new Expected<char>(new[]{ char.ToLowerInvariant(character) })
+            };
+            return Token(c => char.ToLowerInvariant(c) == theChar)
+                .WithExpected(expected);
+        } 
+
+        /// <summary>
         /// Creates a parser which parses and returns a character if it is not one of the specified characters.
         /// When the character is one of the given characters, the parser fails without consuming input.
         /// </summary>

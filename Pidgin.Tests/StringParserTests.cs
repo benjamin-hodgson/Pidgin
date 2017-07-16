@@ -77,6 +77,20 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestCIChar()
+        {
+            {
+                var parser = CIChar('a');
+                AssertSuccess(parser.Parse("a"), 'a', true);
+                AssertSuccess(parser.Parse("ab"), 'a', true);
+                AssertSuccess(parser.Parse("A"), 'A', true);
+                AssertSuccess(parser.Parse("AB"), 'A', true);
+                AssertFailure(parser.Parse(""), new[]{ new Expected<char>(new[]{ 'A' }), new Expected<char>(new[]{ 'a' }) }, new SourcePos(1,1), false);
+                AssertFailure(parser.Parse("b"), new[]{ new Expected<char>(new[]{ 'A' }), new Expected<char>(new[]{ 'a' }) }, new SourcePos(1,1), false);
+            }
+        }
+
+        [Fact]
         public void TestEnd()
         {
             {
@@ -156,6 +170,24 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("food"), "foo", true);
                 AssertFailure(parser.Parse("bar"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
                 AssertFailure(parser.Parse("foul"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+                AssertFailure(parser.Parse(""), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
+            }
+        }
+
+        [Fact]
+        public void TestCIString()
+        {
+            {
+                var parser = CIString("foo");
+                AssertSuccess(parser.Parse("foo"), "foo", true);
+                AssertSuccess(parser.Parse("food"), "foo", true);
+                AssertSuccess(parser.Parse("FOO"), "FOO", true);
+                AssertSuccess(parser.Parse("FOOD"), "FOO", true);
+                AssertSuccess(parser.Parse("fOo"), "fOo", true);
+                AssertSuccess(parser.Parse("Food"), "Foo", true);
+                AssertFailure(parser.Parse("bar"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
+                AssertFailure(parser.Parse("foul"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+                AssertFailure(parser.Parse("FOul"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
                 AssertFailure(parser.Parse(""), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
             }
         }
@@ -292,6 +324,28 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("bar"), "bar", true);
                 AssertFailure(parser.Parse("quux"), new[]{ new Expected<char>("bar".ToCharArray()), new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,1), false);
                 AssertFailure(parser.Parse("foul"), new[]{ new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+            }
+        }
+
+        [Fact]
+        public void TestCIOneOf()
+        {
+            {
+                var parser = CIOneOf("abc");
+                AssertSuccess(parser.Parse("a"), 'a', true);
+                AssertSuccess(parser.Parse("b"), 'b', true);
+                AssertSuccess(parser.Parse("c"), 'c', true);
+                AssertSuccess(parser.Parse("A"), 'A', true);
+                AssertSuccess(parser.Parse("B"), 'B', true);
+                AssertSuccess(parser.Parse("C"), 'C', true);
+                AssertFailure(parser.Parse("d"), new[]{
+                    new Expected<char>(new[] { 'A' }),
+                    new Expected<char>(new[] { 'B' }),
+                    new Expected<char>(new[] { 'C' }),
+                    new Expected<char>(new[] { 'a' }),
+                    new Expected<char>(new[] { 'b' }),
+                    new Expected<char>(new[] { 'c' })
+                }, new SourcePos(1,1), false);
             }
         }
 
