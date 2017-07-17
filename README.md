@@ -90,7 +90,7 @@ Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
 Parser<char, string> parser1 = String("foo");
 Parser<char, string> parser2 = String("bar");
 Parser<char, string> sequencedParser = parser1.Before(parser2);
-Assert.AreEqual("foo", sequencedParser.ParseOrThrow("foobar"));  // "foo" got thrown away
+Assert.AreEqual("foo", sequencedParser.ParseOrThrow("foobar"));  // "bar" got thrown away
 Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
 ```
 
