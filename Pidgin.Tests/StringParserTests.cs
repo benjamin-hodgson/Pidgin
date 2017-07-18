@@ -331,6 +331,23 @@ namespace Pidgin.Tests
         public void TestCIOneOf()
         {
             {
+                var parser = CIOneOf('a', 'b', 'c');
+                AssertSuccess(parser.Parse("a"), 'a', true);
+                AssertSuccess(parser.Parse("b"), 'b', true);
+                AssertSuccess(parser.Parse("c"), 'c', true);
+                AssertSuccess(parser.Parse("A"), 'A', true);
+                AssertSuccess(parser.Parse("B"), 'B', true);
+                AssertSuccess(parser.Parse("C"), 'C', true);
+                AssertFailure(parser.Parse("d"), new[]{
+                    new Expected<char>(new[] { 'A' }),
+                    new Expected<char>(new[] { 'B' }),
+                    new Expected<char>(new[] { 'C' }),
+                    new Expected<char>(new[] { 'a' }),
+                    new Expected<char>(new[] { 'b' }),
+                    new Expected<char>(new[] { 'c' })
+                }, new SourcePos(1,1), false);
+            }
+            {
                 var parser = CIOneOf("abc");
                 AssertSuccess(parser.Parse("a"), 'a', true);
                 AssertSuccess(parser.Parse("b"), 'b', true);

@@ -35,7 +35,7 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters to choose between</param>
         /// <returns>A parser which parses and returns one of the specified characters, in a case insensitive manner.</returns>
         public static Parser<char, char> CIOneOf(params char[] chars)
-            => OneOf(chars.AsEnumerable());
+            => CIOneOf(chars.AsEnumerable());
 
         /// <summary>
         /// Creates a parser which parses and returns one of the specified characters, in a case insensitive manner.
