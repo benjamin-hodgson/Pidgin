@@ -782,6 +782,7 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse(""), new string[]{}, false);
                 AssertSuccess(parser.Parse("bar"), new string[]{}, false);
                 AssertFailure(parser.Parse("four"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
+                AssertFailure(parser.Parse("foo four"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,7), true);
             }
         }
 

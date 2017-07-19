@@ -141,29 +141,26 @@ namespace Pidgin
                 {
                     var sepResult = _separator.Parse(state);
                     consumedInput = consumedInput || sepResult.ConsumedInput;
-                    if (sepResult.ConsumedInput && !sepResult.Success)
+                    if (!sepResult.Success)
                     {
-                        return Result.Failure<TToken, IEnumerable<T>>(sepResult.Error, consumedInput);
-                    }
-                    if (!sepResult.ConsumedInput)
-                    {
+                        if (sepResult.ConsumedInput)
+                        {
+                            return Result.Failure<TToken, IEnumerable<T>>(sepResult.Error, consumedInput);
+                        }
                         return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
                     }
 
                     var itemResult = _parser.Parse(state);
                     consumedInput = consumedInput || itemResult.ConsumedInput;
-                    if (itemResult.ConsumedInput && !itemResult.Success)
+                    if (!itemResult.Success)
                     {
-                        return Result.Failure<TToken, IEnumerable<T>>(sepResult.Error, consumedInput);
-                    }
-                    if (itemResult.Success)
-                    {
-                        ts.Add(itemResult.GetValueOrDefault());
-                    }
-                    if (!itemResult.ConsumedInput)
-                    {
+                        if (itemResult.ConsumedInput)
+                        {
+                            return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error, consumedInput);
+                        }
                         return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
                     }
+                    ts.Add(itemResult.GetValueOrDefault());
                 }
             }
         }
