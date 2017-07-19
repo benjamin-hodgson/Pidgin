@@ -3,16 +3,6 @@ using System.Collections.Generic;
 
 namespace Pidgin
 {
-    internal static class Result
-    {
-        internal static Result<TToken, T> Success<TToken, T>(T value, bool consumedInput)
-            => new Result<TToken, T>(value, consumedInput);
-        internal static Result<TToken, T> Failure<TToken, T>(
-            ParseError<TToken> error,
-            bool consumedInput
-        ) => new Result<TToken, T>(error, consumedInput);
-    }
-
     /// <summary>
     /// Represents the result of parsing.
     /// A parse result may be successful (<see cref="Result{TToken, T}.Success"/> == true), in which case it contains a value, or it may be a failure, in which case it contains an error
@@ -26,18 +16,18 @@ namespace Pidgin
         /// </summary>
         /// <returns>A value indicating whether the parse was successful</returns>
         public bool Success { get; }
-        internal bool ConsumedInput { get; }
+        internal bool ConsumedInput { get; }  // for testing, innit
         private readonly T _value;
         private readonly ParseError<TToken> _error;
 
-        internal Result(T value, bool consumedInput)
+        internal Result(bool consumedInput, T value)
         {
             Success = true;
             ConsumedInput = consumedInput;
             _value = value;
             _error = default(ParseError<TToken>);
         }
-        internal Result(ParseError<TToken> error, bool consumedInput)
+        internal Result(bool consumedInput, ParseError<TToken> error)
         {
             Success = false;
             ConsumedInput = consumedInput;
@@ -96,14 +86,6 @@ namespace Pidgin
         /// <returns>The value if <see cref="Success"/> is true, or the result of calling the specified function.</returns>
         public T GetValueOrDefault(Func<T> value) => Success ? _value : value();
 
-        internal Result<TToken, T> WithExpected(IEnumerable<Expected<TToken>> expected)
-            => Success
-                ? this
-                : Result.Failure<TToken, T>(
-                    this.Error.WithExpected(expected),
-                    this.ConsumedInput
-                );
-        
         /// <summary>
         /// Tear down this parse result using a function for the two possible outcomes.
         /// If <see cref="Success"/> == true, <paramref name="success"/> will be called. Otherwise, <paramref name="failure"/> will be called.
@@ -125,8 +107,8 @@ namespace Pidgin
         /// <returns>The result of applying the transformation function to the contained value</returns>
         public Result<TToken, U> Select<U>(Func<T, U> selector)
             => Success
-                ? Result.Success<TToken, U>(selector(_value), ConsumedInput)
-                : Result.Failure<TToken, U>(Error, ConsumedInput);
+                ? new Result<TToken, U>(ConsumedInput, selector(_value))
+                : new Result<TToken, U>(ConsumedInput, Error);
 
         /// <summary>
         /// Projects the value of the result into a result, and flattens the resulting value into a single result.
@@ -149,15 +131,14 @@ namespace Pidgin
         {
             if (!Success)
             {
-                return Result.Failure<TToken, R>(Error, ConsumedInput);
+                return new Result<TToken, R>(ConsumedInput, Error);
             }
             var ru = selector(_value);
-            var consumedInput = ConsumedInput || ru.ConsumedInput;
             if (!ru.Success)
             {
-                return Result.Failure<TToken, R>(ru.Error, consumedInput);
+                return new Result<TToken, R>(ConsumedInput || ru.ConsumedInput, ru.Error);
             }
-            return Result.Success<TToken, R>(result(_value, ru._value), consumedInput);
+            return new Result<TToken, R>(ConsumedInput || ru.ConsumedInput, result(_value, ru._value));
         }
 
         /// <summary>
@@ -166,7 +147,7 @@ namespace Pidgin
         /// <param name="result">A fallback result if this one has an error</param>
         /// <returns>This result, if <see cref="Success"/> == true, or the result of calling <paramref name="result"/></returns>
         public Result<TToken, T> Or(Func<Result<TToken, T>> result)
-            => !Success && !ConsumedInput ? result() : this;
+            => !Success ? result() : this;
 
         /// <summary>
         /// Choose the first successful result
@@ -174,7 +155,7 @@ namespace Pidgin
         /// <param name="result">A fallback result if this one has an error</param>
         /// <returns>This result, if <see cref="Success"/> == true, or <paramref name="result"/></returns>
         public Result<TToken, T> Or(Result<TToken, T> result)
-            => !Success && !ConsumedInput ? result : this;
+            => !Success ? result : this;
 
         /// <summary>
         /// Cast the value contained in the result to the specified output type
@@ -184,7 +165,7 @@ namespace Pidgin
         /// <returns>A result containing this result's value casted to <typeparamref name="U"/></returns>
         public Result<TToken, U> Cast<U>()
             => Success
-                ? Result.Success<TToken, U>((U)(object)_value, ConsumedInput)
-                : Result.Failure<TToken, U>(Error, ConsumedInput);
+                ? new Result<TToken, U>(ConsumedInput, (U)(object)_value)
+                : new Result<TToken, U>(ConsumedInput, Error);
     }
 }

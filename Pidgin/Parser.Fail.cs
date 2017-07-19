@@ -22,17 +22,17 @@ namespace Pidgin
                 _message = message;
             }
 
-            internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
-                => Result.Failure<TToken, T>(
-                    new ParseError<TToken>(
-                        Maybe.Nothing<TToken>(),
-                        false,
-                        Expected,
-                        state.SourcePos,
-                        _message
-                    ),
-                    false
+            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
+            {
+                state.Error = new ParseError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    false,
+                    Expected,
+                    state.SourcePos,
+                    _message
                 );
+                return InternalResult.Failure<T>(false);
+            }
         }
     }
 }

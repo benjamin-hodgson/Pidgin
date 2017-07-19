@@ -30,15 +30,13 @@ namespace Pidgin
                 _func = func;
             }
 
-            internal override Result<TToken, U> Parse(IParseState<TToken> state)
+            internal override InternalResult<U> Parse(IParseState<TToken> state)
             {
                 var result1 = _parser.Parse(state);
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, U>(
-                        result1.Error,
-                        result1.ConsumedInput
-                    );
+                    // state.Error set by _parser
+                    return InternalResult.Failure<U>(result1.ConsumedInput);
                 }
                 var z = _func(_seed(), result1.Value);
                 var consumedInput = result1.ConsumedInput;
@@ -56,12 +54,10 @@ namespace Pidgin
                 }
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
-                    return Result.Failure<TToken, U>(
-                        result.Error,
-                        true
-                    );
+                    // state.Error set by _parser
+                    return InternalResult.Failure<U>(true);
                 }
-                return Result.Success<TToken, U>(z, consumedInput);
+                return InternalResult.Success<U>(z, consumedInput);
             }
         }
     }

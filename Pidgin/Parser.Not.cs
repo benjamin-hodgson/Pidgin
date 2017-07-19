@@ -24,29 +24,27 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal sealed override Result<TToken, Unit> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<Unit> Parse(IParseState<TToken> state)
             {
                 var startingPosition = state.SourcePos;
                 var token = state.Peek();
                 var result = _parser.Parse(state);
                 if (result.Success)
                 {
-                    return Result.Failure<TToken, Unit>(
-                            new ParseError<TToken>(
-                                token,
-                                false,
-                                null,
-                                startingPosition,
-                                null
-                            ),
-                            result.ConsumedInput
-                        );
+                    state.Error = new ParseError<TToken>(
+                        token,
+                        false,
+                        null,
+                        startingPosition,
+                        null
+                    );
+                    return InternalResult.Failure<Unit>(result.ConsumedInput);
                 }
 
-                return Result.Success<TToken, Unit>(
-                        Unit.Value,
-                        result.ConsumedInput
-                    );
+                return InternalResult.Success(
+                    Unit.Value,
+                    result.ConsumedInput
+                );
             }
         }
     }

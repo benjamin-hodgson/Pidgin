@@ -17,8 +17,8 @@ namespace Pidgin
             {
             }
 
-            internal override Result<TToken, SourcePos> Parse(IParseState<TToken> state)
-                => Result.Success<TToken, SourcePos>(state.SourcePos, false);
+            internal override InternalResult<SourcePos> Parse(IParseState<TToken> state)
+                => InternalResult.Success(state.SourcePos, false);
         }
     }
 }

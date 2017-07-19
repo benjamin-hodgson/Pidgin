@@ -39,19 +39,22 @@ namespace Pidgin
                 _result = result;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var result = _parser.Parse(state);
                 if (!result.Success)
                 {
-                    return Result.Failure<TToken, R>(result.Error, result.ConsumedInput);
+                    // state.Error set by _parser
+                    return InternalResult.Failure<R>(result.ConsumedInput);
                 }
-                var result2 = _func(result.Value).Parse(state);
+                var nextParser = _func(result.Value);
+                var result2 = nextParser.Parse(state);
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(result2.Error, result.ConsumedInput || result2.ConsumedInput);
+                    // state.Error set by nextParser
+                    return InternalResult.Failure<R>(result.ConsumedInput || result2.ConsumedInput);
                 }
-                return Result.Success<TToken, R>(_result(result.Value, result2.Value), result.ConsumedInput || result2.ConsumedInput);
+                return InternalResult.Success<R>(_result(result.Value, result2.Value), result.ConsumedInput || result2.ConsumedInput);
             }
         }
     }

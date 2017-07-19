@@ -3,7 +3,7 @@ using System.Buffers;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class BufferedParseState<TToken> : BookmarkParseState<TToken, Positioned<int>>
+    internal abstract class BufferedParseState<TToken> : BaseParseState<TToken, Positioned<int>>
     {
         private static readonly int InitialCapacity =
             typeof(TToken).Equals(typeof(char))

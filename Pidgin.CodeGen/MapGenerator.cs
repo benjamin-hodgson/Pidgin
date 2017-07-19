@@ -58,7 +58,7 @@ namespace Pidgin
             var parserParamNames = nums.Select(n => $"parser{n}");
             var parserFieldNames = nums.Select(n => $"_p{n}");
             var parserFieldAssignments = nums.Select(n => $"_p{n} = parser{n};");
-            var results = nums.Select(n => $"result{n}.GetValueOrDefault()");
+            var results = nums.Select(n => $"result{n}.Value");
             var types = string.Join(", ", nums.Select(n => "T" + n));
             var parts = nums.Select(GenerateMethodBodyPart);
             var mapMethodBody = num == 1
@@ -100,13 +100,13 @@ namespace Pidgin
                 {string.Join($"{Environment.NewLine}                ", parserFieldAssignments)}
             }}
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {{
                 var consumedInput = false;
 
                 {string.Join(Environment.NewLine, parts)}
 
-                return Result.Success<TToken, R>(_func(
+                return InternalResult.Success<R>(_func(
                     {string.Join($",{Environment.NewLine}                    ", results)}
                 ), consumedInput);
             }}
@@ -125,8 +125,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result{num}.ConsumedInput;
                 if (!result{num}.Success)
                 {{
-                    return Result.Failure<TToken, R>(
-                        result{num}.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }}";

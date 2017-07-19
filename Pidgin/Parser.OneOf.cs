@@ -87,12 +87,16 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
-            internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
             {
-                var failureResult = Result.Failure<TToken, T>(
-                    new ParseError<TToken>(Maybe.Nothing<TToken>(), false, Expected, state.SourcePos, "OneOf had no arguments"),
-                    false
+                var err = new ParseError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    false,
+                    Expected,
+                    state.SourcePos,
+                    "OneOf had no arguments"
                 );
+                InternalResult<T> failureResult = InternalResult.Failure<T>(false);
                 foreach (var p in _parsers)
                 {
                     var thisResult = p.Parse(state);
@@ -100,13 +104,15 @@ namespace Pidgin
                     {
                         return thisResult;
                     }
-                    failureResult = LongestMatch(failureResult, thisResult);
+                    if (state.Error.ErrorPos > err.ErrorPos)
+                    {
+                        failureResult = thisResult;
+                        err = state.Error;
+                    }
                 }
-                return failureResult.WithExpected(Expected);
+                state.Error = err.WithExpected(Expected);
+                return failureResult;
             }
-
-            private static Result<TToken, T> LongestMatch(Result<TToken, T> result1, Result<TToken, T> result2)
-                => result1.Error.ErrorPos > result2.Error.ErrorPos ? result1 : result2;
 
             internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)
             {

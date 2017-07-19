@@ -38,20 +38,18 @@ namespace Pidgin
                 _remainderParser = separator.Then(parser);
             }
 
-            internal override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
             {
                 var result = _parser.Parse(state);
                 if (!result.Success)
                 {
-                    return Result.Failure<TToken, IEnumerable<T>>(
-                        result.Error,
-                        result.ConsumedInput
-                    );
+                    // state.Error set by _parser
+                    return InternalResult.Failure<IEnumerable<T>>(result.ConsumedInput);
                 }
                 return Rest(_remainderParser, state, new List<T> { result.Value }, result.ConsumedInput);
             }
 
-            private Result<TToken, IEnumerable<T>> Rest(Parser<TToken, T> parser, IParseState<TToken> state, List<T> ts, bool consumedInput)
+            private InternalResult<IEnumerable<T>> Rest(Parser<TToken, T> parser, IParseState<TToken> state, List<T> ts, bool consumedInput)
             {
                 var result = parser.Parse(state);
                 while (result.Success)
@@ -66,12 +64,10 @@ namespace Pidgin
                 }
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
-                    return Result.Failure<TToken, IEnumerable<T>>(
-                        result.Error,
-                        true
-                    );
+                    // state.Error set by parser
+                    return InternalResult.Failure<IEnumerable<T>>(true);
                 }
-                return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
+                return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
             }
         }
 
@@ -127,12 +123,13 @@ namespace Pidgin
                 _separator = separator;
             }
 
-            internal override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
             {
                 var result = _parser.Parse(state);
                 if (!result.Success)
                 {
-                    return Result.Failure<TToken, IEnumerable<T>>(result.Error, result.ConsumedInput);
+                    // state.Error set by _parser
+                    return InternalResult.Failure<IEnumerable<T>>(result.ConsumedInput);
                 }
                 var ts = new List<T> { result.Value };
                 var consumedInput = result.ConsumedInput;
@@ -145,9 +142,10 @@ namespace Pidgin
                     {
                         if (sepResult.ConsumedInput)
                         {
-                            return Result.Failure<TToken, IEnumerable<T>>(sepResult.Error, consumedInput);
+                            // state.Error set by _separator
+                            return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                         }
-                        return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
+                        return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
                     }
 
                     var itemResult = _parser.Parse(state);
@@ -156,11 +154,12 @@ namespace Pidgin
                     {
                         if (itemResult.ConsumedInput)
                         {
-                            return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error, consumedInput);
+                            // state.Error set by _parser
+                            return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                         }
-                        return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
+                        return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
                     }
-                    ts.Add(itemResult.GetValueOrDefault());
+                    ts.Add(itemResult.Value);
                 }
             }
         }

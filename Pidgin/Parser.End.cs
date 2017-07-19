@@ -20,23 +20,21 @@ namespace Pidgin
             {
             }
 
-            internal sealed override Result<TToken, Unit> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<Unit> Parse(IParseState<TToken> state)
             {
                 var result = state.Peek();
                 if (result.HasValue)
                 {
-                    return Result.Failure<TToken, Unit>(
-                        new ParseError<TToken>(
-                            result,
-                            false,
-                            Expected,
-                            state.SourcePos,
-                            null
-                        ),
-                        false
+                    state.Error = new ParseError<TToken>(
+                        result,
+                        false,
+                        Expected,
+                        state.SourcePos,
+                        null
                     );
+                    return InternalResult.Failure<Unit>(false);
                 }
-                return Result.Success<TToken, Unit>(Unit.Value, false);
+                return InternalResult.Success(Unit.Value, false);
             }
         }
     }

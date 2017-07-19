@@ -55,7 +55,7 @@ namespace Pidgin
                 _p1 = parser1;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -64,14 +64,14 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value
                 ), consumedInput);
             }
 
@@ -115,7 +115,7 @@ namespace Pidgin
                 _p2 = parser2;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -124,8 +124,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -134,15 +134,15 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value
                 ), consumedInput);
             }
 
@@ -193,7 +193,7 @@ namespace Pidgin
                 _p3 = parser3;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -202,8 +202,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -212,8 +212,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -222,16 +222,16 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value
                 ), consumedInput);
             }
 
@@ -289,7 +289,7 @@ namespace Pidgin
                 _p4 = parser4;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -298,8 +298,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -308,8 +308,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -318,8 +318,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -328,17 +328,17 @@ namespace Pidgin
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result4.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault(),
-                    result4.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value
                 ), consumedInput);
             }
 
@@ -403,7 +403,7 @@ namespace Pidgin
                 _p5 = parser5;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -412,8 +412,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -422,8 +422,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -432,8 +432,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -442,8 +442,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result4.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -452,18 +452,18 @@ namespace Pidgin
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result5.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault(),
-                    result4.GetValueOrDefault(),
-                    result5.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value
                 ), consumedInput);
             }
 
@@ -535,7 +535,7 @@ namespace Pidgin
                 _p6 = parser6;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -544,8 +544,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -554,8 +554,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -564,8 +564,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -574,8 +574,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result4.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -584,8 +584,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result5.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -594,19 +594,19 @@ namespace Pidgin
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result6.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault(),
-                    result4.GetValueOrDefault(),
-                    result5.GetValueOrDefault(),
-                    result6.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value,
+                    result6.Value
                 ), consumedInput);
             }
 
@@ -685,7 +685,7 @@ namespace Pidgin
                 _p7 = parser7;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -694,8 +694,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -704,8 +704,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -714,8 +714,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -724,8 +724,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result4.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -734,8 +734,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result5.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -744,8 +744,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result6.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -754,20 +754,20 @@ namespace Pidgin
                 consumedInput = consumedInput || result7.ConsumedInput;
                 if (!result7.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result7.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault(),
-                    result4.GetValueOrDefault(),
-                    result5.GetValueOrDefault(),
-                    result6.GetValueOrDefault(),
-                    result7.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value,
+                    result6.Value,
+                    result7.Value
                 ), consumedInput);
             }
 
@@ -853,7 +853,7 @@ namespace Pidgin
                 _p8 = parser8;
             }
 
-            internal sealed override Result<TToken, R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
 
@@ -862,8 +862,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result1.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -872,8 +872,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result2.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -882,8 +882,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result3.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -892,8 +892,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result4.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -902,8 +902,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result5.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -912,8 +912,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result6.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -922,8 +922,8 @@ namespace Pidgin
                 consumedInput = consumedInput || result7.ConsumedInput;
                 if (!result7.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result7.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
@@ -932,21 +932,21 @@ namespace Pidgin
                 consumedInput = consumedInput || result8.ConsumedInput;
                 if (!result8.Success)
                 {
-                    return Result.Failure<TToken, R>(
-                        result8.Error.WithExpected(Expected),
+                    state.Error = state.Error.WithExpected(Expected);
+                    return InternalResult.Failure<R>(
                         consumedInput
                     );
                 }
 
-                return Result.Success<TToken, R>(_func(
-                    result1.GetValueOrDefault(),
-                    result2.GetValueOrDefault(),
-                    result3.GetValueOrDefault(),
-                    result4.GetValueOrDefault(),
-                    result5.GetValueOrDefault(),
-                    result6.GetValueOrDefault(),
-                    result7.GetValueOrDefault(),
-                    result8.GetValueOrDefault()
+                return InternalResult.Success<R>(_func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value,
+                    result6.Value,
+                    result7.Value,
+                    result8.Value
                 ), consumedInput);
             }
 

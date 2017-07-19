@@ -67,12 +67,12 @@ namespace Pidgin
                 _keepResults = keepResults;
             }
 
-            internal override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
             {
                 var ts = _keepResults ? new List<T>() : null;
                 var firstTime = true;
                 var consumedInput = false;
-                Result<TToken, U> terminatorResult;
+                InternalResult<U> terminatorResult;
                 do
                 {
                     var itemResult = _parser.Parse(state);
@@ -81,25 +81,28 @@ namespace Pidgin
                     {
                         if (itemResult.ConsumedInput)
                         {
-                            return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error, consumedInput);
+                            // state.Error set by _parser
+                            return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                         }
-                        return Result.Failure<TToken, IEnumerable<T>>(itemResult.Error.WithExpected(firstTime ? Expected : _round2Expected), consumedInput);
+                        state.Error = state.Error.WithExpected(firstTime ? Expected : _round2Expected);
+                        return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
                     if (!itemResult.ConsumedInput)
                     {
                         throw new InvalidOperationException("Until() used with a parser which consumed no input");
                     }
-                    ts?.Add(itemResult.GetValueOrDefault());
+                    ts?.Add(itemResult.Value);
 
 
                     terminatorResult = _terminator.Parse(state);
                     if (terminatorResult.ConsumedInput && !terminatorResult.Success)
                     {
-                        return Result.Failure<TToken, IEnumerable<T>>(terminatorResult.Error, consumedInput);
+                        // state.Error set by _terminator
+                        return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
                     firstTime = false;
                 } while (!terminatorResult.Success);
-                return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
+                return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
             }
         }
     }

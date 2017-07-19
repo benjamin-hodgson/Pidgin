@@ -33,6 +33,12 @@ namespace Pidgin
             Expected = expected;
         }
 
-        internal abstract Result<TToken, T> Parse(IParseState<TToken> state);
+        // invariant: state.Error is populated with the error that caused the failure
+        // if the result was not successful
+
+        // Why pass the error by reference?
+        // I previously passed Result around directly, which has an Error property,
+        // but copying it around turned out to be too expensive because ParseError is a large struct
+        internal abstract InternalResult<T> Parse(IParseState<TToken> state);
     }
 }

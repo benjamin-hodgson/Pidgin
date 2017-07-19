@@ -23,7 +23,7 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
             {
                 // start buffering the input
                 state.PushBookmark();
@@ -32,10 +32,8 @@ namespace Pidgin
                 {
                     // return to the start of the buffer and discard the bookmark
                     state.Rewind();
-                    return Result.Failure<TToken, T>(
-                        result.Error.WithErrorPos(state.SourcePos),
-                        false
-                    );
+                    state.Error = state.Error.WithErrorPos(state.SourcePos);
+                    return InternalResult.Failure<T>(false);
                 }
 
                 // discard the buffer

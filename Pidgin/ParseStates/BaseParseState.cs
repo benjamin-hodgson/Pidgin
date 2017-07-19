@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class BookmarkParseState<TToken, TBookmark> : IParseState<TToken>
+    internal abstract class BaseParseState<TToken, TBookmark> : IParseState<TToken>
     {
         private readonly Stack<TBookmark> _bookmarks = new Stack<TBookmark>();
 
@@ -29,5 +29,7 @@ namespace Pidgin.ParseStates
         public virtual void Dispose()
         {
         }
+
+        public ParseError<TToken> Error { get; set; } = default(ParseError<TToken>);
     }
 }

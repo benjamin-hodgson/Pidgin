@@ -25,38 +25,34 @@ namespace Pidgin
                 _token = token;
             }
 
-            internal sealed override Result<TToken, TToken> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TToken> Parse(IParseState<TToken> state)
             {
                 var x = state.Peek();
                 if (!x.HasValue)
                 {
-                    return Result.Failure<TToken, TToken>(
-                        new ParseError<TToken>(
-                            x,
-                            true,
-                            Expected,
-                            state.SourcePos,
-                            null
-                        ),
-                        false
+                    state.Error = new ParseError<TToken>(
+                        x,
+                        true,
+                        Expected,
+                        state.SourcePos,
+                        null
                     );
+                    return InternalResult.Failure<TToken>(false);
                 }
                 var val = x.GetValueOrDefault();
                 if (!val.Equals(_token))
                 {
-                    return Result.Failure<TToken, TToken>(
-                        new ParseError<TToken>(
-                            x,
-                            false,
-                            Expected,
-                            state.SourcePos,
-                            null
-                        ),
-                        false
+                    state.Error = new ParseError<TToken>(
+                        x,
+                        false,
+                        Expected,
+                        state.SourcePos,
+                        null
                     );
+                    return InternalResult.Failure<TToken>(false);
                 }
                 state.Advance();
-                return Result.Success<TToken, TToken>(val, true);
+                return InternalResult.Success<TToken>(val, true);
             }
         }
 
@@ -78,38 +74,34 @@ namespace Pidgin
                 _predicate = predicate;
             }
 
-            internal sealed override Result<TToken, TToken> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TToken> Parse(IParseState<TToken> state)
             {
                 var x = state.Peek();
                 if (!x.HasValue)
                 {
-                    return Result.Failure<TToken, TToken>(
-                        new ParseError<TToken>(
-                            x,
-                            true,
-                            Expected,
-                            state.SourcePos,
-                            null
-                        ),
-                        false
+                    state.Error = new ParseError<TToken>(
+                        x,
+                        true,
+                        Expected,
+                        state.SourcePos,
+                        null
                     );
+                    return InternalResult.Failure<TToken>(false);
                 }
                 var val = x.GetValueOrDefault();
                 if (!_predicate(val))
                 {
-                    return Result.Failure<TToken, TToken>(
-                        new ParseError<TToken>(
-                            x,
-                            false,
-                            Expected,
-                            state.SourcePos,
-                            null
-                        ),
-                        false
+                    state.Error = new ParseError<TToken>(
+                        x,
+                        false,
+                        Expected,
+                        state.SourcePos,
+                        null
                     );
+                    return InternalResult.Failure<TToken>(false);
                 }
                 state.Advance();
-                return Result.Success<TToken, TToken>(val, true);
+                return InternalResult.Success<TToken>(val, true);
             }
         }
     }

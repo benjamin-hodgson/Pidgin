@@ -24,7 +24,7 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal override Result<TToken, T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(IParseState<TToken> state)
             {
                 state.PushBookmark();
 
@@ -33,7 +33,7 @@ namespace Pidgin
                 if (result.Success)
                 {
                     state.Rewind();
-                    return Result.Success<TToken, T>(result.GetValueOrDefault(), false);
+                    return InternalResult.Success<T>(result.Value, false);
                 }
                 state.PopBookmark();
                 return result;

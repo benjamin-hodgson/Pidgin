@@ -28,12 +28,12 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal override Result<TToken, T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(IParseState<TToken> state)
             {
                 var result = _parser.Parse(state);
                 if (!result.Success)
                 {
-                    return result.WithExpected(Expected);
+                    state.Error = state.Error.WithExpected(Expected);
                 }
                 return result;
             }

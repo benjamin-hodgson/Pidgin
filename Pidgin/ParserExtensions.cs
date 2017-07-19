@@ -90,7 +90,12 @@ namespace Pidgin
             using (state)  // ensure we return the state's buffer to the buffer pool
             {
                 state.Advance();  // pull the first element from the input
-                return parser.Parse(state);
+                var result = parser.Parse(state);
+                if (!result.Success)
+                {
+                    return new Result<TToken, T>(result.ConsumedInput, state.Error);
+                }
+                return new Result<TToken, T>(result.ConsumedInput, result.Value);
             }
         }
 

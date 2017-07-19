@@ -10,5 +10,6 @@ namespace Pidgin.ParseStates
         void PopBookmark();
         void Rewind();
         SourcePos SourcePos { get; }
+        ParseError<TToken> Error { get; set; }
     }
 }

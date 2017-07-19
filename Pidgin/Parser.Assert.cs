@@ -44,26 +44,24 @@ namespace Pidgin
                 _message = message;
             }
 
-            internal sealed override Result<TToken, T> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
             {
                 var result = _parser.Parse(state);
                 if (!result.Success)
                 {
                     return result;
                 }
-                var val = result.GetValueOrDefault();
+                var val = result.Value;
                 if (!_predicate(val))
                 {
-                    return Result.Failure<TToken, T>(
-                        new ParseError<TToken>(
-                            Maybe.Nothing<TToken>(),
-                            false,
-                            Expected,
-                            state.SourcePos,
-                            _message(val)
-                        ),
-                        result.ConsumedInput
+                    state.Error = new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        false,
+                        Expected,
+                        state.SourcePos,
+                        _message(val)
                     );
+                    return InternalResult.Failure<T>(result.ConsumedInput);
                 }
                 return result;
             }

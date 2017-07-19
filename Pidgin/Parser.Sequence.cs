@@ -37,7 +37,7 @@ namespace Pidgin
                 _valueTokens = value.ToArray();
             }
 
-            internal sealed override Result<TToken, TEnumerable> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TEnumerable> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
                 foreach (var x in _valueTokens)
@@ -45,37 +45,33 @@ namespace Pidgin
                     var result = state.Peek();
                     if (!result.HasValue)
                     {
-                        return Result.Failure<TToken, TEnumerable>(
-                            new ParseError<TToken>(
-                                result,
-                                true,
-                                Expected,
-                                state.SourcePos,
-                                null
-                            ),
-                            consumedInput
+                        state.Error = new ParseError<TToken>(
+                            result,
+                            true,
+                            Expected,
+                            state.SourcePos,
+                            null
                         );
+                        return InternalResult.Failure<TEnumerable>(consumedInput);
                     }
 
                     TToken token = result.GetValueOrDefault();
                     if (!token.Equals(x))
                     {
-                        return Result.Failure<TToken, TEnumerable>(
-                            new ParseError<TToken>(
-                                result,
-                                false,
-                                Expected,
-                                state.SourcePos,
-                                null
-                            ),
-                            consumedInput
+                        state.Error = new ParseError<TToken>(
+                            result,
+                            false,
+                            Expected,
+                            state.SourcePos,
+                            null
                         );
+                        return InternalResult.Failure<TEnumerable>(consumedInput);
                     }
 
                     consumedInput = true;
                     state.Advance();
                 }
-                return Result.Success<TToken, TEnumerable>(_value, consumedInput);
+                return InternalResult.Success<TEnumerable>(_value, consumedInput);
             }
         }
 
@@ -108,7 +104,7 @@ namespace Pidgin
                 _parsers = parsers.ToArray();
             }
 
-            internal sealed override Result<TToken, IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
             {
                 var consumedInput = false;
                 var ts = new T[_parsers.Length];
@@ -119,15 +115,13 @@ namespace Pidgin
                     consumedInput = consumedInput || result.ConsumedInput;
                     if (!result.Success)
                     {
-                        return Result.Failure<TToken, IEnumerable<T>>(
-                            result.Error.WithExpected(Expected),
-                            consumedInput
-                        );
+                        state.Error = state.Error.WithExpected(Expected);
+                        return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
-                    ts[i] = result.GetValueOrDefault();
+                    ts[i] = result.Value;
                     i++;
                 }
-                return Result.Success<TToken, IEnumerable<T>>(ts, consumedInput);
+                return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Pidgin
     /// Represents an error encountered during parsing.
     /// </summary>
     /// <typeparam name="TToken">The type of tokens in the input stream</typeparam>
-    public class ParseError<TToken> : IEquatable<ParseError<TToken>>
+    public struct ParseError<TToken> : IEquatable<ParseError<TToken>>
     {
         /// <summary>
         /// Was the parse error due to encountering the end of the input stream while parsing?

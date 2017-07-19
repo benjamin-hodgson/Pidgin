@@ -2,7 +2,7 @@ using System;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class InMemoryParseState<TToken> : BookmarkParseState<TToken, Positioned<int>>
+    internal abstract class InMemoryParseState<TToken> : BaseParseState<TToken, Positioned<int>>
     {
         private readonly int _count;
         private readonly Func<TToken, SourcePos, SourcePos> _calculatePos;
