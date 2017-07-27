@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,14 @@ namespace Pidgin
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser zero or more times, packing the resulting characters into a string.</returns>
         public static Parser<TToken, string> ManyString<TToken>(this Parser<TToken, char> parser)
-            => parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            
+            return parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
+        }
 
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, concatenating the resulting string pieces.
@@ -23,7 +31,14 @@ namespace Pidgin
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser zero or more times, concatenating the resulting string pieces.</returns>
         public static Parser<TToken, string> ManyString<TToken>(this Parser<TToken, string> parser)
-            => parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            return parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
+        }
         
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
@@ -32,10 +47,17 @@ namespace Pidgin
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser one or more times, packing the resulting characters into a string.</returns>
         public static Parser<TToken, string> AtLeastOnceString<TToken>(this Parser<TToken, char> parser)
-            => parser.ChainAtLeastOnceL(
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            return parser.ChainAtLeastOnceL(
                 () => new StringBuilder(),
                 (sb, c) => sb.Append(c)  // returns itself
             ).Select(sb => sb.ToString());
+        }
         
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, concatenating the resulting string pieces.
@@ -44,10 +66,17 @@ namespace Pidgin
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser one or more times, concatenating the resulting string pieces.</returns>
         public static Parser<TToken, string> AtLeastOnceString<TToken>(this Parser<TToken, string> parser)
-            => parser.ChainAtLeastOnceL(
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+
+            return parser.ChainAtLeastOnceL(
                 () => new StringBuilder(),
                 (sb, s) => sb.Append(s)  // returns itself
             ).Select(sb => sb.ToString());
+        }
     }
 
     public abstract partial class Parser<TToken, T>

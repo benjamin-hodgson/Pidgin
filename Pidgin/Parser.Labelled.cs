@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pidgin.ParseStates;
 
@@ -14,7 +15,13 @@ namespace Pidgin
         /// <param name="label">The custom label to apply to the current parser</param>
         /// <returns>A parser equivalent to the current parser, with a custom label</returns>
         public Parser<TToken, T> Labelled(string label)
-            => WithExpected(new SortedSet<Expected<TToken>> { new Expected<TToken>(label) });
+        {
+            if (label == null)
+            {
+                throw new ArgumentNullException(nameof(label));
+            }
+            return WithExpected(new SortedSet<Expected<TToken>> { new Expected<TToken>(label) });
+        }
             
         internal Parser<TToken, T> WithExpected(SortedSet<Expected<TToken>> expected)
             => new WithExpectedParser(this, expected);

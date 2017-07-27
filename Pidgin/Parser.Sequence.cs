@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pidgin.ParseStates;
@@ -12,7 +13,13 @@ namespace Pidgin
         /// <param name="tokens">A sequence of tokens</param>
         /// <returns>A parser that parses a literal sequence of tokens</returns>
         public static Parser<TToken, TToken[]> Sequence(params TToken[] tokens)
-            => Sequence<TToken[]>(tokens);
+        {
+            if (tokens == null)
+            {
+                throw new ArgumentNullException(nameof(tokens));
+            }
+            return Sequence<TToken[]>(tokens);
+        }
         /// <summary>
         /// Creates a parser that parses and returns a literal sequence of tokens.
         /// The input enumerable is enumerated and copied to a list.
@@ -22,7 +29,13 @@ namespace Pidgin
         /// <returns>A parser that parses a literal sequence of tokens</returns>
         public static Parser<TToken, TEnumerable> Sequence<TEnumerable>(TEnumerable tokens)
             where TEnumerable : IEnumerable<TToken>
-            => new SequenceTokenParser<TEnumerable>(tokens);
+        {
+            if (tokens == null)
+            {
+                throw new ArgumentNullException(nameof(tokens));
+            }
+            return new SequenceTokenParser<TEnumerable>(tokens);
+        }
 
         private sealed class SequenceTokenParser<TEnumerable> : Parser<TToken, TEnumerable>
             where TEnumerable : IEnumerable<TToken>
@@ -83,7 +96,9 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers</param>
         /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(params Parser<TToken, T>[] parsers)
-            => Sequence(parsers.AsEnumerable());
+        {
+            return Sequence(parsers.AsEnumerable());
+        }
 
         /// <summary>
         /// Creates a parser that applies a sequence of parsers and collects the results.
@@ -93,7 +108,13 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers</param>
         /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(IEnumerable<Parser<TToken, T>> parsers)
-            => new SequenceParser<T>(parsers);
+        {
+            if (parsers == null)
+            {
+                throw new ArgumentNullException(nameof(parsers));
+            }
+            return new SequenceParser<T>(parsers);
+        }
 
         private sealed class SequenceParser<T> : Parser<TToken, IEnumerable<T>>
         {

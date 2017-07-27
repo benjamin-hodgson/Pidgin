@@ -1,3 +1,4 @@
+using System;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -11,7 +12,13 @@ namespace Pidgin
         /// <typeparam name="T">The return type of the resulting parser</typeparam>
         /// <returns>A parser which always fails</returns>
         public static Parser<TToken, T> Fail<T>(string message = "Failed")
-            => new FailParser<T>(message);
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+            return new FailParser<T>(message);
+        }
         
         private sealed class FailParser<T> : Parser<TToken, T>
         {

@@ -62,7 +62,13 @@ namespace Pidgin
         /// <param name="predicate">A predicate function to apply to a token</param>
         /// <returns>A parser that parses and returns a single token satisfying a predicate</returns>
         public static Parser<TToken, TToken> Token(Func<TToken, bool> predicate)
-            => new PredicateTokenParser(predicate);
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+            return new PredicateTokenParser(predicate);
+        }
 
         private sealed class PredicateTokenParser : Parser<TToken, TToken>
         {

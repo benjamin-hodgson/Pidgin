@@ -13,7 +13,13 @@ namespace Pidgin
         /// <param name="parser">The parser to look ahead with</param>
         /// <returns>A parser which rewinds the input stream if <paramref name="parser"/> succeeds.</returns>
         public static Parser<TToken, T> Lookahead<TToken, T>(Parser<TToken, T> parser)
-            => new LookaheadParser<TToken, T>(parser);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return new LookaheadParser<TToken, T>(parser);
+        }
 
         private class LookaheadParser<TToken, T> : Parser<TToken, T>
         {

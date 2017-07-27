@@ -37,9 +37,21 @@ namespace Pidgin
         public static Parser<TToken, R> Map<TToken, T1, R>(
             Func<T1, R> func,
             Parser<TToken, T1> parser1
-        ) => parser1 is MapParserBase<TToken, T1> p
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+
+            return parser1 is MapParserBase<TToken, T1> p
                 ? p.Map(func)
                 : new Map1Parser<TToken, T1, R>(func, parser1);
+        }
         
         private sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
         {
@@ -96,7 +108,23 @@ namespace Pidgin
             Func<T1, T2, R> func,
             Parser<TToken, T1> parser1,
             Parser<TToken, T2> parser2
-        ) => new Map2Parser<TToken, T1, T2, R>(func, parser1, parser2);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+
+            return new Map2Parser<TToken, T1, T2, R>(func, parser1, parser2);
+        }
         
         private sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
         {
@@ -171,7 +199,27 @@ namespace Pidgin
             Parser<TToken, T1> parser1,
             Parser<TToken, T2> parser2,
             Parser<TToken, T3> parser3
-        ) => new Map3Parser<TToken, T1, T2, T3, R>(func, parser1, parser2, parser3);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+
+            return new Map3Parser<TToken, T1, T2, T3, R>(func, parser1, parser2, parser3);
+        }
         
         private sealed class Map3Parser<TToken, T1, T2, T3, R> : MapParserBase<TToken, R>
         {
@@ -264,7 +312,31 @@ namespace Pidgin
             Parser<TToken, T2> parser2,
             Parser<TToken, T3> parser3,
             Parser<TToken, T4> parser4
-        ) => new Map4Parser<TToken, T1, T2, T3, T4, R>(func, parser1, parser2, parser3, parser4);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+            if (parser4 == null)
+            {
+                throw new ArgumentNullException(nameof(parser4));
+            }
+
+            return new Map4Parser<TToken, T1, T2, T3, T4, R>(func, parser1, parser2, parser3, parser4);
+        }
         
         private sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : MapParserBase<TToken, R>
         {
@@ -375,7 +447,35 @@ namespace Pidgin
             Parser<TToken, T3> parser3,
             Parser<TToken, T4> parser4,
             Parser<TToken, T5> parser5
-        ) => new Map5Parser<TToken, T1, T2, T3, T4, T5, R>(func, parser1, parser2, parser3, parser4, parser5);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+            if (parser4 == null)
+            {
+                throw new ArgumentNullException(nameof(parser4));
+            }
+            if (parser5 == null)
+            {
+                throw new ArgumentNullException(nameof(parser5));
+            }
+
+            return new Map5Parser<TToken, T1, T2, T3, T4, T5, R>(func, parser1, parser2, parser3, parser4, parser5);
+        }
         
         private sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : MapParserBase<TToken, R>
         {
@@ -504,7 +604,39 @@ namespace Pidgin
             Parser<TToken, T4> parser4,
             Parser<TToken, T5> parser5,
             Parser<TToken, T6> parser6
-        ) => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R>(func, parser1, parser2, parser3, parser4, parser5, parser6);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+            if (parser4 == null)
+            {
+                throw new ArgumentNullException(nameof(parser4));
+            }
+            if (parser5 == null)
+            {
+                throw new ArgumentNullException(nameof(parser5));
+            }
+            if (parser6 == null)
+            {
+                throw new ArgumentNullException(nameof(parser6));
+            }
+
+            return new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R>(func, parser1, parser2, parser3, parser4, parser5, parser6);
+        }
         
         private sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : MapParserBase<TToken, R>
         {
@@ -651,7 +783,43 @@ namespace Pidgin
             Parser<TToken, T5> parser5,
             Parser<TToken, T6> parser6,
             Parser<TToken, T7> parser7
-        ) => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+            if (parser4 == null)
+            {
+                throw new ArgumentNullException(nameof(parser4));
+            }
+            if (parser5 == null)
+            {
+                throw new ArgumentNullException(nameof(parser5));
+            }
+            if (parser6 == null)
+            {
+                throw new ArgumentNullException(nameof(parser6));
+            }
+            if (parser7 == null)
+            {
+                throw new ArgumentNullException(nameof(parser7));
+            }
+
+            return new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7);
+        }
         
         private sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : MapParserBase<TToken, R>
         {
@@ -816,7 +984,47 @@ namespace Pidgin
             Parser<TToken, T6> parser6,
             Parser<TToken, T7> parser7,
             Parser<TToken, T8> parser8
-        ) => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
+        )
+        {
+            if (func == null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+            if (parser1 == null)
+            {
+                throw new ArgumentNullException(nameof(parser1));
+            }
+            if (parser2 == null)
+            {
+                throw new ArgumentNullException(nameof(parser2));
+            }
+            if (parser3 == null)
+            {
+                throw new ArgumentNullException(nameof(parser3));
+            }
+            if (parser4 == null)
+            {
+                throw new ArgumentNullException(nameof(parser4));
+            }
+            if (parser5 == null)
+            {
+                throw new ArgumentNullException(nameof(parser5));
+            }
+            if (parser6 == null)
+            {
+                throw new ArgumentNullException(nameof(parser6));
+            }
+            if (parser7 == null)
+            {
+                throw new ArgumentNullException(nameof(parser7));
+            }
+            if (parser8 == null)
+            {
+                throw new ArgumentNullException(nameof(parser8));
+            }
+
+            return new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
+        }
         
         private sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : MapParserBase<TToken, R>
         {

@@ -14,17 +14,17 @@ namespace Pidgin
         /// <typeparam name="U">The type of the return value of the second parser</typeparam>
         /// <typeparam name="R">The type of the return value of the resulting parser</typeparam>
         /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function</returns>
-        public Parser<TToken, R> SelectMany<U, R>(Expression<Func<T, Parser<TToken, U>>> selector, Expression<Func<T, U, R>> result)
+        public Parser<TToken, R> SelectMany<U, R>(Func<T, Parser<TToken, U>> selector, Func<T, U, R> result)
         {
-            // TODO: do a free variable analysis on the body of the lambda
-            // to determine whether it's a constant function or not. (often it will be.)
-            // If it is, sequence the body of the lambda instead.
-
-            // TODO #2: figure out how expensive that analysis is. Too expensive to do inside the body of an earlier Bind?
-            
-            // TODO #3: if R is an anonymous type (eg we're in a query expr) can we rewrite it to a value type? No, right?
-            // https://github.com/dotnet/roslyn/issues/8192
-            return Bind(selector.Compile(), result.Compile());
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+            return Bind(selector, result);
         }
     }
 }

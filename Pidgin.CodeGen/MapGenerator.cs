@@ -61,7 +61,12 @@ namespace Pidgin
             var results = nums.Select(n => $"result{n}.Value");
             var types = string.Join(", ", nums.Select(n => "T" + n));
             var parts = nums.Select(GenerateMethodBodyPart);
-            var mapMethodBody = num == 1
+            var checkArgsForNull = string.Concat(parserParamNames.Select(x => $@"
+            if ({x} == null)
+            {{
+                throw new ArgumentNullException(nameof({x}));
+            }}"));
+            var mapReturnExpr = num == 1
                 ? $@"parser1 is MapParserBase<TToken, T1> p
                 ? p.Map(func)
                 : new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})"
@@ -84,7 +89,15 @@ namespace Pidgin
         public static Parser<TToken, R> Map<TToken, {types}, R>(
             Func<{types}, R> func,
             {string.Join($",{Environment.NewLine}            ", parserParams)}
-        ) => {mapMethodBody};
+        )
+        {{
+            if (func == null)
+            {{
+                throw new ArgumentNullException(nameof(func));
+            }}{checkArgsForNull}
+
+            return {mapReturnExpr};
+        }}
         
         private sealed class Map{num}Parser<TToken, {types}, R> : MapParserBase<TToken, R>
         {{

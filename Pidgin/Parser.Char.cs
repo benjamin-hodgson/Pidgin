@@ -39,7 +39,13 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters that should not be matched</param>
         /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
         public static Parser<char, char> AnyCharExcept(params char[] chars)
-            => AnyCharExcept(chars.AsEnumerable());
+        {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+            return AnyCharExcept(chars.AsEnumerable());
+        }
 
         /// <summary>
         /// Creates a parser which parses and returns a character if it is not one of the specified characters.
@@ -49,6 +55,10 @@ namespace Pidgin
         /// <returns>A parser which parses and returns a character that does not match one of the specified characters</returns>
         public static Parser<char, char> AnyCharExcept(IEnumerable<char> chars)
         {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
             var cs = chars.ToArray();
             return Parser<char>.Token(c => Array.IndexOf(cs, c) == -1);
         }

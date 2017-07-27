@@ -42,6 +42,11 @@ namespace Pidgin
         /// <param name="posCalculator">A function which calculates the position after consuming a token</param>
         public static void SetDefaultPosCalculator<TToken>(Func<TToken, SourcePos, SourcePos> posCalculator)
         {
+            if (posCalculator == null)
+            {
+                throw new ArgumentNullException(nameof(posCalculator));
+            }
+
             var ttoken = typeof(TToken);
             if (ttoken.Equals(typeof(char)))
             {

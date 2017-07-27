@@ -12,7 +12,14 @@ namespace Pidgin
         /// <param name="predicate">The predicate to apply to the value returned by the current parser</param>
         /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate)
-            => Assert(predicate, "Assertion failed");
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+            return Assert(predicate, "Assertion failed");
+        }
+
         /// <summary>
         /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
         /// </summary>
@@ -20,7 +27,17 @@ namespace Pidgin
         /// <param name="message">A custom error message to return when the value returned by the current parser fails to satisfy the predicate</param>
         /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate, string message)
-            => Assert(predicate, _ => message);
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+            return Assert(predicate, _ => message);
+        }
 
         /// <summary>
         /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
@@ -29,7 +46,17 @@ namespace Pidgin
         /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate</param>
         /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate, Func<T, string> message)
-            => new AssertParser(this, predicate, message);
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+            return new AssertParser(this, predicate, message);
+        }
 
         private sealed class AssertParser : Parser<TToken, T>
         {

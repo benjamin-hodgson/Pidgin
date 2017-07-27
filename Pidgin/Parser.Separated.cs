@@ -14,8 +14,14 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser repeatedly, interleaved by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> Separated<U>(Parser<TToken, U> separator)
-            => this.SeparatedAtLeastOnce(separator)
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return this.SeparatedAtLeastOnce(separator)
                 .Or(_returnEmptyEnumerable);
+        }
         
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved with a specified parser.
@@ -25,7 +31,13 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser at least once, interleaved by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> SeparatedAtLeastOnce<U>(Parser<TToken, U> separator)
-            => new SeparatedAtLeastOnceParser<U>(this, separator);
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return new SeparatedAtLeastOnceParser<U>(this, separator);
+        }
 
         private sealed class SeparatedAtLeastOnceParser<U> : Parser<TToken, IEnumerable<T>>
         {
@@ -79,7 +91,13 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser repeatedly, interleaved and terminated by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> SeparatedAndTerminated<U>(Parser<TToken, U> separator)
-            => this.Before(separator).Many();
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return this.Before(separator).Many();
+        }
         
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and terminated with a specified parser.
@@ -89,7 +107,13 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser at least once, interleaved and terminated by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> SeparatedAndTerminatedAtLeastOnce<U>(Parser<TToken, U> separator)
-            => this.Before(separator).AtLeastOnce();
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return this.Before(separator).AtLeastOnce();
+        }
 
         /// <summary>
         /// Creates a parser which applies the current parser repeatedly, interleaved and optionally terminated with a specified parser.
@@ -99,8 +123,14 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser repeatedly, interleaved and optionally terminated by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> SeparatedAndOptionallyTerminated<U>(Parser<TToken, U> separator)
-            => this.SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return this.SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
                 .Or(_returnEmptyEnumerable);
+        }
         
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and optionally terminated with a specified parser.
@@ -110,7 +140,13 @@ namespace Pidgin
         /// <param name="separator">A parser which parses a separator to be interleaved with the current parser</param>
         /// <returns>A parser which applies the current parser at least once, interleaved and optionally terminated by <paramref name="separator"/></returns>
         public Parser<TToken, IEnumerable<T>> SeparatedAndOptionallyTerminatedAtLeastOnce<U>(Parser<TToken, U> separator)
-            => new SeparatedAndOptionallyTerminatedAtLeastOnceParser<U>(this, separator);
+        {
+            if (separator == null)
+            {
+                throw new ArgumentNullException(nameof(separator));
+            }
+            return new SeparatedAndOptionallyTerminatedAtLeastOnceParser<U>(this, separator);
+        }
 
         private sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParser<U> : Parser<TToken, IEnumerable<T>>
         {

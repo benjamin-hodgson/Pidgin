@@ -24,7 +24,13 @@ namespace Pidgin
         /// </code>
         /// </example>
         public static Parser<TToken, T> Rec<TToken, T>(Func<Parser<TToken, T>> parser)
-            => Rec(new Lazy<Parser<TToken, T>>(parser));
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return Rec(new Lazy<Parser<TToken, T>>(parser));
+        }
 
         /// <summary>
         /// Creates a parser which lazily calls the supplied function and applies the resulting parser.
@@ -36,7 +42,13 @@ namespace Pidgin
         /// <typeparam name="T">The return type of the parser</typeparam>
         /// <returns>A parser which lazily applies the specified parser</returns>
         public static Parser<TToken, T> Rec<TToken, T>(Lazy<Parser<TToken, T>> parser)
-            => new RecParser<TToken, T>(parser);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return new RecParser<TToken, T>(parser);
+        }
         
         private sealed class RecParser<TToken, T> : Parser<TToken, T>
         {

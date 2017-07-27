@@ -1,3 +1,5 @@
+using System;
+
 namespace Pidgin
 {
     public abstract partial class Parser<TToken, T>
@@ -10,6 +12,12 @@ namespace Pidgin
         /// <typeparam name="U">The type of the value returned by the second parser</typeparam>
         /// <returns>A parser that applies the current parser followed by the specified parser</returns>
         public Parser<TToken, T> Before<U>(Parser<TToken, U> parser)
-            => this.Then(parser, (t, u) => t);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return this.Then(parser, (t, u) => t);
+        }
     }
 }

@@ -15,8 +15,14 @@ namespace Pidgin
         /// <param name="terminator">A parser to parse a terminator</param>
         /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds</returns>
         public Parser<TToken, IEnumerable<T>> Until<U>(Parser<TToken, U> terminator)
-            => terminator.Then(_returnEmptyEnumerable)
+        {
+            if (terminator == null)
+            {
+                throw new ArgumentNullException(nameof(terminator));
+            }
+            return terminator.Then(_returnEmptyEnumerable)
                 .Or(this.AtLeastOnceUntil(terminator));
+        }
         
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds.
@@ -26,7 +32,13 @@ namespace Pidgin
         /// <param name="terminator">A parser to parse a terminator</param>
         /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds</returns>
         public Parser<TToken, IEnumerable<T>> AtLeastOnceUntil<U>(Parser<TToken, U> terminator)
-            => new AtLeastOnceUntilParser<U>(this, terminator, true);
+        {
+            if (terminator == null)
+            {
+                throw new ArgumentNullException(nameof(terminator));
+            }
+            return new AtLeastOnceUntilParser<U>(this, terminator, true);
+        }
 
         /// <summary>
         /// Creates a parser which applies this parser zero or more times until <paramref name="terminator"/> succeeds, discarding the results.
@@ -38,8 +50,14 @@ namespace Pidgin
         /// <param name="terminator">A parser to parse a terminator</param>
         /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds, discarding the results</returns>
         public Parser<TToken, Unit> SkipUntil<U>(Parser<TToken, U> terminator)
-            => terminator.Then(_returnUnit)
+        {
+            if (terminator == null)
+            {
+                throw new ArgumentNullException(nameof(terminator));
+            }
+            return terminator.Then(_returnUnit)
                 .Or(this.SkipAtLeastOnceUntil(terminator));
+        }
         
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds, discarding the results.
@@ -50,7 +68,13 @@ namespace Pidgin
         /// <param name="terminator">A parser to parse a terminator</param>
         /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds, discarding the results</returns>
         public Parser<TToken, Unit> SkipAtLeastOnceUntil<U>(Parser<TToken, U> terminator)
-            => new AtLeastOnceUntilParser<U>(this, terminator, false).Then(_returnUnit);
+        {
+            if (terminator == null)
+            {
+                throw new ArgumentNullException(nameof(terminator));
+            }
+            return new AtLeastOnceUntilParser<U>(this, terminator, false).Then(_returnUnit);
+        }
 
         private sealed class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>>
         {

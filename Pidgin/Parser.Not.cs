@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pidgin.ParseStates;
@@ -13,7 +14,13 @@ namespace Pidgin
         /// <param name="parser">The parser that is expected to fail</param>
         /// <returns>A parser which succeeds only if the given parser fails.</returns>
         public static Parser<TToken, Unit> Not<TToken, T>(Parser<TToken, T> parser)
-            => new NegatedParser<TToken, T>(parser);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return new NegatedParser<TToken, T>(parser);            
+        }
         
         private sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
         {

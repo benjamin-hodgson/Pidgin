@@ -13,7 +13,13 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters to choose between</param>
         /// <returns>A parser which parses and returns one of the specified characters</returns>
         public static Parser<char, char> OneOf(params char[] chars)
-            => OneOf(chars.AsEnumerable());
+        {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+            return OneOf(chars.AsEnumerable());
+        }
 
         /// <summary>
         /// Creates a parser which parses and returns one of the specified characters.
@@ -22,6 +28,10 @@ namespace Pidgin
         /// <returns>A parser which parses and returns one of the specified characters</returns>
         public static Parser<char, char> OneOf(IEnumerable<char> chars)
         {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
             var cs = chars.ToArray();
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, c) != -1)
@@ -35,7 +45,13 @@ namespace Pidgin
         /// <param name="chars">A sequence of characters to choose between</param>
         /// <returns>A parser which parses and returns one of the specified characters, in a case insensitive manner.</returns>
         public static Parser<char, char> CIOneOf(params char[] chars)
-            => CIOneOf(chars.AsEnumerable());
+        {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
+            return CIOneOf(chars.AsEnumerable());
+        }
 
         /// <summary>
         /// Creates a parser which parses and returns one of the specified characters, in a case insensitive manner.
@@ -45,6 +61,10 @@ namespace Pidgin
         /// <returns>A parser which parses and returns one of the specified characters, in a case insensitive manner.</returns>
         public static Parser<char, char> CIOneOf(IEnumerable<char> chars)
         {
+            if (chars == null)
+            {
+                throw new ArgumentNullException(nameof(chars));
+            }
             var cs = chars.Select(char.ToLowerInvariant).ToArray();
             var expected = cs.Select(c => new Expected<char>(new[] { char.ToLowerInvariant(c) }))
                 .Concat(cs.Select(c => new Expected<char>(new[] { char.ToUpperInvariant(c) })));
@@ -62,7 +82,13 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers to choose between</param>
         /// <returns>A parser which applies one of the specified parsers</returns>
         public static Parser<TToken, T> OneOf<TToken, T>(params Parser<TToken, T>[] parsers)
-            => OneOf(parsers.AsEnumerable());
+        {
+            if (parsers == null)
+            {
+                throw new ArgumentNullException(nameof(parsers));
+            }
+            return OneOf(parsers.AsEnumerable());
+        }
 
         /// <summary>
         /// Creates a parser which applies one of the specified parsers.
@@ -74,7 +100,13 @@ namespace Pidgin
         /// <param name="parsers">A sequence of parsers to choose between</param>
         /// <returns>A parser which applies one of the specified parsers</returns>
         public static Parser<TToken, T> OneOf<TToken, T>(IEnumerable<Parser<TToken, T>> parsers)
-            => OneOfParser<TToken, T>.Create(parsers);
+        {
+            if (parsers == null)
+            {
+                throw new ArgumentNullException(nameof(parsers));
+            }
+            return OneOfParser<TToken, T>.Create(parsers);
+        }
 
 
         private sealed class OneOfParser<TToken, T> : Parser<TToken, T>

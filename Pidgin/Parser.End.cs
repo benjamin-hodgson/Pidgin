@@ -9,6 +9,7 @@ namespace Pidgin
         /// Creates a parser which parses the end of the input stream
         /// </summary>
         /// <returns>A parser which parses the end of the input stream and returns <see cref="Unit.Value"/></returns>
+        // todo: make me a property, not a method
         public static Parser<TToken, Unit> End() => new EndParser();
 
         private sealed class EndParser : Parser<TToken, Unit>

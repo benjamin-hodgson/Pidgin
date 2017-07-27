@@ -1,3 +1,4 @@
+using System;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -12,7 +13,13 @@ namespace Pidgin
         /// <param name="parser">The parser</param>
         /// <returns>A parser which applies <paramref name="parser"/> and backtracks upon failure</returns>
         public static Parser<TToken, T> Try<TToken, T>(Parser<TToken, T> parser)
-            => new TryParser<TToken, T>(parser);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return new TryParser<TToken, T>(parser);
+        }
 
         private sealed class TryParser<TToken, T> : Parser<TToken, T>
         {

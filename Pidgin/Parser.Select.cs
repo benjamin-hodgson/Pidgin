@@ -11,6 +11,12 @@ namespace Pidgin
         /// <param name="selector">A transformation function</param>
         /// <returns>A parser which applies <paramref name="selector"/> to the result of the current parser</returns>
         public Parser<TToken, U> Select<U>(Func<T, U> selector)
-            => Parser.Map(selector, this);
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            return Parser.Map(selector, this);
+        }
     }
 }
