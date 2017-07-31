@@ -399,6 +399,32 @@ namespace Pidgin.Tests
             }
         }
 
+        private struct StringOrError
+        {
+            public string String { get; }
+            public ParseError<char> Error { get; }
+        }
+        [Fact]
+        public void TestRecoverWith()
+        {
+            {
+                var parser = String("foo").Then(Return(Maybe.Nothing<ParseError<char>>()))
+                    .RecoverWith(err => String("bar").Then(Return(Maybe.Just(err))));
+
+                AssertSuccess(
+                    parser.Parse("fobar"),
+                    Maybe.Just(new ParseError<char>(
+                        Maybe.Just('b'),
+                        false,
+                        new[]{ new Expected<char>("foo".ToCharArray()) },
+                        new SourcePos(1, 3),
+                        null
+                    )),
+                    true
+                );
+            }
+        }
+
         [Fact]
         public void TestTryUsingStaticExample()
         {
