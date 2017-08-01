@@ -47,15 +47,17 @@ namespace Pidgin.ParseStates
             {
                 _sourcePos = _calculatePos(_current.GetValueOrDefault(), _sourcePos);
             }
-            if (_bufPos < _bufSize - 1)
+            if (_bufPos < _bufSize)
             {
                 // we are re-reading previously buffered input
                 _bufPos++;
-                _current = Maybe.Just(Buffer[_bufPos]);
-                return;
+                if (_bufPos < _bufSize)
+                {
+                    _current = Maybe.Just(Buffer[_bufPos]);
+                    return;
+                }
             }
-            _bufPos = _bufSize;  // just to be sure
-            if (!IsBuffering)
+            else if (!IsBuffering)
             {
                 if (_buffer != null)
                 {

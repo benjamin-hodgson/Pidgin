@@ -78,11 +78,11 @@ namespace Pidgin
         public int CompareTo(SourcePos other)
         {
             var lineCmp = Line.CompareTo(other.Line);
-            if (lineCmp == 0)
+            if (lineCmp != 0)
             {
-                return Col.CompareTo(other.Col);
+                return lineCmp;
             }
-            return lineCmp;
+            return Col.CompareTo(other.Col);
         }
 
         /// <inheritdoc/>

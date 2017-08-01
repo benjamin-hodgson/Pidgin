@@ -20,7 +20,6 @@ namespace Pidgin.Tests
         {
             DoTest((p, x) => p.Parse(x), x => x, x => x.ToCharArray());
         }
-
         [Fact]
         public void TestReadOnlyList()
         {
@@ -43,7 +42,11 @@ namespace Pidgin.Tests
         }
 
 
-        private void DoTest<TToken, TInput>(Func<Parser<TToken, IEnumerable<TToken>>, TInput, Result<TToken, IEnumerable<TToken>>> parseFunc, Func<string, IEnumerable<TToken>> render, Func<string, TInput> toInput) where TToken : IEquatable<TToken>
+        private void DoTest<TToken, TInput>(
+            Func<Parser<TToken, IEnumerable<TToken>>, TInput, Result<TToken, IEnumerable<TToken>>> parseFunc,
+            Func<string, IEnumerable<TToken>> render,
+            Func<string, TInput> toInput
+        ) where TToken : IEquatable<TToken>
         {
             {
                 var parser =
@@ -52,9 +55,61 @@ namespace Pidgin.Tests
                         .Or(Parser<TToken>.Sequence(render("four")));
                 AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"), true);
                 AssertSuccess(parseFunc(parser, toInput("four")), render("four"), true);  // it should have consumed the "fo" but then backtracked
-                AssertFailure(parseFunc(parser, toInput("foo")), new[]{ new Expected<TToken>(render("foobar")) }, new SourcePos(1,4), true);
-                AssertFailure(parseFunc(parser, toInput("f")), new[]{ new Expected<TToken>(render("four")) }, new SourcePos(1,2), true);
-                AssertFailure(parseFunc(parser, toInput("")), new[]{ new Expected<TToken>(render("foobar")), new Expected<TToken>(render("four")) }, new SourcePos(1,1), false);
+                AssertFailure(
+                    parseFunc(parser, toInput("foo")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobar")) },
+                        new SourcePos(1,4),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foobag")),
+                    new ParseError<TToken>(
+                        Maybe.Just(render("g").Single()),
+                        false,
+                        new[]{ new Expected<TToken>(render("foobar")) },
+                        new SourcePos(1,6),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("f")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("four")) },
+                        new SourcePos(1,2),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobar")), new Expected<TToken>(render("four")) },
+                        new SourcePos(1,1),
+                        null
+                    ),
+                    false
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foul")),
+                    new ParseError<TToken>(
+                        Maybe.Just(render("l").Single()),
+                        false,
+                        new[]{ new Expected<TToken>(render("four")) },
+                        new SourcePos(1,4),
+                        null
+                    ),
+                    true
+                );
             }
             {
                 var parser = Try(
@@ -66,11 +121,87 @@ namespace Pidgin.Tests
                 AssertSuccess(parseFunc(parser, toInput("foobaz")), render("baz"), true);
                 // "" -> "foo" -> "fooba[r]" -> "foo" -> "fooba[z]" -> "foo" -> "" -> "foobat"
                 AssertSuccess(parseFunc(parser, toInput("foobat")), render("foobat"), true);
-                AssertFailure(parseFunc(parser, toInput("fooba")), new[]{ new Expected<TToken>(render("foobat")) }, new SourcePos(1, 6), true);
-                AssertFailure(parseFunc(parser, toInput("foob")), new[]{ new Expected<TToken>(render("foobat")) }, new SourcePos(1, 5), true);
-                AssertFailure(parseFunc(parser, toInput("foo")), new[]{ new Expected<TToken>(render("foobat")) }, new SourcePos(1, 4), true);
-                AssertFailure(parseFunc(parser, toInput("f")), new[]{ new Expected<TToken>(render("foobat")) }, new SourcePos(1, 2), true);
-                AssertFailure(parseFunc(parser, toInput("")), new[]{ new Expected<TToken>(render("foobar")), new Expected<TToken>(render("foobat")), new Expected<TToken>(render("foobaz")) }, new SourcePos(1, 1), false);
+                AssertFailure(
+                    parseFunc(parser, toInput("fooba")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1, 6),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foobag")),
+                    new ParseError<TToken>(
+                        Maybe.Just(render("g").Single()),
+                        false,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1,6),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foob")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1, 5),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foo")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1, 4),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("f")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1, 2),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("foul")),
+                    new ParseError<TToken>(
+                        Maybe.Just(render("u").Single()),
+                        false,
+                        new[]{ new Expected<TToken>(render("foobat")) },
+                        new SourcePos(1,3),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parseFunc(parser, toInput("")),
+                    new ParseError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        new[]{
+                            new Expected<TToken>(render("foobar")),
+                            new Expected<TToken>(render("foobat")),
+                            new Expected<TToken>(render("foobaz"))
+                        },
+                        new SourcePos(1, 1),
+                        null
+                    ),
+                    false
+                );
             }
         }
     }

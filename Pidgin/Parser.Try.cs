@@ -39,7 +39,6 @@ namespace Pidgin
                 {
                     // return to the start of the buffer and discard the bookmark
                     state.Rewind();
-                    state.Error = state.Error.WithErrorPos(state.SourcePos);
                     return InternalResult.Failure<T>(false);
                 }
 

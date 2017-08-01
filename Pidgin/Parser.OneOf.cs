@@ -121,6 +121,7 @@ namespace Pidgin
 
             internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
             {
+                var firstTime = true;
                 var err = new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
@@ -132,15 +133,21 @@ namespace Pidgin
                 foreach (var p in _parsers)
                 {
                     var thisResult = p.Parse(state);
+                    // we'll usually return the error from the first parser that didn't backtrack,
+                    // even if other parsers had a longer match.
+                    // There is some room for improvement here.
                     if (thisResult.Success || thisResult.ConsumedInput)
                     {
                         return thisResult;
                     }
-                    if (state.Error.ErrorPos > err.ErrorPos)
+                    // choose the longest match, preferring the left-most error in a tie,
+                    // except the first time (avoid returning "OneOf had no arguments").
+                    if (firstTime || state.Error.ErrorPos > err.ErrorPos)
                     {
                         failureResult = thisResult;
                         err = state.Error;
                     }
+                    firstTime = false;
                 }
                 state.Error = err.WithExpected(Expected);
                 return failureResult;
