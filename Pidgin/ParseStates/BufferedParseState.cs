@@ -57,12 +57,15 @@ namespace Pidgin.ParseStates
             _bufPos = _bufSize;  // just to be sure
             if (!IsBuffering)
             {
-                // we're at the end of the buffer,
-                // and we're not currently writing to the buffer,
-                // so the buffer can be discarded
-                _bufPos = _bufSize = 0;
-                ArrayPool<TToken>.Shared.Return(Buffer);
-                _buffer = null;
+                if (_buffer != null)
+                {
+                    // we're at the end of the buffer,
+                    // and we're not currently writing to the buffer,
+                    // so the buffer can be discarded
+                    _bufPos = _bufSize = 0;
+                    ArrayPool<TToken>.Shared.Return(_buffer);
+                    _buffer = null;
+                }
             }
             else if (_current.HasValue)
             {
