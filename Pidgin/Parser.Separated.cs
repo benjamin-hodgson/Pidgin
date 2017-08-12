@@ -20,7 +20,7 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(separator));
             }
             return this.SeparatedAtLeastOnce(separator)
-                .Or(_returnEmptyEnumerable);
+                .Or(ReturnEmptyEnumerable);
         }
         
         /// <summary>
@@ -129,7 +129,7 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(separator));
             }
             return this.SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
-                .Or(_returnEmptyEnumerable);
+                .Or(ReturnEmptyEnumerable);
         }
         
         /// <summary>

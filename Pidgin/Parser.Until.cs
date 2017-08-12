@@ -20,7 +20,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
-            return terminator.Then(_returnEmptyEnumerable)
+            return terminator.Then(ReturnEmptyEnumerable)
                 .Or(this.AtLeastOnceUntil(terminator));
         }
         
@@ -55,7 +55,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
-            return terminator.Then(_returnUnit)
+            return terminator.Then(ReturnUnit)
                 .Or(this.SkipAtLeastOnceUntil(terminator));
         }
         
@@ -73,7 +73,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
-            return new AtLeastOnceUntilParser<U>(this, terminator, false).Then(_returnUnit);
+            return new AtLeastOnceUntilParser<U>(this, terminator, false).Then(ReturnUnit);
         }
 
         private sealed class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>>

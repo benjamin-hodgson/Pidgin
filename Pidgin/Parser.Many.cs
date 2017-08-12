@@ -81,10 +81,30 @@ namespace Pidgin
 
     public abstract partial class Parser<TToken, T>
     {
-        private static readonly Parser<TToken, IEnumerable<T>> _returnEmptyEnumerable
-            = Parser<TToken>.Return(Enumerable.Empty<T>());
-        private static readonly Parser<TToken, Unit> _returnUnit
-            = Parser<TToken>.Return(Unit.Value);
+        private static Parser<TToken, IEnumerable<T>> _returnEmptyEnumerable;
+        private static Parser<TToken, IEnumerable<T>> ReturnEmptyEnumerable
+        {
+            get
+            {
+                if (_returnEmptyEnumerable == null)
+                {
+                    _returnEmptyEnumerable = Parser<TToken>.Return(Enumerable.Empty<T>());
+                }
+                return _returnEmptyEnumerable;
+            }
+        }
+        private static Parser<TToken, Unit> _returnUnit;
+        private static Parser<TToken, Unit> ReturnUnit
+        {
+            get
+            {
+                if (_returnUnit == null)
+                {
+                    _returnUnit = Parser<TToken>.Return(Unit.Value);
+                }
+                return _returnUnit;
+            }
+        }
 
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times.
@@ -93,7 +113,7 @@ namespace Pidgin
         /// <returns>A parser which applies the current parser zero or more times</returns>
         public Parser<TToken, IEnumerable<T>> Many()
             => this.AtLeastOnce()
-                .Or(_returnEmptyEnumerable);
+                .Or(ReturnEmptyEnumerable);
 
         /// <summary>
         /// Creates a parser that applies the current parser one or more times.
@@ -114,7 +134,7 @@ namespace Pidgin
         /// <returns>A parser which applies the current parser zero or more times</returns>
         public Parser<TToken, Unit> SkipMany()
             => this.SkipAtLeastOnce()
-                .Or(_returnUnit);
+                .Or(ReturnUnit);
 
         /// <summary>
         /// Creates a parser that applies the current parser one or more times, discarding the results.
