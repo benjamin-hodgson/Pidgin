@@ -54,9 +54,9 @@ namespace Pidgin
             }
 
             return parser.ChainAtLeastOnceL(
-                () => new StringBuilder(),
-                (sb, c) => sb.Append(c)  // returns itself
-            ).Select(sb => sb.ToString());
+                () => new PooledStringBuilder(),
+                (sb, c) => { sb.Append(c); return sb; }
+            ).Select(sb => sb.GetStringAndClear());
         }
         
         /// <summary>
@@ -73,9 +73,9 @@ namespace Pidgin
             }
 
             return parser.ChainAtLeastOnceL(
-                () => new StringBuilder(),
-                (sb, s) => sb.Append(s)  // returns itself
-            ).Select(sb => sb.ToString());
+                () => new PooledStringBuilder(),
+                (sb, c) => { sb.Append(c); return sb; }
+            ).Select(sb => sb.GetStringAndClear());
         }
     }
 
