@@ -40,7 +40,7 @@ namespace Pidgin
                     return InternalResult.Failure<TToken>(false);
                 }
                 var val = x.GetValueOrDefault();
-                if (!val.Equals(_token))
+                if (!EqualityComparer<TToken>.Default.Equals(val, _token))
                 {
                     state.Error = new ParseError<TToken>(
                         x,

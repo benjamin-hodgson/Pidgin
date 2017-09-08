@@ -69,7 +69,7 @@ namespace Pidgin
                     }
 
                     TToken token = result.GetValueOrDefault();
-                    if (!token.Equals(x))
+                    if (!EqualityComparer<TToken>.Default.Equals(token, x))
                     {
                         state.Error = new ParseError<TToken>(
                             result,
