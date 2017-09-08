@@ -19,7 +19,7 @@ namespace Pidgin.Expression
                 OneOf(row.PostfixOps.Concat(_returnIdentity))
             );
 
-            var infixN = Op(pTerm, row.InfixNOps).Select<Func<T, T>>(p => z => p.ApplyL(z));
+            var infixN = Op(pTerm, row.InfixNOps).Select<Func<T, T>>(p => p.ApplyL);
             var infixL = Op(pTerm, row.InfixLOps)
                 .AtLeastOnce()
                 .Select<Func<T, T>>(fxs => z =>
@@ -40,7 +40,7 @@ namespace Pidgin.Expression
                         (fx, agg) => new Partial(fx.Func, agg.ApplyL(fx.Arg))
                     )
                 )
-                .Select<Func<T, T>>(p => z => p.ApplyL(z));
+                .Select<Func<T, T>>(p => p.ApplyL);
             
             var op = OneOf(
                 infixN,
