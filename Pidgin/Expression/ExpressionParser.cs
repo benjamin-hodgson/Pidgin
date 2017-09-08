@@ -35,6 +35,6 @@ namespace Pidgin.Expression
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
             IEnumerable<OperatorTableRow<TToken, T>> operatorTable
-        ) => operatorTable.Aggregate(term, (tm, row) => new ExpressionParserBuilder<TToken, T>(tm, row).Build());
+        ) => operatorTable.Aggregate(term, (tm, row) => ExpressionParserBuilder<TToken, T>.Build(tm, row));
     }
 }

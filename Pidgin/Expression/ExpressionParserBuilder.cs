@@ -5,62 +5,61 @@ using static Pidgin.Parser;
 
 namespace Pidgin.Expression
 {
-    internal sealed class ExpressionParserBuilder<TToken, T>
+    internal static class ExpressionParserBuilder<TToken, T>
     {
         private static readonly IEnumerable<Parser<TToken, Func<T, T>>> _returnIdentity
             = new[]{ Parser<TToken>.Return<Func<T,T>>(x => x) };
 
-        private readonly Parser<TToken, T> _pTerm;
-        private readonly Parser<TToken, Partial> _nOp;
-        private readonly Parser<TToken, Partial> _lOp;
-        private readonly Parser<TToken, Partial> _infixR;
-
-        public ExpressionParserBuilder(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
+        public static Parser<TToken, T> Build(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {
-            _pTerm = Map(
+            var pTerm = Map(
                 (pre, tm, post) => post(pre(tm)),
                 OneOf(row.PrefixOps.Concat(_returnIdentity)),
                 term,
                 OneOf(row.PostfixOps.Concat(_returnIdentity))
             );
-            _nOp = Op(row.InfixNOps);
-            _lOp = Op(row.InfixLOps);
-            _infixR = Op(row.InfixROps)
+
+            var infixN = Op(pTerm, row.InfixNOps).Select<Func<T, T>>(p => z => p.ApplyL(z));
+            var infixL = Op(pTerm, row.InfixLOps)
                 .AtLeastOnce()
-                .Select(fxs =>
-                    fxs.AggregateR(
-                        new Partial((y, _) => y, default(T)),
-                        (fx, p) => new Partial(fx.Func, p.Apply(fx.Arg))
+                .Select<Func<T, T>>(fxs => z =>
+                    fxs.Aggregate(
+                        z,
+                        (exp, fx) => fx.ApplyL(exp)
                     )
                 );
+            var infixR = Op(pTerm, row.InfixROps)
+                .AtLeastOnce()
+                .Select(fxs =>
+                    // reassociate the parsed operators:
+                    // move the right-hand term of each operator to the
+                    // left-hand side of the next operator on the right,
+                    // leaving a hole at the left
+                    fxs.AggregateR(
+                        new Partial((y, _) => y, default(T)),
+                        (fx, agg) => new Partial(fx.Func, agg.ApplyL(fx.Arg))
+                    )
+                )
+                .Select<Func<T, T>>(p => z => p.ApplyL(z));
+            
+            var op = OneOf(
+                infixN,
+                infixL,
+                infixR,
+                Parser<TToken>.Return<Func<T, T>>(x => x)
+            );
+            return Map(
+                (x, f) => f(x),
+                pTerm,
+                op
+            );
         }
 
-        public Parser<TToken, T> Build()
-            => _pTerm.Then(x => OneOf(
-                InfixN(x),
-                InfixL(x),
-                InfixR(x),
-                Parser<TToken>.Return(x)
-            ));
-
-        
-        private Parser<TToken, T> InfixN(T x)
-            => _nOp.Select(p => p.Apply(x));
-
-        private Parser<TToken, T> InfixL(T x)
-            => _lOp.ChainAtLeastOnceL(
-                () => x,
-                (z, fx) => fx.Apply(z)
-            );
-
-        private Parser<TToken, T> InfixR(T x)
-            => _infixR.Select(p => p.Apply(x));
-        
-        private Parser<TToken, Partial> Op(IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
+        private static Parser<TToken, Partial> Op(Parser<TToken, T> pTerm, IEnumerable<Parser<TToken, Func<T, T, T>>> ops)
             => Map(
                 (f, y) => new Partial(f, y),
                 OneOf(ops),
-                _pTerm
+                pTerm
             );
 
         private struct Partial
@@ -72,7 +71,7 @@ namespace Pidgin.Expression
                 Func = func;
                 Arg = arg;
             }
-            public T Apply(T arg) => Func(arg, Arg);
+            public T ApplyL(T arg) => Func(arg, Arg);
         }
     }
 }
