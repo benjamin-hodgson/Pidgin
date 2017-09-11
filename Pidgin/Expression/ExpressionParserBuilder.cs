@@ -23,7 +23,7 @@ namespace Pidgin.Expression
             var infixL = Op(pTerm, row.InfixLOps)
                 .AtLeastOnce()
                 .Select<Func<T, T>>(fxs => z =>
-                    fxs.Aggregate(
+                    fxs.FastAggregate(
                         z,
                         (exp, fx) => fx.ApplyL(exp)
                     )

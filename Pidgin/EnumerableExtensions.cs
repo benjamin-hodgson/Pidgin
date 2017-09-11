@@ -6,6 +6,20 @@ namespace Pidgin
 {
     internal static class EnumerableExtensions
     {
+        public static U FastAggregate<T, U>(this IEnumerable<T> input, U seed, Func<U, T, U> func)
+        {
+            if (input is IList<T> l)
+            {
+                var z = seed;
+                for (var i = 0; i < l.Count; i++)
+                {
+                    z = func(z, l[i]);
+                }
+                return z;
+            }
+            return input.Aggregate(seed, func);
+        }
+
         public static U AggregateR<T, U>(this IEnumerable<T> input, U seed, Func<T, U, U> func)
         {
             var list = input is IList<T> l ? l : input.ToList();
