@@ -126,6 +126,12 @@ namespace Pidgin
                 (xs, x) => { xs.Add(x); return xs; }
             ).Cast<IEnumerable<T>>();
 
+        internal Parser<TToken, PooledList<T>> AtLeastOncePooled()
+            => this.ChainAtLeastOnceL(
+                () => new PooledList<T>(),
+                (xs, x) => { xs.Add(x); return xs; }
+            );
+
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, discarding the results.
         /// This is more efficient than <see cref="Many()"/>, if you don't need the results.

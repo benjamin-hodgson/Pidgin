@@ -21,24 +21,33 @@ namespace Pidgin.Expression
 
             var infixN = Op(pTerm, row.InfixNOps).Select<Func<T, T>>(p => z => p.ApplyL(z));
             var infixL = Op(pTerm, row.InfixLOps)
-                .AtLeastOnce()
-                .Select<Func<T, T>>(fxs => z =>
-                    fxs.FastAggregate(
-                        z,
-                        (exp, fx) => fx.ApplyL(exp)
-                    )
+                .AtLeastOncePooled()
+                .Select<Func<T, T>>(fxs =>
+                    z =>
+                    {
+                        var result = fxs.Aggregate(
+                            z,
+                            (exp, fx) => fx.ApplyL(exp)
+                        );
+                        fxs.Clear();
+                        return result;
+                    }
                 );
             var infixR = Op(pTerm, row.InfixROps)
-                .AtLeastOnce()
+                .AtLeastOncePooled()
                 .Select(fxs =>
-                    // reassociate the parsed operators:
-                    // move the right-hand term of each operator to the
-                    // left-hand side of the next operator on the right,
-                    // leaving a hole at the left
-                    fxs.AggregateR(
-                        new Partial((y, _) => y, default(T)),
-                        (fx, agg) => new Partial(fx.Func, agg.ApplyL(fx.Arg))
-                    )
+                    {
+                        // reassociate the parsed operators:
+                        // move the right-hand term of each operator to the
+                        // left-hand side of the next operator on the right,
+                        // leaving a hole at the left
+                        var result = fxs.AggregateR(
+                            new Partial((y, _) => y, default(T)),
+                            (fx, agg) => new Partial(fx.Func, agg.ApplyL(fx.Arg))
+                        );
+                        fxs.Clear();
+                        return result;
+                    }
                 )
                 .Select<Func<T, T>>(p => z => p.ApplyL(z));
             
