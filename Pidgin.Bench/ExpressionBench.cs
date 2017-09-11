@@ -31,26 +31,47 @@ namespace Pidgin.Bench
                 new[] { new[] { infixR } }
             );
         }
-    
+
         [Benchmark]
-        public void InfixL_Pidgin()
+        public void LongInfixL_Pidgin()
         {
             _leftAssoc.ParseOrThrow(_bigExpression);
         }
         [Benchmark]
-        public void InfixR_Pidgin()
+        public void LongInfixR_Pidgin()
         {
             _rightAssoc.ParseOrThrow(_bigExpression);
         }
         [Benchmark]
-        public void InfixL_FParsec()
+        public void LongInfixL_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseL(_bigExpression);
         }
         [Benchmark]
-        public void InfixR_FParsec()
+        public void LongInfixR_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
+        }
+
+        [Benchmark]
+        public void ShortInfixL_Pidgin()
+        {
+            _leftAssoc.ParseOrThrow("1+1");
+        }
+        [Benchmark]
+        public void ShortInfixR_Pidgin()
+        {
+            _rightAssoc.ParseOrThrow("1+1");
+        }
+        [Benchmark]
+        public void ShortInfixL_FParsec()
+        {
+            Pidgin.Bench.FParsec.ExpressionParser.parseL("1+1");
+        }
+        [Benchmark]
+        public void ShortInfixR_FParsec()
+        {
+            Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");
         }
     }
 }
