@@ -40,7 +40,7 @@ Assert.AreEqual('a', Any.ParseOrThrow("a"));
 Assert.AreEqual('b', Any.ParseOrThrow("b"));
 ```
 
-`Char`, an alias for `Token` consumes a _particular_ character and returns that character. If it encounters some other character then it fails.
+`Char`, an alias for `Token`, consumes a _particular_ character and returns that character. If it encounters some other character then it fails.
 
 ```csharp
 Parser<char, char> parser = Char('a');
@@ -257,5 +257,5 @@ Comparison to other tools
 * FParsec is an F# library and consuming it from C# can be awkward. Pidgin is implemented in pure C#, and is designed for C# consumers.
 * FParsec only supports character input streams.
 * FParsec supports stateful parsing - it has an extra type parameter for an arbitrary user-defined state - which can make it easier to parse context-sensitive grammars.
-* FParsec is faster than Pidgin (though we hope to catch up!)
+* FParsec is faster than Pidgin (though we're catching up!)
 
