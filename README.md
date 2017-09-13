@@ -145,7 +145,7 @@ Parser<char, string> parser = OneOf(String("foo"), String("bar"));
 If one of `Or` or `OneOf`'s component parsers fails _after consuming input_, the whole parser will fail.
 
 ```csharp
-Parser<char, string> parser = String("food").Or("foul");
+Parser<char, string> parser = String("food").Or(String("foul"));
 Assert.Throws<ParseError>(() => parser.ParseOrThrow("foul"));  // why didn't it choose the second option?
 ```
 
@@ -153,7 +153,7 @@ What happened here? When a parser successfully parses a character from the input
 
 ```csharp
 // apply Try to the first option, so we can return to the beginning if it fails
-Parser<char, string> parser = Try(String("food")).Or("foul");
+Parser<char, string> parser = Try(String("food")).Or(String("foul"));
 Assert.AreEqual("foul", parser.ParseOrThrow("foul"));
 ```
 
