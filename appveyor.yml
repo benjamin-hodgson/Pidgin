@@ -1,5 +1,8 @@
 configuration: Release
 
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
 nuget:
   project_feed: true
   disable_publish_on_pr: true
