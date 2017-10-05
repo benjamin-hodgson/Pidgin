@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -32,9 +33,58 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(str));
             }
-            return Parser<char>.Sequence(str.Select(CIChar))
-                .Select(string.Concat)
-                .WithExpected(new SortedSet<Expected<char>> { new Expected<char>(str.ToCharArray()) });
+            return new CIStringParser(str);
+        }
+        private sealed class CIStringParser : Parser<char, string>
+        {
+            private readonly string _value;
+
+            public CIStringParser(string value)
+                : base(new SortedSet<Expected<char>> { new Expected<char>(value.ToCharArray()) })
+            {
+                _value = value.ToLowerInvariant();
+            }
+
+            internal sealed override InternalResult<string> Parse(IParseState<char> state)
+            {
+                var consumedInput = false;
+
+                var builder = new PooledStringBuilder();
+
+                foreach (var c in _value)
+                {
+                    var result = state.Peek();
+                    if (!result.HasValue)
+                    {
+                        state.Error = new ParseError<char>(
+                            result,
+                            true,
+                            Expected,
+                            state.SourcePos,
+                            null
+                        );
+                        return InternalResult.Failure<string>(consumedInput);
+                    }
+
+                    var token = result.GetValueOrDefault();
+                    if (char.ToLowerInvariant(token) != c)
+                    {
+                        state.Error = new ParseError<char>(
+                            result,
+                            false,
+                            Expected,
+                            state.SourcePos,
+                            null
+                        );
+                        return InternalResult.Failure<string>(consumedInput);
+                    }
+
+                    consumedInput = true;
+                    builder.Append(token);
+                    state.Advance();
+                }
+                return InternalResult.Success<string>(builder.GetStringAndClear(), consumedInput);
+            }
         }
     }
 }
