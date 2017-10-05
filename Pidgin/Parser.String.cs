@@ -49,7 +49,7 @@ namespace Pidgin
             {
                 var consumedInput = false;
 
-                var builder = new PooledStringBuilder();
+                var builder = new PooledStringBuilder(_value.Length);
 
                 foreach (var c in _value)
                 {

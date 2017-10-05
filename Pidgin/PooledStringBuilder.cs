@@ -13,6 +13,12 @@ namespace Pidgin
         private char[] _buffer;
         private int _length;
 
+        public PooledStringBuilder(int initialCapacity)
+        {
+            _buffer = ArrayPool<char>.Shared.Rent(initialCapacity);
+            _length = 0;
+        }
+
         public void Append(char c)
         {
             GrowIfNecessary(1);
