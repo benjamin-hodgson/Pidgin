@@ -15,7 +15,7 @@ namespace Pidgin.Bench
         private Parser<char, int> _leftAssoc;
         private Parser<char, int> _rightAssoc;
 
-        [Setup]
+        [GlobalSetup]
         public void Setup()
         {
             _bigExpression = string.Join("+", Enumerable.Range(1, 1000));

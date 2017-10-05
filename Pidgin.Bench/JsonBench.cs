@@ -17,7 +17,7 @@ namespace Pidgin.Bench
         private string _wideJson;
         private string _deepJson;
 
-        [Setup]
+        [GlobalSetup]
         public void Setup()
         {
             _bigJson = BuildJson(4, 4, 3).ToString();
