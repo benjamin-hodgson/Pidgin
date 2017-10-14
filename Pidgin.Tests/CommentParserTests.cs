@@ -13,6 +13,20 @@ namespace Pidgin.Tests
             var p = CommentParser.SkipLineComment(String("//")).Then(End());
 
             {
+                var comment = "//\n";
+
+                var result = p.Parse(comment);
+
+                AssertSuccess(result, Unit.Value, true);
+            }
+            {
+                var comment = "//";
+
+                var result = p.Parse(comment);
+
+                AssertSuccess(result, Unit.Value, true);
+            }
+            {
                 var comment = "// here is a comment ending with an osx style newline\n";
 
                 var result = p.Parse(comment);
@@ -48,6 +62,13 @@ namespace Pidgin.Tests
             var p = CommentParser.SkipBlockComment(String("/*"), String("*/")).Then(End());
 
             {
+                var comment = "/**/";
+
+                var result = p.Parse(comment);
+
+                AssertSuccess(result, Unit.Value, true);
+            }
+            {
                 var comment = "/* here is a block comment with \n newlines in */";
 
                 var result = p.Parse(comment);
@@ -62,13 +83,26 @@ namespace Pidgin.Tests
             var p = CommentParser.SkipNestedBlockComment(String("/*"), String("*/")).Then(End());
             
             {
+                var comment = "/**/";
+
+                var result = p.Parse(comment);
+
+                AssertSuccess(result, Unit.Value, true);
+            }
+            {
+                var comment = "/*/**/*/";
+
+                var result = p.Parse(comment);
+
+                AssertSuccess(result, Unit.Value, true);
+            }
+            {
                 var comment = "/* here is a non-nested block comment with \n newlines in */";
 
                 var result = p.Parse(comment);
 
                 AssertSuccess(result, Unit.Value, true);
             }
-            
             {
                 var comment = "/* here is a /* nested */ block comment with \n newlines in */";
 
