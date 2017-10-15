@@ -2124,32 +2124,52 @@ namespace Pidgin.Tests
             }
         }
 
-        // [Fact]
-        // public void TestOptional()
-        // {
-        //     {
-        //         var parser = String("foo").Optional();
-        //         AssertSuccess(parser.Parse("foo"), Maybe.Just("foo"), true);
-        //         AssertSuccess(parser.Parse("food"), Maybe.Just("foo"), true);
-        //         AssertSuccess(parser.Parse("bar"), Maybe.Nothing<string>(), false);
-        //         AssertSuccess(parser.Parse(""), Maybe.Nothing<string>(), false);
-        //         AssertFailure(parser.Parse("four"), new[] { new Expected<char>("foo".ToCharArray()) }, new SourcePos(1,3), true);
-        //     }
-        //     {
-        //         var parser = Try(String("foo")).Optional();
-        //         AssertSuccess(parser.Parse("foo"), Maybe.Just("foo"), true);
-        //         AssertSuccess(parser.Parse("food"), Maybe.Just("foo"), true);
-        //         AssertSuccess(parser.Parse("bar"), Maybe.Nothing<string>(), false);
-        //         AssertSuccess(parser.Parse(""), Maybe.Nothing<string>(), false);
-        //         AssertSuccess(parser.Parse("four"), Maybe.Nothing<string>(), false);
-        //     }
-        //     {
-        //         var parser = Char('+').Optional().Then(Digit).Select(char.GetNumericValue);
-        //         AssertSuccess(parser.Parse("1"), 1, true);
-        //         AssertSuccess(parser.Parse("+1"), 1, true);
-        //         AssertFailure(parser.Parse("a"), new[] { new Expected<char>("digit"), new Expected<char>(new[]{ '+' }) }, new SourcePos(1,1), false);
-        //     }
-        // }
+        [Fact]
+        public void TestOptional()
+        {
+            {
+                var parser = String("foo").Optional();
+                AssertSuccess(parser.Parse("foo"), Maybe.Just("foo"), true);
+                AssertSuccess(parser.Parse("food"), Maybe.Just("foo"), true);
+                AssertSuccess(parser.Parse("bar"), Maybe.Nothing<string>(), false);
+                AssertSuccess(parser.Parse(""), Maybe.Nothing<string>(), false);
+                AssertFailure(
+                    parser.Parse("four"),
+                    new ParseError<char>(
+                        Maybe.Just('u'),
+                        false,
+                        new[] { new Expected<char>("foo".ToCharArray()) },
+                        new SourcePos(1,3),
+                        null
+                    ),
+                    true
+                );
+            }
+            {
+                var parser = Try(String("foo")).Optional();
+                AssertSuccess(parser.Parse("foo"), Maybe.Just("foo"), true);
+                AssertSuccess(parser.Parse("food"), Maybe.Just("foo"), true);
+                AssertSuccess(parser.Parse("bar"), Maybe.Nothing<string>(), false);
+                AssertSuccess(parser.Parse(""), Maybe.Nothing<string>(), false);
+                AssertSuccess(parser.Parse("four"), Maybe.Nothing<string>(), false);
+            }
+            {
+                var parser = Char('+').Optional().Then(Digit).Select(char.GetNumericValue);
+                AssertSuccess(parser.Parse("1"), 1, true);
+                AssertSuccess(parser.Parse("+1"), 1, true);
+                AssertFailure(
+                    parser.Parse("a"),
+                    new ParseError<char>(
+                        Maybe.Just('a'),
+                        false,
+                        new[] { new Expected<char>("digit"), new Expected<char>(new[]{ '+' }) },
+                        new SourcePos(1,1),
+                        null
+                    ),
+                    false
+                );
+            }
+        }
 
         [Fact]
         public void TestRec()
