@@ -113,16 +113,21 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(parsers));
             }
-            return new SequenceParser<T>(parsers);
+            var parsersArray = parsers.ToArray();
+            if (parsersArray.Length == 1)
+            {
+                return parsersArray[0].Select(x => new[] { x }.AsEnumerable());
+            }
+            return new SequenceParser<T>(parsersArray);
         }
 
         private sealed class SequenceParser<T> : Parser<TToken, IEnumerable<T>>
         {
             private readonly Parser<TToken, T>[] _parsers;
 
-            public SequenceParser(IEnumerable<Parser<TToken, T>> parsers) : base(ExpectedUtil.Concat(parsers.Select(p => p.Expected)))
+            public SequenceParser(Parser<TToken, T>[] parsers) : base(ExpectedUtil.Concat(parsers.Select(p => p.Expected)))
             {
-                _parsers = parsers.ToArray();
+                _parsers = parsers;
             }
 
             internal sealed override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
