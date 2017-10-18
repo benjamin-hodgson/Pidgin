@@ -134,19 +134,23 @@ namespace Pidgin
             {
                 var consumedInput = false;
                 var ts = new T[_parsers.Length];
-                var i = 0;
-                foreach (var p in _parsers)
+                
+                for (var i = 0; i < _parsers.Length; i++)
                 {
+                    var p = _parsers[i];
+                
                     var result = p.Parse(state);
                     consumedInput = consumedInput || result.ConsumedInput;
+                
                     if (!result.Success)
                     {
                         state.Error = state.Error.WithExpected(Expected);
                         return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
+                
                     ts[i] = result.Value;
-                    i++;
                 }
+
                 return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
             }
         }
