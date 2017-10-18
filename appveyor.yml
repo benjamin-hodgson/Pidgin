@@ -26,7 +26,7 @@ test_script:
   - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj
 
 after_test:
-  - cmd: dotnet pack Pidgin\Pidgin.csproj --configuration %CONFIGURATION% --output ..\nupkgs --include-symbols --version-suffix %APPVEYOR_BUILD_NUMBER%
+  - cmd: dotnet pack --configuration %CONFIGURATION% --output ..\nupkgs --include-symbols --version-suffix %APPVEYOR_BUILD_NUMBER%
 
 artifacts:
   - type: NuGetPackage
