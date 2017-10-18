@@ -3,6 +3,16 @@
   <PropertyGroup>
     <Version>1.3.0</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+
+    <Authors>benjamin.hodgson</Authors>
+    <Copyright>© Benjamin Hodgson, 2017</Copyright>
+    <Description>A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.</Description>
+    <PackageTags>parser;parsing;language;compiler</PackageTags>
+
+    <PackageProjectUrl>https://github.com/benjamin-hodgson/Pidgin</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin.git</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/benjamin-hodgson/Pidgin/blob/master/LICENSE</PackageLicenseUrl>
+
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
