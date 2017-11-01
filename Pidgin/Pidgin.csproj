@@ -17,11 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
-    <TargetFrameworks>netstandard1.2;net451</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(APPVEYOR)' == ''">
-    <TargetFrameworks>netstandard1.2</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
