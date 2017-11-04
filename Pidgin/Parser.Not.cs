@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Pidgin.ParseStates;
 
@@ -27,7 +28,7 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
 
-            public NegatedParser(Parser<TToken, T> parser) : base(ExpectedUtil<TToken>.Empty)
+            public NegatedParser(Parser<TToken, T> parser) : base(ImmutableSortedSet.Create<Expected<TToken>>())
             {
                 _parser = parser;
             }

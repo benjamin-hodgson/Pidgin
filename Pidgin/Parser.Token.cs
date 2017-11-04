@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -20,7 +21,7 @@ namespace Pidgin
             private readonly TToken _token;
 
             public TokenParser(TToken token)
-                : base(new SortedSet<Expected<TToken>>{ new Expected<TToken>(new[]{token}) })
+                : base(ImmutableSortedSet.Create(new Expected<TToken>(ImmutableList.Create(token))))
             {
                 _token = token;
             }
@@ -75,7 +76,7 @@ namespace Pidgin
             private readonly Func<TToken, bool> _predicate;
 
             public PredicateTokenParser(Func<TToken, bool> predicate)
-                : base(ExpectedUtil<TToken>.Empty)
+                : base(ImmutableSortedSet.Create<Expected<TToken>>())
             {
                 _predicate = predicate;
             }

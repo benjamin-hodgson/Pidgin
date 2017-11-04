@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using static Pidgin.Parser<char>;
 
@@ -23,11 +24,13 @@ namespace Pidgin
         public static Parser<char, char> CIChar(char character)
         {
             var theChar = char.ToLowerInvariant(character);
-            var expected = new SortedSet<Expected<char>>
-            {
-                new Expected<char>(new[]{ char.ToUpperInvariant(character) }),
-                new Expected<char>(new[]{ char.ToLowerInvariant(character) })
-            };
+            var expected = ImmutableSortedSet.CreateRange(
+                new[]
+                {
+                    new Expected<char>(ImmutableList.Create(char.ToUpperInvariant(character))),
+                    new Expected<char>(ImmutableList.Create(char.ToLowerInvariant(character)))
+                }
+            );
             return Token(c => char.ToLowerInvariant(c) == theChar)
                 .WithExpected(expected);
         } 

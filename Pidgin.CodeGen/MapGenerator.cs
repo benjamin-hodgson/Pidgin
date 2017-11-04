@@ -18,6 +18,7 @@ namespace Pidgin.CodeGen
             return $@"#region GeneratedCode
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -35,7 +36,7 @@ namespace Pidgin
     {{
         private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
         {{
-            protected MapParserBase(SortedSet<Expected<TToken>> expected) : base(expected)
+            protected MapParserBase(ImmutableSortedSet<Expected<TToken>> expected) : base(expected)
             {{
             }}
 

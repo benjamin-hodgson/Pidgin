@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -27,8 +28,8 @@ namespace Pidgin
     /// <remarks>This type is not intended to be subclassed by users of the library</remarks>
     public abstract partial class Parser<TToken, T>
     {
-        internal SortedSet<Expected<TToken>> Expected { get; }
-        internal Parser(SortedSet<Expected<TToken>> expected)
+        internal ImmutableSortedSet<Expected<TToken>> Expected { get; }
+        internal Parser(ImmutableSortedSet<Expected<TToken>> expected)
         {
             Expected = expected;
         }

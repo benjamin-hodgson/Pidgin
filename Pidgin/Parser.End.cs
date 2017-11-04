@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -14,8 +15,8 @@ namespace Pidgin
 
         private sealed class EndParser : Parser<TToken, Unit>
         {
-            private static readonly SortedSet<Expected<TToken>> _expected
-                = new SortedSet<Expected<TToken>> { new Expected<TToken>() };
+            private static readonly ImmutableSortedSet<Expected<TToken>> _expected
+                = ImmutableSortedSet.Create(new Expected<TToken>());
 
             public EndParser() : base(_expected)
             {

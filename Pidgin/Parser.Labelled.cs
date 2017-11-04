@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -20,17 +21,17 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(label));
             }
-            return WithExpected(new SortedSet<Expected<TToken>> { new Expected<TToken>(label) });
+            return WithExpected(ImmutableSortedSet.Create(new Expected<TToken>(label)));
         }
             
-        internal Parser<TToken, T> WithExpected(SortedSet<Expected<TToken>> expected)
+        internal Parser<TToken, T> WithExpected(ImmutableSortedSet<Expected<TToken>> expected)
             => new WithExpectedParser(this, expected);
 
         private sealed class WithExpectedParser : Parser<TToken, T>
         {
             private readonly Parser<TToken, T> _parser;
 
-            public WithExpectedParser(Parser<TToken, T> parser, SortedSet<Expected<TToken>> expected) : base(expected)
+            public WithExpectedParser(Parser<TToken, T> parser, ImmutableSortedSet<Expected<TToken>> expected) : base(expected)
             {
                 _parser = parser;
             }

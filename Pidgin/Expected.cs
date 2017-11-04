@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace Pidgin
@@ -21,7 +22,8 @@ namespace Pidgin
         /// The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public IEnumerable<TToken> Tokens { get; }
+        public IEnumerable<TToken> Tokens => InternalTokens;
+        internal ImmutableList<TToken> InternalTokens { get; }
         /// <summary>
         /// Did the parser expect the end of the input stream?
         /// </summary>
@@ -31,12 +33,12 @@ namespace Pidgin
         internal Expected(string label)
         {
             Label = label;
-            Tokens = null;
+            InternalTokens = null;
         }
-        internal Expected(IEnumerable<TToken> tokens)
+        internal Expected(ImmutableList<TToken> tokens)
         {
             Label = null;
-            Tokens = tokens;
+            InternalTokens = tokens;
         }
 
         private static readonly bool IsChar = typeof(TToken).Equals(typeof(char));

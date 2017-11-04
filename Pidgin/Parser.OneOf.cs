@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Pidgin.ParseStates;
 
@@ -35,7 +36,7 @@ namespace Pidgin
             var cs = chars.ToArray();
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, c) != -1)
-                .WithExpected(new SortedSet<Expected<char>>(cs.Select(c => new Expected<char>(new[] { c }))));
+                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(ImmutableList.Create(c)))));
         }
 
         /// <summary>
@@ -66,11 +67,15 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(chars));
             }
             var cs = chars.Select(char.ToLowerInvariant).ToArray();
-            var expected = cs.Select(c => new Expected<char>(new[] { char.ToLowerInvariant(c) }))
-                .Concat(cs.Select(c => new Expected<char>(new[] { char.ToUpperInvariant(c) })));
+            var builder = ImmutableSortedSet.CreateBuilder<Expected<char>>();
+            foreach (var c in cs)
+            {
+                builder.Add(new Expected<char>(ImmutableList.Create(char.ToLowerInvariant(c))));
+                builder.Add(new Expected<char>(ImmutableList.Create(char.ToUpperInvariant(c))));
+            }
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, char.ToLowerInvariant(c)) != -1)
-                .WithExpected(new SortedSet<Expected<char>>(expected));
+                .WithExpected(builder.ToImmutable());
         }
 
         /// <summary>

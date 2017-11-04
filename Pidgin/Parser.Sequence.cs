@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Pidgin.ParseStates;
 
@@ -44,7 +45,7 @@ namespace Pidgin
             private readonly TToken[] _valueTokens;
 
             public SequenceTokenParser(TEnumerable value)
-                : base(new SortedSet<Expected<TToken>>{ new Expected<TToken>(value) })
+                : base(ImmutableSortedSet.Create(new Expected<TToken>(value.ToImmutableList())))
             {
                 _value = value;
                 _valueTokens = value.ToArray();

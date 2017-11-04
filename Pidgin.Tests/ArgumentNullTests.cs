@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -175,7 +176,7 @@ namespace Pidgin.Tests
 
         private class AParser<TToken, T> : Parser<TToken, T>
         {
-            public AParser() : base(ExpectedUtil<TToken>.Empty) { }
+            public AParser() : base(ImmutableSortedSet.Create<Expected<TToken>>()) { }
 
             internal override InternalResult<T> Parse(IParseState<TToken> state)
             {

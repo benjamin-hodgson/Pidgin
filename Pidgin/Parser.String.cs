@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using Pidgin.ParseStates;
 
@@ -40,7 +41,7 @@ namespace Pidgin
             private readonly string _value;
 
             public CIStringParser(string value)
-                : base(new SortedSet<Expected<char>> { new Expected<char>(value.ToCharArray()) })
+                : base(ImmutableSortedSet.Create(new Expected<char>(value.ToImmutableList())))
             {
                 _value = value.ToLowerInvariant();
             }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -80,7 +81,7 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _terminator;
-            private readonly SortedSet<Expected<TToken>> _round2Expected;
+            private readonly ImmutableSortedSet<Expected<TToken>> _round2Expected;
             private readonly bool _keepResults;
 
             public AtLeastOnceUntilParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults) : base(ExpectedUtil.Concat(parser.Expected, terminator.Expected))

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Immutable;
 using Pidgin.ParseStates;
 
 namespace Pidgin
@@ -54,7 +55,7 @@ namespace Pidgin
         {
             private readonly Lazy<Parser<TToken, T>> _lazy;
 
-            public RecParser(Lazy<Parser<TToken, T>> lazy) : base(ExpectedUtil<TToken>.Empty)
+            public RecParser(Lazy<Parser<TToken, T>> lazy) : base(ImmutableSortedSet.Create<Expected<TToken>>())
             {
                 _lazy = lazy;
             }
