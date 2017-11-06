@@ -85,7 +85,7 @@ namespace Pidgin
                 sb.Append("    unexpected ");
                 sb.Append(EOF ? "EOF" : Unexpected.Value.ToString());
             }
-            if (Expected?.Any(e => e.Tokens == null || e.Tokens.Any()) == true)
+            if (Expected?.Any(e => e.InternalTokens == null || e.InternalTokens.Length != 0) == true)
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("    expected ");

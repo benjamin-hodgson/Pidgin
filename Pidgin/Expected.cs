@@ -22,20 +22,20 @@ namespace Pidgin
         /// The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public IEnumerable<TToken> Tokens => InternalTokens;
-        internal ImmutableList<TToken> InternalTokens { get; }
+        public IEnumerable<TToken> Tokens => InternalTokens?.ToImmutableArray();
+        internal Rope<TToken> InternalTokens { get; }
         /// <summary>
         /// Did the parser expect the end of the input stream?
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public bool IsEof => Label == null && Tokens == null;
+        public bool IsEof => Label == null && InternalTokens == null;
         
         internal Expected(string label)
         {
             Label = label;
             InternalTokens = null;
         }
-        internal Expected(ImmutableList<TToken> tokens)
+        internal Expected(Rope<TToken> tokens)
         {
             Label = null;
             InternalTokens = tokens;
@@ -43,13 +43,16 @@ namespace Pidgin
 
         private static readonly bool IsChar = typeof(TToken).Equals(typeof(char));
         internal string Render()
-            => IsEof
+        {
+            var tokens = Tokens;
+            return IsEof
                 ? "end of input"
                 : Label != null
                     ? Label
                     : IsChar
-                        ? string.Concat('"', string.Concat(Tokens), '"')
-                        : string.Concat('"', string.Join(", ", Tokens), '"');
+                        ? string.Concat('"', string.Concat(tokens), '"')
+                        : string.Concat('"', string.Join(", ", tokens), '"');
+        }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -60,8 +63,8 @@ namespace Pidgin
         /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
             => object.Equals(Label, other.Label)
-            && ((ReferenceEquals(null, Tokens) && ReferenceEquals(null, other.Tokens))
-                || (!ReferenceEquals(null, Tokens) && !ReferenceEquals(null, other.Tokens) && Tokens.SequenceEqual(other.Tokens))
+            && ((ReferenceEquals(null, InternalTokens) && ReferenceEquals(null, other.InternalTokens))
+                || (!ReferenceEquals(null, InternalTokens) && !ReferenceEquals(null, other.InternalTokens) && InternalTokens.Equals(other.InternalTokens))
             );
 
         /// <inheritdoc/>
@@ -84,7 +87,7 @@ namespace Pidgin
             {
                 int hash = 17;
                 hash = hash * 23 + Label?.GetHashCode() ?? 0;
-                hash = hash * 23 + Tokens?.GetHashCode() ?? 0;
+                hash = hash * 23 + InternalTokens?.GetHashCode() ?? 0;
                 return hash;
             }
         }
@@ -101,19 +104,19 @@ namespace Pidgin
                 }
                 return -1;
             }
-            if (Tokens != null)
+            if (InternalTokens != null)
             {
                 if (other.Label != null)
                 {
                     return 1;
                 }
-                if (other.Tokens != null)
+                if (other.InternalTokens != null)
                 {
-                    return Tokens.CompareTo(other.Tokens);
+                    return InternalTokens.CompareTo(other.InternalTokens);
                 }
                 return -1;
             }
-            if (other.Label == null && other.Tokens == null)
+            if (other.Label == null && other.InternalTokens == null)
             {
                 return 0;
             }

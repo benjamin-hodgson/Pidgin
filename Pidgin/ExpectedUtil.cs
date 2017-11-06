@@ -10,7 +10,7 @@ namespace Pidgin
         /// For parsers which don't expect anything (eg Return(...))
         /// </summary>
         public static ImmutableSortedSet<Expected<TToken>> Nil { get; }
-            = ImmutableSortedSet.Create(new Expected<TToken>(ImmutableList.Create<TToken>()));
+            = ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create<TToken>()));
     }
     internal static class ExpectedUtil
     {
@@ -33,13 +33,13 @@ namespace Pidgin
 
         private static Expected<TToken> ConcatExpected<TToken>(Expected<TToken> left, Expected<TToken> right)
         {
-            if (left.InternalTokens?.Count() == 0)
+            if (left.InternalTokens?.Length == 0)
             {
                 return right;
             }
             if (left.InternalTokens != null && right.InternalTokens != null)
             {
-                return new Expected<TToken>(left.InternalTokens.AddRange(right.InternalTokens));
+                return new Expected<TToken>(left.InternalTokens.Concat(right.InternalTokens));
             }
             return left;
         }

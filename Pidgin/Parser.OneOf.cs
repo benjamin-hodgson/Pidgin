@@ -36,7 +36,7 @@ namespace Pidgin
             var cs = chars.ToArray();
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, c) != -1)
-                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(ImmutableList.Create(c)))));
+                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(Rope.Create(c)))));
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace Pidgin
             var builder = ImmutableSortedSet.CreateBuilder<Expected<char>>();
             foreach (var c in cs)
             {
-                builder.Add(new Expected<char>(ImmutableList.Create(char.ToLowerInvariant(c))));
-                builder.Add(new Expected<char>(ImmutableList.Create(char.ToUpperInvariant(c))));
+                builder.Add(new Expected<char>(Rope.Create(char.ToLowerInvariant(c))));
+                builder.Add(new Expected<char>(Rope.Create(char.ToUpperInvariant(c))));
             }
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, char.ToLowerInvariant(c)) != -1)

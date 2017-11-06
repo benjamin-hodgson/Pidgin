@@ -45,7 +45,7 @@ namespace Pidgin
             private readonly TToken[] _valueTokens;
 
             public SequenceTokenParser(TEnumerable value)
-                : base(ImmutableSortedSet.Create(new Expected<TToken>(value.ToImmutableList())))
+                : base(ImmutableSortedSet.Create(new Expected<TToken>(Rope.CreateRange(value))))
             {
                 _value = value;
                 _valueTokens = value.ToArray();

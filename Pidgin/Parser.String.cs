@@ -41,7 +41,7 @@ namespace Pidgin
             private readonly string _value;
 
             public CIStringParser(string value)
-                : base(ImmutableSortedSet.Create(new Expected<char>(value.ToImmutableList())))
+                : base(ImmutableSortedSet.Create(new Expected<char>(Rope.CreateRange(value))))
             {
                 _value = value.ToLowerInvariant();
             }

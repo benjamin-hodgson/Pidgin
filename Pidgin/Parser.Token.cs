@@ -21,7 +21,7 @@ namespace Pidgin
             private readonly TToken _token;
 
             public TokenParser(TToken token)
-                : base(ImmutableSortedSet.Create(new Expected<TToken>(ImmutableList.Create(token))))
+                : base(ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create(token))))
             {
                 _token = token;
             }

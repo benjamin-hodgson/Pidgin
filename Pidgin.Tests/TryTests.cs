@@ -61,7 +61,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobar").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobar"))) },
                         new SourcePos(1,4),
                         null
                     ),
@@ -72,7 +72,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Just(render("g").Single()),
                         false,
-                        new[]{ new Expected<TToken>(render("foobar").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobar"))) },
                         new SourcePos(1,6),
                         null
                     ),
@@ -83,7 +83,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("four").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("four"))) },
                         new SourcePos(1,2),
                         null
                     ),
@@ -94,7 +94,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobar").ToImmutableList()), new Expected<TToken>(render("four").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobar"))), new Expected<TToken>(Rope.CreateRange(render("four"))) },
                         new SourcePos(1,1),
                         null
                     ),
@@ -105,7 +105,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Just(render("l").Single()),
                         false,
-                        new[]{ new Expected<TToken>(render("four").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("four"))) },
                         new SourcePos(1,4),
                         null
                     ),
@@ -127,7 +127,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1, 6),
                         null
                     ),
@@ -138,7 +138,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Just(render("g").Single()),
                         false,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1,6),
                         null
                     ),
@@ -149,7 +149,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1, 5),
                         null
                     ),
@@ -160,7 +160,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1, 4),
                         null
                     ),
@@ -171,7 +171,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1, 2),
                         null
                     ),
@@ -182,7 +182,7 @@ namespace Pidgin.Tests
                     new ParseError<TToken>(
                         Maybe.Just(render("u").Single()),
                         false,
-                        new[]{ new Expected<TToken>(render("foobat").ToImmutableList()) },
+                        new[]{ new Expected<TToken>(Rope.CreateRange(render("foobat"))) },
                         new SourcePos(1,3),
                         null
                     ),
@@ -194,9 +194,9 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         new[]{
-                            new Expected<TToken>(render("foobar").ToImmutableList()),
-                            new Expected<TToken>(render("foobat").ToImmutableList()),
-                            new Expected<TToken>(render("foobaz").ToImmutableList())
+                            new Expected<TToken>(Rope.CreateRange(render("foobar"))),
+                            new Expected<TToken>(Rope.CreateRange(render("foobat"))),
+                            new Expected<TToken>(Rope.CreateRange(render("foobaz")))
                         },
                         new SourcePos(1, 1),
                         null
