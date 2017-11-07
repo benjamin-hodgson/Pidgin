@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Text;
+using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
 {
@@ -42,23 +44,57 @@ namespace Pidgin
         }
 
         private static readonly bool IsChar = typeof(TToken).Equals(typeof(char));
-        internal string Render()
+        internal void AppendTo(StringBuilder sb)
         {
+            if (IsEof)
+            {
+                sb.Append("end of input");
+                return;
+            }
+            if (Label != null)
+            {
+                sb.Append(Label);
+                return;
+            }
+
             var tokens = Tokens;
-            return IsEof
-                ? "end of input"
-                : Label != null
-                    ? Label
-                    : IsChar
-                        ? string.Concat('"', string.Concat(tokens), '"')
-                        : string.Concat('"', string.Join(", ", tokens), '"');
+            sb.Append('"');
+            if (IsChar)
+            {
+                foreach (var token in tokens)
+                {
+                    var chr = CastToChar(token);
+                    sb.Append(chr);
+                }
+            }
+            else
+            {
+                var notFirst = false;
+                foreach (var token in tokens)
+                {
+                    if (notFirst)
+                    {
+                        sb.Append(", ");
+                    }
+                    sb.Append(token);
+                    notFirst = true;
+                }
+            }
+            sb.Append('"');
         }
 
         /// <inheritdoc/>
         public override string ToString()
-            => IsEof
-                ? "EOF"
-                : (Label != null ? "Label: " : "Tokens: ") + Render();
+        {
+            if (IsEof)
+            {
+                return "EOF";
+            }
+            var sb = new StringBuilder();
+            sb.Append(Label != null ? "Label: " : "Tokens: ");
+            AppendTo(sb);
+            return sb.ToString();
+        }
 
         /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
@@ -135,5 +171,12 @@ namespace Pidgin
         /// <inheritdoc/>
         public static bool operator <=(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) <= 0;
+
+        private static Func<TToken, char> CastToChar { get; } = GetCastToCharMethod();
+        private static Func<TToken, char> GetCastToCharMethod()
+        {
+            var param = LExpression.Parameter(typeof(TToken));
+            return LExpression.Lambda<Func<TToken, char>>(param, param).Compile();
+        }
     }
 }

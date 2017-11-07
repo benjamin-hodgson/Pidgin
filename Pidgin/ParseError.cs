@@ -112,7 +112,7 @@ namespace Pidgin
                 }
                 if (count >= 1)
                 {
-                    sb.Append(last.Render());
+                    last.AppendTo(sb);
                 }
                 last = x;
                 count++;
@@ -121,7 +121,7 @@ namespace Pidgin
             {
                 sb.Append(", or ");
             }
-            sb.Append(last.Render());
+            last.AppendTo(sb);
         }
 
         /// <inheritdoc/>
