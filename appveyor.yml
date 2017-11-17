@@ -1,4 +1,5 @@
 configuration: Release
+image: Visual Studio 2017
 
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -6,10 +7,6 @@ environment:
 nuget:
   project_feed: true
   disable_publish_on_pr: true
-
-install:
-  - ps: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/dotnet/cli/v2.0.0/scripts/obtain/dotnet-install.ps1" -OutFile "dotnet-install.ps1"
-  - ps: .\dotnet-install.ps1 -Version 2.0.0
 
 before_build:
   - ps: |
