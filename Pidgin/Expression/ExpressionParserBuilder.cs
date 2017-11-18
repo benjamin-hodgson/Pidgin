@@ -35,7 +35,7 @@ namespace Pidgin.Expression
                 );
             var infixR = Op(pTerm, row.InfixROps)
                 .AtLeastOncePooled()
-                .Select(fxs =>
+                .Select<Func<T, T>>(fxs =>
                     {
                         // reassociate the parsed operators:
                         // move the right-hand term of each operator to the
@@ -46,10 +46,9 @@ namespace Pidgin.Expression
                             (fx, agg) => new Partial(fx.Func, agg.ApplyL(fx.Arg))
                         );
                         fxs.Clear();
-                        return result;
+                        return z => result.ApplyL(z);
                     }
-                )
-                .Select<Func<T, T>>(p => z => p.ApplyL(z));
+                );
             
             var op = OneOf(
                 infixN,
