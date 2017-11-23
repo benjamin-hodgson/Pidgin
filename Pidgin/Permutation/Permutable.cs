@@ -6,6 +6,12 @@ namespace Pidgin.Permutation
     {
         public static Permutable<TToken, T> Create<TToken, T>(Parser<TToken, T> parser)
             => new Permutable<TToken, T>(parser, null);
+        
+        public static Permutable<TToken, T> CreateOptional<TToken, T>(Parser<TToken, T> parser, T defaultValue)
+            => CreateOptional(parser, () => defaultValue);
+
+        public static Permutable<TToken, T> CreateOptional<TToken, T>(Parser<TToken, T> parser, Func<T> defaultValueFactory)
+            => new Permutable<TToken, T>(parser, defaultValueFactory);
     }
     public sealed class Permutable<TToken, T>
     {

@@ -6,7 +6,7 @@ namespace Pidgin.Permutation
 {
     public static class PermutationParser
     {
-        public static PermutationParser<TToken, object> Create<TToken>()
+        public static PermutationParser<TToken, ValueTuple> Create<TToken>()
             => PermutationParser<TToken>.Create();
 
         public static Parser<TToken, R> Map<TToken, T1, T2, T3, R>(Func<T1, T2, T3, R> func, Permutable<TToken, T1> parser1, Permutable<TToken, T2> parser2, Permutable<TToken, T3> parser3)
@@ -17,50 +17,66 @@ namespace Pidgin.Permutation
 
     public static class PermutationParser<TToken>
     {
-        private static readonly object _object = new object();
-
-        public static PermutationParser<TToken, object> Create()
-            => new PermutationParser<TToken, object>(
-                ImmutableList.Create<PermutationParserTree<TToken, object>>(
-                    new PermutationParserLeaf<TToken, object>(() => _object)
-                )
+        public static PermutationParser<TToken, ValueTuple> Create()
+            => new PermutationParser<TToken, ValueTuple>(
+                ValueTuple.Create,
+                ImmutableList.Create<PermutationParserBranch<TToken, ValueTuple>>()
             );
     }
 
     public sealed class PermutationParser<TToken, T>
     {
-        private readonly ImmutableList<PermutationParserTree<TToken, T>> _forest;
+        private readonly Func<T> _exit;
+        private readonly ImmutableList<PermutationParserBranch<TToken, T>> _forest;
 
-        internal PermutationParser(ImmutableList<PermutationParserTree<TToken, T>> forest)
+        internal PermutationParser(Func<T> exit, ImmutableList<PermutationParserBranch<TToken, T>> forest)
         {
+            _exit = exit;
             _forest = forest;
         }
 
         public Parser<TToken, T> Build()
-            => Parser.OneOf(_forest.Select(t => t.Build()));
+        {
+            var forest = Parser.OneOf(_forest.Select(t => t.Build()));
+            if (_exit != null)
+            {
+                return forest.Or(Parser<TToken>.Return(_exit).Select(f => f()));
+            }
+            return forest;
+        }
 
         public PermutationParser<TToken, (T, U)> Add<U>(Parser<TToken, U> parser)
             => new PermutationParser<TToken, (T, U)>(
-                _forest
-                    .ConvertAll<PermutationParserTree<TToken, (T, U)>>(t => t.Add(parser))
-                    .Add(new PermutationParserBranch<TToken, U, (T, U)>(
-                        parser,
-                        Extend<U>()
-                    ))
+                null,
+                ConvertForestAndAddParser(b => b.Add(parser), parser)
             );
+
+        public PermutationParser<TToken, (T, U)> AddOptional<U>(Parser<TToken, U> parser, U defaultValue)
+            => AddOptional(parser, () => defaultValue);
 
         public PermutationParser<TToken, (T, U)> AddOptional<U>(Parser<TToken, U> parser, Func<U> defaultValueFactory)
         {
-            throw new NotImplementedException();
+            var this_exit = _exit;
+            return new PermutationParser<TToken, (T, U)>(
+                _exit == null ? null as Func<(T, U)> : () => (_exit(), defaultValueFactory()),
+                ConvertForestAndAddParser(b => b.AddOptional(parser, defaultValueFactory), parser)
+            );
         }
 
-        public PermutationParser<TToken, U> Select<U>(Func<T, U> func)
-            => ConvertAll(t => t.Select(func));
-        
-        internal PermutationParser<TToken, Func<U, (T, U)>> Extend<U>()
-            => ConvertAll(t => t.Extend<U>());
+        private ImmutableList<PermutationParserBranch<TToken, (T, U)>> ConvertForestAndAddParser<U>(
+            Func<PermutationParserBranch<TToken, T>, PermutationParserBranch<TToken, (T, U)>> func,
+            Parser<TToken, U> parser
+        ) => _forest
+            .ConvertAll(func)
+            .Add(new PermutationParserBranchImpl<TToken, U, T, (T, U)>(parser, this, (u, t) => (t, u)));
 
-        private PermutationParser<TToken2, U> ConvertAll<TToken2, U>(Func<PermutationParserTree<TToken, T>, PermutationParserTree<TToken2, U>> func)
-            => new PermutationParser<TToken2, U>(_forest.ConvertAll(func));
+        public PermutationParser<TToken, U> Select<U>(Func<T, U> func)
+        {
+            var this_exit = _exit;
+            return new PermutationParser<TToken, U>(
+                this_exit == null ? null as Func<U> : () => func(this_exit()),
+                _forest.ConvertAll(t => t.Select(func))
+            );
+        }
     }
 }
