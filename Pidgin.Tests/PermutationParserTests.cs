@@ -13,11 +13,17 @@ namespace Pidgin.Tests
         public void TestSimplePermutation()
         {
             var parser = PermutationParser
-                .Map(
-                    (a, b, c) => string.Concat(a, b, c),
-                    Permutable.Create(Char('a')),
-                    Permutable.Create(Char('b')),
-                    Permutable.Create(Char('c'))
+                .Create<char>()
+                .Add(Char('a'))
+                .Add(Char('b'))
+                .Add(Char('c'))
+                .Build()
+                .Select(
+                    tup =>
+                    {
+                        var (((_, a), b), c) = tup;
+                        return string.Concat(a, b, c);
+                    }
                 );
 
             var results = new[] { "abc", "bac", "bca", "cba" }.Select(x => parser.ParseOrThrow(x));
@@ -29,11 +35,17 @@ namespace Pidgin.Tests
         public void TestOptionalPermutation()
         {
             var parser = PermutationParser
-                .Map(
-                    (a, b, c) => string.Concat(a, b, c),
-                    Permutable.Create(Char('a')),
-                    Permutable.CreateOptional(Char('b'), '_'),
-                    Permutable.Create(Char('c'))
+                .Create<char>()
+                .Add(Char('a'))
+                .AddOptional(Char('b'), '_')
+                .Add(Char('c'))
+                .Build()
+                .Select(
+                    tup =>
+                    {
+                        var (((_, a), b), c) = tup;
+                        return string.Concat(a, b, c);
+                    }
                 );
 
             var results1 = new[] { "abc", "bac", "bca", "cba" }.Select(x => parser.ParseOrThrow(x));
