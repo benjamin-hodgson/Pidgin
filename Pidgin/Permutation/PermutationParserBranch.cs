@@ -40,6 +40,9 @@ namespace Pidgin.Permutation
         }
 
         public override Parser<TToken, R> Build()
-            => Parser.Map((x, y) => _func(y, x), _parser, _perm.Build());
+        {
+            var this_func = _func;
+            return Parser.Map((x, y) => this_func(y, x), _parser, _perm.Build());
+        }
     }
 }
