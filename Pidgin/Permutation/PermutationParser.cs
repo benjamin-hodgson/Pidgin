@@ -107,6 +107,19 @@ namespace Pidgin.Permutation
         /// Adds an optional parser to the collection.
         /// 
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
+        /// In that case, <see cref="Maybe.Nothing{T}"/> will be returned.
+        /// </summary>
+        /// <param name="parser">The parser to add to the collection.</param>
+        /// <returns>
+        /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
+        /// </returns>
+        public PermutationParser<TToken, (T, Maybe<U>)> AddOptional<U>(Parser<TToken, U> parser)
+            => AddOptional(parser.Select(Maybe.Just), Maybe.Nothing<U>());
+
+        /// <summary>
+        /// Adds an optional parser to the collection.
+        /// 
+        /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <paramref name="defaultValue"/> will be returned.
         /// </summary>
         /// <param name="parser">The parser to add to the collection.</param>
@@ -130,6 +143,22 @@ namespace Pidgin.Permutation
         /// </returns>
         public PermutationParser<TToken, (T, U)> AddOptional<U>(Parser<TToken, U> parser, Func<U> defaultValueFactory)
             => AddOptional(parser, defaultValueFactory, ValueTuple.Create);
+
+        /// <summary>
+        /// Adds an optional parser to the collection.
+        /// 
+        /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
+        /// In that case, <see cref="Maybe.Nothing{T}"/> will be returned.
+        /// </summary>
+        /// <param name="parser">The parser to add to the collection.</param>
+        /// <param name="resultSelector">
+        /// A transformation function to apply to the result of the current permutation parser and the result of <paramref name="parser"/>.
+        /// </param>
+        /// <returns>
+        /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
+        /// </returns>
+        public PermutationParser<TToken, R> AddOptional<U, R>(Parser<TToken, U> parser, Func<T, Maybe<U>, R> resultSelector)
+            => AddOptional(parser.Select(Maybe.Just), () => Maybe.Nothing<U>(), resultSelector);
 
         /// <summary>
         /// Adds an optional parser to the collection.
