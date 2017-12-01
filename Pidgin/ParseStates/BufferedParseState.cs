@@ -61,9 +61,11 @@ namespace Pidgin.ParseStates
             {
                 if (_buffer != null)
                 {
-                    // we're at the end of the buffer,
-                    // and we're not currently writing to the buffer,
-                    // so the buffer can be discarded
+                    // an explanatory Haiku:
+                    //
+                    // At end of buffer,
+                    // not right now writing to it.
+                    // Buffer: discarded.
                     _bufPos = _bufSize = 0;
                     ArrayPool<TToken>.Shared.Return(_buffer);
                     _buffer = null;
@@ -106,7 +108,7 @@ namespace Pidgin.ParseStates
             }
             if (_bufSize == Buffer.Length)
             {
-                // the array is full, allocate a new bigger one
+                // the buffer is full, allocate a new bigger one
                 var newBuf = ArrayPool<TToken>.Shared.Rent(Buffer.Length * 2);
                 Buffer.CopyTo(newBuf, 0);  // i wonder if a linked-list style paged approach would be faster here?
                 ArrayPool<TToken>.Shared.Return(Buffer);
