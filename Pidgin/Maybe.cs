@@ -27,7 +27,7 @@ namespace Pidgin
     /// Represents a single possibly absent value. Like <see cref="System.Nullable{T}"/> but works for reference types as well as value types.
     /// </summary>
     /// <typeparam name="T">The type of the contained value</typeparam>
-    public struct Maybe<T> : IEquatable<Maybe<T>>
+    public readonly struct Maybe<T> : IEquatable<Maybe<T>>
     {
         /// <summary>
         /// Does the <see cref="Maybe{T}"/> contains a value?

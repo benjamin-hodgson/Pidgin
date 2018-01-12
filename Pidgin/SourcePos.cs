@@ -5,7 +5,7 @@ namespace Pidgin
     /// <summary>
     /// Represents a (line, col) position in an input stream
     /// </summary>
-    public struct SourcePos : IEquatable<SourcePos>, IComparable<SourcePos>
+    public readonly struct SourcePos : IEquatable<SourcePos>, IComparable<SourcePos>
     {
         /// <summary>
         /// Gets the line of the position in the input stream.

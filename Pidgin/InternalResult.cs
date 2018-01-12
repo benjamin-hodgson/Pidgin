@@ -11,7 +11,7 @@ namespace Pidgin
         public static InternalResult<T> Failure<T>(bool consumedInput)
             => new InternalResult<T>(false, consumedInput, default(T));
     }
-    internal struct InternalResult<T>
+    internal readonly struct InternalResult<T>
     {
         public bool Success { get; }
         public bool ConsumedInput { get; }

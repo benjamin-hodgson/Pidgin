@@ -13,7 +13,7 @@ namespace Pidgin
     /// a custom-named parser (Label != null &amp;&amp; Tokens == null),
     /// or the end of the input stream (Label == null &amp;&amp; Tokens == null)
     /// </summary>
-    public struct Expected<TToken> : IEquatable<Expected<TToken>>, IComparable<Expected<TToken>>
+    public readonly struct Expected<TToken> : IEquatable<Expected<TToken>>, IComparable<Expected<TToken>>
     {
         /// <summary>
         /// The custom name of the parser that produced this error, or null if the expectation was a sequence of tokens.
