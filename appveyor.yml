@@ -1,5 +1,5 @@
-configuration: Release
 image: Visual Studio 2017
+configuration: Release
 
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -12,18 +12,15 @@ before_build:
   - ps: |
       $lastTag = git describe --abbrev=0
       Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
-  - cmd: dotnet --info
-  - cmd: dotnet restore --verbosity Minimal
+  - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
 
-build_script:
-  - cmd: dotnet build --configuration %CONFIGURATION%
-
-test_script:
-  - cmd: dotnet test --configuration %CONFIGURATION% Pidgin.Tests\Pidgin.Tests.csproj
-  - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj
+build:
+  project: Pidgin.sln
+  verbosity: minimal
 
 after_test:
-  - cmd: dotnet pack --configuration %CONFIGURATION% --output ..\nupkgs --include-symbols --version-suffix %APPVEYOR_BUILD_NUMBER%
+  - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj
+  - cmd: msbuild Pidgin.sln /t:pack /p:Configuration=%CONFIGURATION% /p:IncludeSymbols=true /p:PackageOutputPath=..\nupkgs /v:Minimal
 
 artifacts:
   - type: NuGetPackage
