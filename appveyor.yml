@@ -8,12 +8,10 @@ nuget:
   project_feed: true
   disable_publish_on_pr: true
 
-init:
+install:
   - ps: |
       $lastTag = git describe --abbrev=0
       Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
-
-install:
   - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
 
 build:
