@@ -22,16 +22,15 @@ namespace Pidgin
         public void Append(char c)
         {
             GrowIfNecessary(1);
-            AddChar(c);
+            _buffer[_length] = c;
+            _length++;
         }
         
         public void Append(string s)
         {
             GrowIfNecessary(s.Length);
-            foreach (var c in s)
-            {
-                AddChar(c);
-            }
+            s.CopyTo(0, _buffer, _length, s.Length);
+            _length += s.Length;
         }
 
         public string GetStringAndClear()
@@ -53,19 +52,13 @@ namespace Pidgin
             {
                 _buffer = ArrayPool<char>.Shared.Rent(InitialCapacity);
             }
-            else if (_length == _buffer.Length)
+            else if (_length + appendSize > _buffer.Length)
             {
-                var newBuffer = ArrayPool<char>.Shared.Rent(Math.Max(_buffer.Length * 2, _buffer.Length + appendSize));
+                var newBuffer = ArrayPool<char>.Shared.Rent(Math.Max(_buffer.Length * 2, _length + appendSize));
                 Array.Copy(_buffer, newBuffer, _buffer.Length);
                 ArrayPool<char>.Shared.Return(_buffer);
                 _buffer = newBuffer;
             }
-        }
-
-        private void AddChar(char c)
-        {
-            _buffer[_length] = c;
-            _length++;
         }
     }
 }
