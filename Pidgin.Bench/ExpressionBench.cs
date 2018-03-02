@@ -8,7 +8,7 @@ using static Pidgin.Parser<char>;
 
 namespace Pidgin.Bench
 {
-    [Config(typeof(Config))]
+    [MemoryDiagnoser]
     public class ExpressionBench
     {
         private string _bigExpression;

@@ -9,7 +9,7 @@ using Pidgin.Examples.Json;
 
 namespace Pidgin.Bench
 {
-    [Config(typeof(Config))]
+    [MemoryDiagnoser]
     public class JsonBench
     {
         private string _bigJson;
