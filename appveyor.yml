@@ -13,10 +13,14 @@ install:
       $lastTag = git describe --abbrev=0
       Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
   - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
+  - cmd: cinst docfx
 
 build:
   project: Pidgin.sln
   verbosity: minimal
+
+after_build:
+  - cmd: docfx Pidgin.Docs/docfx.json
 
 after_test:
   - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj
@@ -26,6 +30,7 @@ artifacts:
   - type: NuGetPackage
     path: nupkgs/*.nupkg
   - path: BenchmarkDotNet.Artifacts
+  - path: Pidgin.Docs/_site
 
 deploy:
   provider: NuGet
