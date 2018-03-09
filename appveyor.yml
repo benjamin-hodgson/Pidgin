@@ -3,6 +3,8 @@ configuration: Release
 
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  github_token:
+    secure: RAU/MUjUsCxEfK5NRX1iFGtna4JHtz3TGQtIrxbYcF+IrVpKC5ceW73RXtfAjVXV
 
 nuget:
   project_feed: true
@@ -12,8 +14,15 @@ install:
   - ps: |
       $lastTag = git describe --abbrev=0
       Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
+  
   - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
+
   - cmd: cinst docfx
+
+  - cmd: git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_token):x-oauth-basic@github.com`n"
+  - cmd: git config --global user.email "benhodgson91@gmail.com"
+  - cmd: git config --global user.name "AppVeyor build server"
 
 build:
   project: Pidgin.sln
@@ -39,3 +48,12 @@ deploy:
     secure: MMVrVYGgJHFAFV4ENMvXWF2NuioBvUc0NleeHFldSEzDhZrTHxBYoeZEHRwCFwQK
   on:
     appveyor_repo_tag: true
+
+on_success:
+  - cmd: git clone https://github.com/benjamin-hodgson/Pidgin.git --depth 1 --branch gh-pages gh-pages
+  - cmd: if exist "gh-pages\%APPVEYOR_REPO_BRANCH%" rm -r "gh-pages\%APPVEYOR_REPO_BRANCH%"
+  - cmd: echo d | xcopy Pidgin.Docs\_site "gh-pages\%APPVEYOR_REPO_BRANCH%" /e
+  - cmd: cd gh-pages
+  - cmd: git add "%APPVEYOR_REPO_BRANCH%"
+  - cmd: git commit --allow-empty -m "Update gh-pages"
+  - cmd: git push
