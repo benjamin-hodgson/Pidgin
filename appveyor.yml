@@ -13,16 +13,19 @@ nuget:
 install:
   - ps: |
       $lastTag = git describe --abbrev=0
+      Set-AppveyorBuildVariable -Name 'LAST_TAG' -Value $lastTag
       Update-AppveyorBuild -Version "$lastTag-$env:APPVEYOR_BUILD_NUMBER"
   
   - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
 
   - cmd: cinst docfx
 
-  - cmd: git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_token):x-oauth-basic@github.com`n"
-  - cmd: git config --global user.email "benhodgson91@gmail.com"
-  - cmd: git config --global user.name "AppVeyor build server"
+  - ps: |
+      git config --global credential.helper store
+      Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_token):x-oauth-basic@github.com`n"
+      git config --global user.email "benhodgson91@gmail.com"
+      git config --global user.name "AppVeyor build server"
+      git config --global core.safecrlf false
 
 build:
   project: Pidgin.sln
@@ -50,10 +53,15 @@ deploy:
     appveyor_repo_tag: true
 
 on_success:
-  - cmd: git clone https://github.com/benjamin-hodgson/Pidgin.git --depth 1 --branch gh-pages gh-pages
-  - cmd: if exist "gh-pages\%APPVEYOR_REPO_BRANCH%" rm -r "gh-pages\%APPVEYOR_REPO_BRANCH%"
-  - cmd: echo d | xcopy Pidgin.Docs\_site "gh-pages\%APPVEYOR_REPO_BRANCH%" /e
-  - cmd: cd gh-pages
-  - cmd: git add "%APPVEYOR_REPO_BRANCH%"
-  - cmd: git commit --allow-empty -m "Update gh-pages"
-  - cmd: git push
+  - ps: |
+      if ($env:APPVEYOR_REPO_BRANCH -eq 'master' -or $env:APPVEYOR_REPO_TAG -eq 'true') {
+        git clone https://github.com/benjamin-hodgson/Pidgin.git -q --depth 1 --branch gh-pages gh-pages
+        Remove-Item "gh-pages\$env:APPVEYOR_REPO_BRANCH" -Recurse -ErrorAction Ignore
+        Copy-Item Pidgin.Docs\_site -Destination "gh-pages\$env:APPVEYOR_REPO_BRANCH" -Recurse -Container
+        cd gh-pages
+        git add "$env:APPVEYOR_REPO_BRANCH"
+        (gc index.html) -replace 'https://www.benjamin.pizza/Pidgin/[^/]*/', "https://www.benjamin.pizza/Pidgin/$env:LAST_TAG/" | Out-File index.html
+        git add index.html
+        git commit --allow-empty -m "Update gh-pages"
+        git push -q
+      }
