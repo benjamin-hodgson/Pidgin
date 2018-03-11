@@ -74,9 +74,9 @@
   <h1 id="Pidgin_Expected_1" data-uid="Pidgin.Expected`1" class="text-break">Struct Expected&lt;TToken&gt;
   </h1>
   <div class="markdown level0 summary"><p>Represents a parsing expectation for error reporting.
-Expected values are either a sequence of expected tokens (Label == null &amp;&amp; Tokens != null),
-a custom-named parser (Label != null &amp;&amp; Tokens == null),
-or the end of the input stream (Label == null &amp;&amp; Tokens == null)</p>
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
@@ -134,7 +134,7 @@ or the end of the input stream (Label == null &amp;&amp; Tokens == null)</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>The sequence of tokens that were expected</p>
+        <td><p>True if the parser expected the end of the input stream</p>
 </td>
       </tr>
     </tbody>

@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expected-1.html",
-          "hash": "24eCi9wCZv8pcIx3r3eQ8A=="
+          "hash": "0x8H4v9ystsXx8U2zRtbuQ=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe-1.html",
-          "hash": "DLNwSO/jQAYRrw7qG3DptA=="
+          "hash": "Gqlc1b/YjggpIasuW73vEA=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe.html",
-          "hash": "JNS3VcvRdy1PY3KfL9Km1g=="
+          "hash": "jDLgLvdmOD/+mt8jHfJUlA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser.html",
-          "hash": "dRrJRbyofmdgLZh2NekP1A=="
+          "hash": "HlgWL8fr60DunQ4GLkFrqQ=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.html",
-          "hash": "ffm3QKHdBms/md1+GzSCbA=="
+          "hash": "H/II/MNT8vTzKohn9XBUkQ=="
         }
       },
       "is_incremental": false,
@@ -348,11 +348,11 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },

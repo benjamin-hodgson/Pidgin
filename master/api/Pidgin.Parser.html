@@ -100,7 +100,7 @@ This class is intended to be imported statically (&quot;using static Pidgin.Pars
   <a id="Pidgin_Parser_DecimalNum_" data-uid="Pidgin.Parser.DecimalNum*"></a>
   <h4 id="Pidgin_Parser_DecimalNum" data-uid="Pidgin.Parser.DecimalNum">DecimalNum</h4>
   <div class="markdown level1 summary"><p>A parser which parses a base-10 integer with an optional sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -197,7 +197,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   <a id="Pidgin_Parser_HexNum_" data-uid="Pidgin.Parser.HexNum*"></a>
   <h4 id="Pidgin_Parser_HexNum" data-uid="Pidgin.Parser.HexNum">HexNum</h4>
   <div class="markdown level1 summary"><p>A parser which parses a base-16 (hexadecimal) integer with an optional sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -358,7 +358,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   <a id="Pidgin_Parser_Num_" data-uid="Pidgin.Parser.Num*"></a>
   <h4 id="Pidgin_Parser_Num" data-uid="Pidgin.Parser.Num">Num</h4>
   <div class="markdown level1 summary"><p>A parser which parses a base-10 integer with an optional sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -391,7 +391,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   <a id="Pidgin_Parser_OctalNum_" data-uid="Pidgin.Parser.OctalNum*"></a>
   <h4 id="Pidgin_Parser_OctalNum" data-uid="Pidgin.Parser.OctalNum">OctalNum</h4>
   <div class="markdown level1 summary"><p>A parser which parses a base-8 (octal) integer with an optional sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -487,7 +487,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   </span>
   <a id="Pidgin_Parser_SkipWhitespaces_" data-uid="Pidgin.Parser.SkipWhitespaces*"></a>
   <h4 id="Pidgin_Parser_SkipWhitespaces" data-uid="Pidgin.Parser.SkipWhitespaces">SkipWhitespaces</h4>
-  <div class="markdown level1 summary"><p>Gets a parser that discards a sequence of whitespace characters</p>
+  <div class="markdown level1 summary"><p>A parser that discards a sequence of whitespace characters</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -583,7 +583,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   </span>
   <a id="Pidgin_Parser_Whitespace_" data-uid="Pidgin.Parser.Whitespace*"></a>
   <h4 id="Pidgin_Parser_Whitespace" data-uid="Pidgin.Parser.Whitespace">Whitespace</h4>
-  <div class="markdown level1 summary"><p>Gets a parser that parses and returns a single whitespace character</p>
+  <div class="markdown level1 summary"><p>A parser that parses and returns a single whitespace character</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -615,7 +615,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   </span>
   <a id="Pidgin_Parser_Whitespaces_" data-uid="Pidgin.Parser.Whitespaces*"></a>
   <h4 id="Pidgin_Parser_Whitespaces" data-uid="Pidgin.Parser.Whitespaces">Whitespaces</h4>
-  <div class="markdown level1 summary"><p>Gets a parser that parses and returns a sequence of whitespace characters</p>
+  <div class="markdown level1 summary"><p>A parser that parses and returns a sequence of whitespace characters</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -647,7 +647,7 @@ The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
   </span>
   <a id="Pidgin_Parser_WhitespaceString_" data-uid="Pidgin.Parser.WhitespaceString*"></a>
   <h4 id="Pidgin_Parser_WhitespaceString" data-uid="Pidgin.Parser.WhitespaceString">WhitespaceString</h4>
-  <div class="markdown level1 summary"><p>Gets a parser that parses and returns a sequence of whitespace characters packed into a string</p>
+  <div class="markdown level1 summary"><p>A parser that parses and returns a sequence of whitespace characters packed into a string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -784,7 +784,7 @@ When the character is one of the given characters, the parser fails without cons
   <a id="Pidgin_Parser_AtLeastOnceString_" data-uid="Pidgin.Parser.AtLeastOnceString*"></a>
   <h4 id="Pidgin_Parser_AtLeastOnceString__1_Pidgin_Parser___0_System_Char__" data-uid="Pidgin.Parser.AtLeastOnceString``1(Pidgin.Parser{``0,System.Char})">AtLeastOnceString&lt;TToken&gt;(Parser&lt;TToken, Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
-Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></pre></p>
+Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -850,7 +850,7 @@ Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></p
   <a id="Pidgin_Parser_AtLeastOnceString_" data-uid="Pidgin.Parser.AtLeastOnceString*"></a>
   <h4 id="Pidgin_Parser_AtLeastOnceString__1_Pidgin_Parser___0_System_String__" data-uid="Pidgin.Parser.AtLeastOnceString``1(Pidgin.Parser{``0,System.String})">AtLeastOnceString&lt;TToken&gt;(Parser&lt;TToken, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a parser which applies the current parser one or more times, concatenating the resulting string pieces.
-Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></pre></p>
+Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1170,7 +1170,7 @@ The parser returns the actual string parsed.</p>
   <a id="Pidgin_Parser_Int_" data-uid="Pidgin.Parser.Int*"></a>
   <h4 id="Pidgin_Parser_Int_System_Int32_" data-uid="Pidgin.Parser.Int(System.Int32)">Int(Int32)</h4>
   <div class="markdown level1 summary"><p>A parser which parses an integer in the given base with an optional sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1271,7 +1271,7 @@ The resulting <see cref="!:System.Int64"></see> is not checked for overflow.</p>
   </span>
   <a id="Pidgin_Parser_Lookahead_" data-uid="Pidgin.Parser.Lookahead*"></a>
   <h4 id="Pidgin_Parser_Lookahead__2_Pidgin_Parser___0___1__" data-uid="Pidgin.Parser.Lookahead``2(Pidgin.Parser{``0,``1})">Lookahead&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;)</h4>
-  <div class="markdown level1 summary"><p>If <code data-dev-comment-type="paramref" class="paramref">parser</code> succeeds, <pre><code>Lookahead(parser)</code></pre> backtracks,
+  <div class="markdown level1 summary"><p>If <code data-dev-comment-type="paramref" class="paramref">parser</code> succeeds, <code>Lookahead(parser)</code> backtracks,
 behaving as if <code data-dev-comment-type="paramref" class="paramref">parser</code> had not consumed any input.
 No backtracking is performed upon failure.</p>
 </div>
@@ -1343,7 +1343,7 @@ No backtracking is performed upon failure.</p>
   <a id="Pidgin_Parser_ManyString_" data-uid="Pidgin.Parser.ManyString*"></a>
   <h4 id="Pidgin_Parser_ManyString__1_Pidgin_Parser___0_System_Char__" data-uid="Pidgin.Parser.ManyString``1(Pidgin.Parser{``0,System.Char})">ManyString&lt;TToken&gt;(Parser&lt;TToken, Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a parser which applies the current parser zero or more times, packing the resulting characters into a string.
-Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></pre></p>
+Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1409,7 +1409,7 @@ Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></p
   <a id="Pidgin_Parser_ManyString_" data-uid="Pidgin.Parser.ManyString*"></a>
   <h4 id="Pidgin_Parser_ManyString__1_Pidgin_Parser___0_System_String__" data-uid="Pidgin.Parser.ManyString``1(Pidgin.Parser{``0,System.String})">ManyString&lt;TToken&gt;(Parser&lt;TToken, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a parser which applies the current parser zero or more times, concatenating the resulting string pieces.
-Equivalent to <pre><code>parser.Many().Select(cs => string.Concat(cs))</code></pre></p>
+Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2900,7 +2900,7 @@ This is primarily useful to allow mutual recursion in parsers.
   <a id="Pidgin_Parser_RepeatString_" data-uid="Pidgin.Parser.RepeatString*"></a>
   <h4 id="Pidgin_Parser_RepeatString__1_Pidgin_Parser___0_System_Char__System_Int32_" data-uid="Pidgin.Parser.RepeatString``1(Pidgin.Parser{``0,System.Char},System.Int32)">RepeatString&lt;TToken&gt;(Parser&lt;TToken, Char&gt;, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates a parser which applies <code data-dev-comment-type="paramref" class="paramref">parser</code> <code data-dev-comment-type="paramref" class="paramref">count</code> times,
-packing the resulting <see cref="!:System.Char"></see>s into a <see cref="!:System.String"></see>.</p>
+packing the resulting <code>char</code>s into a <code>string</code>.</p>
 <p>
 Equivalent to <code>parser.Repeat(count).Select(string.Concat)</code>.
 </p>
@@ -2946,7 +2946,7 @@ Equivalent to <code>parser.Repeat(count).Select(string.Concat)</code>.
       <tr>
         <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">parser</code> <code data-dev-comment-type="paramref" class="paramref">count</code> times,
-packing the resulting <see cref="!:System.Char"></see>s into a <see cref="!:System.String"></see>.</p>
+packing the resulting <code>char</code>s into a <code>string</code>.</p>
 </td>
       </tr>
     </tbody>
@@ -3180,7 +3180,7 @@ packing the resulting <see cref="!:System.Char"></see>s into a <see cref="!:Syst
   <a id="Pidgin_Parser_UnsignedInt_" data-uid="Pidgin.Parser.UnsignedInt*"></a>
   <h4 id="Pidgin_Parser_UnsignedInt_System_Int32_" data-uid="Pidgin.Parser.UnsignedInt(System.Int32)">UnsignedInt(Int32)</h4>
   <div class="markdown level1 summary"><p>A parser which parses an integer in the given base without a sign.
-The resulting <see cref="!:System.Int32"></see> is not checked for overflow.</p>
+The resulting <code>int</code> is not checked for overflow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
