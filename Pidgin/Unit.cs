@@ -2,7 +2,7 @@ namespace Pidgin
 {
     /// <summary>
     /// An uninteresting type with only one value (<see cref="Unit.Value"/>) and no fields.
-    /// Like <see cref="System.Void"/>, but valid as a type parameter
+    /// Like <c>void</c>, but valid as a type parameter
     /// </summary>
     public sealed class Unit
     {
