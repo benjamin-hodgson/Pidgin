@@ -9,9 +9,9 @@ namespace Pidgin
 {
     /// <summary>
     /// Represents a parsing expectation for error reporting.
-    /// Expected values are either a sequence of expected tokens (Label == null &amp;&amp; Tokens != null),
-    /// a custom-named parser (Label != null &amp;&amp; Tokens == null),
-    /// or the end of the input stream (Label == null &amp;&amp; Tokens == null)
+    /// Expected values are either a sequence of expected tokens (in which case <c>Label == null &amp;&amp; Tokens != null</c>),
+    /// a custom-named parser (<c>Label != null &amp;&amp; Tokens == null</c>),
+    /// or the end of the input stream (<c>Label == null &amp;&amp; Tokens == null</c>)
     /// </summary>
     public readonly struct Expected<TToken> : IEquatable<Expected<TToken>>, IComparable<Expected<TToken>>
     {
@@ -29,7 +29,7 @@ namespace Pidgin
         /// <summary>
         /// Did the parser expect the end of the input stream?
         /// </summary>
-        /// <returns>The sequence of tokens that were expected</returns>
+        /// <returns>True if the parser expected the end of the input stream</returns>
         public bool IsEof => Label == null && InternalTokens == null;
         
         internal Expected(string label)

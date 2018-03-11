@@ -6,14 +6,14 @@ namespace Pidgin
     {
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <returns>A parser which parses a base-10 integer with an optional sign</returns>
         public static Parser<char, int> DecimalNum { get; } = Int(10).Labelled("number");
 
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <returns>A parser which parses a base-10 integer with an optional sign</returns>
         public static Parser<char, int> Num { get; } = DecimalNum;
@@ -26,21 +26,21 @@ namespace Pidgin
 
         /// <summary>
         /// A parser which parses a base-8 (octal) integer with an optional sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <returns>A parser which parses a base-8 (octal) integer with an optional sign</returns>
         public static Parser<char, int> OctalNum { get; } = Int(8).Labelled("octal number");
 
         /// <summary>
         /// A parser which parses a base-16 (hexadecimal) integer with an optional sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <returns>A parser which parses a base-16 (hexadecimal) integer with an optional sign</returns>
         public static Parser<char, int> HexNum { get; } = Int(16).Labelled("hexadecimal number");
 
         /// <summary>
         /// A parser which parses an integer in the given base with an optional sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses an integer with an optional sign</returns>
@@ -53,7 +53,7 @@ namespace Pidgin
 
         /// <summary>
         /// A parser which parses an integer in the given base without a sign.
-        /// The resulting <see cref="System.Int32" /> is not checked for overflow.
+        /// The resulting <c>int</c> is not checked for overflow.
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses an integer without a sign.</returns>

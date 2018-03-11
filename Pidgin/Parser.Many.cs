@@ -10,7 +10,7 @@ namespace Pidgin
     {
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, packing the resulting characters into a string.
-        /// Equivalent to <code>parser.Many().Select(cs => string.Concat(cs))</code>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
         /// </summary>
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser zero or more times, packing the resulting characters into a string.</returns>
@@ -26,7 +26,7 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, concatenating the resulting string pieces.
-        /// Equivalent to <code>parser.Many().Select(cs => string.Concat(cs))</code>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
         /// </summary>
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser zero or more times, concatenating the resulting string pieces.</returns>
@@ -42,7 +42,7 @@ namespace Pidgin
         
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
-        /// Equivalent to <code>parser.Many().Select(cs => string.Concat(cs))</code>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
         /// </summary>
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser one or more times, packing the resulting characters into a string.</returns>
@@ -61,7 +61,7 @@ namespace Pidgin
         
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, concatenating the resulting string pieces.
-        /// Equivalent to <code>parser.Many().Select(cs => string.Concat(cs))</code>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
         /// </summary>
         /// <param name="parser">A parser returning a single character</param>
         /// <returns>A parser which applies the current parser one or more times, concatenating the resulting string pieces.</returns>

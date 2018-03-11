@@ -6,7 +6,7 @@ namespace Pidgin
     public static partial class Parser
     {
         /// <summary>
-        /// If <paramref name="parser"/> succeeds, <code>Lookahead(parser)</code> backtracks,
+        /// If <paramref name="parser"/> succeeds, <c>Lookahead(parser)</c> backtracks,
         /// behaving as if <paramref name="parser"/> had not consumed any input.
         /// No backtracking is performed upon failure.
         /// </summary>

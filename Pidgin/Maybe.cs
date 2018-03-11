@@ -3,7 +3,7 @@ using System;
 namespace Pidgin
 {
     /// <summary>
-    /// Constructor functions, extension methods and utilities for working with <see cref="Maybe{T}"/>;
+    /// Constructor functions, extension methods and utilities for working with <see cref="Maybe{T}"/>
     /// </summary>
     public static class Maybe
     {
@@ -24,13 +24,13 @@ namespace Pidgin
     }
 
     /// <summary>
-    /// Represents a single possibly absent value. Like <see cref="System.Nullable{T}"/> but works for reference types as well as value types.
+    /// Represents a single possibly absent value. Like <c>Nullable</c> but works for reference types as well as value types.
     /// </summary>
     /// <typeparam name="T">The type of the contained value</typeparam>
     public readonly struct Maybe<T> : IEquatable<Maybe<T>>
     {
         /// <summary>
-        /// Does the <see cref="Maybe{T}"/> contains a value?
+        /// Does the <see cref="Maybe{T}"/> contain a value?
         /// </summary>
         /// <returns>True if and only if the <see cref="Maybe{T}"/> contains a value.</returns>
         public bool HasValue { get; }
@@ -47,7 +47,7 @@ namespace Pidgin
         }
 
         /// <summary>
-        /// Get the value from the <see cref="Maybe{T}"/>.
+        /// Get the value from the <see cref="Maybe{T}"/>, throwing <see cref="System.InvalidOperationException" /> if the value is absent.
         /// </summary>
         /// <returns>The value</returns>
         /// <exception cref="System.InvalidOperationException">Thrown when the <see cref="Maybe{T}"/> does not contain a value</exception>
@@ -69,20 +69,22 @@ namespace Pidgin
         public T GetValueOrDefault() => _value;
         
         /// <summary>
-        /// Get the value from the <see cref="Maybe{T}"/>, or return the specified default value.
+        /// Get the value from the <see cref="Maybe{T}"/>, or return <paramref name="value"/>.
         /// </summary>
-        /// <returns>The value if <see cref="HasValue"/> is true, or the specified default value.</returns>
+        /// <param name="value">The default value to return, if the <see cref="Maybe{T}"/> does not contain a value</param>
+        /// <returns>The value if <see cref="HasValue"/> is true, or <paramref name="value"/>.</returns>
         public T GetValueOrDefault(T value) => HasValue ? _value : value;
 
         /// <summary>
-        /// Get the value from the <see cref="Maybe{T}"/>, or return the result of calling the specified function.
+        /// Get the value from the <see cref="Maybe{T}"/>, or return the result of calling <paramref name="value"/>.
         /// </summary>
-        /// <returns>The value if <see cref="HasValue"/> is true, or the result of calling the specified function.</returns>
+        /// <param name="value">A function to call to create a default value, if the <see cref="Maybe{T}"/> does not contain a value</param>
+        /// <returns>The value if <see cref="HasValue"/> is true, or the result of calling <paramref name="value"/>.</returns>
         public T GetValueOrDefault(Func<T> value) => HasValue ? _value : value();
         
         /// <summary>
         /// Tear down this <see cref="Maybe{T}"/> using a function for the two possible outcomes.
-        /// If <see cref="HasValue"/> == true, <paramref name="just"/> will be called. Otherwise, <paramref name="nothing"/> will be called.
+        /// If <see cref="HasValue"/> is true, <paramref name="just"/> will be called. Otherwise, <paramref name="nothing"/> will be called.
         /// </summary>
         /// <typeparam name="U">The return type</typeparam>
         /// <param name="just">Called when the result has a value</param>
@@ -92,7 +94,7 @@ namespace Pidgin
             => HasValue ? just(_value) : nothing();
 
         /// <summary>
-        /// Project the value contained in the <see cref="Maybe{T}"/>
+        /// Project the value contained in the <see cref="Maybe{T}"/> using the specified transformation function.
         /// </summary>
         /// <param name="selector">A transformation function to apply to the contained value</param>
         /// <typeparam name="U">The type of the resulting value</typeparam>

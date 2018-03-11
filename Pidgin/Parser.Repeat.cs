@@ -9,7 +9,7 @@ namespace Pidgin
     {
         /// <summary>
         /// Creates a parser which applies <paramref name="parser"/> <paramref name="count"/> times,
-        /// packing the resulting <see cref="char"/>s into a <see cref="string"/>.
+        /// packing the resulting <c>char</c>s into a <c>string</c>.
         /// 
         /// <para>
         /// Equivalent to <c>parser.Repeat(count).Select(string.Concat)</c>.
@@ -21,7 +21,7 @@ namespace Pidgin
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> was less than 0</exception>
         /// <returns>
         /// A parser which applies <paramref name="parser"/> <paramref name="count"/> times,
-        /// packing the resulting <see cref="char"/>s into a <see cref="string"/>.
+        /// packing the resulting <c>char</c>s into a <c>string</c>.
         /// </returns>
         public static Parser<TToken, string> RepeatString<TToken>(this Parser<TToken, char> parser, int count)
         {
