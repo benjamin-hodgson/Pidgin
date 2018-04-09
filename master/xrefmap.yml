@@ -23,6 +23,7 @@ references:
   name: SkipBlockComment
   href: api/Pidgin.Comment.CommentParser.html#Pidgin_Comment_CommentParser_SkipBlockComment_
   commentId: Overload:Pidgin.Comment.CommentParser.SkipBlockComment
+  isSpec: "True"
   fullName: Pidgin.Comment.CommentParser.SkipBlockComment
   nameWithType: CommentParser.SkipBlockComment
 - uid: Pidgin.Comment.CommentParser.SkipBlockComment``2(Pidgin.Parser{System.Char,``0},Pidgin.Parser{System.Char,``1})
@@ -38,6 +39,7 @@ references:
   name: SkipLineComment
   href: api/Pidgin.Comment.CommentParser.html#Pidgin_Comment_CommentParser_SkipLineComment_
   commentId: Overload:Pidgin.Comment.CommentParser.SkipLineComment
+  isSpec: "True"
   fullName: Pidgin.Comment.CommentParser.SkipLineComment
   nameWithType: CommentParser.SkipLineComment
 - uid: Pidgin.Comment.CommentParser.SkipLineComment``1(Pidgin.Parser{System.Char,``0})
@@ -53,6 +55,7 @@ references:
   name: SkipNestedBlockComment
   href: api/Pidgin.Comment.CommentParser.html#Pidgin_Comment_CommentParser_SkipNestedBlockComment_
   commentId: Overload:Pidgin.Comment.CommentParser.SkipNestedBlockComment
+  isSpec: "True"
   fullName: Pidgin.Comment.CommentParser.SkipNestedBlockComment
   nameWithType: CommentParser.SkipNestedBlockComment
 - uid: Pidgin.Comment.CommentParser.SkipNestedBlockComment``2(Pidgin.Parser{System.Char,``0},Pidgin.Parser{System.Char,``1})
@@ -86,6 +89,7 @@ references:
   name: CompareTo
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_CompareTo_
   commentId: Overload:Pidgin.Expected`1.CompareTo
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.CompareTo
   fullName.vb: Pidgin.Expected(Of TToken).CompareTo
   nameWithType: Expected<TToken>.CompareTo
@@ -111,6 +115,7 @@ references:
   name: Equals
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Equals_
   commentId: Overload:Pidgin.Expected`1.Equals
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.Equals
   fullName.vb: Pidgin.Expected(Of TToken).Equals
   nameWithType: Expected<TToken>.Equals
@@ -127,6 +132,7 @@ references:
   name: GetHashCode
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_GetHashCode_
   commentId: Overload:Pidgin.Expected`1.GetHashCode
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.GetHashCode
   fullName.vb: Pidgin.Expected(Of TToken).GetHashCode
   nameWithType: Expected<TToken>.GetHashCode
@@ -143,6 +149,7 @@ references:
   name: IsEof
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_IsEof_
   commentId: Overload:Pidgin.Expected`1.IsEof
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.IsEof
   fullName.vb: Pidgin.Expected(Of TToken).IsEof
   nameWithType: Expected<TToken>.IsEof
@@ -159,6 +166,7 @@ references:
   name: Label
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Label_
   commentId: Overload:Pidgin.Expected`1.Label
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.Label
   fullName.vb: Pidgin.Expected(Of TToken).Label
   nameWithType: Expected<TToken>.Label
@@ -176,6 +184,7 @@ references:
   name: Equality
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_Equality_
   commentId: Overload:Pidgin.Expected`1.op_Equality
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.Equality
   fullName.vb: Pidgin.Expected(Of TToken).Equality
   nameWithType: Expected<TToken>.Equality
@@ -193,6 +202,7 @@ references:
   name: GreaterThan
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_GreaterThan_
   commentId: Overload:Pidgin.Expected`1.op_GreaterThan
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.GreaterThan
   fullName.vb: Pidgin.Expected(Of TToken).GreaterThan
   nameWithType: Expected<TToken>.GreaterThan
@@ -210,6 +220,7 @@ references:
   name: GreaterThanOrEqual
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_GreaterThanOrEqual_
   commentId: Overload:Pidgin.Expected`1.op_GreaterThanOrEqual
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.GreaterThanOrEqual
   fullName.vb: Pidgin.Expected(Of TToken).GreaterThanOrEqual
   nameWithType: Expected<TToken>.GreaterThanOrEqual
@@ -227,6 +238,7 @@ references:
   name: Inequality
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_Inequality_
   commentId: Overload:Pidgin.Expected`1.op_Inequality
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.Inequality
   fullName.vb: Pidgin.Expected(Of TToken).Inequality
   nameWithType: Expected<TToken>.Inequality
@@ -244,6 +256,7 @@ references:
   name: LessThan
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_LessThan_
   commentId: Overload:Pidgin.Expected`1.op_LessThan
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.LessThan
   fullName.vb: Pidgin.Expected(Of TToken).LessThan
   nameWithType: Expected<TToken>.LessThan
@@ -261,6 +274,7 @@ references:
   name: LessThanOrEqual
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_op_LessThanOrEqual_
   commentId: Overload:Pidgin.Expected`1.op_LessThanOrEqual
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.LessThanOrEqual
   fullName.vb: Pidgin.Expected(Of TToken).LessThanOrEqual
   nameWithType: Expected<TToken>.LessThanOrEqual
@@ -277,6 +291,7 @@ references:
   name: Tokens
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Tokens_
   commentId: Overload:Pidgin.Expected`1.Tokens
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.Tokens
   fullName.vb: Pidgin.Expected(Of TToken).Tokens
   nameWithType: Expected<TToken>.Tokens
@@ -293,6 +308,7 @@ references:
   name: ToString
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_ToString_
   commentId: Overload:Pidgin.Expected`1.ToString
+  isSpec: "True"
   fullName: Pidgin.Expected<TToken>.ToString
   fullName.vb: Pidgin.Expected(Of TToken).ToString
   nameWithType: Expected<TToken>.ToString
@@ -337,6 +353,7 @@ references:
   name: Build
   href: api/Pidgin.Expression.ExpressionParser.html#Pidgin_Expression_ExpressionParser_Build_
   commentId: Overload:Pidgin.Expression.ExpressionParser.Build
+  isSpec: "True"
   fullName: Pidgin.Expression.ExpressionParser.Build
   nameWithType: ExpressionParser.Build
 - uid: Pidgin.Expression.ExpressionParser.Build``2(Pidgin.Parser{``0,``1},IEnumerable{IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}})
@@ -367,6 +384,7 @@ references:
   name: Binary
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Binary_
   commentId: Overload:Pidgin.Expression.Operator.Binary
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.Binary
   nameWithType: Operator.Binary
 - uid: Pidgin.Expression.Operator.Binary``2(Pidgin.Expression.BinaryOperatorType,Pidgin.Parser{``0,Func{``1,``1,``1}})
@@ -391,6 +409,7 @@ references:
   name: InfixL
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_InfixL_
   commentId: Overload:Pidgin.Expression.Operator.InfixL
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.InfixL
   nameWithType: Operator.InfixL
 - uid: Pidgin.Expression.Operator.InfixL``2(Pidgin.Parser{``0,Func{``1,``1,``1}})
@@ -406,6 +425,7 @@ references:
   name: InfixN
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_InfixN_
   commentId: Overload:Pidgin.Expression.Operator.InfixN
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.InfixN
   nameWithType: Operator.InfixN
 - uid: Pidgin.Expression.Operator.InfixN``2(Pidgin.Parser{``0,Func{``1,``1,``1}})
@@ -421,6 +441,7 @@ references:
   name: InfixR
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_InfixR_
   commentId: Overload:Pidgin.Expression.Operator.InfixR
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.InfixR
   nameWithType: Operator.InfixR
 - uid: Pidgin.Expression.Operator.InfixR``2(Pidgin.Parser{``0,Func{``1,``1,``1}})
@@ -436,6 +457,7 @@ references:
   name: Postfix
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix_
   commentId: Overload:Pidgin.Expression.Operator.Postfix
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.Postfix
   nameWithType: Operator.Postfix
 - uid: Pidgin.Expression.Operator.Postfix``2(Pidgin.Parser{``0,Func{``1,``1}})
@@ -451,6 +473,7 @@ references:
   name: Prefix
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix_
   commentId: Overload:Pidgin.Expression.Operator.Prefix
+  isSpec: "True"
   fullName: Pidgin.Expression.Operator.Prefix
   nameWithType: Operator.Prefix
 - uid: Pidgin.Expression.Operator.Prefix``2(Pidgin.Parser{``0,Func{``1,``1}})
@@ -484,6 +507,7 @@ references:
   name: OperatorTableRow
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2__ctor_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.#ctor
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.OperatorTableRow
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).OperatorTableRow
   nameWithType: OperatorTableRow<TToken, T>.OperatorTableRow
@@ -501,6 +525,7 @@ references:
   name: And
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_And_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.And
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.And
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).And
   nameWithType: OperatorTableRow<TToken, T>.And
@@ -517,6 +542,7 @@ references:
   name: Empty
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_Empty_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.Empty
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.Empty
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).Empty
   nameWithType: OperatorTableRow<TToken, T>.Empty
@@ -533,6 +559,7 @@ references:
   name: InfixLOps
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_InfixLOps_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.InfixLOps
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.InfixLOps
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).InfixLOps
   nameWithType: OperatorTableRow<TToken, T>.InfixLOps
@@ -549,6 +576,7 @@ references:
   name: InfixNOps
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_InfixNOps_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.InfixNOps
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.InfixNOps
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).InfixNOps
   nameWithType: OperatorTableRow<TToken, T>.InfixNOps
@@ -565,6 +593,7 @@ references:
   name: InfixROps
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_InfixROps_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.InfixROps
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.InfixROps
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).InfixROps
   nameWithType: OperatorTableRow<TToken, T>.InfixROps
@@ -581,6 +610,7 @@ references:
   name: PostfixOps
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_PostfixOps_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.PostfixOps
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.PostfixOps
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).PostfixOps
   nameWithType: OperatorTableRow<TToken, T>.PostfixOps
@@ -597,6 +627,7 @@ references:
   name: PrefixOps
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_PrefixOps_
   commentId: Overload:Pidgin.Expression.OperatorTableRow`2.PrefixOps
+  isSpec: "True"
   fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.PrefixOps
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).PrefixOps
   nameWithType: OperatorTableRow<TToken, T>.PrefixOps
@@ -629,6 +660,7 @@ references:
   name: Just
   href: api/Pidgin.Maybe.html#Pidgin_Maybe_Just_
   commentId: Overload:Pidgin.Maybe.Just
+  isSpec: "True"
   fullName: Pidgin.Maybe.Just
   nameWithType: Maybe.Just
 - uid: Pidgin.Maybe.Just``1(``0)
@@ -644,6 +676,7 @@ references:
   name: Nothing
   href: api/Pidgin.Maybe.html#Pidgin_Maybe_Nothing_
   commentId: Overload:Pidgin.Maybe.Nothing
+  isSpec: "True"
   fullName: Pidgin.Maybe.Nothing
   nameWithType: Maybe.Nothing
 - uid: Pidgin.Maybe.Nothing``1
@@ -676,6 +709,7 @@ references:
   name: Maybe
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1__ctor_
   commentId: Overload:Pidgin.Maybe`1.#ctor
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Maybe
   fullName.vb: Pidgin.Maybe(Of T).Maybe
   nameWithType: Maybe<T>.Maybe
@@ -684,6 +718,7 @@ references:
   name: Cast
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Cast_
   commentId: Overload:Pidgin.Maybe`1.Cast
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Cast
   fullName.vb: Pidgin.Maybe(Of T).Cast
   nameWithType: Maybe<T>.Cast
@@ -718,6 +753,7 @@ references:
   name: Equals
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Equals_
   commentId: Overload:Pidgin.Maybe`1.Equals
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Equals
   fullName.vb: Pidgin.Maybe(Of T).Equals
   nameWithType: Maybe<T>.Equals
@@ -734,6 +770,7 @@ references:
   name: GetHashCode
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_GetHashCode_
   commentId: Overload:Pidgin.Maybe`1.GetHashCode
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.GetHashCode
   fullName.vb: Pidgin.Maybe(Of T).GetHashCode
   nameWithType: Maybe<T>.GetHashCode
@@ -767,6 +804,7 @@ references:
   name: GetValueOrDefault
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_GetValueOrDefault_
   commentId: Overload:Pidgin.Maybe`1.GetValueOrDefault
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.GetValueOrDefault
   fullName.vb: Pidgin.Maybe(Of T).GetValueOrDefault
   nameWithType: Maybe<T>.GetValueOrDefault
@@ -783,6 +821,7 @@ references:
   name: HasValue
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_HasValue_
   commentId: Overload:Pidgin.Maybe`1.HasValue
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.HasValue
   fullName.vb: Pidgin.Maybe(Of T).HasValue
   nameWithType: Maybe<T>.HasValue
@@ -791,6 +830,7 @@ references:
   name: Match
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Match_
   commentId: Overload:Pidgin.Maybe`1.Match
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Match
   fullName.vb: Pidgin.Maybe(Of T).Match
   nameWithType: Maybe<T>.Match
@@ -808,6 +848,7 @@ references:
   name: OfType
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_OfType_
   commentId: Overload:Pidgin.Maybe`1.OfType
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.OfType
   fullName.vb: Pidgin.Maybe(Of T).OfType
   nameWithType: Maybe<T>.OfType
@@ -834,6 +875,7 @@ references:
   name: Equality
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_op_Equality_
   commentId: Overload:Pidgin.Maybe`1.op_Equality
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Equality
   fullName.vb: Pidgin.Maybe(Of T).Equality
   nameWithType: Maybe<T>.Equality
@@ -851,6 +893,7 @@ references:
   name: Inequality
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_op_Inequality_
   commentId: Overload:Pidgin.Maybe`1.op_Inequality
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Inequality
   fullName.vb: Pidgin.Maybe(Of T).Inequality
   nameWithType: Maybe<T>.Inequality
@@ -859,6 +902,7 @@ references:
   name: Select
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Select_
   commentId: Overload:Pidgin.Maybe`1.Select
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Select
   fullName.vb: Pidgin.Maybe(Of T).Select
   nameWithType: Maybe<T>.Select
@@ -876,6 +920,7 @@ references:
   name: SelectMany
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_SelectMany_
   commentId: Overload:Pidgin.Maybe`1.SelectMany
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.SelectMany
   fullName.vb: Pidgin.Maybe(Of T).SelectMany
   nameWithType: Maybe<T>.SelectMany
@@ -910,6 +955,7 @@ references:
   name: Value
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Value_
   commentId: Overload:Pidgin.Maybe`1.Value
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Value
   fullName.vb: Pidgin.Maybe(Of T).Value
   nameWithType: Maybe<T>.Value
@@ -927,6 +973,7 @@ references:
   name: Where
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Where_
   commentId: Overload:Pidgin.Maybe`1.Where
+  isSpec: "True"
   fullName: Pidgin.Maybe<T>.Where
   fullName.vb: Pidgin.Maybe(Of T).Where
   nameWithType: Maybe<T>.Where
@@ -952,6 +999,7 @@ references:
   name: EOF
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_EOF_
   commentId: Overload:Pidgin.ParseError`1.EOF
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.EOF
   fullName.vb: Pidgin.ParseError(Of TToken).EOF
   nameWithType: ParseError<TToken>.EOF
@@ -977,6 +1025,7 @@ references:
   name: Equals
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Equals_
   commentId: Overload:Pidgin.ParseError`1.Equals
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Equals
   fullName.vb: Pidgin.ParseError(Of TToken).Equals
   nameWithType: ParseError<TToken>.Equals
@@ -993,6 +1042,7 @@ references:
   name: ErrorPos
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorPos_
   commentId: Overload:Pidgin.ParseError`1.ErrorPos
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.ErrorPos
   fullName.vb: Pidgin.ParseError(Of TToken).ErrorPos
   nameWithType: ParseError<TToken>.ErrorPos
@@ -1009,6 +1059,7 @@ references:
   name: Expected
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Expected_
   commentId: Overload:Pidgin.ParseError`1.Expected
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Expected
   fullName.vb: Pidgin.ParseError(Of TToken).Expected
   nameWithType: ParseError<TToken>.Expected
@@ -1025,6 +1076,7 @@ references:
   name: GetHashCode
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_GetHashCode_
   commentId: Overload:Pidgin.ParseError`1.GetHashCode
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.GetHashCode
   fullName.vb: Pidgin.ParseError(Of TToken).GetHashCode
   nameWithType: ParseError<TToken>.GetHashCode
@@ -1041,6 +1093,7 @@ references:
   name: Message
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Message_
   commentId: Overload:Pidgin.ParseError`1.Message
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Message
   fullName.vb: Pidgin.ParseError(Of TToken).Message
   nameWithType: ParseError<TToken>.Message
@@ -1058,6 +1111,7 @@ references:
   name: Equality
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_op_Equality_
   commentId: Overload:Pidgin.ParseError`1.op_Equality
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Equality
   fullName.vb: Pidgin.ParseError(Of TToken).Equality
   nameWithType: ParseError<TToken>.Equality
@@ -1075,6 +1129,7 @@ references:
   name: Inequality
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_op_Inequality_
   commentId: Overload:Pidgin.ParseError`1.op_Inequality
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Inequality
   fullName.vb: Pidgin.ParseError(Of TToken).Inequality
   nameWithType: ParseError<TToken>.Inequality
@@ -1091,6 +1146,7 @@ references:
   name: RenderErrorMessage
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_RenderErrorMessage_
   commentId: Overload:Pidgin.ParseError`1.RenderErrorMessage
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.RenderErrorMessage
   fullName.vb: Pidgin.ParseError(Of TToken).RenderErrorMessage
   nameWithType: ParseError<TToken>.RenderErrorMessage
@@ -1107,6 +1163,7 @@ references:
   name: Unexpected
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Unexpected_
   commentId: Overload:Pidgin.ParseError`1.Unexpected
+  isSpec: "True"
   fullName: Pidgin.ParseError<TToken>.Unexpected
   fullName.vb: Pidgin.ParseError(Of TToken).Unexpected
   nameWithType: ParseError<TToken>.Unexpected
@@ -1145,12 +1202,14 @@ references:
   name: AnyCharExcept
   href: api/Pidgin.Parser.html#Pidgin_Parser_AnyCharExcept_
   commentId: Overload:Pidgin.Parser.AnyCharExcept
+  isSpec: "True"
   fullName: Pidgin.Parser.AnyCharExcept
   nameWithType: Parser.AnyCharExcept
 - uid: Pidgin.Parser.AtLeastOnceString*
   name: AtLeastOnceString
   href: api/Pidgin.Parser.html#Pidgin_Parser_AtLeastOnceString_
   commentId: Overload:Pidgin.Parser.AtLeastOnceString
+  isSpec: "True"
   fullName: Pidgin.Parser.AtLeastOnceString
   nameWithType: Parser.AtLeastOnceString
 - uid: Pidgin.Parser.AtLeastOnceString``1(Pidgin.Parser{``0,System.Char})
@@ -1181,6 +1240,7 @@ references:
   name: Char
   href: api/Pidgin.Parser.html#Pidgin_Parser_Char_
   commentId: Overload:Pidgin.Parser.Char
+  isSpec: "True"
   fullName: Pidgin.Parser.Char
   nameWithType: Parser.Char
 - uid: Pidgin.Parser.CIChar(System.Char)
@@ -1193,6 +1253,7 @@ references:
   name: CIChar
   href: api/Pidgin.Parser.html#Pidgin_Parser_CIChar_
   commentId: Overload:Pidgin.Parser.CIChar
+  isSpec: "True"
   fullName: Pidgin.Parser.CIChar
   nameWithType: Parser.CIChar
 - uid: Pidgin.Parser.CIOneOf(IEnumerable{System.Char})
@@ -1217,6 +1278,7 @@ references:
   name: CIOneOf
   href: api/Pidgin.Parser.html#Pidgin_Parser_CIOneOf_
   commentId: Overload:Pidgin.Parser.CIOneOf
+  isSpec: "True"
   fullName: Pidgin.Parser.CIOneOf
   nameWithType: Parser.CIOneOf
 - uid: Pidgin.Parser.CIString(System.String)
@@ -1229,6 +1291,7 @@ references:
   name: CIString
   href: api/Pidgin.Parser.html#Pidgin_Parser_CIString_
   commentId: Overload:Pidgin.Parser.CIString
+  isSpec: "True"
   fullName: Pidgin.Parser.CIString
   nameWithType: Parser.CIString
 - uid: Pidgin.Parser.DecimalNum
@@ -1241,6 +1304,7 @@ references:
   name: DecimalNum
   href: api/Pidgin.Parser.html#Pidgin_Parser_DecimalNum_
   commentId: Overload:Pidgin.Parser.DecimalNum
+  isSpec: "True"
   fullName: Pidgin.Parser.DecimalNum
   nameWithType: Parser.DecimalNum
 - uid: Pidgin.Parser.Digit
@@ -1253,6 +1317,7 @@ references:
   name: Digit
   href: api/Pidgin.Parser.html#Pidgin_Parser_Digit_
   commentId: Overload:Pidgin.Parser.Digit
+  isSpec: "True"
   fullName: Pidgin.Parser.Digit
   nameWithType: Parser.Digit
 - uid: Pidgin.Parser.EndOfLine
@@ -1265,6 +1330,7 @@ references:
   name: EndOfLine
   href: api/Pidgin.Parser.html#Pidgin_Parser_EndOfLine_
   commentId: Overload:Pidgin.Parser.EndOfLine
+  isSpec: "True"
   fullName: Pidgin.Parser.EndOfLine
   nameWithType: Parser.EndOfLine
 - uid: Pidgin.Parser.HexNum
@@ -1277,6 +1343,7 @@ references:
   name: HexNum
   href: api/Pidgin.Parser.html#Pidgin_Parser_HexNum_
   commentId: Overload:Pidgin.Parser.HexNum
+  isSpec: "True"
   fullName: Pidgin.Parser.HexNum
   nameWithType: Parser.HexNum
 - uid: Pidgin.Parser.Int(System.Int32)
@@ -1289,6 +1356,7 @@ references:
   name: Int
   href: api/Pidgin.Parser.html#Pidgin_Parser_Int_
   commentId: Overload:Pidgin.Parser.Int
+  isSpec: "True"
   fullName: Pidgin.Parser.Int
   nameWithType: Parser.Int
 - uid: Pidgin.Parser.Letter
@@ -1301,6 +1369,7 @@ references:
   name: Letter
   href: api/Pidgin.Parser.html#Pidgin_Parser_Letter_
   commentId: Overload:Pidgin.Parser.Letter
+  isSpec: "True"
   fullName: Pidgin.Parser.Letter
   nameWithType: Parser.Letter
 - uid: Pidgin.Parser.LetterOrDigit
@@ -1313,6 +1382,7 @@ references:
   name: LetterOrDigit
   href: api/Pidgin.Parser.html#Pidgin_Parser_LetterOrDigit_
   commentId: Overload:Pidgin.Parser.LetterOrDigit
+  isSpec: "True"
   fullName: Pidgin.Parser.LetterOrDigit
   nameWithType: Parser.LetterOrDigit
 - uid: Pidgin.Parser.Long(System.Int32)
@@ -1325,6 +1395,7 @@ references:
   name: Long
   href: api/Pidgin.Parser.html#Pidgin_Parser_Long_
   commentId: Overload:Pidgin.Parser.Long
+  isSpec: "True"
   fullName: Pidgin.Parser.Long
   nameWithType: Parser.Long
 - uid: Pidgin.Parser.LongNum
@@ -1337,12 +1408,14 @@ references:
   name: LongNum
   href: api/Pidgin.Parser.html#Pidgin_Parser_LongNum_
   commentId: Overload:Pidgin.Parser.LongNum
+  isSpec: "True"
   fullName: Pidgin.Parser.LongNum
   nameWithType: Parser.LongNum
 - uid: Pidgin.Parser.Lookahead*
   name: Lookahead
   href: api/Pidgin.Parser.html#Pidgin_Parser_Lookahead_
   commentId: Overload:Pidgin.Parser.Lookahead
+  isSpec: "True"
   fullName: Pidgin.Parser.Lookahead
   nameWithType: Parser.Lookahead
 - uid: Pidgin.Parser.Lookahead``2(Pidgin.Parser{``0,``1})
@@ -1364,12 +1437,14 @@ references:
   name: Lowercase
   href: api/Pidgin.Parser.html#Pidgin_Parser_Lowercase_
   commentId: Overload:Pidgin.Parser.Lowercase
+  isSpec: "True"
   fullName: Pidgin.Parser.Lowercase
   nameWithType: Parser.Lowercase
 - uid: Pidgin.Parser.ManyString*
   name: ManyString
   href: api/Pidgin.Parser.html#Pidgin_Parser_ManyString_
   commentId: Overload:Pidgin.Parser.ManyString
+  isSpec: "True"
   fullName: Pidgin.Parser.ManyString
   nameWithType: Parser.ManyString
 - uid: Pidgin.Parser.ManyString``1(Pidgin.Parser{``0,System.Char})
@@ -1394,6 +1469,7 @@ references:
   name: Map
   href: api/Pidgin.Parser.html#Pidgin_Parser_Map_
   commentId: Overload:Pidgin.Parser.Map
+  isSpec: "True"
   fullName: Pidgin.Parser.Map
   nameWithType: Parser.Map
 - uid: Pidgin.Parser.Map``10(Func{``1,``2,``3,``4,``5,``6,``7,``8,``9},Pidgin.Parser{``0,``1},Pidgin.Parser{``0,``2},Pidgin.Parser{``0,``3},Pidgin.Parser{``0,``4},Pidgin.Parser{``0,``5},Pidgin.Parser{``0,``6},Pidgin.Parser{``0,``7},Pidgin.Parser{``0,``8})
@@ -1472,6 +1548,7 @@ references:
   name: Not
   href: api/Pidgin.Parser.html#Pidgin_Parser_Not_
   commentId: Overload:Pidgin.Parser.Not
+  isSpec: "True"
   fullName: Pidgin.Parser.Not
   nameWithType: Parser.Not
 - uid: Pidgin.Parser.Not``2(Pidgin.Parser{``0,``1})
@@ -1493,6 +1570,7 @@ references:
   name: Num
   href: api/Pidgin.Parser.html#Pidgin_Parser_Num_
   commentId: Overload:Pidgin.Parser.Num
+  isSpec: "True"
   fullName: Pidgin.Parser.Num
   nameWithType: Parser.Num
 - uid: Pidgin.Parser.OctalNum
@@ -1505,6 +1583,7 @@ references:
   name: OctalNum
   href: api/Pidgin.Parser.html#Pidgin_Parser_OctalNum_
   commentId: Overload:Pidgin.Parser.OctalNum
+  isSpec: "True"
   fullName: Pidgin.Parser.OctalNum
   nameWithType: Parser.OctalNum
 - uid: Pidgin.Parser.OneOf(IEnumerable{System.Char})
@@ -1529,6 +1608,7 @@ references:
   name: OneOf
   href: api/Pidgin.Parser.html#Pidgin_Parser_OneOf_
   commentId: Overload:Pidgin.Parser.OneOf
+  isSpec: "True"
   fullName: Pidgin.Parser.OneOf
   nameWithType: Parser.OneOf
 - uid: Pidgin.Parser.OneOf``2(IEnumerable{Pidgin.Parser{``0,``1}})
@@ -1559,12 +1639,14 @@ references:
   name: Punctuation
   href: api/Pidgin.Parser.html#Pidgin_Parser_Punctuation_
   commentId: Overload:Pidgin.Parser.Punctuation
+  isSpec: "True"
   fullName: Pidgin.Parser.Punctuation
   nameWithType: Parser.Punctuation
 - uid: Pidgin.Parser.Rec*
   name: Rec
   href: api/Pidgin.Parser.html#Pidgin_Parser_Rec_
   commentId: Overload:Pidgin.Parser.Rec
+  isSpec: "True"
   fullName: Pidgin.Parser.Rec
   nameWithType: Parser.Rec
 - uid: Pidgin.Parser.Rec``2(Func{Pidgin.Parser{``0,``1}})
@@ -1589,6 +1671,7 @@ references:
   name: RepeatString
   href: api/Pidgin.Parser.html#Pidgin_Parser_RepeatString_
   commentId: Overload:Pidgin.Parser.RepeatString
+  isSpec: "True"
   fullName: Pidgin.Parser.RepeatString
   nameWithType: Parser.RepeatString
 - uid: Pidgin.Parser.RepeatString``1(Pidgin.Parser{``0,System.Char},System.Int32)
@@ -1604,6 +1687,7 @@ references:
   name: ResetDefaultPosCalculator
   href: api/Pidgin.Parser.html#Pidgin_Parser_ResetDefaultPosCalculator_
   commentId: Overload:Pidgin.Parser.ResetDefaultPosCalculator
+  isSpec: "True"
   fullName: Pidgin.Parser.ResetDefaultPosCalculator
   nameWithType: Parser.ResetDefaultPosCalculator
 - uid: Pidgin.Parser.ResetDefaultPosCalculator``1
@@ -1625,12 +1709,14 @@ references:
   name: Separator
   href: api/Pidgin.Parser.html#Pidgin_Parser_Separator_
   commentId: Overload:Pidgin.Parser.Separator
+  isSpec: "True"
   fullName: Pidgin.Parser.Separator
   nameWithType: Parser.Separator
 - uid: Pidgin.Parser.SetDefaultPosCalculator*
   name: SetDefaultPosCalculator
   href: api/Pidgin.Parser.html#Pidgin_Parser_SetDefaultPosCalculator_
   commentId: Overload:Pidgin.Parser.SetDefaultPosCalculator
+  isSpec: "True"
   fullName: Pidgin.Parser.SetDefaultPosCalculator
   nameWithType: Parser.SetDefaultPosCalculator
 - uid: Pidgin.Parser.SetDefaultPosCalculator``1(Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
@@ -1652,6 +1738,7 @@ references:
   name: SkipWhitespaces
   href: api/Pidgin.Parser.html#Pidgin_Parser_SkipWhitespaces_
   commentId: Overload:Pidgin.Parser.SkipWhitespaces
+  isSpec: "True"
   fullName: Pidgin.Parser.SkipWhitespaces
   nameWithType: Parser.SkipWhitespaces
 - uid: Pidgin.Parser.String(System.String)
@@ -1664,6 +1751,7 @@ references:
   name: String
   href: api/Pidgin.Parser.html#Pidgin_Parser_String_
   commentId: Overload:Pidgin.Parser.String
+  isSpec: "True"
   fullName: Pidgin.Parser.String
   nameWithType: Parser.String
 - uid: Pidgin.Parser.Symbol
@@ -1676,12 +1764,14 @@ references:
   name: Symbol
   href: api/Pidgin.Parser.html#Pidgin_Parser_Symbol_
   commentId: Overload:Pidgin.Parser.Symbol
+  isSpec: "True"
   fullName: Pidgin.Parser.Symbol
   nameWithType: Parser.Symbol
 - uid: Pidgin.Parser.Try*
   name: Try
   href: api/Pidgin.Parser.html#Pidgin_Parser_Try_
   commentId: Overload:Pidgin.Parser.Try
+  isSpec: "True"
   fullName: Pidgin.Parser.Try
   nameWithType: Parser.Try
 - uid: Pidgin.Parser.Try``2(Pidgin.Parser{``0,``1})
@@ -1703,6 +1793,7 @@ references:
   name: UnsignedInt
   href: api/Pidgin.Parser.html#Pidgin_Parser_UnsignedInt_
   commentId: Overload:Pidgin.Parser.UnsignedInt
+  isSpec: "True"
   fullName: Pidgin.Parser.UnsignedInt
   nameWithType: Parser.UnsignedInt
 - uid: Pidgin.Parser.UnsignedLong(System.Int32)
@@ -1715,6 +1806,7 @@ references:
   name: UnsignedLong
   href: api/Pidgin.Parser.html#Pidgin_Parser_UnsignedLong_
   commentId: Overload:Pidgin.Parser.UnsignedLong
+  isSpec: "True"
   fullName: Pidgin.Parser.UnsignedLong
   nameWithType: Parser.UnsignedLong
 - uid: Pidgin.Parser.Uppercase
@@ -1727,6 +1819,7 @@ references:
   name: Uppercase
   href: api/Pidgin.Parser.html#Pidgin_Parser_Uppercase_
   commentId: Overload:Pidgin.Parser.Uppercase
+  isSpec: "True"
   fullName: Pidgin.Parser.Uppercase
   nameWithType: Parser.Uppercase
 - uid: Pidgin.Parser.Whitespace
@@ -1739,6 +1832,7 @@ references:
   name: Whitespace
   href: api/Pidgin.Parser.html#Pidgin_Parser_Whitespace_
   commentId: Overload:Pidgin.Parser.Whitespace
+  isSpec: "True"
   fullName: Pidgin.Parser.Whitespace
   nameWithType: Parser.Whitespace
 - uid: Pidgin.Parser.Whitespaces
@@ -1751,6 +1845,7 @@ references:
   name: Whitespaces
   href: api/Pidgin.Parser.html#Pidgin_Parser_Whitespaces_
   commentId: Overload:Pidgin.Parser.Whitespaces
+  isSpec: "True"
   fullName: Pidgin.Parser.Whitespaces
   nameWithType: Parser.Whitespaces
 - uid: Pidgin.Parser.WhitespaceString
@@ -1763,6 +1858,7 @@ references:
   name: WhitespaceString
   href: api/Pidgin.Parser.html#Pidgin_Parser_WhitespaceString_
   commentId: Overload:Pidgin.Parser.WhitespaceString
+  isSpec: "True"
   fullName: Pidgin.Parser.WhitespaceString
   nameWithType: Parser.WhitespaceString
 - uid: Pidgin.Parser`1
@@ -1786,6 +1882,7 @@ references:
   name: Any
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Any_
   commentId: Overload:Pidgin.Parser`1.Any
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.Any
   fullName.vb: Pidgin.Parser(Of TToken).Any
   nameWithType: Parser<TToken>.Any
@@ -1802,6 +1899,7 @@ references:
   name: CurrentPos
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentPos_
   commentId: Overload:Pidgin.Parser`1.CurrentPos
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.CurrentPos
   fullName.vb: Pidgin.Parser(Of TToken).CurrentPos
   nameWithType: Parser<TToken>.CurrentPos
@@ -1818,6 +1916,7 @@ references:
   name: End
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_End_
   commentId: Overload:Pidgin.Parser`1.End
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.End
   fullName.vb: Pidgin.Parser(Of TToken).End
   nameWithType: Parser<TToken>.End
@@ -1826,6 +1925,7 @@ references:
   name: Fail
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Fail_
   commentId: Overload:Pidgin.Parser`1.Fail
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.Fail
   fullName.vb: Pidgin.Parser(Of TToken).Fail
   nameWithType: Parser<TToken>.Fail
@@ -1843,6 +1943,7 @@ references:
   name: FromResult
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_FromResult_
   commentId: Overload:Pidgin.Parser`1.FromResult
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.FromResult
   fullName.vb: Pidgin.Parser(Of TToken).FromResult
   nameWithType: Parser<TToken>.FromResult
@@ -1860,6 +1961,7 @@ references:
   name: Return
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Return_
   commentId: Overload:Pidgin.Parser`1.Return
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.Return
   fullName.vb: Pidgin.Parser(Of TToken).Return
   nameWithType: Parser<TToken>.Return
@@ -1886,6 +1988,7 @@ references:
   name: Sequence
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Sequence_
   commentId: Overload:Pidgin.Parser`1.Sequence
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.Sequence
   fullName.vb: Pidgin.Parser(Of TToken).Sequence
   nameWithType: Parser<TToken>.Sequence
@@ -1938,6 +2041,7 @@ references:
   name: Token
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Token_
   commentId: Overload:Pidgin.Parser`1.Token
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken>.Token
   fullName.vb: Pidgin.Parser(Of TToken).Token
   nameWithType: Parser<TToken>.Token
@@ -1982,6 +2086,7 @@ references:
   name: Assert
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Assert_
   commentId: Overload:Pidgin.Parser`2.Assert
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Assert
   fullName.vb: Pidgin.Parser(Of TToken, T).Assert
   nameWithType: Parser<TToken, T>.Assert
@@ -1998,6 +2103,7 @@ references:
   name: AtLeastOnce
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnce_
   commentId: Overload:Pidgin.Parser`2.AtLeastOnce
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.AtLeastOnce
   fullName.vb: Pidgin.Parser(Of TToken, T).AtLeastOnce
   nameWithType: Parser<TToken, T>.AtLeastOnce
@@ -2006,6 +2112,7 @@ references:
   name: AtLeastOnceUntil
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceUntil_
   commentId: Overload:Pidgin.Parser`2.AtLeastOnceUntil
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.AtLeastOnceUntil
   fullName.vb: Pidgin.Parser(Of TToken, T).AtLeastOnceUntil
   nameWithType: Parser<TToken, T>.AtLeastOnceUntil
@@ -2023,6 +2130,7 @@ references:
   name: Before
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Before_
   commentId: Overload:Pidgin.Parser`2.Before
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Before
   fullName.vb: Pidgin.Parser(Of TToken, T).Before
   nameWithType: Parser<TToken, T>.Before
@@ -2040,6 +2148,7 @@ references:
   name: Between
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Between_
   commentId: Overload:Pidgin.Parser`2.Between
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Between
   fullName.vb: Pidgin.Parser(Of TToken, T).Between
   nameWithType: Parser<TToken, T>.Between
@@ -2066,6 +2175,7 @@ references:
   name: Bind
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Bind_
   commentId: Overload:Pidgin.Parser`2.Bind
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Bind
   fullName.vb: Pidgin.Parser(Of TToken, T).Bind
   nameWithType: Parser<TToken, T>.Bind
@@ -2092,6 +2202,7 @@ references:
   name: Cast
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Cast_
   commentId: Overload:Pidgin.Parser`2.Cast
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Cast
   fullName.vb: Pidgin.Parser(Of TToken, T).Cast
   nameWithType: Parser<TToken, T>.Cast
@@ -2117,6 +2228,7 @@ references:
   name: IgnoreResult
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_IgnoreResult_
   commentId: Overload:Pidgin.Parser`2.IgnoreResult
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.IgnoreResult
   fullName.vb: Pidgin.Parser(Of TToken, T).IgnoreResult
   nameWithType: Parser<TToken, T>.IgnoreResult
@@ -2133,6 +2245,7 @@ references:
   name: Labelled
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Labelled_
   commentId: Overload:Pidgin.Parser`2.Labelled
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Labelled
   fullName.vb: Pidgin.Parser(Of TToken, T).Labelled
   nameWithType: Parser<TToken, T>.Labelled
@@ -2149,6 +2262,7 @@ references:
   name: Many
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Many_
   commentId: Overload:Pidgin.Parser`2.Many
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Many
   fullName.vb: Pidgin.Parser(Of TToken, T).Many
   nameWithType: Parser<TToken, T>.Many
@@ -2157,6 +2271,7 @@ references:
   name: OfType
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_OfType_
   commentId: Overload:Pidgin.Parser`2.OfType
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.OfType
   fullName.vb: Pidgin.Parser(Of TToken, T).OfType
   nameWithType: Parser<TToken, T>.OfType
@@ -2182,6 +2297,7 @@ references:
   name: Optional
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Optional_
   commentId: Overload:Pidgin.Parser`2.Optional
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Optional
   fullName.vb: Pidgin.Parser(Of TToken, T).Optional
   nameWithType: Parser<TToken, T>.Optional
@@ -2199,6 +2315,7 @@ references:
   name: Or
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Or_
   commentId: Overload:Pidgin.Parser`2.Or
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Or
   fullName.vb: Pidgin.Parser(Of TToken, T).Or
   nameWithType: Parser<TToken, T>.Or
@@ -2216,6 +2333,7 @@ references:
   name: RecoverWith
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_RecoverWith_
   commentId: Overload:Pidgin.Parser`2.RecoverWith
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.RecoverWith
   fullName.vb: Pidgin.Parser(Of TToken, T).RecoverWith
   nameWithType: Parser<TToken, T>.RecoverWith
@@ -2232,6 +2350,7 @@ references:
   name: Repeat
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Repeat_
   commentId: Overload:Pidgin.Parser`2.Repeat
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Repeat
   fullName.vb: Pidgin.Parser(Of TToken, T).Repeat
   nameWithType: Parser<TToken, T>.Repeat
@@ -2240,6 +2359,7 @@ references:
   name: Select
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Select_
   commentId: Overload:Pidgin.Parser`2.Select
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Select
   fullName.vb: Pidgin.Parser(Of TToken, T).Select
   nameWithType: Parser<TToken, T>.Select
@@ -2257,6 +2377,7 @@ references:
   name: SelectMany
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SelectMany_
   commentId: Overload:Pidgin.Parser`2.SelectMany
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SelectMany
   fullName.vb: Pidgin.Parser(Of TToken, T).SelectMany
   nameWithType: Parser<TToken, T>.SelectMany
@@ -2274,6 +2395,7 @@ references:
   name: Separated
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Separated_
   commentId: Overload:Pidgin.Parser`2.Separated
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Separated
   fullName.vb: Pidgin.Parser(Of TToken, T).Separated
   nameWithType: Parser<TToken, T>.Separated
@@ -2291,6 +2413,7 @@ references:
   name: SeparatedAndOptionallyTerminated
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SeparatedAndOptionallyTerminated_
   commentId: Overload:Pidgin.Parser`2.SeparatedAndOptionallyTerminated
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SeparatedAndOptionallyTerminated
   fullName.vb: Pidgin.Parser(Of TToken, T).SeparatedAndOptionallyTerminated
   nameWithType: Parser<TToken, T>.SeparatedAndOptionallyTerminated
@@ -2308,6 +2431,7 @@ references:
   name: SeparatedAndOptionallyTerminatedAtLeastOnce
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SeparatedAndOptionallyTerminatedAtLeastOnce_
   commentId: Overload:Pidgin.Parser`2.SeparatedAndOptionallyTerminatedAtLeastOnce
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SeparatedAndOptionallyTerminatedAtLeastOnce
   fullName.vb: Pidgin.Parser(Of TToken, T).SeparatedAndOptionallyTerminatedAtLeastOnce
   nameWithType: Parser<TToken, T>.SeparatedAndOptionallyTerminatedAtLeastOnce
@@ -2325,6 +2449,7 @@ references:
   name: SeparatedAndTerminated
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SeparatedAndTerminated_
   commentId: Overload:Pidgin.Parser`2.SeparatedAndTerminated
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SeparatedAndTerminated
   fullName.vb: Pidgin.Parser(Of TToken, T).SeparatedAndTerminated
   nameWithType: Parser<TToken, T>.SeparatedAndTerminated
@@ -2342,6 +2467,7 @@ references:
   name: SeparatedAndTerminatedAtLeastOnce
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SeparatedAndTerminatedAtLeastOnce_
   commentId: Overload:Pidgin.Parser`2.SeparatedAndTerminatedAtLeastOnce
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SeparatedAndTerminatedAtLeastOnce
   fullName.vb: Pidgin.Parser(Of TToken, T).SeparatedAndTerminatedAtLeastOnce
   nameWithType: Parser<TToken, T>.SeparatedAndTerminatedAtLeastOnce
@@ -2359,6 +2485,7 @@ references:
   name: SeparatedAtLeastOnce
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SeparatedAtLeastOnce_
   commentId: Overload:Pidgin.Parser`2.SeparatedAtLeastOnce
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SeparatedAtLeastOnce
   fullName.vb: Pidgin.Parser(Of TToken, T).SeparatedAtLeastOnce
   nameWithType: Parser<TToken, T>.SeparatedAtLeastOnce
@@ -2384,6 +2511,7 @@ references:
   name: SkipAtLeastOnce
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SkipAtLeastOnce_
   commentId: Overload:Pidgin.Parser`2.SkipAtLeastOnce
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SkipAtLeastOnce
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipAtLeastOnce
   nameWithType: Parser<TToken, T>.SkipAtLeastOnce
@@ -2392,6 +2520,7 @@ references:
   name: SkipAtLeastOnceUntil
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SkipAtLeastOnceUntil_
   commentId: Overload:Pidgin.Parser`2.SkipAtLeastOnceUntil
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SkipAtLeastOnceUntil
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipAtLeastOnceUntil
   nameWithType: Parser<TToken, T>.SkipAtLeastOnceUntil
@@ -2417,6 +2546,7 @@ references:
   name: SkipMany
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SkipMany_
   commentId: Overload:Pidgin.Parser`2.SkipMany
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SkipMany
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipMany
   nameWithType: Parser<TToken, T>.SkipMany
@@ -2425,6 +2555,7 @@ references:
   name: SkipUntil
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_SkipUntil_
   commentId: Overload:Pidgin.Parser`2.SkipUntil
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.SkipUntil
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipUntil
   nameWithType: Parser<TToken, T>.SkipUntil
@@ -2442,6 +2573,7 @@ references:
   name: Then
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Then_
   commentId: Overload:Pidgin.Parser`2.Then
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Then
   fullName.vb: Pidgin.Parser(Of TToken, T).Then
   nameWithType: Parser<TToken, T>.Then
@@ -2486,6 +2618,7 @@ references:
   name: ThenReturn
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_ThenReturn_
   commentId: Overload:Pidgin.Parser`2.ThenReturn
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.ThenReturn
   fullName.vb: Pidgin.Parser(Of TToken, T).ThenReturn
   nameWithType: Parser<TToken, T>.ThenReturn
@@ -2520,6 +2653,7 @@ references:
   name: Trace
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Trace_
   commentId: Overload:Pidgin.Parser`2.Trace
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Trace
   fullName.vb: Pidgin.Parser(Of TToken, T).Trace
   nameWithType: Parser<TToken, T>.Trace
@@ -2536,6 +2670,7 @@ references:
   name: TraceResult
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_TraceResult_
   commentId: Overload:Pidgin.Parser`2.TraceResult
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.TraceResult
   fullName.vb: Pidgin.Parser(Of TToken, T).TraceResult
   nameWithType: Parser<TToken, T>.TraceResult
@@ -2544,6 +2679,7 @@ references:
   name: Until
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Until_
   commentId: Overload:Pidgin.Parser`2.Until
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Until
   fullName.vb: Pidgin.Parser(Of TToken, T).Until
   nameWithType: Parser<TToken, T>.Until
@@ -2570,6 +2706,7 @@ references:
   name: Where
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Where_
   commentId: Overload:Pidgin.Parser`2.Where
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.Where
   fullName.vb: Pidgin.Parser(Of TToken, T).Where
   nameWithType: Parser<TToken, T>.Where
@@ -2578,6 +2715,7 @@ references:
   name: WithResult
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_WithResult_
   commentId: Overload:Pidgin.Parser`2.WithResult
+  isSpec: "True"
   fullName: Pidgin.Parser<TToken, T>.WithResult
   fullName.vb: Pidgin.Parser(Of TToken, T).WithResult
   nameWithType: Parser<TToken, T>.WithResult
@@ -2601,6 +2739,7 @@ references:
   name: Parse
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse_
   commentId: Overload:Pidgin.ParserExtensions.Parse
+  isSpec: "True"
   fullName: Pidgin.ParserExtensions.Parse
   nameWithType: ParserExtensions.Parse
 - uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
@@ -2661,6 +2800,7 @@ references:
   name: ParseOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow_
   commentId: Overload:Pidgin.ParserExtensions.ParseOrThrow
+  isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseOrThrow
   nameWithType: ParserExtensions.ParseOrThrow
 - uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
@@ -2721,6 +2861,7 @@ references:
   name: ParseReadOnlyList
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList_
   commentId: Overload:Pidgin.ParserExtensions.ParseReadOnlyList
+  isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyList
   nameWithType: ParserExtensions.ParseReadOnlyList
 - uid: Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
@@ -2736,6 +2877,7 @@ references:
   name: ParseReadOnlyListOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow_
   commentId: Overload:Pidgin.ParserExtensions.ParseReadOnlyListOrThrow
+  isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow
   nameWithType: ParserExtensions.ParseReadOnlyListOrThrow
 - uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
@@ -2763,6 +2905,7 @@ references:
   name: Create
   href: api/Pidgin.Permutation.PermutationParser.html#Pidgin_Permutation_PermutationParser_Create_
   commentId: Overload:Pidgin.Permutation.PermutationParser.Create
+  isSpec: "True"
   fullName: Pidgin.Permutation.PermutationParser.Create
   nameWithType: PermutationParser.Create
 - uid: Pidgin.Permutation.PermutationParser.Create``1
@@ -2787,6 +2930,7 @@ references:
   name: Add
   href: api/Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_Add_
   commentId: Overload:Pidgin.Permutation.PermutationParser`2.Add
+  isSpec: "True"
   fullName: Pidgin.Permutation.PermutationParser<TToken, T>.Add
   fullName.vb: Pidgin.Permutation.PermutationParser(Of TToken, T).Add
   nameWithType: PermutationParser<TToken, T>.Add
@@ -2813,6 +2957,7 @@ references:
   name: AddOptional
   href: api/Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_AddOptional_
   commentId: Overload:Pidgin.Permutation.PermutationParser`2.AddOptional
+  isSpec: "True"
   fullName: Pidgin.Permutation.PermutationParser<TToken, T>.AddOptional
   fullName.vb: Pidgin.Permutation.PermutationParser(Of TToken, T).AddOptional
   nameWithType: PermutationParser<TToken, T>.AddOptional
@@ -2883,6 +3028,7 @@ references:
   name: Build
   href: api/Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_Build_
   commentId: Overload:Pidgin.Permutation.PermutationParser`2.Build
+  isSpec: "True"
   fullName: Pidgin.Permutation.PermutationParser<TToken, T>.Build
   fullName.vb: Pidgin.Permutation.PermutationParser(Of TToken, T).Build
   nameWithType: PermutationParser<TToken, T>.Build
@@ -2900,6 +3046,7 @@ references:
   name: Cast
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Cast_
   commentId: Overload:Pidgin.Result`2.Cast
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Cast
   fullName.vb: Pidgin.Result(Of TToken, T).Cast
   nameWithType: Result<TToken, T>.Cast
@@ -2925,6 +3072,7 @@ references:
   name: Error
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Error_
   commentId: Overload:Pidgin.Result`2.Error
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Error
   fullName.vb: Pidgin.Result(Of TToken, T).Error
   nameWithType: Result<TToken, T>.Error
@@ -2958,6 +3106,7 @@ references:
   name: GetValueOrDefault
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_GetValueOrDefault_
   commentId: Overload:Pidgin.Result`2.GetValueOrDefault
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.GetValueOrDefault
   fullName.vb: Pidgin.Result(Of TToken, T).GetValueOrDefault
   nameWithType: Result<TToken, T>.GetValueOrDefault
@@ -2966,6 +3115,7 @@ references:
   name: Match
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Match_
   commentId: Overload:Pidgin.Result`2.Match
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Match
   fullName.vb: Pidgin.Result(Of TToken, T).Match
   nameWithType: Result<TToken, T>.Match
@@ -3001,6 +3151,7 @@ references:
   name: Or
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Or_
   commentId: Overload:Pidgin.Result`2.Or
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Or
   fullName.vb: Pidgin.Result(Of TToken, T).Or
   nameWithType: Result<TToken, T>.Or
@@ -3009,6 +3160,7 @@ references:
   name: Select
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Select_
   commentId: Overload:Pidgin.Result`2.Select
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Select
   fullName.vb: Pidgin.Result(Of TToken, T).Select
   nameWithType: Result<TToken, T>.Select
@@ -3026,6 +3178,7 @@ references:
   name: SelectMany
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_SelectMany_
   commentId: Overload:Pidgin.Result`2.SelectMany
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.SelectMany
   fullName.vb: Pidgin.Result(Of TToken, T).SelectMany
   nameWithType: Result<TToken, T>.SelectMany
@@ -3060,6 +3213,7 @@ references:
   name: Success
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Success_
   commentId: Overload:Pidgin.Result`2.Success
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Success
   fullName.vb: Pidgin.Result(Of TToken, T).Success
   nameWithType: Result<TToken, T>.Success
@@ -3076,6 +3230,7 @@ references:
   name: Value
   href: api/Pidgin.Result-2.html#Pidgin_Result_2_Value_
   commentId: Overload:Pidgin.Result`2.Value
+  isSpec: "True"
   fullName: Pidgin.Result<TToken, T>.Value
   fullName.vb: Pidgin.Result(Of TToken, T).Value
   nameWithType: Result<TToken, T>.Value
@@ -3096,6 +3251,7 @@ references:
   name: SourcePos
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos__ctor_
   commentId: Overload:Pidgin.SourcePos.#ctor
+  isSpec: "True"
   fullName: Pidgin.SourcePos.SourcePos
   nameWithType: SourcePos.SourcePos
 - uid: Pidgin.SourcePos.Col
@@ -3108,6 +3264,7 @@ references:
   name: Col
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Col_
   commentId: Overload:Pidgin.SourcePos.Col
+  isSpec: "True"
   fullName: Pidgin.SourcePos.Col
   nameWithType: SourcePos.Col
 - uid: Pidgin.SourcePos.CompareTo(Pidgin.SourcePos)
@@ -3120,6 +3277,7 @@ references:
   name: CompareTo
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_CompareTo_
   commentId: Overload:Pidgin.SourcePos.CompareTo
+  isSpec: "True"
   fullName: Pidgin.SourcePos.CompareTo
   nameWithType: SourcePos.CompareTo
 - uid: Pidgin.SourcePos.Equals(Pidgin.SourcePos)
@@ -3138,6 +3296,7 @@ references:
   name: Equals
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Equals_
   commentId: Overload:Pidgin.SourcePos.Equals
+  isSpec: "True"
   fullName: Pidgin.SourcePos.Equals
   nameWithType: SourcePos.Equals
 - uid: Pidgin.SourcePos.GetHashCode
@@ -3150,6 +3309,7 @@ references:
   name: GetHashCode
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_GetHashCode_
   commentId: Overload:Pidgin.SourcePos.GetHashCode
+  isSpec: "True"
   fullName: Pidgin.SourcePos.GetHashCode
   nameWithType: SourcePos.GetHashCode
 - uid: Pidgin.SourcePos.IncrementCol
@@ -3162,6 +3322,7 @@ references:
   name: IncrementCol
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_IncrementCol_
   commentId: Overload:Pidgin.SourcePos.IncrementCol
+  isSpec: "True"
   fullName: Pidgin.SourcePos.IncrementCol
   nameWithType: SourcePos.IncrementCol
 - uid: Pidgin.SourcePos.Line
@@ -3174,6 +3335,7 @@ references:
   name: Line
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Line_
   commentId: Overload:Pidgin.SourcePos.Line
+  isSpec: "True"
   fullName: Pidgin.SourcePos.Line
   nameWithType: SourcePos.Line
 - uid: Pidgin.SourcePos.NewLine
@@ -3186,6 +3348,7 @@ references:
   name: NewLine
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_NewLine_
   commentId: Overload:Pidgin.SourcePos.NewLine
+  isSpec: "True"
   fullName: Pidgin.SourcePos.NewLine
   nameWithType: SourcePos.NewLine
 - uid: Pidgin.SourcePos.op_Equality(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3198,6 +3361,7 @@ references:
   name: Equality
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_Equality_
   commentId: Overload:Pidgin.SourcePos.op_Equality
+  isSpec: "True"
   fullName: Pidgin.SourcePos.Equality
   nameWithType: SourcePos.Equality
 - uid: Pidgin.SourcePos.op_GreaterThan(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3210,6 +3374,7 @@ references:
   name: GreaterThan
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_GreaterThan_
   commentId: Overload:Pidgin.SourcePos.op_GreaterThan
+  isSpec: "True"
   fullName: Pidgin.SourcePos.GreaterThan
   nameWithType: SourcePos.GreaterThan
 - uid: Pidgin.SourcePos.op_GreaterThanOrEqual(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3222,6 +3387,7 @@ references:
   name: GreaterThanOrEqual
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_GreaterThanOrEqual_
   commentId: Overload:Pidgin.SourcePos.op_GreaterThanOrEqual
+  isSpec: "True"
   fullName: Pidgin.SourcePos.GreaterThanOrEqual
   nameWithType: SourcePos.GreaterThanOrEqual
 - uid: Pidgin.SourcePos.op_Inequality(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3234,6 +3400,7 @@ references:
   name: Inequality
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_Inequality_
   commentId: Overload:Pidgin.SourcePos.op_Inequality
+  isSpec: "True"
   fullName: Pidgin.SourcePos.Inequality
   nameWithType: SourcePos.Inequality
 - uid: Pidgin.SourcePos.op_LessThan(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3246,6 +3413,7 @@ references:
   name: LessThan
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_LessThan_
   commentId: Overload:Pidgin.SourcePos.op_LessThan
+  isSpec: "True"
   fullName: Pidgin.SourcePos.LessThan
   nameWithType: SourcePos.LessThan
 - uid: Pidgin.SourcePos.op_LessThanOrEqual(Pidgin.SourcePos,Pidgin.SourcePos)
@@ -3258,6 +3426,7 @@ references:
   name: LessThanOrEqual
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_LessThanOrEqual_
   commentId: Overload:Pidgin.SourcePos.op_LessThanOrEqual
+  isSpec: "True"
   fullName: Pidgin.SourcePos.LessThanOrEqual
   nameWithType: SourcePos.LessThanOrEqual
 - uid: Pidgin.Unit
@@ -3276,5 +3445,6 @@ references:
   name: Value
   href: api/Pidgin.Unit.html#Pidgin_Unit_Value_
   commentId: Overload:Pidgin.Unit.Value
+  isSpec: "True"
   fullName: Pidgin.Unit.Value
   nameWithType: Unit.Value
