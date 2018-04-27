@@ -168,6 +168,10 @@ namespace Pidgin
                 
                 foreach (var p in parsers)
                 {
+                    if (p == null)
+                    {
+                        throw new ArgumentNullException(nameof(parsers));
+                    }
                     if (p is OneOfParser<TToken, T> o)
                     {
                         list.AddRange(o._parsers);
