@@ -1,0 +1,381 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/projects/pidgin/Pidgin.Docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Comment.CommentParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Comment.CommentParser.html",
+          "hash": "ojHgByOe8GPDeR6wN0Y84w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Comment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Comment.html",
+          "hash": "2Del5eDNVxKhk0enhFEQOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expected-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expected-1.html",
+          "hash": "pc+OSpk6RphDRemDAJAnXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.BinaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.BinaryOperatorType.html",
+          "hash": "zsOgKKa+UE9AEnkRdFFN4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.ExpressionParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.ExpressionParser.html",
+          "hash": "06x2QqgDbsVFQyhhe905kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.Operator.html",
+          "hash": "rDNU72AEyROeHN5kVssEXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.OperatorTableRow-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.OperatorTableRow-2.html",
+          "hash": "RhP9SdMvw9nALuY0otHHqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.UnaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.UnaryOperatorType.html",
+          "hash": "dfDWiK+OPniSCT4h/IMCag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Expression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Expression.html",
+          "hash": "xryLTXAEvARTngFsnAIfiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Maybe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Maybe-1.html",
+          "hash": "V8fLe5NqD+heOiAFHzAgHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Maybe.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Maybe.html",
+          "hash": "3V4nHK1bldFm9o1z1RCt5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.ParseError-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.ParseError-1.html",
+          "hash": "Pyy+/0F+W7BWiN4CdM2Ytw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.ParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.ParseException.html",
+          "hash": "p0FvPhKYehGcUs2BZIggIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Parser-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Parser-1.html",
+          "hash": "xMU+ieKx1xnsPrNXJwJaGg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Parser-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Parser-2.html",
+          "hash": "GcC1u3vr+kIaMtmQiabLsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Parser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Parser.html",
+          "hash": "oV6iIYhCd+JiPRc3Qhcj4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.ParserExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.ParserExtensions.html",
+          "hash": "7Y9TeAwYhlfwkcE9pyzeMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Permutation.PermutationParser-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Permutation.PermutationParser-2.html",
+          "hash": "JMrxX3JVHofvf2YYxhuu9Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Permutation.PermutationParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Permutation.PermutationParser.html",
+          "hash": "9g5xlacJ/+vtmheovk7xsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Permutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Permutation.html",
+          "hash": "XFf5jeBp4UeOr2Vf5NwNMQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Result-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Result-2.html",
+          "hash": "VHsmxVfvX/pudp6BDG26Dw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.SourcePos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.SourcePos.html",
+          "hash": "j4V8p1RXuvBgDLI183TILA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.Unit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.Unit.html",
+          "hash": "2pPvh75oJk9lAh0rStqhCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.html",
+          "hash": "XJHj6VWZ5xR/UWXVi5WwGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "H0m7pGnzwMNSehNR5fXMIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "jONO6Fnd4lSxEj+e9vMuWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "agMVrzRmGX9DqXu//KYOzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "eE7jxQr+tJO6Gqdj/xCecA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
