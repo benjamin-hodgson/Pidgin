@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Operator
    ">
-    <meta name="generator" content="docfx 2.34.0.0">
+    <meta name="generator" content="docfx 2.35.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -22,7 +22,7 @@
     
     
   </head>
-  <body data-spy="scroll" data-target="#affix">
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -94,7 +94,7 @@
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_Binary__2_Pidgin_Expression_BinaryOperatorType_Pidgin_Parser___0_Func___1___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.Binary%60%602(Pidgin.Expression.BinaryOperatorType%2CPidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L18">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L20">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_Binary_" data-uid="Pidgin.Expression.Operator.Binary*"></a>
   <h4 id="Pidgin_Expression_Operator_Binary__2_Pidgin_Expression_BinaryOperatorType_Pidgin_Parser___0_Func___1___1___1___" data-uid="Pidgin.Expression.Operator.Binary``2(Pidgin.Expression.BinaryOperatorType,Pidgin.Parser{``0,Func{``1,``1,``1}})">Binary&lt;TToken, T&gt;(BinaryOperatorType, Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;)</h4>
@@ -168,87 +168,10 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_Binary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.Binary%60%602(Pidgin.Expression.UnaryOperatorType%2CPidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L44">View Source</a>
-  </span>
-  <a id="Pidgin_Expression_Operator_Binary_" data-uid="Pidgin.Expression.Operator.Binary*"></a>
-  <h4 id="Pidgin_Expression_Operator_Binary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___" data-uid="Pidgin.Expression.Operator.Binary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})">Binary&lt;TToken, T&gt;(UnaryOperatorType, Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a single unary operator - either a prefix operator or a postfix operator.
-Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow&lt;TToken, T&gt;</a>s using
-<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_And_Pidgin_Expression_OperatorTableRow__0__1__">And(OperatorTableRow&lt;TToken, T&gt;)</a> to build a larger row.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; Binary&lt;TToken, T&gt;(UnaryOperatorType type, Parser&lt;TToken, Func&lt;T, T&gt;&gt; opParser)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Pidgin.Expression.UnaryOperatorType.html">UnaryOperatorType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The type of the unary operator</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;</td>
-        <td><span class="parametername">opParser</span></td>
-        <td><p>A parser for a unary operator</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
-        <td><p>A row in a table of operators which contains a single unary operator.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TToken</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_InfixL__2_Pidgin_Parser___0_Func___1___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.InfixL%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L83">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L93">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_InfixL_" data-uid="Pidgin.Expression.Operator.InfixL*"></a>
   <h4 id="Pidgin_Expression_Operator_InfixL__2_Pidgin_Parser___0_Func___1___1___1___" data-uid="Pidgin.Expression.Operator.InfixL``2(Pidgin.Parser{``0,Func{``1,``1,``1}})">InfixL&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;)</h4>
@@ -319,7 +242,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_InfixN__2_Pidgin_Parser___0_Func___1___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.InfixN%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L67">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L77">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_InfixN_" data-uid="Pidgin.Expression.Operator.InfixN*"></a>
   <h4 id="Pidgin_Expression_Operator_InfixN__2_Pidgin_Parser___0_Func___1___1___1___" data-uid="Pidgin.Expression.Operator.InfixN``2(Pidgin.Parser{``0,Func{``1,``1,``1}})">InfixN&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;)</h4>
@@ -390,7 +313,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_InfixR__2_Pidgin_Parser___0_Func___1___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.InfixR%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L99">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L109">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_InfixR_" data-uid="Pidgin.Expression.Operator.InfixR*"></a>
   <h4 id="Pidgin_Expression_Operator_InfixR__2_Pidgin_Parser___0_Func___1___1___1___" data-uid="Pidgin.Expression.Operator.InfixR``2(Pidgin.Parser{``0,Func{``1,``1,``1}})">InfixR&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;)</h4>
@@ -461,7 +384,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_Func___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.Postfix%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L131">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L141">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_Postfix_" data-uid="Pidgin.Expression.Operator.Postfix*"></a>
   <h4 id="Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_Func___1___1___" data-uid="Pidgin.Expression.Operator.Postfix``2(Pidgin.Parser{``0,Func{``1,``1}})">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</h4>
@@ -529,10 +452,162 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_PostfixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.PostfixChainable%60%602(IEnumerable%7BPidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L211">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_Operator_PostfixChainable_" data-uid="Pidgin.Expression.Operator.PostfixChainable*"></a>
+  <h4 id="Pidgin_Expression_Operator_PostfixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____" data-uid="Pidgin.Expression.Operator.PostfixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})">PostfixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a chainable collection of postfix operators.
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
+<p>This method is equivalent to:</p>
+<pre><code>Postfix(
+    OneOf(opParsers)
+        .AtLeastOnce()
+        .Select&lt;Func&lt;T, T>>(fs => z => fs.Aggregate(z, (x, f) => f(x)))
+)</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; PostfixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; opParsers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">opParsers</span></td>
+        <td><p>A collection of parsers for individual postfix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>A row in a table of operators which contains a chainable collection of postfix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_PostfixChainable__2_Pidgin_Parser___0_Func___1___1_____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.PostfixChainable%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L239">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_Operator_PostfixChainable_" data-uid="Pidgin.Expression.Operator.PostfixChainable*"></a>
+  <h4 id="Pidgin_Expression_Operator_PostfixChainable__2_Pidgin_Parser___0_Func___1___1_____" data-uid="Pidgin.Expression.Operator.PostfixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])">PostfixChainable&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;[])</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a chainable collection of postfix operators.
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
+<p>This method is equivalent to:</p>
+<pre><code>Postfix(
+    OneOf(opParsers)
+        .AtLeastOnce()
+        .Select&lt;Func&lt;T, T>>(fs => z => fs.Aggregate(z, (x, f) => f(x)))
+)</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; PostfixChainable&lt;TToken, T&gt;(params Parser&lt;TToken, Func&lt;T, T&gt;&gt;[] opParsers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;[]</td>
+        <td><span class="parametername">opParsers</span></td>
+        <td><p>A collection of parsers for individual postfix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>A row in a table of operators which contains a chainable collection of postfix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_Func___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.Prefix%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L115">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L125">View Source</a>
   </span>
   <a id="Pidgin_Expression_Operator_Prefix_" data-uid="Pidgin.Expression.Operator.Prefix*"></a>
   <h4 id="Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_Func___1___1___" data-uid="Pidgin.Expression.Operator.Prefix``2(Pidgin.Parser{``0,Func{``1,``1}})">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</h4>
@@ -598,6 +673,235 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_PrefixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.PrefixChainable%60%602(IEnumerable%7BPidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L165">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_Operator_PrefixChainable_" data-uid="Pidgin.Expression.Operator.PrefixChainable*"></a>
+  <h4 id="Pidgin_Expression_Operator_PrefixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____" data-uid="Pidgin.Expression.Operator.PrefixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})">PrefixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a chainable collection of prefix operators.
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
+<p>This method is equivalent to:</p>
+<pre><code>Prefix(
+    OneOf(opParsers)
+        .AtLeastOnce()
+        .Select&lt;Func&lt;T, T>>(fs => z => fs.AggregateR(z, (f, x) => f(x)))
+)</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; PrefixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; opParsers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">opParsers</span></td>
+        <td><p>A collection of parsers for individual prefix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>A row in a table of operators which contains a chainable collection of prefix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_PrefixChainable__2_Pidgin_Parser___0_Func___1___1_____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.PrefixChainable%60%602(Pidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L193">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_Operator_PrefixChainable_" data-uid="Pidgin.Expression.Operator.PrefixChainable*"></a>
+  <h4 id="Pidgin_Expression_Operator_PrefixChainable__2_Pidgin_Parser___0_Func___1___1_____" data-uid="Pidgin.Expression.Operator.PrefixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])">PrefixChainable&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;[])</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a chainable collection of prefix operators.
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
+<p>This method is equivalent to:</p>
+<pre><code>Prefix(
+    OneOf(opParsers)
+        .AtLeastOnce()
+        .Select&lt;Func&lt;T, T>>(fs => z => fs.AggregateR(z, (f, x) => f(x)))
+)</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; PrefixChainable&lt;TToken, T&gt;(params Parser&lt;TToken, Func&lt;T, T&gt;&gt;[] opParsers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;[]</td>
+        <td><span class="parametername">opParsers</span></td>
+        <td><p>A collection of parsers for individual prefix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>A row in a table of operators which contains a chainable collection of prefix operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator_Unary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator.Unary%60%602(Pidgin.Expression.UnaryOperatorType%2CPidgin.Parser%7B%60%600%2CFunc%7B%60%601%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L50">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_Operator_Unary_" data-uid="Pidgin.Expression.Operator.Unary*"></a>
+  <h4 id="Pidgin_Expression_Operator_Unary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___" data-uid="Pidgin.Expression.Operator.Unary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})">Unary&lt;TToken, T&gt;(UnaryOperatorType, Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators which contains a single unary operator - either a prefix operator or a postfix operator.
+Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow&lt;TToken, T&gt;</a>s using
+<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2_And_Pidgin_Expression_OperatorTableRow__0__1__">And(OperatorTableRow&lt;TToken, T&gt;)</a> to build a larger row.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; Unary&lt;TToken, T&gt;(UnaryOperatorType type, Parser&lt;TToken, Func&lt;T, T&gt;&gt; opParser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.UnaryOperatorType.html">UnaryOperatorType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type of the unary operator</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">Func</span>&lt;T, T&gt;&gt;</td>
+        <td><span class="parametername">opParser</span></td>
+        <td><p>A parser for a unary operator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>A row in a table of operators which contains a single unary operator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -609,7 +913,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
                     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_Operator.md&amp;value=---%0Auid%3A%20Pidgin.Expression.Operator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/Operator.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

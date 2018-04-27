@@ -396,15 +396,6 @@ references:
   fullName.vb: Pidgin.Expression.Operator.Binary(Of TToken, T)(Pidgin.Expression.BinaryOperatorType, Pidgin.Parser(Of TToken, Func(Of T, T, T)))
   nameWithType: Operator.Binary<TToken, T>(BinaryOperatorType, Parser<TToken, Func<T, T, T>>)
   nameWithType.vb: Operator.Binary(Of TToken, T)(BinaryOperatorType, Parser(Of TToken, Func(Of T, T, T)))
-- uid: Pidgin.Expression.Operator.Binary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})
-  name: Binary<TToken, T>(UnaryOperatorType, Parser<TToken, Func<T, T>>)
-  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Binary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___
-  commentId: M:Pidgin.Expression.Operator.Binary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})
-  name.vb: Binary(Of TToken, T)(UnaryOperatorType, Parser(Of TToken, Func(Of T, T)))
-  fullName: Pidgin.Expression.Operator.Binary<TToken, T>(Pidgin.Expression.UnaryOperatorType, Pidgin.Parser<TToken, Func<T, T>>)
-  fullName.vb: Pidgin.Expression.Operator.Binary(Of TToken, T)(Pidgin.Expression.UnaryOperatorType, Pidgin.Parser(Of TToken, Func(Of T, T)))
-  nameWithType: Operator.Binary<TToken, T>(UnaryOperatorType, Parser<TToken, Func<T, T>>)
-  nameWithType.vb: Operator.Binary(Of TToken, T)(UnaryOperatorType, Parser(Of TToken, Func(Of T, T)))
 - uid: Pidgin.Expression.Operator.InfixL*
   name: InfixL
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_InfixL_
@@ -469,6 +460,31 @@ references:
   fullName.vb: Pidgin.Expression.Operator.Postfix(Of TToken, T)(Pidgin.Parser(Of TToken, Func(Of T, T)))
   nameWithType: Operator.Postfix<TToken, T>(Parser<TToken, Func<T, T>>)
   nameWithType.vb: Operator.Postfix(Of TToken, T)(Parser(Of TToken, Func(Of T, T)))
+- uid: Pidgin.Expression.Operator.PostfixChainable*
+  name: PostfixChainable
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PostfixChainable_
+  commentId: Overload:Pidgin.Expression.Operator.PostfixChainable
+  isSpec: "True"
+  fullName: Pidgin.Expression.Operator.PostfixChainable
+  nameWithType: Operator.PostfixChainable
+- uid: Pidgin.Expression.Operator.PostfixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})
+  name: PostfixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>>)
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PostfixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____
+  commentId: M:Pidgin.Expression.Operator.PostfixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})
+  name.vb: PostfixChainable(Of TToken, T)(IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
+  fullName: Pidgin.Expression.Operator.PostfixChainable<TToken, T>(IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>)
+  fullName.vb: Pidgin.Expression.Operator.PostfixChainable(Of TToken, T)(IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T))))
+  nameWithType: Operator.PostfixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>>)
+  nameWithType.vb: Operator.PostfixChainable(Of TToken, T)(IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
+- uid: Pidgin.Expression.Operator.PostfixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])
+  name: PostfixChainable<TToken, T>(Parser<TToken, Func<T, T>>[])
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PostfixChainable__2_Pidgin_Parser___0_Func___1___1_____
+  commentId: M:Pidgin.Expression.Operator.PostfixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])
+  name.vb: PostfixChainable(Of TToken, T)(Parser(Of TToken, Func(Of T, T))())
+  fullName: Pidgin.Expression.Operator.PostfixChainable<TToken, T>(Pidgin.Parser<TToken, Func<T, T>>[])
+  fullName.vb: Pidgin.Expression.Operator.PostfixChainable(Of TToken, T)(Pidgin.Parser(Of TToken, Func(Of T, T))())
+  nameWithType: Operator.PostfixChainable<TToken, T>(Parser<TToken, Func<T, T>>[])
+  nameWithType.vb: Operator.PostfixChainable(Of TToken, T)(Parser(Of TToken, Func(Of T, T))())
 - uid: Pidgin.Expression.Operator.Prefix*
   name: Prefix
   href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix_
@@ -485,6 +501,47 @@ references:
   fullName.vb: Pidgin.Expression.Operator.Prefix(Of TToken, T)(Pidgin.Parser(Of TToken, Func(Of T, T)))
   nameWithType: Operator.Prefix<TToken, T>(Parser<TToken, Func<T, T>>)
   nameWithType.vb: Operator.Prefix(Of TToken, T)(Parser(Of TToken, Func(Of T, T)))
+- uid: Pidgin.Expression.Operator.PrefixChainable*
+  name: PrefixChainable
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PrefixChainable_
+  commentId: Overload:Pidgin.Expression.Operator.PrefixChainable
+  isSpec: "True"
+  fullName: Pidgin.Expression.Operator.PrefixChainable
+  nameWithType: Operator.PrefixChainable
+- uid: Pidgin.Expression.Operator.PrefixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})
+  name: PrefixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>>)
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PrefixChainable__2_IEnumerable_Pidgin_Parser___0_Func___1___1____
+  commentId: M:Pidgin.Expression.Operator.PrefixChainable``2(IEnumerable{Pidgin.Parser{``0,Func{``1,``1}}})
+  name.vb: PrefixChainable(Of TToken, T)(IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
+  fullName: Pidgin.Expression.Operator.PrefixChainable<TToken, T>(IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>)
+  fullName.vb: Pidgin.Expression.Operator.PrefixChainable(Of TToken, T)(IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T))))
+  nameWithType: Operator.PrefixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>>)
+  nameWithType.vb: Operator.PrefixChainable(Of TToken, T)(IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
+- uid: Pidgin.Expression.Operator.PrefixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])
+  name: PrefixChainable<TToken, T>(Parser<TToken, Func<T, T>>[])
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_PrefixChainable__2_Pidgin_Parser___0_Func___1___1_____
+  commentId: M:Pidgin.Expression.Operator.PrefixChainable``2(Pidgin.Parser{``0,Func{``1,``1}}[])
+  name.vb: PrefixChainable(Of TToken, T)(Parser(Of TToken, Func(Of T, T))())
+  fullName: Pidgin.Expression.Operator.PrefixChainable<TToken, T>(Pidgin.Parser<TToken, Func<T, T>>[])
+  fullName.vb: Pidgin.Expression.Operator.PrefixChainable(Of TToken, T)(Pidgin.Parser(Of TToken, Func(Of T, T))())
+  nameWithType: Operator.PrefixChainable<TToken, T>(Parser<TToken, Func<T, T>>[])
+  nameWithType.vb: Operator.PrefixChainable(Of TToken, T)(Parser(Of TToken, Func(Of T, T))())
+- uid: Pidgin.Expression.Operator.Unary*
+  name: Unary
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Unary_
+  commentId: Overload:Pidgin.Expression.Operator.Unary
+  isSpec: "True"
+  fullName: Pidgin.Expression.Operator.Unary
+  nameWithType: Operator.Unary
+- uid: Pidgin.Expression.Operator.Unary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})
+  name: Unary<TToken, T>(UnaryOperatorType, Parser<TToken, Func<T, T>>)
+  href: api/Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Unary__2_Pidgin_Expression_UnaryOperatorType_Pidgin_Parser___0_Func___1___1___
+  commentId: M:Pidgin.Expression.Operator.Unary``2(Pidgin.Expression.UnaryOperatorType,Pidgin.Parser{``0,Func{``1,``1}})
+  name.vb: Unary(Of TToken, T)(UnaryOperatorType, Parser(Of TToken, Func(Of T, T)))
+  fullName: Pidgin.Expression.Operator.Unary<TToken, T>(Pidgin.Expression.UnaryOperatorType, Pidgin.Parser<TToken, Func<T, T>>)
+  fullName.vb: Pidgin.Expression.Operator.Unary(Of TToken, T)(Pidgin.Expression.UnaryOperatorType, Pidgin.Parser(Of TToken, Func(Of T, T)))
+  nameWithType: Operator.Unary<TToken, T>(UnaryOperatorType, Parser<TToken, Func<T, T>>)
+  nameWithType.vb: Operator.Unary(Of TToken, T)(UnaryOperatorType, Parser(Of TToken, Func(Of T, T)))
 - uid: Pidgin.Expression.OperatorTableRow`2
   name: OperatorTableRow<TToken, T>
   href: api/Pidgin.Expression.OperatorTableRow-2.html
