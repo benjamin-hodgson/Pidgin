@@ -22,6 +22,10 @@ namespace Pidgin.Expression
             Parser<TToken, Func<T, T, T>> opParser
         )
         {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
             switch (type)
             {
                 case BinaryOperatorType.NonAssociative:
@@ -48,6 +52,10 @@ namespace Pidgin.Expression
             Parser<TToken, Func<T, T>> opParser
         )
         {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
             switch (type)
             {
                 case UnaryOperatorType.Prefix:
@@ -67,13 +75,13 @@ namespace Pidgin.Expression
         /// <param name="opParser">A parser for an infix operator</param>
         /// <returns>A row in a table of operators which contains a single infix operator.</returns>
         public static OperatorTableRow<TToken, T> InfixN<TToken, T>(Parser<TToken, Func<T, T, T>> opParser)
-            => new OperatorTableRow<TToken, T>(
-                new[]{ opParser },
-                null,
-                null,
-                null,
-                null
-            );
+        {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
+            return new OperatorTableRow<TToken, T>(new[]{ opParser }, null, null, null, null );
+        }
 
         /// <summary>
         /// Creates a row in a table of operators which contains a single left-associative infix operator.
@@ -83,13 +91,13 @@ namespace Pidgin.Expression
         /// <param name="opParser">A parser for an infix operator</param>
         /// <returns>A row in a table of operators which contains a single infix operator.</returns>
         public static OperatorTableRow<TToken, T> InfixL<TToken, T>(Parser<TToken, Func<T, T, T>> opParser)
-            => new OperatorTableRow<TToken, T>(
-                null,
-                new[]{ opParser },
-                null,
-                null,
-                null
-            );
+        {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
+            return new OperatorTableRow<TToken, T>(null, new[]{ opParser }, null, null, null);
+        }
 
         /// <summary>
         /// Creates a row in a table of operators which contains a single right-associative infix operator.
@@ -99,13 +107,13 @@ namespace Pidgin.Expression
         /// <param name="opParser">A parser for an infix operator</param>
         /// <returns>A row in a table of operators which contains a single infix operator.</returns>
         public static OperatorTableRow<TToken, T> InfixR<TToken, T>(Parser<TToken, Func<T, T, T>> opParser)
-            => new OperatorTableRow<TToken, T>(
-                null,
-                null,
-                new[]{ opParser },
-                null,
-                null
-            );
+        {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
+            return new OperatorTableRow<TToken, T>(null, null, new[]{ opParser }, null, null);
+        }
 
         /// <summary>
         /// Creates a row in a table of operators which contains a single prefix operator.
@@ -115,13 +123,13 @@ namespace Pidgin.Expression
         /// <param name="opParser">A parser for an prefix operator</param>
         /// <returns>A row in a table of operators which contains a single prefix operator.</returns>
         public static OperatorTableRow<TToken, T> Prefix<TToken, T>(Parser<TToken, Func<T, T>> opParser)
-            => new OperatorTableRow<TToken, T>(
-                null,
-                null,
-                null,
-                new[]{ opParser },
-                null
-            );
+        {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
+            return new OperatorTableRow<TToken, T>(null, null, null, new[]{ opParser }, null);
+        }
 
         /// <summary>
         /// Creates a row in a table of operators which contains a single postfix operator.
@@ -131,13 +139,13 @@ namespace Pidgin.Expression
         /// <param name="opParser">A parser for an postfix operator</param>
         /// <returns>A row in a table of operators which contains a single postfix operator.</returns>
         public static OperatorTableRow<TToken, T> Postfix<TToken, T>(Parser<TToken, Func<T, T>> opParser)
-            => new OperatorTableRow<TToken, T>(
-                null,
-                null,
-                null,
-                null,
-                new[]{ opParser }
-            );
+        {
+            if (opParser == null)
+            {
+                throw new ArgumentNullException(nameof(opParser));
+            }
+            return new OperatorTableRow<TToken, T>(null, null, null, null, new[]{ opParser });
+        }
         
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
