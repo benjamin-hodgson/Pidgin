@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pidgin.Expression
 {
@@ -136,5 +138,97 @@ namespace Pidgin.Expression
                 null,
                 new[]{ opParser }
             );
+        
+        /// <summary>
+        /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
+        /// By default <see cref="Prefix"/> operators can only appear onc, so <c>- - 1</c> would not be parsed as "minus minus 1".
+        /// 
+        /// This method is equivalent to:
+        /// <code>
+        /// Prefix(
+        ///     OneOf(opParsers)
+        ///         .AtLeastOnce()
+        ///         .Select&lt;Func&lt;T, T&gt;&gt;(fs => z => fs.AggregateR(z, (f, x) => f(x)))
+        /// )
+        /// </code>
+        /// </summary>
+        /// <param name="opParsers">A collection of parsers for individual prefix operators</param>
+        /// <returns>A row in a table of operators which contains a chainable collection of prefix operators</returns>
+        public static OperatorTableRow<TToken, T> PrefixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>> opParsers)
+            => Prefix(
+                Parser.OneOf(opParsers)
+                    .AtLeastOncePooled()
+                    .Select<Func<T, T>>(fs =>
+                        z =>
+                        {
+                            var result = fs.AggregateR(z, (f, x) => f(x));
+                            fs.Clear();
+                            return result;
+                        }
+                    )
+            );
+        /// <summary>
+        /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
+        /// By default <see cref="Prefix"/> operators can only appear onc, so <c>- - 1</c> would not be parsed as "minus minus 1".
+        /// 
+        /// This method is equivalent to:
+        /// <code>
+        /// Prefix(
+        ///     OneOf(opParsers)
+        ///         .AtLeastOnce()
+        ///         .Select&lt;Func&lt;T, T&gt;&gt;(fs => z => fs.AggregateR(z, (f, x) => f(x)))
+        /// )
+        /// </code>
+        /// </summary>
+        /// <param name="opParsers">A collection of parsers for individual prefix operators</param>
+        /// <returns>A row in a table of operators which contains a chainable collection of prefix operators</returns>
+        public static OperatorTableRow<TToken, T> PrefixChainable<TToken, T>(params Parser<TToken, Func<T, T>>[] opParsers)
+            => PrefixChainable(opParsers.AsEnumerable());
+        
+        /// <summary>
+        /// Creates a row in a table of operators which contains a chainable collection of postfix operators.
+        /// By default <see cref="Postfix"/> operators can only appear onc, so <c>foo()()</c> would not be parsed as "call(call(foo))".
+        /// 
+        /// This method is equivalent to:
+        /// <code>
+        /// Postfix(
+        ///     OneOf(opParsers)
+        ///         .AtLeastOnce()
+        ///         .Select&lt;Func&lt;T, T&gt;&gt;(fs => z => fs.Aggregate(z, (x, f) => f(x)))
+        /// )
+        /// </code>
+        /// </summary>
+        /// <param name="opParsers">A collection of parsers for individual postfix operators</param>
+        /// <returns>A row in a table of operators which contains a chainable collection of postfix operators</returns>
+        public static OperatorTableRow<TToken, T> PostfixChainable<TToken, T>(IEnumerable<Parser<TToken, Func<T, T>>> opParsers)
+            => Postfix(
+                Parser.OneOf(opParsers)
+                    .AtLeastOncePooled()
+                    .Select<Func<T, T>>(fs =>
+                        z =>
+                        {
+                            var result = fs.Aggregate(z, (x, f) => f(x));
+                            fs.Clear();
+                            return result;
+                        }
+                    )
+            );
+        /// <summary>
+        /// Creates a row in a table of operators which contains a chainable collection of postfix operators.
+        /// By default <see cref="Postfix"/> operators can only appear onc, so <c>foo()()</c> would not be parsed as "call(call(foo))".
+        /// 
+        /// This method is equivalent to:
+        /// <code>
+        /// Postfix(
+        ///     OneOf(opParsers)
+        ///         .AtLeastOnce()
+        ///         .Select&lt;Func&lt;T, T&gt;&gt;(fs => z => fs.Aggregate(z, (x, f) => f(x)))
+        /// )
+        /// </code>
+        /// </summary>
+        /// <param name="opParsers">A collection of parsers for individual postfix operators</param>
+        /// <returns>A row in a table of operators which contains a chainable collection of postfix operators</returns>
+        public static OperatorTableRow<TToken, T> PostfixChainable<TToken, T>(params Parser<TToken, Func<T, T>>[] opParsers)
+            => PostfixChainable(opParsers.AsEnumerable());
     }
 }

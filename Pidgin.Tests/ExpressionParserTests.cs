@@ -273,6 +273,36 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestPrefixChainable()
+        {
+            Parser<char, bool> parser = null;
+            var termParser =
+                String("false").Select(_ => false)
+                    .Or(String("true").Select(_ => true))
+                    .Or(Rec(() => parser).Between(Char('('), Char(')')));
+            parser = ExpressionParser.Build(
+                termParser,
+                new[]
+                {
+                    new[]
+                    {
+                        Operator.PrefixChainable(
+                            Char('!').Select<Func<bool, bool>>(_ => b => !b),
+                            Char('~').Select<Func<bool, bool>>(_ => b => !b)
+                        )
+                    }
+                }
+            );
+
+            AssertSuccess(parser.Parse("true"), true, true);
+            AssertSuccess(parser.Parse("!true"), false, true);
+            AssertSuccess(parser.Parse("!(!true)"), true, true);
+            AssertSuccess(parser.Parse("!!true"), true, true);
+            AssertSuccess(parser.Parse("!~true"), true, true);
+            AssertSuccess(parser.Parse("~!true"), true, true);
+        }
+
+        [Fact]
         public void TestPostfix()
         {
             Func<dynamic> f = () => true;
@@ -292,6 +322,30 @@ namespace Pidgin.Tests
 
             AssertSuccess(parser.Parse("f"), f, true);
             AssertSuccess(parser.Parse("f()"), f(), true);
+        }
+
+        [Fact]
+        public void TestPostfixChainable()
+        {
+            Func<dynamic> f = () => true;
+            Func<Func<dynamic>> g = () => f;
+
+            Parser<char, dynamic> parser = null;
+            var termParser = String("f").Select<dynamic>(_ => f).Or(String("g").Select<dynamic>(_ => g));
+            parser = ExpressionParser.Build(
+                termParser,
+                new[]
+                {
+                    new[]
+                    {
+                        Operator.PostfixChainable(String("()").Select<Func<dynamic, dynamic>>(_ => h => h()))
+                    }
+                }
+            );
+
+            AssertSuccess(parser.Parse("f"), f, true);
+            AssertSuccess(parser.Parse("f()"), f(), true);
+            AssertSuccess(parser.Parse("g()()"), g()(), true);
         }
     }
 }
