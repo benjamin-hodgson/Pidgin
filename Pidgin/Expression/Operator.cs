@@ -43,7 +43,7 @@ namespace Pidgin.Expression
         /// <param name="type">The type of the unary operator</param>
         /// <param name="opParser">A parser for a unary operator</param>
         /// <returns>A row in a table of operators which contains a single unary operator.</returns>
-        public static OperatorTableRow<TToken, T> Binary<TToken, T>(
+        public static OperatorTableRow<TToken, T> Unary<TToken, T>(
             UnaryOperatorType type,
             Parser<TToken, Func<T, T>> opParser
         )
