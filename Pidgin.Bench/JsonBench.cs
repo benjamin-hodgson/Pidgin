@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using Pidgin.Bench.SpracheParsers;
 using Pidgin.Bench.SuperpowerParsers;
 using Pidgin.Examples.Json;
 
 namespace Pidgin.Bench
 {
-    [MemoryDiagnoser]
+    [MemoryDiagnoser, GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     public class JsonBench
     {
         private string _bigJson;
@@ -26,86 +27,86 @@ namespace Pidgin.Bench
             _deepJson = BuildJson(1, 256, 1).ToString();
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Big")]
         public void BigJson_Pidgin()
         {
             JsonParser.Parse(_bigJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Big")]
         public void BigJson_Sprache()
         {
             SpracheJsonParser.Parse(_bigJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Big")]
         public void BigJson_Superpower()
         {
             SuperpowerJsonParser.Parse(_bigJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Big")]
         public void BigJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_bigJson);
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Long")]
         public void LongJson_Pidgin()
         {
             JsonParser.Parse(_longJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongJson_Sprache()
         {
             SpracheJsonParser.Parse(_longJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongJson_Superpower()
         {
             SuperpowerJsonParser.Parse(_longJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_longJson);
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Deep")]
         public void DeepJson_Pidgin()
         {
             JsonParser.Parse(_deepJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Deep")]
         public void DeepJson_Sprache()
         {
             SpracheJsonParser.Parse(_deepJson);
         }
         // this one blows the stack
-        // [Benchmark]
+        // [Benchmark, BenchmarkCategory("Deep")]
         // public void DeepJson_Superpower()
         // {
         //     SuperpowerJsonParser.Parse(_deepJson);
         // }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Deep")]
         public void DeepJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
         }
 
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Wide")]
         public void WideJson_Pidgin()
         {
             JsonParser.Parse(_wideJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Wide")]
         public void WideJson_Sprache()
         {
             SpracheJsonParser.Parse(_wideJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Wide")]
         public void WideJson_Superpower()
         {
             SuperpowerJsonParser.Parse(_wideJson);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Wide")]
         public void WideJson_FParsec()
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
