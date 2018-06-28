@@ -68,6 +68,12 @@ namespace Pidgin
         /// Render the parse error as a string
         /// </summary>
         /// <returns>An error message</returns>
+        public override string ToString() => RenderErrorMessage();
+        
+        /// <summary>
+        /// Render the parse error as a string
+        /// </summary>
+        /// <returns>An error message</returns>
         public string RenderErrorMessage()
         {
             var sb = new StringBuilder();

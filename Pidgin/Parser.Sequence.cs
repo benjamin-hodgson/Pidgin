@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -51,7 +50,7 @@ namespace Pidgin
                 _valueTokens = value.ToArray();
             }
 
-            internal sealed override InternalResult<TEnumerable> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
                 foreach (var x in _valueTokens)
@@ -131,7 +130,7 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
-            internal sealed override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
                 var ts = new T[_parsers.Length];
@@ -140,7 +139,7 @@ namespace Pidgin
                 {
                     var p = _parsers[i];
                 
-                    var result = p.Parse(state);
+                    var result = p.Parse(ref state);
                     consumedInput = consumedInput || result.ConsumedInput;
                 
                     if (!result.Success)

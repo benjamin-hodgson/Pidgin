@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -31,15 +30,15 @@ namespace Pidgin
                 _errorHandler = errorHandler;
             }
 
-            internal override InternalResult<T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (result.Success)
                 {
                     return result;
                 }
                 var recoverParser = _errorHandler(state.Error);
-                return recoverParser.Parse(state);
+                return recoverParser.Parse(ref state);
             }
         }
     }

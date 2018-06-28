@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -40,6 +39,6 @@ namespace Pidgin
         // Why pass the error by reference?
         // I previously passed Result around directly, which has an Error property,
         // but copying it around turned out to be too expensive because ParseError is a large struct
-        internal abstract InternalResult<T> Parse(IParseState<TToken> state);
+        internal abstract InternalResult<T> Parse(ref ParseState<TToken> state);
     }
 }

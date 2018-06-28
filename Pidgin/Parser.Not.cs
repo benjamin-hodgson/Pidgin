@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -33,11 +32,11 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal sealed override InternalResult<Unit> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var startingPosition = state.SourcePos;
                 var token = state.Peek();
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (result.Success)
                 {
                     state.Error = new ParseError<TToken>(

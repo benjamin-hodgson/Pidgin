@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -22,7 +21,7 @@ namespace Pidgin
             {
             }
 
-            internal sealed override InternalResult<Unit> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var result = state.Peek();
                 if (result.HasValue)

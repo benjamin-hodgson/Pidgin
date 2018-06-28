@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
-using Pidgin.ParseStates;
 using Xunit;
 using static System.Linq.Expressions.Expression;
 
@@ -178,7 +177,7 @@ namespace Pidgin.Tests
         {
             public AParser() : base(ImmutableSortedSet.Create<Expected<TToken>>()) { }
 
-            internal override InternalResult<T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 throw new NotImplementedException();
             }

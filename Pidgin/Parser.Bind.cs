@@ -1,5 +1,4 @@
 using System;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -56,16 +55,16 @@ namespace Pidgin
                 _result = result;
             }
 
-            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (!result.Success)
                 {
                     // state.Error set by _parser
                     return InternalResult.Failure<R>(result.ConsumedInput);
                 }
                 var nextParser = _func(result.Value);
-                var result2 = nextParser.Parse(state);
+                var result2 = nextParser.Parse(ref state);
                 if (!result2.Success)
                 {
                     // state.Error set by nextParser

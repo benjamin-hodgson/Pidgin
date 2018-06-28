@@ -1,5 +1,4 @@
 using System;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -29,7 +28,7 @@ namespace Pidgin
                 _message = message;
             }
 
-            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 state.Error = new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),

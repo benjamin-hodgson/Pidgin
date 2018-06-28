@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -47,14 +46,14 @@ namespace Pidgin
                 _count = count;
             }
 
-            internal override InternalResult<string> Parse(IParseState<TToken> state)
+            internal override InternalResult<string> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
                 var builder = new PooledStringBuilder(_count);
 
                 for (var _ = 0; _ < _count; _++)
                 {
-                    var result = _parser.Parse(state);
+                    var result = _parser.Parse(ref state);
                     consumedInput = consumedInput || result.ConsumedInput;
 
                     if (!result.Success)

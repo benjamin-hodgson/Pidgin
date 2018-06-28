@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Pidgin.ParseStates;
+using Pidgin.TokenStreams;
 
 namespace Pidgin
 {
@@ -18,7 +18,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<char, T> Parse<T>(this Parser<char, T> parser, string input, Func<char, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new StringParseState(input, calculatePos ?? Parser.DefaultCharPosCalculator));
+            => DoParse(parser, new StringTokenStream(input), calculatePos ?? Parser.DefaultCharPosCalculator);
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
@@ -28,7 +28,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, IList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new ListParseState<TToken>(input, calculatePos ?? Parser.GetDefaultPosCalculator<TToken>()));
+            => DoParse(parser, new ListTokenStream<TToken>(input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
@@ -38,7 +38,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> ParseReadOnlyList<TToken, T>(this Parser<TToken, T> parser, IReadOnlyList<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new ReadOnlyListParseState<TToken>(input, calculatePos ?? Parser.GetDefaultPosCalculator<TToken>()));
+            => DoParse(parser, new ReadOnlyListTokenStream<TToken>(input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
@@ -63,17 +63,19 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, IEnumerator<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new EnumeratorParseState<TToken>(input, calculatePos ?? Parser.GetDefaultPosCalculator<TToken>()));
+            => DoParse(parser, new EnumeratorTokenStream<TToken>(input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
 
         /// <summary>
-        /// Applies <paramref name="parser"/> to <paramref name="input"/>
+        /// Applies <paramref name="parser"/> to <paramref name="input"/>.
+        /// Note that more characters may be consumed from <paramref name="input"/> than were required for parsing.
+        /// You may need to manually rewind <paramref name="input"/>
         /// </summary>
         /// <param name="parser">A parser</param>
         /// <param name="input">An input stream</param>
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<byte, T> Parse<T>(this Parser<byte, T> parser, Stream input, Func<byte, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new StreamParseState(input, calculatePos ?? Parser.DefaultBytePosCalculator));
+            => DoParse(parser, new StreamTokenStream(input), calculatePos ?? Parser.DefaultBytePosCalculator);
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
@@ -83,20 +85,20 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<char, T> Parse<T>(this Parser<char, T> parser, TextReader input, Func<char, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new ReaderParseState(input, calculatePos ?? Parser.DefaultCharPosCalculator));
+            => DoParse(parser, new ReaderTokenStream(input), calculatePos ?? Parser.DefaultCharPosCalculator);
         
-        private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, IParseState<TToken> state)
+        private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, Func<TToken, SourcePos, SourcePos> calculatePos)
         {
-            using (state)  // ensure we return the state's buffer to the buffer pool
-            {
-                state.Advance();  // pull the first element from the input
-                var result = parser.Parse(state);
-                if (!result.Success)
-                {
-                    return new Result<TToken, T>(result.ConsumedInput, state.Error);
-                }
-                return new Result<TToken, T>(result.ConsumedInput, result.Value);
-            }
+            var state = new ParseState<TToken>(calculatePos, stream);
+            state.Advance();  // pull the first element from the input
+
+            var result = parser.Parse(ref state);
+
+            state.Dispose();  // ensure we return the state's buffer to the buffer pool
+            
+            return result.Success
+                ? new Result<TToken, T>(result.ConsumedInput, result.Value)
+                : new Result<TToken, T>(result.ConsumedInput, state.Error);
         }
 
 

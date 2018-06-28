@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -124,7 +123,7 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
-            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 var firstTime = true;
                 var err = new ParseError<TToken>(
@@ -137,7 +136,7 @@ namespace Pidgin
                 InternalResult<T> failureResult = InternalResult.Failure<T>(false);
                 foreach (var p in _parsers)
                 {
-                    var thisResult = p.Parse(state);
+                    var thisResult = p.Parse(ref state);
                     // we'll usually return the error from the first parser that didn't backtrack,
                     // even if other parsers had a longer match.
                     // There is some room for improvement here.

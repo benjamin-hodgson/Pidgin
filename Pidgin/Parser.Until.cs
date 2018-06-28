@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -92,7 +91,7 @@ namespace Pidgin
                 _keepResults = keepResults;
             }
 
-            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var ts = _keepResults ? new List<T>() : null;
                 var firstTime = true;
@@ -100,7 +99,7 @@ namespace Pidgin
                 InternalResult<U> terminatorResult;
                 do
                 {
-                    var itemResult = _parser.Parse(state);
+                    var itemResult = _parser.Parse(ref state);
                     consumedInput = consumedInput || itemResult.ConsumedInput;
                     if (!itemResult.Success)
                     {
@@ -119,7 +118,7 @@ namespace Pidgin
                     ts?.Add(itemResult.Value);
 
 
-                    terminatorResult = _terminator.Parse(state);
+                    terminatorResult = _terminator.Parse(ref state);
                     if (terminatorResult.ConsumedInput && !terminatorResult.Success)
                     {
                         // state.Error set by _terminator

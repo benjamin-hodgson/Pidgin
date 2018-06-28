@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -26,7 +25,7 @@ namespace Pidgin
                 _token = token;
             }
 
-            internal sealed override InternalResult<TToken> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
                 var x = state.Peek();
                 if (!x.HasValue)
@@ -81,7 +80,7 @@ namespace Pidgin
                 _predicate = predicate;
             }
 
-            internal sealed override InternalResult<TToken> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
                 var x = state.Peek();
                 if (!x.HasValue)

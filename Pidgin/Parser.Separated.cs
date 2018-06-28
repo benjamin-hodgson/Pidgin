@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -50,20 +49,20 @@ namespace Pidgin
                 _remainderParser = separator.Then(parser);
             }
 
-            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (!result.Success)
                 {
                     // state.Error set by _parser
                     return InternalResult.Failure<IEnumerable<T>>(result.ConsumedInput);
                 }
-                return Rest(_remainderParser, state, new List<T> { result.Value }, result.ConsumedInput);
+                return Rest(_remainderParser, ref state, new List<T> { result.Value }, result.ConsumedInput);
             }
 
-            private InternalResult<IEnumerable<T>> Rest(Parser<TToken, T> parser, IParseState<TToken> state, List<T> ts, bool consumedInput)
+            private InternalResult<IEnumerable<T>> Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, List<T> ts, bool consumedInput)
             {
-                var result = parser.Parse(state);
+                var result = parser.Parse(ref state);
                 while (result.Success)
                 {
                     if (!result.ConsumedInput)
@@ -72,7 +71,7 @@ namespace Pidgin
                     }
                     consumedInput = true;
                     ts?.Add(result.Value);
-                    result = parser.Parse(state);
+                    result = parser.Parse(ref state);
                 }
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
@@ -159,9 +158,9 @@ namespace Pidgin
                 _separator = separator;
             }
 
-            internal override InternalResult<IEnumerable<T>> Parse(IParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (!result.Success)
                 {
                     // state.Error set by _parser
@@ -172,7 +171,7 @@ namespace Pidgin
 
                 while (true)
                 {
-                    var sepResult = _separator.Parse(state);
+                    var sepResult = _separator.Parse(ref state);
                     consumedInput = consumedInput || sepResult.ConsumedInput;
                     if (!sepResult.Success)
                     {
@@ -184,7 +183,7 @@ namespace Pidgin
                         return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
                     }
 
-                    var itemResult = _parser.Parse(state);
+                    var itemResult = _parser.Parse(ref state);
                     consumedInput = consumedInput || itemResult.ConsumedInput;
                     if (!itemResult.Success)
                     {

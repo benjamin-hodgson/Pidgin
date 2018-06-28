@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -60,8 +59,8 @@ namespace Pidgin
                 _lazy = lazy;
             }
 
-            internal sealed override InternalResult<T> Parse(IParseState<TToken> state)
-                => _lazy.Value.Parse(state);
+            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+                => _lazy.Value.Parse(ref state);
         }
     }
 }

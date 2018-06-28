@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -46,7 +45,7 @@ namespace Pidgin
                 _value = value.ToLowerInvariant();
             }
 
-            internal sealed override InternalResult<string> Parse(IParseState<char> state)
+            internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
             {
                 var consumedInput = false;
 

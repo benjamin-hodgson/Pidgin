@@ -1,5 +1,3 @@
-using Pidgin.ParseStates;
-
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -17,7 +15,7 @@ namespace Pidgin
             {
             }
 
-            internal override InternalResult<SourcePos> Parse(IParseState<TToken> state)
+            internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
                 => InternalResult.Success(state.SourcePos, false);
         }
     }

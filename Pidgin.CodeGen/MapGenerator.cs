@@ -19,7 +19,6 @@ namespace Pidgin.CodeGen
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {{
@@ -114,7 +113,7 @@ namespace Pidgin
                 {string.Join($"{Environment.NewLine}                ", parserFieldAssignments)}
             }}
 
-            internal sealed override InternalResult<R> Parse(IParseState<TToken> state)
+            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {{
                 var consumedInput = false;
 
@@ -135,7 +134,7 @@ namespace Pidgin
 
         private static string GenerateMethodBodyPart(int num)
             => $@"
-                var result{num} = _p{num}.Parse(state);
+                var result{num} = _p{num}.Parse(ref state);
                 consumedInput = consumedInput || result{num}.ConsumedInput;
                 if (!result{num}.Success)
                 {{

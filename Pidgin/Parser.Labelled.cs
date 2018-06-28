@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -36,9 +35,9 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal override InternalResult<T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
                 if (!result.Success)
                 {
                     state.Error = state.Error.WithExpected(Expected);

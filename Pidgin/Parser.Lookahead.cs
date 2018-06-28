@@ -1,5 +1,4 @@
 using System;
-using Pidgin.ParseStates;
 
 namespace Pidgin
 {
@@ -30,11 +29,11 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            internal override InternalResult<T> Parse(IParseState<TToken> state)
+            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 state.PushBookmark();
 
-                var result = _parser.Parse(state);
+                var result = _parser.Parse(ref state);
 
                 if (result.Success)
                 {
