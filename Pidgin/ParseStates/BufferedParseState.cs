@@ -3,7 +3,7 @@ using System.Buffers;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class BufferedParseState<TToken> : BaseParseState<TToken, Positioned<int>>
+    internal abstract class BufferedParseState<TToken> : BaseParseState<TToken>
     {
         private static readonly int InitialCapacity =
             typeof(TToken).Equals(typeof(char))
@@ -80,9 +80,9 @@ namespace Pidgin.ParseStates
             _current = AdvanceInput();
         }
 
-        protected sealed override Positioned<int> GetBookmark()
-            => new Positioned<int>(_bufPos, _sourcePos);
-        protected sealed override void Rewind(Positioned<int> bookmark)
+        protected sealed override Bookmark GetBookmark()
+            => new Bookmark(_bufPos, _sourcePos);
+        protected sealed override void Rewind(Bookmark bookmark)
         {
             if (_bufPos == _bufSize && _current.HasValue)
             {

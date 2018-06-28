@@ -2,15 +2,15 @@ using System.Collections.Generic;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class BaseParseState<TToken, TBookmark> : IParseState<TToken>
+    internal abstract class BaseParseState<TToken> : IParseState<TToken>
     {
-        private readonly Stack<TBookmark> _bookmarks = new Stack<TBookmark>();
+        private readonly Stack<Bookmark> _bookmarks = new Stack<Bookmark>();
 
         public abstract Maybe<TToken> Peek();
         public abstract void Advance();
         public abstract SourcePos SourcePos { get; }
-        protected abstract TBookmark GetBookmark();
-        protected abstract void Rewind(TBookmark bookmark);
+        protected abstract Bookmark GetBookmark();
+        protected abstract void Rewind(Bookmark bookmark);
 
         public void PushBookmark()
         {

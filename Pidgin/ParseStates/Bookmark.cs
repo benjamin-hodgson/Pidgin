@@ -1,11 +1,11 @@
 namespace Pidgin.ParseStates
 {
-    internal struct Positioned<T>
+    internal struct Bookmark
     {
-        public T Value { get; }
+        public int Value { get; }
         public SourcePos Pos { get; }
 
-        public Positioned(T value, SourcePos sourcePos)
+        public Bookmark(int value, SourcePos sourcePos)
         {
             Value = value;
             Pos = sourcePos;

@@ -2,7 +2,7 @@ using System;
 
 namespace Pidgin.ParseStates
 {
-    internal abstract class InMemoryParseState<TToken> : BaseParseState<TToken, Positioned<int>>
+    internal abstract class InMemoryParseState<TToken> : BaseParseState<TToken>
     {
         private readonly int _count;
         private readonly Func<TToken, SourcePos, SourcePos> _calculatePos;
@@ -26,9 +26,9 @@ namespace Pidgin.ParseStates
             _pos++;
             SetCurrent();
         }
-        protected sealed override Positioned<int> GetBookmark()
-            => new Positioned<int>(_pos, _sourcePos);
-        protected sealed override void Rewind(Positioned<int> bookmark)
+        protected sealed override Bookmark GetBookmark()
+            => new Bookmark(_pos, _sourcePos);
+        protected sealed override void Rewind(Bookmark bookmark)
         {
             _pos = bookmark.Value;
             SetCurrent();
