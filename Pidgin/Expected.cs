@@ -172,11 +172,18 @@ namespace Pidgin
         public static bool operator <=(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) <= 0;
 
-        private static Func<TToken, char> CastToChar { get; } = GetCastToCharMethod();
-        private static Func<TToken, char> GetCastToCharMethod()
+        private static Func<TToken, char> _castToChar;
+        private static Func<TToken, char> CastToChar
         {
-            var param = LExpression.Parameter(typeof(TToken));
-            return LExpression.Lambda<Func<TToken, char>>(param, param).Compile();
+            get
+            {
+                if (_castToChar == null)
+                {
+                    var param = LExpression.Parameter(typeof(TToken));
+                    _castToChar = LExpression.Lambda<Func<TToken, char>>(param, param).Compile();
+                }
+                return _castToChar;
+            }
         }
     }
 }
