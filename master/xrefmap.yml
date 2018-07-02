@@ -1208,6 +1208,23 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).RenderErrorMessage
   nameWithType: ParseError<TToken>.RenderErrorMessage
   nameWithType.vb: ParseError(Of TToken).RenderErrorMessage
+- uid: Pidgin.ParseError`1.ToString
+  name: ToString()
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ToString
+  commentId: M:Pidgin.ParseError`1.ToString
+  fullName: Pidgin.ParseError<TToken>.ToString()
+  fullName.vb: Pidgin.ParseError(Of TToken).ToString()
+  nameWithType: ParseError<TToken>.ToString()
+  nameWithType.vb: ParseError(Of TToken).ToString()
+- uid: Pidgin.ParseError`1.ToString*
+  name: ToString
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ToString_
+  commentId: Overload:Pidgin.ParseError`1.ToString
+  isSpec: "True"
+  fullName: Pidgin.ParseError<TToken>.ToString
+  fullName.vb: Pidgin.ParseError(Of TToken).ToString
+  nameWithType: ParseError<TToken>.ToString
+  nameWithType.vb: ParseError(Of TToken).ToString
 - uid: Pidgin.ParseError`1.Unexpected
   name: Unexpected
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Unexpected
