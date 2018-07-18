@@ -9,7 +9,7 @@ namespace Pidgin
     /// </summary>
     /// <typeparam name="TToken"></typeparam>
     /// <typeparam name="T"></typeparam>
-    public readonly struct Result<TToken, T>
+    public class Result<TToken, T>
     {
         /// <summary>
         /// Did the parse succeed?
