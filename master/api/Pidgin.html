@@ -98,6 +98,10 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
       <h4><a class="xref" href="Pidgin.ParserExtensions.html">ParserExtensions</a></h4>
       <section><p>Extension methods for running parsers</p>
 </section>
+      <h4><a class="xref" href="Pidgin.Result-2.html">Result&lt;TToken, T&gt;</a></h4>
+      <section><p>Represents the result of parsing.
+A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error</p>
+</section>
       <h4><a class="xref" href="Pidgin.Unit.html">Unit</a></h4>
       <section><p>An uninteresting type with only one value (<a class="xref" href="Pidgin.Unit.html#Pidgin_Unit_Value">Value</a>) and no fields.
 Like <code>void</code>, but valid as a type parameter</p>
@@ -115,10 +119,6 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
 </section>
       <h4><a class="xref" href="Pidgin.ParseError-1.html">ParseError&lt;TToken&gt;</a></h4>
       <section><p>Represents an error encountered during parsing.</p>
-</section>
-      <h4><a class="xref" href="Pidgin.Result-2.html">Result&lt;TToken, T&gt;</a></h4>
-      <section><p>Represents the result of parsing.
-A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error</p>
 </section>
       <h4><a class="xref" href="Pidgin.SourcePos.html">SourcePos</a></h4>
       <section><p>Represents a (line, col) position in an input stream</p>

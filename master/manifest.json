@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Result-2.html",
-          "hash": "1b8hj0uPf82TnYY3cOrMdg=="
+          "hash": "s5zzDPOsOcMuUhksVGetQw=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.html",
-          "hash": "mSXSAPQSH315UiQCOQfb2g=="
+          "hash": "Vn2baVOeA0KGQQZ810q6cg=="
         }
       },
       "is_incremental": false,
@@ -353,11 +353,11 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         }
