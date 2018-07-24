@@ -28,7 +28,7 @@ namespace Pidgin.TokenStreams
             return _index < _length;
         }
 
-        public void Dispose() { }
+        public virtual void Dispose() { }
         public void StartBuffering() { }
         public void StopBuffering() { }
     }

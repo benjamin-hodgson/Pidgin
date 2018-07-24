@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Pidgin.TokenStreams;
 
 namespace Pidgin
@@ -53,7 +54,7 @@ namespace Pidgin
             {
                 return Parse(parser, e, calculatePos);
             }
-        } 
+        }
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
@@ -86,7 +87,16 @@ namespace Pidgin
         /// <returns>The result of parsing</returns>
         public static Result<char, T> Parse<T>(this Parser<char, T> parser, TextReader input, Func<char, SourcePos, SourcePos> calculatePos = null)
             => DoParse(parser, new ReaderTokenStream(input), calculatePos ?? Parser.DefaultCharPosCalculator);
-        
+
+        public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
+        {
+            var result = DoParse(parser, new SpanTokenStream<TToken>(ref input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
+            KeepAlive(ref input);
+            return result;
+        }
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void KeepAlive<TToken>(ref ReadOnlySpan<TToken> span) {}
+
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, Func<TToken, SourcePos, SourcePos> calculatePos)
         {
             var state = new ParseState<TToken>(calculatePos, stream);
@@ -95,7 +105,7 @@ namespace Pidgin
             var result = parser.Parse(ref state);
 
             state.Dispose();  // ensure we return the state's buffer to the buffer pool
-            
+
             return result.Success
                 ? new Result<TToken, T>(result.ConsumedInput, result.Value)
                 : new Result<TToken, T>(result.ConsumedInput, state.Error);
