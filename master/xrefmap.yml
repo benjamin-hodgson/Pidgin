@@ -2870,6 +2870,15 @@ references:
   fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
   nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Func<TToken, SourcePos, SourcePos>)
   nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
+  name: Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
 - uid: Pidgin.ParserExtensions.ParseOrThrow*
   name: ParseOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow_
