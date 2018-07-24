@@ -19,7 +19,7 @@ namespace Pidgin.Tests
         [Fact]
         public void TestList()
         {
-            // DoTest((p, x) => p.Parse(x), x => x, x => x.ToCharArray());
+            DoTest((p, x) => p.Parse(x), x => x, x => x.ToCharArray());
         }
         [Fact]
         public void TestReadOnlyList()
