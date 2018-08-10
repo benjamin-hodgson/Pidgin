@@ -12,6 +12,10 @@
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)'=='net46'">
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="../Pidgin/Pidgin.csproj" />
     <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
