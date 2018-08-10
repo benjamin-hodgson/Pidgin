@@ -88,8 +88,23 @@ namespace Pidgin
         public static Result<char, T> Parse<T>(this Parser<char, T> parser, TextReader input, Func<char, SourcePos, SourcePos> calculatePos = null)
             => DoParse(parser, new ReaderTokenStream(input), calculatePos ?? Parser.DefaultCharPosCalculator);
 
+        /// <summary>
+        /// Applies <paramref name="parser"/> to <paramref name="input"/>
+        /// </summary>
+        /// <param name="parser">A parser</param>
+        /// <param name="input">An input array</param>
+        /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
+        /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, TToken[] input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => parser.Parse(input.AsSpan(), calculatePos);
+        
+        /// <summary>
+        /// Applies <paramref name="parser"/> to <paramref name="input"/>
+        /// </summary>
+        /// <param name="parser">A parser</param>
+        /// <param name="input">An input span</param>
+        /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
+        /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
         {
             var result = DoParse(parser, new SpanTokenStream<TToken>(ref input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
@@ -189,6 +204,28 @@ namespace Pidgin
         /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
         /// <returns>The result of parsing</returns>
         public static T ParseOrThrow<T>(this Parser<char, T> parser, TextReader input, Func<char, SourcePos, SourcePos> calculatePos = null)
+            => GetValueOrThrow(parser.Parse(input, calculatePos));
+
+        /// <summary>
+        /// Applies <paramref name="parser"/> to <paramref name="input"/>
+        /// </summary>
+        /// <param name="parser">A parser</param>
+        /// <param name="input">An input array</param>
+        /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
+        /// <returns>The result of parsing</returns>
+        public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, TToken[] input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
+            => GetValueOrThrow(parser.Parse(input, calculatePos));
+
+        /// <summary>
+        /// Applies <paramref name="parser"/> to <paramref name="input"/>
+        /// </summary>
+        /// <param name="parser">A parser</param>
+        /// <param name="input">An input span</param>
+        /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
+        /// <exception cref="ParseException">Thrown when an error occurs during parsing</exception>
+        /// <returns>The result of parsing</returns>
+        public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, Func<TToken, SourcePos, SourcePos> calculatePos = null)
             => GetValueOrThrow(parser.Parse(input, calculatePos));
 
         private static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)
