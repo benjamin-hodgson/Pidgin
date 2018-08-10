@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
-    <TargetFrameworks>netstandard1.3;net451</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net451;netcoreapp2.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(APPVEYOR)' == ''">
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <Target Name="RewriteDll" AfterTargets="Compile">
-    <Exec Command="dotnet run --project $(MSBuildProjectDirectory)/../Pidgin.DllRewriter $(IntermediateOutputPath)Pidgin.dll $(IntermediateOutputPath)Pidgin_Rewritten.dll" />
+    <Exec Command="dotnet run --project $(MSBuildProjectDirectory)/../Pidgin.DllRewriter $(TargetFramework) $(IntermediateOutputPath)Pidgin.dll $(IntermediateOutputPath)Pidgin_Rewritten.dll" />
     <Copy SourceFiles="$(IntermediateOutputPath)Pidgin_Rewritten.dll" DestinationFiles="$(IntermediateOutputPath)Pidgin.dll" />
   </Target>
 
