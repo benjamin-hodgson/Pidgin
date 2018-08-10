@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <Target Name="RewriteDll" AfterTargets="Compile">
-    <Exec Command="dotnet run --project ../Pidgin.DllRewriter $(IntermediateOutputPath)Pidgin.dll $(IntermediateOutputPath)Pidgin_Rewritten.dll" />
+    <Exec Command="dotnet run --project $(MSBuildProjectDirectory)/../Pidgin.DllRewriter $(IntermediateOutputPath)Pidgin.dll $(IntermediateOutputPath)Pidgin_Rewritten.dll" />
     <Copy SourceFiles="$(IntermediateOutputPath)Pidgin_Rewritten.dll" DestinationFiles="$(IntermediateOutputPath)Pidgin.dll" />
   </Target>
 
