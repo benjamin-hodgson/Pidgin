@@ -19,7 +19,7 @@ namespace Pidgin
         /// <param name="calculatePos">A function to calculate the new position after consuming a token, or null to use the default</param>
         /// <returns>The result of parsing</returns>
         public static Result<char, T> Parse<T>(this Parser<char, T> parser, string input, Func<char, SourcePos, SourcePos> calculatePos = null)
-            => DoParse(parser, new StringTokenStream(input), calculatePos ?? Parser.DefaultCharPosCalculator);
+            => Parse(parser, input.AsSpan(), calculatePos ?? Parser.DefaultCharPosCalculator);
 
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
