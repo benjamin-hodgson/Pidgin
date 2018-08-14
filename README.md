@@ -8,7 +8,7 @@ A lightweight, fast, and flexible parsing library for C#, developed at Stack Ove
 Installing
 ----------
 
-Pidgin is [available on Nuget](https://www.nuget.org/packages/Pidgin/). Dev builds can be found [on our AppVeyor Nuget feed](https://ci.appveyor.com/nuget/pidgin-gmkqlk6fi2fp).
+Pidgin is [available on Nuget](https://www.nuget.org/packages/Pidgin/). API docs are hosted [on my website](https://www.benjamin.pizza/Pidgin).
 
 Tutorial
 --------
