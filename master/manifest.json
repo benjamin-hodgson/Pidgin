@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Comment.CommentParser.html",
-          "hash": "j6bE03+c7z7v5GQK5GXcXw=="
+          "hash": "W93iPpsU2Dj97DE/99wmUg=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Comment.html",
-          "hash": "amGX4HM/tohqiLUczEXZWA=="
+          "hash": "kgckhrxUNjD8ywpuGH8MNw=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expected-1.html",
-          "hash": "6eWF2oBKN7N+163QPCIYhQ=="
+          "hash": "y6NgiSLG2QnMsa7Hg1Njxg=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.BinaryOperatorType.html",
-          "hash": "OHtmH9b/hp1PWo7HhSZHMg=="
+          "hash": "WJlDhgDMZPpcpR+tr7hi4A=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.ExpressionParser.html",
-          "hash": "bDtHkeJcCnc9ch2pKC8/bw=="
+          "hash": "+rY142wNkf+QmHkyntx3fg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.Operator.html",
-          "hash": "1RRiOeM/x5BT8F7JDVG4vw=="
+          "hash": "WFOQDz/AiP/b6zOna0p+KQ=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.OperatorTableRow-2.html",
-          "hash": "6dbT/K1XC9b3eMEswPW+7A=="
+          "hash": "sePH0oKrESrKI1UM2LyT9Q=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.UnaryOperatorType.html",
-          "hash": "OF6SI5ZCZ3AvFAotYtiC8w=="
+          "hash": "IrKAuJqKRzLKSv3BsCwZMw=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.html",
-          "hash": "gZc2VXtp+Xac1/CWIEs4Kg=="
+          "hash": "u18dTTEwWLJ4xXoF9MHJJg=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe-1.html",
-          "hash": "5nKowSRMJXbawp7M4ocyJg=="
+          "hash": "fWnoKqRYZb4vFTKL4KjIPg=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe.html",
-          "hash": "cU2smej6y2G4EVC9H2j6Dg=="
+          "hash": "af/ZNMGorqtoswyngTHHJQ=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParseError-1.html",
-          "hash": "oEyRot3PEMxUoPK+x0VyyQ=="
+          "hash": "H/T7tlt/rmF1uYhNjoBuaA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParseException.html",
-          "hash": "dWXm3Aw3NKG/EQD9X0D/DQ=="
+          "hash": "Kwc/zULE0B0K0Vnqo3foXQ=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-1.html",
-          "hash": "jqFsNBWgspmA6agkhgVGzQ=="
+          "hash": "lM7O5/bEk8pEZtwzAPvQWA=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-2.html",
-          "hash": "s542/fOVAJx+JJu5Y24LZw=="
+          "hash": "QI0+q3ieQ2NltDwgI9WXRg=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser.html",
-          "hash": "Li0KrzUiycihM/VKxJF7qQ=="
+          "hash": "Siwu/VzQlcJfwXx4tN9EkA=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParserExtensions.html",
-          "hash": "I8EmEUrYQC0nrTRI3J5Ljg=="
+          "hash": "CmSrHBzwCCqz3VEU2Mu1hg=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.PermutationParser-2.html",
-          "hash": "ENRPlaV20uqyJGqN3ViF5A=="
+          "hash": "Wlx72YwXJXgoDHLJlVPyeQ=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.PermutationParser.html",
-          "hash": "mEg33tUDvuEALgA2NKoqyA=="
+          "hash": "j5b8zlJxqAC5Gu286VJN1Q=="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.html",
-          "hash": "AX11lVLKC1qJhcxpc6V6Bw=="
+          "hash": "qBK6Asf9jFYWzeZyitwitw=="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Result-2.html",
-          "hash": "mwmkAIZjYDFqFj2wJ3o3rQ=="
+          "hash": "dmh9HvgjGq7lel7jWytMDg=="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.SourcePos.html",
-          "hash": "InCgwaStUPoOVcWMbuTEgQ=="
+          "hash": "IwWI3MFGSXEMusKlcD9WfQ=="
         }
       },
       "is_incremental": false,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Unit.html",
-          "hash": "Ko0rIUBJ1eIdtzJ8sn/gxg=="
+          "hash": "sC88eaFecuzlakAZBUilpw=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.html",
-          "hash": "wpByZaGcrGpyZNFM4lpEDQ=="
+          "hash": "LCfcmO2TSuAkkPjZ6r1AMQ=="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "RetpWHNmJ7RvzpCLgP4FBg=="
+          "hash": "vfhL+SVRl3wJBrQ4NgQIxw=="
         }
       },
       "is_incremental": false,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "gElKiJCt1h+q9ZyEQ3IurQ=="
+          "hash": "cRixGjRGHX6rQkGWBNyDvA=="
         }
       },
       "is_incremental": false,
