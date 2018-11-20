@@ -10,7 +10,7 @@ namespace Pidgin.Tests
         [Fact]
         public void TestSkipLineComment()
         {
-            var p = CommentParser.SkipLineComment(String("//")).Then(End());
+            var p = CommentParser.SkipLineComment(String("//")).Then(End);
 
             {
                 var comment = "//\n";
@@ -59,7 +59,7 @@ namespace Pidgin.Tests
         [Fact]
         public void TestSkipBlockComment()
         {
-            var p = CommentParser.SkipBlockComment(String("/*"), String("*/")).Then(End());
+            var p = CommentParser.SkipBlockComment(String("/*"), String("*/")).Then(End);
 
             {
                 var comment = "/**/";
@@ -80,7 +80,7 @@ namespace Pidgin.Tests
         [Fact]
         public void TestSkipNestedBlockComment()
         {
-            var p = CommentParser.SkipNestedBlockComment(String("/*"), String("*/")).Then(End());
+            var p = CommentParser.SkipNestedBlockComment(String("/*"), String("*/")).Then(End);
             
             {
                 var comment = "/**/";

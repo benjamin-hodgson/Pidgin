@@ -23,7 +23,7 @@ namespace Pidgin.Comment
 
             var eol = Try(EndOfLine).IgnoreResult();
             return lineCommentStart
-                .Then(Any.SkipUntil(End().Or(eol)))
+                .Then(Any.SkipUntil(End.Or(eol)))
                 .Labelled("line comment");
         }
 

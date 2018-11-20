@@ -202,7 +202,7 @@ namespace Pidgin.Tests
         public void TestEnd()
         {
             {
-                var parser = End();
+                var parser = End;
                 AssertSuccess(parser.Parse(""), Unit.Value, false);
                 AssertFailure(
                     parser.Parse("a"),
