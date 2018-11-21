@@ -1979,13 +1979,13 @@ references:
   nameWithType: Parser<TToken>.CurrentPos
   nameWithType.vb: Parser(Of TToken).CurrentPos
 - uid: Pidgin.Parser`1.End
-  name: End()
+  name: End
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_End
-  commentId: M:Pidgin.Parser`1.End
-  fullName: Pidgin.Parser<TToken>.End()
-  fullName.vb: Pidgin.Parser(Of TToken).End()
-  nameWithType: Parser<TToken>.End()
-  nameWithType.vb: Parser(Of TToken).End()
+  commentId: P:Pidgin.Parser`1.End
+  fullName: Pidgin.Parser<TToken>.End
+  fullName.vb: Pidgin.Parser(Of TToken).End
+  nameWithType: Parser<TToken>.End
+  nameWithType.vb: Parser(Of TToken).End
 - uid: Pidgin.Parser`1.End*
   name: End
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_End_
