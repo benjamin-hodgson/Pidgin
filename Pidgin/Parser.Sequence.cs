@@ -44,11 +44,13 @@ namespace Pidgin
             private readonly TToken[] _valueTokens;
 
             public SequenceTokenParser(TEnumerable value)
-                : base(ImmutableSortedSet.Create(new Expected<TToken>(Rope.CreateRange(value))))
             {
                 _value = value;
                 _valueTokens = value.ToArray();
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create(new Expected<TToken>(Rope.CreateRange(_value)));
 
             internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
             {
@@ -125,10 +127,13 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T>[] _parsers;
 
-            public SequenceParser(Parser<TToken, T>[] parsers) : base(ExpectedUtil.Concat(parsers.Select(p => p.Expected)))
+            public SequenceParser(Parser<TToken, T>[] parsers)
             {
                 _parsers = parsers;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_parsers.Select(p => p.Expected));
 
             internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {

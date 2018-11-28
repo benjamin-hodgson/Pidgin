@@ -175,9 +175,14 @@ namespace Pidgin.Tests
 
         private class AParser<TToken, T> : Parser<TToken, T>
         {
-            public AParser() : base(ImmutableSortedSet.Create<Expected<TToken>>()) { }
+            public AParser() { }
 
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+            {
+                throw new NotImplementedException();
+            }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
             {
                 throw new NotImplementedException();
             }

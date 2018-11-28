@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -15,10 +17,13 @@ namespace Pidgin
         {
             private readonly T _value;
 
-            public ReturnParser(T value) : base(ExpectedUtil<TToken>.Nil)
+            public ReturnParser(T value)
             {
                 _value = value;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil<TToken>.Nil;
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
                 => InternalResult.Success<T>(_value, false);

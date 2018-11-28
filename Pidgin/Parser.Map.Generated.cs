@@ -18,10 +18,6 @@ namespace Pidgin
     {
         private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
         {
-            protected MapParserBase(ImmutableSortedSet<Expected<TToken>> expected) : base(expected)
-            {
-            }
-
             internal abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
         }
 
@@ -61,11 +57,14 @@ namespace Pidgin
             public Map1Parser(
                 Func<T1, R> func,
                 Parser<TToken, T1> parser1
-            ) : base(ExpectedUtil.Concat(parser1.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -136,12 +135,15 @@ namespace Pidgin
                 Func<T1, T2, R> func,
                 Parser<TToken, T1> parser1,
                 Parser<TToken, T2> parser2
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
                 _p2 = parser2;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -233,13 +235,16 @@ namespace Pidgin
                 Parser<TToken, T1> parser1,
                 Parser<TToken, T2> parser2,
                 Parser<TToken, T3> parser3
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
                 _p2 = parser2;
                 _p3 = parser3;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -352,7 +357,7 @@ namespace Pidgin
                 Parser<TToken, T2> parser2,
                 Parser<TToken, T3> parser3,
                 Parser<TToken, T4> parser4
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected, parser4.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
@@ -360,6 +365,9 @@ namespace Pidgin
                 _p3 = parser3;
                 _p4 = parser4;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -493,7 +501,7 @@ namespace Pidgin
                 Parser<TToken, T3> parser3,
                 Parser<TToken, T4> parser4,
                 Parser<TToken, T5> parser5
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected, parser4.Expected, parser5.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
@@ -502,6 +510,9 @@ namespace Pidgin
                 _p4 = parser4;
                 _p5 = parser5;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -656,7 +667,7 @@ namespace Pidgin
                 Parser<TToken, T4> parser4,
                 Parser<TToken, T5> parser5,
                 Parser<TToken, T6> parser6
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected, parser4.Expected, parser5.Expected, parser6.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
@@ -666,6 +677,9 @@ namespace Pidgin
                 _p5 = parser5;
                 _p6 = parser6;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -841,7 +855,7 @@ namespace Pidgin
                 Parser<TToken, T5> parser5,
                 Parser<TToken, T6> parser6,
                 Parser<TToken, T7> parser7
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected, parser4.Expected, parser5.Expected, parser6.Expected, parser7.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
@@ -852,6 +866,9 @@ namespace Pidgin
                 _p6 = parser6;
                 _p7 = parser7;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected, _p7.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
@@ -1048,7 +1065,7 @@ namespace Pidgin
                 Parser<TToken, T6> parser6,
                 Parser<TToken, T7> parser7,
                 Parser<TToken, T8> parser8
-            ) : base(ExpectedUtil.Concat(parser1.Expected, parser2.Expected, parser3.Expected, parser4.Expected, parser5.Expected, parser6.Expected, parser7.Expected, parser8.Expected))
+            )
             {
                 _func = func;
                 _p1 = parser1;
@@ -1060,6 +1077,9 @@ namespace Pidgin
                 _p7 = parser7;
                 _p8 = parser8;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected, _p7.Expected, _p8.Expected);
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {

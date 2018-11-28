@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -48,12 +49,15 @@ namespace Pidgin
             private readonly Func<T, Parser<TToken, U>> _func;
             private readonly Func<T, U, R> _result;
 
-            public BindParser(Parser<TToken, T> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result) : base(parser.Expected)
+            public BindParser(Parser<TToken, T> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
             {
                 _parser = parser;
                 _func = func;
                 _result = result;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _parser.Expected;
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {

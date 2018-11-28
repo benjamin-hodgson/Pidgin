@@ -64,12 +64,15 @@ namespace Pidgin
             private readonly Func<T, bool> _predicate;
             private readonly Func<T, string> _message;
 
-            public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message) : base(ImmutableSortedSet.Create(new Expected<TToken>("result satisfying assertion")))
+            public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
             {
                 _parser = parser;
                 _predicate = predicate;
                 _message = message;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create(new Expected<TToken>("result satisfying assertion"));
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {

@@ -40,10 +40,12 @@ namespace Pidgin
             private readonly string _value;
 
             public CIStringParser(string value)
-                : base(ImmutableSortedSet.Create(new Expected<char>(Rope.CreateRange(value))))
             {
                 _value = value.ToLowerInvariant();
             }
+
+            private protected override ImmutableSortedSet<Expected<char>> CalculateExpected()
+                => ImmutableSortedSet.Create(new Expected<char>(Rope.CreateRange(_value)));
 
             internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
             {

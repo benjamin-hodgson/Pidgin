@@ -29,11 +29,16 @@ namespace Pidgin
         private sealed class WithExpectedParser : Parser<TToken, T>
         {
             private readonly Parser<TToken, T> _parser;
+            private readonly new ImmutableSortedSet<Expected<TToken>> _expected;
 
-            public WithExpectedParser(Parser<TToken, T> parser, ImmutableSortedSet<Expected<TToken>> expected) : base(expected)
+            public WithExpectedParser(Parser<TToken, T> parser, ImmutableSortedSet<Expected<TToken>> expected)
             {
                 _parser = parser;
+                _expected = expected;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _expected;
 
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {

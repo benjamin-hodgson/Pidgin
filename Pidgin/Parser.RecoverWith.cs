@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -24,11 +25,14 @@ namespace Pidgin
             private readonly Parser<TToken, T> _parser;
             private readonly Func<ParseError<TToken>, Parser<TToken, T>> _errorHandler;
 
-            public RecoverWithParser(Parser<TToken, T> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler) : base(parser.Expected)
+            public RecoverWithParser(Parser<TToken, T> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler)
             {
                 _parser = parser;
                 _errorHandler = errorHandler;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _parser.Expected;
 
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {

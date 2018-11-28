@@ -35,10 +35,6 @@ namespace Pidgin
     {{
         private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
         {{
-            protected MapParserBase(ImmutableSortedSet<Expected<TToken>> expected) : base(expected)
-            {{
-            }}
-
             internal abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
         }}
 
@@ -107,11 +103,14 @@ namespace Pidgin
             public Map{num}Parser(
                 Func<{types}, R> func,
                 {string.Join($",{Environment.NewLine}                ", parserParams)}
-            ) : base(ExpectedUtil.Concat({string.Join(", ", parserParamNames.Select(n => $"{n}.Expected"))}))
+            )
             {{
                 _func = func;
                 {string.Join($"{Environment.NewLine}                ", parserFieldAssignments)}
             }}
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat({string.Join(", ", parserFieldNames.Select(n => $"{n}.Expected"))});
 
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {{

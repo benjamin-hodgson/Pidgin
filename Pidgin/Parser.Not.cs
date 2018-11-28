@@ -27,10 +27,13 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
 
-            public NegatedParser(Parser<TToken, T> parser) : base(ImmutableSortedSet.Create<Expected<TToken>>())
+            public NegatedParser(Parser<TToken, T> parser)
             {
                 _parser = parser;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create<Expected<TToken>>();
 
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {

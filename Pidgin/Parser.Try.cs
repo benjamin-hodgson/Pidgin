@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -24,10 +25,13 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
 
-            public TryParser(Parser<TToken, T> parser) : base(parser.Expected)
+            public TryParser(Parser<TToken, T> parser)
             {
                 _parser = parser;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _parser.Expected;
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {

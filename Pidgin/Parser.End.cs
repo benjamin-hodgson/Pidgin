@@ -16,9 +16,8 @@ namespace Pidgin
             private static readonly ImmutableSortedSet<Expected<TToken>> _expected
                 = ImmutableSortedSet.Create(new Expected<TToken>());
 
-            public EndParser() : base(_expected)
-            {
-            }
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _expected;
 
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {

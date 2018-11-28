@@ -20,10 +20,12 @@ namespace Pidgin
             private readonly TToken _token;
 
             public TokenParser(TToken token)
-                : base(ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create(token))))
             {
                 _token = token;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create(_token)));
 
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
@@ -75,10 +77,12 @@ namespace Pidgin
             private readonly Func<TToken, bool> _predicate;
 
             public PredicateTokenParser(Func<TToken, bool> predicate)
-                : base(ImmutableSortedSet.Create<Expected<TToken>>())
             {
                 _predicate = predicate;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create<Expected<TToken>>();
 
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {

@@ -80,16 +80,29 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _terminator;
-            private readonly ImmutableSortedSet<Expected<TToken>> _round2Expected;
+            private ImmutableSortedSet<Expected<TToken>> _round2Expected;
+            private ImmutableSortedSet<Expected<TToken>> Round2Expected
+            {
+                get
+                {
+                    if (_round2Expected == null)
+                    {
+                        _round2Expected = ExpectedUtil.Union(_parser.Expected, _terminator.Expected);
+                    }
+                    return _round2Expected;
+                }
+            }
             private readonly bool _keepResults;
 
-            public AtLeastOnceUntilParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults) : base(ExpectedUtil.Concat(parser.Expected, terminator.Expected))
+            public AtLeastOnceUntilParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults) : base()
             {
                 _parser = parser;
                 _terminator = terminator;
-                _round2Expected = ExpectedUtil.Union(parser.Expected, terminator.Expected);
                 _keepResults = keepResults;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(_parser.Expected, _terminator.Expected);
 
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
@@ -108,7 +121,7 @@ namespace Pidgin
                             // state.Error set by _parser
                             return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                         }
-                        state.Error = state.Error.WithExpected(firstTime ? Expected : _round2Expected);
+                        state.Error = state.Error.WithExpected(firstTime ? Expected : Round2Expected);
                         return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
                     if (!itemResult.ConsumedInput)

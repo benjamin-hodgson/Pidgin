@@ -118,10 +118,12 @@ namespace Pidgin
             private readonly Parser<TToken, T>[] _parsers;
 
             private OneOfParser(Parser<TToken, T>[] parsers)
-                : base(ExpectedUtil.Union(parsers.Select(p => p.Expected)))
             {
                 _parsers = parsers;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Union(_parsers.Select(p => p.Expected));
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -43,11 +44,14 @@ namespace Pidgin
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, T> _remainderParser;
 
-            public SeparatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator) : base(parser.Expected)
+            public SeparatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator)
             {
                 _parser = parser;
                 _remainderParser = separator.Then(parser);
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _parser.Expected;
 
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
@@ -152,11 +156,14 @@ namespace Pidgin
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _separator;
 
-            public SeparatedAndOptionallyTerminatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator) : base(parser.Expected)
+            public SeparatedAndOptionallyTerminatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator)
             {
                 _parser = parser;
                 _separator = separator;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => _parser.Expected;
 
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {

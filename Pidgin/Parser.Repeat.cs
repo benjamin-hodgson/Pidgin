@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace Pidgin
@@ -40,11 +41,14 @@ namespace Pidgin
             private readonly Parser<TToken, char> _parser;
             private readonly int _count;
 
-            public RepeatStringParser(Parser<TToken, char> parser, int count) : base(ExpectedUtil.Concat(Enumerable.Repeat(parser.Expected, count)))
+            public RepeatStringParser(Parser<TToken, char> parser, int count)
             {
                 _parser = parser;
                 _count = count;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ExpectedUtil.Concat(Enumerable.Repeat(_parser.Expected, _count));
 
             internal override InternalResult<string> Parse(ref ParseState<TToken> state)
             {

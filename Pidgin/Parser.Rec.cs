@@ -54,10 +54,13 @@ namespace Pidgin
         {
             private readonly Lazy<Parser<TToken, T>> _lazy;
 
-            public RecParser(Lazy<Parser<TToken, T>> lazy) : base(ImmutableSortedSet.Create<Expected<TToken>>())
+            public RecParser(Lazy<Parser<TToken, T>> lazy)
             {
                 _lazy = lazy;
             }
+
+            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
+                => ImmutableSortedSet.Create<Expected<TToken>>();
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
                 => _lazy.Value.Parse(ref state);
