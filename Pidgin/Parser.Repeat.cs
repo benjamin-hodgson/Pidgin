@@ -53,7 +53,7 @@ namespace Pidgin
             internal override InternalResult<string> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
-                var builder = new PooledStringBuilder(_count);
+                var builder = new InplaceStringBuilder(_count);
 
                 for (var _ = 0; _ < _count; _++)
                 {
@@ -69,7 +69,7 @@ namespace Pidgin
                     builder.Append(result.Value);
                 }
 
-                return InternalResult.Success(builder.GetStringAndClear(), consumedInput);
+                return InternalResult.Success(builder.ToString(), consumedInput);
             }
         }
     }

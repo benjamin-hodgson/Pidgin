@@ -51,7 +51,7 @@ namespace Pidgin
             {
                 var consumedInput = false;
 
-                var builder = new PooledStringBuilder(_value.Length);
+                var builder = new InplaceStringBuilder(_value.Length);
 
                 foreach (var c in _value)
                 {
@@ -85,7 +85,7 @@ namespace Pidgin
                     builder.Append(token);
                     state.Advance();
                 }
-                return InternalResult.Success<string>(builder.GetStringAndClear(), consumedInput);
+                return InternalResult.Success<string>(builder.ToString(), consumedInput);
             }
         }
     }
