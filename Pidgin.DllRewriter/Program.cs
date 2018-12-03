@@ -6,6 +6,8 @@ using Mono.Cecil.Cil;
 
 namespace Pidgin.DllRewriter
 {
+    // This script opens up the compiled Pidgin.dll, looks for the Pidgin.TokenStreams.Unsafe class, and rewrites the IL of the methods inside.
+    // These methods are a type-specialised copy of those in System.Runtime.CompilerServices.Unsafe.
     class Program
     {
         static void Main(string[] args)
