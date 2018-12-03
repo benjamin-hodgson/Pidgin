@@ -29,7 +29,7 @@ namespace Pidgin
         private sealed class WithExpectedParser : Parser<TToken, T>
         {
             private readonly Parser<TToken, T> _parser;
-            private readonly new ImmutableSortedSet<Expected<TToken>> _expected;
+            private readonly ImmutableSortedSet<Expected<TToken>> _expected;
 
             public WithExpectedParser(Parser<TToken, T> parser, ImmutableSortedSet<Expected<TToken>> expected)
             {
@@ -37,15 +37,12 @@ namespace Pidgin
                 _expected = expected;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => _expected;
-
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 var result = _parser.Parse(ref state);
                 if (!result.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
+                    state.Error = state.Error.WithExpected(_expected);
                 }
                 return result;
             }

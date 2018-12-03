@@ -109,9 +109,6 @@ namespace Pidgin
                 {string.Join($"{Environment.NewLine}                ", parserFieldAssignments)}
             }}
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat({string.Join(", ", parserFieldNames.Select(n => $"{n}.Expected"))});
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {{
                 var consumedInput = false;
@@ -137,10 +134,7 @@ namespace Pidgin
                 consumedInput = consumedInput || result{num}.ConsumedInput;
                 if (!result{num}.Success)
                 {{
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }}";
         
         private static string EnglishNumber(int num)

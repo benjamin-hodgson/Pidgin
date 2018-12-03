@@ -27,21 +27,6 @@ namespace Pidgin
     /// <remarks>This type is not intended to be subclassed by users of the library</remarks>
     public abstract partial class Parser<TToken, T>
     {
-        private ImmutableSortedSet<Expected<TToken>> _expected;
-        internal ImmutableSortedSet<Expected<TToken>> Expected
-        {
-            get
-            {
-                if (_expected == null)
-                {
-                    _expected = CalculateExpected();
-                }
-                return _expected;
-            }
-        }
-
-        private protected abstract ImmutableSortedSet<Expected<TToken>> CalculateExpected();
-
         // invariant: state.Error is populated with the error that caused the failure
         // if the result was not successful
 

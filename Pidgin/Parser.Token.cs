@@ -18,14 +18,23 @@ namespace Pidgin
         private sealed class TokenParser : Parser<TToken, TToken>
         {
             private readonly TToken _token;
+            private ImmutableSortedSet<Expected<TToken>> _expected;
+            private ImmutableSortedSet<Expected<TToken>> Expected
+            {
+                get
+                {
+                    if (_expected == null)
+                    {
+                        _expected = ImmutableSortedSet.Create(new Expected<TToken>(ImmutableArray.Create(_token)));
+                    }
+                    return _expected;
+                }
+            }
 
             public TokenParser(TToken token)
             {
                 _token = token;
             }
-
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create(_token)));
 
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
@@ -81,9 +90,6 @@ namespace Pidgin
                 _predicate = predicate;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ImmutableSortedSet.Create<Expected<TToken>>();
-
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
                 var x = state.Peek();
@@ -92,7 +98,7 @@ namespace Pidgin
                     state.Error = new ParseError<TToken>(
                         x,
                         true,
-                        Expected,
+                        ImmutableSortedSet<Expected<TToken>>.Empty,
                         state.SourcePos,
                         null
                     );
@@ -104,7 +110,7 @@ namespace Pidgin
                     state.Error = new ParseError<TToken>(
                         x,
                         false,
-                        Expected,
+                        ImmutableSortedSet<Expected<TToken>>.Empty,
                         state.SourcePos,
                         null
                     );

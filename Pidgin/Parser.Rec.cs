@@ -59,9 +59,6 @@ namespace Pidgin
                 _lazy = lazy;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ImmutableSortedSet.Create<Expected<TToken>>();
-
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
                 => _lazy.Value.Parse(ref state);
         }

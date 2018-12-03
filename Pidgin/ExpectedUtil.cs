@@ -4,14 +4,6 @@ using System.Linq;
 
 namespace Pidgin
 {
-    internal static class ExpectedUtil<TToken>
-    {
-        /// <summary>
-        /// For parsers which don't expect anything (eg Return(...))
-        /// </summary>
-        public static ImmutableSortedSet<Expected<TToken>> Nil { get; }
-            = ImmutableSortedSet.Create(new Expected<TToken>(Rope.Create<TToken>()));
-    }
     internal static class ExpectedUtil
     {
         public static ImmutableSortedSet<T> Union<T>(params ImmutableSortedSet<T>[] input)
@@ -25,23 +17,14 @@ namespace Pidgin
             }
             return builder.ToImmutable();
         }
-
-        public static ImmutableSortedSet<Expected<TToken>> Concat<TToken>(params ImmutableSortedSet<Expected<TToken>>[] sets)
-            => Concat(sets.AsEnumerable());
-        public static ImmutableSortedSet<Expected<TToken>> Concat<TToken>(IEnumerable<IEnumerable<Expected<TToken>>> sets)
-            => sets.Aggregate((z, s) => z.SelectMany(_ => s, ConcatExpected)).ToImmutableSortedSet();
-
-        private static Expected<TToken> ConcatExpected<TToken>(Expected<TToken> left, Expected<TToken> right)
+        public static ImmutableSortedSet<T> Union<T>(ref PooledList<ImmutableSortedSet<T>> input)
         {
-            if (left.InternalTokens?.Length == 0)
+            var builder = ImmutableSortedSet.CreateBuilder<T>();
+            for (var i = 0; i < input.Count; i++)
             {
-                return right;
+                builder.UnionWith(input[i]);
             }
-            if (left.InternalTokens != null && right.InternalTokens != null)
-            {
-                return new Expected<TToken>(left.InternalTokens.Concat(right.InternalTokens));
-            }
-            return left;
+            return builder.ToImmutable();
         }
     }
 }

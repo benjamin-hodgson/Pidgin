@@ -181,11 +181,6 @@ namespace Pidgin.Tests
             {
                 throw new NotImplementedException();
             }
-
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

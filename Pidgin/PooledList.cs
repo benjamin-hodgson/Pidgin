@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Runtime.CompilerServices;
 
 namespace Pidgin
 {
@@ -12,15 +13,33 @@ namespace Pidgin
         private T[] _items;
         private int _size;
 
-        public int Count => _size;
+        public int Count
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return _size;
+            }
+        }
+
+        public PooledList(int initialCapacity)
+        {
+            _items = ArrayPool<T>.Shared.Rent(initialCapacity);
+            _size = 0;
+        }
 
         public T this[int index]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
+                void ThrowArgumentOutOfRangeException()
+                {
+                    throw new ArgumentOutOfRangeException("index");
+                }
                 if (index >= _size)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                    ThrowArgumentOutOfRangeException();
                 }
                 return _items[index];
             }
@@ -45,6 +64,7 @@ namespace Pidgin
             return z;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Add(T item)
         {
             GrowIfNecessary();

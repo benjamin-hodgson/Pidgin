@@ -16,9 +16,6 @@ namespace Pidgin
             private static readonly ImmutableSortedSet<Expected<TToken>> _expected
                 = ImmutableSortedSet.Create(new Expected<TToken>());
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => _expected;
-
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var result = state.Peek();
@@ -27,7 +24,7 @@ namespace Pidgin
                     state.Error = new ParseError<TToken>(
                         result,
                         false,
-                        Expected,
+                        _expected,
                         state.SourcePos,
                         null
                     );

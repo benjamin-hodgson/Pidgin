@@ -50,9 +50,6 @@ namespace Pidgin
                 _remainderParser = separator.Then(parser);
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => _parser.Expected;
-
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var result = _parser.Parse(ref state);
@@ -161,9 +158,6 @@ namespace Pidgin
                 _parser = parser;
                 _separator = separator;
             }
-
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => _parser.Expected;
 
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {

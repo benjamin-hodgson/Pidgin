@@ -24,20 +24,20 @@ namespace Pidgin
         /// The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public IEnumerable<TToken> Tokens => InternalTokens?.ToImmutableArray();
-        internal Rope<TToken> InternalTokens { get; }
+        public IEnumerable<TToken> Tokens => InternalTokens.IsDefault ? null : InternalTokens.AsEnumerable();
+        internal ImmutableArray<TToken> InternalTokens { get; }
         /// <summary>
         /// Did the parser expect the end of the input stream?
         /// </summary>
         /// <returns>True if the parser expected the end of the input stream</returns>
-        public bool IsEof => Label == null && InternalTokens == null;
+        public bool IsEof => Label == null && Tokens == null;
         
         internal Expected(string label)
         {
             Label = label;
-            InternalTokens = null;
+            InternalTokens = default;
         }
-        internal Expected(Rope<TToken> tokens)
+        internal Expected(ImmutableArray<TToken> tokens)
         {
             Label = null;
             InternalTokens = tokens;
@@ -99,8 +99,8 @@ namespace Pidgin
         /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
             => object.Equals(Label, other.Label)
-            && ((ReferenceEquals(null, InternalTokens) && ReferenceEquals(null, other.InternalTokens))
-                || (!ReferenceEquals(null, InternalTokens) && !ReferenceEquals(null, other.InternalTokens) && InternalTokens.Equals(other.InternalTokens))
+            && ((ReferenceEquals(null, Tokens) && ReferenceEquals(null, other.Tokens))
+                || (!ReferenceEquals(null, Tokens) && !ReferenceEquals(null, other.Tokens) && Tokens.SequenceEqual(other.Tokens))
             );
 
         /// <inheritdoc/>
@@ -123,7 +123,7 @@ namespace Pidgin
             {
                 int hash = 17;
                 hash = hash * 23 + Label?.GetHashCode() ?? 0;
-                hash = hash * 23 + InternalTokens?.GetHashCode() ?? 0;
+                hash = hash * 23 + Tokens?.GetHashCode() ?? 0;
                 return hash;
             }
         }
@@ -140,19 +140,19 @@ namespace Pidgin
                 }
                 return -1;
             }
-            if (InternalTokens != null)
+            if (Tokens != null)
             {
                 if (other.Label != null)
                 {
                     return 1;
                 }
-                if (other.InternalTokens != null)
+                if (other.Tokens != null)
                 {
-                    return InternalTokens.CompareTo(other.InternalTokens);
+                    return Tokens.CompareTo(other.Tokens);
                 }
                 return -1;
             }
-            if (other.Label == null && other.InternalTokens == null)
+            if (other.Label == null && other.Tokens == null)
             {
                 return 0;
             }

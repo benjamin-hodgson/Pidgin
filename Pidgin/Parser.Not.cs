@@ -32,9 +32,6 @@ namespace Pidgin
                 _parser = parser;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ImmutableSortedSet.Create<Expected<TToken>>();
-
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var startingPosition = state.SourcePos;

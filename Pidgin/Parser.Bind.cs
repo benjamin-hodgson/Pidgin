@@ -56,9 +56,6 @@ namespace Pidgin
                 _result = result;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => _parser.Expected;
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var result = _parser.Parse(ref state);

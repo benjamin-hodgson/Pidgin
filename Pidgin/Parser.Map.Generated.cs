@@ -63,9 +63,6 @@ namespace Pidgin
                 _p1 = parser1;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -75,10 +72,7 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -142,9 +136,6 @@ namespace Pidgin
                 _p2 = parser2;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -154,20 +145,14 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -243,9 +228,6 @@ namespace Pidgin
                 _p3 = parser3;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -255,30 +237,21 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -366,9 +339,6 @@ namespace Pidgin
                 _p4 = parser4;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -378,40 +348,28 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result4 = _p4.Parse(ref state);
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -511,9 +469,6 @@ namespace Pidgin
                 _p5 = parser5;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -523,50 +478,35 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result4 = _p4.Parse(ref state);
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result5 = _p5.Parse(ref state);
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -678,9 +618,6 @@ namespace Pidgin
                 _p6 = parser6;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -690,60 +627,42 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result4 = _p4.Parse(ref state);
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result5 = _p5.Parse(ref state);
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result6 = _p6.Parse(ref state);
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -867,9 +786,6 @@ namespace Pidgin
                 _p7 = parser7;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected, _p7.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -879,70 +795,49 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result4 = _p4.Parse(ref state);
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result5 = _p5.Parse(ref state);
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result6 = _p6.Parse(ref state);
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result7 = _p7.Parse(ref state);
                 consumedInput = consumedInput || result7.ConsumedInput;
                 if (!result7.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(
@@ -1078,9 +973,6 @@ namespace Pidgin
                 _p8 = parser8;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_p1.Expected, _p2.Expected, _p3.Expected, _p4.Expected, _p5.Expected, _p6.Expected, _p7.Expected, _p8.Expected);
-
             internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -1090,80 +982,56 @@ namespace Pidgin
                 consumedInput = consumedInput || result1.ConsumedInput;
                 if (!result1.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result2 = _p2.Parse(ref state);
                 consumedInput = consumedInput || result2.ConsumedInput;
                 if (!result2.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result3 = _p3.Parse(ref state);
                 consumedInput = consumedInput || result3.ConsumedInput;
                 if (!result3.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result4 = _p4.Parse(ref state);
                 consumedInput = consumedInput || result4.ConsumedInput;
                 if (!result4.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result5 = _p5.Parse(ref state);
                 consumedInput = consumedInput || result5.ConsumedInput;
                 if (!result5.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result6 = _p6.Parse(ref state);
                 consumedInput = consumedInput || result6.ConsumedInput;
                 if (!result6.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result7 = _p7.Parse(ref state);
                 consumedInput = consumedInput || result7.ConsumedInput;
                 if (!result7.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 var result8 = _p8.Parse(ref state);
                 consumedInput = consumedInput || result8.ConsumedInput;
                 if (!result8.Success)
                 {
-                    state.Error = state.Error.WithExpected(Expected);
-                    return InternalResult.Failure<R>(
-                        consumedInput
-                    );
+                    return InternalResult.Failure<R>(consumedInput);
                 }
 
                 return InternalResult.Success<R>(_func(

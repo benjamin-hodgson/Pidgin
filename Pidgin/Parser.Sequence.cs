@@ -41,16 +41,25 @@ namespace Pidgin
             where TEnumerable : IEnumerable<TToken>
         {
             private readonly TEnumerable _value;
-            private readonly TToken[] _valueTokens;
+            private readonly ImmutableArray<TToken> _valueTokens;
+            private ImmutableSortedSet<Expected<TToken>> _expected;
+            private ImmutableSortedSet<Expected<TToken>> Expected
+            {
+                get
+                {
+                    if (_expected == null)
+                    {
+                        _expected = ImmutableSortedSet.Create(new Expected<TToken>(_valueTokens));
+                    }
+                    return _expected;
+                }
+            }
 
             public SequenceTokenParser(TEnumerable value)
             {
                 _value = value;
-                _valueTokens = value.ToArray();
+                _valueTokens = value.ToImmutableArray();
             }
-
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ImmutableSortedSet.Create(new Expected<TToken>(Rope.CreateRange(_value)));
 
             internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
             {
@@ -132,9 +141,6 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_parsers.Select(p => p.Expected));
-
             internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -149,7 +155,6 @@ namespace Pidgin
                 
                     if (!result.Success)
                     {
-                        state.Error = state.Error.WithExpected(Expected);
                         return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                     }
                 

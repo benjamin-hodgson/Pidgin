@@ -35,7 +35,7 @@ namespace Pidgin
             var cs = chars.ToArray();
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, c) != -1)
-                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(Rope.Create(c)))));
+                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(ImmutableArray.Create(c)))));
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Pidgin
             var builder = ImmutableSortedSet.CreateBuilder<Expected<char>>();
             foreach (var c in cs)
             {
-                builder.Add(new Expected<char>(Rope.Create(char.ToLowerInvariant(c))));
-                builder.Add(new Expected<char>(Rope.Create(char.ToUpperInvariant(c))));
+                builder.Add(new Expected<char>(ImmutableArray.Create(char.ToLowerInvariant(c))));
+                builder.Add(new Expected<char>(ImmutableArray.Create(char.ToUpperInvariant(c))));
             }
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, char.ToLowerInvariant(c)) != -1)
@@ -122,20 +122,17 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Union(_parsers.Select(p => p.Expected));
-
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 var firstTime = true;
                 var err = new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
-                    Expected,
+                    ImmutableSortedSet<Expected<TToken>>.Empty,
                     state.SourcePos,
                     "OneOf had no arguments"
                 );
-                InternalResult<T> failureResult = InternalResult.Failure<T>(false);
+                var expecteds = new PooledList<ImmutableSortedSet<Expected<TToken>>>(_parsers.Length);
                 foreach (var p in _parsers)
                 {
                     var thisResult = p.Parse(ref state);
@@ -146,17 +143,18 @@ namespace Pidgin
                     {
                         return thisResult;
                     }
+                    expecteds.Add(state.Error.InternalExpected);
                     // choose the longest match, preferring the left-most error in a tie,
                     // except the first time (avoid returning "OneOf had no arguments").
                     if (firstTime || state.Error.ErrorPos > err.ErrorPos)
                     {
-                        failureResult = thisResult;
                         err = state.Error;
                     }
                     firstTime = false;
                 }
-                state.Error = err.WithExpected(Expected);
-                return failureResult;
+                state.Error = err.WithExpected(ExpectedUtil.Union(ref expecteds));
+                expecteds.Clear();
+                return InternalResult.Failure<T>(false);
             }
 
             internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)

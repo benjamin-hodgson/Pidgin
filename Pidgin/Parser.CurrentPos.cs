@@ -13,9 +13,6 @@ namespace Pidgin
 
         private sealed class CurrentPosParser : Parser<TToken, SourcePos>
         {
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil<TToken>.Nil;
-
             internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
                 => InternalResult.Success(state.SourcePos, false);
         }

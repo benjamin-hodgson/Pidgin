@@ -24,11 +24,11 @@ namespace Pidgin
         public static Parser<char, char> CIChar(char character)
         {
             var theChar = char.ToLowerInvariant(character);
-            var expected = ImmutableSortedSet.CreateRange(
+            var expected = ImmutableSortedSet.Create(
                 new[]
                 {
-                    new Expected<char>(Rope.Create(char.ToUpperInvariant(character))),
-                    new Expected<char>(Rope.Create(char.ToLowerInvariant(character)))
+                    new Expected<char>(ImmutableArray.Create(char.ToUpperInvariant(character))),
+                    new Expected<char>(ImmutableArray.Create(char.ToLowerInvariant(character)))
                 }
             );
             return Token(c => char.ToLowerInvariant(c) == theChar)

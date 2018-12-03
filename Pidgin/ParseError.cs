@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 
@@ -25,7 +26,8 @@ namespace Pidgin
         /// A collection of expected inputs
         /// </summary>
         /// <returns>The collection of expected inputs</returns>
-        public IEnumerable<Expected<TToken>> Expected { get; }
+        public IEnumerable<Expected<TToken>> Expected => InternalExpected;
+        internal ImmutableSortedSet<Expected<TToken>> InternalExpected { get; }
         /// <summary>
         /// The position in the input stream at which the parse error occurred
         /// </summary>
@@ -37,16 +39,16 @@ namespace Pidgin
         /// <returns>A custom error message, or null if the error was created without a custom error message</returns>
         public string Message { get; }
 
-        internal ParseError(Maybe<TToken> unexpected, bool eof, IEnumerable<Expected<TToken>> expected, SourcePos errorPos, string message)
+        internal ParseError(Maybe<TToken> unexpected, bool eof, ImmutableSortedSet<Expected<TToken>> expected, SourcePos errorPos, string message)
         {
             Unexpected = unexpected;
             EOF = eof;
-            Expected = expected;
+            InternalExpected = expected;
             ErrorPos = errorPos;
             Message = message;
         }
 
-        internal ParseError<TToken> WithExpected(IEnumerable<Expected<TToken>> expected)
+        internal ParseError<TToken> WithExpected(ImmutableSortedSet<Expected<TToken>> expected)
             => new ParseError<TToken>(
                 Unexpected,
                 EOF,
@@ -55,15 +57,6 @@ namespace Pidgin
                 Message
             );
 
-        internal ParseError<TToken> WithErrorPos(SourcePos errorPos)
-            => new ParseError<TToken>(
-                Unexpected,
-                EOF,
-                Expected,
-                errorPos,
-                Message
-            );
-        
         /// <summary>
         /// Render the parse error as a string
         /// </summary>
@@ -91,7 +84,7 @@ namespace Pidgin
                 sb.Append("    unexpected ");
                 sb.Append(EOF ? "EOF" : Unexpected.Value.ToString());
             }
-            if (Expected?.Any(e => e.InternalTokens == null || e.InternalTokens.Length != 0) == true)
+            if (Expected?.Any(e => e.InternalTokens.IsDefault || e.InternalTokens.Length != 0) == true)
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("    expected ");

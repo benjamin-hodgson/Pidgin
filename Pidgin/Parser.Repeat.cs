@@ -47,9 +47,6 @@ namespace Pidgin
                 _count = count;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(Enumerable.Repeat(_parser.Expected, _count));
-
             internal override InternalResult<string> Parse(ref ParseState<TToken> state)
             {
                 var consumedInput = false;
@@ -62,7 +59,6 @@ namespace Pidgin
 
                     if (!result.Success)
                     {
-                        state.Error = state.Error.WithExpected(Expected);
                         return InternalResult.Failure<string>(consumedInput);
                     }
 

@@ -80,18 +80,6 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _terminator;
-            private ImmutableSortedSet<Expected<TToken>> _round2Expected;
-            private ImmutableSortedSet<Expected<TToken>> Round2Expected
-            {
-                get
-                {
-                    if (_round2Expected == null)
-                    {
-                        _round2Expected = ExpectedUtil.Union(_parser.Expected, _terminator.Expected);
-                    }
-                    return _round2Expected;
-                }
-            }
             private readonly bool _keepResults;
 
             public AtLeastOnceUntilParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults) : base()
@@ -101,45 +89,51 @@ namespace Pidgin
                 _keepResults = keepResults;
             }
 
-            private protected override ImmutableSortedSet<Expected<TToken>> CalculateExpected()
-                => ExpectedUtil.Concat(_parser.Expected, _terminator.Expected);
-
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var ts = _keepResults ? new List<T>() : null;
-                var firstTime = true;
-                var consumedInput = false;
-                InternalResult<U> terminatorResult;
-                do
+
+                var firstItemResult = _parser.Parse(ref state);
+                if (!firstItemResult.Success)
                 {
+                    // state.Error set by _parser
+                    return InternalResult.Failure<IEnumerable<T>>(firstItemResult.ConsumedInput);
+                }
+                if (!firstItemResult.ConsumedInput)
+                {
+                    throw new InvalidOperationException("Until() used with a parser which consumed no input");
+                }
+                ts?.Add(firstItemResult.Value);
+
+                while (true)
+                {
+                    var terminatorResult = _terminator.Parse(ref state);
+                    if (terminatorResult.Success)
+                    {
+                        return InternalResult.Success<IEnumerable<T>>(ts, true);
+                    }
+                    if (terminatorResult.ConsumedInput)
+                    {
+                        // state.Error set by _terminator
+                        return InternalResult.Failure<IEnumerable<T>>(true);
+                    }
+
+                    var terminatorExpected = state.Error.InternalExpected;
                     var itemResult = _parser.Parse(ref state);
-                    consumedInput = consumedInput || itemResult.ConsumedInput;
                     if (!itemResult.Success)
                     {
-                        if (itemResult.ConsumedInput)
+                        if (!itemResult.ConsumedInput)
                         {
-                            // state.Error set by _parser
-                            return InternalResult.Failure<IEnumerable<T>>(consumedInput);
+                            state.Error = state.Error.WithExpected(state.Error.InternalExpected.Union(terminatorExpected));
                         }
-                        state.Error = state.Error.WithExpected(firstTime ? Expected : Round2Expected);
-                        return InternalResult.Failure<IEnumerable<T>>(consumedInput);
+                        return InternalResult.Failure<IEnumerable<T>>(true);
                     }
                     if (!itemResult.ConsumedInput)
                     {
                         throw new InvalidOperationException("Until() used with a parser which consumed no input");
                     }
                     ts?.Add(itemResult.Value);
-
-
-                    terminatorResult = _terminator.Parse(ref state);
-                    if (terminatorResult.ConsumedInput && !terminatorResult.Success)
-                    {
-                        // state.Error set by _terminator
-                        return InternalResult.Failure<IEnumerable<T>>(consumedInput);
-                    }
-                    firstTime = false;
-                } while (!terminatorResult.Success);
-                return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
+                }
             }
         }
     }

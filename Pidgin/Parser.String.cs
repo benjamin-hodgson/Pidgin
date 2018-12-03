@@ -38,14 +38,23 @@ namespace Pidgin
         private sealed class CIStringParser : Parser<char, string>
         {
             private readonly string _value;
+            private ImmutableSortedSet<Expected<char>> _expected;
+            private ImmutableSortedSet<Expected<char>> Expected
+            {
+                get
+                {
+                    if (_expected == null)
+                    {
+                        _expected = ImmutableSortedSet.Create(new Expected<char>(ImmutableArray.CreateRange(_value)));
+                    }
+                    return _expected;
+                }
+            }
 
             public CIStringParser(string value)
             {
                 _value = value.ToLowerInvariant();
             }
-
-            private protected override ImmutableSortedSet<Expected<char>> CalculateExpected()
-                => ImmutableSortedSet.Create(new Expected<char>(Rope.CreateRange(_value)));
 
             internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
             {
