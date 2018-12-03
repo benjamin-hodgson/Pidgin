@@ -99,8 +99,8 @@ namespace Pidgin
         /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
             => object.Equals(Label, other.Label)
-            && ((ReferenceEquals(null, Tokens) && ReferenceEquals(null, other.Tokens))
-                || (!ReferenceEquals(null, Tokens) && !ReferenceEquals(null, other.Tokens) && Tokens.SequenceEqual(other.Tokens))
+            && ((InternalTokens.IsDefault && InternalTokens.IsDefault)
+                || (!InternalTokens.IsDefault && !InternalTokens.IsDefault && EnumerableExtensions.Equal(InternalTokens, other.InternalTokens))
             );
 
         /// <inheritdoc/>
@@ -123,7 +123,7 @@ namespace Pidgin
             {
                 int hash = 17;
                 hash = hash * 23 + Label?.GetHashCode() ?? 0;
-                hash = hash * 23 + Tokens?.GetHashCode() ?? 0;
+                hash = hash * 23 + EnumerableExtensions.GetHashCode(InternalTokens);
                 return hash;
             }
         }
@@ -140,24 +140,25 @@ namespace Pidgin
                 }
                 return -1;
             }
-            if (Tokens != null)
+            if (!InternalTokens.IsDefault)
             {
                 if (other.Label != null)
                 {
                     return 1;
                 }
-                if (other.Tokens != null)
+                if (!other.InternalTokens.IsDefault)
                 {
-                    return Tokens.CompareTo(other.Tokens);
+                    return EnumerableExtensions.Compare(InternalTokens, other.InternalTokens);
                 }
                 return -1;
             }
-            if (other.Label == null && other.Tokens == null)
+            if (other.Label == null && other.InternalTokens == null)
             {
                 return 0;
             }
             return 1;
         }
+
 
         /// <inheritdoc/>
         public static bool operator >(Expected<TToken> left, Expected<TToken> right)
