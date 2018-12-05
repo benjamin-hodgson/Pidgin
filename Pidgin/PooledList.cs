@@ -92,7 +92,7 @@ namespace Pidgin
         public ReadOnlySpan<T> AsSpan() => _items.AsSpan().Slice(0, _size);
 
         public ImmutableSortedSet<T> ToImmutableSortedSet()
-            => (_items ?? Array.Empty<T>()).Take(_size).ToImmutableSortedSet();
+            => (_items ?? Enumerable.Empty<T>()).Take(_size).ToImmutableSortedSet();
 
         public void Clear()
         {
