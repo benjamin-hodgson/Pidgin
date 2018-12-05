@@ -1,6 +1,5 @@
 using System;
 using System.Buffers;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
@@ -14,7 +13,7 @@ namespace Pidgin
     internal struct ParseState<TToken>
     {
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
-        private readonly Stack<Bookmark> _bookmarks;
+        private PooledList<Bookmark> _bookmarks;
         private readonly ITokenStream<TToken> _stream;
         private int _consumedCount;
         private bool _hasCurrent;
@@ -26,7 +25,7 @@ namespace Pidgin
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
         {
             _posCalculator = posCalculator;
-            _bookmarks = new Stack<Bookmark>();
+            _bookmarks = new PooledList<Bookmark>();
             _stream = stream;
             _consumedCount = 0;
             _hasCurrent = false;
@@ -55,7 +54,7 @@ namespace Pidgin
             {
                 _stream.StartBuffering();
             }
-            _bookmarks.Push(new Bookmark(_consumedCount, SourcePos));
+            _bookmarks.Add(new Bookmark(_consumedCount, SourcePos));
         }
 
         public void PopBookmark()
