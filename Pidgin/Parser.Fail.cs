@@ -22,8 +22,8 @@ namespace Pidgin
         
         private sealed class FailParser<T> : Parser<TToken, T>
         {
-            private static readonly ImmutableSortedSet<Expected<TToken>> _expected
-                = ImmutableSortedSet.Create(new Expected<TToken>(ImmutableArray<TToken>.Empty));
+            private static readonly Expected<TToken> _expected
+                = new Expected<TToken>(ImmutableArray<TToken>.Empty);
             private readonly string _message;
 
             public FailParser(string message)
@@ -33,13 +33,13 @@ namespace Pidgin
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
-                state.Error = new ParseError<TToken>(
+                state.Error = new InternalError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
-                    _expected,
                     state.SourcePos,
                     _message
                 );
+                state.AddExpected(_expected);
                 return InternalResult.Failure<T>(false);
             }
         }

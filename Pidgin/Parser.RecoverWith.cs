@@ -1,6 +1,8 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace Pidgin
 {
@@ -33,12 +35,18 @@ namespace Pidgin
 
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
+                state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
                 if (result.Success)
                 {
+                    state.EndExpectedTran(false);
                     return result;
                 }
-                var recoverParser = _errorHandler(state.Error);
+                var parserExpecteds = state.ExpectedTranState();
+                state.EndExpectedTran(false);
+
+                var recoverParser = _errorHandler(state.Error.Build(parserExpecteds.ToImmutableSortedSet()));
+
                 return recoverParser.Parse(ref state);
             }
         }

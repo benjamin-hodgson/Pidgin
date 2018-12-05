@@ -119,13 +119,15 @@ namespace Pidgin
             var state = new ParseState<TToken>(calculatePos, stream);
             state.Advance();  // pull the first element from the input
 
-            var result = parser.Parse(ref state);
+            var internalResult = parser.Parse(ref state);
 
-            state.Dispose();  // ensure we return the state's buffer to the buffer pool
+            var result = internalResult.Success
+                ? new Result<TToken, T>(internalResult.ConsumedInput, internalResult.Value)
+                : new Result<TToken, T>(internalResult.ConsumedInput, state.BuildError());
 
-            return result.Success
-                ? new Result<TToken, T>(result.ConsumedInput, result.Value)
-                : new Result<TToken, T>(result.ConsumedInput, state.Error);
+            state.Dispose();  // ensure we return the state's buffers to the buffer pool
+
+            return result;
         }
 
 

@@ -42,18 +42,6 @@ namespace Pidgin
         {
             private readonly TEnumerable _value;
             private readonly ImmutableArray<TToken> _valueTokens;
-            private ImmutableSortedSet<Expected<TToken>> _expected;
-            private ImmutableSortedSet<Expected<TToken>> Expected
-            {
-                get
-                {
-                    if (_expected == null)
-                    {
-                        _expected = ImmutableSortedSet.Create(new Expected<TToken>(_valueTokens));
-                    }
-                    return _expected;
-                }
-            }
 
             public SequenceTokenParser(TEnumerable value)
             {
@@ -69,26 +57,26 @@ namespace Pidgin
                     var result = state.Peek();
                     if (!result.HasValue)
                     {
-                        state.Error = new ParseError<TToken>(
+                        state.Error = new InternalError<TToken>(
                             result,
                             true,
-                            Expected,
                             state.SourcePos,
                             null
                         );
+                        state.AddExpected(new Expected<TToken>(_valueTokens));
                         return InternalResult.Failure<TEnumerable>(consumedInput);
                     }
 
                     TToken token = result.GetValueOrDefault();
                     if (!EqualityComparer<TToken>.Default.Equals(token, x))
                     {
-                        state.Error = new ParseError<TToken>(
+                        state.Error = new InternalError<TToken>(
                             result,
                             false,
-                            Expected,
                             state.SourcePos,
                             null
                         );
+                        state.AddExpected(new Expected<TToken>(_valueTokens));
                         return InternalResult.Failure<TEnumerable>(consumedInput);
                     }
 

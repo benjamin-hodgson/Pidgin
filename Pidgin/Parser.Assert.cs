@@ -60,8 +60,8 @@ namespace Pidgin
 
         private sealed class AssertParser : Parser<TToken, T>
         {
-            private static readonly ImmutableSortedSet<Expected<TToken>> _expected
-                = ImmutableSortedSet.Create(new Expected<TToken>("result satisfying assertion"));
+            private static readonly Expected<TToken> _expected
+                = new Expected<TToken>("result satisfying assertion");
 
             private readonly Parser<TToken, T> _parser;
             private readonly Func<T, bool> _predicate;
@@ -76,21 +76,24 @@ namespace Pidgin
 
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
-                var result = _parser.Parse(ref state);
+                state.BeginExpectedTran();
+                var result = _parser.Parse(ref state);                
+                state.EndExpectedTran(!result.Success);
                 if (!result.Success)
                 {
                     return result;
                 }
+
                 var val = result.Value;
                 if (!_predicate(val))
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         Maybe.Nothing<TToken>(),
                         false,
-                        _expected,
                         state.SourcePos,
                         _message(val)
                     );
+                    state.AddExpected(_expected);
                     return InternalResult.Failure<T>(result.ConsumedInput);
                 }
                 return result;

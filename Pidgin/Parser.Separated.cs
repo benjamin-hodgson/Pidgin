@@ -63,17 +63,21 @@ namespace Pidgin
 
             private InternalResult<IEnumerable<T>> Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, List<T> ts, bool consumedInput)
             {
+                state.BeginExpectedTran();
                 var result = parser.Parse(ref state);
                 while (result.Success)
                 {
+                    state.EndExpectedTran(false);
                     if (!result.ConsumedInput)
                     {
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
                     ts?.Add(result.Value);
+                    state.BeginExpectedTran();
                     result = parser.Parse(ref state);
                 }
+                state.EndExpectedTran(result.ConsumedInput);
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
                     // state.Error set by parser
@@ -172,7 +176,9 @@ namespace Pidgin
 
                 while (true)
                 {
+                    state.BeginExpectedTran();
                     var sepResult = _separator.Parse(ref state);
+                    state.EndExpectedTran(!sepResult.Success && sepResult.ConsumedInput);
                     consumedInput = consumedInput || sepResult.ConsumedInput;
                     if (!sepResult.Success)
                     {
@@ -184,7 +190,9 @@ namespace Pidgin
                         return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
                     }
 
+                    state.BeginExpectedTran();
                     var itemResult = _parser.Parse(ref state);
+                    state.EndExpectedTran(!itemResult.Success && itemResult.ConsumedInput);
                     consumedInput = consumedInput || itemResult.ConsumedInput;
                     if (!itemResult.Success)
                     {

@@ -41,17 +41,22 @@ namespace Pidgin
                 var z = _func(_seed(), result1.Value);
                 var consumedInput = result1.ConsumedInput;
 
+                state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
                 while (result.Success)
                 {
+                    state.EndExpectedTran(false);
                     if (!result.ConsumedInput)
                     {
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
                     z = _func(z, result.Value);
+
+                    state.BeginExpectedTran();
                     result = _parser.Parse(ref state);
                 }
+                state.EndExpectedTran(result.ConsumedInput);
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
                     // state.Error set by _parser

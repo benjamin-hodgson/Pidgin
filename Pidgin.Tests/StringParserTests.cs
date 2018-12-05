@@ -928,7 +928,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        null,
+                        ImmutableSortedSet<Expected<char>>.Empty,
                         new SourcePos(1, 1),
                         null
                     ),
@@ -942,7 +942,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('f'),
                         false,
-                        null,
+                        ImmutableSortedSet<Expected<char>>.Empty,
                         new SourcePos(1, 1),
                         null
                     ),

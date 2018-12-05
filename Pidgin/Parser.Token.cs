@@ -18,14 +18,14 @@ namespace Pidgin
         private sealed class TokenParser : Parser<TToken, TToken>
         {
             private readonly TToken _token;
-            private ImmutableSortedSet<Expected<TToken>> _expected;
-            private ImmutableSortedSet<Expected<TToken>> Expected
+            private Expected<TToken> _expected;
+            private Expected<TToken> Expected
             {
                 get
                 {
-                    if (_expected == null)
+                    if (_expected.InternalTokens.IsDefault)
                     {
-                        _expected = ImmutableSortedSet.Create(new Expected<TToken>(ImmutableArray.Create(_token)));
+                        _expected = new Expected<TToken>(ImmutableArray.Create(_token));
                     }
                     return _expected;
                 }
@@ -41,25 +41,25 @@ namespace Pidgin
                 var x = state.Peek();
                 if (!x.HasValue)
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         x,
                         true,
-                        Expected,
                         state.SourcePos,
                         null
                     );
+                    state.AddExpected(Expected);
                     return InternalResult.Failure<TToken>(false);
                 }
                 var val = x.GetValueOrDefault();
                 if (!EqualityComparer<TToken>.Default.Equals(val, _token))
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         x,
                         false,
-                        Expected,
                         state.SourcePos,
                         null
                     );
+                    state.AddExpected(Expected);
                     return InternalResult.Failure<TToken>(false);
                 }
                 state.Advance();
@@ -95,10 +95,9 @@ namespace Pidgin
                 var x = state.Peek();
                 if (!x.HasValue)
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         x,
                         true,
-                        ImmutableSortedSet<Expected<TToken>>.Empty,
                         state.SourcePos,
                         null
                     );
@@ -107,10 +106,9 @@ namespace Pidgin
                 var val = x.GetValueOrDefault();
                 if (!_predicate(val))
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         x,
                         false,
-                        ImmutableSortedSet<Expected<TToken>>.Empty,
                         state.SourcePos,
                         null
                     );

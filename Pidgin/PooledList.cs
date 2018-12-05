@@ -1,5 +1,7 @@
 using System;
 using System.Buffers;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Pidgin
@@ -33,16 +35,74 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                void ThrowArgumentOutOfRangeException()
-                {
-                    throw new ArgumentOutOfRangeException("index");
-                }
                 if (index >= _size)
                 {
-                    ThrowArgumentOutOfRangeException();
+                    ThrowArgumentOutOfRangeException(nameof(index));
                 }
                 return _items[index];
             }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Add(T item)
+        {
+            GrowIfNecessary(1);
+            _items[_size] = item;
+            _size++;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AddRange(ImmutableArray<T> items)
+        {
+            GrowIfNecessary(items.Length);
+            items.CopyTo(_items, _size);
+            _size += items.Length;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AddRange(ReadOnlySpan<T> items)
+        {
+            GrowIfNecessary(items.Length);
+            items.CopyTo(_items.AsSpan().Slice(_size));
+            _size += items.Length;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public T Pop()
+        {
+            if (_size == 0)
+            {
+                ThrowInvalidOperationException();
+            }
+            _size -= 1;
+            var result = _items[_size];
+            _items[_size] = default;
+            return result;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Shrink(int newCount)
+        {
+            if (newCount > _size || newCount < 0)
+            {
+                ThrowArgumentOutOfRangeException(nameof(newCount));
+            }
+            _items.AsSpan().Slice(newCount).Clear();
+            _size = newCount;
+        }
+
+        public ReadOnlySpan<T> AsSpan() => _items.AsSpan().Slice(0, _size);
+
+        public ImmutableSortedSet<T> ToImmutableSortedSet()
+            => (_items ?? Array.Empty<T>()).Take(_size).ToImmutableSortedSet();
+
+        public void Clear()
+        {
+            if (_items != null)
+            {
+                _items.AsSpan().Clear();
+                ArrayPool<T>.Shared.Return(_items);
+            }
+            _items = null;
+            _size = 0;
         }
 
         public U Aggregate<U>(U seed, Func<U, T, U> func)
@@ -64,34 +124,27 @@ namespace Pidgin
             return z;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Add(T item)
-        {
-            GrowIfNecessary();
-            _items[_size] = item;
-            _size++;
-        }
-
-        public void Clear()
-        {
-            ArrayPool<T>.Shared.Return(_items);
-            _items = null;
-            _size = 0;
-        }
-
-        private void GrowIfNecessary()
+        private void GrowIfNecessary(int additionalSpace)
         {
             if (_items == null)
             {
-                _items = ArrayPool<T>.Shared.Rent(InitialCapacity);
+                _items = ArrayPool<T>.Shared.Rent(Math.Max(InitialCapacity, additionalSpace));
             }
             else if (_size == _items.Length)
             {
-                var newBuffer = ArrayPool<T>.Shared.Rent(_items.Length * 2);
+                var newBuffer = ArrayPool<T>.Shared.Rent(Math.Max(_items.Length * 2, _items.Length + additionalSpace));
                 Array.Copy(_items, newBuffer, _items.Length);
                 ArrayPool<T>.Shared.Return(_items);
                 _items = newBuffer;
             }
+        }
+        private static void ThrowArgumentOutOfRangeException(string paramName)
+        {
+            throw new ArgumentOutOfRangeException(paramName);
+        }
+        private static void ThrowInvalidOperationException()
+        {
+            throw new InvalidOperationException();
         }
     }
 }

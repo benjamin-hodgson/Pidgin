@@ -20,18 +20,18 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(label));
             }
-            return WithExpected(ImmutableSortedSet.Create(new Expected<TToken>(label)));
+            return WithExpected(ImmutableArray.Create(new Expected<TToken>(label)));
         }
             
-        internal Parser<TToken, T> WithExpected(ImmutableSortedSet<Expected<TToken>> expected)
+        internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
             => new WithExpectedParser(this, expected);
 
         private sealed class WithExpectedParser : Parser<TToken, T>
         {
             private readonly Parser<TToken, T> _parser;
-            private readonly ImmutableSortedSet<Expected<TToken>> _expected;
+            private readonly ImmutableArray<Expected<TToken>> _expected;
 
-            public WithExpectedParser(Parser<TToken, T> parser, ImmutableSortedSet<Expected<TToken>> expected)
+            public WithExpectedParser(Parser<TToken, T> parser, ImmutableArray<Expected<TToken>> expected)
             {
                 _parser = parser;
                 _expected = expected;
@@ -39,10 +39,12 @@ namespace Pidgin
 
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
+                state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
+                state.EndExpectedTran(false);
                 if (!result.Success)
                 {
-                    state.Error = state.Error.WithExpected(_expected);
+                    state.AddExpected(_expected);
                 }
                 return result;
             }

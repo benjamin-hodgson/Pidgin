@@ -64,6 +64,7 @@ namespace Pidgin
                     // state.Error set by _parser
                     return InternalResult.Failure<R>(result.ConsumedInput);
                 }
+
                 var nextParser = _func(result.Value);
                 var result2 = nextParser.Parse(ref state);
                 if (!result2.Success)

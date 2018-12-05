@@ -36,13 +36,15 @@ namespace Pidgin
             {
                 var startingPosition = state.SourcePos;
                 var token = state.Peek();
+
+                state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
+                state.EndExpectedTran(false);
                 if (result.Success)
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         token,
                         false,
-                        null,
                         startingPosition,
                         null
                     );

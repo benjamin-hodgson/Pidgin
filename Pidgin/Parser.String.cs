@@ -38,14 +38,14 @@ namespace Pidgin
         private sealed class CIStringParser : Parser<char, string>
         {
             private readonly string _value;
-            private ImmutableSortedSet<Expected<char>> _expected;
-            private ImmutableSortedSet<Expected<char>> Expected
+            private Expected<char> _expected;
+            private Expected<char> Expected
             {
                 get
                 {
-                    if (_expected == null)
+                    if (_expected.InternalTokens.IsDefault)
                     {
-                        _expected = ImmutableSortedSet.Create(new Expected<char>(ImmutableArray.CreateRange(_value)));
+                        _expected = new Expected<char>(_value.ToImmutableArray());
                     }
                     return _expected;
                 }
@@ -53,7 +53,7 @@ namespace Pidgin
 
             public CIStringParser(string value)
             {
-                _value = value.ToLowerInvariant();
+                _value = value;
             }
 
             internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
@@ -67,26 +67,26 @@ namespace Pidgin
                     var result = state.Peek();
                     if (!result.HasValue)
                     {
-                        state.Error = new ParseError<char>(
+                        state.Error = new InternalError<char>(
                             result,
                             true,
-                            Expected,
                             state.SourcePos,
                             null
                         );
+                        state.AddExpected(Expected);
                         return InternalResult.Failure<string>(consumedInput);
                     }
 
                     var token = result.GetValueOrDefault();
-                    if (char.ToLowerInvariant(token) != c)
+                    if (char.ToLowerInvariant(token) != char.ToLowerInvariant(c))
                     {
-                        state.Error = new ParseError<char>(
+                        state.Error = new InternalError<char>(
                             result,
                             false,
-                            Expected,
                             state.SourcePos,
                             null
                         );
+                        state.AddExpected(Expected);
                         return InternalResult.Failure<string>(consumedInput);
                     }
 

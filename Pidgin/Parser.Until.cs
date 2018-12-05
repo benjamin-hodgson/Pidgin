@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
@@ -107,27 +108,43 @@ namespace Pidgin
 
                 while (true)
                 {
+                    state.BeginExpectedTran();
                     var terminatorResult = _terminator.Parse(ref state);
                     if (terminatorResult.Success)
                     {
+                        state.EndExpectedTran(false);
                         return InternalResult.Success<IEnumerable<T>>(ts, true);
                     }
                     if (terminatorResult.ConsumedInput)
                     {
                         // state.Error set by _terminator
+                        state.EndExpectedTran(true);
                         return InternalResult.Failure<IEnumerable<T>>(true);
                     }
 
-                    var terminatorExpected = state.Error.InternalExpected;
+                    state.BeginExpectedTran();
                     var itemResult = _parser.Parse(ref state);
                     if (!itemResult.Success)
                     {
                         if (!itemResult.ConsumedInput)
                         {
-                            state.Error = state.Error.WithExpected(state.Error.InternalExpected.Union(terminatorExpected));
+                            // get the expected from both _terminator and _parser
+                            state.EndExpectedTran(true);
+                            state.EndExpectedTran(true);
+                        }
+                        else
+                        {
+                            // throw out the _terminator expecteds and keep only _parser
+                            var itemExpected = state.ExpectedTranState();
+                            state.EndExpectedTran(false);
+                            state.EndExpectedTran(false);
+                            state.AddExpected(itemExpected.AsSpan());
                         }
                         return InternalResult.Failure<IEnumerable<T>>(true);
                     }
+                    // throw out both sets of expecteds
+                    state.EndExpectedTran(false);
+                    state.EndExpectedTran(false);
                     if (!itemResult.ConsumedInput)
                     {
                         throw new InvalidOperationException("Until() used with a parser which consumed no input");

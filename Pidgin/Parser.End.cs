@@ -13,21 +13,18 @@ namespace Pidgin
 
         private sealed class EndParser : Parser<TToken, Unit>
         {
-            private static readonly ImmutableSortedSet<Expected<TToken>> _expected
-                = ImmutableSortedSet.Create(new Expected<TToken>());
-
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var result = state.Peek();
                 if (result.HasValue)
                 {
-                    state.Error = new ParseError<TToken>(
+                    state.Error = new InternalError<TToken>(
                         result,
                         false,
-                        _expected,
                         state.SourcePos,
                         null
                     );
+                    state.AddExpected(new Expected<TToken>());
                     return InternalResult.Failure<Unit>(false);
                 }
                 return InternalResult.Success(Unit.Value, false);

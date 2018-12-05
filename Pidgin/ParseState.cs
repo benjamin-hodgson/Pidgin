@@ -1,5 +1,7 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
 
@@ -17,7 +19,9 @@ namespace Pidgin
         private int _consumedCount;
         private bool _hasCurrent;
         public SourcePos SourcePos { get; private set; }
-        public ParseError<TToken> Error { get; set; }
+        public InternalError<TToken> Error { get; set; }
+        private PooledList<Expected<TToken>> _expecteds;
+        private PooledList<int> _expectedBookmarks;
         
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
         {
@@ -28,6 +32,8 @@ namespace Pidgin
             _hasCurrent = false;
             SourcePos = new SourcePos(1, 1);
             Error = default;
+            _expecteds = new PooledList<Expected<TToken>>();
+            _expectedBookmarks = new PooledList<int>();
         }
 
         public Maybe<TToken> Peek() => _hasCurrent ? Maybe.Just(_stream.Current) : Maybe.Nothing<TToken>();
@@ -77,7 +83,48 @@ namespace Pidgin
             }
         }
 
-        public void Dispose() => _stream.Dispose();
+        public void BeginExpectedTran()
+        {
+            _expectedBookmarks.Add(_expecteds.Count);
+        }
+        public void AddExpected(Expected<TToken> expected)
+        {
+            _expecteds.Add(expected);
+        }
+        public void AddExpected(ImmutableArray<Expected<TToken>> expected)
+        {
+            _expecteds.AddRange(expected);
+        }
+        public void AddExpected(ReadOnlySpan<Expected<TToken>> expected)
+        {
+            _expecteds.AddRange(expected);
+        }
+        public void EndExpectedTran(bool commit)
+        {
+            var newCount = _expectedBookmarks.Pop();
+            if (!commit)
+            {
+                _expecteds.Shrink(newCount);
+            }
+        }
+
+        // todo: pool this
+        public Expected<TToken>[] ExpectedTranState()
+            => _expecteds
+                .AsSpan()
+                .Slice(_expectedBookmarks[_expectedBookmarks.Count - 1])
+                .ToArray();
+
+        public ParseError<TToken> BuildError()
+            => Error.Build(_expecteds.ToImmutableSortedSet());
+
+        public void Dispose()
+        {
+            _stream.Dispose();
+            _bookmarks.Clear();
+            _expecteds.Clear();
+            _expectedBookmarks.Clear();
+        }
 
 
         private struct Bookmark

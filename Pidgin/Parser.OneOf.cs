@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Pidgin
             var cs = chars.ToArray();
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, c) != -1)
-                .WithExpected(ImmutableSortedSet.CreateRange(cs.Select(c => new Expected<char>(ImmutableArray.Create(c)))));
+                .WithExpected(cs.Select(c => new Expected<char>(ImmutableArray.Create(c))).ToImmutableArray());
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(chars));
             }
             var cs = chars.Select(char.ToLowerInvariant).ToArray();
-            var builder = ImmutableSortedSet.CreateBuilder<Expected<char>>();
+            var builder = ImmutableArray.CreateBuilder<Expected<char>>(cs.Length * 2);
             foreach (var c in cs)
             {
                 builder.Add(new Expected<char>(ImmutableArray.Create(char.ToLowerInvariant(c))));
@@ -74,7 +75,7 @@ namespace Pidgin
             }
             return Parser<char>
                 .Token(c => Array.IndexOf(cs, char.ToLowerInvariant(c)) != -1)
-                .WithExpected(builder.ToImmutable());
+                .WithExpected(builder.MoveToImmutable());
         }
 
         /// <summary>
@@ -125,25 +126,39 @@ namespace Pidgin
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 var firstTime = true;
-                var err = new ParseError<TToken>(
+                var err = new InternalError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
-                    ImmutableSortedSet<Expected<TToken>>.Empty,
                     state.SourcePos,
                     "OneOf had no arguments"
                 );
-                var expecteds = new PooledList<ImmutableSortedSet<Expected<TToken>>>(_parsers.Length);
+                state.BeginExpectedTran();
                 foreach (var p in _parsers)
                 {
+                    state.BeginExpectedTran();
                     var thisResult = p.Parse(ref state);
+                    if (thisResult.Success)
+                    {
+                        // throw out all expecteds
+                        state.EndExpectedTran(false);
+                        state.EndExpectedTran(false);
+                        return thisResult;
+                    }
+
                     // we'll usually return the error from the first parser that didn't backtrack,
                     // even if other parsers had a longer match.
                     // There is some room for improvement here.
-                    if (thisResult.Success || thisResult.ConsumedInput)
+                    if (thisResult.ConsumedInput)
                     {
+                        // throw out all expecteds except this one
+                        var expected = state.ExpectedTranState();
+                        state.EndExpectedTran(false);
+                        state.EndExpectedTran(false);
+                        state.AddExpected(expected.AsSpan());
                         return thisResult;
                     }
-                    expecteds.Add(state.Error.InternalExpected);
+
+                    state.EndExpectedTran(true);
                     // choose the longest match, preferring the left-most error in a tie,
                     // except the first time (avoid returning "OneOf had no arguments").
                     if (firstTime || state.Error.ErrorPos > err.ErrorPos)
@@ -152,8 +167,8 @@ namespace Pidgin
                     }
                     firstTime = false;
                 }
-                state.Error = err.WithExpected(ExpectedUtil.Union(ref expecteds));
-                expecteds.Clear();
+                state.Error = err;
+                state.EndExpectedTran(true);
                 return InternalResult.Failure<T>(false);
             }
 
