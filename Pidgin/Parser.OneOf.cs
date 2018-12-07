@@ -123,6 +123,7 @@ namespace Pidgin
                 _parsers = parsers;
             }
 
+            // see comment about expecteds in ParseState.Error.cs
             internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 var firstTime = true;

@@ -33,6 +33,7 @@ namespace Pidgin
                 _errorHandler = errorHandler;
             }
 
+            // see comment about expecteds in ParseState.Error.cs
             internal override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 state.BeginExpectedTran();

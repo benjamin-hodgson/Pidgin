@@ -90,6 +90,7 @@ namespace Pidgin
                 _keepResults = keepResults;
             }
 
+            // see comment about expecteds in ParseState.Error.cs
             internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
             {
                 var ts = _keepResults ? new List<T>() : null;
