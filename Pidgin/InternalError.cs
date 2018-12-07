@@ -1,7 +1,9 @@
 using System.Collections.Immutable;
+using System.Runtime.InteropServices;
 
 namespace Pidgin
 {
+    [StructLayout(LayoutKind.Auto)]
     internal readonly struct InternalError<TToken>
     {
         public bool EOF { get; }
@@ -16,8 +18,5 @@ namespace Pidgin
             ErrorPos = errorPos;
             Message = message;
         }
-
-        public ParseError<TToken> Build(ImmutableSortedSet<Expected<TToken>> expecteds)
-            => new ParseError<TToken>(Unexpected, EOF, expecteds, ErrorPos, Message);
     }
 }
