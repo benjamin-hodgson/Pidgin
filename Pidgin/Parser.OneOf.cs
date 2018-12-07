@@ -156,6 +156,7 @@ namespace Pidgin
                         state.EndExpectedTran(false);
                         state.EndExpectedTran(false);
                         state.AddExpected(expected.AsSpan());
+                        expected.Dispose();
                         return thisResult;
                     }
 

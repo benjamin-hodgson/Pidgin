@@ -140,6 +140,7 @@ namespace Pidgin
                             state.EndExpectedTran(false);
                             state.EndExpectedTran(false);
                             state.AddExpected(itemExpected.AsSpan());
+                            itemExpected.Dispose();
                         }
                         return InternalResult.Failure<IEnumerable<T>>(true);
                     }

@@ -12,6 +12,24 @@ namespace Pidgin
         private Maybe<TToken> _unexpected;
         private SourcePos _errorPos;
         private string _message;
+        public InternalError<TToken> Error
+        {
+            get
+            {
+                return new InternalError<TToken>(_unexpected, _eof, _errorPos, _message);
+            }
+            set
+            {
+                _unexpected = value.Unexpected;
+                _eof = value.EOF;
+                _errorPos = value.ErrorPos;
+                _message = value.Message;
+            }
+        }
+        public ParseError<TToken> BuildError()
+            => new ParseError<TToken>(_unexpected, _eof, _expecteds.ToImmutableSortedSet(), _errorPos, _message);
+        public ParseError<TToken> BuildError(PooledArray<Expected<TToken>> expecteds)
+            => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableSortedSet(), _errorPos, _message);
 
         // I'm basically using _expecteds as a set builder.
         // When a parser fails (and has an expected) it calls AddExpected to store the expected.
@@ -54,21 +72,7 @@ namespace Pidgin
         // That turned out to be slow (allocations), especially in the merge case, hence this imperative implementation on top of pooled memory
         private PooledList<Expected<TToken>> _expecteds;
         private PooledList<int> _expectedBookmarks;
-        
-        public InternalError<TToken> Error
-        {
-            get
-            {
-                return new InternalError<TToken>(_unexpected, _eof, _errorPos, _message);
-            }
-            set
-            {
-                _unexpected = value.Unexpected;
-                _eof = value.EOF;
-                _errorPos = value.ErrorPos;
-                _message = value.Message;
-            }
-        }
+
         public void BeginExpectedTran()
         {
             _expectedBookmarks.Add(_expecteds.Count);
@@ -93,13 +97,11 @@ namespace Pidgin
                 _expecteds.Shrink(newCount);
             }
         }
-        // todo: pool this
-        public Expected<TToken>[] ExpectedTranState()
-            => _expecteds
-                .AsSpan()
-                .Slice(_expectedBookmarks[_expectedBookmarks.Count - 1])
-                .ToArray();
-        public ParseError<TToken> BuildError()
-            => new ParseError<TToken>(_unexpected, _eof, _expecteds.ToImmutableSortedSet(), _errorPos, _message);
+        public PooledArray<Expected<TToken>> ExpectedTranState()
+            => PooledArray<Expected<TToken>>.From(
+                _expecteds
+                    .AsSpan()
+                    .Slice(_expectedBookmarks[_expectedBookmarks.Count - 1])
+            );
     }
 }
