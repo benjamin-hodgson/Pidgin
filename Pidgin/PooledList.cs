@@ -2,6 +2,7 @@ using System;
 using System.Buffers;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Pidgin
@@ -11,6 +12,10 @@ namespace Pidgin
     /// </summary>
     internal struct PooledList<T>
     {
+        // If T is not primitive, we should clear out the pooled arrays so as not to leak objects.
+        // Ideally I'd look at typeof(T).IsManagedType but there's no such thing.
+        private static readonly bool _needsClear = !typeof(T).GetTypeInfo().IsPrimitive;
+
         private const int InitialCapacity = 16;
         private T[] _items;
         private int _size;
@@ -74,7 +79,10 @@ namespace Pidgin
             }
             _size -= 1;
             var result = _items[_size];
-            _items[_size] = default;
+            if (_needsClear)
+            {
+                _items[_size] = default;
+            }
             return result;
         }
 
@@ -85,7 +93,10 @@ namespace Pidgin
             {
                 ThrowArgumentOutOfRangeException(nameof(newCount));
             }
-            _items.AsSpan().Slice(newCount).Clear();
+            if (_needsClear)
+            {
+                _items.AsSpan().Slice(newCount).Clear();
+            }
             _size = newCount;
         }
 
@@ -98,8 +109,7 @@ namespace Pidgin
         {
             if (_items != null)
             {
-                _items.AsSpan().Clear();
-                ArrayPool<T>.Shared.Return(_items);
+                ArrayPool<T>.Shared.Return(_items, _needsClear);
             }
             _items = null;
             _size = 0;
@@ -134,7 +144,7 @@ namespace Pidgin
             {
                 var newBuffer = ArrayPool<T>.Shared.Rent(Math.Max(_items.Length * 2, _items.Length + additionalSpace));
                 Array.Copy(_items, newBuffer, _items.Length);
-                ArrayPool<T>.Shared.Return(_items);
+                ArrayPool<T>.Shared.Return(_items, _needsClear);
                 _items = newBuffer;
             }
         }
