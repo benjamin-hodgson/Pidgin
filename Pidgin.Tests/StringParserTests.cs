@@ -991,18 +991,38 @@ namespace Pidgin.Tests
         public void TestRecoverWith()
         {
             {
-                var parser = String("foo").Then(Return(Maybe.Nothing<ParseError<char>>()))
-                    .RecoverWith(err => String("bar").Then(Return(Maybe.Just(err))));
+                var parser = String("foo").ThenReturn((ParseError<char>)null)
+                    .RecoverWith(err => String("bar").ThenReturn(err));
 
                 AssertSuccess(
                     parser.Parse("fobar"),
-                    Maybe.Just(new ParseError<char>(
+                    new ParseError<char>(
                         Maybe.Just('b'),
                         false,
                         ImmutableSortedSet.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1, 3),
                         null
-                    )),
+                    ),
+                    true
+                );
+            }
+            {
+                var parser = String("nabble").ThenReturn((ParseError<char>)null)
+                    .Or(
+                        String("foo").ThenReturn((ParseError<char>)null)
+                            .RecoverWith(err => String("bar").ThenReturn(err))
+                    );
+                
+                // shouldn't get the expected from nabble
+                AssertSuccess(
+                    parser.Parse("fobar"),
+                    new ParseError<char>(
+                        Maybe.Just('b'),
+                        false,
+                        ImmutableSortedSet.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                        new SourcePos(1, 3),
+                        null
+                    ),
                     true
                 );
             }
