@@ -10,7 +10,7 @@ namespace Pidgin
     /// A mutable struct! Careful!
     /// </summary>
     [StructLayout(LayoutKind.Auto)]
-    internal struct ParseState<TToken>
+    internal partial struct ParseState<TToken>
     {
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
         private PooledList<Bookmark> _bookmarks;
@@ -18,9 +18,7 @@ namespace Pidgin
         private int _consumedCount;
         private bool _hasCurrent;
         public SourcePos SourcePos { get; private set; }
-        public InternalError<TToken> Error { get; set; }
-        private PooledList<Expected<TToken>> _expecteds;
-        private PooledList<int> _expectedBookmarks;
+        
         
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
         {
@@ -30,7 +28,11 @@ namespace Pidgin
             _consumedCount = 0;
             _hasCurrent = false;
             SourcePos = new SourcePos(1, 1);
-            Error = default;
+
+            _eof = default;
+            _unexpected = default;
+            _errorPos = default;
+            _message = default;
             _expecteds = new PooledList<Expected<TToken>>();
             _expectedBookmarks = new PooledList<int>();
         }
@@ -81,41 +83,6 @@ namespace Pidgin
                 _stream.StopBuffering();
             }
         }
-
-        public void BeginExpectedTran()
-        {
-            _expectedBookmarks.Add(_expecteds.Count);
-        }
-        public void AddExpected(Expected<TToken> expected)
-        {
-            _expecteds.Add(expected);
-        }
-        public void AddExpected(ImmutableArray<Expected<TToken>> expected)
-        {
-            _expecteds.AddRange(expected);
-        }
-        public void AddExpected(ReadOnlySpan<Expected<TToken>> expected)
-        {
-            _expecteds.AddRange(expected);
-        }
-        public void EndExpectedTran(bool commit)
-        {
-            var newCount = _expectedBookmarks.Pop();
-            if (!commit)
-            {
-                _expecteds.Shrink(newCount);
-            }
-        }
-
-        // todo: pool this
-        public Expected<TToken>[] ExpectedTranState()
-            => _expecteds
-                .AsSpan()
-                .Slice(_expectedBookmarks[_expectedBookmarks.Count - 1])
-                .ToArray();
-
-        public ParseError<TToken> BuildError()
-            => Error.Build(_expecteds.ToImmutableSortedSet());
 
         public void Dispose()
         {
