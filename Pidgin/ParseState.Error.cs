@@ -27,8 +27,8 @@ namespace Pidgin
             }
         }
         public ParseError<TToken> BuildError()
-            => new ParseError<TToken>(_unexpected, _eof, _expecteds.ToImmutableSortedSet(), _errorPos, _message);
-        public ParseError<TToken> BuildError(PooledArray<Expected<TToken>> expecteds)
+            => BuildError(_expecteds.ToImmutableSortedSet());
+        public ParseError<TToken> BuildError(ImmutableSortedSet<Expected<TToken>> expecteds)
             => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableSortedSet(), _errorPos, _message);
 
         // I'm basically using _expecteds as a set builder.
