@@ -1,9 +1,94 @@
+using System;
 using System.Linq;
+using System.Text;
 
 namespace Pidgin
 {
     public static partial class Parser
     {
+        // --------------------------------------------------------------------
+        // Floating point support
+        // --------------------------------------------------------------------
+
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> Float { get; } = RealNum();
+
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> RealNum()
+            => Map(
+                (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
+                (Char('-').Or(Char('+'))).Optional(),
+                UnsignedReal()
+            ).Labelled($"real number");
+
+        /// <summary>
+        /// A parser which parses a floating point number without a sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number without a sign.</returns>
+
+        // This method effectively accumulates a numeric string (with a decimal point) and then
+        // uses the built in C# routines to convert the value.  The method of isolated 
+        // increment value creation as used by the numeric parser would have been too difficult
+        // without the establishment of multi-parser context (e.g. we have to know at least 
+        // which character position we are right of the decimal).  That along with the rounding
+        // and other issues of dealing with floating point values, the path is best suited to
+        // the tried and true .NET support.  MEU
+
+        public static Parser<char, double> UnsignedReal()
+            => DigitCharDouble().ChainAtLeastOnceAL(
+
+                    // Seed method
+                        () => 0.0,
+
+                    // Process method
+                    (acc, x, s) =>
+                    {
+                        double d = 0.0;
+                        if (s != "."){
+                            d = Convert.ToDouble(s);
+                        }
+                        //Console.WriteLine($"ChainAtLeastOnceAL callback acc={acc}, x={x}, retStr={s}, ret={d}");
+                        return d;
+                    },
+
+                    // Post process method
+                    // (validation)
+                    (acc, s) =>
+                    {
+                        //Console.WriteLine($"ChainAtLeastOnceAL callback acc={acc}, Str={s}");
+                        if (s.IndexOf(".") < 0 || s.Length < 2)
+                        {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                ).Labelled($"real number");
+
+        // This method will need to be enhanced for coutries that use a ","
+        // instead of a decimal point.  I was unsure of your international strategy.
+        private static Parser<char, double> DigitCharDouble()
+            => Parser<char>.Token(c => (c >= '0' && c < '0' + 10) || c == '.')
+                //.Select(c => (double) c);
+                .Select(c => (double) GetDigitValueDouble(c));
+
+        // This method just returns the character value
+        // (there is probably an existing replacement)
+        private static int GetDigitValueDouble(char c) => c;
+
+        // --------------------------------------------------------------------
+        // End Floating point support
+        // --------------------------------------------------------------------
+
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.
         /// The resulting <c>int</c> is not checked for overflow.

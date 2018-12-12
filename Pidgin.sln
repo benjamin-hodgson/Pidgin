@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pidgin.Bench.FParsec", "Pid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pidgin.DllRewriter", "Pidgin.DllRewriter\Pidgin.DllRewriter.csproj", "{746634A6-796C-4314-88E5-0DF026618AE6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PidgenTestApp", "PigenTestApp\PidgenTestApp.csproj", "{C2177680-15A4-406E-B927-562E65108F09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
