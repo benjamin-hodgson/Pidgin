@@ -56,7 +56,6 @@ namespace Pidgin
                         if (s != "."){
                             d = Convert.ToDouble(s);
                         }
-                        //Console.WriteLine($"ChainAtLeastOnceAL callback acc={acc}, x={x}, retStr={s}, ret={d}");
                         return d;
                     },
 
@@ -64,7 +63,6 @@ namespace Pidgin
                     // (validation)
                     (acc, s) =>
                     {
-                        //Console.WriteLine($"ChainAtLeastOnceAL callback acc={acc}, Str={s}");
                         if (s.IndexOf(".") < 0 || s.Length < 2)
                         {
                             return false;

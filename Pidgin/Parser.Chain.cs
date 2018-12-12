@@ -159,8 +159,6 @@ namespace Pidgin
                 int i = Convert.ToInt32(ResultValue);
                 char c = Convert.ToChar(i);
                 returnString = c.ToString();
-
-                //Console.WriteLine($"RestoreCharacter ResultValue={ResultValue}, i={i}, c={c}, returnString={returnString}");
             }
             return returnString;
 
