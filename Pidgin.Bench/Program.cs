@@ -6,6 +6,7 @@ namespace Pidgin.Bench
     {
         static void Main()
         {
+            BenchmarkRunner.Run<NumberBench>();
             BenchmarkRunner.Run<JsonBench>();
             BenchmarkRunner.Run<ExpressionBench>();
         }
