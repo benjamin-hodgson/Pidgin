@@ -33,9 +33,10 @@
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
-  <Target Name="RewriteDll" AfterTargets="Compile">
-    <Exec Command="dotnet run --project &quot;$(MSBuildProjectDirectory)/../Pidgin.DllRewriter&quot; &quot;$(TargetFramework)&quot; &quot;$(MSBuildProjectDirectory)/$(IntermediateOutputPath)Pidgin.dll&quot; &quot;$(MSBuildProjectDirectory)/$(IntermediateOutputPath)Pidgin_Rewritten.dll&quot;" />
-    <Copy SourceFiles="$(IntermediateOutputPath)Pidgin_Rewritten.dll" DestinationFiles="$(IntermediateOutputPath)Pidgin.dll" />
+  <Target Name="RewriteDll" AfterTargets="AfterBuild">
+    <Exec Command="dotnet run --project &quot;$(MSBuildProjectDirectory)/../Pidgin.DllRewriter&quot; &quot;$(TargetFramework)&quot; &quot;$(MSBuildProjectDirectory)/$(OutputPath)Pidgin.dll&quot; &quot;$(MSBuildProjectDirectory)/$(OutputPath)Pidgin_Rewritten.dll&quot;" />
+    <Copy SourceFiles="$(OutputPath)Pidgin_Rewritten.dll;$(OutputPath)Pidgin_Rewritten.pdb" DestinationFiles="$(OutputPath)Pidgin.dll;$(OutputPath)Pidgin.pdb" />
+    <Delete Files="$(OutputPath)Pidgin_Rewritten.dll;$(OutputPath)Pidgin_Rewritten.pdb" />
   </Target>
 
 </Project>

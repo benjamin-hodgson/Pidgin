@@ -14,16 +14,14 @@ namespace Pidgin.DllRewriter
         {
             var netcoreapp = args[0].StartsWith("netcoreapp");
 
-            var module = ModuleDefinition.ReadModule(args[1]);
-
-
+            var module = ModuleDefinition.ReadModule(args[1], new ReaderParameters { ReadSymbols = true });
 
             var unsafeType = module.Types.Single(t => t.Name == "Unsafe");
 
             RewriteAsPointerMethod(unsafeType);
             RewriteAsRefMethod(netcoreapp, unsafeType, module.TypeSystem);
 
-            module.Write(args[2]);
+            module.Write(args[2], new WriterParameters { WriteSymbols = true });
         }
 
         // https://github.com/dotnet/corefx/blob/7942e7c3ed03cf7f19dffe539e23b84b4a85ad5a/src/System.Runtime.CompilerServices.Unsafe/src/System.Runtime.CompilerServices.Unsafe.il#L145
