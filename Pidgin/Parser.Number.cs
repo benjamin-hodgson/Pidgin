@@ -6,10 +6,6 @@ namespace Pidgin
 {
     public static partial class Parser
     {
-        // --------------------------------------------------------------------
-        // Floating point support
-        // --------------------------------------------------------------------
-
         /// <summary>
         /// A parser which parses a floating point number with an optional sign.
         /// The resulting <c>double</c> is not checked for overflow.
@@ -35,13 +31,31 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser which parses a floating point number without a sign.</returns>
 
+        // This method follows a similar approach that the other numeric parsers
+        // use.  Unfortuenetely it does not handle ".123" (no integer portion)
+        //public static Parser<char, double> UnsignedReal()
+        // => Map(
+        //    (integerPart, _, decimalPart) => integerPart + decimalPart,
+        //    UnsignedInt(10),
+        //    Char('.'),
+        //        DigitChar(10).ChainAtLeastOnceL(
+        //            () => (val: 0.0, exp: 0.1),
+        //            (t, n) =>
+        //            {
+        //                t.val = t.val + (n * t.exp);
+        //                t.exp = t.exp / 10;
+        //                return t;
+        //            }
+        //        ).Select(t => t.val)
+        //    );
+
         // This method effectively accumulates a numeric string (with a decimal point) and then
         // uses the built in C# routines to convert the value.  The method of isolated 
         // increment value creation as used by the numeric parser would have been too difficult
         // without the establishment of multi-parser context (e.g. we have to know at least 
         // which character position we are right of the decimal).  That along with the rounding
         // and other issues of dealing with floating point values, the path is best suited to
-        // the tried and true .NET support.  MEU
+        // the tried and true .NET support. 
 
         public static Parser<char, double> UnsignedReal()
             => DigitCharDouble().ChainAtLeastOnceAL(
@@ -82,10 +96,6 @@ namespace Pidgin
         // This method just returns the character value
         // (there is probably an existing replacement)
         private static int GetDigitValueDouble(char c) => c;
-
-        // --------------------------------------------------------------------
-        // End Floating point support
-        // --------------------------------------------------------------------
 
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.

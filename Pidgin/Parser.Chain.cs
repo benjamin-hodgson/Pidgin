@@ -66,13 +66,9 @@ namespace Pidgin
             }
         }
 	
-        // --------------------------------------------------------------------
         // Alternative chain parser
-        // --------------------------------------------------------------------
         // This is a new type of chain route that allows the accumulation of complex strings
-        // and the subsequent validation of the result.  I believe that it follows the 
-        // methodology of the 'ChainAtLeastOnceL' routine.  I had difficulty getting the 
-        // individual parsers to work together and maintain the result context. MEU
+        // and the subsequent validation of the result.
 
 		internal Parser<TToken, U> ChainAtLeastOnceAL<U>(
                 Func<U> seed, 
@@ -86,7 +82,6 @@ namespace Pidgin
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Func<U> _seed;
-            //private readonly Func<U, T, U> _func;
             private readonly Func<U, T, string, U> _func;
             private readonly Func<U, string, bool> _post;
 
@@ -149,8 +144,7 @@ namespace Pidgin
 
         }
 
-        // This routine effectively returns the parser (transition) character.
-        // (there may be a better way of getting this data)
+        // This method effectively returns the parser (transition) character.
         private string RestoreCharacter(object ResultValue)
         {
             string returnString = "";
