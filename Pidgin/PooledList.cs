@@ -77,13 +77,8 @@ namespace Pidgin
             {
                 ThrowInvalidOperationException();
             }
-            _size -= 1;
-            var result = _items[_size];
-            if (_needsClear)
-            {
-                _items[_size] = default;
-            }
-            return result;
+            _size--;
+            return _items[_size];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -92,10 +87,6 @@ namespace Pidgin
             if (newCount > _size || newCount < 0)
             {
                 ThrowArgumentOutOfRangeException(nameof(newCount));
-            }
-            if (_needsClear)
-            {
-                _items.AsSpan().Slice(newCount).Clear();
             }
             _size = newCount;
         }
