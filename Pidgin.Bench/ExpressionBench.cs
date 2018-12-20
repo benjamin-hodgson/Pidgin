@@ -32,43 +32,43 @@ namespace Pidgin.Bench
             );
         }
 
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongInfixL_Pidgin()
         {
             _leftAssoc.ParseOrThrow(_bigExpression);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongInfixR_Pidgin()
         {
             _rightAssoc.ParseOrThrow(_bigExpression);
         }
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Long")]
         public void LongInfixL_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseL(_bigExpression);
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Long")]
         public void LongInfixR_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
         }
 
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Short")]
         public void ShortInfixL_Pidgin()
         {
             _leftAssoc.ParseOrThrow("1+1");
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Short")]
         public void ShortInfixR_Pidgin()
         {
             _rightAssoc.ParseOrThrow("1+1");
         }
-        [Benchmark]
+        [Benchmark(Baseline = true), BenchmarkCategory("Short")]
         public void ShortInfixL_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseL("1+1");
         }
-        [Benchmark]
+        [Benchmark, BenchmarkCategory("Short")]
         public void ShortInfixR_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");
