@@ -1,6 +1,7 @@
 using System;
 using System.Buffers;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
 
@@ -24,9 +25,6 @@ namespace Pidgin
         private int _bufferIndex;
         private int _bufferLength;
 
-        private bool HasCurrent => _bufferIndex >= 0 && _bufferIndex < _bufferLength;
-        private TToken Current => _buffer[_bufferIndex];
-
 
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
         {
@@ -49,7 +47,21 @@ namespace Pidgin
             _expectedBookmarks = new PooledList<int>();
         }
 
-        public Maybe<TToken> Peek() => HasCurrent ? Maybe.Just(Current) : Maybe.Nothing<TToken>();
+        public bool HasCurrent
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return _bufferIndex >= 0 && _bufferIndex < _bufferLength;
+            }
+        }
+        public TToken Current
+        {
+            get
+            {
+                return _buffer[_bufferIndex];
+            }
+        }
 
         public void Advance()
         {

@@ -38,11 +38,10 @@ namespace Pidgin
 
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
-                var x = state.Peek();
-                if (!x.HasValue)
+                if (!state.HasCurrent)
                 {
                     state.Error = new InternalError<TToken>(
-                        x,
+                        Maybe.Nothing<TToken>(),
                         true,
                         state.SourcePos,
                         null
@@ -50,11 +49,11 @@ namespace Pidgin
                     state.AddExpected(Expected);
                     return InternalResult.Failure<TToken>(false);
                 }
-                var val = x.GetValueOrDefault();
-                if (!EqualityComparer<TToken>.Default.Equals(val, _token))
+                var token = state.Current;
+                if (!EqualityComparer<TToken>.Default.Equals(token, _token))
                 {
                     state.Error = new InternalError<TToken>(
-                        x,
+                        Maybe.Just(token),
                         false,
                         state.SourcePos,
                         null
@@ -63,7 +62,7 @@ namespace Pidgin
                     return InternalResult.Failure<TToken>(false);
                 }
                 state.Advance();
-                return InternalResult.Success<TToken>(val, true);
+                return InternalResult.Success<TToken>(token, true);
             }
         }
 
@@ -92,22 +91,21 @@ namespace Pidgin
 
             internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
             {
-                var x = state.Peek();
-                if (!x.HasValue)
+                if (!state.HasCurrent)
                 {
                     state.Error = new InternalError<TToken>(
-                        x,
+                        Maybe.Nothing<TToken>(),
                         true,
                         state.SourcePos,
                         null
                     );
                     return InternalResult.Failure<TToken>(false);
                 }
-                var val = x.GetValueOrDefault();
-                if (!_predicate(val))
+                var token = state.Current;
+                if (!_predicate(token))
                 {
                     state.Error = new InternalError<TToken>(
-                        x,
+                        Maybe.Just(token),
                         false,
                         state.SourcePos,
                         null
@@ -115,7 +113,7 @@ namespace Pidgin
                     return InternalResult.Failure<TToken>(false);
                 }
                 state.Advance();
-                return InternalResult.Success<TToken>(val, true);
+                return InternalResult.Success<TToken>(token, true);
             }
         }
     }

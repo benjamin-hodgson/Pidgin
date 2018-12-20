@@ -64,11 +64,10 @@ namespace Pidgin
 
                 foreach (var c in _value)
                 {
-                    var result = state.Peek();
-                    if (!result.HasValue)
+                    if (!state.HasCurrent)
                     {
                         state.Error = new InternalError<char>(
-                            result,
+                            Maybe.Nothing<char>(),
                             true,
                             state.SourcePos,
                             null
@@ -77,11 +76,11 @@ namespace Pidgin
                         return InternalResult.Failure<string>(consumedInput);
                     }
 
-                    var token = result.GetValueOrDefault();
+                    var token = state.Current;
                     if (char.ToLowerInvariant(token) != char.ToLowerInvariant(c))
                     {
                         state.Error = new InternalError<char>(
-                            result,
+                            Maybe.Just(token),
                             false,
                             state.SourcePos,
                             null

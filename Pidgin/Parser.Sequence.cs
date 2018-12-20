@@ -54,11 +54,10 @@ namespace Pidgin
                 var consumedInput = false;
                 foreach (var x in _valueTokens)
                 {
-                    var result = state.Peek();
-                    if (!result.HasValue)
+                    if (!state.HasCurrent)
                     {
                         state.Error = new InternalError<TToken>(
-                            result,
+                            Maybe.Nothing<TToken>(),
                             true,
                             state.SourcePos,
                             null
@@ -67,11 +66,11 @@ namespace Pidgin
                         return InternalResult.Failure<TEnumerable>(consumedInput);
                     }
 
-                    TToken token = result.GetValueOrDefault();
+                    var token = state.Current;
                     if (!EqualityComparer<TToken>.Default.Equals(token, x))
                     {
                         state.Error = new InternalError<TToken>(
-                            result,
+                            Maybe.Just(token),
                             false,
                             state.SourcePos,
                             null

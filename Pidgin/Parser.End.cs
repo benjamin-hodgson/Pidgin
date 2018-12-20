@@ -15,11 +15,10 @@ namespace Pidgin
         {
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
-                var result = state.Peek();
-                if (result.HasValue)
+                if (state.HasCurrent)
                 {
                     state.Error = new InternalError<TToken>(
-                        result,
+                        Maybe.Just(state.Current),
                         false,
                         state.SourcePos,
                         null

@@ -35,7 +35,7 @@ namespace Pidgin
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
                 var startingPosition = state.SourcePos;
-                var token = state.Peek();
+                var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
                 state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
