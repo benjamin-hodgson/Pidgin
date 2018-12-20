@@ -16,18 +16,30 @@ namespace Pidgin
         private PooledList<Bookmark> _bookmarks;
         private readonly ITokenStream<TToken> _stream;
         private int _consumedCount;
-        private bool _hasCurrent;
         public SourcePos SourcePos { get; private set; }
-        
-        
+
+
+        private readonly int _bufferChunkSize;
+        private TToken[] _buffer;
+        private int _bufferIndex;
+        private int _bufferLength;
+
+        private bool HasCurrent => _bufferIndex >= 0 && _bufferIndex < _bufferLength;
+        private TToken Current => _buffer[_bufferIndex];
+
+
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
         {
             _posCalculator = posCalculator;
             _bookmarks = new PooledList<Bookmark>();
             _stream = stream;
             _consumedCount = 0;
-            _hasCurrent = false;
             SourcePos = new SourcePos(1, 1);
+
+            _bufferChunkSize = stream.ChunkSizeHint;
+            _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
+            _bufferIndex = -1;
+            _bufferLength = 0;
 
             _eof = default;
             _unexpected = default;
@@ -37,35 +49,52 @@ namespace Pidgin
             _expectedBookmarks = new PooledList<int>();
         }
 
-        public Maybe<TToken> Peek() => _hasCurrent ? Maybe.Just(_stream.Current) : Maybe.Nothing<TToken>();
+        public Maybe<TToken> Peek() => HasCurrent ? Maybe.Just(Current) : Maybe.Nothing<TToken>();
 
         public void Advance()
         {
-            if (_hasCurrent)
+            if (HasCurrent)
             {
-                SourcePos = _posCalculator(_stream.Current, SourcePos);
+                SourcePos = _posCalculator(Current, SourcePos);
                 _consumedCount++;
             }
-            _hasCurrent = _stream.MoveNext();
+
+
+            _bufferIndex++;
+            if (_bufferIndex == _bufferLength)
+            {
+                // we're at the end of the current chunk. Pull a new chunk from the stream
+                if (_bookmarks.Count > 0)
+                {
+                    // extend the current buffer
+
+                    if (_buffer.Length == _bufferLength)
+                    {
+                        // buffer is full. Rent more space from the array pool
+                        var newBuffer = ArrayPool<TToken>.Shared.Rent(_buffer.Length * 2);
+                        Array.Copy(_buffer, newBuffer, _buffer.Length);
+                        ArrayPool<TToken>.Shared.Return(_buffer);
+                        _buffer = newBuffer;
+                    }
+                }
+                else  // it's safe to discard the data in the buffer and overwrite with a new chunk
+                {
+                    _bufferIndex = 0;
+                    _bufferLength = 0;
+                }
+                _bufferLength += _stream.ReadInto(_buffer, _bufferIndex, Math.Min(_bufferChunkSize, _buffer.Length - _bufferIndex));
+            }
         }
         
 
         public void PushBookmark()
         {
-            if (_bookmarks.Count == 0)
-            {
-                _stream.StartBuffering();
-            }
             _bookmarks.Add(new Bookmark(_consumedCount, SourcePos));
         }
 
         public void PopBookmark()
         {
             _bookmarks.Pop();
-            if (_bookmarks.Count == 0)
-            {
-                _stream.StopBuffering();
-            }
         }
 
         public void Rewind()
@@ -73,19 +102,24 @@ namespace Pidgin
             var bookmark = _bookmarks.Pop();
             
             var delta = _consumedCount - bookmark.Value;
-            _hasCurrent = _stream.RewindBy(delta);
+
+            if (delta > _bufferIndex)
+            {
+                throw new InvalidOperationException("Tried to rewind past the start of the input. Please report this as a bug in Pidgin!");
+            }
+            _bufferIndex -= delta;
 
             _consumedCount = bookmark.Value;
             SourcePos = bookmark.Pos;
-            
-            if (_bookmarks.Count == 0)
-            {
-                _stream.StopBuffering();
-            }
         }
 
         public void Dispose()
         {
+            if (_buffer != null)
+            {
+                ArrayPool<TToken>.Shared.Return(_buffer);
+                _buffer = null;
+            }
             _stream.Dispose();
             _bookmarks.Clear();
             _expecteds.Clear();

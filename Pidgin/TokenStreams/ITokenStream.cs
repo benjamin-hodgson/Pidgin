@@ -4,11 +4,8 @@ namespace Pidgin.TokenStreams
 {
     internal interface ITokenStream<TToken> : IDisposable
     {
-        TToken Current { get; }
-        bool MoveNext();
+        int ChunkSizeHint { get; }
 
-        void StartBuffering();
-        void StopBuffering();
-        bool RewindBy(int count);
+        int ReadInto(TToken[] buffer, int startIndex, int length);
     }
 }

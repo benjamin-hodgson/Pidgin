@@ -1,26 +1,32 @@
-using System;
 using System.Collections.Generic;
 
 namespace Pidgin.TokenStreams
 {
-    internal class EnumeratorTokenStream<TToken> : BufferedTokenStream<TToken>
+    internal class EnumeratorTokenStream<TToken> : ITokenStream<TToken>
     {
+        public int ChunkSizeHint => 16;
         private readonly IEnumerator<TToken> _input;
 
-        public EnumeratorTokenStream(IEnumerator<TToken> input) : base(16)
+        public EnumeratorTokenStream(IEnumerator<TToken> input)
         {
             _input = input;
         }
 
-        protected override int Read()
+
+        public int ReadInto(TToken[] buffer, int startIndex, int length)
         {
-            var hasNext = _input.MoveNext();
-            if (hasNext)
+            for (var i = 0; i < length; i++)
             {
-                _buffer[_index] = _input.Current;
-                return 1;
+                var hasNext = _input.MoveNext();
+                if (!hasNext)
+                {
+                    return i;
+                }
+                buffer[startIndex + i] = _input.Current;
             }
-            return 0;
+            return length;
         }
+
+        public void Dispose() { }
     }
 }

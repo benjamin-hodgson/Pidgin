@@ -1,19 +1,21 @@
-using System;
-using System.Buffers;
 using System.IO;
 
 namespace Pidgin.TokenStreams
 {
-    internal class StreamTokenStream : BufferedTokenStream<byte>
+    internal class StreamTokenStream : ITokenStream<byte>
     {
+        public int ChunkSizeHint => 4096;
+
         private readonly Stream _input;
 
-        public StreamTokenStream(Stream input) : base(4096)
+        public StreamTokenStream(Stream input)
         {
             _input = input;
         }
 
-        protected override int Read()
-            => _input.Read(_buffer, _index, Math.Min(_chunkSize, _buffer.Length - _index));
+        public int ReadInto(byte[] buffer, int startIndex, int length)
+            => _input.Read(buffer, startIndex, length);
+
+        public void Dispose() { }
     }
 }
