@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using Pidgin.Expression;
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
@@ -9,6 +10,7 @@ using static Pidgin.Parser<char>;
 namespace Pidgin.Bench
 {
     [MemoryDiagnoser]
+    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     public class ExpressionBench
     {
         private string _bigExpression;
