@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
@@ -93,8 +94,8 @@ namespace Pidgin
 
         public ReadOnlySpan<T> AsSpan() => _items.AsSpan().Slice(0, _size);
 
-        public ImmutableSortedSet<T> ToImmutableSortedSet()
-            => (_items ?? Enumerable.Empty<T>()).Take(_size).ToImmutableSortedSet();
+        public IEnumerable<T> AsEnumerable()
+            => (_items ?? Enumerable.Empty<T>()).Take(_size);
 
         public void Clear()
         {

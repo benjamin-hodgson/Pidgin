@@ -1,6 +1,8 @@
 using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
 
@@ -27,9 +29,9 @@ namespace Pidgin
             }
         }
         public ParseError<TToken> BuildError()
-            => BuildError(_expecteds.ToImmutableSortedSet());
-        public ParseError<TToken> BuildError(ImmutableSortedSet<Expected<TToken>> expecteds)
-            => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableSortedSet(), _errorPos, _message);
+            => BuildError(_expecteds.AsEnumerable());
+        public ParseError<TToken> BuildError(IEnumerable<Expected<TToken>> expecteds)
+            => new ParseError<TToken>(_unexpected, _eof, expecteds.Distinct().ToArray(), _errorPos, _message);
 
         // I'm basically using _expecteds as a set builder.
         // When a parser fails (and has an expected) it calls AddExpected to store the expected.
