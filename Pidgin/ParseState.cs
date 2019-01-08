@@ -76,25 +76,25 @@ namespace Pidgin
             if (_bufferIndex == _bufferLength)
             {
                 // we're at the end of the current chunk. Pull a new chunk from the stream
-                if (_bookmarks.Count > 0)
-                {
-                    // extend the current buffer
+                var keepLength = _bookmarks.Count > 0
+                    ? _consumedCount - _bookmarks[0].Value
+                    : 0;
 
-                    if (_buffer.Length == _bufferLength)
-                    {
-                        // buffer is full. Rent more space from the array pool
-                        var newBuffer = ArrayPool<TToken>.Shared.Rent(_buffer.Length * 2);
-                        Array.Copy(_buffer, newBuffer, _buffer.Length);
-                        ArrayPool<TToken>.Shared.Return(_buffer);
-                        _buffer = newBuffer;
-                    }
-                }
-                else  // it's safe to discard the data in the buffer and overwrite with a new chunk
+                if (keepLength >= _buffer.Length)
                 {
-                    _bufferIndex = 0;
-                    _bufferLength = 0;
+                    var newBuffer = ArrayPool<TToken>.Shared.Rent(_buffer.Length * 2);
+
+                    Array.Copy(_buffer, _bufferLength - keepLength, newBuffer, 0, keepLength);
+
+                    ArrayPool<TToken>.Shared.Return(_buffer);
+                    _buffer = newBuffer;
                 }
-                _bufferLength += _stream.ReadInto(_buffer, _bufferIndex, Math.Min(_bufferChunkSize, _buffer.Length - _bufferIndex));
+                else
+                {
+                    Array.Copy(_buffer, _bufferLength - keepLength, _buffer, 0, keepLength);
+                }
+                _bufferIndex = _bufferLength = keepLength;
+                _bufferLength += _stream.ReadInto(_buffer, _bufferLength, Math.Min(_bufferChunkSize, _buffer.Length - _bufferLength));
             }
         }
         
