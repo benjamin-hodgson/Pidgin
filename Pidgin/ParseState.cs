@@ -57,6 +57,7 @@ namespace Pidgin
         }
         public TToken Current
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 return _buffer[_bufferIndex];
