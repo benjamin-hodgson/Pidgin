@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
-    <TargetFrameworks>net46;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net46;netcoreapp2.2</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(APPVEYOR)' == ''">
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net46'">
