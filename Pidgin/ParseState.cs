@@ -36,7 +36,7 @@ namespace Pidgin
 
             _bufferChunkSize = stream.ChunkSizeHint;
             _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
-            _bufferIndex = -1;
+            _bufferIndex = 0;
             _bufferLength = 0;
 
             _eof = default;
@@ -45,6 +45,8 @@ namespace Pidgin
             _message = default;
             _expecteds = new PooledList<Expected<TToken>>();
             _expectedBookmarks = new PooledList<int>();
+
+            Buffer();
         }
 
         public bool HasCurrent
@@ -71,9 +73,12 @@ namespace Pidgin
                 SourcePos = _posCalculator(Current, SourcePos);
                 _consumedCount++;
             }
-
-
             _bufferIndex++;
+            Buffer();
+        }
+
+        private void Buffer()
+        {
             if (_bufferIndex == _bufferLength)
             {
                 // we're at the end of the current chunk. Pull a new chunk from the stream

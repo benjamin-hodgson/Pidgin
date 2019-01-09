@@ -117,7 +117,6 @@ namespace Pidgin
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, Func<TToken, SourcePos, SourcePos> calculatePos)
         {
             var state = new ParseState<TToken>(calculatePos, stream);
-            state.Advance();  // pull the first element from the input
 
             var internalResult = parser.Parse(ref state);
 
