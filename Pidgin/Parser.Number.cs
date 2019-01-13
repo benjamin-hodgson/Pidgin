@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 
 namespace Pidgin
 {
     public static partial class Parser
     {
+
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.
         /// The resulting <c>int</c> is not checked for overflow.
@@ -143,5 +145,54 @@ namespace Pidgin
         }
         private static long GetUpperLetterOffsetLong(char c) => c - 'A';
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
+		
+		/// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> Float { get; } = RealNum();
+
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> RealNum()
+            => Map(
+                (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
+                (Char('-').Or(Char('+'))).Optional(),
+                UnsignedReal()
+            ).Labelled($"real number");
+			
+		/// <summary>
+		/// A parser which parses a floating point number without a sign.
+		/// The resulting <c>double</c> is not checked for overflow.
+		/// </summary>
+		/// <returns>A parser which parses a floating point number without a sign.</returns>
+
+		public static Parser<char, double> UnsignedReal()
+			=> Map(
+				(integerPart, _, decimalPart) => integerPart.HasValue ? integerPart.Value + decimalPart : decimalPart,
+				UnsignedInt(10).Optional(),
+				Char('.'),
+				DigitCharDouble().ChainAtLeastOnceL(
+					() => 
+						{
+							var sb = new PooledStringBuilder();
+							sb.Append('.');
+							return sb;
+						},
+					(sb, c) =>
+						{ sb.Append((char) c); return sb; }
+					).Select(sb =>
+						{ return Convert.ToDouble(sb.GetStringAndClear()); }
+				)
+			);
+
+		private static Parser<char, double> DigitCharDouble()
+			=> Parser<char>.Token(c => (c >= '0' && c < '0' + 10))
+				.Select(c => (double) c);
+
     }
 }
