@@ -111,10 +111,7 @@ namespace Pidgin.Tests
             state.PushBookmark();
 
             Consume('f', ref state);
-            for (var _ = 0; _ < inputLength - 1; _++)
-            {
-                Consume('o', ref state);
-            }
+            Consume(new string('o', inputLength - 1), ref state);
             Assert.False(state.HasCurrent);
 
             state.Rewind();
@@ -129,12 +126,7 @@ namespace Pidgin.Tests
             Consume('f', ref state);
 
             state.PushBookmark();
-            Consume('a', ref state);
-
-            for (var _ = 0; _ < inputLength - 2; _++)
-            {
-                Consume('o', ref state);
-            }
+            Consume('a' + new string('o', inputLength - 2), ref state);
             Assert.False(state.HasCurrent);
 
             state.Rewind();
@@ -148,6 +140,21 @@ namespace Pidgin.Tests
             state.Advance();
         }
 
+        private static void Consume(string expected, ref ParseState<char> state)
+        {
+            AssertEqual(expected.AsSpan(), state.Peek(expected.Length));
+            state.Advance(expected.Length);
+        }
+
+        private static void AssertEqual(ReadOnlySpan<char> expected, ReadOnlySpan<char> actual)
+        {
+            Assert.Equal(expected.Length, actual.Length);
+            for (var i = 0; i < expected.Length; i++)
+            {
+                Assert.Equal(expected[i], actual[i]);
+            }
+        }
+
         private static int ChunkSize
         {
             get
@@ -156,5 +163,6 @@ namespace Pidgin.Tests
                 return new SpanTokenStream<char>(ref input).ChunkSizeHint;
             }
         }
+
     }
 }
