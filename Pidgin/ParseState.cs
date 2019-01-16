@@ -115,6 +115,7 @@ namespace Pidgin
                 //                 |      |      | readAheadTo
                 //                 |      |      |    |
                 //              abcdefghijklmnopqrstuvwxyz
+                //       readAhead        |-----------|
                 //  keepSeenLength |------|
                 //      keepLength |-------------|
                 //    amountToRead               |----|
