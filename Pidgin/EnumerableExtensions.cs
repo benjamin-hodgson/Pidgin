@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin

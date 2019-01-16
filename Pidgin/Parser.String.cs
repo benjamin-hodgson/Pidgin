@@ -12,6 +12,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="str">The string to parse</param>
         /// <returns>A parser that parses and returns a literal string</returns>
+        /// 
         public static Parser<char, string> String(string str)
         {
             if (str == null)
@@ -20,7 +21,7 @@ namespace Pidgin
             }
             return Parser<char>.Sequence<string>(str);
         }
-
+        
         /// <summary>
         /// Creates a parser that parses and returns a literal string, in a case insensitive manner.
         /// The parser returns the actual string parsed.
