@@ -1,0 +1,811 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Result&lt;TToken, T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Result&lt;TToken, T&gt;
+   ">
+    <meta name="generator" content="docfx 2.40.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin.Result`2">
+  
+  
+  <h1 id="Pidgin_Result_2" data-uid="Pidgin.Result`2" class="text-break">Class Result&lt;TToken, T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Represents the result of parsing.
+A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">Result&lt;TToken, T&gt;</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Pidgin.html">Pidgin</a></h6>
+  <h6><strong>Assembly</strong>: Pidgin.dll</h6>
+  <h5 id="Pidgin_Result_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Result&lt;TToken, T&gt; : object</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Error.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Error%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L59">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Error_" data-uid="Pidgin.Result`2.Error*"></a>
+  <h4 id="Pidgin_Result_2_Error" data-uid="Pidgin.Result`2.Error">Error</h4>
+  <div class="markdown level1 summary"><p>The parse error</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParseError&lt;TToken&gt; Error { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseError-1.html">ParseError</a>&lt;TToken&gt;</td>
+        <td><p>The parse error</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Success.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Success%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L18">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Success_" data-uid="Pidgin.Result`2.Success*"></a>
+  <h4 id="Pidgin_Result_2_Success" data-uid="Pidgin.Result`2.Success">Success</h4>
+  <div class="markdown level1 summary"><p>Did the parse succeed?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Success { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>A value indicating whether the parse was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Value.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L43">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Value_" data-uid="Pidgin.Result`2.Value*"></a>
+  <h4 id="Pidgin_Result_2_Value" data-uid="Pidgin.Result`2.Value">Value</h4>
+  <div class="markdown level1 summary"><p>The parser&apos;s return value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Value { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The parser&apos;s return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Cast__1.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Cast%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L166">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Cast_" data-uid="Pidgin.Result`2.Cast*"></a>
+  <h4 id="Pidgin_Result_2_Cast__1" data-uid="Pidgin.Result`2.Cast``1">Cast&lt;U&gt;()</h4>
+  <div class="markdown level1 summary"><p>Cast the value contained in the result to the specified output type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, U&gt; Cast&lt;U&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</td>
+        <td><p>A result containing this result&apos;s value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type to cast the contained value to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_GetValueOrDefault.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.GetValueOrDefault%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L75">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_GetValueOrDefault_" data-uid="Pidgin.Result`2.GetValueOrDefault*"></a>
+  <h4 id="Pidgin_Result_2_GetValueOrDefault" data-uid="Pidgin.Result`2.GetValueOrDefault">GetValueOrDefault()</h4>
+  <div class="markdown level1 summary"><p>Get the value, or return a default value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetValueOrDefault()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> is true, or a default value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_GetValueOrDefault__1_.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.GetValueOrDefault(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L81">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_GetValueOrDefault_" data-uid="Pidgin.Result`2.GetValueOrDefault*"></a>
+  <h4 id="Pidgin_Result_2_GetValueOrDefault__1_" data-uid="Pidgin.Result`2.GetValueOrDefault(`1)">GetValueOrDefault(T)</h4>
+  <div class="markdown level1 summary"><p>Get the value, or return the specified default value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetValueOrDefault(T default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">default</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> is true, or the specified default value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_GetValueOrDefault_Func__1__.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.GetValueOrDefault(Func%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L87">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_GetValueOrDefault_" data-uid="Pidgin.Result`2.GetValueOrDefault*"></a>
+  <h4 id="Pidgin_Result_2_GetValueOrDefault_Func__1__" data-uid="Pidgin.Result`2.GetValueOrDefault(Func{`1})">GetValueOrDefault(Func&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Get the value, or return the result of calling the specified function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetValueOrDefault(Func&lt;T&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The value if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> is true, or the result of calling the specified function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Match__1_Func__1___0__Func_Pidgin_ParseError__0____0__.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Match%60%601(Func%7B%601%2C%60%600%7D%2CFunc%7BPidgin.ParseError%7B%600%7D%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L97">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Match_" data-uid="Pidgin.Result`2.Match*"></a>
+  <h4 id="Pidgin_Result_2_Match__1_Func__1___0__Func_Pidgin_ParseError__0____0__" data-uid="Pidgin.Result`2.Match``1(Func{`1,``0},Func{Pidgin.ParseError{`0},``0})">Match&lt;U&gt;(Func&lt;T, U&gt;, Func&lt;ParseError&lt;TToken&gt;, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Tear down this parse result using a function for the two possible outcomes.
+If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, <code data-dev-comment-type="paramref" class="paramref">success</code> will be called. Otherwise, <code data-dev-comment-type="paramref" class="paramref">failure</code> will be called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public U Match&lt;U&gt;(Func&lt;T, U&gt; success, Func&lt;ParseError&lt;TToken&gt;, U&gt; failure)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U&gt;</td>
+        <td><span class="parametername">success</span></td>
+        <td><p>Called when the result has a value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.ParseError-1.html">ParseError</a>&lt;TToken&gt;, U&gt;</td>
+        <td><span class="parametername">failure</span></td>
+        <td><p>Called when the result does not have a value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">U</span></td>
+        <td><p>The result of calling the <code data-dev-comment-type="paramref" class="paramref">success</code> or <code data-dev-comment-type="paramref" class="paramref">failure</code> function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Or_Func_Pidgin_Result__0__1___.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Or(Func%7BPidgin.Result%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L149">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Or_" data-uid="Pidgin.Result`2.Or*"></a>
+  <h4 id="Pidgin_Result_2_Or_Func_Pidgin_Result__0__1___" data-uid="Pidgin.Result`2.Or(Func{Pidgin.Result{`0,`1}})">Or(Func&lt;Result&lt;TToken, T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Choose the first successful result</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, T&gt; Or(Func&lt;Result&lt;TToken, T&gt;&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A fallback result if this one has an error</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or the result of calling <code data-dev-comment-type="paramref" class="paramref">result</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Or_Pidgin_Result__0__1__.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Or(Pidgin.Result%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L157">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Or_" data-uid="Pidgin.Result`2.Or*"></a>
+  <h4 id="Pidgin_Result_2_Or_Pidgin_Result__0__1__" data-uid="Pidgin.Result`2.Or(Pidgin.Result{`0,`1})">Or(Result&lt;TToken, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Choose the first successful result</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, T&gt; Or(Result&lt;TToken, T&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A fallback result if this one has an error</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or <code data-dev-comment-type="paramref" class="paramref">result</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_Select__1_Func__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.Select%60%601(Func%7B%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L108">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_Select_" data-uid="Pidgin.Result`2.Select*"></a>
+  <h4 id="Pidgin_Result_2_Select__1_Func__1___0__" data-uid="Pidgin.Result`2.Select``1(Func{`1,``0})">Select&lt;U&gt;(Func&lt;T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Project the value contained in the result</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, U&gt; Select&lt;U&gt;(Func&lt;T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function to apply to the contained value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</td>
+        <td><p>The result of applying the transformation function to the contained value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the resulting value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_SelectMany__1_Func__1_Pidgin_Result__0___0___.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.SelectMany%60%601(Func%7B%601%2CPidgin.Result%7B%600%2C%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L119">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_SelectMany_" data-uid="Pidgin.Result`2.SelectMany*"></a>
+  <h4 id="Pidgin_Result_2_SelectMany__1_Func__1_Pidgin_Result__0___0___" data-uid="Pidgin.Result`2.SelectMany``1(Func{`1,Pidgin.Result{`0,``0}})">SelectMany&lt;U&gt;(Func&lt;T, Result&lt;TToken, U&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Projects the value of the result into a result, and flattens the resulting value into a single result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, U&gt; SelectMany&lt;U&gt;(Func&lt;T, Result&lt;TToken, U&gt;&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function to apply to the contained value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</td>
+        <td><p>The final result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the resulting possibly-absent value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2_SelectMany__2_Func__1_Pidgin_Result__0___0___Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Result%602.SelectMany%60%602(Func%7B%601%2CPidgin.Result%7B%600%2C%60%600%7D%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L130">View Source</a>
+  </span>
+  <a id="Pidgin_Result_2_SelectMany_" data-uid="Pidgin.Result`2.SelectMany*"></a>
+  <h4 id="Pidgin_Result_2_SelectMany__2_Func__1_Pidgin_Result__0___0___Func__1___0___1__" data-uid="Pidgin.Result`2.SelectMany``2(Func{`1,Pidgin.Result{`0,``0}},Func{`1,``0,``1})">SelectMany&lt;U, R&gt;(Func&lt;T, Result&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Projects the value of the result into a result, and flattens the resulting value into a single result, applying a result selector function to the two values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Result&lt;TToken, R&gt; SelectMany&lt;U, R&gt;(Func&lt;T, Result&lt;TToken, U&gt;&gt; selector, Func&lt;T, U, R&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function to apply to the contained value</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A transformation function to apply to the contained value and the value contained in the selected <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, R&gt;</td>
+        <td><p>The result of applying <code data-dev-comment-type="paramref" class="paramref">selector</code> to the contained value and <code data-dev-comment-type="paramref" class="paramref">result</code> to the intermediate values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the value to select</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td><p>The type of the resulting possibly-absent value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.0.0/apiSpec/new?filename=Pidgin_Result_2.md&amp;value=---%0Auid%3A%20Pidgin.Result%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.0.0/Pidgin/Result.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
