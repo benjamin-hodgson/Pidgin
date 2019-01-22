@@ -15,7 +15,7 @@ Changelog
 
 * Error handling was rewritten.
   * `ParseError` is now a class and not a struct.
-  * The order of items in `Expected` has changed.
+  * Fewer items are reported in `Expected`.
 * `Parser<TToken>.End` is now a property and not a method.
 * `Result<TToken, T>` is now a class and not a struct.
 * When parsing from streaming inputs like `Stream` or `TextReader`, the stream will now usually advance beyond the last character consumed by the parser
