@@ -40,10 +40,18 @@ namespace Pidgin
                 return "";
             }
             var s = new string(_buffer, 0, _length);
+            Clear();
+            return s;
+        }
+        public void Clear()
+        {
+            if (_buffer == null)
+            {
+                return;
+            }
             ArrayPool<char>.Shared.Return(_buffer);
             _buffer = null;
             _length = 0;
-            return s;
         }
 
         private void GrowIfNecessary(int appendSize)

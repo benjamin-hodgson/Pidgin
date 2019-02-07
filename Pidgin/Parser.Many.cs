@@ -54,7 +54,8 @@ namespace Pidgin
 
             return parser.ChainAtLeastOnceL(
                 () => new PooledStringBuilder(),
-                (sb, c) => { sb.Append(c); return sb; }
+                (sb, c) => { sb.Append(c); return sb; },
+                onFail: sb => { sb.Clear(); }
             ).Select(sb => sb.GetStringAndClear());
         }
         
@@ -73,7 +74,8 @@ namespace Pidgin
 
             return parser.ChainAtLeastOnceL(
                 () => new PooledStringBuilder(),
-                (sb, c) => { sb.Append(c); return sb; }
+                (sb, c) => { sb.Append(c); return sb; },
+                onFail: sb => { sb.Clear(); }
             ).Select(sb => sb.GetStringAndClear());
         }
     }
@@ -128,7 +130,8 @@ namespace Pidgin
         internal Parser<TToken, PooledList<T>> AtLeastOncePooled()
             => this.ChainAtLeastOnceL(
                 () => new PooledList<T>(),
-                (xs, x) => { xs.Add(x); return xs; }
+                (xs, x) => { xs.Add(x); return xs; },
+                onFail: xs => { xs.Clear(); }
             );
 
         /// <summary>

@@ -5,29 +5,31 @@ namespace Pidgin
 {
     public partial class Parser<TToken, T>
     {
-        private Parser<TToken, U> ReturnSeed<U>(Func<U> seed)
+        private static Parser<TToken, U> ReturnSeed<U>(Func<U> seed)
             => Parser<TToken>
-                .Return(Unit.Value)
-                .Select(_ => seed());
+                .Return(seed)
+                .Select(f => f());
 
-        internal Parser<TToken, U> ChainL<U>(Func<U> seed, Func<U, T, U> func)
-            => this.ChainAtLeastOnceL(seed, func)
+        internal Parser<TToken, U> ChainL<U>(Func<U> seed, Func<U, T, U> func, Action<U> onFail = null)
+            => this.ChainAtLeastOnceL(seed, func, onFail)
                 .Or(ReturnSeed(seed));
 
-        internal Parser<TToken, U> ChainAtLeastOnceL<U>(Func<U> seed, Func<U, T, U> func)
-            => new ChainAtLeastOnceLParser<U>(this, seed, func);
+        internal Parser<TToken, U> ChainAtLeastOnceL<U>(Func<U> seed, Func<U, T, U> func, Action<U> onFail = null)
+            => new ChainAtLeastOnceLParser<U>(this, seed, func, onFail);
 
         private class ChainAtLeastOnceLParser<U> : Parser<TToken, U>
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Func<U> _seed;
             private readonly Func<U, T, U> _func;
+            private readonly Action<U> _onFail;
 
-            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<U> seed, Func<U, T, U> func)
+            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<U> seed, Func<U, T, U> func, Action<U> onFail)
             {
                 _parser = parser;
                 _seed = seed;
                 _func = func;
+                _onFail = onFail;
             }
 
             internal override InternalResult<U> Parse(ref ParseState<TToken> state)
@@ -48,6 +50,7 @@ namespace Pidgin
                     state.EndExpectedTran(false);
                     if (!result.ConsumedInput)
                     {
+                        _onFail(z);
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
@@ -60,6 +63,7 @@ namespace Pidgin
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
                     // state.Error set by _parser
+                    _onFail(z);
                     return InternalResult.Failure<U>(true);
                 }
                 return InternalResult.Success<U>(z, consumedInput);
