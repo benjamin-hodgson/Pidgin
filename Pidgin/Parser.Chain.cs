@@ -50,7 +50,7 @@ namespace Pidgin
                     state.EndExpectedTran(false);
                     if (!result.ConsumedInput)
                     {
-                        _onFail(z);
+                        _onFail?.Invoke(z);
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
@@ -63,7 +63,7 @@ namespace Pidgin
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
                     // state.Error set by _parser
-                    _onFail(z);
+                    _onFail?.Invoke(z);
                     return InternalResult.Failure<U>(true);
                 }
                 return InternalResult.Success<U>(z, consumedInput);
