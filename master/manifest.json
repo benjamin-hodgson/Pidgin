@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Comment.CommentParser.html",
-          "hash": "Wlg425bQPo30foYwrnpNNQ=="
+          "hash": "VqVChrUxsk3v4AghVBlZmA=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Comment.html",
-          "hash": "d9GaSQwC3hhlvH5TP8e96Q=="
+          "hash": "qRJT/Nbt5QKbb/sqSjr96g=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expected-1.html",
-          "hash": "4HS8Nl6zsho2QT7bqCfRLA=="
+          "hash": "fc00fJykF08LDatJpXX7ug=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.BinaryOperatorType.html",
-          "hash": "UcVOYjxlbKJ5iklSWdmHBQ=="
+          "hash": "eEtxfpsKH0d+MqBwDgAnVg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.ExpressionParser.html",
-          "hash": "DQY1neQCTbIjvKJr41fP5g=="
+          "hash": "8ehSP+ihq1vQZqYnLKvcXg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.Operator.html",
-          "hash": "G0qft+JjAGZgDkegHoFUPQ=="
+          "hash": "kJjlS38VEC/Hf5S5EO0c6g=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.OperatorTableRow-2.html",
-          "hash": "ivDgb3eekVViaGFrJB5GjA=="
+          "hash": "U+j/9+fuQxy71F+EvLytcQ=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.UnaryOperatorType.html",
-          "hash": "LmENkk8YwDwiyZUFKIFR3g=="
+          "hash": "+7QhmNqu4WIhmjy2hDszJg=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Expression.html",
-          "hash": "UDA6SJtke1WIb8Ic/PGcCA=="
+          "hash": "OXCM94o/4W9ZiMMW8PR6xQ=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe-1.html",
-          "hash": "M8EDlMa0I8DbrEUj+H5F5Q=="
+          "hash": "Eu7MtSnEObTuS10CVGUI6w=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Maybe.html",
-          "hash": "N+xK95EbGp2u/in2xK77KQ=="
+          "hash": "9YYYd2ADd5KLqtxXSZLnrQ=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParseError-1.html",
-          "hash": "OA5ZDkPtIaqAIxyWK2tIRg=="
+          "hash": "h7uEgQjigzFCnq2070CzJQ=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParseException.html",
-          "hash": "LOTC8/wdVNxn75QG5Y0xEg=="
+          "hash": "S1t5uDPILzoSns7be6Q2Iw=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-1.html",
-          "hash": "2LesPFZzOUT1JASEIJkFNQ=="
+          "hash": "r3ffFgd5xZiN09SK/uV9RQ=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-2.html",
-          "hash": "9vQ3L/+3u/a5MJUawWdmDg=="
+          "hash": "TXcfbOkq6iDaMyvtGURYkA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser.html",
-          "hash": "C+GR3qmb5kcBuDQwYyFTOQ=="
+          "hash": "sJC2+MVliKxN6wo/VzZB1g=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.ParserExtensions.html",
-          "hash": "cpd7vw3vt5VBPyfnj1YLqw=="
+          "hash": "aLcKctw5FWwl6Z4zxmkhZg=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.PermutationParser-2.html",
-          "hash": "cO1WGlArVSZX8Ivr2d/AtA=="
+          "hash": "7ghOAGmEeSLf4TDRZqyDJw=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.PermutationParser.html",
-          "hash": "Q7QrNKVNyMNd5uHjVQMh+g=="
+          "hash": "+YppAz7VwHeQWb887XwUAw=="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Permutation.html",
-          "hash": "Rgwxt9FxlyZTFA2PODIvtQ=="
+          "hash": "ii8ihL1lAc7i1ASR8cE1Qg=="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Result-2.html",
-          "hash": "JG8L0lhiPn+svT5J/O+xeA=="
+          "hash": "c1nQ60w+m3GueY3PbipzYA=="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.SourcePos.html",
-          "hash": "Jovxh8cSikyxbRKVoAWCmQ=="
+          "hash": "8T2O1bIk++FgFkNR33pM4A=="
         }
       },
       "is_incremental": false,
@@ -273,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Unit.html",
-          "hash": "bAtUMA7Cc0/E5+EcnWdqsQ=="
+          "hash": "lpl49RDV4YLFaTz1hBEGUg=="
         }
       },
       "is_incremental": false,
@@ -285,7 +285,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.html",
-          "hash": "PgJUcRVGoz8eKVa4kr4VSA=="
+          "hash": "Qjl0V9d2mvbT8iup0nFDEw=="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "rNZjGFByfCAlRaU0B3iZtw=="
+          "hash": "1ksmRmzgrDwiJeUXXWraEg=="
         }
       },
       "is_incremental": false,
@@ -321,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "1SyyFOMuRu51BJVCSoMCfw=="
+          "hash": "cIgByVRizkblj4G9NpsV3A=="
         }
       },
       "is_incremental": false,
@@ -345,21 +345,29 @@
       "status": {
         "can_incremental": false,
         "details": "Cannot build incrementally because last build info is missing.",
-        "incrementalPhase": "build"
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 24,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
         }
       }
     },
@@ -367,7 +375,9 @@
       "status": {
         "can_incremental": false,
         "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
-        "incrementalPhase": "postProcessing"
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {}
     }
