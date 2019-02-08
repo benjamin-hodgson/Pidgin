@@ -4,6 +4,11 @@ namespace Pidgin
 {
     public static partial class Parser
     {
+        private static readonly Parser<char, int> Sign =
+            Char('+').ThenReturn(1)
+                .Or(Char('-').ThenReturn(-1))
+                .Or(Parser<char>.Return(1));
+
         /// <summary>
         /// A parser which parses a base-10 integer with an optional sign.
         /// The resulting <c>int</c> is not checked for overflow.
@@ -46,8 +51,8 @@ namespace Pidgin
         /// <returns>A parser which parses an integer with an optional sign</returns>
         public static Parser<char, int> Int(int @base)
             => Map(
-                (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
-                (Char('-').Or(Char('+'))).Optional(),
+                (sign, num) => sign * num,
+                Sign,
                 UnsignedInt(@base)
             ).Labelled($"base-{@base} number");
 
@@ -71,8 +76,8 @@ namespace Pidgin
         /// <returns>A parser which parses a long integer with an optional sign</returns>
         public static Parser<char, long> Long(int @base)
             => Map(
-                (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
-                (Char('-').Or(Char('+'))).Optional(),
+                (sign, num) => sign * num,
+                Sign,
                 UnsignedLong(@base)
             ).Labelled($"base-{@base} number");
 
