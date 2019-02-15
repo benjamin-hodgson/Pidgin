@@ -91,10 +91,472 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Func%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CPidgin.Parser%7B%60%600%2C%60%601%7D%7D%2CIEnumerable%7BIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L72">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Func{Pidgin.Parser{``0,``1},Pidgin.Parser{``0,``1}},IEnumerable{IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}})">Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTable</code>.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">termFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt; termFactory, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt; operatorTable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;&gt;</td>
+        <td><span class="parametername">termFactory</span></td>
+        <td><p>A function which produces a parser for a single term</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">operatorTable</span></td>
+        <td><p>A table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTable</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___IEnumerable_Pidgin_Expression_OperatorTableRow___0___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Func%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CPidgin.Parser%7B%60%600%2C%60%601%7D%7D%2CIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L50">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___IEnumerable_Pidgin_Expression_OperatorTableRow___0___1___" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Func{Pidgin.Parser{``0,``1},Pidgin.Parser{``0,``1}},IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}})">Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTable</code>.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">termFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt; termFactory, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt; operatorTable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;&gt;</td>
+        <td><span class="parametername">termFactory</span></td>
+        <td><p>A function which produces a parser for a single term</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;</td>
+        <td><span class="parametername">operatorTable</span></td>
+        <td><p>A table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTable</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1______.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Func%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CSystem.ValueTuple%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L151">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1______" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},IEnumerable{IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}}})">Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, (Parser&lt;TToken, T&gt; term, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt; operatorTable)&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">termAndOperatorTableFactory</code>&apos;s second result.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">termAndOperatorTableFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, (Parser&lt;TToken, T&gt; term, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt; operatorTable)&gt; termAndOperatorTableFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <span class="xref">IEnumerable</span>&lt;<span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;&gt;&gt;&gt;</td>
+        <td><span class="parametername">termAndOperatorTableFactory</span></td>
+        <td><p>A function which produces a parser for a single term and a table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in the operator table</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1_____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Func%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CSystem.ValueTuple%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L131">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1_____" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}})">Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, (Parser&lt;TToken, T&gt; term, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt; operatorTable)&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">termAndOperatorTableFactory</code>&apos;s second result.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">termAndOperatorTableFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, (Parser&lt;TToken, T&gt; term, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt; operatorTable)&gt; termAndOperatorTableFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;&gt;&gt;</td>
+        <td><span class="parametername">termAndOperatorTableFactory</span></td>
+        <td><p>A function which produces a parser for a single term and a table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in the operator table</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__Func_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1_____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CFunc%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L110">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__Func_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1_____" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Pidgin.Parser{``0,``1},Func{Pidgin.Parser{``0,``1},IEnumerable{IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}})">Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, Func&lt;Parser&lt;TToken, T&gt;, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTableFactory</code>&apos;s result.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">operatorTableFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt; term, Func&lt;Parser&lt;TToken, T&gt;, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt;&gt; operatorTableFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">term</span></td>
+        <td><p>A parser for a single term in an expression language</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <span class="xref">IEnumerable</span>&lt;<span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;&gt;&gt;</td>
+        <td><span class="parametername">operatorTableFactory</span></td>
+        <td><p>A function which produces a table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in the operator table</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__Func_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CFunc%7BPidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L88">View Source</a>
+  </span>
+  <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
+  <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__Func_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Pidgin.Parser{``0,``1},Func{Pidgin.Parser{``0,``1},IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}})">Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, Func&lt;Parser&lt;TToken, T&gt;, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Builds a parser for expressions built from the operators in <code data-dev-comment-type="paramref" class="paramref">operatorTableFactory</code>&apos;s result.
+The operator table is a sequence of operators in precedence order:
+the operators in the first row have the highest precedence and operators in later rows have lower precedence.</p>
+<p>This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
+<code data-dev-comment-type="paramref" class="paramref">operatorTableFactory</code>&apos;s argument will be a parser which parses a full subexpression.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, T&gt; Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt; term, Func&lt;Parser&lt;TToken, T&gt;, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt; operatorTableFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">term</span></td>
+        <td><p>A parser for a single term in an expression language</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;, <span class="xref">IEnumerable</span>&lt;<a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">operatorTableFactory</span></td>
+        <td><p>A function which produces a table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser for expressions built from the operators in the operator table</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L21">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L34">View Source</a>
   </span>
   <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
   <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__IEnumerable_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1____" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Pidgin.Parser{``0,``1},IEnumerable{IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}})">Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;&gt;)</h4>
@@ -171,7 +633,7 @@ the operators in the first row have the highest precedence and operators in late
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1___.md&amp;value=---%0Auid%3A%20Pidgin.Expression.ExpressionParser.Build%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7BPidgin.Expression.OperatorTableRow%7B%60%600%2C%60%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L37">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Expression/ExpressionParser.cs/#L21">View Source</a>
   </span>
   <a id="Pidgin_Expression_ExpressionParser_Build_" data-uid="Pidgin.Expression.ExpressionParser.Build*"></a>
   <h4 id="Pidgin_Expression_ExpressionParser_Build__2_Pidgin_Parser___0___1__IEnumerable_Pidgin_Expression_OperatorTableRow___0___1___" data-uid="Pidgin.Expression.ExpressionParser.Build``2(Pidgin.Parser{``0,``1},IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}})">Build&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;OperatorTableRow&lt;TToken, T&gt;&gt;)</h4>
