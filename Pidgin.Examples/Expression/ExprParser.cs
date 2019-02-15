@@ -40,35 +40,27 @@ namespace Pidgin.Examples.Expression
                 .Select<IExpr>(value => new Literal(value))
                 .Labelled("integer literal");
 
-        private static Parser<char, IExpr> BuildExpressionParser()
-        {
-            Parser<char, IExpr> expr = null;
-
-            var term = OneOf(
-                Identifier,
-                Literal,
-                Parenthesised(Rec(() => expr)).Labelled("parenthesised expression")
-            );
-
-            var call = Parenthesised(Rec(() => expr).Separated(Tok(",")))
+        private static Parser<char, Func<IExpr, IExpr>> Call(Parser<char, IExpr> subExpr)
+            => Parenthesised(subExpr.Separated(Tok(",")))
                 .Select<Func<IExpr, IExpr>>(args => method => new Call(method, args.ToImmutableArray()))
                 .Labelled("function call");
 
-            expr = ExpressionParser.Build(
-                term,
+        private static readonly Parser<char, IExpr> Expr = ExpressionParser.Build<char, IExpr>(
+            expr => (
+                OneOf(
+                    Identifier,
+                    Literal,
+                    Parenthesised(expr).Labelled("parenthesised expression")
+                ),
                 new[]
                 {
-                    Operator.PostfixChainable(call),
+                    Operator.PostfixChainable(Call(expr)),
                     Operator.Prefix(Neg).And(Operator.Prefix(Complement)),
                     Operator.InfixL(Mul),
                     Operator.InfixL(Add)
                 }
-            ).Labelled("expression");
-
-            return expr;
-        }
-
-        private static readonly Parser<char, IExpr> Expr = BuildExpressionParser();
+            )
+        ).Labelled("expression");
 
         public static IExpr ParseOrThrow(string input)
             => Expr.ParseOrThrow(input);
