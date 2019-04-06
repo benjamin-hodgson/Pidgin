@@ -1,9 +1,65 @@
+using System;
 using System.Linq;
+using System.Text;
 
 namespace Pidgin
 {
     public static partial class Parser
     {
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> Float { get; } = RealNum();
+
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> RealNum()
+            => Map(
+                (sign, num) => sign.HasValue && sign.Value == '-' ? -num : num,
+                (Char('-').Or(Char('+'))).Optional(),
+                UnsignedReal()
+            ).Labelled($"real number");
+
+        /// <summary>
+        /// A parser which parses a floating point number without a sign.
+        /// The resulting <c>double</c> is not checked for overflow.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number without a sign.</returns>
+
+        public static Parser<char, double> UnsignedReal()
+            => Map(
+                (integerPart, _, decimalPart) => integerPart.HasValue ? integerPart.Value + decimalPart : decimalPart,
+                UnsignedInt(10).Optional(),
+                Char('.'),
+                DigitCharDouble().ChainAtLeastOnceL(
+                    () =>
+                    {
+                        var sb = new PooledList<char>();
+                        sb.Add('.');
+                        return sb;
+                    },
+                    (sb, c) =>
+                    { sb.Add(c); return sb; }
+                    ).Select(sb =>
+                    {
+                        ReadOnlySpan<char> csp = sb.AsSpan();
+                        double x = 0.0;
+                        x = Double.Parse(csp.ToString(), System.Globalization.NumberStyles.Float);
+                        sb.Clear();
+                        return x; }
+                )
+            );
+
+        private static Parser<char, char> DigitCharDouble()
+            => Parser<char>.Token(c => (c >= '0' && c < '0' + 10))
+                .Select(c => c);
+
+
         private static readonly Parser<char, int> Sign =
             Char('+').ThenReturn(1)
                 .Or(Char('-').ThenReturn(-1))
