@@ -19,21 +19,21 @@ namespace Pidgin
 
         private const int InitialCapacity = 16;
         private T[] _items;
-        private int _size;
+        private int _count;
 
         public int Count
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                return _size;
+                return _count;
             }
         }
 
         public PooledList(int initialCapacity)
         {
             _items = ArrayPool<T>.Shared.Rent(initialCapacity);
-            _size = 0;
+            _count = 0;
         }
 
         public T this[int index]
@@ -41,7 +41,7 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                if (index >= _size)
+                if (index >= _count)
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
@@ -53,49 +53,49 @@ namespace Pidgin
         public void Add(T item)
         {
             GrowIfNecessary(1);
-            _items[_size] = item;
-            _size++;
+            _items[_count] = item;
+            _count++;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void AddRange(ImmutableArray<T> items)
         {
             GrowIfNecessary(items.Length);
-            items.CopyTo(_items, _size);
-            _size += items.Length;
+            items.CopyTo(_items, _count);
+            _count += items.Length;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void AddRange(ReadOnlySpan<T> items)
         {
             GrowIfNecessary(items.Length);
-            items.CopyTo(_items.AsSpan().Slice(_size));
-            _size += items.Length;
+            items.CopyTo(_items.AsSpan().Slice(_count));
+            _count += items.Length;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T Pop()
         {
-            if (_size == 0)
+            if (_count == 0)
             {
                 ThrowInvalidOperationException();
             }
-            _size--;
-            return _items[_size];
+            _count--;
+            return _items[_count];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Shrink(int newCount)
         {
-            if (newCount > _size || newCount < 0)
+            if (newCount > _count || newCount < 0)
             {
                 ThrowArgumentOutOfRangeException(nameof(newCount));
             }
-            _size = newCount;
+            _count = newCount;
         }
 
-        public ReadOnlySpan<T> AsSpan() => _items.AsSpan().Slice(0, _size);
+        public ReadOnlySpan<T> AsSpan() => _items.AsSpan().Slice(0, _count);
 
         public IEnumerable<T> AsEnumerable()
-            => (_items ?? Enumerable.Empty<T>()).Take(_size);
+            => (_items ?? Enumerable.Empty<T>()).Take(_count);
 
         public void Clear()
         {
@@ -104,13 +104,13 @@ namespace Pidgin
                 ArrayPool<T>.Shared.Return(_items, _needsClear);
             }
             _items = null;
-            _size = 0;
+            _count = 0;
         }
 
         public U Aggregate<U>(U seed, Func<U, T, U> func)
         {
             var z = seed;
-            for (var i = 0; i < _size; i++)
+            for (var i = 0; i < _count; i++)
             {
                 z = func(z, _items[i]);
             }
@@ -119,7 +119,7 @@ namespace Pidgin
         public U AggregateR<U>(U seed, Func<T, U, U> func)
         {
             var z = seed;
-            for (var i = _size - 1; i >= 0; i--)
+            for (var i = _count - 1; i >= 0; i--)
             {
                 z = func(_items[i], z);
             }
@@ -132,10 +132,10 @@ namespace Pidgin
             {
                 _items = ArrayPool<T>.Shared.Rent(Math.Max(InitialCapacity, additionalSpace));
             }
-            else if (_size == _items.Length)
+            else if (_count + additionalSpace >= _items.Length)
             {
-                var newBuffer = ArrayPool<T>.Shared.Rent(Math.Max(_items.Length * 2, _items.Length + additionalSpace));
-                Array.Copy(_items, newBuffer, _items.Length);
+                var newBuffer = ArrayPool<T>.Shared.Rent(Math.Max(_items.Length * 2, _count + additionalSpace));
+                Array.Copy(_items, newBuffer, _count);
                 ArrayPool<T>.Shared.Return(_items, _needsClear);
                 _items = newBuffer;
             }

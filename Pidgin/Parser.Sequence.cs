@@ -2,9 +2,135 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Reflection;
+using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
 {
+    public static partial class Parser
+    {
+        internal sealed class SequenceTokenParserFast<TToken, TEnumerable> : Parser<TToken, TEnumerable>
+            where TToken : struct, IEquatable<TToken>
+            where TEnumerable : IEnumerable<TToken>
+        {
+            private readonly TEnumerable _value;
+            private readonly ImmutableArray<TToken> _valueTokens;
+
+            public SequenceTokenParserFast(TEnumerable value)
+            {
+                _value = value;
+                _valueTokens = value.ToImmutableArray();
+            }
+
+            internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+            {
+                var span = state.Peek(_valueTokens.Length);  // span.Length <= _valueTokens.Length
+                
+                var errorPos = -1;
+                for (var i = 0; i < span.Length; i++)
+                {
+                    if (!span[i].Equals(_valueTokens[i]))
+                    {
+                        errorPos = i;
+                        break;
+                    }
+                }
+
+                if (errorPos != -1)
+                {
+                    // strings didn't match
+                    state.Advance(errorPos);
+                    state.Error = new InternalError<TToken>(
+                        Maybe.Just(span[errorPos]),
+                        false,
+                        state.SourcePos,
+                        null
+                    );
+                    state.AddExpected(new Expected<TToken>(_valueTokens));
+                    return InternalResult.Failure<TEnumerable>(errorPos > 0);
+                }
+
+                if (span.Length < _valueTokens.Length)
+                {
+                    // strings matched but reached EOF
+                    state.Advance(span.Length);
+                    state.Error = new InternalError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        state.SourcePos,
+                        null
+                    );
+                    state.AddExpected(new Expected<TToken>(_valueTokens));
+                    return InternalResult.Failure<TEnumerable>(span.Length > 0);
+                }
+
+                // OK
+                state.Advance(_valueTokens.Length);
+                return InternalResult.Success<TEnumerable>(_value, _valueTokens.Length > 0);
+            }
+        }
+
+        internal sealed class SequenceTokenParserSlow<TToken, TEnumerable> : Parser<TToken, TEnumerable>
+            where TEnumerable : IEnumerable<TToken>
+        {
+            private readonly TEnumerable _value;
+            private readonly ImmutableArray<TToken> _valueTokens;
+
+            public SequenceTokenParserSlow(TEnumerable value)
+            {
+                _value = value;
+                _valueTokens = value.ToImmutableArray();
+            }
+
+            internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+            {
+                var span = state.Peek(_valueTokens.Length);  // span.Length <= _valueTokens.Length
+                
+                var errorPos = -1;
+                for (var i = 0; i < span.Length; i++)
+                {
+                    if (!EqualityComparer<TToken>.Default.Equals(span[i], _valueTokens[i]))
+                    {
+                        errorPos = i;
+                        break;
+                    }
+                }
+
+                if (errorPos != -1)
+                {
+                    // strings didn't match
+                    state.Advance(errorPos);
+                    state.Error = new InternalError<TToken>(
+                        Maybe.Just(span[errorPos]),
+                        false,
+                        state.SourcePos,
+                        null
+                    );
+                    state.AddExpected(new Expected<TToken>(_valueTokens));
+                    return InternalResult.Failure<TEnumerable>(errorPos > 0);
+                }
+
+                if (span.Length < _valueTokens.Length)
+                {
+                    // strings matched but reached EOF
+                    state.Advance(span.Length);
+                    state.Error = new InternalError<TToken>(
+                        Maybe.Nothing<TToken>(),
+                        true,
+                        state.SourcePos,
+                        null
+                    );
+                    state.AddExpected(new Expected<TToken>(_valueTokens));
+                    return InternalResult.Failure<TEnumerable>(span.Length > 0);
+                }
+
+                // OK
+                state.Advance(_valueTokens.Length);
+                return InternalResult.Success<TEnumerable>(_value, _valueTokens.Length > 0);
+            }
+        }
+    }
+
     public static partial class Parser<TToken>
     {
         /// <summary>
@@ -34,55 +160,38 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(tokens));
             }
-            return new SequenceTokenParser<TEnumerable>(tokens);
+            return FastSequenceParser<TEnumerable>.Create(tokens);
         }
 
-        private sealed class SequenceTokenParser<TEnumerable> : Parser<TToken, TEnumerable>
+        private static class FastSequenceParser<TEnumerable>
             where TEnumerable : IEnumerable<TToken>
         {
-            private readonly TEnumerable _value;
-            private readonly ImmutableArray<TToken> _valueTokens;
+            private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>> _createParser;
 
-            public SequenceTokenParser(TEnumerable value)
+            public static Parser<TToken, TEnumerable> Create(TEnumerable tokens)
             {
-                _value = value;
-                _valueTokens = value.ToImmutableArray();
+                if (_createParser != null)
+                {
+                    return _createParser(tokens);
+                }
+                return new Parser.SequenceTokenParserSlow<TToken, TEnumerable>(tokens);
             }
 
-            internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+            static FastSequenceParser()
             {
-                var consumedInput = false;
-                foreach (var x in _valueTokens)
+                var ttoken = typeof(TToken).GetTypeInfo();
+                var comparable = typeof(IComparable<TToken>).GetTypeInfo();
+                if (ttoken.IsValueType && comparable.IsAssignableFrom(ttoken))
                 {
-                    if (!state.HasCurrent)
-                    {
-                        state.Error = new InternalError<TToken>(
-                            Maybe.Nothing<TToken>(),
-                            true,
-                            state.SourcePos,
-                            null
-                        );
-                        state.AddExpected(new Expected<TToken>(_valueTokens));
-                        return InternalResult.Failure<TEnumerable>(consumedInput);
-                    }
-
-                    var token = state.Current;
-                    if (!EqualityComparer<TToken>.Default.Equals(token, x))
-                    {
-                        state.Error = new InternalError<TToken>(
-                            Maybe.Just(token),
-                            false,
-                            state.SourcePos,
-                            null
-                        );
-                        state.AddExpected(new Expected<TToken>(_valueTokens));
-                        return InternalResult.Failure<TEnumerable>(consumedInput);
-                    }
-
-                    consumedInput = true;
-                    state.Advance();
+                    var ctor = typeof(Parser.SequenceTokenParserFast<,>)
+                        .MakeGenericType(typeof(TToken), typeof(TEnumerable))
+                        .GetTypeInfo()
+                        .DeclaredConstructors
+                        .Single();
+                    var param = LExpression.Parameter(typeof(TEnumerable));
+                    var create = LExpression.New(ctor, param);
+                    _createParser = LExpression.Lambda<Func<TEnumerable, Parser<TToken, TEnumerable>>>(create, param).Compile();
                 }
-                return InternalResult.Success<TEnumerable>(_value, consumedInput);
             }
         }
 

@@ -22,8 +22,8 @@ namespace Pidgin
 
         private readonly int _bufferChunkSize;
         private TToken[] _buffer;
-        private int _bufferIndex;
-        private int _bufferLength;
+        private int _currentIndex;
+        private int _bufferedCount;
 
 
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
@@ -36,8 +36,8 @@ namespace Pidgin
 
             _bufferChunkSize = stream.ChunkSizeHint;
             _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
-            _bufferIndex = 0;
-            _bufferLength = 0;
+            _currentIndex = 0;
+            _bufferedCount = 0;
 
             _eof = default;
             _unexpected = default;
@@ -46,7 +46,7 @@ namespace Pidgin
             _expecteds = new PooledList<Expected<TToken>>();
             _expectedBookmarks = new PooledList<int>();
 
-            Buffer();
+            Buffer(0);
         }
 
         public bool HasCurrent
@@ -54,7 +54,7 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                return _bufferIndex >= 0 && _bufferIndex < _bufferLength;
+                return _currentIndex < _bufferedCount;
             }
         }
         public TToken Current
@@ -62,49 +62,90 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                return _buffer[_bufferIndex];
+                return _buffer[_currentIndex];
             }
         }
 
-        public void Advance()
+        public void Advance(int count = 1)
         {
-            if (HasCurrent)
+            while (count > 0 && HasCurrent)
             {
                 SourcePos = _posCalculator(Current, SourcePos);
                 _consumedCount++;
+                _currentIndex++;
+                count--;
             }
-            _bufferIndex++;
-            Buffer();
+            Buffer(count);
+            while (count > 0 && HasCurrent)
+            {
+                SourcePos = _posCalculator(Current, SourcePos);
+                _consumedCount++;
+                _currentIndex++;
+                count--;
+            }
+        }
+        // if it returns a span shorter than count it's because you reached the end of the input
+        public ReadOnlySpan<TToken> Peek(int count)
+        {
+            Buffer(count);
+            return _buffer
+                .AsSpan()
+                .Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
         }
 
-        private void Buffer()
+        // postcondition: bufferedLength >= _currentIndex + min(readAhead, AmountLeft(_stream))
+        private void Buffer(int readAhead)
         {
-            if (_bufferIndex == _bufferLength)
+            var readAheadTo = _currentIndex + readAhead;
+            if (readAheadTo >= _bufferedCount)
             {
-                // we're at the end of the current chunk. Pull a new chunk from the stream
-                var keepLength = _bookmarks.Count > 0
+                // we're about to read past the end of the current chunk. Pull a new chunk from the stream
+                var keepSeenLength = _bookmarks.Count > 0
                     ? _consumedCount - _bookmarks[0].Value
                     : 0;
+                var keepFrom = _currentIndex - keepSeenLength;
+                var keepLength = _bufferedCount - keepFrom;
+                var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - keepFrom);
+                var newBufferLength = _bufferedCount + amountToRead;
 
-                if (keepLength >= _buffer.Length)
+                //                  _currentIndex
+                //                        |
+                //                        | _bufferedCount
+                //              keepFrom  |      |
+                //                 |      |      | readAheadTo
+                //                 |      |      |    |
+                //              abcdefghijklmnopqrstuvwxyz
+                //       readAhead        |-----------|
+                //  keepSeenLength |------|
+                //      keepLength |-------------|
+                //    amountToRead               |----|
+                // newBufferLength |------------------|
+
+
+                if (newBufferLength > _buffer.Length)
                 {
-                    var newBuffer = ArrayPool<TToken>.Shared.Rent(_buffer.Length * 2);
+                    // grow the buffer
+                    var newBuffer = ArrayPool<TToken>.Shared.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
 
-                    Array.Copy(_buffer, _bufferLength - keepLength, newBuffer, 0, keepLength);
+                    Array.Copy(_buffer, keepFrom, newBuffer, 0, keepLength);
 
                     ArrayPool<TToken>.Shared.Return(_buffer);
                     _buffer = newBuffer;
                 }
-                else
+                else if (keepFrom != 0 && keepLength != 0)
                 {
-                    Array.Copy(_buffer, _bufferLength - keepLength, _buffer, 0, keepLength);
+                    // move the buffer's contents to the start
+
+                    // todo: find out how expensive this Copy tends to be.
+                    // Could prevent it by using a ring buffer, but might make reads slower
+                    Array.Copy(_buffer, keepFrom, _buffer, 0, keepLength);
                 }
-                _bufferIndex = _bufferLength = keepLength;
-                _bufferLength += _stream.ReadInto(_buffer, _bufferLength, Math.Min(_bufferChunkSize, _buffer.Length - _bufferLength));
+                _currentIndex = keepSeenLength;
+                _bufferedCount = keepLength;
+                _bufferedCount += _stream.ReadInto(_buffer, _bufferedCount, amountToRead);
             }
         }
         
-
         public void PushBookmark()
         {
             _bookmarks.Add(new Bookmark(_consumedCount, SourcePos));
@@ -121,11 +162,11 @@ namespace Pidgin
             
             var delta = _consumedCount - bookmark.Value;
 
-            if (delta > _bufferIndex)
+            if (delta > _currentIndex)
             {
                 throw new InvalidOperationException("Tried to rewind past the start of the input. Please report this as a bug in Pidgin!");
             }
-            _bufferIndex -= delta;
+            _currentIndex -= delta;
 
             _consumedCount = bookmark.Value;
             SourcePos = bookmark.Pos;

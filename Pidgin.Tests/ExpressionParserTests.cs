@@ -249,13 +249,11 @@ namespace Pidgin.Tests
         [Fact]
         public void TestPrefix()
         {
-            Parser<char, bool> parser = null;
-            var termParser =
-                String("false").Select(_ => false)
-                    .Or(String("true").Select(_ => true))
-                    .Or(Rec(() => parser).Between(Char('('), Char(')')));
-            parser = ExpressionParser.Build(
-                termParser,
+            var parser = ExpressionParser.Build(
+                expr => 
+                    String("false").Select(_ => false)
+                        .Or(String("true").Select(_ => true))
+                        .Or(expr.Between(Char('('), Char(')'))),
                 new[]
                 {
                     new[]
@@ -275,13 +273,11 @@ namespace Pidgin.Tests
         [Fact]
         public void TestPrefixChainable()
         {
-            Parser<char, bool> parser = null;
-            var termParser =
-                String("false").Select(_ => false)
-                    .Or(String("true").Select(_ => true))
-                    .Or(Rec(() => parser).Between(Char('('), Char(')')));
-            parser = ExpressionParser.Build(
-                termParser,
+            var parser = ExpressionParser.Build(
+                expr => 
+                    String("false").Select(_ => false)
+                        .Or(String("true").Select(_ => true))
+                        .Or(expr.Between(Char('('), Char(')'))),
                 new[]
                 {
                     new[]
@@ -307,9 +303,8 @@ namespace Pidgin.Tests
         {
             Func<dynamic> f = () => true;
 
-            Parser<char, dynamic> parser = null;
             var termParser = String("f").Select<dynamic>(_ => f);
-            parser = ExpressionParser.Build(
+            var parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
@@ -330,9 +325,8 @@ namespace Pidgin.Tests
             Func<dynamic> f = () => true;
             Func<Func<dynamic>> g = () => f;
 
-            Parser<char, dynamic> parser = null;
             var termParser = String("f").Select<dynamic>(_ => f).Or(String("g").Select<dynamic>(_ => g));
-            parser = ExpressionParser.Build(
+            var parser = ExpressionParser.Build(
                 termParser,
                 new[]
                 {
