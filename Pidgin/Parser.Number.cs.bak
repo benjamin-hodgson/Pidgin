@@ -205,5 +205,4 @@ namespace Pidgin
         }
         private static long GetUpperLetterOffsetLong(char c) => c - 'A';
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
-    }
 }
