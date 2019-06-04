@@ -160,8 +160,8 @@ namespace Pidgin
         /// A parser which parses a floating point number with an optional sign.
         /// </summary>
         /// <returns>A parser which parses a floating point number with an optional sign</returns>
-        public static Parser<char, double> Real()
-            => Map(
+        public static Parser<char, double> Real
+            = Map(
                 (sign, t, u) =>
                 {
                     var (intPart, (point, fracPart)) = t;

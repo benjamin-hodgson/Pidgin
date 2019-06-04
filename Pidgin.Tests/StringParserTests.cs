@@ -369,7 +369,7 @@ namespace Pidgin.Tests
                 );
             }
             {
-                var parser = Real();
+                var parser = Real;
                 AssertSuccess(parser.Parse("0"), 0d, true);
                 AssertSuccess(parser.Parse("+0"), +0d, true);
                 AssertSuccess(parser.Parse("-0"), -0d, true);
