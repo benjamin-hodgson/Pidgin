@@ -156,6 +156,10 @@ namespace Pidgin
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
 
 
+        private static Parser<char, (string, string)> _fractionalPart
+            = Char('.').ThenReturn(".").Then(Digit.AtLeastOnceString(), ValueTuple.Create);
+        private static Parser<char, (string, string)> _optionalFractionalPart
+            = _fractionalPart.Or(Parser<char>.Return(("", "")));
         /// <summary>
         /// A parser which parses a floating point number with an optional sign.
         /// </summary>
@@ -164,7 +168,7 @@ namespace Pidgin
             = Map(
                 (sign, t, u) =>
                 {
-                    var (intPart, (point, fracPart)) = t;
+                    var (intPart, point, fracPart) = t;
                     var (e, expSign, exp) = u;
                     var success = double.TryParse(string.Concat(sign, intPart, point, fracPart, e, expSign, exp), out var result);
                     if (success)
@@ -176,9 +180,9 @@ namespace Pidgin
                 SignString,
                 from intPart in Digit.ManyString()
                 from fracPart in intPart.Length > 0  // if we saw an integral part, the fractional part is optional
-                    ? Char('.').ThenReturn(".").Then(Digit.AtLeastOnceString(), ValueTuple.Create).Or(Parser<char>.Return(("", "")))
-                    : Char('.').ThenReturn(".").Then(Digit.AtLeastOnceString(), ValueTuple.Create)
-                select (intPart, fracPart),
+                    ? _optionalFractionalPart
+                    : _fractionalPart
+                select (intPart, fracPart.Item1, fracPart.Item2),
                 Map(
                     ValueTuple.Create,
                     CIChar('e').ThenReturn("e"),
