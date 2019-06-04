@@ -368,6 +368,147 @@ namespace Pidgin.Tests
                     true
                 );
             }
+            {
+                var parser = Real();
+                AssertSuccess(parser.Parse("0"), 0d, true);
+                AssertSuccess(parser.Parse("+0"), +0d, true);
+                AssertSuccess(parser.Parse("-0"), -0d, true);
+                AssertSuccess(parser.Parse("1"), 1d, true);
+                AssertSuccess(parser.Parse("+1"), +1d, true);
+                AssertSuccess(parser.Parse("-1"), -1d, true);
+
+                AssertSuccess(parser.Parse("12345"), 12345d, true);
+                AssertSuccess(parser.Parse("+12345"), +12345d, true);
+                AssertSuccess(parser.Parse("-12345"), -12345d, true);
+
+                AssertSuccess(parser.Parse("12.345"), 12.345d, true);
+                AssertSuccess(parser.Parse("+12.345"), +12.345d, true);
+                AssertSuccess(parser.Parse("-12.345"), -12.345d, true);
+
+                AssertSuccess(parser.Parse(".12345"), .12345d, true);
+                AssertSuccess(parser.Parse("+.12345"), +.12345d, true);
+                AssertSuccess(parser.Parse("-.12345"), -.12345d, true);
+
+                AssertSuccess(parser.Parse("12345e10"), 12345e10d, true);
+                AssertSuccess(parser.Parse("+12345e10"), +12345e10d, true);
+                AssertSuccess(parser.Parse("-12345e10"), -12345e10d, true);
+                AssertSuccess(parser.Parse("12345e+10"), 12345e+10d, true);
+                AssertSuccess(parser.Parse("+12345e+10"), +12345e+10d, true);
+                AssertSuccess(parser.Parse("-12345e+10"), -12345e+10d, true);
+                AssertSuccess(parser.Parse("12345e-10"), 12345e-10d, true);
+                AssertSuccess(parser.Parse("+12345e-10"), +12345e-10d, true);
+                AssertSuccess(parser.Parse("-12345e-10"), -12345e-10d, true);
+
+                AssertSuccess(parser.Parse("12.345e10"), 12.345e10d, true);
+                AssertSuccess(parser.Parse("+12.345e10"), +12.345e10d, true);
+                AssertSuccess(parser.Parse("-12.345e10"), -12.345e10d, true);
+                AssertSuccess(parser.Parse("12.345e+10"), 12.345e+10d, true);
+                AssertSuccess(parser.Parse("+12.345e+10"), +12.345e+10d, true);
+                AssertSuccess(parser.Parse("-12.345e+10"), -12.345e+10d, true);
+                AssertSuccess(parser.Parse("12.345e-10"), 12.345e-10d, true);
+                AssertSuccess(parser.Parse("+12.345e-10"), +12.345e-10d, true);
+                AssertSuccess(parser.Parse("-12.345e-10"), -12.345e-10d, true);
+                
+                AssertSuccess(parser.Parse(".12345e10"), .12345e10d, true);
+                AssertSuccess(parser.Parse("+.12345e10"), +.12345e10d, true);
+                AssertSuccess(parser.Parse("-.12345e10"), -.12345e10d, true);
+                AssertSuccess(parser.Parse(".12345e+10"), .12345e+10d, true);
+                AssertSuccess(parser.Parse("+.12345e+10"), +.12345e+10d, true);
+                AssertSuccess(parser.Parse("-.12345e+10"), -.12345e+10d, true);
+                AssertSuccess(parser.Parse(".12345e-10"), .12345e-10d, true);
+                AssertSuccess(parser.Parse("+.12345e-10"), +.12345e-10d, true);
+                AssertSuccess(parser.Parse("-.12345e-10"), -.12345e-10d, true);
+
+
+                AssertFailure(
+                    parser.Parse(""),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 1),
+                        null
+                    ),
+                    false
+                );
+                AssertFailure(
+                    parser.Parse("a"),
+                    new ParseError<char>(
+                        Maybe.Just('a'),
+                        false,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 1),
+                        null
+                    ),
+                    false
+                );
+                AssertFailure(
+                    parser.Parse("+"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 2),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse("-"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 2),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse("12345."),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 7),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse("12345e"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 7),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse("12345e+"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 8),
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse("12345.e"),
+                    new ParseError<char>(
+                        Maybe.Just('e'),
+                        false,
+                        new[] { new Expected<char>("real number") },
+                        new SourcePos(1, 7),
+                        null
+                    ),
+                    true
+                );
+            }
         }
 
         [Fact]
