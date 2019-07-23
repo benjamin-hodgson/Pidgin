@@ -57,6 +57,7 @@ namespace Pidgin.Tests
             from m in typeof(Parser).GetMethods(BindingFlags.Public | BindingFlags.Static)
             let ps = m.GetParameters()
             where ps.Any()
+            where !new[] { "Pattern" }.Contains(m.Name)
             from args in GetArgs(ps)
             select new object[]
             {
@@ -69,9 +70,7 @@ namespace Pidgin.Tests
             from m in typeof(Parser<int>).GetMethods(BindingFlags.Public | BindingFlags.Static)
             let ps = m.GetParameters()
             where ps.Any()
-            where m.Name != "Sequence"  // todo
-                && m.Name != "Return"
-                && m.Name != "FromResult"
+            where !new[] { "Sequence", "Return", "FromResult" }.Contains(m.Name)
             from args in GetArgs(ps)
             select new object[]
             {

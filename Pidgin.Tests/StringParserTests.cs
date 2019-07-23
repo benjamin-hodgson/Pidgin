@@ -6,6 +6,7 @@ using System.Text;
 using Xunit;
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
+using Pat = Pidgin.Pattern<char>;
 
 namespace Pidgin.Tests
 {
@@ -367,6 +368,24 @@ namespace Pidgin.Tests
                     ),
                     true
                 );
+            }
+        }
+
+        [Fact]
+        public void TestPattern()
+        {
+            {
+                var digit = Pat.Token(char.IsDigit);
+                var phoneNumber = Pat.Token('(')
+                    .Then(digit.Repeat(3))
+                    .Then(Pat.Token(')'))
+                    .Then(Pat.Token(' '))
+                    .Then(digit.Repeat(2))
+                    .Then(Pat.Token(' '))
+                    .Then(digit.Repeat(2));
+
+                var parser = Pattern(phoneNumber, x => x.ToString());
+                AssertSuccess(parser.Parse("(012) 34 56"), "(012) 34 56", true);
             }
         }
 
