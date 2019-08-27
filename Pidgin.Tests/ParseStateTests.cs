@@ -148,7 +148,7 @@ namespace Pidgin.Tests
         private static void Consume(string expected, ref ParseState<char> state)
         {
             var oldCol = state.ComputeSourcePos().Col;
-            AssertEqual(expected.AsSpan(), state.Peek(expected.Length));
+            AssertEqual(expected.AsSpan(), state.LookAhead(expected.Length));
             state.Advance(expected.Length);
             Assert.Equal(oldCol + expected.Length, state.ComputeSourcePos().Col);
         }

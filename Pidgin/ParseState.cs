@@ -94,12 +94,16 @@ namespace Pidgin
             count -= bufferedCount;
         }
         // if it returns a span shorter than count it's because you reached the end of the input
-        public ReadOnlySpan<TToken> Peek(int count)
+        public ReadOnlySpan<TToken> LookAhead(int count)
         {
             Buffer(count);
-            return _buffer
-                .AsSpan()
-                .Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
+            return _buffer.AsSpan().Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
+        }
+        // if it returns a span shorter than count it's because you looked further back than the buffer goes
+        public ReadOnlySpan<TToken> LookBehind(int count)
+        {
+            var start = Math.Max(0, _currentIndex - count);
+            return _buffer.AsSpan().Slice(start, _currentIndex - start);
         }
 
         // postcondition: bufferedLength >= _currentIndex + min(readAhead, AmountLeft(_stream))

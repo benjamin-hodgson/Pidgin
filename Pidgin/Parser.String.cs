@@ -59,7 +59,7 @@ namespace Pidgin
 
             internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
             {
-                var span = state.Peek(_value.Length);  // span.Length <= _valueTokens.Length
+                var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 
                 var errorPos = -1;
                 for (var i = 0; i < span.Length; i++)

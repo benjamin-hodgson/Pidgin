@@ -24,7 +24,7 @@ namespace Pidgin
 
             internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
             {
-                var span = state.Peek(_valueTokens.Length);  // span.Length <= _valueTokens.Length
+                var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
                 
                 var errorPos = -1;
                 for (var i = 0; i < span.Length; i++)
@@ -84,7 +84,7 @@ namespace Pidgin
 
             internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
             {
-                var span = state.Peek(_valueTokens.Length);  // span.Length <= _valueTokens.Length
+                var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
                 
                 var errorPos = -1;
                 for (var i = 0; i < span.Length; i++)
