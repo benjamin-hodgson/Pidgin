@@ -2221,6 +2221,33 @@ namespace Pidgin.Tests
         }
 
         [Fact]
+        public void TestMapWithInput()
+        {
+            {
+                var parser = String("abc").Many().MapWithInput((input, result) => (input.ToString(), result.Count()));
+                AssertSuccess(parser.Parse("abc"), ("abc", 1), true);
+                AssertSuccess(parser.Parse("abcabc"), ("abcabc", 2), true);
+                AssertSuccess(  // long input, to check that it doesn't discard the buffer
+                    parser.Parse(string.Concat(Enumerable.Repeat("abc", 5000))),
+                    (string.Concat(Enumerable.Repeat("abc", 5000)), 5000),
+                    true
+                );
+
+                AssertFailure(
+                    parser.Parse("abd"),
+                    new ParseError<char>(
+                        Maybe.Just('d'),
+                        false,
+                        new[] { new Expected<char>(ImmutableArray.CreateRange("abc")) },
+                        new SourcePos(1,3),
+                        null
+                    ),
+                    true
+                );
+            }
+        }
+
+        [Fact]
         public void TestRec()
         {
             // roughly equivalent to String("foo").Separated(Char(' '))
