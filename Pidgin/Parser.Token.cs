@@ -43,7 +43,7 @@ namespace Pidgin
                     state.Error = new InternalError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        state.SourcePos,
+                        state.Location,
                         null
                     );
                     state.AddExpected(Expected);
@@ -55,7 +55,7 @@ namespace Pidgin
                     state.Error = new InternalError<TToken>(
                         Maybe.Just(token),
                         false,
-                        state.SourcePos,
+                        state.Location,
                         null
                     );
                     state.AddExpected(Expected);
@@ -96,7 +96,7 @@ namespace Pidgin
                     state.Error = new InternalError<TToken>(
                         Maybe.Nothing<TToken>(),
                         true,
-                        state.SourcePos,
+                        state.Location,
                         null
                     );
                     return InternalResult.Failure<TToken>(false);
@@ -107,7 +107,7 @@ namespace Pidgin
                     state.Error = new InternalError<TToken>(
                         Maybe.Just(token),
                         false,
-                        state.SourcePos,
+                        state.Location,
                         null
                     );
                     return InternalResult.Failure<TToken>(false);

@@ -20,7 +20,7 @@ namespace Pidgin
                     state.Error = new InternalError<TToken>(
                         Maybe.Just(state.Current),
                         false,
-                        state.SourcePos,
+                        state.Location,
                         null
                     );
                     state.AddExpected(new Expected<TToken>());

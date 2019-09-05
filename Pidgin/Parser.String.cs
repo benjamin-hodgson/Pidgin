@@ -70,7 +70,7 @@ namespace Pidgin
                         state.Error = new InternalError<char>(
                             Maybe.Nothing<char>(),
                             true,
-                            state.SourcePos,
+                            state.Location,
                             null
                         );
                         state.AddExpected(Expected);
@@ -83,7 +83,7 @@ namespace Pidgin
                         state.Error = new InternalError<char>(
                             Maybe.Just(token),
                             false,
-                            state.SourcePos,
+                            state.Location,
                             null
                         );
                         state.AddExpected(Expected);

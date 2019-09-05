@@ -14,7 +14,7 @@ namespace Pidgin
         private sealed class CurrentPosParser : Parser<TToken, SourcePos>
         {
             internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
-                => InternalResult.Success(state.SourcePos, false);
+                => InternalResult.Success(state.ComputeSourcePos(), false);
         }
     }
 }

@@ -951,6 +951,37 @@ namespace Pidgin.Tests
                     false
                 );
             }
+            {
+                // test to make sure it doesn't throw out the buffer, for the purposes of computing error position
+                var str = new string('a', 10000);
+                var parser = Not(String(str));
+                AssertFailure(
+                    parser.Parse(str),
+                    new ParseError<char>(
+                        Maybe.Just('a'),
+                        false,
+                        new Expected<char>[] { },
+                        new SourcePos(1, 1),
+                        null
+                    ),
+                    true
+                );
+            }
+            {
+                // test error pos calculation
+                var parser = Char('a').Then(Not(Char('b')));
+                AssertFailure(
+                    parser.Parse("ab"),
+                    new ParseError<char>(
+                        Maybe.Just('b'),
+                        false,
+                        new Expected<char>[] { },
+                        new SourcePos(1, 2),
+                        null
+                    ),
+                    true
+                );
+            }
         }
 
         [Fact]

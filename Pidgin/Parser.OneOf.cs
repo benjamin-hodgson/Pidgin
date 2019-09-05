@@ -130,7 +130,7 @@ namespace Pidgin
                 var err = new InternalError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
-                    state.SourcePos,
+                    state.Location,
                     "OneOf had no arguments"
                 );
                 state.BeginExpectedTran();
@@ -163,7 +163,7 @@ namespace Pidgin
                     state.EndExpectedTran(true);
                     // choose the longest match, preferring the left-most error in a tie,
                     // except the first time (avoid returning "OneOf had no arguments").
-                    if (firstTime || state.Error.ErrorPos > err.ErrorPos)
+                    if (firstTime || state.Error.ErrorLocation > err.ErrorLocation)
                     {
                         err = state.Error;
                     }
