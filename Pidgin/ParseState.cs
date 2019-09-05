@@ -13,14 +13,16 @@ namespace Pidgin
     internal partial struct ParseState<TToken>
     {
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
+
+        // a monotonic stack of locations.
+        // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
+        // because dropping the buffer's prefix would invalidate the bookmarks
         private PooledList<int> _bookmarks;
         private readonly ITokenStream<TToken> _stream;
 
-        public int Location { get; private set; }  // how many tokens have been consumed in total?
-
-
         private readonly int _bufferChunkSize;
         private TToken[] _buffer;
+        private int _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
         private int _currentIndex;
         private int _bufferedCount;
         private SourcePos _bufferStartSourcePos;
@@ -32,10 +34,9 @@ namespace Pidgin
             _bookmarks = new PooledList<int>();
             _stream = stream;
 
-            Location = 0;
-
             _bufferChunkSize = stream.ChunkSizeHint;
             _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
+            _bufferStartLocation = 0;
             _currentIndex = 0;
             _bufferedCount = 0;
             _bufferStartSourcePos = new SourcePos(1,1);
@@ -48,6 +49,19 @@ namespace Pidgin
             _expectedBookmarks = new PooledList<int>();
 
             Buffer(0);
+        }
+
+        /// <summary>
+        /// How many tokens have been consumed in total?
+        /// </summary>
+        /// <value></value>
+        public int Location
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
+                return _bufferStartLocation + _currentIndex;
+            }
         }
 
         public bool HasCurrent
@@ -70,14 +84,12 @@ namespace Pidgin
         public void Advance(int count = 1)
         {
             var alreadyBufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
-            Location += alreadyBufferedCount;
             _currentIndex += alreadyBufferedCount;
             count -= alreadyBufferedCount;
 
             Buffer(count);
             
             var bufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
-            Location += bufferedCount;
             _currentIndex += bufferedCount;
             count -= bufferedCount;
         }
@@ -124,7 +136,6 @@ namespace Pidgin
                     _bufferStartSourcePos = _posCalculator(_buffer[i], _bufferStartSourcePos);
                 }
 
-
                 if (newBufferLength > _buffer.Length)
                 {
                     // grow the buffer
@@ -143,6 +154,7 @@ namespace Pidgin
                     // Could prevent it by using a ring buffer, but might make reads slower
                     Array.Copy(_buffer, keepFrom, _buffer, 0, keepLength);
                 }
+                _bufferStartLocation += keepFrom;
                 _currentIndex = keepSeenLength;
                 _bufferedCount = keepLength;
                 _bufferedCount += _stream.ReadInto(_buffer, _bufferedCount, amountToRead);
@@ -170,8 +182,6 @@ namespace Pidgin
                 throw new InvalidOperationException("Tried to rewind past the start of the input. Please report this as a bug in Pidgin!");
             }
             _currentIndex -= delta;
-
-            Location = bookmark;
         }
 
         public SourcePos ComputeSourcePos()
@@ -179,18 +189,17 @@ namespace Pidgin
 
         private SourcePos ComputeSourcePosAt(int location)
         {
-            var bufferStartLocation = Location - _currentIndex;
-            if (location < bufferStartLocation)
+            if (location < _bufferStartLocation)
             {
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the past. Please report this as a bug in Pidgin!");
             }
-            if (location > bufferStartLocation + _bufferedCount)
+            if (location > _bufferStartLocation + _bufferedCount)
             {
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the future. Please report this as a bug in Pidgin!");
             }
 
             var pos = _bufferStartSourcePos;
-            for (var i = 0; i < location - bufferStartLocation; i++)
+            for (var i = 0; i < location - _bufferStartLocation; i++)
             {
                 pos = _posCalculator(_buffer[i], pos);
             }
