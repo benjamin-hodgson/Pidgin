@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-2.html",
-          "hash": "tQITQ5Q/DsSNUj4g5hBapw=="
+          "hash": "blRNHHRPpjk4wXIF0oBZ0A=="
         }
       },
       "is_incremental": false,
@@ -245,6 +245,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Pidgin.ReadOnlySpanFunc-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Pidgin.ReadOnlySpanFunc-3.html",
+          "hash": "Sa6ZpWflpJ6AuAjnXKlX8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Pidgin.Result-2.yml",
       "output": {
         ".html": {
@@ -285,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.html",
-          "hash": "LzCYKdmvogwF+QyblAepMg=="
+          "hash": "ewkUngmiDLA86gCrkFhalg=="
         }
       },
       "is_incremental": false,
@@ -309,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "NTDkNcA+K3eO2v0o6mC+OQ=="
+          "hash": "4WPFg0gVVVDL4ILqQua9fA=="
         }
       },
       "is_incremental": false,
@@ -358,16 +370,16 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 24,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 25,
           "skipped_file_count": 0
         }
       }

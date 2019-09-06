@@ -2395,6 +2395,24 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).Many
   nameWithType: Parser<TToken, T>.Many
   nameWithType.vb: Parser(Of TToken, T).Many
+- uid: Pidgin.Parser`2.MapWithInput*
+  name: MapWithInput
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_MapWithInput_
+  commentId: Overload:Pidgin.Parser`2.MapWithInput
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken, T>.MapWithInput
+  fullName.vb: Pidgin.Parser(Of TToken, T).MapWithInput
+  nameWithType: Parser<TToken, T>.MapWithInput
+  nameWithType.vb: Parser(Of TToken, T).MapWithInput
+- uid: Pidgin.Parser`2.MapWithInput``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})
+  name: MapWithInput<U>(ReadOnlySpanFunc<TToken, T, U>)
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__
+  commentId: M:Pidgin.Parser`2.MapWithInput``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})
+  name.vb: MapWithInput(Of U)(ReadOnlySpanFunc(Of TToken, T, U))
+  fullName: Pidgin.Parser<TToken, T>.MapWithInput<U>(Pidgin.ReadOnlySpanFunc<TToken, T, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).MapWithInput(Of U)(Pidgin.ReadOnlySpanFunc(Of TToken, T, U))
+  nameWithType: Parser<TToken, T>.MapWithInput<U>(ReadOnlySpanFunc<TToken, T, U>)
+  nameWithType.vb: Parser(Of TToken, T).MapWithInput(Of U)(ReadOnlySpanFunc(Of TToken, T, U))
 - uid: Pidgin.Parser`2.OfType*
   name: OfType
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_OfType_
@@ -3197,6 +3215,15 @@ references:
   fullName.vb: Pidgin.Permutation.PermutationParser(Of TToken, T).Build
   nameWithType: PermutationParser<TToken, T>.Build
   nameWithType.vb: PermutationParser(Of TToken, T).Build
+- uid: Pidgin.ReadOnlySpanFunc`3
+  name: ReadOnlySpanFunc<T, TParam, TReturn>
+  href: api/Pidgin.ReadOnlySpanFunc-3.html
+  commentId: T:Pidgin.ReadOnlySpanFunc`3
+  name.vb: ReadOnlySpanFunc(Of T, TParam, TReturn)
+  fullName: Pidgin.ReadOnlySpanFunc<T, TParam, TReturn>
+  fullName.vb: Pidgin.ReadOnlySpanFunc(Of T, TParam, TReturn)
+  nameWithType: ReadOnlySpanFunc<T, TParam, TReturn>
+  nameWithType.vb: ReadOnlySpanFunc(Of T, TParam, TReturn)
 - uid: Pidgin.Result`2
   name: Result<TToken, T>
   href: api/Pidgin.Result-2.html
