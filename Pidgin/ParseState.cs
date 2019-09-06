@@ -13,19 +13,19 @@ namespace Pidgin
     internal partial struct ParseState<TToken>
     {
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
-
-        // a monotonic stack of locations.
-        // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
-        // because dropping the buffer's prefix would invalidate the bookmarks
-        private PooledList<int> _bookmarks;
         private readonly ITokenStream<TToken> _stream;
-
         private readonly int _bufferChunkSize;
+
         private TToken[] _buffer;
         private int _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
         private int _currentIndex;
         private int _bufferedCount;
         private SourcePos _bufferStartSourcePos;
+
+        // a monotonic stack of locations.
+        // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
+        // because dropping the buffer's prefix would invalidate the bookmarks
+        private PooledList<int> _bookmarks;
 
 
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
