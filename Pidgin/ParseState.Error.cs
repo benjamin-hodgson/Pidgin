@@ -3,8 +3,6 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Pidgin.TokenStreams;
 
 namespace Pidgin
 {
@@ -12,26 +10,26 @@ namespace Pidgin
     {
         private bool _eof;
         private Maybe<TToken> _unexpected;
-        private SourcePos _errorPos;
+        private int _errorLocation;
         private string _message;
         public InternalError<TToken> Error
         {
             get
             {
-                return new InternalError<TToken>(_unexpected, _eof, _errorPos, _message);
+                return new InternalError<TToken>(_unexpected, _eof, _errorLocation, _message);
             }
             set
             {
                 _unexpected = value.Unexpected;
                 _eof = value.EOF;
-                _errorPos = value.ErrorPos;
+                _errorLocation = value.ErrorLocation;
                 _message = value.Message;
             }
         }
         public ParseError<TToken> BuildError()
             => BuildError(_expecteds.AsEnumerable());
         public ParseError<TToken> BuildError(IEnumerable<Expected<TToken>> expecteds)
-            => new ParseError<TToken>(_unexpected, _eof, expecteds.Distinct().ToArray(), _errorPos, _message);
+            => new ParseError<TToken>(_unexpected, _eof, expecteds.Distinct().ToArray(), ComputeSourcePosAt(_errorLocation), _message);
 
         // I'm basically using _expecteds as a set builder.
         // When a parser fails (and has an expected) it calls AddExpected to store the expected.

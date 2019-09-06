@@ -851,6 +851,10 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("a"), new { a = 'a' }, true);
             }
             {
+                var parser = Char('a').Map(a => new { a });
+                AssertSuccess(parser.Parse("a"), new { a = 'a' }, true);
+            }
+            {
                 var parser =
                     from a in Char('a')
                     select new { a };
@@ -1090,6 +1094,37 @@ namespace Pidgin.Tests
                         null
                     ),
                     false
+                );
+            }
+            {
+                // test to make sure it doesn't throw out the buffer, for the purposes of computing error position
+                var str = new string('a', 10000);
+                var parser = Not(String(str));
+                AssertFailure(
+                    parser.Parse(str),
+                    new ParseError<char>(
+                        Maybe.Just('a'),
+                        false,
+                        new Expected<char>[] { },
+                        new SourcePos(1, 1),
+                        null
+                    ),
+                    true
+                );
+            }
+            {
+                // test error pos calculation
+                var parser = Char('a').Then(Not(Char('b')));
+                AssertFailure(
+                    parser.Parse("ab"),
+                    new ParseError<char>(
+                        Maybe.Just('b'),
+                        false,
+                        new Expected<char>[] { },
+                        new SourcePos(1, 2),
+                        null
+                    ),
+                    true
                 );
             }
         }
@@ -2326,6 +2361,33 @@ namespace Pidgin.Tests
                         null
                     ),
                     false
+                );
+            }
+        }
+
+        [Fact]
+        public void TestMapWithInput()
+        {
+            {
+                var parser = String("abc").Many().MapWithInput((input, result) => (input.ToString(), result.Count()));
+                AssertSuccess(parser.Parse("abc"), ("abc", 1), true);
+                AssertSuccess(parser.Parse("abcabc"), ("abcabc", 2), true);
+                AssertSuccess(  // long input, to check that it doesn't discard the buffer
+                    parser.Parse(string.Concat(Enumerable.Repeat("abc", 5000))),
+                    (string.Concat(Enumerable.Repeat("abc", 5000)), 5000),
+                    true
+                );
+
+                AssertFailure(
+                    parser.Parse("abd"),
+                    new ParseError<char>(
+                        Maybe.Just('d'),
+                        false,
+                        new[] { new Expected<char>(ImmutableArray.CreateRange("abc")) },
+                        new SourcePos(1,3),
+                        null
+                    ),
+                    true
                 );
             }
         }

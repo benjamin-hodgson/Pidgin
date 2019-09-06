@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using System.Runtime.InteropServices;
 
 namespace Pidgin
@@ -8,14 +7,14 @@ namespace Pidgin
     {
         public bool EOF { get; }
         public Maybe<TToken> Unexpected { get; }
-        public SourcePos ErrorPos { get; }
+        public int ErrorLocation { get; }
         public string Message { get; }
 
-        internal InternalError(Maybe<TToken> unexpected, bool eof, SourcePos errorPos, string message)
+        internal InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string message)
         {
             Unexpected = unexpected;
             EOF = eof;
-            ErrorPos = errorPos;
+            ErrorLocation = errorLocation;
             Message = message;
         }
     }

@@ -59,42 +59,49 @@ namespace Pidgin
 
             internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
             {
-                var consumedInput = false;
+                var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 
-                var builder = new InplaceStringBuilder(_value.Length);
-
-                foreach (var c in _value)
+                var errorPos = -1;
+                for (var i = 0; i < span.Length; i++)
                 {
-                    if (!state.HasCurrent)
+                    if (!char.ToLowerInvariant(span[i]).Equals(char.ToLowerInvariant(_value[i])))
                     {
-                        state.Error = new InternalError<char>(
-                            Maybe.Nothing<char>(),
-                            true,
-                            state.SourcePos,
-                            null
-                        );
-                        state.AddExpected(Expected);
-                        return InternalResult.Failure<string>(consumedInput);
+                        errorPos = i;
+                        break;
                     }
-
-                    var token = state.Current;
-                    if (char.ToLowerInvariant(token) != char.ToLowerInvariant(c))
-                    {
-                        state.Error = new InternalError<char>(
-                            Maybe.Just(token),
-                            false,
-                            state.SourcePos,
-                            null
-                        );
-                        state.AddExpected(Expected);
-                        return InternalResult.Failure<string>(consumedInput);
-                    }
-
-                    consumedInput = true;
-                    builder.Append(token);
-                    state.Advance();
                 }
-                return InternalResult.Success<string>(builder.ToString(), consumedInput);
+
+                if (errorPos != -1)
+                {
+                    // strings didn't match
+                    state.Advance(errorPos);
+                    state.Error = new InternalError<char>(
+                        Maybe.Just(span[errorPos]),
+                        false,
+                        state.Location,
+                        null
+                    );
+                    state.AddExpected(Expected);
+                    return InternalResult.Failure<string>(errorPos > 0);
+                }
+
+                if (span.Length < _value.Length)
+                {
+                    // strings matched but reached EOF
+                    state.Advance(span.Length);
+                    state.Error = new InternalError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        state.Location,
+                        null
+                    );
+                    state.AddExpected(Expected);
+                    return InternalResult.Failure<string>(span.Length > 0);
+                }
+
+                // OK
+                state.Advance(_value.Length);
+                return InternalResult.Success<string>(span.ToString(), _value.Length > 0);
             }
         }
     }

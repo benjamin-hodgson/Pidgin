@@ -34,18 +34,20 @@ namespace Pidgin
 
             internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
             {
-                var startingPosition = state.SourcePos;
+                var startingLocation = state.Location;
                 var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
+                state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
                 state.BeginExpectedTran();
                 var result = _parser.Parse(ref state);
                 state.EndExpectedTran(false);
+                state.PopBookmark();
                 if (result.Success)
                 {
                     state.Error = new InternalError<TToken>(
                         token,
                         false,
-                        startingPosition,
+                        startingLocation,
                         null
                     );
                     return InternalResult.Failure<Unit>(result.ConsumedInput);

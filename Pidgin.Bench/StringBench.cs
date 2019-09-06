@@ -4,15 +4,22 @@ using static Pidgin.Parser<char>;
 
 namespace Pidgin.Bench
 {
+    [MemoryDiagnoser]
     public class StringBench
     {
         private static readonly string _input = new string('a', 65536);
-        private static readonly Parser<char, string> _parser = String(_input);
+        private static readonly Parser<char, string> _string = Parser.String(_input);
+        private static readonly Parser<char, string> _cistring = Parser.CIString(_input);
 
-        [Benchmark(Baseline = true)]
-        public void Run()
+        [Benchmark]
+        public void String()
         {
-            _parser.ParseOrThrow(_input);
+            _string.ParseOrThrow(_input);
+        }
+        [Benchmark]
+        public void CIString()
+        {
+            _cistring.ParseOrThrow(_input);
         }
     }
 }
