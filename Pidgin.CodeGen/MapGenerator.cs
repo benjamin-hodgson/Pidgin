@@ -35,7 +35,7 @@ namespace Pidgin
     {{
         private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
         {{
-            internal abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
+            internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
         }}
 
         {string.Join(Environment.NewLine, methodsAndClasses)}
