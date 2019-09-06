@@ -1770,6 +1770,12 @@ references:
   isSpec: "True"
   fullName: Pidgin.Parser.Punctuation
   nameWithType: Parser.Punctuation
+- uid: Pidgin.Parser.Real
+  name: Real
+  href: api/Pidgin.Parser.html#Pidgin_Parser_Real
+  commentId: F:Pidgin.Parser.Real
+  fullName: Pidgin.Parser.Real
+  nameWithType: Parser.Real
 - uid: Pidgin.Parser.Rec*
   name: Rec
   href: api/Pidgin.Parser.html#Pidgin_Parser_Rec_
