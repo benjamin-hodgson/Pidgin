@@ -156,42 +156,35 @@ namespace Pidgin
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
 
 
-        private static Parser<char, (string, string)> _fractionalPart
-            = Char('.').ThenReturn(".").Then(Digit.AtLeastOnceString(), ValueTuple.Create);
-        private static Parser<char, (string, string)> _optionalFractionalPart
-            = _fractionalPart.Or(Parser<char>.Return(("", "")));
+        private static Parser<char, Unit> _fractionalPart
+            = Char('.').Then(Digit.SkipAtLeastOnce());
+        private static Parser<char, Unit> _optionalFractionalPart
+            = _fractionalPart.Or(Parser<char>.Return(Unit.Value));
         /// <summary>
         /// A parser which parses a floating point number with an optional sign.
         /// </summary>
         /// <returns>A parser which parses a floating point number with an optional sign</returns>
         public static Parser<char, double> Real
-            = Map(
-                (sign, t, u) =>
-                {
-                    var (intPart, point, fracPart) = t;
-                    var (e, expSign, exp) = u;
-                    var success = double.TryParse(string.Concat(sign, intPart, point, fracPart, e, expSign, exp), out var result);
+            = SignString
+                .Then(
+                    // if we saw an integral part, the fractional part is optional
+                    _fractionalPart
+                        .Or(Digit.SkipAtLeastOnce().Then(_optionalFractionalPart))
+                )
+                .Then(
+                    CIChar('e').Then(SignString).Then(Digit.SkipAtLeastOnce())
+                        .Or(Parser<char>.Return(Unit.Value))
+                )
+                .MapWithInput((span, _) => {
+                    var success = double.TryParse(span.ToString(), out var result);
                     if (success)
                     {
                         return (double?)result;
                     }
                     return (double?)null;
-                },
-                SignString,
-                from intPart in Digit.ManyString()
-                from fracPart in intPart.Length > 0  // if we saw an integral part, the fractional part is optional
-                    ? _optionalFractionalPart
-                    : _fractionalPart
-                select (intPart, fracPart.Item1, fracPart.Item2),
-                Map(
-                    ValueTuple.Create,
-                    CIChar('e').ThenReturn("e"),
-                    SignString,
-                    Digit.AtLeastOnceString()
-                ).Or(Parser<char>.Return(("", "", "")))
-            )
-            .Assert(x => x.HasValue, "Couldn't parse a double")
-            .Select(x => x.Value)
-            .Labelled($"real number");
+                })
+                .Assert(x => x.HasValue, "Couldn't parse a double")
+                .Select(x => x.Value)
+                .Labelled($"real number");
     }
 }
