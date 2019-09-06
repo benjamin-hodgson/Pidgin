@@ -1,11 +1,17 @@
+using System;
 using System.Linq;
+using System.Text;
 
 namespace Pidgin
 {
     public static partial class Parser
     {
-        private static readonly Parser<char, int> Sign =
-            Char('+').ThenReturn(1)
+        private static readonly Parser<char, string> SignString
+            = Char('-').ThenReturn("-")
+                .Or(Char('+').ThenReturn("+"))
+                .Or(Parser<char>.Return(""));
+        private static readonly Parser<char, int> Sign
+            = Char('+').ThenReturn(1)
                 .Or(Char('-').ThenReturn(-1))
                 .Or(Parser<char>.Return(1));
 
@@ -148,5 +154,37 @@ namespace Pidgin
         }
         private static long GetUpperLetterOffsetLong(char c) => c - 'A';
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
+
+
+        private static Parser<char, Unit> _fractionalPart
+            = Char('.').Then(Digit.SkipAtLeastOnce());
+        private static Parser<char, Unit> _optionalFractionalPart
+            = _fractionalPart.Or(Parser<char>.Return(Unit.Value));
+        /// <summary>
+        /// A parser which parses a floating point number with an optional sign.
+        /// </summary>
+        /// <returns>A parser which parses a floating point number with an optional sign</returns>
+        public static Parser<char, double> Real
+            = SignString
+                .Then(
+                    // if we saw an integral part, the fractional part is optional
+                    _fractionalPart
+                        .Or(Digit.SkipAtLeastOnce().Then(_optionalFractionalPart))
+                )
+                .Then(
+                    CIChar('e').Then(SignString).Then(Digit.SkipAtLeastOnce())
+                        .Or(Parser<char>.Return(Unit.Value))
+                )
+                .MapWithInput((span, _) => {
+                    var success = double.TryParse(span.ToString(), out var result);
+                    if (success)
+                    {
+                        return (double?)result;
+                    }
+                    return (double?)null;
+                })
+                .Assert(x => x.HasValue, "Couldn't parse a double")
+                .Select(x => x.Value)
+                .Labelled($"real number");
     }
 }
