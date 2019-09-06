@@ -710,6 +710,10 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("a"), new { a = 'a' }, true);
             }
             {
+                var parser = Char('a').Map(a => new { a });
+                AssertSuccess(parser.Parse("a"), new { a = 'a' }, true);
+            }
+            {
                 var parser =
                     from a in Char('a')
                     select new { a };
