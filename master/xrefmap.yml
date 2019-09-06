@@ -2395,6 +2395,24 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).Many
   nameWithType: Parser<TToken, T>.Many
   nameWithType.vb: Parser(Of TToken, T).Many
+- uid: Pidgin.Parser`2.Map*
+  name: Map
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Map_
+  commentId: Overload:Pidgin.Parser`2.Map
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken, T>.Map
+  fullName.vb: Pidgin.Parser(Of TToken, T).Map
+  nameWithType: Parser<TToken, T>.Map
+  nameWithType.vb: Parser(Of TToken, T).Map
+- uid: Pidgin.Parser`2.Map``1(Func{`1,``0})
+  name: Map<U>(Func<T, U>)
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Map__1_Func__1___0__
+  commentId: M:Pidgin.Parser`2.Map``1(Func{`1,``0})
+  name.vb: Map(Of U)(Func(Of T, U))
+  fullName: Pidgin.Parser<TToken, T>.Map<U>(Func<T, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).Map(Of U)(Func(Of T, U))
+  nameWithType: Parser<TToken, T>.Map<U>(Func<T, U>)
+  nameWithType.vb: Parser(Of TToken, T).Map(Of U)(Func(Of T, U))
 - uid: Pidgin.Parser`2.MapWithInput*
   name: MapWithInput
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_MapWithInput_
