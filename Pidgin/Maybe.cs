@@ -148,7 +148,7 @@ namespace Pidgin
         /// <exception cref="System.InvalidCastException">Thrown when the contained value is not an instance of <typeparamref name="U"/></exception>
         /// <returns>A <see cref="Maybe{U}"/> containing this <see cref="Maybe{T}"/>'s value casted to <typeparamref name="U"/>, if the <see cref="HasValue"/> property returns true, or <see cref="Maybe.Nothing{U}()"/>.</returns>
         public Maybe<U> Cast<U>()
-            => HasValue ? Maybe.Just((U)(object)_value) : Maybe.Nothing<U>();
+            => HasValue ? Maybe.Just((U)(object)_value!) : Maybe.Nothing<U>();
         
         /// <summary>
         /// Cast the value contained in the <see cref="Maybe{T}"/> to the specified result type, or return <see cref="Maybe.Nothing{U}()"/> if the contained value is not an instance of <typeparamref name="U"/>.
@@ -164,7 +164,7 @@ namespace Pidgin
             || (!this.HasValue && !other.HasValue);
 
         /// <inheritdoc/>
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
             => other is Maybe<T>
             && Equals((Maybe<T>)other);
         

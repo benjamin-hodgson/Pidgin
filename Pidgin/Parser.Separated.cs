@@ -73,7 +73,7 @@ namespace Pidgin
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
-                    ts?.Add(result.Value);
+                    ts.Add(result.Value);
                     state.BeginExpectedTran();
                     result = parser.Parse(ref state);
                 }

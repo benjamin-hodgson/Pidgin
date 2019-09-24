@@ -38,7 +38,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
-            return new AtLeastOnceUntilParser<U>(this, terminator, true);
+            return new AtLeastOnceUntilParser<U>(this, terminator, true)!;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Pidgin
             return new AtLeastOnceUntilParser<U>(this, terminator, false).Then(ReturnUnit);
         }
 
-        private sealed class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>>
+        private sealed class AtLeastOnceUntilParser<U> : Parser<TToken, IEnumerable<T>?>
         {
             private readonly Parser<TToken, T> _parser;
             private readonly Parser<TToken, U> _terminator;
@@ -91,7 +91,7 @@ namespace Pidgin
             }
 
             // see comment about expecteds in ParseState.Error.cs
-            internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
+            internal override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state)
             {
                 var ts = _keepResults ? new List<T>() : null;
 
@@ -99,7 +99,7 @@ namespace Pidgin
                 if (!firstItemResult.Success)
                 {
                     // state.Error set by _parser
-                    return InternalResult.Failure<IEnumerable<T>>(firstItemResult.ConsumedInput);
+                    return InternalResult.Failure<IEnumerable<T>?>(firstItemResult.ConsumedInput);
                 }
                 if (!firstItemResult.ConsumedInput)
                 {
@@ -114,13 +114,13 @@ namespace Pidgin
                     if (terminatorResult.Success)
                     {
                         state.EndExpectedTran(false);
-                        return InternalResult.Success<IEnumerable<T>>(ts, true);
+                        return InternalResult.Success<IEnumerable<T>?>(ts, true);
                     }
                     if (terminatorResult.ConsumedInput)
                     {
                         // state.Error set by _terminator
                         state.EndExpectedTran(true);
-                        return InternalResult.Failure<IEnumerable<T>>(true);
+                        return InternalResult.Failure<IEnumerable<T>?>(true);
                     }
 
                     state.BeginExpectedTran();
@@ -142,7 +142,7 @@ namespace Pidgin
                             state.AddExpected(itemExpected.AsSpan());
                             itemExpected.Dispose();
                         }
-                        return InternalResult.Failure<IEnumerable<T>>(true);
+                        return InternalResult.Failure<IEnumerable<T>?>(true);
                     }
                     // throw out both sets of expecteds
                     state.EndExpectedTran(false);

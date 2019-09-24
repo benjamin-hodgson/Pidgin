@@ -1169,8 +1169,8 @@ namespace Pidgin.Tests
         public void TestRecoverWith()
         {
             {
-                var parser = String("foo").ThenReturn((ParseError<char>)null)
-                    .RecoverWith(err => String("bar").ThenReturn(err));
+                var parser = String("foo").ThenReturn((ParseError<char>?)null)
+                    .RecoverWith(err => String("bar").ThenReturn(err)!);
 
                 AssertSuccess(
                     parser.Parse("fobar"),
@@ -1185,10 +1185,10 @@ namespace Pidgin.Tests
                 );
             }
             {
-                var parser = String("nabble").ThenReturn((ParseError<char>)null)
+                var parser = String("nabble").ThenReturn((ParseError<char>?)null)
                     .Or(
-                        String("foo").ThenReturn((ParseError<char>)null)
-                            .RecoverWith(err => String("bar").ThenReturn(err))
+                        String("foo").ThenReturn((ParseError<char>?)null)
+                            .RecoverWith(err => String("bar").ThenReturn(err)!)
                     );
                 
                 // shouldn't get the expected from nabble
@@ -2396,9 +2396,9 @@ namespace Pidgin.Tests
         public void TestRec()
         {
             // roughly equivalent to String("foo").Separated(Char(' '))
-            Parser<char, string> p2 = null;
+            Parser<char, string>? p2 = null;
             var p1 = String("foo").Then(
-                Rec(() => p2).Optional(),
+                Rec(() => p2!).Optional(),
                 (x, y) => y.HasValue ? x + y.Value : x
             );
             p2 = Char(' ').Then(Rec(() => p1));
@@ -2439,7 +2439,7 @@ namespace Pidgin.Tests
         private class TestCast1{}
         private class TestCast2 : TestCast1
         {
-            public override bool Equals(object other) => other is TestCast2;
+            public override bool Equals(object? other) => other is TestCast2;
             public override int GetHashCode() => 1;
         }
         [Fact]

@@ -13,18 +13,20 @@ namespace Pidgin.Bench
     [MemoryDiagnoser, GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     public class JsonBench
     {
+        #nullable disable
         private string _bigJson;
         private string _longJson;
         private string _wideJson;
         private string _deepJson;
+        #nullable restore
 
         [GlobalSetup]
         public void Setup()
         {
-            _bigJson = BuildJson(4, 4, 3).ToString();
-            _longJson = BuildJson(256, 1, 1).ToString();
-            _wideJson = BuildJson(1, 1, 256).ToString();
-            _deepJson = BuildJson(1, 256, 1).ToString();
+            _bigJson = BuildJson(4, 4, 3).ToString()!;
+            _longJson = BuildJson(256, 1, 1).ToString()!;
+            _wideJson = BuildJson(1, 1, 256).ToString()!;
+            _deepJson = BuildJson(1, 256, 1).ToString()!;
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Big")]

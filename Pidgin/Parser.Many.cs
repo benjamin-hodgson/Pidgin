@@ -86,7 +86,7 @@ namespace Pidgin
 
     public abstract partial class Parser<TToken, T>
     {
-        private static Parser<TToken, IEnumerable<T>> _returnEmptyEnumerable;
+        private static Parser<TToken, IEnumerable<T>>? _returnEmptyEnumerable;
         private static Parser<TToken, IEnumerable<T>> ReturnEmptyEnumerable
         {
             get
@@ -98,7 +98,7 @@ namespace Pidgin
                 return _returnEmptyEnumerable;
             }
         }
-        private static Parser<TToken, Unit> _returnUnit;
+        private static Parser<TToken, Unit>? _returnUnit;
         private static Parser<TToken, Unit> ReturnUnit
         {
             get

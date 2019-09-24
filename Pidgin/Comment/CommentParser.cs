@@ -73,10 +73,10 @@ namespace Pidgin.Comment
                 throw new ArgumentNullException(nameof(blockCommentEnd));
             }
 
-            Parser<char, Unit> parser = null;
+            Parser<char, Unit>? parser = null;
 
             parser = blockCommentStart.Then(
-                Rec(() => parser).Or(Any.IgnoreResult()).SkipUntil(blockCommentEnd)
+                Rec(() => parser!).Or(Any.IgnoreResult()).SkipUntil(blockCommentEnd)
             ).Labelled("block comment");
 
             return parser;

@@ -166,7 +166,7 @@ namespace Pidgin
         private static class FastSequenceParser<TEnumerable>
             where TEnumerable : IEnumerable<TToken>
         {
-            private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>> _createParser;
+            private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>>? _createParser;
 
             public static Parser<TToken, TEnumerable> Create(TEnumerable tokens)
             {

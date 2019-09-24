@@ -50,7 +50,7 @@ namespace Pidgin
             && Col == other.Col;
 
         /// <inheritdoc/>
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
             => !ReferenceEquals(null, other)
             && other is SourcePos
             && Equals((SourcePos)other);

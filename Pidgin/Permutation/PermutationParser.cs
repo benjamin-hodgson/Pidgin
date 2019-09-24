@@ -41,10 +41,10 @@ namespace Pidgin.Permutation
     /// </summary>
     public sealed class PermutationParser<TToken, T>
     {
-        private readonly Func<T> _exit;
+        private readonly Func<T>? _exit;
         private readonly ImmutableList<PermutationParserBranch<TToken, T>> _forest;
 
-        internal PermutationParser(Func<T> exit, ImmutableList<PermutationParserBranch<TToken, T>> forest)
+        internal PermutationParser(Func<T>? exit, ImmutableList<PermutationParserBranch<TToken, T>> forest)
         {
             _exit = exit;
             _forest = forest;
@@ -208,7 +208,7 @@ namespace Pidgin.Permutation
 
             var this_exit = _exit;
             return new PermutationParser<TToken, R>(
-                this_exit == null ? null as Func<R> : () => resultSelector(this_exit(), defaultValueFactory()),
+                this_exit == null ? null as Func<R> : () => resultSelector(this_exit!(), defaultValueFactory()),
                 ConvertForestAndAddParser(b => b.AddOptional(parser, defaultValueFactory, resultSelector), parser, resultSelector)
             );
         }

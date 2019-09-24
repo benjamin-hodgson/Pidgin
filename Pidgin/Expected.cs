@@ -19,12 +19,12 @@ namespace Pidgin
         /// The custom name of the parser that produced this error, or null if the expectation was a sequence of tokens.
         /// </summary>
         /// <returns>The label</returns>
-        public string Label { get; }
+        public string? Label { get; }
         /// <summary>
         /// The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public IEnumerable<TToken> Tokens => InternalTokens.IsDefault ? null : InternalTokens.AsEnumerable();
+        public IEnumerable<TToken>? Tokens => InternalTokens.IsDefault ? null : InternalTokens.AsEnumerable();
         internal ImmutableArray<TToken> InternalTokens { get; }
         /// <summary>
         /// Did the parser expect the end of the input stream?
@@ -57,7 +57,7 @@ namespace Pidgin
                 return;
             }
 
-            var tokens = Tokens;
+            var tokens = Tokens!;
             sb.Append('"');
             if (IsChar)
             {
@@ -104,7 +104,7 @@ namespace Pidgin
             );
 
         /// <inheritdoc/>
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
             => !ReferenceEquals(null, other)
             && other is Expected<TToken>
             && Equals((Expected<TToken>)other);
@@ -173,7 +173,7 @@ namespace Pidgin
         public static bool operator <=(Expected<TToken> left, Expected<TToken> right)
             => left.CompareTo(right) <= 0;
 
-        private static Func<TToken, char> _castToChar;
+        private static Func<TToken, char>? _castToChar;
         private static Func<TToken, char> CastToChar
         {
             get

@@ -70,7 +70,7 @@ namespace Pidgin
             int hash = 17;
             foreach (var x in arr)
             {
-                hash = hash * 23 + x.GetHashCode();
+                hash = hash * 23 + x!.GetHashCode();
             }
             return hash;
         }
@@ -131,7 +131,7 @@ namespace Pidgin
 
         static class _FastEqual<T>
         {
-            private static Func<ImmutableArray<T>, ImmutableArray<T>, bool> _callFastEqual;
+            private static Func<ImmutableArray<T>, ImmutableArray<T>, bool>? _callFastEqual;
             static _FastEqual()
             {
                 var type = typeof(T);
@@ -143,7 +143,7 @@ namespace Pidgin
                 {
                     var immutableArray = typeof(ImmutableArray<T>);
 
-                    var method = typeof(EnumerableExtensions).GetTypeInfo().GetDeclaredMethod("FastEqual").MakeGenericMethod(type);
+                    var method = typeof(EnumerableExtensions).GetTypeInfo().GetDeclaredMethod("FastEqual")!.MakeGenericMethod(type);
 
                     var param1 = LExpression.Parameter(immutableArray);
                     var param2 = LExpression.Parameter(immutableArray);
@@ -164,7 +164,7 @@ namespace Pidgin
 
         static class _FastCompare<T>
         {
-            private static Comparison<ImmutableArray<T>> _callFastCompare;
+            private static Comparison<ImmutableArray<T>>? _callFastCompare;
             static _FastCompare()
             {
                 var type = typeof(T);
@@ -176,7 +176,7 @@ namespace Pidgin
                 {
                     var immutableArray = typeof(ImmutableArray<T>);
 
-                    var method = typeof(EnumerableExtensions).GetTypeInfo().GetDeclaredMethod("FastCompare").MakeGenericMethod(type);
+                    var method = typeof(EnumerableExtensions).GetTypeInfo().GetDeclaredMethod("FastCompare")!.MakeGenericMethod(type);
 
                     var param1 = LExpression.Parameter(immutableArray);
                     var param2 = LExpression.Parameter(immutableArray);

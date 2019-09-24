@@ -18,7 +18,7 @@ namespace Pidgin
         private static readonly bool _needsClear = !typeof(T).GetTypeInfo().IsPrimitive;
 
         private const int InitialCapacity = 16;
-        private T[] _items;
+        private T[]? _items;
         private int _count;
 
         public int Count
@@ -45,7 +45,7 @@ namespace Pidgin
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
-                return _items[index];
+                return _items![index];
             }
         }
 
@@ -53,7 +53,7 @@ namespace Pidgin
         public void Add(T item)
         {
             GrowIfNecessary(1);
-            _items[_count] = item;
+            _items![_count] = item;
             _count++;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -79,7 +79,7 @@ namespace Pidgin
                 ThrowInvalidOperationException();
             }
             _count--;
-            return _items[_count];
+            return _items![_count];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -112,7 +112,7 @@ namespace Pidgin
             var z = seed;
             for (var i = 0; i < _count; i++)
             {
-                z = func(z, _items[i]);
+                z = func(z, _items![i]);
             }
             return z;
         }
@@ -121,7 +121,7 @@ namespace Pidgin
             var z = seed;
             for (var i = _count - 1; i >= 0; i--)
             {
-                z = func(_items[i], z);
+                z = func(_items![i], z);
             }
             return z;
         }

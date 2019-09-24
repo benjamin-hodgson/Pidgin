@@ -12,7 +12,7 @@ namespace Pidgin.Tests
     {
         private abstract class Expr : IEquatable<Expr>
         {
-            public override bool Equals(object other)
+            public override bool Equals(object? other)
                 => other is Expr && this.Equals((Expr)other);
             public bool Equals(Expr other)
             {
@@ -98,10 +98,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestInfixN()
         {
-            Parser<char, Expr> parser = null;
-            var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build(
-                termParser,
+            var parser = ExpressionParser.Build(
+                Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
                 new[]
                 {
                     Operator.InfixN(
@@ -130,10 +128,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestInfixL()
         {
-            Parser<char, Expr> parser = null;
-            var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build(
-                termParser,
+            var parser = ExpressionParser.Build(
+                Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
                 new[]
                 {
                     Operator.InfixL(
@@ -175,9 +171,9 @@ namespace Pidgin.Tests
             var expected = numbers
                 .Select(n => new Lit(n))
                 .Cast<Expr>()
-                .Aggregate((Expr)null, (acc, x) => acc == null ? x : new Plus(acc, x));
+                .Aggregate((Expr?)null, (acc, x) => acc == null ? x : new Plus(acc, x));
             AssertSuccess(
-                parser.Parse(input),
+                parser.Parse(input)!,
                 expected,
                 true
             );
@@ -186,10 +182,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestInfixR()
         {
-            Parser<char, Expr> parser = null;
-            var termParser = Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x)));
-            parser = ExpressionParser.Build(
-                termParser,
+            var parser = ExpressionParser.Build(
+                Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
                 new[]
                 {
                     new[]
@@ -238,9 +232,9 @@ namespace Pidgin.Tests
             var expected = numbers
                 .Select(n => new Lit(n))
                 .Cast<Expr>()
-                .AggregateR((Expr)null, (x, acc) => acc == null ? x : new Plus(x, acc));
+                .AggregateR((Expr?)null, (x, acc) => acc == null ? x : new Plus(x, acc));
             AssertSuccess(
-                parser.Parse(input),
+                parser.Parse(input)!,
                 expected,
                 true
             );

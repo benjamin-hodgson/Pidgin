@@ -8,9 +8,9 @@ namespace Pidgin
         public bool EOF { get; }
         public Maybe<TToken> Unexpected { get; }
         public int ErrorLocation { get; }
-        public string Message { get; }
+        public string? Message { get; }
 
-        internal InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string message)
+        internal InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
         {
             Unexpected = unexpected;
             EOF = eof;

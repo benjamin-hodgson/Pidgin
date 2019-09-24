@@ -44,6 +44,6 @@ namespace Pidgin
         /// Creates a new parser which runs the current parser and prints the result to the console.
         /// </summary>
         /// <returns>A parser which runs the current parser and prints the result to the console.</returns>
-        public Parser<TToken, T> TraceResult() => this.Trace(x => x.ToString());
+        public Parser<TToken, T> TraceResult() => this.Trace(x => x!.ToString()!);
     }
 }

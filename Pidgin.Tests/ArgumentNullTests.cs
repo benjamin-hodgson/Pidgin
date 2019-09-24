@@ -41,7 +41,7 @@ namespace Pidgin.Tests
         {
             InvokeMethod(null, method, args);
         }
-        private void InvokeMethod(object obj, MethodInfo method, object[] args)
+        private void InvokeMethod(object? obj, MethodInfo method, object[] args)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Pidgin.Tests
             }
             catch (TargetInvocationException e)
             {
-                ExceptionDispatchInfo.Capture(e.InnerException).Throw();
+                ExceptionDispatchInfo.Capture(e.InnerException!).Throw();
             }
         }
 
@@ -94,7 +94,7 @@ namespace Pidgin.Tests
                 args
             };
 
-        private static IEnumerable<object[]> GetArgs(ParameterInfo[] parameters)
+        private static IEnumerable<object?[]> GetArgs(ParameterInfo[] parameters)
             => Cat(
                 Enumerable.Repeat(parameters, parameters.Length)
                     .Select(
@@ -112,16 +112,16 @@ namespace Pidgin.Tests
         private static IEnumerable<T> Cat<T>(IEnumerable<Maybe<T>> maybes)
             => maybes.Where(x => x.HasValue).Select(x => x.Value);
         
-        private static Maybe<object> GetArg(Type parameterType, bool shouldBeNull)
+        private static Maybe<object?> GetArg(Type parameterType, bool shouldBeNull)
         {
             if (shouldBeNull)
             {
                 if (parameterType.GetTypeInfo().IsValueType)
                 {
                     // can't return null
-                    return Maybe.Nothing<object>();
+                    return Maybe.Nothing<object?>();
                 }
-                return Maybe.Just<object>(null);
+                return Maybe.Just<object?>(null);
             }
             var parserArgs = GetParserArgs(parameterType);
             if (parserArgs != null)
@@ -140,16 +140,16 @@ namespace Pidgin.Tests
                 var (args, ret) = (genericArgs.Take(genericArgs.Length - 1), genericArgs[genericArgs.Length -1]);
                 var ps = args.Select(a => Parameter(a));
                 var returnValue = ((dynamic)GetArg(ret, false)).Value;
-                return Maybe.Just<object>(Lambda(Constant(returnValue), ps).Compile());
+                return Maybe.Just<object?>(Lambda(Constant(returnValue), ps).Compile());
             }
             if (parameterType.Equals(typeof(string)))
             {
-                return Maybe.Just<object>("");
+                return Maybe.Just<object?>("");
             }
             return Maybe.Just(Activator.CreateInstance(parameterType));
         }
 
-        private static Type[] GetParserArgs(Type type)
+        private static Type[]? GetParserArgs(Type type)
         {
             if (type.IsConstructedGenericType && type.GetGenericTypeDefinition().Equals(typeof(Parser<,>)))
             {
@@ -163,9 +163,9 @@ namespace Pidgin.Tests
             return GetParserArgs(baseType);
         }
 
-        private static Type[] GetFuncArgs(Type type)
+        private static Type[]? GetFuncArgs(Type type)
         {
-            if (type.IsConstructedGenericType && type.GetGenericTypeDefinition().FullName.StartsWith("System.Func"))
+            if (type.IsConstructedGenericType && type.GetGenericTypeDefinition().FullName!.StartsWith("System.Func"))
             {
                 return type.GenericTypeArguments;
             }

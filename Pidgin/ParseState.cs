@@ -16,7 +16,7 @@ namespace Pidgin
         private readonly ITokenStream<TToken> _stream;
         private readonly int _bufferChunkSize;
 
-        private TToken[] _buffer;
+        private TToken[]? _buffer;
         private int _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
         private int _currentIndex;
         private int _bufferedCount;
@@ -77,7 +77,7 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                return _buffer[_currentIndex];
+                return _buffer![_currentIndex];
             }
         }
 
@@ -137,10 +137,10 @@ namespace Pidgin
 
                 for (var i = 0; i < keepFrom; i++)
                 {
-                    _bufferStartSourcePos = _posCalculator(_buffer[i], _bufferStartSourcePos);
+                    _bufferStartSourcePos = _posCalculator(_buffer![i], _bufferStartSourcePos);
                 }
 
-                if (newBufferLength > _buffer.Length)
+                if (newBufferLength > _buffer!.Length)
                 {
                     // grow the buffer
                     var newBuffer = ArrayPool<TToken>.Shared.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
@@ -205,7 +205,7 @@ namespace Pidgin
             var pos = _bufferStartSourcePos;
             for (var i = 0; i < location - _bufferStartLocation; i++)
             {
-                pos = _posCalculator(_buffer[i], pos);
+                pos = _posCalculator(_buffer![i], pos);
             }
             return pos;
         }

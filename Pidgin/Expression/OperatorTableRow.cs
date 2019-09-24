@@ -45,11 +45,11 @@ namespace Pidgin.Expression
         /// <param name="prefixOps">A collection of parsers for the prefix operators at this precedence level</param>
         /// <param name="postfixOps">A collection of parsers for the postfix operators at this precedence level</param>
         public OperatorTableRow(
-            IEnumerable<Parser<TToken, Func<T, T, T>>> infixNOps,
-            IEnumerable<Parser<TToken, Func<T, T, T>>> infixLOps,
-            IEnumerable<Parser<TToken, Func<T, T, T>>> infixROps,
-            IEnumerable<Parser<TToken, Func<T, T>>> prefixOps,
-            IEnumerable<Parser<TToken, Func<T, T>>> postfixOps
+            IEnumerable<Parser<TToken, Func<T, T, T>>>? infixNOps,
+            IEnumerable<Parser<TToken, Func<T, T, T>>>? infixLOps,
+            IEnumerable<Parser<TToken, Func<T, T, T>>>? infixROps,
+            IEnumerable<Parser<TToken, Func<T, T>>>? prefixOps,
+            IEnumerable<Parser<TToken, Func<T, T>>>? postfixOps
         )
         {
             InfixNOps = infixNOps ?? Enumerable.Empty<Parser<TToken, Func<T, T, T>>>();

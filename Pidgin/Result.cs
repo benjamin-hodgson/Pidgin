@@ -18,7 +18,7 @@ namespace Pidgin
         public bool Success { get; }
         internal bool ConsumedInput { get; }  // for testing, innit
         private readonly T _value;
-        private readonly ParseError<TToken> _error;
+        private readonly ParseError<TToken>? _error;
 
         internal Result(bool consumedInput, T value)
         {
@@ -31,7 +31,7 @@ namespace Pidgin
         {
             Success = false;
             ConsumedInput = consumedInput;
-            _value = default(T);
+            _value = default(T)!;
             _error = error;
         }
 
@@ -56,7 +56,7 @@ namespace Pidgin
         /// </summary>
         /// <exception cref="System.InvalidOperationException">Thrown when the result was a successful one</exception>
         /// <returns>The parse error</returns>
-        public ParseError<TToken> Error
+        public ParseError<TToken>? Error
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Pidgin
         public U Match<U>(Func<T, U> success, Func<ParseError<TToken>, U> failure)
             => Success
                 ? success(_value)
-                : failure(Error);
+                : failure(Error!);
 
         /// <summary>
         /// Project the value contained in the result
@@ -108,7 +108,7 @@ namespace Pidgin
         public Result<TToken, U> Select<U>(Func<T, U> selector)
             => Success
                 ? new Result<TToken, U>(ConsumedInput, selector(_value))
-                : new Result<TToken, U>(ConsumedInput, Error);
+                : new Result<TToken, U>(ConsumedInput, Error!);
 
         /// <summary>
         /// Projects the value of the result into a result, and flattens the resulting value into a single result.
@@ -131,12 +131,12 @@ namespace Pidgin
         {
             if (!Success)
             {
-                return new Result<TToken, R>(ConsumedInput, Error);
+                return new Result<TToken, R>(ConsumedInput, Error!);
             }
             var ru = selector(_value);
             if (!ru.Success)
             {
-                return new Result<TToken, R>(ConsumedInput || ru.ConsumedInput, ru.Error);
+                return new Result<TToken, R>(ConsumedInput || ru.ConsumedInput, ru.Error!);
             }
             return new Result<TToken, R>(ConsumedInput || ru.ConsumedInput, result(_value, ru._value));
         }
@@ -165,7 +165,7 @@ namespace Pidgin
         /// <returns>A result containing this result's value casted to <typeparamref name="U"/></returns>
         public Result<TToken, U> Cast<U>()
             => Success
-                ? new Result<TToken, U>(ConsumedInput, (U)(object)_value)
-                : new Result<TToken, U>(ConsumedInput, Error);
+                ? new Result<TToken, U>(ConsumedInput, (U)(object)_value!)
+                : new Result<TToken, U>(ConsumedInput, Error!);
     }
 }

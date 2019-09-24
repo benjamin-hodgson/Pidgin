@@ -9,7 +9,7 @@ namespace Pidgin
         /// <returns>A parser which returns the current parser's return value casted to <typeparamref name="U"/>, if the value is an instance of <typeparamref name="U"/></returns>
         public Parser<TToken, U> OfType<U>()
             => this
-                .Assert(x => x is U, x => $"Expected a {typeof(U).Name} but got a {x.GetType().Name}")
+                .Assert(x => x is U, x => $"Expected a {typeof(U).Name} but got a {x!.GetType().Name}")
                 .Cast<U>()
                 .Labelled($"result of type {typeof(U).Name}");
     }

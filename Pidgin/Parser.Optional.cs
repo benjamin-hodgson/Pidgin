@@ -2,7 +2,7 @@ namespace Pidgin
 {
     public abstract partial class Parser<TToken, T>
     {
-        private static Parser<TToken, Maybe<T>> _returnNothing;
+        private static Parser<TToken, Maybe<T>>? _returnNothing;
         private static Parser<TToken, Maybe<T>> ReturnNothing 
         {
             get

@@ -9,7 +9,7 @@ namespace Pidgin
         /// NB! Remember to set IParseState.Error when you return a failure result
         /// </summary>
         public static InternalResult<T> Failure<T>(bool consumedInput)
-            => new InternalResult<T>(false, consumedInput, default(T));
+            => new InternalResult<T>(false, consumedInput, default(T)!);
     }
     internal readonly struct InternalResult<T>
     {

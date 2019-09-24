@@ -10,11 +10,11 @@ namespace Pidgin
                 .Return(seed)
                 .Select(f => f());
 
-        internal Parser<TToken, U> ChainL<U>(Func<U> seed, Func<U, T, U> func, Action<U> onFail = null)
+        internal Parser<TToken, U> ChainL<U>(Func<U> seed, Func<U, T, U> func, Action<U>? onFail = null)
             => this.ChainAtLeastOnceL(seed, func, onFail)
                 .Or(ReturnSeed(seed));
 
-        internal Parser<TToken, U> ChainAtLeastOnceL<U>(Func<U> seed, Func<U, T, U> func, Action<U> onFail = null)
+        internal Parser<TToken, U> ChainAtLeastOnceL<U>(Func<U> seed, Func<U, T, U> func, Action<U>? onFail = null)
             => new ChainAtLeastOnceLParser<U>(this, seed, func, onFail);
 
         private class ChainAtLeastOnceLParser<U> : Parser<TToken, U>
@@ -22,9 +22,9 @@ namespace Pidgin
             private readonly Parser<TToken, T> _parser;
             private readonly Func<U> _seed;
             private readonly Func<U, T, U> _func;
-            private readonly Action<U> _onFail;
+            private readonly Action<U>? _onFail;
 
-            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<U> seed, Func<U, T, U> func, Action<U> onFail)
+            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<U> seed, Func<U, T, U> func, Action<U>? onFail)
             {
                 _parser = parser;
                 _seed = seed;

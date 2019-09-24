@@ -11,7 +11,7 @@ namespace Pidgin
         private bool _eof;
         private Maybe<TToken> _unexpected;
         private int _errorLocation;
-        private string _message;
+        private string? _message;
         public InternalError<TToken> Error
         {
             get

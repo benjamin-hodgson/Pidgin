@@ -52,8 +52,8 @@ namespace Pidgin.Expression
             IEnumerable<OperatorTableRow<TToken, T>> operatorTable
         )
         {
-            Parser<TToken, T> expr = null;
-            var term = termFactory(Rec(() => expr));
+            Parser<TToken, T>? expr = null;
+            var term = termFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
@@ -90,8 +90,8 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>> operatorTableFactory
         )
         {
-            Parser<TToken, T> expr = null;
-            var operatorTable = operatorTableFactory(Rec(() => expr));
+            Parser<TToken, T>? expr = null;
+            var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
@@ -112,8 +112,8 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>> operatorTableFactory
         )
         {
-            Parser<TToken, T> expr = null;
-            var operatorTable = operatorTableFactory(Rec(() => expr));
+            Parser<TToken, T>? expr = null;
+            var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
@@ -132,8 +132,8 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<OperatorTableRow<TToken, T>> operatorTable)> termAndOperatorTableFactory
         )
         {
-            Parser<TToken, T> expr = null;
-            var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr));
+            Parser<TToken, T>? expr = null;
+            var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
@@ -152,8 +152,8 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>> operatorTable)> termAndOperatorTableFactory
         )
         {
-            Parser<TToken, T> expr = null;
-            var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr));
+            Parser<TToken, T>? expr = null;
+            var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
@@ -194,7 +194,7 @@ namespace Pidgin.Expression
                         // left-hand side of the next operator on the right,
                         // leaving a hole at the left
                         var result = fxs.AggregateR(
-                            new Partial<T>((y, _) => y, default(T)),
+                            new Partial<T>((y, _) => y, default(T)!),
                             (fx, agg) => new Partial<T>(fx.Func, agg.ApplyL(fx.Arg))
                         );
                         fxs.Clear();

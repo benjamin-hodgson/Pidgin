@@ -36,9 +36,9 @@ namespace Pidgin
         /// A custom error message
         /// </summary>
         /// <returns>A custom error message, or null if the error was created without a custom error message</returns>
-        public string Message { get; }
+        public string? Message { get; }
 
-        internal ParseError(Maybe<TToken> unexpected, bool eof, Expected<TToken>[] expected, SourcePos errorPos, string message)
+        internal ParseError(Maybe<TToken> unexpected, bool eof, Expected<TToken>[] expected, SourcePos errorPos, string? message)
         {
             Unexpected = unexpected;
             EOF = eof;
@@ -72,7 +72,7 @@ namespace Pidgin
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("    unexpected ");
-                sb.Append(EOF ? "EOF" : Unexpected.Value.ToString());
+                sb.Append(EOF ? "EOF" : Unexpected.Value!.ToString());
             }
             if (Expected?.Any(e => e.InternalTokens.IsDefault || e.InternalTokens.Length != 0) == true)
             {
@@ -122,7 +122,7 @@ namespace Pidgin
             && object.Equals(this.Message, other.Message);
         
         /// <inheritdoc/>
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
             => other is ParseError<TToken>
             && Equals((ParseError<TToken>)other);
         

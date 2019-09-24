@@ -184,7 +184,7 @@ namespace Pidgin
                     return (double?)null;
                 })
                 .Assert(x => x.HasValue, "Couldn't parse a double")
-                .Select(x => x.Value)
+                .Select(x => x!.Value)
                 .Labelled($"real number");
     }
 }

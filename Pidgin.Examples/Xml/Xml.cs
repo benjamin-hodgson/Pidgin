@@ -8,9 +8,9 @@ namespace Pidgin.Examples.Xml
     {
         public string Name { get; }
         public IEnumerable<Attribute> Attributes { get; }
-        public IEnumerable<Tag> Content { get; }
+        public IEnumerable<Tag>? Content { get; }
 
-        public Tag(string name, IEnumerable<Attribute> attributes, IEnumerable<Tag> content)
+        public Tag(string name, IEnumerable<Attribute> attributes, IEnumerable<Tag>? content)
         {
             Name = name;
             Attributes = attributes;

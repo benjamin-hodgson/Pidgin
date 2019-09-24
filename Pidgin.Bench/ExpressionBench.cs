@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using Pidgin.Expression;
-using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 
 namespace Pidgin.Bench
@@ -13,9 +11,11 @@ namespace Pidgin.Bench
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     public class ExpressionBench
     {
+        #nullable disable
         private string _bigExpression;
         private Parser<char, int> _leftAssoc;
         private Parser<char, int> _rightAssoc;
+        #nullable restore
 
         [GlobalSetup]
         public void Setup()
