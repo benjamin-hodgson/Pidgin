@@ -1,6 +1,37 @@
 Changelog
 =========
 
+2.2.0
+-----
+
+### Added
+
+* `MapWithInput`, giving access to a `Span` containing the input tokens which were matched by the parser.
+* An infix version of `Map` (synonym of `Select`).
+* `Real`, a parser for floating point values in the format `+1.23e4`
+
+### Changed
+
+* Under-the-hood performance improvements to the way `SourcePos` is handled
+* A faster implementation of `CIString`
+
+
+2.1.0
+-----
+
+### Added
+
+* Overloads of `ExpressionParser.Build` to make recursive grammars more convenient
+
+
+2.0.1
+-----
+
+### Fixed
+
+* An `ArrayPool` leak when certain parsers failed
+
+
 2.0.0
 -----
 
@@ -9,7 +40,6 @@ Changelog
 * A `ParserExtensions.Parse` overload which accepts a `ReadOnlySpan`.
 * A compile target for `netstandard2.0`. This should simplify installation into .NET Framework projects.
 * Performance improvements across the board
-
 
 ### Changed
 
