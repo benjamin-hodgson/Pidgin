@@ -103,14 +103,15 @@ references:
   fullName.vb: Pidgin.Expected(Of TToken).Equals(Pidgin.Expected(Of TToken))
   nameWithType: Expected<TToken>.Equals(Expected<TToken>)
   nameWithType.vb: Expected(Of TToken).Equals(Expected(Of TToken))
-- uid: Pidgin.Expected`1.Equals(System.Object)
-  name: Equals(Object)
-  href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Equals_System_Object_
-  commentId: M:Pidgin.Expected`1.Equals(System.Object)
-  fullName: Pidgin.Expected<TToken>.Equals(System.Object)
-  fullName.vb: Pidgin.Expected(Of TToken).Equals(System.Object)
-  nameWithType: Expected<TToken>.Equals(Object)
-  nameWithType.vb: Expected(Of TToken).Equals(Object)
+- uid: Pidgin.Expected`1.Equals(System.Nullable{System.Object})
+  name: Equals(Nullable<Object>)
+  href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Equals_System_Nullable_System_Object__
+  commentId: M:Pidgin.Expected`1.Equals(System.Nullable{System.Object})
+  name.vb: Equals(Nullable(Of Object))
+  fullName: Pidgin.Expected<TToken>.Equals(System.Nullable<System.Object>)
+  fullName.vb: Pidgin.Expected(Of TToken).Equals(System.Nullable(Of System.Object))
+  nameWithType: Expected<TToken>.Equals(Nullable<Object>)
+  nameWithType.vb: Expected(Of TToken).Equals(Nullable(Of Object))
 - uid: Pidgin.Expected`1.Equals*
   name: Equals
   href: api/Pidgin.Expected-1.html#Pidgin_Expected_1_Equals_
@@ -605,15 +606,15 @@ references:
   fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T)
   nameWithType: OperatorTableRow<TToken, T>
   nameWithType.vb: OperatorTableRow(Of TToken, T)
-- uid: Pidgin.Expression.OperatorTableRow`2.#ctor(IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}})
-  name: OperatorTableRow(IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T>>>, IEnumerable<Parser<TToken, Func<T, T>>>)
-  href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2__ctor_IEnumerable_Pidgin_Parser__0_Func__1__1__1____IEnumerable_Pidgin_Parser__0_Func__1__1__1____IEnumerable_Pidgin_Parser__0_Func__1__1__1____IEnumerable_Pidgin_Parser__0_Func__1__1____IEnumerable_Pidgin_Parser__0_Func__1__1____
-  commentId: M:Pidgin.Expression.OperatorTableRow`2.#ctor(IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}},IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}})
-  name.vb: OperatorTableRow(IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
-  fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.OperatorTableRow(IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>, IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>, IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>, IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>, IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>)
-  fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).OperatorTableRow(IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T))), IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T))))
-  nameWithType: OperatorTableRow<TToken, T>.OperatorTableRow(IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T, T>>>, IEnumerable<Parser<TToken, Func<T, T>>>, IEnumerable<Parser<TToken, Func<T, T>>>)
-  nameWithType.vb: OperatorTableRow(Of TToken, T).OperatorTableRow(IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T))), IEnumerable(Of Parser(Of TToken, Func(Of T, T))))
+- uid: Pidgin.Expression.OperatorTableRow`2.#ctor(System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}}})
+  name: OperatorTableRow(Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T>>>>)
+  href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2__ctor_System_Nullable_IEnumerable_Pidgin_Parser__0_Func__1__1__1_____System_Nullable_IEnumerable_Pidgin_Parser__0_Func__1__1__1_____System_Nullable_IEnumerable_Pidgin_Parser__0_Func__1__1__1_____System_Nullable_IEnumerable_Pidgin_Parser__0_Func__1__1_____System_Nullable_IEnumerable_Pidgin_Parser__0_Func__1__1_____
+  commentId: M:Pidgin.Expression.OperatorTableRow`2.#ctor(System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}}},System.Nullable{IEnumerable{Pidgin.Parser{`0,Func{`1,`1}}}})
+  name.vb: OperatorTableRow(Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T)))))
+  fullName: Pidgin.Expression.OperatorTableRow<TToken, T>.OperatorTableRow(System.Nullable<IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>>, System.Nullable<IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>>, System.Nullable<IEnumerable<Pidgin.Parser<TToken, Func<T, T, T>>>>, System.Nullable<IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>>, System.Nullable<IEnumerable<Pidgin.Parser<TToken, Func<T, T>>>>)
+  fullName.vb: Pidgin.Expression.OperatorTableRow(Of TToken, T).OperatorTableRow(System.Nullable(Of IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T)))), System.Nullable(Of IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T)))), System.Nullable(Of IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T, T)))), System.Nullable(Of IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T)))), System.Nullable(Of IEnumerable(Of Pidgin.Parser(Of TToken, Func(Of T, T)))))
+  nameWithType: OperatorTableRow<TToken, T>.OperatorTableRow(Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T>>>>, Nullable<IEnumerable<Parser<TToken, Func<T, T>>>>)
+  nameWithType.vb: OperatorTableRow(Of TToken, T).OperatorTableRow(Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T)))), Nullable(Of IEnumerable(Of Parser(Of TToken, Func(Of T, T)))))
 - uid: Pidgin.Expression.OperatorTableRow`2.#ctor*
   name: OperatorTableRow
   href: api/Pidgin.Expression.OperatorTableRow-2.html#Pidgin_Expression_OperatorTableRow_2__ctor_
@@ -852,14 +853,15 @@ references:
   fullName.vb: Pidgin.Maybe(Of T).Equals(Pidgin.Maybe(Of T))
   nameWithType: Maybe<T>.Equals(Maybe<T>)
   nameWithType.vb: Maybe(Of T).Equals(Maybe(Of T))
-- uid: Pidgin.Maybe`1.Equals(System.Object)
-  name: Equals(Object)
-  href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Equals_System_Object_
-  commentId: M:Pidgin.Maybe`1.Equals(System.Object)
-  fullName: Pidgin.Maybe<T>.Equals(System.Object)
-  fullName.vb: Pidgin.Maybe(Of T).Equals(System.Object)
-  nameWithType: Maybe<T>.Equals(Object)
-  nameWithType.vb: Maybe(Of T).Equals(Object)
+- uid: Pidgin.Maybe`1.Equals(System.Nullable{System.Object})
+  name: Equals(Nullable<Object>)
+  href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Equals_System_Nullable_System_Object__
+  commentId: M:Pidgin.Maybe`1.Equals(System.Nullable{System.Object})
+  name.vb: Equals(Nullable(Of Object))
+  fullName: Pidgin.Maybe<T>.Equals(System.Nullable<System.Object>)
+  fullName.vb: Pidgin.Maybe(Of T).Equals(System.Nullable(Of System.Object))
+  nameWithType: Maybe<T>.Equals(Nullable<Object>)
+  nameWithType.vb: Maybe(Of T).Equals(Nullable(Of Object))
 - uid: Pidgin.Maybe`1.Equals*
   name: Equals
   href: api/Pidgin.Maybe-1.html#Pidgin_Maybe_1_Equals_
@@ -1124,14 +1126,15 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).Equals(Pidgin.ParseError(Of TToken))
   nameWithType: ParseError<TToken>.Equals(ParseError<TToken>)
   nameWithType.vb: ParseError(Of TToken).Equals(ParseError(Of TToken))
-- uid: Pidgin.ParseError`1.Equals(System.Object)
-  name: Equals(Object)
-  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Equals_System_Object_
-  commentId: M:Pidgin.ParseError`1.Equals(System.Object)
-  fullName: Pidgin.ParseError<TToken>.Equals(System.Object)
-  fullName.vb: Pidgin.ParseError(Of TToken).Equals(System.Object)
-  nameWithType: ParseError<TToken>.Equals(Object)
-  nameWithType.vb: ParseError(Of TToken).Equals(Object)
+- uid: Pidgin.ParseError`1.Equals(System.Nullable{System.Object})
+  name: Equals(Nullable<Object>)
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Equals_System_Nullable_System_Object__
+  commentId: M:Pidgin.ParseError`1.Equals(System.Nullable{System.Object})
+  name.vb: Equals(Nullable(Of Object))
+  fullName: Pidgin.ParseError<TToken>.Equals(System.Nullable<System.Object>)
+  fullName.vb: Pidgin.ParseError(Of TToken).Equals(System.Nullable(Of System.Object))
+  nameWithType: ParseError<TToken>.Equals(Nullable<Object>)
+  nameWithType.vb: ParseError(Of TToken).Equals(Nullable(Of Object))
 - uid: Pidgin.ParseError`1.Equals*
   name: Equals
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Equals_
@@ -2912,78 +2915,78 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.Parse
   nameWithType: ParserExtensions.Parse
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<T>(Parser<Byte, T>, Stream, Func<Byte, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of T)(Parser(Of Byte, T), Stream, Func(Of Byte, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Byte, T>, Stream, Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Byte, T>, Stream, Func<Byte, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Byte, T), Stream, Func(Of Byte, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<T>(Parser<Char, T>, String, Func<Char, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of T)(Parser(Of Char, T), String, Func(Of Char, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, System.String, Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), System.String, Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, String, Func<Char, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), String, Func(Of Char, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<T>(Parser<Char, T>, TextReader, Func<Char, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of T)(Parser(Of Char, T), TextReader, Func(Of Char, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, TextReader, Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, TextReader, Func<Char, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), TextReader, Func(Of Char, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<TToken, T>(Parser<TToken, T>, TToken[], Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, TToken[], Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Byte, T>, Stream, System.Nullable<Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, System.Nullable(Of Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, System.String, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), System.String, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, TextReader, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
 - uid: Pidgin.ParserExtensions.ParseOrThrow*
   name: ParseOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow_
@@ -2991,78 +2994,78 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseOrThrow
   nameWithType: ParserExtensions.ParseOrThrow
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<T>(Parser<Byte, T>, Stream, Func<Byte, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Func(Of Byte, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Byte, T>, Stream, Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Byte, T>, Stream, Func<Byte, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Func(Of Byte, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<T>(Parser<Char, T>, String, Func<Char, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), String, Func(Of Char, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, System.String, Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), System.String, Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, String, Func<Char, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), String, Func(Of Char, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<T>(Parser<Char, T>, TextReader, Func<Char, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Func(Of Char, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, TextReader, Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, TextReader, Func<Char, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Func(Of Char, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Byte, T>, Stream, System.Nullable<Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, System.Nullable(Of Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, System.String, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), System.String, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, TextReader, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
 - uid: Pidgin.ParserExtensions.ParseReadOnlyList*
   name: ParseReadOnlyList
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList_
@@ -3070,15 +3073,15 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyList
   nameWithType: ParserExtensions.ParseReadOnlyList
-- uid: Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseReadOnlyList<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyList(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+- uid: Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseReadOnlyList<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyList(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
 - uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow*
   name: ParseReadOnlyListOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow_
@@ -3086,15 +3089,15 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow
   nameWithType: ParserExtensions.ParseReadOnlyListOrThrow
-- uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Func(Of TToken, SourcePos, SourcePos))
+- uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name: ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
+  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
+  name.vb: ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+  fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
+  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
+  nameWithType: ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
+  nameWithType.vb: ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
 - uid: Pidgin.Permutation
   name: Pidgin.Permutation
   href: api/Pidgin.Permutation.html
@@ -3501,12 +3504,15 @@ references:
   commentId: M:Pidgin.SourcePos.Equals(Pidgin.SourcePos)
   fullName: Pidgin.SourcePos.Equals(Pidgin.SourcePos)
   nameWithType: SourcePos.Equals(SourcePos)
-- uid: Pidgin.SourcePos.Equals(System.Object)
-  name: Equals(Object)
-  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Equals_System_Object_
-  commentId: M:Pidgin.SourcePos.Equals(System.Object)
-  fullName: Pidgin.SourcePos.Equals(System.Object)
-  nameWithType: SourcePos.Equals(Object)
+- uid: Pidgin.SourcePos.Equals(System.Nullable{System.Object})
+  name: Equals(Nullable<Object>)
+  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Equals_System_Nullable_System_Object__
+  commentId: M:Pidgin.SourcePos.Equals(System.Nullable{System.Object})
+  name.vb: Equals(Nullable(Of Object))
+  fullName: Pidgin.SourcePos.Equals(System.Nullable<System.Object>)
+  fullName.vb: Pidgin.SourcePos.Equals(System.Nullable(Of System.Object))
+  nameWithType: SourcePos.Equals(Nullable<Object>)
+  nameWithType.vb: SourcePos.Equals(Nullable(Of Object))
 - uid: Pidgin.SourcePos.Equals*
   name: Equals
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Equals_
