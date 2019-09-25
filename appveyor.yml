@@ -17,6 +17,7 @@ install:
       mv BuildScripts-master BuildScripts
 
   - ps: .\BuildScripts\appveyor\InitBuildNumber.ps1
+  - cmd: cinst dotnetcore-sdk
   - cmd: msbuild Pidgin.sln /t:restore /p:Configuration=%CONFIGURATION% /v:Minimal
   - cmd: cinst docfx
   - ps: .\BuildScripts\appveyor\ConfigureGit.ps1
