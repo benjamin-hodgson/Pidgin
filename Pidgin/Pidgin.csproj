@@ -34,8 +34,4 @@
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
-  <Target Name="RewriteDll" AfterTargets="AfterBuild">
-    <Exec Command="dotnet run --project &quot;$(MSBuildProjectDirectory)/../Pidgin.DllRewriter&quot; &quot;$(TargetFramework)&quot; &quot;$(MSBuildProjectDirectory)/$(OutputPath)Pidgin.dll&quot;" />
-  </Target>
-
 </Project>

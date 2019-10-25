@@ -107,7 +107,8 @@ namespace Pidgin
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, Func<TToken, SourcePos, SourcePos>? calculatePos = null)
         {
-            var result = DoParse(parser, new SpanTokenStream<TToken>(ref input), calculatePos ?? Parser.GetDefaultPosCalculator<TToken>());
+            var state = new ParseState<TToken>(calculatePos ?? Parser.GetDefaultPosCalculator<TToken>(), input);
+            var result = DoParse(parser, ref state);
             KeepAlive(ref input);
             return result;
         }
@@ -117,7 +118,10 @@ namespace Pidgin
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, Func<TToken, SourcePos, SourcePos> calculatePos)
         {
             var state = new ParseState<TToken>(calculatePos, stream);
-
+            return DoParse(parser, ref state);
+        }
+        private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ref ParseState<TToken> state)
+        {
             var internalResult = parser.Parse(ref state);
 
             var result = internalResult.Success

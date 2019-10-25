@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Pidgin.TokenStreams;
 using Xunit;
 
@@ -9,8 +10,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestEmptyInput()
         {
-            var input = "".AsSpan();
-            var state = new ParseState<char>((_, x) => x.IncrementCol(), new SpanTokenStream<char>(ref input));
+            var input = "";
+            var state = new ParseState<char>((_, x) => x.IncrementCol(), ToStream(input));
 
             Assert.Equal(new SourcePos(1, 1), state.ComputeSourcePos());
             Assert.False(state.HasCurrent);
@@ -19,8 +20,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestAdvance()
         {
-            var input = "foo".AsSpan();
-            var state = new ParseState<char>((_, x) => x.IncrementCol(), new SpanTokenStream<char>(ref input));
+            var input = "foo";
+            var state = new ParseState<char>((_, x) => x.IncrementCol(), ToStream(input));
 
             Consume('f', ref state);
             Consume('o', ref state);
@@ -32,8 +33,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TestDiscardChunk()
         {
-            var input = ('f' + new string('o', ChunkSize)).AsSpan();  // Length == ChunkSize + 1
-            var state = new ParseState<char>((_, x) => x.IncrementCol(), new SpanTokenStream<char>(ref input));
+            var input = ('f' + new string('o', ChunkSize));  // Length == ChunkSize + 1
+            var state = new ParseState<char>((_, x) => x.IncrementCol(), ToStream(input));
 
             Consume('f', ref state);
             Consume(new string('o', ChunkSize), ref state);
@@ -104,8 +105,8 @@ namespace Pidgin.Tests
 
         private static void AlignedChunkTest(int inputLength)
         {
-            var input = ('f' + new string('o', inputLength - 1)).AsSpan();
-            var state = new ParseState<char>((_, x) => x.IncrementCol(), new SpanTokenStream<char>(ref input));
+            var input = ('f' + new string('o', inputLength - 1));
+            var state = new ParseState<char>((_, x) => x.IncrementCol(), ToStream(input));
 
             state.PushBookmark();
 
@@ -121,8 +122,8 @@ namespace Pidgin.Tests
 
         private static void UnalignedChunkTest(int inputLength)
         {
-            var input = ("fa" + new string('o', inputLength - 2)).AsSpan();
-            var state = new ParseState<char>((_, x) => x.IncrementCol(), new SpanTokenStream<char>(ref input));
+            var input = ("fa" + new string('o', inputLength - 2));
+            var state = new ParseState<char>((_, x) => x.IncrementCol(), ToStream(input));
 
             Consume('f', ref state);
 
@@ -162,14 +163,9 @@ namespace Pidgin.Tests
             }
         }
 
-        private static int ChunkSize
-        {
-            get
-            {
-                var input = "".AsSpan();
-                return new SpanTokenStream<char>(ref input).ChunkSizeHint;
-            }
-        }
+        private static ITokenStream<char> ToStream(string input)
+            => new ReaderTokenStream(new StringReader(input));
 
+        private static int ChunkSize => ToStream("").ChunkSizeHint;
     }
 }

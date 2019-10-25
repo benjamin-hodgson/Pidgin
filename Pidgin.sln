@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin", "Pidgin\Pidgin.csproj", "{12313D6B-C874-4C34-B4D0-F2B9AC76FA41}"
-	ProjectSection(ProjectDependencies) = postProject
-		{746634A6-796C-4314-88E5-0DF026618AE6} = {746634A6-796C-4314-88E5-0DF026618AE6}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin.Tests", "Pidgin.Tests\Pidgin.Tests.csproj", "{13406C1C-484D-41EA-BE0F-81D15DEA72CC}"
 EndProject
@@ -17,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin.Examples", "Pidgin.Examples\Pidgin.Examples.csproj", "{AD13B4FB-A743-4584-93C3-1EB77B461FF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pidgin.Bench.FParsec", "Pidgin.Bench.FParsec\Pidgin.Bench.FParsec.fsproj", "{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin.DllRewriter", "Pidgin.DllRewriter\Pidgin.DllRewriter.csproj", "{746634A6-796C-4314-88E5-0DF026618AE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,18 +97,6 @@ Global
 		{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}.Release|x64.Build.0 = Release|x64
 		{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}.Release|x86.ActiveCfg = Release|x86
 		{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}.Release|x86.Build.0 = Release|x86
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|x64.Build.0 = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Debug|x86.Build.0 = Debug|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|x64.ActiveCfg = Release|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|x64.Build.0 = Release|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|x86.ActiveCfg = Release|Any CPU
-		{746634A6-796C-4314-88E5-0DF026618AE6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
