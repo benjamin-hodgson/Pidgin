@@ -1412,12 +1412,14 @@ namespace Pidgin.Tests
                 );
             }
             {
-                var parser = SkipWhitespaces;
+                var parser = SkipWhitespaces.Then(End);
                 AssertSuccess(parser.Parse("    "), Unit.Value, true);
-                AssertSuccess(parser.Parse("\r\n"), Unit.Value, true);
-                AssertSuccess(parser.Parse(" abc"), Unit.Value, true);
-                AssertSuccess(parser.Parse("abc"), Unit.Value, false);
+                AssertSuccess(parser.Parse("\r\n\t"), Unit.Value, true);
                 AssertSuccess(parser.Parse(""), Unit.Value, false);
+                AssertSuccess(parser.Parse(new string(' ', 32)), Unit.Value, true);
+                AssertSuccess(parser.Parse(new string(' ', 33)), Unit.Value, true);
+                AssertSuccess(parser.Parse(new string(' ', 64)), Unit.Value, true);
+                AssertSuccess(parser.Parse(new string(' ', 65)), Unit.Value, true);
             }
             {
                 var parser = Return(1).SkipMany();

@@ -11,6 +11,8 @@ namespace Pidgin.Bench
         private static readonly Parser<char, string> _string = Parser.String(_input);
         private static readonly Parser<char, string> _cistring = Parser.CIString(_input);
 
+        private static readonly string _whitespace = new string(' ', 65536);
+
         [Benchmark]
         public void String()
         {
@@ -20,6 +22,12 @@ namespace Pidgin.Bench
         public void CIString()
         {
             _cistring.ParseOrThrow(_input);
+        }
+
+        [Benchmark]
+        public void SkipWhitespaces()
+        {
+            Parser.SkipWhitespaces.ParseOrThrow(_whitespace);
         }
     }
 }
