@@ -13,9 +13,12 @@ namespace Pidgin
     /// </summary>
     internal struct PooledList<T>
     {
-        // If T is not primitive, we should clear out the pooled arrays so as not to leak objects.
-        // Ideally I'd look at typeof(T).IsManagedType but there's no such thing.
-        private static readonly bool _needsClear = !typeof(T).GetTypeInfo().IsPrimitive;
+        private static readonly bool _needsClear =
+#if NETCOREAPP
+            System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<T>();
+#else
+            !typeof(T).IsPrimitive;
+#endif
 
         private const int InitialCapacity = 16;
         private T[]? _items;

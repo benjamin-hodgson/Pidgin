@@ -46,9 +46,9 @@ namespace Pidgin
                 var parserExpecteds = state.ExpectedTranState();
                 state.EndExpectedTran(false);
 
-                var recoverParser = _errorHandler(state.BuildError(parserExpecteds.ToImmutableSortedSet()));
+                var recoverParser = _errorHandler(state.BuildError(parserExpecteds.AsEnumerable()));
                 
-                parserExpecteds.Dispose();
+                parserExpecteds.Dispose(clearArray: true);
 
                 return recoverParser.Parse(ref state);
             }

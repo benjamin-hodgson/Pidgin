@@ -12,6 +12,13 @@ namespace Pidgin
     [StructLayout(LayoutKind.Auto)]
     internal ref partial struct ParseState<TToken>
     {
+        private static readonly bool _needsClear =
+#if NETCOREAPP
+            System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
+#else
+            !typeof(TToken).IsPrimitive;
+#endif
+
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
         private readonly ITokenStream<TToken>? _stream;
         private readonly int _bufferChunkSize;
@@ -170,7 +177,7 @@ namespace Pidgin
 
                     Array.Copy(_buffer, keepFrom, newBuffer, 0, keepLength);
 
-                    ArrayPool<TToken>.Shared.Return(_buffer);
+                    ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
                     _buffer = newBuffer;
                     _span = _buffer.AsSpan();
                 }
@@ -238,7 +245,7 @@ namespace Pidgin
         {
             if (_buffer != null)
             {
-                ArrayPool<TToken>.Shared.Return(_buffer);
+                ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
                 _buffer = null;
             }
             _stream?.Dispose();

@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -21,15 +22,15 @@ namespace Pidgin
         public Span<T> AsSpan()
             => _array.AsSpan().Slice(0, _length);
 
+        public IEnumerable<T> AsEnumerable()
+            => _array.Take(_length);
+
         public static PooledArray<T> From(ReadOnlySpan<T> span)
         {
             var array = ArrayPool<T>.Shared.Rent(span.Length);
             span.CopyTo(array);
             return new PooledArray<T>(array, span.Length);
         }
-
-        public ImmutableSortedSet<T> ToImmutableSortedSet()
-            => _array.Take(_length).ToImmutableSortedSet();
 
         public void Dispose(bool clearArray = false)
         {
