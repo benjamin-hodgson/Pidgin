@@ -180,8 +180,8 @@ namespace Pidgin
             static FastSequenceParser()
             {
                 var ttoken = typeof(TToken).GetTypeInfo();
-                var comparable = typeof(IComparable<TToken>).GetTypeInfo();
-                if (ttoken.IsValueType && comparable.IsAssignableFrom(ttoken))
+                var equatable = typeof(IEquatable<TToken>).GetTypeInfo();
+                if (ttoken.IsValueType && equatable.IsAssignableFrom(ttoken))
                 {
                     var ctor = typeof(Parser.SequenceTokenParserFast<,>)
                         .MakeGenericType(typeof(TToken), typeof(TEnumerable))
