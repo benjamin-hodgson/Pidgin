@@ -4,31 +4,25 @@ namespace Pidgin
 {
     public partial class Parser<TToken, T>
     {
-        private static Parser<TToken, U> ReturnSeed<U>(Func<U> seed)
-            => Parser<TToken>
-                .Return(seed)
-                .Select(f => f());
+        internal Parser<TToken, U> ChainAtLeastOnce<U, TChainer>(Func<TChainer> factory) where TChainer : struct, IChainer<U>
+            => new ChainAtLeastOnceLParser<U, TChainer>(this, factory);
 
-        internal Parser<TToken, U> ChainL<U>(Func<U> seed, Func<U, T, U> func, Action<U>? onFail = null)
-            => this.ChainAtLeastOnceL(seed, func, onFail)
-                .Or(ReturnSeed(seed));
+        internal interface IChainer<U>
+        {
+            void Apply(T value);
+            U GetResult();
+            void OnError();
+        }
 
-        internal Parser<TToken, U> ChainAtLeastOnceL<U>(Func<U> seed, Func<U, T, U> func, Action<U>? onFail = null)
-            => new ChainAtLeastOnceLParser<U>(this, seed, func, onFail);
-
-        private class ChainAtLeastOnceLParser<U> : Parser<TToken, U>
+        private class ChainAtLeastOnceLParser<U, TChainer> : Parser<TToken, U> where TChainer : struct, IChainer<U>
         {
             private readonly Parser<TToken, T> _parser;
-            private readonly Func<U> _seed;
-            private readonly Func<U, T, U> _func;
-            private readonly Action<U>? _onFail;
+            private readonly Func<TChainer> _factory;
 
-            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<U> seed, Func<U, T, U> func, Action<U>? onFail)
+            public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<TChainer> factory)
             {
                 _parser = parser;
-                _seed = seed;
-                _func = func;
-                _onFail = onFail;
+                _factory = factory;
             }
 
             internal override InternalResult<U> Parse(ref ParseState<TToken> state)
@@ -39,7 +33,9 @@ namespace Pidgin
                     // state.Error set by _parser
                     return InternalResult.Failure<U>(result1.ConsumedInput);
                 }
-                var z = _func(_seed(), result1.Value);
+
+                var chainer = _factory();
+                chainer.Apply(result1.Value);
                 var consumedInput = result1.ConsumedInput;
 
                 state.BeginExpectedTran();
@@ -49,11 +45,11 @@ namespace Pidgin
                     state.EndExpectedTran(false);
                     if (!result.ConsumedInput)
                     {
-                        _onFail?.Invoke(z);
+                        chainer.OnError();
                         throw new InvalidOperationException("Many() used with a parser which consumed no input");
                     }
                     consumedInput = true;
-                    z = _func(z, result.Value);
+                    chainer.Apply(result.Value);
 
                     state.BeginExpectedTran();
                     result = _parser.Parse(ref state);
@@ -62,9 +58,10 @@ namespace Pidgin
                 if (result.ConsumedInput)  // the most recent parser failed after consuming input
                 {
                     // state.Error set by _parser
-                    _onFail?.Invoke(z);
+                    chainer.OnError();
                     return InternalResult.Failure<U>(true);
                 }
+                var z = chainer.GetResult();
                 return InternalResult.Success<U>(z, consumedInput);
             }
         }

@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Text;
-
 namespace Pidgin
 {
     public static partial class Parser
@@ -69,10 +65,32 @@ namespace Pidgin
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses an integer without a sign.</returns>
         public static Parser<char, int> UnsignedInt(int @base)
-            => DigitChar(@base).ChainAtLeastOnceL(
-                () => 0,
-                (acc, x) => acc * @base + x
-            ).Labelled($"base-{@base} number");
+            => DigitChar(@base)
+                .ChainAtLeastOnce<int, IntChainer>(() => new IntChainer(@base))
+                .Labelled($"base-{@base} number");
+
+        private struct IntChainer : Parser<char, int>.IChainer<int>
+        {
+            private readonly int _base;
+            private int _result;
+
+            public IntChainer(int @base)
+            {
+                _base = @base;
+                _result = 0;
+            }
+
+            public void Apply(int value)
+            {
+                _result = _result * _base + value;
+            }
+
+            public int GetResult() => _result;
+
+            public void OnError()
+            {
+            }
+        }
 
         /// <summary>
         /// Creates a parser which parses a long integer in the given base with an optional sign.
@@ -94,10 +112,32 @@ namespace Pidgin
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses a long integer without a sign.</returns>
         public static Parser<char, long> UnsignedLong(int @base)
-            => DigitCharLong(@base).ChainAtLeastOnceL(
-                () => 0L,
-                (acc, x) => acc * @base + x
-            ).Labelled($"base-{@base} number");
+            => DigitCharLong(@base)
+                .ChainAtLeastOnce<long, LongChainer>(() => new LongChainer(@base))
+                .Labelled($"base-{@base} number");
+
+        private struct LongChainer : Parser<char, long>.IChainer<long>
+        {
+            private readonly int _base;
+            private long _result;
+
+            public LongChainer(int @base)
+            {
+                _base = @base;
+                _result = 0;
+            }
+
+            public void Apply(long value)
+            {
+                _result = _result * _base + value;
+            }
+
+            public long GetResult() => _result;
+
+            public void OnError()
+            {
+            }
+        }
         
         private static Parser<char, int> DigitChar(int @base)
             => @base <= 10
