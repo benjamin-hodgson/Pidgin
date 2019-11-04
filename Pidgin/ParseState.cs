@@ -113,6 +113,13 @@ namespace Pidgin
 
         public void Advance(int count = 1)
         {
+            if (_stream == null)
+            {
+                // reading from a span, so advance is just a pointer bump
+                _currentIndex = Math.Min(_currentIndex + count, _span.Length);
+                return;
+            }
+            
             var alreadyBufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
             _currentIndex += alreadyBufferedCount;
             count -= alreadyBufferedCount;
@@ -123,6 +130,7 @@ namespace Pidgin
             _currentIndex += bufferedCount;
             count -= bufferedCount;
         }
+
         // if it returns a span shorter than count it's because you reached the end of the input
         public ReadOnlySpan<TToken> LookAhead(int count)
         {
@@ -140,7 +148,7 @@ namespace Pidgin
         private void Buffer(int readAhead)
         {
             var readAheadTo = _currentIndex + readAhead;
-            if (readAheadTo >= _bufferedCount && _buffer != null)
+            if (readAheadTo >= _bufferedCount && _stream != null)
             {
                 // we're about to read past the end of the current chunk. Pull a new chunk from the stream
                 var keepSeenLength = _bookmarks.Count > 0
