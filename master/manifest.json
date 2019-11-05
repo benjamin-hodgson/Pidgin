@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-1.html",
-          "hash": "dUhF040OWOKL9fiCpgRs1g=="
+          "hash": "bMXgyfJ/uKw0nM8jpEsNuA=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser-2.html",
-          "hash": "GCL1WGZkRJ3GkTaOFX9hGA=="
+          "hash": "mfqufgZySpx/rUEfHYuMzg=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Pidgin.Parser.html",
-          "hash": "tfHJjKZgCy07VZ4Nhozpng=="
+          "hash": "aFMe+gVSTarqFdHXhiz1jg=="
         }
       },
       "is_incremental": false,
@@ -363,11 +363,10 @@
         "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
-        "TocDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 0,
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {
@@ -376,10 +375,11 @@
           "total_file_count": 2,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
+        "TocDocumentProcessor": {
           "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 25,
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }
