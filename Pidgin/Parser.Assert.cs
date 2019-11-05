@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -55,49 +53,49 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
-            return new AssertParser(this, predicate, message);
+            return new AssertParser<TToken, T>(this, predicate, message);
+        }
+    }
+
+    internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
+    {
+        private static readonly Expected<TToken> _expected
+            = new Expected<TToken>("result satisfying assertion");
+
+        private readonly Parser<TToken, T> _parser;
+        private readonly Func<T, bool> _predicate;
+        private readonly Func<T, string> _message;
+
+        public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
+        {
+            _parser = parser;
+            _predicate = predicate;
+            _message = message;
         }
 
-        private sealed class AssertParser : Parser<TToken, T>
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
-            private static readonly Expected<TToken> _expected
-                = new Expected<TToken>("result satisfying assertion");
-
-            private readonly Parser<TToken, T> _parser;
-            private readonly Func<T, bool> _predicate;
-            private readonly Func<T, string> _message;
-
-            public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
+            state.BeginExpectedTran();
+            var result = _parser.Parse(ref state);                
+            state.EndExpectedTran(!result.Success);
+            if (!result.Success)
             {
-                _parser = parser;
-                _predicate = predicate;
-                _message = message;
-            }
-
-            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                state.BeginExpectedTran();
-                var result = _parser.Parse(ref state);                
-                state.EndExpectedTran(!result.Success);
-                if (!result.Success)
-                {
-                    return result;
-                }
-
-                var val = result.Value;
-                if (!_predicate(val))
-                {
-                    state.Error = new InternalError<TToken>(
-                        Maybe.Nothing<TToken>(),
-                        false,
-                        state.Location,
-                        _message(val)
-                    );
-                    state.AddExpected(_expected);
-                    return InternalResult.Failure<T>(result.ConsumedInput);
-                }
                 return result;
             }
+
+            var val = result.Value;
+            if (!_predicate(val))
+            {
+                state.Error = new InternalError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    false,
+                    state.Location,
+                    _message(val)
+                );
+                state.AddExpected(_expected);
+                return InternalResult.Failure<T>(result.ConsumedInput);
+            }
+            return result;
         }
     }
 }

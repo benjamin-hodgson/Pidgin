@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Pidgin
 {
@@ -69,10 +68,10 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(parser));
             }
 
-            return parser.ChainAtLeastOnce<string, ChunkedStringChainer<TToken>>(() => new ChunkedStringChainer<TToken>());
+            return parser.ChainAtLeastOnce<string, ChunkedStringChainer>(() => new ChunkedStringChainer());
         }
 
-        private struct ChunkedStringChainer<TToken> : Parser<TToken, string>.IChainer<string>
+        private struct ChunkedStringChainer : IChainer<string, string>
         {
             private PooledList<char> _list;
 
@@ -145,7 +144,7 @@ namespace Pidgin
         public Parser<TToken, IEnumerable<T>> AtLeastOnce()
             => this.ChainAtLeastOnce<IEnumerable<T>, ListChainer>(() => new ListChainer(null));
 
-        private struct ListChainer : IChainer<IEnumerable<T>>
+        private struct ListChainer : IChainer<T, IEnumerable<T>>
         {
             private readonly List<T> _list;
 
@@ -172,7 +171,7 @@ namespace Pidgin
         internal Parser<TToken, PooledList<T>> AtLeastOncePooled()
             => this.ChainAtLeastOnce<PooledList<T>, PooledListChainer>(() => new PooledListChainer());
 
-        private struct PooledListChainer : IChainer<PooledList<T>>
+        private struct PooledListChainer : IChainer<T, PooledList<T>>
         {
             private PooledList<T> _list;
 
@@ -211,7 +210,7 @@ namespace Pidgin
         public Parser<TToken, Unit> SkipAtLeastOnce()
             => this.ChainAtLeastOnce<Unit, NullChainer>(() => new NullChainer());
 
-        private struct NullChainer : IChainer<Unit>
+        private struct NullChainer : IChainer<T, Unit>
         {
             public void Apply(T value) {}
 

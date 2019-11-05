@@ -1,8 +1,4 @@
 using System;
-using System.Buffers;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
 
 namespace Pidgin
 {
@@ -19,39 +15,39 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(errorHandler));
             }
-            return new RecoverWithParser(this, errorHandler);
+            return new RecoverWithParser<TToken, T>(this, errorHandler);
+        }
+    }
+
+    internal sealed class RecoverWithParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Parser<TToken, T> _parser;
+        private readonly Func<ParseError<TToken>, Parser<TToken, T>> _errorHandler;
+
+        public RecoverWithParser(Parser<TToken, T> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler)
+        {
+            _parser = parser;
+            _errorHandler = errorHandler;
         }
 
-        private sealed class RecoverWithParser : Parser<TToken, T>
+        // see comment about expecteds in ParseState.Error.cs
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
-            private readonly Parser<TToken, T> _parser;
-            private readonly Func<ParseError<TToken>, Parser<TToken, T>> _errorHandler;
-
-            public RecoverWithParser(Parser<TToken, T> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler)
+            state.BeginExpectedTran();
+            var result = _parser.Parse(ref state);
+            if (result.Success)
             {
-                _parser = parser;
-                _errorHandler = errorHandler;
-            }
-
-            // see comment about expecteds in ParseState.Error.cs
-            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                state.BeginExpectedTran();
-                var result = _parser.Parse(ref state);
-                if (result.Success)
-                {
-                    state.EndExpectedTran(false);
-                    return result;
-                }
-                var parserExpecteds = state.ExpectedTranState();
                 state.EndExpectedTran(false);
-
-                var recoverParser = _errorHandler(state.BuildError(parserExpecteds.AsEnumerable()));
-                
-                parserExpecteds.Dispose(clearArray: true);
-
-                return recoverParser.Parse(ref state);
+                return result;
             }
+            var parserExpecteds = state.ExpectedTranState();
+            state.EndExpectedTran(false);
+
+            var recoverParser = _errorHandler(state.BuildError(parserExpecteds.AsEnumerable()));
+            
+            parserExpecteds.Dispose(clearArray: true);
+
+            return recoverParser.Parse(ref state);
         }
     }
 }

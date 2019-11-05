@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -20,30 +19,30 @@ namespace Pidgin
             }
             return new LookaheadParser<TToken, T>(parser);
         }
+    }
 
-        private class LookaheadParser<TToken, T> : Parser<TToken, T>
+    internal sealed class LookaheadParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Parser<TToken, T> _parser;
+
+        public LookaheadParser(Parser<TToken, T> parser)
         {
-            private readonly Parser<TToken, T> _parser;
+            _parser = parser;
+        }
 
-            public LookaheadParser(Parser<TToken, T> parser)
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        {
+            state.PushBookmark();
+
+            var result = _parser.Parse(ref state);
+
+            if (result.Success)
             {
-                _parser = parser;
+                state.Rewind();
+                return InternalResult.Success<T>(result.Value, false);
             }
-
-            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                state.PushBookmark();
-
-                var result = _parser.Parse(ref state);
-
-                if (result.Success)
-                {
-                    state.Rewind();
-                    return InternalResult.Success<T>(result.Value, false);
-                }
-                state.PopBookmark();
-                return result;
-            }
+            state.PopBookmark();
+            return result;
         }
     }
 }

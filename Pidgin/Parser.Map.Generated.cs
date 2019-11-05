@@ -1,7 +1,5 @@
 #region GeneratedCode
 using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -16,12 +14,6 @@ namespace Pidgin
     // but this lower-level approach saves on allocations
     public static partial class Parser
     {
-        private abstract class MapParserBase<TToken, T> : Parser<TToken, T>
-        {
-            internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
-        }
-
-        
         /// <summary>
         /// Creates a parser that applies the specified parsers sequentially and applies the specified transformation function to their results.
         /// </summary>
@@ -47,44 +39,6 @@ namespace Pidgin
             return parser1 is MapParserBase<TToken, T1> p
                 ? p.Map(func)
                 : new Map1Parser<TToken, T1, R>(func, parser1);
-        }
-        
-        private sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-
-            public Map1Parser(
-                Func<T1, R> func,
-                Parser<TToken, T1> parser1
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map1Parser<TToken, T1, U>(
-                    (x1) => func(_func(x1)),
-                    _p1
-                );
         }
 
         /// <summary>
@@ -117,56 +71,6 @@ namespace Pidgin
             }
 
             return new Map2Parser<TToken, T1, T2, R>(func, parser1, parser2);
-        }
-        
-        private sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-
-            public Map2Parser(
-                Func<T1, T2, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map2Parser<TToken, T1, T2, U>(
-                    (x1, x2) => func(_func(x1, x2)),
-                    _p1,
-                    _p2
-                );
         }
 
         /// <summary>
@@ -206,68 +110,6 @@ namespace Pidgin
             }
 
             return new Map3Parser<TToken, T1, T2, T3, R>(func, parser1, parser2, parser3);
-        }
-        
-        private sealed class Map3Parser<TToken, T1, T2, T3, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-
-            public Map3Parser(
-                Func<T1, T2, T3, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map3Parser<TToken, T1, T2, T3, U>(
-                    (x1, x2, x3) => func(_func(x1, x2, x3)),
-                    _p1,
-                    _p2,
-                    _p3
-                );
         }
 
         /// <summary>
@@ -314,80 +156,6 @@ namespace Pidgin
             }
 
             return new Map4Parser<TToken, T1, T2, T3, T4, R>(func, parser1, parser2, parser3, parser4);
-        }
-        
-        private sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, T4, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-            private readonly Parser<TToken, T4> _p4;
-
-            public Map4Parser(
-                Func<T1, T2, T3, T4, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3,
-                Parser<TToken, T4> parser4
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-                _p4 = parser4;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result4 = _p4.Parse(ref state);
-                consumedInput = consumedInput || result4.ConsumedInput;
-                if (!result4.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map4Parser<TToken, T1, T2, T3, T4, U>(
-                    (x1, x2, x3, x4) => func(_func(x1, x2, x3, x4)),
-                    _p1,
-                    _p2,
-                    _p3,
-                    _p4
-                );
         }
 
         /// <summary>
@@ -441,92 +209,6 @@ namespace Pidgin
             }
 
             return new Map5Parser<TToken, T1, T2, T3, T4, T5, R>(func, parser1, parser2, parser3, parser4, parser5);
-        }
-        
-        private sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, T4, T5, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-            private readonly Parser<TToken, T4> _p4;
-            private readonly Parser<TToken, T5> _p5;
-
-            public Map5Parser(
-                Func<T1, T2, T3, T4, T5, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3,
-                Parser<TToken, T4> parser4,
-                Parser<TToken, T5> parser5
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-                _p4 = parser4;
-                _p5 = parser5;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result4 = _p4.Parse(ref state);
-                consumedInput = consumedInput || result4.ConsumedInput;
-                if (!result4.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result5 = _p5.Parse(ref state);
-                consumedInput = consumedInput || result5.ConsumedInput;
-                if (!result5.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map5Parser<TToken, T1, T2, T3, T4, T5, U>(
-                    (x1, x2, x3, x4, x5) => func(_func(x1, x2, x3, x4, x5)),
-                    _p1,
-                    _p2,
-                    _p3,
-                    _p4,
-                    _p5
-                );
         }
 
         /// <summary>
@@ -587,104 +269,6 @@ namespace Pidgin
             }
 
             return new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R>(func, parser1, parser2, parser3, parser4, parser5, parser6);
-        }
-        
-        private sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, T4, T5, T6, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-            private readonly Parser<TToken, T4> _p4;
-            private readonly Parser<TToken, T5> _p5;
-            private readonly Parser<TToken, T6> _p6;
-
-            public Map6Parser(
-                Func<T1, T2, T3, T4, T5, T6, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3,
-                Parser<TToken, T4> parser4,
-                Parser<TToken, T5> parser5,
-                Parser<TToken, T6> parser6
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-                _p4 = parser4;
-                _p5 = parser5;
-                _p6 = parser6;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result4 = _p4.Parse(ref state);
-                consumedInput = consumedInput || result4.ConsumedInput;
-                if (!result4.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result5 = _p5.Parse(ref state);
-                consumedInput = consumedInput || result5.ConsumedInput;
-                if (!result5.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result6 = _p6.Parse(ref state);
-                consumedInput = consumedInput || result6.ConsumedInput;
-                if (!result6.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value,
-                    result6.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, U>(
-                    (x1, x2, x3, x4, x5, x6) => func(_func(x1, x2, x3, x4, x5, x6)),
-                    _p1,
-                    _p2,
-                    _p3,
-                    _p4,
-                    _p5,
-                    _p6
-                );
         }
 
         /// <summary>
@@ -752,116 +336,6 @@ namespace Pidgin
             }
 
             return new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7);
-        }
-        
-        private sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, T4, T5, T6, T7, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-            private readonly Parser<TToken, T4> _p4;
-            private readonly Parser<TToken, T5> _p5;
-            private readonly Parser<TToken, T6> _p6;
-            private readonly Parser<TToken, T7> _p7;
-
-            public Map7Parser(
-                Func<T1, T2, T3, T4, T5, T6, T7, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3,
-                Parser<TToken, T4> parser4,
-                Parser<TToken, T5> parser5,
-                Parser<TToken, T6> parser6,
-                Parser<TToken, T7> parser7
-            )
-            {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-                _p4 = parser4;
-                _p5 = parser5;
-                _p6 = parser6;
-                _p7 = parser7;
-            }
-
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result4 = _p4.Parse(ref state);
-                consumedInput = consumedInput || result4.ConsumedInput;
-                if (!result4.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result5 = _p5.Parse(ref state);
-                consumedInput = consumedInput || result5.ConsumedInput;
-                if (!result5.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result6 = _p6.Parse(ref state);
-                consumedInput = consumedInput || result6.ConsumedInput;
-                if (!result6.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                var result7 = _p7.Parse(ref state);
-                consumedInput = consumedInput || result7.ConsumedInput;
-                if (!result7.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
-
-                return InternalResult.Success<R>(_func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value,
-                    result6.Value,
-                    result7.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, U>(
-                    (x1, x2, x3, x4, x5, x6, x7) => func(_func(x1, x2, x3, x4, x5, x6, x7)),
-                    _p1,
-                    _p2,
-                    _p3,
-                    _p4,
-                    _p5,
-                    _p6,
-                    _p7
-                );
         }
 
         /// <summary>
@@ -937,104 +411,649 @@ namespace Pidgin
 
             return new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
         }
-        
-        private sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : MapParserBase<TToken, R>
-        {
-            private readonly Func<T1, T2, T3, T4, T5, T6, T7, T8, R> _func;
-            private readonly Parser<TToken, T1> _p1;
-            private readonly Parser<TToken, T2> _p2;
-            private readonly Parser<TToken, T3> _p3;
-            private readonly Parser<TToken, T4> _p4;
-            private readonly Parser<TToken, T5> _p5;
-            private readonly Parser<TToken, T6> _p6;
-            private readonly Parser<TToken, T7> _p7;
-            private readonly Parser<TToken, T8> _p8;
+    }
+    internal abstract class MapParserBase<TToken, T> : Parser<TToken, T>
+    {
+        internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
+    }
+    
+    internal sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, R> _func;
+        private readonly Parser<TToken, T1> _p1;
 
-            public Map8Parser(
-                Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
-                Parser<TToken, T1> parser1,
-                Parser<TToken, T2> parser2,
-                Parser<TToken, T3> parser3,
-                Parser<TToken, T4> parser4,
-                Parser<TToken, T5> parser5,
-                Parser<TToken, T6> parser6,
-                Parser<TToken, T7> parser7,
-                Parser<TToken, T8> parser8
-            )
+        public Map1Parser(
+            Func<T1, R> func,
+            Parser<TToken, T1> parser1
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
             {
-                _func = func;
-                _p1 = parser1;
-                _p2 = parser2;
-                _p3 = parser3;
-                _p4 = parser4;
-                _p5 = parser5;
-                _p6 = parser6;
-                _p7 = parser7;
-                _p8 = parser8;
+                return InternalResult.Failure<R>(consumedInput);
             }
 
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map1Parser<TToken, T1, U>(
+                (x1) => func(_func(x1)),
+                _p1
+            );
+    }
+
+    internal sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+
+        public Map2Parser(
+            Func<T1, T2, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
             {
-                var consumedInput = false;
+                return InternalResult.Failure<R>(consumedInput);
+            }
 
-                
-                var result1 = _p1.Parse(ref state);
-                consumedInput = consumedInput || result1.ConsumedInput;
-                if (!result1.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
 
-                var result2 = _p2.Parse(ref state);
-                consumedInput = consumedInput || result2.ConsumedInput;
-                if (!result2.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value
+                ),
+                consumedInput
+            );
+        }
 
-                var result3 = _p3.Parse(ref state);
-                consumedInput = consumedInput || result3.ConsumedInput;
-                if (!result3.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map2Parser<TToken, T1, T2, U>(
+                (x1, x2) => func(_func(x1, x2)),
+                _p1,
+                _p2
+            );
+    }
 
-                var result4 = _p4.Parse(ref state);
-                consumedInput = consumedInput || result4.ConsumedInput;
-                if (!result4.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+    internal sealed class Map3Parser<TToken, T1, T2, T3, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
 
-                var result5 = _p5.Parse(ref state);
-                consumedInput = consumedInput || result5.ConsumedInput;
-                if (!result5.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+        public Map3Parser(
+            Func<T1, T2, T3, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+        }
 
-                var result6 = _p6.Parse(ref state);
-                consumedInput = consumedInput || result6.ConsumedInput;
-                if (!result6.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
 
-                var result7 = _p7.Parse(ref state);
-                consumedInput = consumedInput || result7.ConsumedInput;
-                if (!result7.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
 
-                var result8 = _p8.Parse(ref state);
-                consumedInput = consumedInput || result8.ConsumedInput;
-                if (!result8.Success)
-                {
-                    return InternalResult.Failure<R>(consumedInput);
-                }
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
 
-                return InternalResult.Success<R>(_func(
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map3Parser<TToken, T1, T2, T3, U>(
+                (x1, x2, x3) => func(_func(x1, x2, x3)),
+                _p1,
+                _p2,
+                _p3
+            );
+    }
+
+    internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, T4, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
+        private readonly Parser<TToken, T4> _p4;
+
+        public Map4Parser(
+            Func<T1, T2, T3, T4, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3,
+            Parser<TToken, T4> parser4
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+            _p4 = parser4;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result4 = _p4.Parse(ref state);
+            consumedInput = consumedInput || result4.ConsumedInput;
+            if (!result4.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map4Parser<TToken, T1, T2, T3, T4, U>(
+                (x1, x2, x3, x4) => func(_func(x1, x2, x3, x4)),
+                _p1,
+                _p2,
+                _p3,
+                _p4
+            );
+    }
+
+    internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, T4, T5, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
+        private readonly Parser<TToken, T4> _p4;
+        private readonly Parser<TToken, T5> _p5;
+
+        public Map5Parser(
+            Func<T1, T2, T3, T4, T5, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3,
+            Parser<TToken, T4> parser4,
+            Parser<TToken, T5> parser5
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+            _p4 = parser4;
+            _p5 = parser5;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result4 = _p4.Parse(ref state);
+            consumedInput = consumedInput || result4.ConsumedInput;
+            if (!result4.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result5 = _p5.Parse(ref state);
+            consumedInput = consumedInput || result5.ConsumedInput;
+            if (!result5.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map5Parser<TToken, T1, T2, T3, T4, T5, U>(
+                (x1, x2, x3, x4, x5) => func(_func(x1, x2, x3, x4, x5)),
+                _p1,
+                _p2,
+                _p3,
+                _p4,
+                _p5
+            );
+    }
+
+    internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, T4, T5, T6, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
+        private readonly Parser<TToken, T4> _p4;
+        private readonly Parser<TToken, T5> _p5;
+        private readonly Parser<TToken, T6> _p6;
+
+        public Map6Parser(
+            Func<T1, T2, T3, T4, T5, T6, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3,
+            Parser<TToken, T4> parser4,
+            Parser<TToken, T5> parser5,
+            Parser<TToken, T6> parser6
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+            _p4 = parser4;
+            _p5 = parser5;
+            _p6 = parser6;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result4 = _p4.Parse(ref state);
+            consumedInput = consumedInput || result4.ConsumedInput;
+            if (!result4.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result5 = _p5.Parse(ref state);
+            consumedInput = consumedInput || result5.ConsumedInput;
+            if (!result5.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result6 = _p6.Parse(ref state);
+            consumedInput = consumedInput || result6.ConsumedInput;
+            if (!result6.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value,
+                    result6.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, U>(
+                (x1, x2, x3, x4, x5, x6) => func(_func(x1, x2, x3, x4, x5, x6)),
+                _p1,
+                _p2,
+                _p3,
+                _p4,
+                _p5,
+                _p6
+            );
+    }
+
+    internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, T4, T5, T6, T7, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
+        private readonly Parser<TToken, T4> _p4;
+        private readonly Parser<TToken, T5> _p5;
+        private readonly Parser<TToken, T6> _p6;
+        private readonly Parser<TToken, T7> _p7;
+
+        public Map7Parser(
+            Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3,
+            Parser<TToken, T4> parser4,
+            Parser<TToken, T5> parser5,
+            Parser<TToken, T6> parser6,
+            Parser<TToken, T7> parser7
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+            _p4 = parser4;
+            _p5 = parser5;
+            _p6 = parser6;
+            _p7 = parser7;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result4 = _p4.Parse(ref state);
+            consumedInput = consumedInput || result4.ConsumedInput;
+            if (!result4.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result5 = _p5.Parse(ref state);
+            consumedInput = consumedInput || result5.ConsumedInput;
+            if (!result5.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result6 = _p6.Parse(ref state);
+            consumedInput = consumedInput || result6.ConsumedInput;
+            if (!result6.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result7 = _p7.Parse(ref state);
+            consumedInput = consumedInput || result7.ConsumedInput;
+            if (!result7.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
+                    result1.Value,
+                    result2.Value,
+                    result3.Value,
+                    result4.Value,
+                    result5.Value,
+                    result6.Value,
+                    result7.Value
+                ),
+                consumedInput
+            );
+        }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, U>(
+                (x1, x2, x3, x4, x5, x6, x7) => func(_func(x1, x2, x3, x4, x5, x6, x7)),
+                _p1,
+                _p2,
+                _p3,
+                _p4,
+                _p5,
+                _p6,
+                _p7
+            );
+    }
+
+    internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : MapParserBase<TToken, R>
+    {
+        private readonly Func<T1, T2, T3, T4, T5, T6, T7, T8, R> _func;
+        private readonly Parser<TToken, T1> _p1;
+        private readonly Parser<TToken, T2> _p2;
+        private readonly Parser<TToken, T3> _p3;
+        private readonly Parser<TToken, T4> _p4;
+        private readonly Parser<TToken, T5> _p5;
+        private readonly Parser<TToken, T6> _p6;
+        private readonly Parser<TToken, T7> _p7;
+        private readonly Parser<TToken, T8> _p8;
+
+        public Map8Parser(
+            Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+            Parser<TToken, T1> parser1,
+            Parser<TToken, T2> parser2,
+            Parser<TToken, T3> parser3,
+            Parser<TToken, T4> parser4,
+            Parser<TToken, T5> parser5,
+            Parser<TToken, T6> parser6,
+            Parser<TToken, T7> parser7,
+            Parser<TToken, T8> parser8
+        )
+        {
+            _func = func;
+            _p1 = parser1;
+            _p2 = parser2;
+            _p3 = parser3;
+            _p4 = parser4;
+            _p5 = parser5;
+            _p6 = parser6;
+            _p7 = parser7;
+            _p8 = parser8;
+        }
+
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+
+            
+            var result1 = _p1.Parse(ref state);
+            consumedInput = consumedInput || result1.ConsumedInput;
+            if (!result1.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result2 = _p2.Parse(ref state);
+            consumedInput = consumedInput || result2.ConsumedInput;
+            if (!result2.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result3 = _p3.Parse(ref state);
+            consumedInput = consumedInput || result3.ConsumedInput;
+            if (!result3.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result4 = _p4.Parse(ref state);
+            consumedInput = consumedInput || result4.ConsumedInput;
+            if (!result4.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result5 = _p5.Parse(ref state);
+            consumedInput = consumedInput || result5.ConsumedInput;
+            if (!result5.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result6 = _p6.Parse(ref state);
+            consumedInput = consumedInput || result6.ConsumedInput;
+            if (!result6.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result7 = _p7.Parse(ref state);
+            consumedInput = consumedInput || result7.ConsumedInput;
+            if (!result7.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            var result8 = _p8.Parse(ref state);
+            consumedInput = consumedInput || result8.ConsumedInput;
+            if (!result8.Success)
+            {
+                return InternalResult.Failure<R>(consumedInput);
+            }
+
+            return InternalResult.Success<R>(
+                _func(
                     result1.Value,
                     result2.Value,
                     result3.Value,
@@ -1043,22 +1062,23 @@ namespace Pidgin
                     result6.Value,
                     result7.Value,
                     result8.Value
-                ), consumedInput);
-            }
-
-            internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-                => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, U>(
-                    (x1, x2, x3, x4, x5, x6, x7, x8) => func(_func(x1, x2, x3, x4, x5, x6, x7, x8)),
-                    _p1,
-                    _p2,
-                    _p3,
-                    _p4,
-                    _p5,
-                    _p6,
-                    _p7,
-                    _p8
-                );
+                ),
+                consumedInput
+            );
         }
+
+        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+            => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, U>(
+                (x1, x2, x3, x4, x5, x6, x7, x8) => func(_func(x1, x2, x3, x4, x5, x6, x7, x8)),
+                _p1,
+                _p2,
+                _p3,
+                _p4,
+                _p5,
+                _p6,
+                _p7,
+                _p8
+            );
     }
 }
 #endregion

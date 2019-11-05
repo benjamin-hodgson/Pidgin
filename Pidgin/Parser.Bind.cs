@@ -40,40 +40,40 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(result));
             }
-            return new BindParser<U, R>(this, selector, result);
+            return new BindParser<TToken, T, U, R>(this, selector, result);
+        }
+    }
+
+    internal sealed class BindParser<TToken, T, U, R> : Parser<TToken, R>
+    {
+        private readonly Parser<TToken, T> _parser;
+        private readonly Func<T, Parser<TToken, U>> _func;
+        private readonly Func<T, U, R> _result;
+
+        public BindParser(Parser<TToken, T> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
+        {
+            _parser = parser;
+            _func = func;
+            _result = result;
         }
 
-        private sealed class BindParser<U, R> : Parser<TToken, R>
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
-            private readonly Parser<TToken, T> _parser;
-            private readonly Func<T, Parser<TToken, U>> _func;
-            private readonly Func<T, U, R> _result;
-
-            public BindParser(Parser<TToken, T> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
+            var result = _parser.Parse(ref state);
+            if (!result.Success)
             {
-                _parser = parser;
-                _func = func;
-                _result = result;
+                // state.Error set by _parser
+                return InternalResult.Failure<R>(result.ConsumedInput);
             }
 
-            internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+            var nextParser = _func(result.Value);
+            var result2 = nextParser.Parse(ref state);
+            if (!result2.Success)
             {
-                var result = _parser.Parse(ref state);
-                if (!result.Success)
-                {
-                    // state.Error set by _parser
-                    return InternalResult.Failure<R>(result.ConsumedInput);
-                }
-
-                var nextParser = _func(result.Value);
-                var result2 = nextParser.Parse(ref state);
-                if (!result2.Success)
-                {
-                    // state.Error set by nextParser
-                    return InternalResult.Failure<R>(result.ConsumedInput || result2.ConsumedInput);
-                }
-                return InternalResult.Success<R>(_result(result.Value, result2.Value), result.ConsumedInput || result2.ConsumedInput);
+                // state.Error set by nextParser
+                return InternalResult.Failure<R>(result.ConsumedInput || result2.ConsumedInput);
             }
+            return InternalResult.Success<R>(_result(result.Value, result2.Value), result.ConsumedInput || result2.ConsumedInput);
         }
     }
 }

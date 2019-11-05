@@ -69,7 +69,7 @@ namespace Pidgin
                 .ChainAtLeastOnce<int, IntChainer>(() => new IntChainer(@base))
                 .Labelled($"base-{@base} number");
 
-        private struct IntChainer : Parser<char, int>.IChainer<int>
+        private struct IntChainer : IChainer<int, int>
         {
             private readonly int _base;
             private int _result;
@@ -116,7 +116,7 @@ namespace Pidgin
                 .ChainAtLeastOnce<long, LongChainer>(() => new LongChainer(@base))
                 .Labelled($"base-{@base} number");
 
-        private struct LongChainer : Parser<char, long>.IChainer<long>
+        private struct LongChainer : IChainer<long, long>
         {
             private readonly int _base;
             private long _result;

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -49,18 +48,18 @@ namespace Pidgin
             }
             return new RecParser<TToken, T>(parser);
         }
+    }
         
-        private sealed class RecParser<TToken, T> : Parser<TToken, T>
+    internal sealed class RecParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Lazy<Parser<TToken, T>> _lazy;
+
+        public RecParser(Lazy<Parser<TToken, T>> lazy)
         {
-            private readonly Lazy<Parser<TToken, T>> _lazy;
-
-            public RecParser(Lazy<Parser<TToken, T>> lazy)
-            {
-                _lazy = lazy;
-            }
-
-            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
-                => _lazy.Value.Parse(ref state);
+            _lazy = lazy;
         }
+
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+            => _lazy.Value.Parse(ref state);
     }
 }

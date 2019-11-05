@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace Pidgin
@@ -24,30 +23,30 @@ namespace Pidgin
         }
             
         internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
-            => new WithExpectedParser(this, expected);
+            => new WithExpectedParser<TToken, T>(this, expected);
+    }
 
-        private sealed class WithExpectedParser : Parser<TToken, T>
+    internal sealed class WithExpectedParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Parser<TToken, T> _parser;
+        private readonly ImmutableArray<Expected<TToken>> _expected;
+
+        public WithExpectedParser(Parser<TToken, T> parser, ImmutableArray<Expected<TToken>> expected)
         {
-            private readonly Parser<TToken, T> _parser;
-            private readonly ImmutableArray<Expected<TToken>> _expected;
+            _parser = parser;
+            _expected = expected;
+        }
 
-            public WithExpectedParser(Parser<TToken, T> parser, ImmutableArray<Expected<TToken>> expected)
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        {
+            state.BeginExpectedTran();
+            var result = _parser.Parse(ref state);
+            state.EndExpectedTran(false);
+            if (!result.Success)
             {
-                _parser = parser;
-                _expected = expected;
+                state.AddExpected(_expected);
             }
-
-            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                state.BeginExpectedTran();
-                var result = _parser.Parse(ref state);
-                state.EndExpectedTran(false);
-                if (!result.Success)
-                {
-                    state.AddExpected(_expected);
-                }
-                return result;
-            }
+            return result;
         }
     }
 }

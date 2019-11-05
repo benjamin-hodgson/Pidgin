@@ -13,58 +13,7 @@ namespace Pidgin
         /// <returns>A parser that parses and returns a single token</returns>
         public static Parser<TToken, TToken> Token(TToken token)
             // equivalent to Token(token.Equals) but with better error messages
-            => new TokenParser(token);
-
-        private sealed class TokenParser : Parser<TToken, TToken>
-        {
-            private readonly TToken _token;
-            private Expected<TToken> _expected;
-            private Expected<TToken> Expected
-            {
-                get
-                {
-                    if (_expected.InternalTokens.IsDefault)
-                    {
-                        _expected = new Expected<TToken>(ImmutableArray.Create(_token));
-                    }
-                    return _expected;
-                }
-            }
-
-            public TokenParser(TToken token)
-            {
-                _token = token;
-            }
-
-            internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
-            {
-                if (!state.HasCurrent)
-                {
-                    state.Error = new InternalError<TToken>(
-                        Maybe.Nothing<TToken>(),
-                        true,
-                        state.Location,
-                        null
-                    );
-                    state.AddExpected(Expected);
-                    return InternalResult.Failure<TToken>(false);
-                }
-                var token = state.Current;
-                if (!EqualityComparer<TToken>.Default.Equals(token, _token))
-                {
-                    state.Error = new InternalError<TToken>(
-                        Maybe.Just(token),
-                        false,
-                        state.Location,
-                        null
-                    );
-                    state.AddExpected(Expected);
-                    return InternalResult.Failure<TToken>(false);
-                }
-                state.Advance();
-                return InternalResult.Success<TToken>(token, true);
-            }
-        }
+            => new TokenParser<TToken>(token);
 
         /// <summary>
         /// Creates a parser that parses and returns a single token satisfying a predicate
@@ -77,44 +26,95 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(predicate));
             }
-            return new PredicateTokenParser(predicate);
+            return new PredicateTokenParser<TToken>(predicate);
+        }
+    }
+
+    internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
+    {
+        private readonly TToken _token;
+        private Expected<TToken> _expected;
+        private Expected<TToken> Expected
+        {
+            get
+            {
+                if (_expected.InternalTokens.IsDefault)
+                {
+                    _expected = new Expected<TToken>(ImmutableArray.Create(_token));
+                }
+                return _expected;
+            }
         }
 
-        private sealed class PredicateTokenParser : Parser<TToken, TToken>
+        public TokenParser(TToken token)
         {
-            private readonly Func<TToken, bool> _predicate;
+            _token = token;
+        }
 
-            public PredicateTokenParser(Func<TToken, bool> predicate)
+        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
+        {
+            if (!state.HasCurrent)
             {
-                _predicate = predicate;
+                state.Error = new InternalError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    true,
+                    state.Location,
+                    null
+                );
+                state.AddExpected(Expected);
+                return InternalResult.Failure<TToken>(false);
             }
+            var token = state.Current;
+            if (!EqualityComparer<TToken>.Default.Equals(token, _token))
+            {
+                state.Error = new InternalError<TToken>(
+                    Maybe.Just(token),
+                    false,
+                    state.Location,
+                    null
+                );
+                state.AddExpected(Expected);
+                return InternalResult.Failure<TToken>(false);
+            }
+            state.Advance();
+            return InternalResult.Success<TToken>(token, true);
+        }
+    }
 
-            internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
+    internal sealed class PredicateTokenParser<TToken> : Parser<TToken, TToken>
+    {
+        private readonly Func<TToken, bool> _predicate;
+
+        public PredicateTokenParser(Func<TToken, bool> predicate)
+        {
+            _predicate = predicate;
+        }
+
+        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
+        {
+            if (!state.HasCurrent)
             {
-                if (!state.HasCurrent)
-                {
-                    state.Error = new InternalError<TToken>(
-                        Maybe.Nothing<TToken>(),
-                        true,
-                        state.Location,
-                        null
-                    );
-                    return InternalResult.Failure<TToken>(false);
-                }
-                var token = state.Current;
-                if (!_predicate(token))
-                {
-                    state.Error = new InternalError<TToken>(
-                        Maybe.Just(token),
-                        false,
-                        state.Location,
-                        null
-                    );
-                    return InternalResult.Failure<TToken>(false);
-                }
-                state.Advance();
-                return InternalResult.Success<TToken>(token, true);
+                state.Error = new InternalError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    true,
+                    state.Location,
+                    null
+                );
+                return InternalResult.Failure<TToken>(false);
             }
+            var token = state.Current;
+            if (!_predicate(token))
+            {
+                state.Error = new InternalError<TToken>(
+                    Maybe.Just(token),
+                    false,
+                    state.Location,
+                    null
+                );
+                return InternalResult.Failure<TToken>(false);
+            }
+            state.Advance();
+            return InternalResult.Success<TToken>(token, true);
         }
     }
 }

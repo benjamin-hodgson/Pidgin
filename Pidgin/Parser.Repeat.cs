@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 
 namespace Pidgin
@@ -35,39 +34,6 @@ namespace Pidgin
             }
             return new RepeatStringParser<TToken>(parser, count);
         }
-
-        private sealed class RepeatStringParser<TToken> : Parser<TToken, string>
-        {
-            private readonly Parser<TToken, char> _parser;
-            private readonly int _count;
-
-            public RepeatStringParser(Parser<TToken, char> parser, int count)
-            {
-                _parser = parser;
-                _count = count;
-            }
-
-            internal override InternalResult<string> Parse(ref ParseState<TToken> state)
-            {
-                var consumedInput = false;
-                var builder = new InplaceStringBuilder(_count);
-
-                for (var _ = 0; _ < _count; _++)
-                {
-                    var result = _parser.Parse(ref state);
-                    consumedInput = consumedInput || result.ConsumedInput;
-
-                    if (!result.Success)
-                    {
-                        return InternalResult.Failure<string>(consumedInput);
-                    }
-
-                    builder.Append(result.Value);
-                }
-
-                return InternalResult.Success(builder.ToString(), consumedInput);
-            }
-        }
     }
 
     public abstract partial class Parser<TToken, T>
@@ -85,6 +51,39 @@ namespace Pidgin
                 throw new ArgumentOutOfRangeException(nameof(count), "Count must be non-negative");
             }
             return Parser<TToken>.Sequence(Enumerable.Repeat(this, count));
+        }
+    }
+
+    internal sealed class RepeatStringParser<TToken> : Parser<TToken, string>
+    {
+        private readonly Parser<TToken, char> _parser;
+        private readonly int _count;
+
+        public RepeatStringParser(Parser<TToken, char> parser, int count)
+        {
+            _parser = parser;
+            _count = count;
+        }
+
+        internal override InternalResult<string> Parse(ref ParseState<TToken> state)
+        {
+            var consumedInput = false;
+            var builder = new InplaceStringBuilder(_count);
+
+            for (var _ = 0; _ < _count; _++)
+            {
+                var result = _parser.Parse(ref state);
+                consumedInput = consumedInput || result.ConsumedInput;
+
+                if (!result.Success)
+                {
+                    return InternalResult.Failure<string>(consumedInput);
+                }
+
+                builder.Append(result.Value);
+            }
+
+            return InternalResult.Success(builder.ToString(), consumedInput);
         }
     }
 }

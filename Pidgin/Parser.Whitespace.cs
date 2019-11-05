@@ -29,28 +29,28 @@ namespace Pidgin
         /// <returns>A parser that discards a sequence of whitespace characters</returns>
         public static Parser<char, Unit> SkipWhitespaces { get; }
             = new SkipWhitespacesParser();
+    }
 
-        private class SkipWhitespacesParser : Parser<char, Unit>
+    internal class SkipWhitespacesParser : Parser<char, Unit>
+    {
+        internal override InternalResult<Unit> Parse(ref ParseState<char> state)
         {
-            internal override InternalResult<Unit> Parse(ref ParseState<char> state)
+            var startingLoc = state.Location;
+            var chunk = state.LookAhead(32);
+            while (chunk.Length > 0)
             {
-                var startingLoc = state.Location;
-                var chunk = state.LookAhead(32);
-                while (chunk.Length > 0)
+                for (var i = 0; i < chunk.Length; i++)
                 {
-                    for (var i = 0; i < chunk.Length; i++)
+                    if (!char.IsWhiteSpace(chunk[i]))
                     {
-                        if (!char.IsWhiteSpace(chunk[i]))
-                        {
-                            state.Advance(i);
-                            return InternalResult.Success(Unit.Value, state.Location > startingLoc);
-                        }
+                        state.Advance(i);
+                        return InternalResult.Success(Unit.Value, state.Location > startingLoc);
                     }
-                    state.Advance(chunk.Length);
-                    chunk = state.LookAhead(32);
                 }
-                return InternalResult.Success(Unit.Value, state.Location > startingLoc);
+                state.Advance(chunk.Length);
+                chunk = state.LookAhead(32);
             }
+            return InternalResult.Success(Unit.Value, state.Location > startingLoc);
         }
     }
 }

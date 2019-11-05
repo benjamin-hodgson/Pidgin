@@ -112,93 +112,92 @@ namespace Pidgin
             }
             return OneOfParser<TToken, T>.Create(parsers);
         }
+    }
 
+    internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Parser<TToken, T>[] _parsers;
 
-        private sealed class OneOfParser<TToken, T> : Parser<TToken, T>
+        private OneOfParser(Parser<TToken, T>[] parsers)
         {
-            private readonly Parser<TToken, T>[] _parsers;
+            _parsers = parsers;
+        }
 
-            private OneOfParser(Parser<TToken, T>[] parsers)
+        // see comment about expecteds in ParseState.Error.cs
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        {
+            var firstTime = true;
+            var err = new InternalError<TToken>(
+                Maybe.Nothing<TToken>(),
+                false,
+                state.Location,
+                "OneOf had no arguments"
+            );
+            state.BeginExpectedTran();
+            foreach (var p in _parsers)
             {
-                _parsers = parsers;
-            }
-
-            // see comment about expecteds in ParseState.Error.cs
-            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                var firstTime = true;
-                var err = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    false,
-                    state.Location,
-                    "OneOf had no arguments"
-                );
                 state.BeginExpectedTran();
-                foreach (var p in _parsers)
+                var thisResult = p.Parse(ref state);
+                if (thisResult.Success)
                 {
-                    state.BeginExpectedTran();
-                    var thisResult = p.Parse(ref state);
-                    if (thisResult.Success)
-                    {
-                        // throw out all expecteds
-                        state.EndExpectedTran(false);
-                        state.EndExpectedTran(false);
-                        return thisResult;
-                    }
-
-                    // we'll usually return the error from the first parser that didn't backtrack,
-                    // even if other parsers had a longer match.
-                    // There is some room for improvement here.
-                    if (thisResult.ConsumedInput)
-                    {
-                        // throw out all expecteds except this one
-                        var expected = state.ExpectedTranState();
-                        state.EndExpectedTran(false);
-                        state.EndExpectedTran(false);
-                        state.AddExpected(expected.AsSpan());
-                        expected.Dispose(clearArray: true);
-                        return thisResult;
-                    }
-
-                    state.EndExpectedTran(true);
-                    // choose the longest match, preferring the left-most error in a tie,
-                    // except the first time (avoid returning "OneOf had no arguments").
-                    if (firstTime || state.Error.ErrorLocation > err.ErrorLocation)
-                    {
-                        err = state.Error;
-                    }
-                    firstTime = false;
+                    // throw out all expecteds
+                    state.EndExpectedTran(false);
+                    state.EndExpectedTran(false);
+                    return thisResult;
                 }
-                state.Error = err;
+
+                // we'll usually return the error from the first parser that didn't backtrack,
+                // even if other parsers had a longer match.
+                // There is some room for improvement here.
+                if (thisResult.ConsumedInput)
+                {
+                    // throw out all expecteds except this one
+                    var expected = state.ExpectedTranState();
+                    state.EndExpectedTran(false);
+                    state.EndExpectedTran(false);
+                    state.AddExpected(expected.AsSpan());
+                    expected.Dispose(clearArray: true);
+                    return thisResult;
+                }
+
                 state.EndExpectedTran(true);
-                return InternalResult.Failure<T>(false);
-            }
-
-            internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)
-            {
-                // if we know the length of the collection,
-                // we know we're going to need at least that much room in the list
-                var list = parsers is ICollection<Parser<TToken, T>> coll
-                    ? new List<Parser<TToken, T>>(coll.Count)
-                    : new List<Parser<TToken, T>>();
-                
-                foreach (var p in parsers)
+                // choose the longest match, preferring the left-most error in a tie,
+                // except the first time (avoid returning "OneOf had no arguments").
+                if (firstTime || state.Error.ErrorLocation > err.ErrorLocation)
                 {
-                    if (p == null)
-                    {
-                        throw new ArgumentNullException(nameof(parsers));
-                    }
-                    if (p is OneOfParser<TToken, T> o)
-                    {
-                        list.AddRange(o._parsers);
-                    }
-                    else
-                    {
-                        list.Add(p);
-                    }
+                    err = state.Error;
                 }
-                return new OneOfParser<TToken, T>(list.ToArray());
+                firstTime = false;
             }
+            state.Error = err;
+            state.EndExpectedTran(true);
+            return InternalResult.Failure<T>(false);
+        }
+
+        internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)
+        {
+            // if we know the length of the collection,
+            // we know we're going to need at least that much room in the list
+            var list = parsers is ICollection<Parser<TToken, T>> coll
+                ? new List<Parser<TToken, T>>(coll.Count)
+                : new List<Parser<TToken, T>>();
+            
+            foreach (var p in parsers)
+            {
+                if (p == null)
+                {
+                    throw new ArgumentNullException(nameof(parsers));
+                }
+                if (p is OneOfParser<TToken, T> o)
+                {
+                    list.AddRange(o._parsers);
+                }
+                else
+                {
+                    list.Add(p);
+                }
+            }
+            return new OneOfParser<TToken, T>(list.ToArray());
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -9,12 +7,12 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser which returns the current source position</returns>
         public static Parser<TToken, SourcePos> CurrentPos { get; }
-            = new CurrentPosParser();
+            = new CurrentPosParser<TToken>();
+    }
 
-        private sealed class CurrentPosParser : Parser<TToken, SourcePos>
-        {
-            internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
-                => InternalResult.Success(state.ComputeSourcePos(), false);
-        }
+    internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePos>
+    {
+        internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
+            => InternalResult.Success(state.ComputeSourcePos(), false);
     }
 }

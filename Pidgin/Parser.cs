@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
-
-namespace Pidgin
+﻿namespace Pidgin
 {
     /// <summary>
     /// Constructor functions, extension methods and utilities for <see cref="Parser{TToken, T}"/>.

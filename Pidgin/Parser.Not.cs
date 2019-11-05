@@ -22,42 +22,42 @@ namespace Pidgin
             }
             return new NegatedParser<TToken, T>(parser);            
         }
+    }
         
-        private sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
+    internal sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
+    {
+        private readonly Parser<TToken, T> _parser;
+
+        public NegatedParser(Parser<TToken, T> parser)
         {
-            private readonly Parser<TToken, T> _parser;
+            _parser = parser;
+        }
 
-            public NegatedParser(Parser<TToken, T> parser)
+        internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
+        {
+            var startingLocation = state.Location;
+            var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
+
+            state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
+            state.BeginExpectedTran();
+            var result = _parser.Parse(ref state);
+            state.EndExpectedTran(false);
+            state.PopBookmark();
+            if (result.Success)
             {
-                _parser = parser;
-            }
-
-            internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
-            {
-                var startingLocation = state.Location;
-                var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
-
-                state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
-                state.BeginExpectedTran();
-                var result = _parser.Parse(ref state);
-                state.EndExpectedTran(false);
-                state.PopBookmark();
-                if (result.Success)
-                {
-                    state.Error = new InternalError<TToken>(
-                        token,
-                        false,
-                        startingLocation,
-                        null
-                    );
-                    return InternalResult.Failure<Unit>(result.ConsumedInput);
-                }
-
-                return InternalResult.Success(
-                    Unit.Value,
-                    result.ConsumedInput
+                state.Error = new InternalError<TToken>(
+                    token,
+                    false,
+                    startingLocation,
+                    null
                 );
+                return InternalResult.Failure<Unit>(result.ConsumedInput);
             }
+
+            return InternalResult.Success(
+                Unit.Value,
+                result.ConsumedInput
+            );
         }
     }
 }

@@ -20,32 +20,32 @@ namespace Pidgin
             }
             return new TryParser<TToken, T>(parser);
         }
+    }
 
-        private sealed class TryParser<TToken, T> : Parser<TToken, T>
+    internal sealed class TryParser<TToken, T> : Parser<TToken, T>
+    {
+        private readonly Parser<TToken, T> _parser;
+
+        public TryParser(Parser<TToken, T> parser)
         {
-            private readonly Parser<TToken, T> _parser;
+            _parser = parser;
+        }
 
-            public TryParser(Parser<TToken, T> parser)
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        {
+            // start buffering the input
+            state.PushBookmark();
+            var result = _parser.Parse(ref state);
+            if (!result.Success)
             {
-                _parser = parser;
+                // return to the start of the buffer and discard the bookmark
+                state.Rewind();
+                return InternalResult.Failure<T>(false);
             }
 
-            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                // start buffering the input
-                state.PushBookmark();
-                var result = _parser.Parse(ref state);
-                if (!result.Success)
-                {
-                    // return to the start of the buffer and discard the bookmark
-                    state.Rewind();
-                    return InternalResult.Failure<T>(false);
-                }
-
-                // discard the buffer
-                state.PopBookmark();
-                return result;
-            }
+            // discard the buffer
+            state.PopBookmark();
+            return result;
         }
     }
 }

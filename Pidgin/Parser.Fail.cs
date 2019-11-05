@@ -17,31 +17,31 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
-            return new FailParser<T>(message);
+            return new FailParser<TToken, T>(message);
         }
+    }
         
-        private sealed class FailParser<T> : Parser<TToken, T>
+    internal sealed class FailParser<TToken, T> : Parser<TToken, T>
+    {
+        private static readonly Expected<TToken> _expected
+            = new Expected<TToken>(ImmutableArray<TToken>.Empty);
+        private readonly string _message;
+
+        public FailParser(string message)
         {
-            private static readonly Expected<TToken> _expected
-                = new Expected<TToken>(ImmutableArray<TToken>.Empty);
-            private readonly string _message;
+            _message = message;
+        }
 
-            public FailParser(string message)
-            {
-                _message = message;
-            }
-
-            internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
-            {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    false,
-                    state.Location,
-                    _message
-                );
-                state.AddExpected(_expected);
-                return InternalResult.Failure<T>(false);
-            }
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        {
+            state.Error = new InternalError<TToken>(
+                Maybe.Nothing<TToken>(),
+                false,
+                state.Location,
+                _message
+            );
+            state.AddExpected(_expected);
+            return InternalResult.Failure<T>(false);
         }
     }
 }
