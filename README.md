@@ -259,3 +259,52 @@ Comparison to other tools
 * FParsec supports stateful parsing - it has an extra type parameter for an arbitrary user-defined state - which can make it easier to parse context-sensitive grammars.
 * FParsec is faster than Pidgin (though we're catching up!)
 
+### Benchmarks
+
+This is how Pidgin compares to other tools in terms of performance. The benches can be found in the `Pidgin.Bench` project.
+
+```ini
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.14393.3384 (1607/AnniversaryUpdate/Redstone1)
+Intel Core i5-4460 CPU 3.20GHz (Haswell), 1 CPU, 4 logical and 4 physical cores
+Frequency=3125000 Hz, Resolution=320.0000 ns, Timer=TSC
+.NET Core SDK=3.1.100
+  [Host]     : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
+  DefaultJob : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), 64bit RyuJIT
+```
+
+#### `ExpressionBench`
+
+|              Method |         Mean |        Error |        StdDev | Ratio | RatioSD |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+|-------------------- |-------------:|-------------:|--------------:|------:|--------:|-------:|------:|------:|----------:|
+|   LongInfixL_Pidgin | 625,148.8 ns | 3,015.040 ns | 2,672.7541 ns |  2.25 |    0.01 |      - |     - |     - |     128 B |
+|   LongInfixR_Pidgin | 625,530.1 ns | 4,104.833 ns | 3,839.6633 ns |  2.25 |    0.02 |      - |     - |     - |     128 B |
+|  LongInfixL_FParsec | 278,035.1 ns | 1,231.538 ns | 1,151.9816 ns |  1.00 |    0.00 |      - |     - |     - |     200 B |
+|  LongInfixR_FParsec | 326,047.3 ns |   931.485 ns |   871.3119 ns |  1.17 |    0.01 |      - |     - |     - |     200 B |
+|                     |              |              |               |       |         |        |       |       |           |
+|  ShortInfixL_Pidgin |   1,506.5 ns |     5.515 ns |     5.1590 ns |  2.67 |    0.01 | 0.0401 |     - |     - |     128 B |
+|  ShortInfixR_Pidgin |   1,636.6 ns |     6.882 ns |     5.7467 ns |  2.90 |    0.02 | 0.0401 |     - |     - |     128 B |
+| ShortInfixL_FParsec |     564.1 ns |     1.894 ns |     1.6788 ns |  1.00 |    0.00 | 0.0629 |     - |     - |     200 B |
+| ShortInfixR_FParsec |     567.7 ns |     1.200 ns |     0.9373 ns |  1.01 |    0.00 | 0.0629 |     - |     - |     200 B |
+
+#### `JsonBench`
+
+|              Method |       Mean |     Error |    StdDev | Ratio | RatioSD |     Gen 0 |    Gen 1 | Gen 2 |  Allocated |
+|-------------------- |-----------:|----------:|----------:|------:|--------:|----------:|---------:|------:|-----------:|
+|      BigJson_Pidgin |   684.6 us |  2.888 us |  2.701 us |  1.00 |    0.00 |   33.2031 |        - |     - |   101.7 KB |
+|     BigJson_Sprache | 3,597.5 us | 17.595 us | 16.458 us |  5.25 |    0.03 | 1726.5625 |        - |     - | 5291.81 KB |
+|  BigJson_Superpower | 2,884.4 us |  6.504 us |  5.766 us |  4.21 |    0.02 |  296.8750 |        - |     - |  913.43 KB |
+|     BigJson_FParsec |   750.1 us |  3.516 us |  3.289 us |  1.10 |    0.01 |  111.3281 |        - |     - |  343.43 KB |
+|                     |            |           |           |       |         |           |          |       |            |
+|     LongJson_Pidgin |   517.5 us |  2.418 us |  2.261 us |  1.00 |    0.00 |   33.2031 |        - |     - |  104.25 KB |
+|    LongJson_Sprache | 2,858.5 us | 10.491 us |  9.300 us |  5.53 |    0.03 | 1390.6250 |        - |     - | 4269.33 KB |
+| LongJson_Superpower | 2,348.1 us | 14.194 us | 13.277 us |  4.54 |    0.03 |  230.4688 |        - |     - |  706.79 KB |
+|    LongJson_FParsec |   642.5 us |  2.708 us |  2.533 us |  1.24 |    0.01 |  125.0000 |        - |     - |   384.3 KB |
+|                     |            |           |           |       |         |           |          |       |            |
+|     DeepJson_Pidgin |   399.3 us |  1.784 us |  1.582 us |  1.00 |    0.00 |   26.3672 |        - |     - |   82.24 KB |
+|    DeepJson_Sprache | 2,983.0 us | 42.512 us | 39.765 us |  7.46 |    0.09 |  761.7188 | 191.4063 |     - | 2922.46 KB |
+|    DeepJson_FParsec |   701.8 us |  1.665 us |  1.557 us |  1.76 |    0.01 |  112.3047 |        - |     - |  344.43 KB |
+|                     |            |           |           |       |         |           |          |       |            |
+|     WideJson_Pidgin |   427.8 us |  1.619 us |  1.515 us |  1.00 |    0.00 |   15.6250 |        - |     - |   48.42 KB |
+|    WideJson_Sprache | 1,704.2 us |  9.246 us |  8.196 us |  3.98 |    0.02 |  900.3906 |        - |     - | 2763.22 KB |
+| WideJson_Superpower | 1,494.6 us |  9.581 us |  8.962 us |  3.49 |    0.02 |  148.4375 |        - |     - |  459.74 KB |
+|    WideJson_FParsec |   379.5 us |  1.597 us |  1.494 us |  0.89 |    0.00 |   41.9922 |        - |     - |  129.02 KB |
