@@ -10,7 +10,7 @@ namespace Pidgin
     /// A mutable struct! Careful!
     /// </summary>
     [StructLayout(LayoutKind.Auto)]
-    internal ref partial struct ParseState<TToken>
+    public ref partial struct ParseState<TToken>
     {
         private static readonly bool _needsClear =
 #if NETCOREAPP
@@ -119,13 +119,13 @@ namespace Pidgin
                 _currentIndex = Math.Min(_currentIndex + count, _span.Length);
                 return;
             }
-            
+
             var alreadyBufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
             _currentIndex += alreadyBufferedCount;
             count -= alreadyBufferedCount;
 
             Buffer(count);
-            
+
             var bufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
             _currentIndex += bufferedCount;
             count -= bufferedCount;
@@ -203,7 +203,7 @@ namespace Pidgin
                 _bufferedCount += _stream!.ReadInto(_buffer, _bufferedCount, amountToRead);
             }
         }
-        
+
         public void PushBookmark()
         {
             _bookmarks.Add(Location);
@@ -217,7 +217,7 @@ namespace Pidgin
         public void Rewind()
         {
             var bookmark = _bookmarks.Pop();
-            
+
             var delta = Location - bookmark;
 
             if (delta > _currentIndex)

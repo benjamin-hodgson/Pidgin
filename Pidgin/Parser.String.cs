@@ -10,7 +10,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="str">The string to parse</param>
         /// <returns>A parser that parses and returns a literal string</returns>
-        /// 
+        ///
         public static Parser<char, string> String(string str)
         {
             if (str == null)
@@ -19,7 +19,7 @@ namespace Pidgin
             }
             return Parser<char>.Sequence<string>(str);
         }
-        
+
         /// <summary>
         /// Creates a parser that parses and returns a literal string, in a case insensitive manner.
         /// The parser returns the actual string parsed.
@@ -35,7 +35,7 @@ namespace Pidgin
             return new CIStringParser(str);
         }
     }
-    
+
     internal sealed class CIStringParser : Parser<char, string>
     {
         private readonly string _value;
@@ -57,7 +57,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override InternalResult<string> Parse(ref ParseState<char> state)
+        public sealed override InternalResult<string> Parse(ref ParseState<char> state)
         {
             var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 

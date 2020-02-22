@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 namespace Pidgin
 {
     [StructLayout(LayoutKind.Auto)]
-    internal readonly struct PooledArray<T>
+    public readonly struct PooledArray<T>
     {
         private readonly T[] _array;
         private readonly int _length;

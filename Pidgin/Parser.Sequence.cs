@@ -82,23 +82,23 @@ namespace Pidgin
             _parsers = parsers;
         }
 
-        internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
             var ts = new T[_parsers.Length];
-            
+
             for (var i = 0; i < _parsers.Length; i++)
             {
                 var p = _parsers[i];
-            
+
                 var result = p.Parse(ref state);
                 consumedInput = consumedInput || result.ConsumedInput;
-            
+
                 if (!result.Success)
                 {
                     return InternalResult.Failure<IEnumerable<T>>(consumedInput);
                 }
-            
+
                 ts[i] = result.Value;
             }
 
@@ -151,10 +151,10 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
-            
+
             var errorPos = -1;
             for (var i = 0; i < span.Length; i++)
             {
@@ -211,10 +211,10 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
-            
+
             var errorPos = -1;
             for (var i = 0; i < span.Length; i++)
             {

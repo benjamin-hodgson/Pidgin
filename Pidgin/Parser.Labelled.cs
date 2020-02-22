@@ -21,7 +21,7 @@ namespace Pidgin
             }
             return WithExpected(ImmutableArray.Create(new Expected<TToken>(label)));
         }
-            
+
         internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
             => new WithExpectedParser<TToken, T>(this, expected);
     }
@@ -37,7 +37,7 @@ namespace Pidgin
             _expected = expected;
         }
 
-        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             state.BeginExpectedTran();
             var result = _parser.Parse(ref state);

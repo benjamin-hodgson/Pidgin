@@ -9,7 +9,7 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser which applies <paramref name="parser"/> <paramref name="count"/> times,
         /// packing the resulting <c>char</c>s into a <c>string</c>.
-        /// 
+        ///
         /// <para>
         /// Equivalent to <c>parser.Repeat(count).Select(string.Concat)</c>.
         /// </para>
@@ -65,7 +65,7 @@ namespace Pidgin
             _count = count;
         }
 
-        internal override InternalResult<string> Parse(ref ParseState<TToken> state)
+        public override InternalResult<string> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
             var builder = new InplaceStringBuilder(_count);

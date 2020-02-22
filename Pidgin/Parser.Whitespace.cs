@@ -33,7 +33,7 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        internal override InternalResult<Unit> Parse(ref ParseState<char> state)
+        public override InternalResult<Unit> Parse(ref ParseState<char> state)
         {
             var startingLoc = state.Location;
             var chunk = state.LookAhead(32);

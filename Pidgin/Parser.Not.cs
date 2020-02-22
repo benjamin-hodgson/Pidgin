@@ -20,10 +20,10 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(parser));
             }
-            return new NegatedParser<TToken, T>(parser);            
+            return new NegatedParser<TToken, T>(parser);
         }
     }
-        
+
     internal sealed class NegatedParser<TToken, T> : Parser<TToken, Unit>
     {
         private readonly Parser<TToken, T> _parser;
@@ -33,7 +33,7 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
         {
             var startingLocation = state.Location;
             var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();

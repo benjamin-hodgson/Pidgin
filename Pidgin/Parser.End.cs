@@ -11,7 +11,7 @@ namespace Pidgin
 
     internal sealed class EndParser<TToken> : Parser<TToken, Unit>
     {
-        internal sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<Unit> Parse(ref ParseState<TToken> state)
         {
             if (state.HasCurrent)
             {

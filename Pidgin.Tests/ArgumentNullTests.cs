@@ -103,15 +103,15 @@ namespace Pidgin.Tests
                         ).Select(xs => xs.ToArray())
                     )
             );
-        
+
         private static Maybe<IEnumerable<T>> Sequence<T>(IEnumerable<Maybe<T>> maybes)
             => maybes.All(x => x.HasValue)
                 ? Maybe.Just(maybes.Select(x => x.Value))
                 : Maybe.Nothing<IEnumerable<T>>();
-        
+
         private static IEnumerable<T> Cat<T>(IEnumerable<Maybe<T>> maybes)
             => maybes.Where(x => x.HasValue).Select(x => x.Value);
-        
+
         private static Maybe<object?> GetArg(Type parameterType, bool shouldBeNull)
         {
             if (shouldBeNull)
@@ -177,7 +177,7 @@ namespace Pidgin.Tests
         {
             public AParser() { }
 
-            internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+            public override InternalResult<T> Parse(ref ParseState<TToken> state)
             {
                 throw new NotImplementedException();
             }

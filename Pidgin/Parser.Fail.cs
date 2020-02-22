@@ -20,7 +20,7 @@ namespace Pidgin
             return new FailParser<TToken, T>(message);
         }
     }
-        
+
     internal sealed class FailParser<TToken, T> : Parser<TToken, T>
     {
         private static readonly Expected<TToken> _expected
@@ -32,7 +32,7 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             state.Error = new InternalError<TToken>(
                 Maybe.Nothing<TToken>(),

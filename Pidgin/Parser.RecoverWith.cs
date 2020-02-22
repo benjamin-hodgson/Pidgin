@@ -31,7 +31,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             state.BeginExpectedTran();
             var result = _parser.Parse(ref state);
@@ -44,7 +44,7 @@ namespace Pidgin
             state.EndExpectedTran(false);
 
             var recoverParser = _errorHandler(state.BuildError(parserExpecteds.AsEnumerable()));
-            
+
             parserExpecteds.Dispose(clearArray: true);
 
             return recoverParser.Parse(ref state);

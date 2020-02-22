@@ -21,7 +21,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
             => InternalResult.Success<T>(_value, false);
     }
 }

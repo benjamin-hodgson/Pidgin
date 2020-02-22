@@ -21,7 +21,7 @@ namespace Pidgin
             return this.SeparatedAtLeastOnce(separator)
                 .Or(ReturnEmptyEnumerable);
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.
@@ -53,7 +53,7 @@ namespace Pidgin
             }
             return this.Before(separator).Many();
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and terminated with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.
@@ -86,7 +86,7 @@ namespace Pidgin
             return this.SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
                 .Or(ReturnEmptyEnumerable);
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and optionally terminated with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.
@@ -115,7 +115,7 @@ namespace Pidgin
             _remainderParser = separator.Then(parser);
         }
 
-        internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
+        public override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
         {
             var result = _parser.Parse(ref state);
             if (!result.Success)
@@ -163,7 +163,7 @@ namespace Pidgin
             _separator = separator;
         }
 
-        internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
+        public override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
         {
             var result = _parser.Parse(ref state);
             if (!result.Success)

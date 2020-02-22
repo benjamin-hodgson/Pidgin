@@ -416,7 +416,7 @@ namespace Pidgin
     {
         internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
     }
-    
+
     internal sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
     {
         private readonly Func<T1, R> _func;
@@ -431,11 +431,11 @@ namespace Pidgin
             _p1 = parser1;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -475,11 +475,11 @@ namespace Pidgin
             _p2 = parser2;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -531,11 +531,11 @@ namespace Pidgin
             _p3 = parser3;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -599,11 +599,11 @@ namespace Pidgin
             _p4 = parser4;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -679,11 +679,11 @@ namespace Pidgin
             _p5 = parser5;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -771,11 +771,11 @@ namespace Pidgin
             _p6 = parser6;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -875,11 +875,11 @@ namespace Pidgin
             _p7 = parser7;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
@@ -991,11 +991,11 @@ namespace Pidgin
             _p8 = parser8;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var consumedInput = false;
 
-            
+
             var result1 = _p1.Parse(ref state);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)

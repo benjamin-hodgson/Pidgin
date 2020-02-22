@@ -73,10 +73,10 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             state.BeginExpectedTran();
-            var result = _parser.Parse(ref state);                
+            var result = _parser.Parse(ref state);
             state.EndExpectedTran(!result.Success);
             if (!result.Success)
             {

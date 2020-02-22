@@ -12,7 +12,7 @@ namespace Pidgin
 
     internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePos>
     {
-        internal override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
+        public override InternalResult<SourcePos> Parse(ref ParseState<TToken> state)
             => InternalResult.Success(state.ComputeSourcePos(), false);
     }
 }

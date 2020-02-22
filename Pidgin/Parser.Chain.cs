@@ -26,7 +26,7 @@ namespace Pidgin
             _factory = factory;
         }
 
-        internal override InternalResult<U> Parse(ref ParseState<TToken> state)
+        public override InternalResult<U> Parse(ref ParseState<TToken> state)
         {
             var result1 = _parser.Parse(ref state);
             if (!result1.Success)

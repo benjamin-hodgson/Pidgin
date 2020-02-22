@@ -57,7 +57,7 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {
             var result = _parser.Parse(ref state);
             if (!result.Success)

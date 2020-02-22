@@ -31,7 +31,7 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             // start buffering the input
             state.PushBookmark();

@@ -2,7 +2,7 @@ using System;
 
 namespace Pidgin.TokenStreams
 {
-    internal interface ITokenStream<TToken> : IDisposable
+    public interface ITokenStream<TToken> : IDisposable
     {
         int ChunkSizeHint { get; }
 

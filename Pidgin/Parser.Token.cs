@@ -51,7 +51,7 @@ namespace Pidgin
             _token = token;
         }
 
-        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
         {
             if (!state.HasCurrent)
             {
@@ -90,7 +90,7 @@ namespace Pidgin
             _predicate = predicate;
         }
 
-        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state)
         {
             if (!state.HasCurrent)
             {

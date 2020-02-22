@@ -22,7 +22,7 @@ namespace Pidgin
             return terminator.Then(ReturnEmptyEnumerable)
                 .Or(this.AtLeastOnceUntil(terminator));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds.
         /// Fails if this parser fails or if <paramref name="terminator"/> fails after consuming input.
@@ -57,7 +57,7 @@ namespace Pidgin
             return terminator.Then(ReturnUnit)
                 .Or(this.SkipAtLeastOnceUntil(terminator));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds, discarding the results.
         /// This is more efficient than <see cref="AtLeastOnceUntil{U}(Parser{TToken, U})"/> if you don't need the results.
@@ -90,7 +90,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state)
+        public override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state)
         {
             var ts = _keepResults ? new List<T>() : null;
 

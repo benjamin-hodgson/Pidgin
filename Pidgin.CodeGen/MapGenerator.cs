@@ -118,7 +118,7 @@ namespace Pidgin
             {string.Join($"{Environment.NewLine}            ", parserFieldAssignments)}
         }}
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
         {{
             var consumedInput = false;
 
@@ -148,7 +148,7 @@ namespace Pidgin
             {{
                 return InternalResult.Failure<R>(consumedInput);
             }}";
-        
+
         private static string EnglishNumber(int num)
         {
             switch (num)

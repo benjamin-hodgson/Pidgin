@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace Pidgin
 {
-    internal partial struct ParseState<TToken>
+    public partial struct ParseState<TToken>
     {
         private bool _eof;
         private Maybe<TToken> _unexpected;
         private int _errorLocation;
         private string? _message;
-        public InternalError<TToken> Error
+        internal InternalError<TToken> Error
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Pidgin
         // of the _expecteds taller than that height. Note that expecteds that were
         // committed may still be rolled back, if we're running in a nested transaction.
         // (When read bottom to top, _expectedBookmarks is monotonically increasing.)
-        // 
+        //
         // That's why I can't just use ImmutableSortedSet.Builder here:
         // I need to retain the order in which expecteds were added, so that I can drop them if necessary.
         //

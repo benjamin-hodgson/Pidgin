@@ -124,7 +124,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        public sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
         {
             var firstTime = true;
             var err = new InternalError<TToken>(
@@ -181,7 +181,7 @@ namespace Pidgin
             var list = parsers is ICollection<Parser<TToken, T>> coll
                 ? new List<Parser<TToken, T>>(coll.Count)
                 : new List<Parser<TToken, T>>();
-            
+
             foreach (var p in parsers)
             {
                 if (p == null)
