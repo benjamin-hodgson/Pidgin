@@ -145,7 +145,7 @@ namespace Pidgin
                     .Select(c => GetDigitValue(c))
                 : Parser<char>
                     .Token(c =>
-                        c >= '0' && c < '9'
+                        c >= '0' && c <= '9'
                         || c >= 'A' && c < 'A' + @base - 10
                         || c >= 'a' && c < 'a' + @base - 10
                     )
@@ -157,7 +157,7 @@ namespace Pidgin
                     .Select(c => GetDigitValueLong(c))
                 : Parser<char>
                     .Token(c =>
-                        c >= '0' && c < '9'
+                        c >= '0' && c <= '9'
                         || c >= 'A' && c < 'A' + @base - 10
                         || c >= 'a' && c < 'a' + @base - 10
                     )
