@@ -1,6 +1,29 @@
 Changelog
 =========
 
+2.3.0
+-----
+
+### Added
+
+* Nullability checks
+
+### Fixed
+
+* A bug in `HexNum`. Thank you @comaid for the contribution!
+* Some `ArrayPool` leaks.
+* A bug causing `Sequence` to fail when its type argument was `IComparable` but not `IEquatable`
+
+### Changed
+
+* Significant performance improvements when parsing from a non-chunked in-memory source such as a string or an array.
+* `SkipWhitespaces` has been rewritten --- it should now run much faster
+
+### Removed
+
+* Support for netstandard1.3
+
+
 2.2.0
 -----
 
