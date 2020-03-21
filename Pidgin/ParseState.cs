@@ -30,6 +30,9 @@ namespace Pidgin
         private int _bufferedCount;
         private SourcePos _bufferStartSourcePos;
 
+        private int _cachedLocation;
+        private SourcePos _cachedSourcePos;
+
         // a monotonic stack of locations.
         // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
         // because dropping the buffer's prefix would invalidate the bookmarks
@@ -55,6 +58,10 @@ namespace Pidgin
             _message = default;
             _expecteds = new PooledList<Expected<TToken>>();
             _expectedBookmarks = new PooledList<int>();
+
+            _cachedLocation = int.MaxValue;
+            _cachedSourcePos = new SourcePos(-1, -1);
+
         }
 
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
@@ -68,7 +75,7 @@ namespace Pidgin
             _span = _buffer.AsSpan();
             _bufferStartLocation = 0;
             _currentIndex = 0;
-            _bufferedCount = 0;
+            _bufferedCount = int.MaxValue;
             _bufferStartSourcePos = new SourcePos(1,1);
 
             _eof = default;
@@ -77,6 +84,9 @@ namespace Pidgin
             _message = default;
             _expecteds = new PooledList<Expected<TToken>>();
             _expectedBookmarks = new PooledList<int>();
+
+            _cachedLocation = -1;
+            _cachedSourcePos = new SourcePos(-1, -1);
 
             Buffer(0);
         }
@@ -241,11 +251,26 @@ namespace Pidgin
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the future. Please report this as a bug in Pidgin!");
             }
 
+#if false
+            // I left these codes for confirm the effect of my code
+            // I hope remove these code when release
+
             var pos = _bufferStartSourcePos;
             for (var i = 0; i < location - _bufferStartLocation; i++)
             {
                 pos = _posCalculator(_span![i], pos);
             }
+#else
+            // this cache not work when backtraking
+            var pos = (_cachedLocation < location) ? _cachedSourcePos : _bufferStartSourcePos;
+            for (var i = (_cachedLocation < location) ? _cachedLocation : 0; i < location - _bufferStartLocation; i++)
+            {
+                pos = _posCalculator(_span![i], pos);
+            }
+
+            _cachedLocation = location;
+            _cachedSourcePos = pos;
+#endif
             return pos;
         }
 

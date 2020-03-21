@@ -2484,5 +2484,25 @@ namespace Pidgin.Tests
                 AssertSuccess(parser.Parse("f"), new SourcePos(1,1), false);  // it should backtrack
             }
         }
+
+
+        // This is not test.
+        // Just a tool to confirm the effect of my change
+        [Fact]
+        public void BenchCurrnetPos()
+        {
+            var text = $@"\t\t\t\t{new string(' ', 60)}{Environment.NewLine}";
+
+            var parser = Map(
+                            (a, b) => Unit.Value,
+                            CurrentPos,
+                            Any
+                         ).Many();
+
+            var r = parser.Parse(string.Concat(Enumerable.Repeat(text, 500)));
+
+            Assert.True(r.Success);
+
+        }
     }
 }
