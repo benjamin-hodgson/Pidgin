@@ -2033,6 +2033,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken).Any
   nameWithType: Parser<TToken>.Any
   nameWithType.vb: Parser(Of TToken).Any
+- uid: Pidgin.Parser`1.CurrentOffset
+  name: CurrentOffset
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentOffset
+  commentId: P:Pidgin.Parser`1.CurrentOffset
+  fullName: Pidgin.Parser<TToken>.CurrentOffset
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentOffset
+  nameWithType: Parser<TToken>.CurrentOffset
+  nameWithType.vb: Parser(Of TToken).CurrentOffset
+- uid: Pidgin.Parser`1.CurrentOffset*
+  name: CurrentOffset
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentOffset_
+  commentId: Overload:Pidgin.Parser`1.CurrentOffset
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken>.CurrentOffset
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentOffset
+  nameWithType: Parser<TToken>.CurrentOffset
+  nameWithType.vb: Parser(Of TToken).CurrentOffset
 - uid: Pidgin.Parser`1.CurrentPos
   name: CurrentPos
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentPos
