@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Parser&lt;TToken, T&gt;
    ">
-    <meta name="generator" content="docfx 2.49.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -972,7 +972,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.MapWithInput%60%601(Pidgin.ReadOnlySpanFunc%7B%600%2C%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.MapWithInput.cs/#L22">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.MapWithInput.cs/#L23">View Source</a>
   </span>
   <a id="Pidgin_Parser_2_MapWithInput_" data-uid="Pidgin.Parser`2.MapWithInput*"></a>
   <h4 id="Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__" data-uid="Pidgin.Parser`2.MapWithInput``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})">MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</h4>
@@ -980,6 +980,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
 The selector function receives a <see cref="!:ReadOnlySpan&lt;TToken>"></see> as its first argument, and the result of the current parser as its second argument.
 The <see cref="!:ReadOnlySpan&lt;TToken>"></see> represents the sequence of input tokens which were consumed by the parser.</p>
 <p>This allows you to write &quot;pattern&quot;-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.</p>
+<p>This function is an alternative name for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__">Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2018,6 +2019,78 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
       <tr>
         <td><span class="parametername">U</span></td>
         <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Slice%60%601(Pidgin.ReadOnlySpanFunc%7B%600%2C%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Slice.cs/#L23">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Slice_" data-uid="Pidgin.Parser`2.Slice*"></a>
+  <h4 id="Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__" data-uid="Pidgin.Parser`2.Slice``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})">Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a parser which runs the current parser and applies a selector function.
+The selector function receives a <see cref="!:ReadOnlySpan&lt;TToken>"></see> as its first argument, and the result of the current parser as its second argument.
+The <see cref="!:ReadOnlySpan&lt;TToken>"></see> represents the sequence of input tokens which were consumed by the parser.</p>
+<p>This allows you to write &quot;pattern&quot;-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.</p>
+<p>This function is an alternative name for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__">MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ReadOnlySpanFunc-3.html">ReadOnlySpanFunc</a>&lt;TToken, T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A selector function which computes a result of type <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.
+The arguments of the selector function are a <see cref="!:ReadOnlySpan&lt;TToken>"></see> containing the sequence of input tokens which were consumed by this parser,
+and the result of this parser.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which runs the current parser and applies a selector function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The result type</p>
 </td>
       </tr>
     </tbody>

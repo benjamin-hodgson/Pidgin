@@ -1786,6 +1786,15 @@ references:
   isSpec: "True"
   fullName: Pidgin.Parser.Rec
   nameWithType: Parser.Rec
+- uid: Pidgin.Parser.Rec``2(Func{Pidgin.Parser{``0,``1},Pidgin.Parser{``0,``1}})
+  name: Rec<TToken, T>(Func<Parser<TToken, T>, Parser<TToken, T>>)
+  href: api/Pidgin.Parser.html#Pidgin_Parser_Rec__2_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___
+  commentId: M:Pidgin.Parser.Rec``2(Func{Pidgin.Parser{``0,``1},Pidgin.Parser{``0,``1}})
+  name.vb: Rec(Of TToken, T)(Func(Of Parser(Of TToken, T), Parser(Of TToken, T)))
+  fullName: Pidgin.Parser.Rec<TToken, T>(Func<Pidgin.Parser<TToken, T>, Pidgin.Parser<TToken, T>>)
+  fullName.vb: Pidgin.Parser.Rec(Of TToken, T)(Func(Of Pidgin.Parser(Of TToken, T), Pidgin.Parser(Of TToken, T)))
+  nameWithType: Parser.Rec<TToken, T>(Func<Parser<TToken, T>, Parser<TToken, T>>)
+  nameWithType.vb: Parser.Rec(Of TToken, T)(Func(Of Parser(Of TToken, T), Parser(Of TToken, T)))
 - uid: Pidgin.Parser.Rec``2(Func{Pidgin.Parser{``0,``1}})
   name: Rec<TToken, T>(Func<Parser<TToken, T>>)
   href: api/Pidgin.Parser.html#Pidgin_Parser_Rec__2_Func_Pidgin_Parser___0___1___
@@ -2742,6 +2751,24 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipUntil(Of U)(Pidgin.Parser(Of TToken, U))
   nameWithType: Parser<TToken, T>.SkipUntil<U>(Parser<TToken, U>)
   nameWithType.vb: Parser(Of TToken, T).SkipUntil(Of U)(Parser(Of TToken, U))
+- uid: Pidgin.Parser`2.Slice*
+  name: Slice
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Slice_
+  commentId: Overload:Pidgin.Parser`2.Slice
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken, T>.Slice
+  fullName.vb: Pidgin.Parser(Of TToken, T).Slice
+  nameWithType: Parser<TToken, T>.Slice
+  nameWithType.vb: Parser(Of TToken, T).Slice
+- uid: Pidgin.Parser`2.Slice``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})
+  name: Slice<U>(ReadOnlySpanFunc<TToken, T, U>)
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__
+  commentId: M:Pidgin.Parser`2.Slice``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})
+  name.vb: Slice(Of U)(ReadOnlySpanFunc(Of TToken, T, U))
+  fullName: Pidgin.Parser<TToken, T>.Slice<U>(Pidgin.ReadOnlySpanFunc<TToken, T, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).Slice(Of U)(Pidgin.ReadOnlySpanFunc(Of TToken, T, U))
+  nameWithType: Parser<TToken, T>.Slice<U>(ReadOnlySpanFunc<TToken, T, U>)
+  nameWithType.vb: Parser(Of TToken, T).Slice(Of U)(ReadOnlySpanFunc(Of TToken, T, U))
 - uid: Pidgin.Parser`2.Then*
   name: Then
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Then_
