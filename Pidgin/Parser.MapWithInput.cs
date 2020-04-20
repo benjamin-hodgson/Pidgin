@@ -10,6 +10,8 @@ namespace Pidgin
         /// The <see cref="ReadOnlySpan{TToken}"/> represents the sequence of input tokens which were consumed by the parser.
         /// 
         /// This allows you to write "pattern"-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.
+        /// 
+        /// This function is an alternative name for <see cref="Slice"/>.
         /// </summary>
         /// <param name="selector">
         /// A selector function which computes a result of type <typeparamref name="U"/>.
