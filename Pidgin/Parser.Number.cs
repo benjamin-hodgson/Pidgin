@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Pidgin
 {
     public static partial class Parser
@@ -216,7 +218,7 @@ namespace Pidgin
                         .Or(Parser<char>.Return(Unit.Value))
                 )
                 .MapWithInput((span, _) => {
-                    var success = double.TryParse(span.ToString(), out var result);
+                    var success = double.TryParse(span.ToString(), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
                     if (success)
                     {
                         return (double?)result;
