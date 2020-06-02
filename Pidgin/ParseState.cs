@@ -156,8 +156,8 @@ namespace Pidgin
                     : 0;
                 var keepFrom = _currentIndex - keepSeenLength;
                 var keepLength = _bufferedCount - keepFrom;
-                var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - keepFrom);
-                var newBufferLength = _bufferedCount + amountToRead;
+                var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - _bufferedCount);
+                var newBufferLength = keepLength + amountToRead;
 
                 //                  _currentIndex
                 //                        |
