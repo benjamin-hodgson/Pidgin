@@ -512,6 +512,13 @@ namespace Pidgin.Tests
             }
         }
 
+        [Fact, UseCulture("nb-NO")]
+        public void TestRealParserWithDifferentCultureInfo()
+        {
+            var parser = Real;
+            AssertSuccess(parser.Parse("12.345"), 12.345d, true);
+        }
+
         [Fact]
         public void TestSequence()
         {
