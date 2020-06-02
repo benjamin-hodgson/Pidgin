@@ -1,6 +1,19 @@
 Changelog
 =========
 
+2.4.0
+-----
+
+### Added
+
+* `CurrentOffset`, which returns the number of tokens consumed
+* A new overload of `Rec`: `Func<Parser<TToken, T> Rec(Func<Parser<TToken, T>, Parser<TToken, T>>)`
+* `Slice`, a synonym of `MapWithInput`
+
+### Fixed
+
+* The `Real` parser now uses the invariant culture. Thank you @SigridAndersen for the contribution!
+
 2.3.0
 -----
 
