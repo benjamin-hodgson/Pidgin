@@ -242,10 +242,7 @@ namespace Pidgin
                 ? _bookmarks[0]
                 : Location;
 
-            for (var i = _lastSourcePosLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
-            {
-                _lastSourcePos = _posCalculator(_span[i], _lastSourcePos);
-            }
+            _lastSourcePos = ComputeSourcePosAt(location);
             _lastSourcePosLocation = location;
         }
 
