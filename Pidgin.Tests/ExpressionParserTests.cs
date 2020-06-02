@@ -14,8 +14,12 @@ namespace Pidgin.Tests
         {
             public override bool Equals(object? other)
                 => other is Expr && this.Equals((Expr)other);
-            public bool Equals(Expr other)
+            public bool Equals(Expr? other)
             {
+                if (other == null)
+                {
+                    return false;
+                }
                 // I had a normal recursive-virtual-method implementation
                 // but it blew the stack on big inputs
                 var stack = new Stack<(Expr, Expr)>();
