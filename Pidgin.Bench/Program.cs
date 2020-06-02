@@ -4,9 +4,9 @@ namespace Pidgin.Bench
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).RunAll();
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
         }
     }
 }
