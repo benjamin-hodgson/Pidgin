@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FParsec" Version="1.0.3" />
+    <PackageReference Include="FParsec" Version="1.1.1" />
     <PackageReference Include="System.Collections.Immutable" Version="1.6.0" />
   </ItemGroup>
 

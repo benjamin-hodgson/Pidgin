@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Sprache" Version="2.2.0" />
+    <PackageReference Include="Sprache" Version="2.3.0" />
     <PackageReference Include="Superpower" Version="2.3.0" />
-    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
   </ItemGroup>
 </Project>
