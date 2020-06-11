@@ -34,7 +34,7 @@ namespace Pidgin.Tests
                 var expectedError = new ParseError<char>(
                     Maybe.Nothing<char>(),
                     false,
-                    new[] { new Expected<char>(ImmutableArray.Create<char>()) },
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create<char>())),
                     new SourcePos(1,1),
                     "message"
                 );
@@ -55,7 +55,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create('a')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -66,7 +66,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('a')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -81,7 +81,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,1),
                         null
                     ),
@@ -97,7 +97,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,1),
                         null
                     ),
@@ -108,7 +108,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,1),
                         null
                     ),
@@ -125,7 +125,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("any character") },
+                        ImmutableArray.Create(new Expected<char>("any character")),
                         new SourcePos(1,1),
                         null
                     ),
@@ -144,7 +144,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>("whitespace") },
+                        ImmutableArray.Create(new Expected<char>("whitespace")),
                         new SourcePos(1,1),
                         null
                     ),
@@ -155,7 +155,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("whitespace") },
+                        ImmutableArray.Create(new Expected<char>("whitespace")),
                         new SourcePos(1,1),
                         null
                     ),
@@ -178,7 +178,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -189,7 +189,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -209,7 +209,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>() },
+                        ImmutableArray.Create(new Expected<char>()),
                         new SourcePos(1,1),
                         null
                     ),
@@ -236,7 +236,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -247,7 +247,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -258,7 +258,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -269,7 +269,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -290,7 +290,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('g'),
                         false,
-                        new[] { new Expected<char>("hexadecimal number") },
+                        ImmutableArray.Create(new Expected<char>("hexadecimal number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -305,7 +305,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('8'),
                         false,
-                        new[] { new Expected<char>("octal number") },
+                        ImmutableArray.Create(new Expected<char>("octal number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -329,7 +329,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -340,7 +340,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -351,7 +351,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -362,7 +362,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("number") },
+                        ImmutableArray.Create(new Expected<char>("number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -426,7 +426,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -437,7 +437,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 1),
                         null
                     ),
@@ -448,7 +448,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -459,7 +459,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 2),
                         null
                     ),
@@ -470,7 +470,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 7),
                         null
                     ),
@@ -481,7 +481,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 7),
                         null
                     ),
@@ -492,7 +492,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 8),
                         null
                     ),
@@ -503,7 +503,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('e'),
                         false,
-                        new[] { new Expected<char>("real number") },
+                        ImmutableArray.Create(new Expected<char>("real number")),
                         new SourcePos(1, 7),
                         null
                     ),
@@ -531,7 +531,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -542,7 +542,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -553,7 +553,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -569,7 +569,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("f")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -580,7 +580,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("o")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("o"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -591,7 +591,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("f")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -616,7 +616,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -627,7 +627,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -638,7 +638,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -649,7 +649,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -670,7 +670,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,2),
                         null
                     ),
@@ -685,7 +685,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,2),
                         null
                     ),
@@ -700,7 +700,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,2),
                         null
                     ),
@@ -718,7 +718,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1,2),
                         null
                     ),
@@ -733,7 +733,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('y'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('x')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('x'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -744,7 +744,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('x'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('y')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('y'))),
                         new SourcePos(1,2),
                         null
                     ),
@@ -764,7 +764,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("b")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
                         new SourcePos(1,2),
                         null
                     ),
@@ -775,7 +775,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("a")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -790,7 +790,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("b")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
                         new SourcePos(1,2),
                         null
                     ),
@@ -801,7 +801,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("a")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -816,7 +816,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("b")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
                         new SourcePos(1,2),
                         null
                     ),
@@ -827,7 +827,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("a")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -847,7 +847,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("c")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("c"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -881,7 +881,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create<char>()), new Expected<char>(ImmutableArray.Create('a')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create<char>()), new Expected<char>(ImmutableArray.Create('a'))),
                         new SourcePos(1,1),
                         "test"
                     ),
@@ -897,7 +897,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('c'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -913,7 +913,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -928,7 +928,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -954,7 +954,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -971,7 +971,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -987,7 +987,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('q'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")), new Expected<char>(ImmutableArray.CreateRange("bar")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo")), new Expected<char>(ImmutableArray.CreateRange("bar"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -998,7 +998,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1023,15 +1023,14 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[]
-                        {
+                        ImmutableArray.Create(
                             new Expected<char>(ImmutableArray.Create('a')),
                             new Expected<char>(ImmutableArray.Create('A')),
                             new Expected<char>(ImmutableArray.Create('b')),
                             new Expected<char>(ImmutableArray.Create('B')),
                             new Expected<char>(ImmutableArray.Create('c')),
                             new Expected<char>(ImmutableArray.Create('C'))
-                        },
+                        ),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1051,15 +1050,14 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[]
-                        {
+                        ImmutableArray.Create(
                             new Expected<char>(ImmutableArray.Create('a')),
                             new Expected<char>(ImmutableArray.Create('A')),
                             new Expected<char>(ImmutableArray.Create('b')),
                             new Expected<char>(ImmutableArray.Create('B')),
                             new Expected<char>(ImmutableArray.Create('c')),
                             new Expected<char>(ImmutableArray.Create('C'))
-                        },
+                        ),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1083,7 +1081,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1, 1),
                         null
                     ),
@@ -1097,7 +1095,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('f'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1, 1),
                         null
                     ),
@@ -1113,7 +1111,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1, 1),
                         null
                     ),
@@ -1128,7 +1126,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new Expected<char>[] { },
+                        ImmutableArray<Expected<char>>.Empty,
                         new SourcePos(1, 2),
                         null
                     ),
@@ -1148,7 +1146,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1159,7 +1157,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('e'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1185,7 +1183,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1, 3),
                         null
                     ),
@@ -1205,7 +1203,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1, 3),
                         null
                     ),
@@ -1253,7 +1251,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('e'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("using")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("using"))),
                         new SourcePos(1,5),
                         null
                     ),
@@ -1264,7 +1262,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('1'),
                         false,
-                        new[] { new Expected<char>("identifier") },
+                        ImmutableArray.Create(new Expected<char>("identifier")),
                         new SourcePos(1,7),
                         null
                     ),
@@ -1287,7 +1285,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         false,
-                        new[] { new Expected<char>("result satisfying assertion") },
+                        ImmutableArray.Create(new Expected<char>("result satisfying assertion")),
                         new SourcePos(1,2),
                         "Assertion failed"
                     ),
@@ -1305,7 +1303,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         false,
-                        new[] { new Expected<char>("result satisfying assertion") },
+                        ImmutableArray.Create(new Expected<char>("result satisfying assertion")),
                         new SourcePos(1,2),
                         "Assertion failed"
                     ),
@@ -1329,7 +1327,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1340,7 +1338,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1401,7 +1399,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1412,7 +1410,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1445,7 +1443,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1456,7 +1454,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1470,7 +1468,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1481,7 +1479,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1504,7 +1502,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create('f')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1515,7 +1513,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('f')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1532,7 +1530,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create('f')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1543,7 +1541,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create('f')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1569,7 +1567,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1580,7 +1578,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1594,7 +1592,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1605,7 +1603,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1632,7 +1630,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1643,7 +1641,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1654,7 +1652,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1665,7 +1663,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1676,7 +1674,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1687,7 +1685,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1714,7 +1712,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1725,7 +1723,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1736,7 +1734,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1747,7 +1745,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1758,7 +1756,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1769,7 +1767,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1794,7 +1792,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just(' '),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1805,7 +1803,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just(' '),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1816,7 +1814,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1827,7 +1825,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1838,7 +1836,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1849,7 +1847,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1860,7 +1858,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1871,7 +1869,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1896,7 +1894,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just(' '),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1907,7 +1905,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just(' '),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1918,7 +1916,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1929,7 +1927,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1940,7 +1938,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -1951,7 +1949,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -1962,7 +1960,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -1973,7 +1971,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,6),
                         null
                     ),
@@ -1997,7 +1995,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,7),
                         null
                     ),
@@ -2021,7 +2019,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2032,7 +2030,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,5),
                         null
                     ),
@@ -2054,7 +2052,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2065,7 +2063,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2076,7 +2074,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2087,7 +2085,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,5),
                         null
                     ),
@@ -2111,7 +2109,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange(" ")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -2122,7 +2120,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2133,7 +2131,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange(" ")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -2144,7 +2142,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange(" ")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
                         new SourcePos(1,8),
                         null
                     ),
@@ -2166,7 +2164,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2177,7 +2175,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.Create(' ')) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' '))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -2188,7 +2186,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2199,7 +2197,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2210,7 +2208,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange(" ")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
                         new SourcePos(1,4),
                         null
                     ),
@@ -2221,7 +2219,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange(" ")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
                         new SourcePos(1,8),
                         null
                     ),
@@ -2250,7 +2248,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2261,7 +2259,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,7),
                         null
                     ),
@@ -2288,7 +2286,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         true,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2299,7 +2297,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2310,7 +2308,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2342,7 +2340,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("foo")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2366,7 +2364,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('a'),
                         false,
-                        new[] { new Expected<char>("digit") },
+                        ImmutableArray.Create(new Expected<char>("digit")),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2393,7 +2391,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('d'),
                         false,
-                        new[] { new Expected<char>(ImmutableArray.CreateRange("abc")) },
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("abc"))),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2426,7 +2424,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('b'),
                         false,
-                        new[] { new Expected<char>("bar") },
+                        ImmutableArray.Create(new Expected<char>("bar")),
                         new SourcePos(1,1),
                         null
                     ),
@@ -2437,7 +2435,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Just('u'),
                         false,
-                        new[] { new Expected<char>("bar") },
+                        ImmutableArray.Create(new Expected<char>("bar")),
                         new SourcePos(1,3),
                         null
                     ),
@@ -2466,7 +2464,7 @@ namespace Pidgin.Tests
                     new ParseError<char>(
                         Maybe.Nothing<char>(),
                         false,
-                        new[] { new Expected<char>("result of type TestCast2") },
+                        ImmutableArray.Create(new Expected<char>("result of type TestCast2")),
                         new SourcePos(1,1),
                         "Expected a TestCast2 but got a TestCast1"
                     ),

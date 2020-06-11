@@ -57,8 +57,6 @@ namespace Pidgin
             _unexpected = default;
             _errorLocation = default;
             _message = default;
-            _expecteds = new PooledList<Expected<TToken>>();
-            _expectedBookmarks = new PooledList<int>();
         }
 
         public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
@@ -81,8 +79,6 @@ namespace Pidgin
             _unexpected = default;
             _errorLocation = default;
             _message = default;
-            _expecteds = new PooledList<Expected<TToken>>();
-            _expectedBookmarks = new PooledList<int>();
 
             Buffer(0);
         }
@@ -274,8 +270,6 @@ namespace Pidgin
             }
             _stream?.Dispose();
             _bookmarks.Clear();
-            _expecteds.Clear();
-            _expectedBookmarks.Clear();
         }
     }
 }

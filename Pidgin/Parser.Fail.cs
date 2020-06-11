@@ -32,7 +32,7 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             state.Error = new InternalError<TToken>(
                 Maybe.Nothing<TToken>(),
@@ -40,7 +40,7 @@ namespace Pidgin
                 state.Location,
                 _message
             );
-            state.AddExpected(_expected);
+            expecteds.Add(_expected);
             return InternalResult.Failure<T>(false);
         }
     }

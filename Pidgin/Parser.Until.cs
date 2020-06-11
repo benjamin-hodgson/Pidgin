@@ -90,11 +90,11 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var ts = _keepResults ? new List<T>() : null;
 
-            var firstItemResult = _parser.Parse(ref state);
+            var firstItemResult = _parser.Parse(ref state, ref expecteds);
             if (!firstItemResult.Success)
             {
                 // state.Error set by _parser
@@ -106,46 +106,47 @@ namespace Pidgin
             }
             ts?.Add(firstItemResult.Value);
 
+            var terminatorExpecteds = new ExpectedCollector<TToken>();
+            var itemExpecteds = new ExpectedCollector<TToken>();
             while (true)
             {
-                state.BeginExpectedTran();
-                var terminatorResult = _terminator.Parse(ref state);
+                var terminatorResult = _terminator.Parse(ref state, ref terminatorExpecteds);
                 if (terminatorResult.Success)
                 {
-                    state.EndExpectedTran(false);
+                    terminatorExpecteds.Dispose();
+                    itemExpecteds.Dispose();
                     return InternalResult.Success<IEnumerable<T>?>(ts, true);
                 }
                 if (terminatorResult.ConsumedInput)
                 {
                     // state.Error set by _terminator
-                    state.EndExpectedTran(true);
+                    expecteds.Add(ref terminatorExpecteds);
+                    terminatorExpecteds.Dispose();
+                    itemExpecteds.Dispose();
                     return InternalResult.Failure<IEnumerable<T>?>(true);
                 }
 
-                state.BeginExpectedTran();
-                var itemResult = _parser.Parse(ref state);
+                var itemResult = _parser.Parse(ref state, ref itemExpecteds);
                 if (!itemResult.Success)
                 {
                     if (!itemResult.ConsumedInput)
                     {
                         // get the expected from both _terminator and _parser
-                        state.EndExpectedTran(true);
-                        state.EndExpectedTran(true);
+                        expecteds.Add(ref terminatorExpecteds);
+                        expecteds.Add(ref itemExpecteds);
                     }
                     else
                     {
                         // throw out the _terminator expecteds and keep only _parser
-                        var itemExpected = state.ExpectedTranState();
-                        state.EndExpectedTran(false);
-                        state.EndExpectedTran(false);
-                        state.AddExpected(itemExpected.AsSpan());
-                        itemExpected.Dispose(clearArray: true);
+                        expecteds.Add(ref itemExpecteds);
                     }
+                    terminatorExpecteds.Dispose();
+                    itemExpecteds.Dispose();
                     return InternalResult.Failure<IEnumerable<T>?>(true);
                 }
                 // throw out both sets of expecteds
-                state.EndExpectedTran(false);
-                state.EndExpectedTran(false);
+                terminatorExpecteds.Clear();
+                itemExpecteds.Clear();
                 if (!itemResult.ConsumedInput)
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");

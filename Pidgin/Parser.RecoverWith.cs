@@ -31,23 +31,21 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
-            state.BeginExpectedTran();
-            var result = _parser.Parse(ref state);
+            var childExpecteds = new ExpectedCollector<TToken>();
+            var result = _parser.Parse(ref state, ref childExpecteds);
             if (result.Success)
             {
-                state.EndExpectedTran(false);
+                childExpecteds.Dispose();
                 return result;
             }
-            var parserExpecteds = state.ExpectedTranState();
-            state.EndExpectedTran(false);
 
-            var recoverParser = _errorHandler(state.BuildError(parserExpecteds.AsEnumerable()));
+            var recoverParser = _errorHandler(state.BuildError(ref childExpecteds));
             
-            parserExpecteds.Dispose(clearArray: true);
+            childExpecteds.Dispose();
 
-            return recoverParser.Parse(ref state);
+            return recoverParser.Parse(ref state, ref expecteds);
         }
     }
 }

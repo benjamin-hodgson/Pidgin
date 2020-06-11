@@ -65,14 +65,14 @@ namespace Pidgin
             _count = count;
         }
 
-        internal override InternalResult<string> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<string> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
             var builder = new InplaceStringBuilder(_count);
 
             for (var _ = 0; _ < _count; _++)
             {
-                var result = _parser.Parse(ref state);
+                var result = _parser.Parse(ref state, ref expecteds);
                 consumedInput = consumedInput || result.ConsumedInput;
 
                 if (!result.Success)

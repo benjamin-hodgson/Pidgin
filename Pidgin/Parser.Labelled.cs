@@ -37,14 +37,14 @@ namespace Pidgin
             _expected = expected;
         }
 
-        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
-            state.BeginExpectedTran();
-            var result = _parser.Parse(ref state);
-            state.EndExpectedTran(false);
+            var childExpecteds = new ExpectedCollector<TToken>(true);
+            var result = _parser.Parse(ref state, ref childExpecteds);
+            childExpecteds.Dispose();
             if (!result.Success)
             {
-                state.AddExpected(_expected);
+                expecteds.Add(_expected);
             }
             return result;
         }

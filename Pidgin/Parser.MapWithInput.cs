@@ -41,12 +41,12 @@ namespace Pidgin
             _selector = selector;
         }
 
-        internal override InternalResult<U> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<U> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var start = state.Location;
 
             state.PushBookmark();  // don't discard input buffer
-            var result = _parser.Parse(ref state);
+            var result = _parser.Parse(ref state, ref expecteds);
 
 
             if (!result.Success)

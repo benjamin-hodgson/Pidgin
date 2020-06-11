@@ -82,7 +82,7 @@ namespace Pidgin
             _parsers = parsers;
         }
 
-        internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
             var ts = new T[_parsers.Length];
@@ -91,7 +91,7 @@ namespace Pidgin
             {
                 var p = _parsers[i];
             
-                var result = p.Parse(ref state);
+                var result = p.Parse(ref state, ref expecteds);
                 consumedInput = consumedInput || result.ConsumedInput;
             
                 if (!result.Success)
@@ -151,7 +151,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -175,7 +175,7 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                state.AddExpected(new Expected<TToken>(_valueTokens));
+                expecteds.Add(new Expected<TToken>(_valueTokens));
                 return InternalResult.Failure<TEnumerable>(errorPos > 0);
             }
 
@@ -189,7 +189,7 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                state.AddExpected(new Expected<TToken>(_valueTokens));
+                expecteds.Add(new Expected<TToken>(_valueTokens));
                 return InternalResult.Failure<TEnumerable>(span.Length > 0);
             }
 
@@ -211,7 +211,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -235,7 +235,7 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                state.AddExpected(new Expected<TToken>(_valueTokens));
+                expecteds.Add(new Expected<TToken>(_valueTokens));
                 return InternalResult.Failure<TEnumerable>(errorPos > 0);
             }
 
@@ -249,7 +249,7 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                state.AddExpected(new Expected<TToken>(_valueTokens));
+                expecteds.Add(new Expected<TToken>(_valueTokens));
                 return InternalResult.Failure<TEnumerable>(span.Length > 0);
             }
 

@@ -30,11 +30,11 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal override InternalResult<T> Parse(ref ParseState<TToken> state)
+        internal override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             state.PushBookmark();
 
-            var result = _parser.Parse(ref state);
+            var result = _parser.Parse(ref state, ref expecteds);
 
             if (result.Success)
             {

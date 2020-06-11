@@ -431,12 +431,12 @@ namespace Pidgin
             _p1 = parser1;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
@@ -475,19 +475,19 @@ namespace Pidgin
             _p2 = parser2;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
@@ -531,26 +531,26 @@ namespace Pidgin
             _p3 = parser3;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
@@ -599,33 +599,33 @@ namespace Pidgin
             _p4 = parser4;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result4 = _p4.Parse(ref state);
+            var result4 = _p4.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result4.ConsumedInput;
             if (!result4.Success)
             {
@@ -679,40 +679,40 @@ namespace Pidgin
             _p5 = parser5;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result4 = _p4.Parse(ref state);
+            var result4 = _p4.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result4.ConsumedInput;
             if (!result4.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result5 = _p5.Parse(ref state);
+            var result5 = _p5.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result5.ConsumedInput;
             if (!result5.Success)
             {
@@ -771,47 +771,47 @@ namespace Pidgin
             _p6 = parser6;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result4 = _p4.Parse(ref state);
+            var result4 = _p4.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result4.ConsumedInput;
             if (!result4.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result5 = _p5.Parse(ref state);
+            var result5 = _p5.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result5.ConsumedInput;
             if (!result5.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result6 = _p6.Parse(ref state);
+            var result6 = _p6.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result6.ConsumedInput;
             if (!result6.Success)
             {
@@ -875,54 +875,54 @@ namespace Pidgin
             _p7 = parser7;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result4 = _p4.Parse(ref state);
+            var result4 = _p4.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result4.ConsumedInput;
             if (!result4.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result5 = _p5.Parse(ref state);
+            var result5 = _p5.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result5.ConsumedInput;
             if (!result5.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result6 = _p6.Parse(ref state);
+            var result6 = _p6.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result6.ConsumedInput;
             if (!result6.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result7 = _p7.Parse(ref state);
+            var result7 = _p7.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result7.ConsumedInput;
             if (!result7.Success)
             {
@@ -991,61 +991,61 @@ namespace Pidgin
             _p8 = parser8;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
             var consumedInput = false;
 
             
-            var result1 = _p1.Parse(ref state);
+            var result1 = _p1.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result1.ConsumedInput;
             if (!result1.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result2 = _p2.Parse(ref state);
+            var result2 = _p2.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result2.ConsumedInput;
             if (!result2.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result3 = _p3.Parse(ref state);
+            var result3 = _p3.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result3.ConsumedInput;
             if (!result3.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result4 = _p4.Parse(ref state);
+            var result4 = _p4.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result4.ConsumedInput;
             if (!result4.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result5 = _p5.Parse(ref state);
+            var result5 = _p5.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result5.ConsumedInput;
             if (!result5.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result6 = _p6.Parse(ref state);
+            var result6 = _p6.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result6.ConsumedInput;
             if (!result6.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result7 = _p7.Parse(ref state);
+            var result7 = _p7.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result7.ConsumedInput;
             if (!result7.Success)
             {
                 return InternalResult.Failure<R>(consumedInput);
             }
 
-            var result8 = _p8.Parse(ref state);
+            var result8 = _p8.Parse(ref state, ref expecteds);
             consumedInput = consumedInput || result8.ConsumedInput;
             if (!result8.Success)
             {

@@ -57,9 +57,9 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state)
+        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
-            var result = _parser.Parse(ref state);
+            var result = _parser.Parse(ref state, ref expecteds);
             if (!result.Success)
             {
                 // state.Error set by _parser
@@ -67,7 +67,7 @@ namespace Pidgin
             }
 
             var nextParser = _func(result.Value);
-            var result2 = nextParser.Parse(ref state);
+            var result2 = nextParser.Parse(ref state, ref expecteds);
             if (!result2.Success)
             {
                 // state.Error set by nextParser

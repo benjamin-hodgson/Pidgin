@@ -38,7 +38,7 @@ namespace Pidgin
         /// <returns>A custom error message, or null if the error was created without a custom error message</returns>
         public string? Message { get; }
 
-        internal ParseError(Maybe<TToken> unexpected, bool eof, Expected<TToken>[] expected, SourcePos errorPos, string? message)
+        internal ParseError(Maybe<TToken> unexpected, bool eof, ImmutableArray<Expected<TToken>> expected, SourcePos errorPos, string? message)
         {
             Unexpected = unexpected;
             EOF = eof;
