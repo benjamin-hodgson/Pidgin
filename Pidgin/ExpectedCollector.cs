@@ -13,6 +13,7 @@ namespace Pidgin
 #else
             !typeof(TToken).IsPrimitive;
 #endif
+        private static readonly Expected<TToken>[] _empty = new Expected<TToken>[]{};
 
         private bool _discard;
         private Expected<TToken>[]? _items;
@@ -59,7 +60,7 @@ namespace Pidgin
                 return;
             }
             EnsureCapacity(items._count);
-            Array.Copy(items._items ?? Array.Empty<Expected<TToken>>(), 0, _items!, _count, items._count);
+            Array.Copy(items._items ?? _empty, 0, _items!, _count, items._count);
             _count += items._count;
         }
         public void Clear()
@@ -67,7 +68,7 @@ namespace Pidgin
             _count = 0;
         }
         public ImmutableArray<Expected<TToken>> ToImmutableArray()
-            => (_items ?? Array.Empty<Expected<TToken>>()).Take(_count).Distinct().ToImmutableArray();
+            => ImmutableArray.Create(_items ?? _empty, 0, _count);
 
         private void EnsureCapacity(int count = 1)
         {
