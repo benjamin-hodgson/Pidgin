@@ -26,7 +26,7 @@ build:
   verbosity: minimal
 
 after_test:
-  - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj -- -f '*'
+  - cmd: dotnet run --configuration %CONFIGURATION% --project Pidgin.Bench\Pidgin.Bench.csproj -- -f *
   - cmd: msbuild Pidgin.sln /t:pack /p:Configuration=%CONFIGURATION% /p:IncludeSymbols=true /p:PackageOutputPath=..\nupkgs /v:Minimal
   - cmd: docfx Pidgin.Docs/docfx.json
 
