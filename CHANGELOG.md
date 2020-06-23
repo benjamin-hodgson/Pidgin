@@ -1,6 +1,17 @@
 Changelog
 =========
 
+2.5.0
+-----
+
+### Changed
+
+* Pidgin's assembly is now strong named.
+* Performance improvements to `CurrentPos`.
+* Internal simplifications to the error handling machinery.
+* Pidgin's PDBs are now distributed through nuget.org as a snupkg (not from smbsrc.net).
+
+
 2.4.0
 -----
 
