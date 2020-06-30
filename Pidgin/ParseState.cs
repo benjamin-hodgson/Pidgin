@@ -12,12 +12,7 @@ namespace Pidgin
     [StructLayout(LayoutKind.Auto)]
     internal ref partial struct ParseState<TToken>
     {
-        private static readonly bool _needsClear =
-#if NETSTANDARD21
-            System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
-#else
-            !typeof(TToken).IsPrimitive;
-#endif
+        private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
         private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
         private readonly ITokenStream<TToken>? _stream;

@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    
     <Authors>benjamin.hodgson</Authors>
     <Copyright>© Benjamin Hodgson, 2017</Copyright>
     <Description>A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.</Description>
@@ -12,8 +10,8 @@
     <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/benjamin-hodgson/Pidgin/blob/master/LICENSE</PackageLicenseUrl>
 
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
@@ -23,10 +21,6 @@
     
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <DefineConstants>$(DefineConstants);NETSTANDARD21</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

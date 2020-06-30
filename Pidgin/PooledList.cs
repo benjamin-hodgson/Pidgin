@@ -12,13 +12,7 @@ namespace Pidgin
     /// </summary>
     internal struct PooledList<T>
     {
-        private static readonly bool _needsClear =
-#if NETSTANDARD21
-            System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<T>();
-#else
-            !typeof(T).IsPrimitive;
-#endif
-
+        private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
         private const int InitialCapacity = 16;
         private T[]? _items;
         private int _count;
