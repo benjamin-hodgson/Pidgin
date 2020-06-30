@@ -431,20 +431,20 @@ namespace Pidgin
             _p1 = parser1;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value
-                )
+            result = _func(
+                result1
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -471,27 +471,28 @@ namespace Pidgin
             _p2 = parser2;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value
-                )
+            result = _func(
+                result1,
+                result2
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -522,34 +523,36 @@ namespace Pidgin
             _p3 = parser3;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -584,41 +587,44 @@ namespace Pidgin
             _p4 = parser4;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result4 = _p4.Parse(ref state, ref expecteds);
-            if (!result4.Success)
+            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            if (!success4)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3,
+                result4
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -657,48 +663,52 @@ namespace Pidgin
             _p5 = parser5;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result4 = _p4.Parse(ref state, ref expecteds);
-            if (!result4.Success)
+            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            if (!success4)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result5 = _p5.Parse(ref state, ref expecteds);
-            if (!result5.Success)
+            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            if (!success5)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3,
+                result4,
+                result5
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -741,55 +751,60 @@ namespace Pidgin
             _p6 = parser6;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result4 = _p4.Parse(ref state, ref expecteds);
-            if (!result4.Success)
+            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            if (!success4)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result5 = _p5.Parse(ref state, ref expecteds);
-            if (!result5.Success)
+            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            if (!success5)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result6 = _p6.Parse(ref state, ref expecteds);
-            if (!result6.Success)
+            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            if (!success6)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value,
-                    result6.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3,
+                result4,
+                result5,
+                result6
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -836,62 +851,68 @@ namespace Pidgin
             _p7 = parser7;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result4 = _p4.Parse(ref state, ref expecteds);
-            if (!result4.Success)
+            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            if (!success4)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result5 = _p5.Parse(ref state, ref expecteds);
-            if (!result5.Success)
+            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            if (!success5)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result6 = _p6.Parse(ref state, ref expecteds);
-            if (!result6.Success)
+            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            if (!success6)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result7 = _p7.Parse(ref state, ref expecteds);
-            if (!result7.Success)
+            var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+            if (!success7)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value,
-                    result6.Value,
-                    result7.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3,
+                result4,
+                result5,
+                result6,
+                result7
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -942,69 +963,76 @@ namespace Pidgin
             _p8 = parser8;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
             
-            var result1 = _p1.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result2 = _p2.Parse(ref state, ref expecteds);
-            if (!result2.Success)
+            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            if (!success2)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result3 = _p3.Parse(ref state, ref expecteds);
-            if (!result3.Success)
+            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            if (!success3)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result4 = _p4.Parse(ref state, ref expecteds);
-            if (!result4.Success)
+            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            if (!success4)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result5 = _p5.Parse(ref state, ref expecteds);
-            if (!result5.Success)
+            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            if (!success5)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result6 = _p6.Parse(ref state, ref expecteds);
-            if (!result6.Success)
+            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            if (!success6)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result7 = _p7.Parse(ref state, ref expecteds);
-            if (!result7.Success)
+            var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+            if (!success7)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var result8 = _p8.Parse(ref state, ref expecteds);
-            if (!result8.Success)
+            var success8 = _p8.TryParse(ref state, ref expecteds, out var result8);
+            if (!success8)
             {
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            return InternalResult.Success<R>(
-                _func(
-                    result1.Value,
-                    result2.Value,
-                    result3.Value,
-                    result4.Value,
-                    result5.Value,
-                    result6.Value,
-                    result7.Value,
-                    result8.Value
-                )
+            result = _func(
+                result1,
+                result2,
+                result3,
+                result4,
+                result5,
+                result6,
+                result7,
+                result8
             );
+            return true;
         }
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)

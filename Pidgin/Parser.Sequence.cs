@@ -82,7 +82,7 @@ namespace Pidgin
             _parsers = parsers;
         }
 
-        internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
         {
             var ts = new T[_parsers.Length];
             
@@ -90,17 +90,17 @@ namespace Pidgin
             {
                 var p = _parsers[i];
             
-                var result = p.Parse(ref state, ref expecteds);
+                var success = p.TryParse(ref state, ref expecteds, out ts[i]);
             
-                if (!result.Success)
+                if (!success)
                 {
-                    return InternalResult.Failure<IEnumerable<T>>();
+                    result = null;
+                    return false;
                 }
-            
-                ts[i] = result.Value;
             }
 
-            return InternalResult.Success<IEnumerable<T>>(ts);
+            result = ts;
+            return true;
         }
     }
 
@@ -149,7 +149,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -174,7 +174,8 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>();
+                result = default;
+                return false;
             }
 
             if (span.Length < _valueTokens.Length)
@@ -188,12 +189,14 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>();
+                result = default;
+                return false;
             }
 
             // OK
             state.Advance(_valueTokens.Length);
-            return InternalResult.Success<TEnumerable>(_value);
+            result = _value;
+            return true;
         }
     }
 
@@ -209,7 +212,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override InternalResult<TEnumerable> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -234,7 +237,8 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>();
+                result = default;
+                return false;
             }
 
             if (span.Length < _valueTokens.Length)
@@ -248,12 +252,14 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>();
+                result = default;
+                return false;
             }
 
             // OK
             state.Advance(_valueTokens.Length);
-            return InternalResult.Success<TEnumerable>(_value);
+            result = _value;
+            return true;
         }
     }
 }

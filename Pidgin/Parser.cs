@@ -30,6 +30,6 @@
         // Why pass the error by reference?
         // I previously passed Result around directly, which has an Error property,
         // but copying it around turned out to be too expensive because ParseError is a large struct
-        internal abstract InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds);
+        internal abstract bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result);
     }
 }

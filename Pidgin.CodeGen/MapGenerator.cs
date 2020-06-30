@@ -98,7 +98,7 @@ namespace Pidgin
             var parserParamNames = nums.Select(n => $"parser{n}");
             var parserFieldNames = nums.Select(n => $"_p{n}");
             var parserFieldAssignments = nums.Select(n => $"_p{n} = parser{n};");
-            var results = nums.Select(n => $"result{n}.Value");
+            var results = nums.Select(n => $"result{n}");
             var types = string.Join(", ", nums.Select(n => "T" + n));
             var parts = nums.Select(GenerateMethodBodyPart);
             var funcArgNames = nums.Select(n => "x" + n);
@@ -118,15 +118,14 @@ namespace Pidgin
             {string.Join($"{Environment.NewLine}            ", parserFieldAssignments)}
         }}
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {{
             {string.Join(Environment.NewLine, parts)}
 
-            return InternalResult.Success<R>(
-                _func(
-                    {string.Join($",{Environment.NewLine}                    ", results)}
-                )
+            result = _func(
+                {string.Join($",{Environment.NewLine}                ", results)}
             );
+            return true;
         }}
 
         internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
@@ -139,10 +138,11 @@ namespace Pidgin
 
         private static string GenerateMethodBodyPart(int num)
             => $@"
-            var result{num} = _p{num}.Parse(ref state, ref expecteds);
-            if (!result{num}.Success)
+            var success{num} = _p{num}.TryParse(ref state, ref expecteds, out var result{num});
+            if (!success{num})
             {{
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }}";
         
         private static string EnglishNumber(int num)

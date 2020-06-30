@@ -26,22 +26,23 @@ namespace Pidgin
             _factory = factory;
         }
 
-        internal override InternalResult<U> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out U result)
         {
-            var result1 = _parser.Parse(ref state, ref expecteds);
-            if (!result1.Success)
+            var success1 = _parser.TryParse(ref state, ref expecteds, out var result1);
+            if (!success1)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<U>();
+                result = default;
+                return false;
             }
 
             var chainer = _factory();
-            chainer.Apply(result1.Value);
+            chainer.Apply(result1);
 
             var lastStartLoc = state.Location;
             var childExpecteds = new ExpectedCollector<TToken>();
-            var result = _parser.Parse(ref state, ref childExpecteds);
-            while (result.Success)
+            var success = _parser.TryParse(ref state, ref childExpecteds, out var childResult);
+            while (success)
             {
                 var endLoc = state.Location;
                 childExpecteds.Clear();
@@ -51,10 +52,10 @@ namespace Pidgin
                     chainer.OnError();
                     throw new InvalidOperationException("Many() used with a parser which consumed no input");
                 }
-                chainer.Apply(result.Value);
+                chainer.Apply(childResult);
 
                 lastStartLoc = endLoc;
-                result = _parser.Parse(ref state, ref childExpecteds);
+                success = _parser.TryParse(ref state, ref childExpecteds, out childResult);
             }
             var lastParserConsumedInput = state.Location > lastStartLoc;
             expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
@@ -64,11 +65,12 @@ namespace Pidgin
             {
                 // state.Error set by _parser
                 chainer.OnError();
-                return InternalResult.Failure<U>();
+                result = default;
+                return false;
             }
             
-            var z = chainer.GetResult();
-            return InternalResult.Success<U>(z);
+            result = chainer.GetResult();
+            return true;
         }
     }
 }

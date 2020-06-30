@@ -115,23 +115,32 @@ namespace Pidgin
             _remainderParser = separator.Then(parser);
         }
 
-        internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
         {
-            var result = _parser.Parse(ref state, ref expecteds);
-            if (!result.Success)
+            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
+            if (!success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<IEnumerable<T>>();
+                result = null;
+                return false;
             }
-            return Rest(_remainderParser, ref state, ref expecteds, new List<T> { result.Value });
+            var list = new List<T> { result1 };
+            success = Rest(_remainderParser, ref state, ref expecteds, list);
+            if (!success)
+            {
+                result = null;
+                return false;
+            }
+            result = list;
+            return true;
         }
 
-        private InternalResult<IEnumerable<T>> Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, List<T> ts)
+        private bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, List<T> ts)
         {
             var lastStartingLoc = state.Location;
             var childExpecteds = new ExpectedCollector<TToken>();
-            var result = parser.Parse(ref state, ref childExpecteds);
-            while (result.Success)
+            var success = parser.TryParse(ref state, ref childExpecteds, out var result);
+            while (success)
             {
                 var endingLoc = state.Location;
                 childExpecteds.Clear();
@@ -142,21 +151,18 @@ namespace Pidgin
                     throw new InvalidOperationException("Many() used with a parser which consumed no input");
                 }
 
-                ts.Add(result.Value);
+                ts.Add(result);
 
                 lastStartingLoc = endingLoc;
-                result = parser.Parse(ref state, ref childExpecteds);
+                success = parser.TryParse(ref state, ref childExpecteds, out result);
             }
             var lastParserConsumedInput = state.Location > lastStartingLoc;
             expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
             childExpecteds.Dispose();
 
-            if (lastParserConsumedInput)  // the most recent parser failed after consuming input
-            {
-                // state.Error set by parser
-                return InternalResult.Failure<IEnumerable<T>>();
-            }
-            return InternalResult.Success<IEnumerable<T>>(ts);
+            // we fail if the most recent parser failed after consuming input.
+            // it sets state.Error for us
+            return !lastParserConsumedInput;
         }
     }
 
@@ -171,53 +177,61 @@ namespace Pidgin
             _separator = separator;
         }
 
-        internal override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
         {
-            var result = _parser.Parse(ref state, ref expecteds);
-            if (!result.Success)
+            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
+            if (!success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<IEnumerable<T>>();
+                result = null;
+                return false;
             }
-            var ts = new List<T> { result.Value };
+            var ts = new List<T> { result1 };
 
             var childExpecteds = new ExpectedCollector<TToken>();
             while (true)
             {
                 var sepStartLoc = state.Location;
-                var sepResult = _separator.Parse(ref state, ref childExpecteds);
+                var sepSuccess = _separator.TryParse(ref state, ref childExpecteds, out var _);
                 var sepConsumedInput = state.Location > sepStartLoc;
 
-                expecteds.AddIf(ref childExpecteds, !sepResult.Success && sepConsumedInput);
+                expecteds.AddIf(ref childExpecteds, !sepSuccess && sepConsumedInput);
                 childExpecteds.Clear();
 
-                if (!sepResult.Success)
+                if (!sepSuccess)
                 {
                     childExpecteds.Dispose();
                     if (sepConsumedInput)
                     {
                         // state.Error set by _separator
-                        return InternalResult.Failure<IEnumerable<T>>();
+                        result = null;
+                        return false;
                     }
-                    return InternalResult.Success<IEnumerable<T>>(ts);
+                    result = ts;
+                    return true;
                 }
 
 
                 var itemStartLoc = state.Location;
-                var itemResult = _parser.Parse(ref state, ref childExpecteds);
+                var itemSuccess = _parser.TryParse(ref state, ref childExpecteds, out var itemResult);
                 var itemConsumedInput = state.Location > itemStartLoc;
 
-                expecteds.AddIf(ref childExpecteds, !itemResult.Success && itemConsumedInput);
+                expecteds.AddIf(ref childExpecteds, !itemSuccess && itemConsumedInput);
                 childExpecteds.Clear();
 
-                if (!itemResult.Success)
+                if (!itemSuccess)
                 {
                     childExpecteds.Dispose();
-                    return itemConsumedInput
-                        ? InternalResult.Failure<IEnumerable<T>>()  // state.Error set by _parser
-                        : InternalResult.Success<IEnumerable<T>>(ts);
+                    if (itemConsumedInput)
+                    {
+                        // state.Error set by _parser
+                        result = null;
+                        return false;
+                    }
+                    result = ts;
+                    return true;
                 }
-                ts.Add(itemResult.Value);
+                ts.Add(itemResult);
             }
         }
     }

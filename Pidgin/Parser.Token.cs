@@ -51,7 +51,7 @@ namespace Pidgin
             _token = token;
         }
 
-        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TToken result)
         {
             if (!state.HasCurrent)
             {
@@ -62,7 +62,8 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<TToken>();
+                result = default;
+                return false;
             }
             var token = state.Current;
             if (!EqualityComparer<TToken>.Default.Equals(token, _token))
@@ -74,10 +75,12 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<TToken>();
+                result = default;
+                return false;
             }
             state.Advance();
-            return InternalResult.Success<TToken>(token);
+            result = token;
+            return true;
         }
     }
 
@@ -90,7 +93,7 @@ namespace Pidgin
             _predicate = predicate;
         }
 
-        internal sealed override InternalResult<TToken> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TToken result)
         {
             if (!state.HasCurrent)
             {
@@ -100,7 +103,8 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                return InternalResult.Failure<TToken>();
+                result = default;
+                return false;
             }
             var token = state.Current;
             if (!_predicate(token))
@@ -111,10 +115,12 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                return InternalResult.Failure<TToken>();
+                result = default;
+                return false;
             }
             state.Advance();
-            return InternalResult.Success<TToken>(token);
+            result = token;
+            return true;
         }
     }
 }

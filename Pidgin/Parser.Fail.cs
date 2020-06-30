@@ -32,7 +32,7 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
         {
             state.Error = new InternalError<TToken>(
                 Maybe.Nothing<TToken>(),
@@ -41,7 +41,8 @@ namespace Pidgin
                 _message
             );
             expecteds.Add(_expected);
-            return InternalResult.Failure<T>();
+            result = default;
+            return false;
         }
     }
 }

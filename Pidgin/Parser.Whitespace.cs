@@ -33,8 +33,9 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        internal override InternalResult<Unit> Parse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds)
+        internal override bool TryParse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds, out Unit result)
         {
+            result = Unit.Value;
             var chunk = state.LookAhead(32);
             while (chunk.Length > 0)
             {
@@ -43,13 +44,13 @@ namespace Pidgin
                     if (!char.IsWhiteSpace(chunk[i]))
                     {
                         state.Advance(i);
-                        return InternalResult.Success(Unit.Value);
+                        return true;
                     }
                 }
                 state.Advance(chunk.Length);
                 chunk = state.LookAhead(32);
             }
-            return InternalResult.Success(Unit.Value);
+            return true;
         }
     }
 }

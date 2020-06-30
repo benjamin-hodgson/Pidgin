@@ -124,16 +124,16 @@ namespace Pidgin
         {
             var startingLoc = state.Location;
             var expecteds = new ExpectedCollector<TToken>();
-            var internalResult = parser.Parse(ref state, ref expecteds);
+            var success = parser.TryParse(ref state, ref expecteds, out var result);
 
-            var result = internalResult.Success
-                ? new Result<TToken, T>(state.Location > startingLoc, internalResult.Value)
+            var result1 = success
+                ? new Result<TToken, T>(state.Location > startingLoc, result)
                 : new Result<TToken, T>(state.Location > startingLoc, state.BuildError(ref expecteds));
 
             expecteds.Dispose();
             state.Dispose();  // ensure we return the state's buffers to the buffer pool
 
-            return result;
+            return result1;
         }
 
 

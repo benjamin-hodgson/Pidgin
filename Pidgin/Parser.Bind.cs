@@ -56,21 +56,28 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {
-            var result = _parser.Parse(ref state, ref expecteds);
-            if (!result.Success)
+            var success = _parser.TryParse(ref state, ref expecteds, out var childResult);
+            if (!success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<R>();
+                result = default;
+                return false;
             }
 
-            var nextParser = _func(result.Value);
-            var result2 = nextParser.Parse(ref state, ref expecteds);
+            var nextParser = _func(childResult);
+            var nextSuccess = nextParser.TryParse(ref state, ref expecteds, out var nextResult);
 
-            return result2.Success
-                ? InternalResult.Success<R>(_result(result.Value, result2.Value))
-                : InternalResult.Failure<R>();  // state.Error set by nextParser
+            if (!nextSuccess)
+            {
+                // state.Error set by nextParser
+                result = default;
+                return false;
+            }
+
+            result = _result(childResult, nextResult);
+            return true;
         }
     }
 }

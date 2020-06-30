@@ -90,35 +90,37 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal override InternalResult<IEnumerable<T>?> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T>? result)
         {
             var ts = _keepResults ? new List<T>() : null;
 
             var firstItemStartLoc = state.Location;
-            var firstItemResult = _parser.Parse(ref state, ref expecteds);
+            var firstItemSuccess = _parser.TryParse(ref state, ref expecteds, out var result1);
 
-            if (!firstItemResult.Success)
+            if (!firstItemSuccess)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<IEnumerable<T>?>();
+                result = null;
+                return false;
             }
             if (state.Location <= firstItemStartLoc)
             {
                 throw new InvalidOperationException("Until() used with a parser which consumed no input");
             }
-            ts?.Add(firstItemResult.Value);
+            ts?.Add(result1);
 
             var terminatorExpecteds = new ExpectedCollector<TToken>();
             var itemExpecteds = new ExpectedCollector<TToken>();
             while (true)
             {
                 var terminatorStartLoc = state.Location;
-                var terminatorResult = _terminator.Parse(ref state, ref terminatorExpecteds);
-                if (terminatorResult.Success)
+                var terminatorSuccess = _terminator.TryParse(ref state, ref terminatorExpecteds, out var terminatorResult);
+                if (terminatorSuccess)
                 {
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Success<IEnumerable<T>?>(ts);
+                    result = ts;
+                    return true;
                 }
                 if (state.Location > terminatorStartLoc)
                 {
@@ -126,13 +128,14 @@ namespace Pidgin
                     expecteds.Add(ref terminatorExpecteds);
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Failure<IEnumerable<T>?>();
+                    result = null;
+                    return false;
                 }
 
                 var itemStartLoc = state.Location;
-                var itemResult = _parser.Parse(ref state, ref itemExpecteds);
+                var itemSuccess = _parser.TryParse(ref state, ref itemExpecteds, out var itemResult);
                 var itemConsumedInput = state.Location > itemStartLoc;
-                if (!itemResult.Success)
+                if (!itemSuccess)
                 {
                     if (!itemConsumedInput)
                     {
@@ -147,7 +150,8 @@ namespace Pidgin
                     }
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Failure<IEnumerable<T>?>();
+                    result = null;
+                    return false;
                 }
                 // throw out both sets of expecteds
                 terminatorExpecteds.Clear();
@@ -156,7 +160,7 @@ namespace Pidgin
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");
                 }
-                ts?.Add(itemResult.Value);
+                ts?.Add(itemResult);
             }
         }
     }

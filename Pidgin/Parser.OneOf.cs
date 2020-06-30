@@ -124,7 +124,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
         {
             var firstTime = true;
             var err = new InternalError<TToken>(
@@ -139,13 +139,13 @@ namespace Pidgin
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;
-                var thisResult = p.Parse(ref state, ref grandchildExpecteds);
-                if (thisResult.Success)
+                var success = p.TryParse(ref state, ref grandchildExpecteds, out result);
+                if (success)
                 {
                     // throw out all expecteds
                     grandchildExpecteds.Dispose();
                     childExpecteds.Dispose();
-                    return thisResult;
+                    return true;
                 }
 
                 // we'll usually return the error from the first parser that didn't backtrack,
@@ -157,7 +157,8 @@ namespace Pidgin
                     expecteds.Add(ref grandchildExpecteds);
                     childExpecteds.Dispose();
                     grandchildExpecteds.Dispose();
-                    return thisResult;
+                    result = default;
+                    return false;
                 }
 
                 childExpecteds.Add(ref grandchildExpecteds);
@@ -174,7 +175,8 @@ namespace Pidgin
             expecteds.Add(ref childExpecteds);
             childExpecteds.Dispose();
             grandchildExpecteds.Dispose();
-            return InternalResult.Failure<T>();
+            result = default;
+            return false;
         }
 
         internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)

@@ -41,27 +41,27 @@ namespace Pidgin
             _selector = selector;
         }
 
-        internal override InternalResult<U> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out U result)
         {
             var start = state.Location;
 
             state.PushBookmark();  // don't discard input buffer
-            var result = _parser.Parse(ref state, ref expecteds);
+            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
 
-
-            if (!result.Success)
+            if (!success)
             {
                 state.PopBookmark();
-                return InternalResult.Failure<U>();
+                result = default;
+                return false;
             }
 
 
             var delta = state.Location - start;
-            var val = _selector(state.LookBehind(delta), result.Value);
+            result = _selector(state.LookBehind(delta), result1);
 
             state.PopBookmark();
 
-            return InternalResult.Success<U>(val);
+            return true;
         }
     }
 }

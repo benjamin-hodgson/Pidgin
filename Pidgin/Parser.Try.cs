@@ -31,21 +31,21 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
         {
             // start buffering the input
             state.PushBookmark();
-            var result = _parser.Parse(ref state, ref expecteds);
-            if (!result.Success)
+            var success = _parser.TryParse(ref state, ref expecteds, out result);
+            if (!success)
             {
                 // return to the start of the buffer and discard the bookmark
                 state.Rewind();
-                return InternalResult.Failure<T>();
+                return false;
             }
 
             // discard the buffer
             state.PopBookmark();
-            return result;
+            return true;
         }
     }
 }

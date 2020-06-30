@@ -65,23 +65,25 @@ namespace Pidgin
             _count = count;
         }
 
-        internal override InternalResult<string> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out string result)
         {
             var builder = new InplaceStringBuilder(_count);
 
             for (var _ = 0; _ < _count; _++)
             {
-                var result = _parser.Parse(ref state, ref expecteds);
+                var success = _parser.TryParse(ref state, ref expecteds, out var result1);
 
-                if (!result.Success)
+                if (!success)
                 {
-                    return InternalResult.Failure<string>();
+                    result = null;
+                    return false;
                 }
 
-                builder.Append(result.Value);
+                builder.Append(result1);
             }
 
-            return InternalResult.Success(builder.ToString());
+            result = builder.ToString();
+            return true;
         }
     }
 }

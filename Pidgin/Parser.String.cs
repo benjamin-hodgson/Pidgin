@@ -57,7 +57,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override InternalResult<string> Parse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds)
+        internal sealed override bool TryParse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds, out string result)
         {
             var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 
@@ -82,7 +82,8 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<string>();
+                result = null;
+                return false;
             }
 
             if (span.Length < _value.Length)
@@ -96,12 +97,14 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<string>();
+                result = null;
+                return false;
             }
 
             // OK
             state.Advance(_value.Length);
-            return InternalResult.Success<string>(span.ToString());
+            result = span.ToString();
+            return true;
         }
     }
 }

@@ -94,7 +94,7 @@ namespace Pidgin
             _lazy = lazy;
         }
 
-        internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
-            => _lazy.Value.Parse(ref state, ref expecteds);
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+            => _lazy.Value.TryParse(ref state, ref expecteds, out result);
     }
 }
