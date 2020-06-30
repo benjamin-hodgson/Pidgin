@@ -97,7 +97,7 @@ namespace Pidgin
                     _message(val)
                 );
                 expecteds.Add(_expected);
-                return InternalResult.Failure<T>(result.ConsumedInput);
+                return InternalResult.Failure<T>();
             }
             return result;
         }

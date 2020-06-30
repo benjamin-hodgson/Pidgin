@@ -52,7 +52,7 @@ namespace Pidgin
             if (!result.Success)
             {
                 state.PopBookmark();
-                return InternalResult.Failure<U>(result.ConsumedInput);
+                return InternalResult.Failure<U>();
             }
 
 
@@ -61,7 +61,7 @@ namespace Pidgin
 
             state.PopBookmark();
 
-            return InternalResult.Success<U>(val, result.ConsumedInput);
+            return InternalResult.Success<U>(val);
         }
     }
 }

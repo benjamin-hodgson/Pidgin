@@ -41,7 +41,7 @@ namespace Pidgin
                 _message
             );
             expecteds.Add(_expected);
-            return InternalResult.Failure<T>(false);
+            return InternalResult.Failure<T>();
         }
     }
 }

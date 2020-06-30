@@ -40,7 +40,7 @@ namespace Pidgin
             {
                 // return to the start of the buffer and discard the bookmark
                 state.Rewind();
-                return InternalResult.Failure<T>(false);
+                return InternalResult.Failure<T>();
             }
 
             // discard the buffer

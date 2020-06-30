@@ -67,23 +67,21 @@ namespace Pidgin
 
         internal override InternalResult<string> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
-            var consumedInput = false;
             var builder = new InplaceStringBuilder(_count);
 
             for (var _ = 0; _ < _count; _++)
             {
                 var result = _parser.Parse(ref state, ref expecteds);
-                consumedInput = consumedInput || result.ConsumedInput;
 
                 if (!result.Success)
                 {
-                    return InternalResult.Failure<string>(consumedInput);
+                    return InternalResult.Failure<string>();
                 }
 
                 builder.Append(result.Value);
             }
 
-            return InternalResult.Success(builder.ToString(), consumedInput);
+            return InternalResult.Success(builder.ToString());
         }
     }
 }

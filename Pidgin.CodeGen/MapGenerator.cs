@@ -120,15 +120,12 @@ namespace Pidgin
 
         internal sealed override InternalResult<R> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {{
-            var consumedInput = false;
-
             {string.Join(Environment.NewLine, parts)}
 
             return InternalResult.Success<R>(
                 _func(
                     {string.Join($",{Environment.NewLine}                    ", results)}
-                ),
-                consumedInput
+                )
             );
         }}
 
@@ -143,10 +140,9 @@ namespace Pidgin
         private static string GenerateMethodBodyPart(int num)
             => $@"
             var result{num} = _p{num}.Parse(ref state, ref expecteds);
-            consumedInput = consumedInput || result{num}.ConsumedInput;
             if (!result{num}.Success)
             {{
-                return InternalResult.Failure<R>(consumedInput);
+                return InternalResult.Failure<R>();
             }}";
         
         private static string EnglishNumber(int num)

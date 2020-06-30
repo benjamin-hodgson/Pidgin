@@ -39,7 +39,7 @@ namespace Pidgin
             if (result.Success)
             {
                 state.Rewind();
-                return InternalResult.Success<T>(result.Value, false);
+                return InternalResult.Success<T>(result.Value);
             }
             state.PopBookmark();
             return result;

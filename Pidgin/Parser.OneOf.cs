@@ -138,6 +138,7 @@ namespace Pidgin
             var grandchildExpecteds = new ExpectedCollector<TToken>();  // the expecteds for the current loop iteration
             foreach (var p in _parsers)
             {
+                var thisStartLoc = state.Location;
                 var thisResult = p.Parse(ref state, ref grandchildExpecteds);
                 if (thisResult.Success)
                 {
@@ -150,7 +151,7 @@ namespace Pidgin
                 // we'll usually return the error from the first parser that didn't backtrack,
                 // even if other parsers had a longer match.
                 // There is some room for improvement here.
-                if (thisResult.ConsumedInput)
+                if (state.Location > thisStartLoc)
                 {
                     // throw out all expecteds except this one
                     expecteds.Add(ref grandchildExpecteds);
@@ -173,7 +174,7 @@ namespace Pidgin
             expecteds.Add(ref childExpecteds);
             childExpecteds.Dispose();
             grandchildExpecteds.Dispose();
-            return InternalResult.Failure<T>(false);
+            return InternalResult.Failure<T>();
         }
 
         internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)

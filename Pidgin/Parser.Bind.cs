@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Immutable;
 
 namespace Pidgin
 {
@@ -63,17 +62,15 @@ namespace Pidgin
             if (!result.Success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<R>(result.ConsumedInput);
+                return InternalResult.Failure<R>();
             }
 
             var nextParser = _func(result.Value);
             var result2 = nextParser.Parse(ref state, ref expecteds);
-            if (!result2.Success)
-            {
-                // state.Error set by nextParser
-                return InternalResult.Failure<R>(result.ConsumedInput || result2.ConsumedInput);
-            }
-            return InternalResult.Success<R>(_result(result.Value, result2.Value), result.ConsumedInput || result2.ConsumedInput);
+
+            return result2.Success
+                ? InternalResult.Success<R>(_result(result.Value, result2.Value))
+                : InternalResult.Failure<R>();  // state.Error set by nextParser
         }
     }
 }

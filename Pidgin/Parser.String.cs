@@ -82,7 +82,7 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<string>(errorPos > 0);
+                return InternalResult.Failure<string>();
             }
 
             if (span.Length < _value.Length)
@@ -96,12 +96,12 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<string>(span.Length > 0);
+                return InternalResult.Failure<string>();
             }
 
             // OK
             state.Advance(_value.Length);
-            return InternalResult.Success<string>(span.ToString(), _value.Length > 0);
+            return InternalResult.Success<string>(span.ToString());
         }
     }
 }

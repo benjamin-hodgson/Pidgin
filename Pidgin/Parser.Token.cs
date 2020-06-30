@@ -62,7 +62,7 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<TToken>(false);
+                return InternalResult.Failure<TToken>();
             }
             var token = state.Current;
             if (!EqualityComparer<TToken>.Default.Equals(token, _token))
@@ -74,10 +74,10 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(Expected);
-                return InternalResult.Failure<TToken>(false);
+                return InternalResult.Failure<TToken>();
             }
             state.Advance();
-            return InternalResult.Success<TToken>(token, true);
+            return InternalResult.Success<TToken>(token);
         }
     }
 
@@ -100,7 +100,7 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                return InternalResult.Failure<TToken>(false);
+                return InternalResult.Failure<TToken>();
             }
             var token = state.Current;
             if (!_predicate(token))
@@ -111,10 +111,10 @@ namespace Pidgin
                     state.Location,
                     null
                 );
-                return InternalResult.Failure<TToken>(false);
+                return InternalResult.Failure<TToken>();
             }
             state.Advance();
-            return InternalResult.Success<TToken>(token, true);
+            return InternalResult.Success<TToken>(token);
         }
     }
 }

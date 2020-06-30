@@ -94,13 +94,15 @@ namespace Pidgin
         {
             var ts = _keepResults ? new List<T>() : null;
 
+            var firstItemStartLoc = state.Location;
             var firstItemResult = _parser.Parse(ref state, ref expecteds);
+
             if (!firstItemResult.Success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<IEnumerable<T>?>(firstItemResult.ConsumedInput);
+                return InternalResult.Failure<IEnumerable<T>?>();
             }
-            if (!firstItemResult.ConsumedInput)
+            if (state.Location <= firstItemStartLoc)
             {
                 throw new InvalidOperationException("Until() used with a parser which consumed no input");
             }
@@ -110,26 +112,29 @@ namespace Pidgin
             var itemExpecteds = new ExpectedCollector<TToken>();
             while (true)
             {
+                var terminatorStartLoc = state.Location;
                 var terminatorResult = _terminator.Parse(ref state, ref terminatorExpecteds);
                 if (terminatorResult.Success)
                 {
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Success<IEnumerable<T>?>(ts, true);
+                    return InternalResult.Success<IEnumerable<T>?>(ts);
                 }
-                if (terminatorResult.ConsumedInput)
+                if (state.Location > terminatorStartLoc)
                 {
                     // state.Error set by _terminator
                     expecteds.Add(ref terminatorExpecteds);
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Failure<IEnumerable<T>?>(true);
+                    return InternalResult.Failure<IEnumerable<T>?>();
                 }
 
+                var itemStartLoc = state.Location;
                 var itemResult = _parser.Parse(ref state, ref itemExpecteds);
+                var itemConsumedInput = state.Location > itemStartLoc;
                 if (!itemResult.Success)
                 {
-                    if (!itemResult.ConsumedInput)
+                    if (!itemConsumedInput)
                     {
                         // get the expected from both _terminator and _parser
                         expecteds.Add(ref terminatorExpecteds);
@@ -142,12 +147,12 @@ namespace Pidgin
                     }
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
-                    return InternalResult.Failure<IEnumerable<T>?>(true);
+                    return InternalResult.Failure<IEnumerable<T>?>();
                 }
                 // throw out both sets of expecteds
                 terminatorExpecteds.Clear();
                 itemExpecteds.Clear();
-                if (!itemResult.ConsumedInput)
+                if (!itemConsumedInput)
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");
                 }

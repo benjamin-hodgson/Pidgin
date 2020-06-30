@@ -52,13 +52,10 @@ namespace Pidgin
                     startingLocation,
                     null
                 );
-                return InternalResult.Failure<Unit>(result.ConsumedInput);
+                return InternalResult.Failure<Unit>();
             }
 
-            return InternalResult.Success(
-                Unit.Value,
-                result.ConsumedInput
-            );
+            return InternalResult.Success(Unit.Value);
         }
     }
 }

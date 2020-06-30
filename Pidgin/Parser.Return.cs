@@ -22,6 +22,6 @@ namespace Pidgin
         }
 
         internal sealed override InternalResult<T> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
-            => InternalResult.Success<T>(_value, false);
+            => InternalResult.Success<T>(_value);
     }
 }

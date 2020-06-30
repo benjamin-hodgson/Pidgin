@@ -84,7 +84,6 @@ namespace Pidgin
 
         internal sealed override InternalResult<IEnumerable<T>> Parse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds)
         {
-            var consumedInput = false;
             var ts = new T[_parsers.Length];
             
             for (var i = 0; i < _parsers.Length; i++)
@@ -92,17 +91,16 @@ namespace Pidgin
                 var p = _parsers[i];
             
                 var result = p.Parse(ref state, ref expecteds);
-                consumedInput = consumedInput || result.ConsumedInput;
             
                 if (!result.Success)
                 {
-                    return InternalResult.Failure<IEnumerable<T>>(consumedInput);
+                    return InternalResult.Failure<IEnumerable<T>>();
                 }
             
                 ts[i] = result.Value;
             }
 
-            return InternalResult.Success<IEnumerable<T>>(ts, consumedInput);
+            return InternalResult.Success<IEnumerable<T>>(ts);
         }
     }
 
@@ -176,7 +174,7 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>(errorPos > 0);
+                return InternalResult.Failure<TEnumerable>();
             }
 
             if (span.Length < _valueTokens.Length)
@@ -190,12 +188,12 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>(span.Length > 0);
+                return InternalResult.Failure<TEnumerable>();
             }
 
             // OK
             state.Advance(_valueTokens.Length);
-            return InternalResult.Success<TEnumerable>(_value, _valueTokens.Length > 0);
+            return InternalResult.Success<TEnumerable>(_value);
         }
     }
 
@@ -236,7 +234,7 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>(errorPos > 0);
+                return InternalResult.Failure<TEnumerable>();
             }
 
             if (span.Length < _valueTokens.Length)
@@ -250,12 +248,12 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>(_valueTokens));
-                return InternalResult.Failure<TEnumerable>(span.Length > 0);
+                return InternalResult.Failure<TEnumerable>();
             }
 
             // OK
             state.Advance(_valueTokens.Length);
-            return InternalResult.Success<TEnumerable>(_value, _valueTokens.Length > 0);
+            return InternalResult.Success<TEnumerable>(_value);
         }
     }
 }

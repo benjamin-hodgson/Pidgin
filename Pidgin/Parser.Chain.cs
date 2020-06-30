@@ -32,40 +32,43 @@ namespace Pidgin
             if (!result1.Success)
             {
                 // state.Error set by _parser
-                return InternalResult.Failure<U>(result1.ConsumedInput);
+                return InternalResult.Failure<U>();
             }
 
             var chainer = _factory();
             chainer.Apply(result1.Value);
-            var consumedInput = result1.ConsumedInput;
 
+            var lastStartLoc = state.Location;
             var childExpecteds = new ExpectedCollector<TToken>();
             var result = _parser.Parse(ref state, ref childExpecteds);
             while (result.Success)
             {
+                var endLoc = state.Location;
                 childExpecteds.Clear();
-                if (!result.ConsumedInput)
+                if (endLoc <= lastStartLoc)
                 {
                     childExpecteds.Dispose();
                     chainer.OnError();
                     throw new InvalidOperationException("Many() used with a parser which consumed no input");
                 }
-                consumedInput = true;
                 chainer.Apply(result.Value);
 
+                lastStartLoc = endLoc;
                 result = _parser.Parse(ref state, ref childExpecteds);
             }
-            expecteds.AddIf(ref childExpecteds, result.ConsumedInput);
+            var lastParserConsumedInput = state.Location > lastStartLoc;
+            expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
             childExpecteds.Dispose();
 
-            if (result.ConsumedInput)  // the most recent parser failed after consuming input
+            if (lastParserConsumedInput)  // the most recent parser failed after consuming input
             {
                 // state.Error set by _parser
                 chainer.OnError();
-                return InternalResult.Failure<U>(true);
+                return InternalResult.Failure<U>();
             }
+            
             var z = chainer.GetResult();
-            return InternalResult.Success<U>(z, consumedInput);
+            return InternalResult.Success<U>(z);
         }
     }
 }

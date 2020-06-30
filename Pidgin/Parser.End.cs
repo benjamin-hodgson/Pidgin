@@ -22,9 +22,9 @@ namespace Pidgin
                     null
                 );
                 expecteds.Add(new Expected<TToken>());
-                return InternalResult.Failure<Unit>(false);
+                return InternalResult.Failure<Unit>();
             }
-            return InternalResult.Success(Unit.Value, false);
+            return InternalResult.Success(Unit.Value);
         }
     }
 }
