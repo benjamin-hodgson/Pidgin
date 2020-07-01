@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -31,11 +32,10 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var childExpecteds = new ExpectedCollector<TToken>();
-            var success = _parser.TryParse(ref state, ref childExpecteds, out result);
-            if (success)
+            if (_parser.TryParse(ref state, ref childExpecteds, out result))
             {
                 childExpecteds.Dispose();
                 return true;

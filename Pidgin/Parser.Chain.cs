@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -26,10 +27,9 @@ namespace Pidgin
             _factory = factory;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out U result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out U result)
         {
-            var success1 = _parser.TryParse(ref state, ref expecteds, out var result1);
-            if (!success1)
+            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = default;
@@ -41,8 +41,7 @@ namespace Pidgin
 
             var lastStartLoc = state.Location;
             var childExpecteds = new ExpectedCollector<TToken>();
-            var success = _parser.TryParse(ref state, ref childExpecteds, out var childResult);
-            while (success)
+            while (_parser.TryParse(ref state, ref childExpecteds, out var childResult))
             {
                 var endLoc = state.Location;
                 childExpecteds.Clear();
@@ -55,7 +54,6 @@ namespace Pidgin
                 chainer.Apply(childResult);
 
                 lastStartLoc = endLoc;
-                success = _parser.TryParse(ref state, ref childExpecteds, out childResult);
             }
             var lastParserConsumedInput = state.Location > lastStartLoc;
             expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);

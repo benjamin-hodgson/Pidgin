@@ -124,9 +124,8 @@ namespace Pidgin
         {
             var startingLoc = state.Location;
             var expecteds = new ExpectedCollector<TToken>();
-            var success = parser.TryParse(ref state, ref expecteds, out var result);
 
-            var result1 = success
+            var result1 = parser.TryParse(ref state, ref expecteds, out var result)
                 ? new Result<TToken, T>(state.Location > startingLoc, result)
                 : new Result<TToken, T>(state.Location > startingLoc, state.BuildError(ref expecteds));
 

@@ -2,6 +2,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin
@@ -124,7 +125,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var firstTime = true;
             var err = new InternalError<TToken>(
@@ -139,8 +140,8 @@ namespace Pidgin
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;
-                var success = p.TryParse(ref state, ref grandchildExpecteds, out result);
-                if (success)
+                
+                if (p.TryParse(ref state, ref grandchildExpecteds, out result))
                 {
                     // throw out all expecteds
                     grandchildExpecteds.Dispose();

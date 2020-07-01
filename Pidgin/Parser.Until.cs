@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -90,14 +91,13 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T>? result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T>? result)
         {
             var ts = _keepResults ? new List<T>() : null;
 
             var firstItemStartLoc = state.Location;
-            var firstItemSuccess = _parser.TryParse(ref state, ref expecteds, out var result1);
 
-            if (!firstItemSuccess)
+            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = null;
@@ -160,7 +160,7 @@ namespace Pidgin
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");
                 }
-                ts?.Add(itemResult);
+                ts?.Add(itemResult!);
             }
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -31,12 +32,11 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             // start buffering the input
             state.PushBookmark();
-            var success = _parser.TryParse(ref state, ref expecteds, out result);
-            if (!success)
+            if (!_parser.TryParse(ref state, ref expecteds, out result))
             {
                 // return to the start of the buffer and discard the bookmark
                 state.Rewind();

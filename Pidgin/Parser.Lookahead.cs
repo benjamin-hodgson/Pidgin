@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -30,19 +31,18 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             state.PushBookmark();
 
-            var success = _parser.TryParse(ref state, ref expecteds, out result);
-
-            if (success)
+            if (_parser.TryParse(ref state, ref expecteds, out result))
             {
                 state.Rewind();
                 return true;
             }
+            
             state.PopBookmark();
-            return success;
+            return false;
         }
     }
 }

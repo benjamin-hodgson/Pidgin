@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -73,7 +74,7 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var childExpecteds = new ExpectedCollector<TToken>();
 
@@ -87,20 +88,25 @@ namespace Pidgin
                 return false;
             }
 
-            if (!_predicate(result))
+            // result is not null hereafter
+
+            if (!_predicate(result!))
             {
                 state.Error = new InternalError<TToken>(
                     Maybe.Nothing<TToken>(),
                     false,
                     state.Location,
-                    _message(result)
+                    _message(result!)
                 );
                 expecteds.Add(_expected);
 
                 result = default;
                 return false;
             }
+
+            #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return true;
+            #pragma warning restore CS8762
         }
     }
 }

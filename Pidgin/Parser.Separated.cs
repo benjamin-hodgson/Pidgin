@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -115,18 +116,16 @@ namespace Pidgin
             _remainderParser = separator.Then(parser);
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
-            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
-            if (!success)
+            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = null;
                 return false;
             }
             var list = new List<T> { result1 };
-            success = Rest(_remainderParser, ref state, ref expecteds, list);
-            if (!success)
+            if (!Rest(_remainderParser, ref state, ref expecteds, list))
             {
                 result = null;
                 return false;
@@ -139,8 +138,7 @@ namespace Pidgin
         {
             var lastStartingLoc = state.Location;
             var childExpecteds = new ExpectedCollector<TToken>();
-            var success = parser.TryParse(ref state, ref childExpecteds, out var result);
-            while (success)
+            while (parser.TryParse(ref state, ref childExpecteds, out var result))
             {
                 var endingLoc = state.Location;
                 childExpecteds.Clear();
@@ -154,7 +152,6 @@ namespace Pidgin
                 ts.Add(result);
 
                 lastStartingLoc = endingLoc;
-                success = parser.TryParse(ref state, ref childExpecteds, out result);
             }
             var lastParserConsumedInput = state.Location > lastStartingLoc;
             expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
@@ -177,10 +174,9 @@ namespace Pidgin
             _separator = separator;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
-            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
-            if (!success)
+            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = null;
@@ -231,7 +227,7 @@ namespace Pidgin
                     result = ts;
                     return true;
                 }
-                ts.Add(itemResult);
+                ts.Add(itemResult!);
             }
         }
     }

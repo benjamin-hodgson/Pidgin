@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -37,16 +38,21 @@ namespace Pidgin
             _expected = expected;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var childExpecteds = new ExpectedCollector<TToken>(true);
             var success = _parser.TryParse(ref state, ref childExpecteds, out result);
-            childExpecteds.Dispose();
             if (!success)
             {
                 expecteds.Add(_expected);
             }
+            childExpecteds.Dispose();
+
+            // result is not null here
+
+            #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return success;
+            #pragma warning restore CS8762
         }
     }
 }
