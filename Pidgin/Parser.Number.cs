@@ -206,7 +206,7 @@ namespace Pidgin
         /// A parser which parses a floating point number with an optional sign.
         /// </summary>
         /// <returns>A parser which parses a floating point number with an optional sign</returns>
-        public static Parser<char, double> Real
+        public static Parser<char, double> Real { get; }
             = SignString
                 .Then(
                     // if we saw an integral part, the fractional part is optional
