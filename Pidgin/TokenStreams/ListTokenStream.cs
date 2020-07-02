@@ -16,12 +16,12 @@ namespace Pidgin.TokenStreams
             _input = value;
         }
 
-        public int ReadInto(TToken[] buffer, int startIndex, int length)
+        public int ReadInto(Span<TToken> buffer)
         {
-            var actualLength = Math.Min(_input.Count - _index, length);
+            var actualLength = Math.Min(_input.Count - _index, buffer.Length);
             for (var i = 0; i < actualLength; i++)
             {
-                buffer[startIndex + i] = _input[_index];
+                buffer[i] = _input[_index];
                 _index++;
             }
             return actualLength;

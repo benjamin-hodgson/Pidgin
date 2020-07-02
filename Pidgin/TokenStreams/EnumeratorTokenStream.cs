@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Pidgin.TokenStreams
@@ -13,18 +14,18 @@ namespace Pidgin.TokenStreams
         }
 
 
-        public int ReadInto(TToken[] buffer, int startIndex, int length)
+        public int ReadInto(Span<TToken> buffer)
         {
-            for (var i = 0; i < length; i++)
+            for (var i = 0; i < buffer.Length; i++)
             {
                 var hasNext = _input.MoveNext();
                 if (!hasNext)
                 {
                     return i;
                 }
-                buffer[startIndex + i] = _input.Current;
+                buffer[i] = _input.Current;
             }
-            return length;
+            return buffer.Length;
         }
 
         public void Dispose() { }

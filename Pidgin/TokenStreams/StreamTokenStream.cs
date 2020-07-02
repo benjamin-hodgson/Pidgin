@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Pidgin.TokenStreams
@@ -13,8 +14,7 @@ namespace Pidgin.TokenStreams
             _input = input;
         }
 
-        public int ReadInto(byte[] buffer, int startIndex, int length)
-            => _input.Read(buffer, startIndex, length);
+        public int ReadInto(Span<byte> buffer) => _input.Read(buffer);
 
         public void Dispose() { }
     }

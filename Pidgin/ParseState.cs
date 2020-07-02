@@ -194,7 +194,7 @@ namespace Pidgin
                 _bufferStartLocation += keepFrom;
                 _currentIndex = keepSeenLength;
                 _bufferedCount = keepLength;
-                _bufferedCount += _stream!.ReadInto(_buffer, _bufferedCount, amountToRead);
+                _bufferedCount += _stream!.ReadInto(_buffer.AsSpan().Slice(_bufferedCount, amountToRead));
             }
         }
         
