@@ -244,7 +244,7 @@ namespace Pidgin
 
         private SourcePos ComputeSourcePosAt(int location)
         {
-            if (location < _bufferStartLocation)
+            if (location < _lastSourcePosLocation)
             {
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the past. Please report this as a bug in Pidgin!");
             }
