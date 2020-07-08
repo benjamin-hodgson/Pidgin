@@ -40,7 +40,7 @@ namespace Pidgin
             var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
             state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
-            var childExpecteds = new ExpectedCollector<TToken>(true);
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>(), true);
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out var result1);
 

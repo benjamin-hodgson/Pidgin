@@ -135,8 +135,8 @@ namespace Pidgin
                 "OneOf had no arguments"
             );
 
-            var childExpecteds = new ExpectedCollector<TToken>();  // the expecteds for all loop iterations
-            var grandchildExpecteds = new ExpectedCollector<TToken>();  // the expecteds for the current loop iteration
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for all loop iterations
+            var grandchildExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for the current loop iteration
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;

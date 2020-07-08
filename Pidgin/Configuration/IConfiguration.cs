@@ -1,3 +1,5 @@
+using System;
+
 namespace Pidgin.Configuration
 {
     /// <summary>
@@ -7,11 +9,13 @@ namespace Pidgin.Configuration
     public interface IConfiguration<TToken>
     {
         /// <summary>
-        /// Returns a new <see cref="SourcePos"/> representing the position after consuming <paramref name="token"/>.
+        /// A function which can compute a new <see cref="SourcePos"/> representing the position after consuming a token.
         /// </summary>
-        /// <param name="token">The token which was consumed</param>
-        /// <param name="previous">The source position before consuming <paramref name="token"/>.</param>
-        /// <returns>The position after consuming <paramref name="token"/>.</returns>
-        SourcePos CalculateSourcePos(TToken token, SourcePos previous);
+        Func<TToken, SourcePos, SourcePos> SourcePosCalculator { get; }
+
+        /// <summary>
+        /// The <see cref="IArrayPoolProvider"/>
+        /// </summary>
+        IArrayPoolProvider ArrayPoolProvider { get; }
     }
 }

@@ -15,7 +15,9 @@ namespace Pidgin
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
-        private readonly IConfiguration<TToken> _configuration;
+        public IConfiguration<TToken> Configuration { get; }
+        private readonly Func<TToken, SourcePos, SourcePos> _sourcePosCalculator;
+        private readonly ArrayPool<TToken>? _arrayPool;
         private readonly ITokenStream<TToken>? _stream;
         private readonly int _bufferChunkSize;
 
@@ -35,8 +37,10 @@ namespace Pidgin
 
         public ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
-            _configuration = configuration;
-            _bookmarks = new PooledList<int>();
+            Configuration = configuration;
+            _sourcePosCalculator = Configuration.SourcePosCalculator;
+            _arrayPool = null;
+            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>(), 0);
             _stream = default;
 
             _bufferChunkSize = 0;
@@ -57,12 +61,14 @@ namespace Pidgin
 
         public ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
         {
-            _configuration = configuration;
-            _bookmarks = new PooledList<int>();
+            Configuration = configuration;
+            _sourcePosCalculator = Configuration.SourcePosCalculator;
+            _arrayPool = Configuration.ArrayPoolProvider.GetArrayPool<TToken>();
+            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
             _stream = stream;
 
             _bufferChunkSize = stream.ChunkSizeHint;
-            _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
+            _buffer = _arrayPool.Rent(_bufferChunkSize);
             _span = _buffer.AsSpan();
             _bufferStartLocation = 0;
             _currentIndex = 0;
@@ -176,11 +182,11 @@ namespace Pidgin
                 if (newBufferLength > _buffer!.Length)
                 {
                     // grow the buffer
-                    var newBuffer = ArrayPool<TToken>.Shared.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
+                    var newBuffer = _arrayPool!.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
 
                     Array.Copy(_buffer, keepFrom, newBuffer, 0, keepLength);
 
-                    ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
+                    _arrayPool.Return(_buffer, _needsClear);
                     _buffer = newBuffer;
                     _span = _buffer.AsSpan();
                 }
@@ -252,7 +258,7 @@ namespace Pidgin
             var pos = _lastSourcePos;
             for (var i = _lastSourcePosLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
             {
-                pos = _configuration.CalculateSourcePos(_span[i], pos);
+                pos = _sourcePosCalculator(_span[i], pos);
             }
             return pos;
         }
@@ -261,7 +267,7 @@ namespace Pidgin
         {
             if (_buffer != null)
             {
-                ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
+                _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }
             _stream?.Dispose();

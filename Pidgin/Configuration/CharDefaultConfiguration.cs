@@ -1,3 +1,5 @@
+using System;
+
 namespace Pidgin.Configuration
 {
     /// <summary>
@@ -13,8 +15,8 @@ namespace Pidgin.Configuration
         /// <summary>
         /// Handles newlines and tab stops
         /// </summary>
-        public override SourcePos CalculateSourcePos(char token, SourcePos previous)
-            => token == '\n'
+        public override Func<char, SourcePos, SourcePos> SourcePosCalculator { get; }
+            = (token, previous) => token == '\n'
                 ? previous.NewLine()
                 : token == '\t'
                     ? new SourcePos(previous.Line, previous.Col + 4)

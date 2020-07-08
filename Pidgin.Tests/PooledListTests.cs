@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using Xunit;
 
 namespace Pidgin.Tests
@@ -9,7 +10,7 @@ namespace Pidgin.Tests
         public void TerribleBugWhenAppendingString()
         {
             var expected = "longer than the capacity";
-            var builder = new PooledList<char>(1);
+            var builder = new PooledList<char>(ArrayPool<char>.Shared, 1);
             builder.AddRange(expected.AsSpan());
             Assert.Equal(expected, builder.AsEnumerable());
         }

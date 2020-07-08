@@ -1,3 +1,6 @@
+using System;
+using System.Buffers;
+
 namespace Pidgin.Configuration
 {
     /// <summary>
@@ -14,7 +17,12 @@ namespace Pidgin.Configuration
         /// <summary>
         /// Always increments the column by 1.
         /// </summary>
-        public virtual SourcePos CalculateSourcePos(TToken token, SourcePos previous)
-            => previous.IncrementCol();
+        public virtual Func<TToken, SourcePos, SourcePos> SourcePosCalculator { get; }
+            = (_, p) => p.IncrementCol();
+
+        /// <summary>
+        /// Always returns <see cref="DefaultArrayPoolProvider.Instance"/>.
+        /// </summary>
+        public virtual IArrayPoolProvider ArrayPoolProvider { get; } = DefaultArrayPoolProvider.Instance;
     }
 }

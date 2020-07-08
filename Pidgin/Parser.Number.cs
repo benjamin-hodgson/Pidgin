@@ -68,7 +68,7 @@ namespace Pidgin
         /// <returns>A parser which parses an integer without a sign.</returns>
         public static Parser<char, int> UnsignedInt(int @base)
             => DigitChar(@base)
-                .ChainAtLeastOnce<int, IntChainer>(() => new IntChainer(@base))
+                .ChainAtLeastOnce<int, IntChainer>(c => new IntChainer(@base))
                 .Labelled($"base-{@base} number");
 
         private struct IntChainer : IChainer<int, int>
@@ -115,7 +115,7 @@ namespace Pidgin
         /// <returns>A parser which parses a long integer without a sign.</returns>
         public static Parser<char, long> UnsignedLong(int @base)
             => DigitCharLong(@base)
-                .ChainAtLeastOnce<long, LongChainer>(() => new LongChainer(@base))
+                .ChainAtLeastOnce<long, LongChainer>(c => new LongChainer(@base))
                 .Labelled($"base-{@base} number");
 
         private struct LongChainer : IChainer<long, long>

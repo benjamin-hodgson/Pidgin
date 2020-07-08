@@ -109,8 +109,8 @@ namespace Pidgin
             }
             ts?.Add(result1);
 
-            var terminatorExpecteds = new ExpectedCollector<TToken>();
-            var itemExpecteds = new ExpectedCollector<TToken>();
+            var terminatorExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var itemExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (true)
             {
                 var terminatorStartLoc = state.Location;

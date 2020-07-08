@@ -137,7 +137,7 @@ namespace Pidgin
         private bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, List<T> ts)
         {
             var lastStartingLoc = state.Location;
-            var childExpecteds = new ExpectedCollector<TToken>();
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (parser.TryParse(ref state, ref childExpecteds, out var result))
             {
                 var endingLoc = state.Location;
@@ -184,7 +184,7 @@ namespace Pidgin
             }
             var ts = new List<T> { result1 };
 
-            var childExpecteds = new ExpectedCollector<TToken>();
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (true)
             {
                 var sepStartLoc = state.Location;

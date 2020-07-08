@@ -76,7 +76,7 @@ namespace Pidgin
 
         internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            var childExpecteds = new ExpectedCollector<TToken>();
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out result);
 
