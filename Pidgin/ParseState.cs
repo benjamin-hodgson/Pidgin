@@ -3,6 +3,7 @@ using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
+using Pidgin.Configuration;
 
 namespace Pidgin
 {
@@ -14,7 +15,7 @@ namespace Pidgin
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
-        private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
+        private readonly IConfiguration<TToken> _configuration;
         private readonly ITokenStream<TToken>? _stream;
         private readonly int _bufferChunkSize;
 
@@ -32,9 +33,9 @@ namespace Pidgin
         // because dropping the buffer's prefix would invalidate the bookmarks
         private PooledList<int> _bookmarks;
 
-        public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ReadOnlySpan<TToken> span)
+        public ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
-            _posCalculator = posCalculator;
+            _configuration = configuration;
             _bookmarks = new PooledList<int>();
             _stream = default;
 
@@ -54,9 +55,9 @@ namespace Pidgin
             _message = default;
         }
 
-        public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
+        public ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
         {
-            _posCalculator = posCalculator;
+            _configuration = configuration;
             _bookmarks = new PooledList<int>();
             _stream = stream;
 
@@ -251,7 +252,7 @@ namespace Pidgin
             var pos = _lastSourcePos;
             for (var i = _lastSourcePosLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
             {
-                pos = _posCalculator(_span[i], pos);
+                pos = _configuration.CalculateSourcePos(_span[i], pos);
             }
             return pos;
         }
