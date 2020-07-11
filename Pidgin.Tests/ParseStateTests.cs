@@ -121,17 +121,25 @@ namespace Pidgin.Tests
         [Fact]
         public void TestComputeSourcePos_CharDefault()
         {
+            var input = "a\n\nb" // a partial chunk containing multiple newlines
+                + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // multiple whole chunks with multiple newlines
+                + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // ...
+                + "\t" + new string('a', Vector<short>.Count * 2 - 2) + "\t"  // multiple whole chunks with tabs and no newlines
+                + "aa";  // a partial chunk with no newlines
+
             {
-                var input = "a\n\nb" // a partial chunk containing multiple newlines
-                    + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // multiple whole chunks with multiple newlines
-                    + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // ...
-                    + "\t" + new string('a', Vector<short>.Count * 2 - 2) + "\t"  // multiple whole chunks with tabs and no newlines
-                    + "aa";  // a partial chunk with no newlines
-
-
                 var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
                 state.Advance(input.Length);
+
+                Assert.Equal(new SourcePos(7, Vector<short>.Count * 2 + 9), state.ComputeSourcePos());
+            }
+            {
+                var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
+
+                state.Advance(1);
+                state.ComputeSourcePos();
+                state.Advance(input.Length - 1);
 
                 Assert.Equal(new SourcePos(7, Vector<short>.Count * 2 + 9), state.ComputeSourcePos());
             }
