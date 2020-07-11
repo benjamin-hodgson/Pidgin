@@ -3,6 +3,7 @@ using System.IO;
 using Pidgin.TokenStreams;
 using Pidgin.Configuration;
 using Xunit;
+using System.Numerics;
 
 namespace Pidgin.Tests
 {
@@ -12,7 +13,7 @@ namespace Pidgin.Tests
         public void TestEmptyInput()
         {
             var input = "";
-            var state = new ParseState<char>(new DefaultConfiguration<char>(), ToStream(input));
+            var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
             Assert.Equal(new SourcePos(1, 1), state.ComputeSourcePos());
             Assert.False(state.HasCurrent);
@@ -22,7 +23,7 @@ namespace Pidgin.Tests
         public void TestAdvance()
         {
             var input = "foo";
-            var state = new ParseState<char>(new DefaultConfiguration<char>(), ToStream(input));
+            var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
             Consume('f', ref state);
             Consume('o', ref state);
@@ -35,7 +36,7 @@ namespace Pidgin.Tests
         public void TestDiscardChunk()
         {
             var input = ('f' + new string('o', ChunkSize));  // Length == ChunkSize + 1
-            var state = new ParseState<char>(new DefaultConfiguration<char>(), ToStream(input));
+            var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
             Consume('f', ref state);
             Consume(new string('o', ChunkSize), ref state);
@@ -104,10 +105,42 @@ namespace Pidgin.Tests
             UnalignedChunkTest(ChunkSize - 1);
         }
 
+        [Fact]
+        public void TestComputeSourcePos_Default()
+        {
+            {
+                var input = "a\n\nb";
+                var state = new ParseState<char>(DefaultConfiguration<char>.Instance, input.AsSpan());
+
+                state.Advance(input.Length);
+
+                Assert.Equal(new SourcePos(1, 5), state.ComputeSourcePos());
+            }
+        }
+
+        [Fact]
+        public void TestComputeSourcePos_CharDefault()
+        {
+            {
+                var input = "a\n\nb" // a partial chunk containing multiple newlines
+                    + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // multiple whole chunks with multiple newlines
+                    + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // ...
+                    + "\t" + new string('a', Vector<short>.Count * 2 - 2) + "\t"  // multiple whole chunks with tabs and no newlines
+                    + "aa";  // a partial chunk with no newlines
+
+
+                var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
+
+                state.Advance(input.Length);
+
+                Assert.Equal(new SourcePos(7, Vector<short>.Count * 2 + 9), state.ComputeSourcePos());
+            }
+        }
+
         private static void AlignedChunkTest(int inputLength)
         {
             var input = ('f' + new string('o', inputLength - 1));
-            var state = new ParseState<char>(new DefaultConfiguration<char>(), ToStream(input));
+            var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
             state.PushBookmark();
 
@@ -124,7 +157,7 @@ namespace Pidgin.Tests
         private static void UnalignedChunkTest(int inputLength)
         {
             var input = ("fa" + new string('o', inputLength - 2));
-            var state = new ParseState<char>(new DefaultConfiguration<char>(), ToStream(input));
+            var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
             Consume('f', ref state);
 

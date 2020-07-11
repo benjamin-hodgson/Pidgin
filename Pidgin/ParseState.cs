@@ -244,25 +244,6 @@ namespace Pidgin
             _lastSourcePosLocation = location;
         }
 
-        private SourcePos ComputeSourcePosAt(int location)
-        {
-            if (location < _lastSourcePosLocation)
-            {
-                throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the past. Please report this as a bug in Pidgin!");
-            }
-            if (location > _bufferStartLocation + _bufferedCount)
-            {
-                throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the future. Please report this as a bug in Pidgin!");
-            }
-
-            var pos = _lastSourcePos;
-            for (var i = _lastSourcePosLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
-            {
-                pos = _sourcePosCalculator(_span[i], pos);
-            }
-            return pos;
-        }
-
         public void Dispose()
         {
             if (_buffer != null)
