@@ -60,7 +60,6 @@ namespace Pidgin
                 {
                     break;
                 }
-                // 4 for tabs, 1 for other chars
                 var tabs = Vector.Equals(chunk, new Vector<short>((short)'\t'));  // -1 for \t; 0 otherwise
                 var charCounts = tabs * new Vector<short>(-3) + Vector<short>.One;  // 4 for \t; 1 otherwise
                 cols += Vector.Dot(charCounts, Vector<short>.One);
