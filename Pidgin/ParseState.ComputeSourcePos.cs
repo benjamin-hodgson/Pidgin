@@ -41,8 +41,6 @@ namespace Pidgin
 
         private SourcePos ComputeSourcePosAt_CharDefault(int location)
         {
-            ref ParseState<char> charState = ref CastToChar(ref this);
-
             // coerce _span to Span<short> (assuming TToken ~ char)
             var input = MemoryMarshal.CreateSpan(
                 ref Unsafe.As<TToken, short>(ref MemoryMarshal.GetReference(_span)),
@@ -107,23 +105,6 @@ namespace Pidgin
                 lines + _lastSourcePos.Line,
                 (lines == 0 ? _lastSourcePos.Col : 0) + cols
             );
-        }
-
-
-        private delegate ref ParseState<char> CastToCharDelegate(ref ParseState<TToken> state);
-        private static CastToCharDelegate? _castToChar;
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static ref ParseState<char> CastToChar(ref ParseState<TToken> state)
-        {
-            if (_castToChar == null)
-            {
-                var method = new DynamicMethod("", typeof(ParseState<char>).MakeByRefType(), new[] { typeof(ParseState<TToken>).MakeByRefType() });
-                var il = method.GetILGenerator();
-                il.Emit(OpCodes.Ldarg_0);
-                il.Emit(OpCodes.Ret);
-                _castToChar = (CastToCharDelegate)method.CreateDelegate(typeof(CastToCharDelegate));
-            }
-            return ref _castToChar(ref state);
         }
     }
 }
