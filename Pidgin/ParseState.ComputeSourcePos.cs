@@ -1,8 +1,6 @@
 using System.Runtime.CompilerServices;
-using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System;
-using System.Numerics;
 using Pidgin.Configuration;
 
 namespace Pidgin
@@ -41,40 +39,24 @@ namespace Pidgin
 
         private SourcePos ComputeSourcePosAt_CharDefault(int location)
         {
-            // coerce _span to Span<short> (assuming TToken ~ char)
+            // coerce _span to Span<char>
             var input = MemoryMarshal.CreateSpan(
-                ref Unsafe.As<TToken, short>(ref MemoryMarshal.GetReference(_span)),
+                ref Unsafe.As<TToken, char>(ref MemoryMarshal.GetReference(_span)),
                 _span.Length
             ).Slice(_lastSourcePosLocation - _bufferStartLocation, location - _lastSourcePosLocation);
 
             var lines = 0;
             var cols = 0;
 
-            var i = input.Length;
+            var i = input.Length - 1;
             // count cols after last newline
-            while (i >= Vector<short>.Count)
+            while (i >= 0 && lines == 0)
             {
-                var chunk = new Vector<short>(input.Slice(i - Vector<short>.Count));
-                var chunkContainsNewline = Vector.EqualsAny(chunk, new Vector<short>((short)'\n'));
-                if (chunkContainsNewline)
-                {
-                    break;
-                }
-                var tabs = Vector.Equals(chunk, new Vector<short>((short)'\t'));  // -1 for \t; 0 otherwise
-                var charCounts = tabs * new Vector<short>(-3) + Vector<short>.One;  // 4 for \t; 1 otherwise
-                cols += Vector.Dot(charCounts, Vector<short>.One);
-                i -= Vector<short>.Count;
-            }
-            // either this is the rightmost chunk containing a newline, or we are in the leftmost (partial) chunk
-            while (i >= Math.Max(i - Vector<short>.Count, 1) && lines == 0)
-            {
-                i--;
-                var c = input[i];
-                if (c == '\n')
+                if (input[i] == '\n')
                 {
                     lines++;
                 }
-                else if (c == '\t') 
+                else if (input[i] == '\t')
                 {
                     cols += 4;
                 }
@@ -82,23 +64,15 @@ namespace Pidgin
                 {
                     cols++;
                 }
-            }
-            // count remaining newlines
-            while (i >= Vector<short>.Count)
-            {
-                var chunk = new Vector<short>(input.Slice(i - Vector<short>.Count));
-                var newlines = Vector.Equals(chunk, new Vector<short>((short)'\n'));  // -1 for \n; 0 otherwise
-                lines += Vector.Dot(newlines, new Vector<short>(-1));
-                i -= Vector<short>.Count;
-            }
-            // count newlines in leftmost chunk
-            while (i >= 1)
-            {
                 i--;
+            }
+            while (i >= 0)
+            {
                 if (input[i] == '\n')
                 {
                     lines++;
                 }
+                i--;
             }
             return new SourcePos(
                 lines + _lastSourcePos.Line,
