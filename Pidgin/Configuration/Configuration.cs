@@ -51,7 +51,7 @@ namespace Pidgin.Configuration
         /// <returns>
         /// A copy of <paramref name="configuration"/> with its <see cref="IConfiguration{TToken}.ArrayPoolProvider"/> overridden.
         /// </returns>
-        public static IConfiguration<TToken> WithPosCalculator<TToken>(
+        public static IConfiguration<TToken> WithArrayPoolProvider<TToken>(
             this IConfiguration<TToken> configuration,
             IArrayPoolProvider arrayPoolProvider
         )
