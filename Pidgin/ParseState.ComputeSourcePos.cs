@@ -23,7 +23,7 @@ namespace Pidgin
             if (ReferenceEquals(_sourcePosCalculator, CharDefaultConfiguration.Instance.SourcePosCalculator))
             {
                 // TToken == char and _sourcePosCalculator is the default implementation
-                ComputeSourcePosAt_CharDefault(location);
+                return ComputeSourcePosAt_CharDefault(location);
             }
             else if (ReferenceEquals(_sourcePosCalculator, DefaultConfiguration<TToken>.Instance.SourcePosCalculator))
             {
@@ -50,7 +50,7 @@ namespace Pidgin
             var lines = 0;
             var cols = 0;
 
-            var i = input.Length - 1;
+            var i = input.Length;
             // count cols after last newline
             while (i >= Vector<short>.Count)
             {
@@ -65,9 +65,10 @@ namespace Pidgin
                 cols += Vector.Dot(charCounts, Vector<short>.One);
                 i -= Vector<short>.Count;
             }
-            // either this is the rightmost chunk containing a newline, or we are in the leftmost chunk
-            while (i >= Math.Max(i - Vector<short>.Count, 0))
+            // either this is the rightmost chunk containing a newline, or we are in the leftmost (partial) chunk
+            while (i >= Math.Max(i - Vector<short>.Count, 1) && lines == 0)
             {
+                i--;
                 var c = input[i];
                 if (c == '\n')
                 {
@@ -81,7 +82,6 @@ namespace Pidgin
                 {
                     cols++;
                 }
-                i--;
             }
             // count remaining newlines
             while (i >= Vector<short>.Count)
@@ -92,17 +92,17 @@ namespace Pidgin
                 i -= Vector<short>.Count;
             }
             // count newlines in leftmost chunk
-            while (i >= 0)
+            while (i >= 1)
             {
+                i--;
                 if (input[i] == '\n')
                 {
                     lines++;
                 }
-                i--;
             }
             return new SourcePos(
                 lines + _lastSourcePos.Line,
-                (lines == 0 ? _lastSourcePos.Col : 0) + cols
+                (lines == 0 ? _lastSourcePos.Col : 1) + cols
             );
         }
     }
