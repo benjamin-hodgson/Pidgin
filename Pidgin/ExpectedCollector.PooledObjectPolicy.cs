@@ -5,7 +5,7 @@ namespace Pidgin
 {
     internal partial class ExpectedCollector<TToken>
     {
-        public class PooledObjectPolicy : IPooledObjectPolicy<ExpectedCollector<TToken>>
+        public class PooledObjectPolicy : PooledObjectPolicy<ExpectedCollector<TToken>>
         {
             private ArrayPool<Expected<TToken>> _arrayPool;
 
@@ -14,9 +14,9 @@ namespace Pidgin
                 _arrayPool = arrayPool;
             }
 
-            public ExpectedCollector<TToken> Create() => new ExpectedCollector<TToken>(_arrayPool);
+            public override ExpectedCollector<TToken> Create() => new ExpectedCollector<TToken>(_arrayPool);
 
-            public bool Return(ExpectedCollector<TToken> obj)
+            public override bool Return(ExpectedCollector<TToken> obj)
             {
                 // todo: can we return the array to the pool less frequently?
                 obj.Dispose();
