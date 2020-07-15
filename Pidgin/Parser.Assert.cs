@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -74,14 +75,17 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var childExpecteds = state.GetExpectedCollector();
 
-            var success = _parser.TryParse(ref state, ref childExpecteds, out result);
+            var success = _parser.TryParse(ref state, childExpecteds, out result);
 
-            expecteds.AddIf(ref childExpecteds, success);
-            childExpecteds.Dispose();
+            if (success)
+            {
+                expecteds.AddRange(childExpecteds);
+            }
+            state.ReturnExpectedCollector(childExpecteds);
 
             if (!success)
             {

@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Pidgin.TokenStreams;
 using Pidgin.Configuration;
+using Microsoft.Extensions.ObjectPool;
 
 namespace Pidgin
 {
@@ -35,6 +36,8 @@ namespace Pidgin
         // because dropping the buffer's prefix would invalidate the bookmarks
         private PooledList<int> _bookmarks;
 
+        private ObjectPool<ExpectedCollector<TToken>> _expectedCollectorPool;
+
         public ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
             Configuration = configuration;
@@ -57,6 +60,11 @@ namespace Pidgin
             _unexpected = default;
             _errorLocation = default;
             _message = default;
+
+            var pooledObjectedPolicy = new ExpectedCollector<TToken>.PooledObjectPolicy(
+                configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>()
+            );
+            _expectedCollectorPool = configuration.ObjectPoolProvider.Create(pooledObjectedPolicy);
         }
 
         public ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
@@ -82,6 +90,11 @@ namespace Pidgin
             _errorLocation = default;
             _message = default;
 
+            var pooledObjectedPolicy = new ExpectedCollector<TToken>.PooledObjectPolicy(
+                configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>()
+            );
+            _expectedCollectorPool = configuration.ObjectPoolProvider.Create(pooledObjectedPolicy);
+            
             Buffer(0);
         }
 

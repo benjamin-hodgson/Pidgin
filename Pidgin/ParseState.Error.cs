@@ -26,7 +26,12 @@ namespace Pidgin
                 _message = value.Message;
             }
         }
-        public ParseError<TToken> BuildError(ref ExpectedCollector<TToken> expecteds)
+        public ParseError<TToken> BuildError(ICollection<Expected<TToken>> expecteds)
             => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableArray(), ComputeSourcePosAt(_errorLocation), _message);
+
+        public ExpectedCollector<TToken> GetExpectedCollector()
+            => _expectedCollectorPool.Get();
+        public void ReturnExpectedCollector(ExpectedCollector<TToken> collector)
+            => _expectedCollectorPool.Return(collector);
     }
 }

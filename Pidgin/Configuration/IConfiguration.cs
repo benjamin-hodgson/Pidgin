@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.ObjectPool;
 
 namespace Pidgin.Configuration
 {
@@ -17,5 +18,10 @@ namespace Pidgin.Configuration
         /// The <see cref="IArrayPoolProvider"/>
         /// </summary>
         IArrayPoolProvider ArrayPoolProvider { get; }
+
+        /// <summary>
+        /// The <see cref="ObjectPoolProvider"/>
+        /// </summary>
+        ObjectPoolProvider ObjectPoolProvider { get; }
     }
 }

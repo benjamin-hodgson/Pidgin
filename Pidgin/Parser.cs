@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -32,6 +33,6 @@ namespace Pidgin
         // Why pass the error by reference?
         // I previously passed Result around directly, which has an Error property,
         // but copying it around turned out to be too expensive because ParseError is a large struct
-        internal abstract bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result);
+        internal abstract bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result);
     }
 }

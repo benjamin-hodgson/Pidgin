@@ -91,13 +91,13 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T>? result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T>? result)
         {
             var ts = _keepResults ? new List<T>() : null;
 
             var firstItemStartLoc = state.Location;
 
-            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+            if (!_parser.TryParse(ref state, expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = null;
@@ -109,47 +109,47 @@ namespace Pidgin
             }
             ts?.Add(result1);
 
-            var terminatorExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
-            var itemExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var terminatorExpecteds = state.GetExpectedCollector();
+            var itemExpecteds = state.GetExpectedCollector();
             while (true)
             {
                 var terminatorStartLoc = state.Location;
-                var terminatorSuccess = _terminator.TryParse(ref state, ref terminatorExpecteds, out var terminatorResult);
+                var terminatorSuccess = _terminator.TryParse(ref state, terminatorExpecteds, out var terminatorResult);
                 if (terminatorSuccess)
                 {
-                    terminatorExpecteds.Dispose();
-                    itemExpecteds.Dispose();
+                    state.ReturnExpectedCollector(terminatorExpecteds);
+                    state.ReturnExpectedCollector(itemExpecteds);
                     result = ts;
                     return true;
                 }
                 if (state.Location > terminatorStartLoc)
                 {
                     // state.Error set by _terminator
-                    expecteds.Add(ref terminatorExpecteds);
-                    terminatorExpecteds.Dispose();
-                    itemExpecteds.Dispose();
+                    expecteds.AddRange(terminatorExpecteds);
+                    state.ReturnExpectedCollector(terminatorExpecteds);
+                    state.ReturnExpectedCollector(itemExpecteds);
                     result = null;
                     return false;
                 }
 
                 var itemStartLoc = state.Location;
-                var itemSuccess = _parser.TryParse(ref state, ref itemExpecteds, out var itemResult);
+                var itemSuccess = _parser.TryParse(ref state, itemExpecteds, out var itemResult);
                 var itemConsumedInput = state.Location > itemStartLoc;
                 if (!itemSuccess)
                 {
                     if (!itemConsumedInput)
                     {
                         // get the expected from both _terminator and _parser
-                        expecteds.Add(ref terminatorExpecteds);
-                        expecteds.Add(ref itemExpecteds);
+                        expecteds.AddRange(terminatorExpecteds);
+                        expecteds.AddRange(itemExpecteds);
                     }
                     else
                     {
                         // throw out the _terminator expecteds and keep only _parser
-                        expecteds.Add(ref itemExpecteds);
+                        expecteds.AddRange(itemExpecteds);
                     }
-                    terminatorExpecteds.Dispose();
-                    itemExpecteds.Dispose();
+                    state.ReturnExpectedCollector(terminatorExpecteds);
+                    state.ReturnExpectedCollector(itemExpecteds);
                     result = null;
                     return false;
                 }

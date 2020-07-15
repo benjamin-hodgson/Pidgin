@@ -125,7 +125,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var firstTime = true;
             var err = new InternalError<TToken>(
@@ -135,17 +135,17 @@ namespace Pidgin
                 "OneOf had no arguments"
             );
 
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for all loop iterations
-            var grandchildExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for the current loop iteration
+            var childExpecteds = state.GetExpectedCollector();  // the expecteds for all loop iterations
+            var grandchildExpecteds = state.GetExpectedCollector();  // the expecteds for the current loop iteration
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;
                 
-                if (p.TryParse(ref state, ref grandchildExpecteds, out result))
+                if (p.TryParse(ref state, grandchildExpecteds, out result))
                 {
                     // throw out all expecteds
-                    grandchildExpecteds.Dispose();
-                    childExpecteds.Dispose();
+                    state.ReturnExpectedCollector(grandchildExpecteds);
+                    state.ReturnExpectedCollector(childExpecteds);
                     return true;
                 }
 
@@ -155,14 +155,14 @@ namespace Pidgin
                 if (state.Location > thisStartLoc)
                 {
                     // throw out all expecteds except this one
-                    expecteds.Add(ref grandchildExpecteds);
-                    childExpecteds.Dispose();
-                    grandchildExpecteds.Dispose();
+                    expecteds.AddRange(grandchildExpecteds);
+                    state.ReturnExpectedCollector(grandchildExpecteds);
+                    state.ReturnExpectedCollector(childExpecteds);
                     result = default;
                     return false;
                 }
 
-                childExpecteds.Add(ref grandchildExpecteds);
+                childExpecteds.AddRange(grandchildExpecteds);
                 grandchildExpecteds.Clear();
                 // choose the longest match, preferring the left-most error in a tie,
                 // except the first time (avoid returning "OneOf had no arguments").
@@ -173,9 +173,9 @@ namespace Pidgin
                 firstTime = false;
             }
             state.Error = err;
-            expecteds.Add(ref childExpecteds);
-            childExpecteds.Dispose();
-            grandchildExpecteds.Dispose();
+            expecteds.AddRange(childExpecteds);
+            state.ReturnExpectedCollector(grandchildExpecteds);
+            state.ReturnExpectedCollector(childExpecteds);
             result = default;
             return false;
         }

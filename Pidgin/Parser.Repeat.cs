@@ -66,13 +66,13 @@ namespace Pidgin
             _count = count;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out string result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out string result)
         {
             var builder = new InplaceStringBuilder(_count);
 
             for (var _ = 0; _ < _count; _++)
             {
-                var success = _parser.TryParse(ref state, ref expecteds, out var result1);
+                var success = _parser.TryParse(ref state, expecteds, out var result1);
 
                 if (!success)
                 {

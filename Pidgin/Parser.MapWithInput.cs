@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -42,13 +43,13 @@ namespace Pidgin
             _selector = selector;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out U result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
         {
             var start = state.Location;
 
             state.PushBookmark();  // don't discard input buffer
 
-            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+            if (!_parser.TryParse(ref state, expecteds, out var result1))
             {
                 state.PopBookmark();
                 result = default;

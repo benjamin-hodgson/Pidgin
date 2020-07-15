@@ -1,5 +1,6 @@
 #region GeneratedCode
 using System;
+using System.Collections.Generic;
 
 namespace Pidgin
 {
@@ -431,10 +432,10 @@ namespace Pidgin
             _p1 = parser1;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
@@ -471,17 +472,17 @@ namespace Pidgin
             _p2 = parser2;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
@@ -523,24 +524,24 @@ namespace Pidgin
             _p3 = parser3;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
@@ -587,31 +588,31 @@ namespace Pidgin
             _p4 = parser4;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
                 return false;
             }
 
-            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            var success4 = _p4.TryParse(ref state, expecteds, out var result4);
             if (!success4)
             {
                 result = default;
@@ -663,38 +664,38 @@ namespace Pidgin
             _p5 = parser5;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
                 return false;
             }
 
-            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            var success4 = _p4.TryParse(ref state, expecteds, out var result4);
             if (!success4)
             {
                 result = default;
                 return false;
             }
 
-            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            var success5 = _p5.TryParse(ref state, expecteds, out var result5);
             if (!success5)
             {
                 result = default;
@@ -751,45 +752,45 @@ namespace Pidgin
             _p6 = parser6;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
                 return false;
             }
 
-            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            var success4 = _p4.TryParse(ref state, expecteds, out var result4);
             if (!success4)
             {
                 result = default;
                 return false;
             }
 
-            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            var success5 = _p5.TryParse(ref state, expecteds, out var result5);
             if (!success5)
             {
                 result = default;
                 return false;
             }
 
-            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            var success6 = _p6.TryParse(ref state, expecteds, out var result6);
             if (!success6)
             {
                 result = default;
@@ -851,52 +852,52 @@ namespace Pidgin
             _p7 = parser7;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
                 return false;
             }
 
-            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            var success4 = _p4.TryParse(ref state, expecteds, out var result4);
             if (!success4)
             {
                 result = default;
                 return false;
             }
 
-            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            var success5 = _p5.TryParse(ref state, expecteds, out var result5);
             if (!success5)
             {
                 result = default;
                 return false;
             }
 
-            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            var success6 = _p6.TryParse(ref state, expecteds, out var result6);
             if (!success6)
             {
                 result = default;
                 return false;
             }
 
-            var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+            var success7 = _p7.TryParse(ref state, expecteds, out var result7);
             if (!success7)
             {
                 result = default;
@@ -963,59 +964,59 @@ namespace Pidgin
             _p8 = parser8;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
         {
             
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+            var success1 = _p1.TryParse(ref state, expecteds, out var result1);
             if (!success1)
             {
                 result = default;
                 return false;
             }
 
-            var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+            var success2 = _p2.TryParse(ref state, expecteds, out var result2);
             if (!success2)
             {
                 result = default;
                 return false;
             }
 
-            var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+            var success3 = _p3.TryParse(ref state, expecteds, out var result3);
             if (!success3)
             {
                 result = default;
                 return false;
             }
 
-            var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+            var success4 = _p4.TryParse(ref state, expecteds, out var result4);
             if (!success4)
             {
                 result = default;
                 return false;
             }
 
-            var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+            var success5 = _p5.TryParse(ref state, expecteds, out var result5);
             if (!success5)
             {
                 result = default;
                 return false;
             }
 
-            var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+            var success6 = _p6.TryParse(ref state, expecteds, out var result6);
             if (!success6)
             {
                 result = default;
                 return false;
             }
 
-            var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+            var success7 = _p7.TryParse(ref state, expecteds, out var result7);
             if (!success7)
             {
                 result = default;
                 return false;
             }
 
-            var success8 = _p8.TryParse(ref state, ref expecteds, out var result8);
+            var success8 = _p8.TryParse(ref state, expecteds, out var result8);
             if (!success8)
             {
                 result = default;
