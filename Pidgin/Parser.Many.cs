@@ -53,7 +53,7 @@ namespace Pidgin
             }
 
             return parser.AtLeastOncePooled()
-                .Select(sb => GetStringAndClear(sb));
+                .Select(sb => GetStringAndDispose(sb));
         }
         
         /// <summary>
@@ -90,18 +90,18 @@ namespace Pidgin
                 _list.AddRange(value.AsSpan());
             }
 
-            public string GetResult() => GetStringAndClear(_list);
+            public string GetResult() => GetStringAndDispose(_list);
 
             public void OnError()
             {
-                _list.Clear();
+                _list.Dispose();
             }
         }
 
-        private static string GetStringAndClear(PooledList<char> sb)
+        private static string GetStringAndDispose(PooledList<char> sb)
         {
             var str = sb.AsSpan().ToString();
-            sb.Clear();
+            sb.Dispose();
             return str;
         }
     }
@@ -198,7 +198,7 @@ namespace Pidgin
 
             public void OnError()
             {
-                _list.Clear();
+                _list.Dispose();
             }
         }
 

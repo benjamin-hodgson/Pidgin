@@ -21,7 +21,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out T result)
         {
             result = _value;
             return true;

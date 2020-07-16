@@ -177,7 +177,7 @@ namespace Pidgin.Tests
         {
             public AParser() { }
 
-            internal override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+            internal override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out T result)
             {
                 throw new NotImplementedException();
             }

@@ -74,13 +74,16 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out result);
 
-            expecteds.AddIf(ref childExpecteds, success);
+            if (success)
+            {
+                expecteds.AddRange(childExpecteds.AsSpan());
+            }
             childExpecteds.Dispose();
 
             if (!success)

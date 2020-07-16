@@ -28,7 +28,7 @@ namespace Pidgin
             _factory = factory;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out U result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
@@ -41,7 +41,7 @@ namespace Pidgin
             chainer.Apply(result1);
 
             var lastStartLoc = state.Location;
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (_parser.TryParse(ref state, ref childExpecteds, out var childResult))
             {
                 var endLoc = state.Location;
@@ -57,7 +57,11 @@ namespace Pidgin
                 lastStartLoc = endLoc;
             }
             var lastParserConsumedInput = state.Location > lastStartLoc;
-            expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
+            if (lastParserConsumedInput)
+            {
+                expecteds.AddRange(childExpecteds.AsSpan());
+
+            }
             childExpecteds.Dispose();
 
             if (lastParserConsumedInput)  // the most recent parser failed after consuming input

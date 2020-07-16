@@ -52,7 +52,7 @@ namespace Pidgin
             _token = token;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out TToken result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
         {
             if (!state.HasCurrent)
             {
@@ -94,7 +94,7 @@ namespace Pidgin
             _predicate = predicate;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out TToken result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
         {
             if (!state.HasCurrent)
             {

@@ -26,7 +26,14 @@ namespace Pidgin
                 _message = value.Message;
             }
         }
-        public ParseError<TToken> BuildError(ref ExpectedCollector<TToken> expecteds)
-            => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableArray(), ComputeSourcePosAt(_errorLocation), _message);
+        public ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
+        {
+            var builder = ImmutableArray.CreateBuilder<Expected<TToken>>(expecteds.Count);
+            foreach (var e in expecteds)
+            {
+                builder.Add(e);
+            }
+            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosAt(_errorLocation), _message);
+        }
     }
 }

@@ -125,7 +125,7 @@ namespace Pidgin
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ref ParseState<TToken> state)
         {
             var startingLoc = state.Location;
-            var expecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var expecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var result1 = parser.TryParse(ref state, ref expecteds, out var result)
                 ? new Result<TToken, T>(state.Location > startingLoc, result)

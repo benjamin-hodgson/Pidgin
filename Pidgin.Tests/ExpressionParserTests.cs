@@ -236,7 +236,8 @@ namespace Pidgin.Tests
             var expected = numbers
                 .Select(n => new Lit(n))
                 .Cast<Expr>()
-                .AggregateR((Expr?)null, (x, acc) => acc == null ? x : new Plus(x, acc));
+                .Reverse()
+                .Aggregate((Expr?)null, (acc, x) => acc == null ? x : new Plus(x, acc));
             AssertSuccess(
                 parser.Parse(input)!,
                 expected,

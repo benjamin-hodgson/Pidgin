@@ -116,7 +116,7 @@ namespace Pidgin
             _remainderParser = separator.Then(parser);
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
@@ -134,10 +134,10 @@ namespace Pidgin
             return true;
         }
 
-        private bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, List<T> ts)
+        private bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, List<T> ts)
         {
             var lastStartingLoc = state.Location;
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (parser.TryParse(ref state, ref childExpecteds, out var result))
             {
                 var endingLoc = state.Location;
@@ -154,7 +154,10 @@ namespace Pidgin
                 lastStartingLoc = endingLoc;
             }
             var lastParserConsumedInput = state.Location > lastStartingLoc;
-            expecteds.AddIf(ref childExpecteds, lastParserConsumedInput);
+            if (lastParserConsumedInput)
+            {
+                expecteds.AddRange(childExpecteds.AsSpan());
+            }
             childExpecteds.Dispose();
 
             // we fail if the most recent parser failed after consuming input.
@@ -174,7 +177,7 @@ namespace Pidgin
             _separator = separator;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
@@ -184,14 +187,17 @@ namespace Pidgin
             }
             var ts = new List<T> { result1 };
 
-            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (true)
             {
                 var sepStartLoc = state.Location;
                 var sepSuccess = _separator.TryParse(ref state, ref childExpecteds, out var _);
                 var sepConsumedInput = state.Location > sepStartLoc;
 
-                expecteds.AddIf(ref childExpecteds, !sepSuccess && sepConsumedInput);
+                if (!sepSuccess && sepConsumedInput)
+                {
+                    expecteds.AddRange(childExpecteds.AsSpan());
+                }
                 childExpecteds.Clear();
 
                 if (!sepSuccess)
@@ -212,7 +218,10 @@ namespace Pidgin
                 var itemSuccess = _parser.TryParse(ref state, ref childExpecteds, out var itemResult);
                 var itemConsumedInput = state.Location > itemStartLoc;
 
-                expecteds.AddIf(ref childExpecteds, !itemSuccess && itemConsumedInput);
+                if (!itemSuccess && itemConsumedInput)
+                {
+                    expecteds.AddRange(childExpecteds.AsSpan());
+                }
                 childExpecteds.Clear();
 
                 if (!itemSuccess)

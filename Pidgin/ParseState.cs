@@ -252,7 +252,7 @@ namespace Pidgin
                 _buffer = null;
             }
             _stream?.Dispose();
-            _bookmarks.Clear();
+            _bookmarks.Dispose();
         }
     }
 }

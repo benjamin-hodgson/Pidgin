@@ -13,7 +13,7 @@ namespace Pidgin
 
     internal sealed class EndParser<TToken> : Parser<TToken, Unit>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out Unit result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
         {
             if (state.HasCurrent)
             {

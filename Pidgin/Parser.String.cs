@@ -58,7 +58,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override bool TryParse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds, [MaybeNullWhen(false)] out string result)
+        internal sealed override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, [MaybeNullWhen(false)] out string result)
         {
             var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 

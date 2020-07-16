@@ -118,7 +118,7 @@ namespace Pidgin
             {string.Join($"{Environment.NewLine}            ", parserFieldAssignments)}
         }}
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {{
             {string.Join(Environment.NewLine, parts)}
 
