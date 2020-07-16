@@ -1,5 +1,5 @@
 using System;
-using Microsoft.Extensions.ObjectPool;
+using System.Buffers;
 
 namespace Pidgin.Configuration
 {
@@ -24,11 +24,5 @@ namespace Pidgin.Configuration
         /// Always returns <see cref="DefaultArrayPoolProvider.Instance"/>.
         /// </summary>
         public virtual IArrayPoolProvider ArrayPoolProvider { get; } = DefaultArrayPoolProvider.Instance;
-
-        /// <summary>
-        /// Always returns a <see cref="DefaultObjectPoolProvider"/>.
-        /// </summary>
-        // TODO: DefaultObjectPool has thread safety overhead. Can we make savings here?
-        public virtual ObjectPoolProvider ObjectPoolProvider { get; } = new DefaultObjectPoolProvider();
     }
 }

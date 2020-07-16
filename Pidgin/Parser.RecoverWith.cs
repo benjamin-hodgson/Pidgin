@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -33,20 +32,20 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            var childExpecteds = state.GetExpectedCollector();
-            if (_parser.TryParse(ref state, childExpecteds, out result))
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            if (_parser.TryParse(ref state, ref childExpecteds, out result))
             {
-                state.ReturnExpectedCollector(childExpecteds);
+                childExpecteds.Dispose();
                 return true;
             }
 
-            var recoverParser = _errorHandler(state.BuildError(childExpecteds));
+            var recoverParser = _errorHandler(state.BuildError(ref childExpecteds));
             
-            state.ReturnExpectedCollector(childExpecteds);
+            childExpecteds.Dispose();
 
-            return recoverParser.TryParse(ref state, expecteds, out result);
+            return recoverParser.TryParse(ref state, ref expecteds, out result);
         }
     }
 }

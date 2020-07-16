@@ -18,7 +18,6 @@ namespace Pidgin.CodeGen
 
             return $@"#region GeneratedCode
 using System;
-using System.Collections.Generic;
 
 namespace Pidgin
 {{
@@ -119,7 +118,7 @@ namespace Pidgin
             {string.Join($"{Environment.NewLine}            ", parserFieldAssignments)}
         }}
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
         {{
             {string.Join(Environment.NewLine, parts)}
 
@@ -139,7 +138,7 @@ namespace Pidgin
 
         private static string GenerateMethodBodyPart(int num)
             => $@"
-            var success{num} = _p{num}.TryParse(ref state, expecteds, out var result{num});
+            var success{num} = _p{num}.TryParse(ref state, ref expecteds, out var result{num});
             if (!success{num})
             {{
                 result = default;

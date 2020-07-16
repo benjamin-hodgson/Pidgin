@@ -34,15 +34,17 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out Unit result)
         {
             var startingLocation = state.Location;
             var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
             state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
+            var childExpecteds = new ExpectedCollector<TToken>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>(), true);
 
-            var success = _parser.TryParse(ref state, CollectionExtensions.Empty<Expected<TToken>>(), out var result1);
+            var success = _parser.TryParse(ref state, ref childExpecteds, out var result1);
 
+            childExpecteds.Dispose();
             state.PopBookmark();
             
             if (success)

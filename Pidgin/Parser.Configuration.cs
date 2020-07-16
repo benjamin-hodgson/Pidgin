@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Pidgin.Configuration;
 
@@ -12,7 +11,7 @@ namespace Pidgin
 
     internal class ConfigurationParser<TToken> : Parser<TToken, IConfiguration<TToken>>
     {
-        internal override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IConfiguration<TToken> result)
+        internal override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IConfiguration<TToken> result)
         {
             result = state.Configuration;
             return true;

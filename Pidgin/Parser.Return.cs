@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -23,7 +21,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out T result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
         {
             result = _value;
             return true;

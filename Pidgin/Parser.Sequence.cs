@@ -83,7 +83,7 @@ namespace Pidgin
             _parsers = parsers;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             var ts = new T[_parsers.Length];
             
@@ -91,7 +91,7 @@ namespace Pidgin
             {
                 var p = _parsers[i];
             
-                var success = p.TryParse(ref state, expecteds, out ts[i]!);
+                var success = p.TryParse(ref state, ref expecteds, out ts[i]!);
             
                 if (!success)
                 {
@@ -150,7 +150,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -213,7 +213,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             

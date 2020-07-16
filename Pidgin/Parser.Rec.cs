@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -96,7 +95,7 @@ namespace Pidgin
             _lazy = lazy;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
-            => _lazy.Value.TryParse(ref state, expecteds, out result);
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out T result)
+            => _lazy.Value.TryParse(ref state, ref expecteds, out result);
     }
 }

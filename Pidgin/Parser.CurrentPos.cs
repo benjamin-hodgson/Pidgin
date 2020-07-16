@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -14,7 +12,7 @@ namespace Pidgin
 
     internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePos>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, out SourcePos result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out SourcePos result)
         {
             result = state.ComputeSourcePos();
             return true;

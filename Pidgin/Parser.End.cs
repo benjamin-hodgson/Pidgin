@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -14,7 +13,7 @@ namespace Pidgin
 
     internal sealed class EndParser<TToken> : Parser<TToken, Unit>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out Unit result)
         {
             if (state.HasCurrent)
             {

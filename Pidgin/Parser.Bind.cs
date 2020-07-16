@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
@@ -58,9 +57,9 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ICollection<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, [MaybeNullWhen(false)] out R result)
         {
-            var success = _parser.TryParse(ref state, expecteds, out var childResult);
+            var success = _parser.TryParse(ref state, ref expecteds, out var childResult);
             if (!success)
             {
                 // state.Error set by _parser
@@ -69,7 +68,7 @@ namespace Pidgin
             }
 
             var nextParser = _func(childResult!);
-            var nextSuccess = nextParser.TryParse(ref state, expecteds, out var nextResult);
+            var nextSuccess = nextParser.TryParse(ref state, ref expecteds, out var nextResult);
 
             if (!nextSuccess)
             {
