@@ -40,7 +40,7 @@ namespace Pidgin
             Configuration = configuration;
             _sourcePosCalculator = Configuration.SourcePosCalculator;
             _arrayPool = null;
-            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>(), 0);
+            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
             _stream = default;
 
             _bufferChunkSize = 0;

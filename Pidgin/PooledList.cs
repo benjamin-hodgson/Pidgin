@@ -31,10 +31,10 @@ namespace Pidgin
 
         public bool IsReadOnly => false;
 
-        public PooledList(ArrayPool<T> arrayPool, int initialCapacity = InitialCapacity)
+        public PooledList(ArrayPool<T> arrayPool)
         {
             _arrayPool = arrayPool;
-            _items = _arrayPool.Rent(initialCapacity);
+            _items = null;
             _count = 0;
         }
 
@@ -205,16 +205,16 @@ namespace Pidgin
             }
             if (_items == null)
             {
-                Rent(additionalSpace);
+                Init(additionalSpace);
             }
             else if (_count + additionalSpace >= _items.Length)
             {
                 Grow(additionalSpace);
             }
         }
-        private void Rent(int additionalSpace)
+        private void Init(int space)
         {
-            _items = _arrayPool.Rent(Math.Max(InitialCapacity, additionalSpace));
+            _items = _arrayPool.Rent(Math.Max(InitialCapacity, space));
         }
 
         private void Grow(int additionalSpace)
