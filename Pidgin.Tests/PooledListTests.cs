@@ -78,8 +78,8 @@ namespace Pidgin.Tests
         [Fact]
         public void TerribleBugWhenAppendingString()
         {
-            var expected = "longer than the capacity";
-            var builder = new PooledList<char>(ArrayPool<char>.Shared, 1);
+            var expected = "longer than the initial capacity, which is 16";
+            var builder = new PooledList<char>();
             builder.AddRange(expected.AsSpan());
             Assert.Equal(expected, new string(builder.AsSpan()));
         }
