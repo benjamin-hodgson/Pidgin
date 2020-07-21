@@ -45,7 +45,7 @@ namespace Pidgin
         {
             get
             {
-                if (_expected.InternalTokens.IsDefault)
+                if (_expected.Tokens.IsDefault)
                 {
                     _expected = new Expected<char>(_value.ToImmutableArray());
                 }
