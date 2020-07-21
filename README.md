@@ -13,6 +13,8 @@ Pidgin is [available on Nuget](https://www.nuget.org/packages/Pidgin/). API docs
 Tutorial
 --------
 
+There's a tutorial on using Pidgin to parse a subset of Prolog [on my website](https://www.benjamin.pizza/posts/2019-12-08-parsing-prolog-with-pidgin.html).
+
 ### Getting started
 
 Pidgin is a _parser combinator library_, a lightweight, high-level, declarative tool for constructing parsers. Parsers written with parser combinators look like a high-level specification of a language's grammar, but they're expressed within a general-purpose programming language and require no special tools to produce executable code. Parser combinators are more powerful than regular expressions - they can parse a larger class of languages - but simpler and easier to use than parser generators like ANTLR.
