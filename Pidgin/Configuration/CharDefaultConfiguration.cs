@@ -15,11 +15,11 @@ namespace Pidgin.Configuration
         /// <summary>
         /// Handles newlines and tab stops
         /// </summary>
-        public override Func<char, SourcePos, SourcePos> SourcePosCalculator { get; }
-            = (token, previous) => token == '\n'
-                ? previous.NewLine()
+        public override Func<char, SourcePosDelta> SourcePosCalculator { get; }
+            = (token) => token == '\n'
+                ? SourcePosDelta.NewLine
                 : token == '\t'
-                    ? new SourcePos(previous.Line, previous.Col + 4)
-                    : previous.IncrementCol();
+                    ? new SourcePosDelta(0, 4)
+                    : SourcePosDelta.OneCol;
     }
 }

@@ -17,8 +17,8 @@ namespace Pidgin.Configuration
         /// <summary>
         /// Always increments the column by 1.
         /// </summary>
-        public virtual Func<TToken, SourcePos, SourcePos> SourcePosCalculator { get; }
-            = (_, p) => p.IncrementCol();
+        public virtual Func<TToken, SourcePosDelta> SourcePosCalculator { get; }
+            = _ => SourcePosDelta.OneCol;
 
         /// <summary>
         /// Always returns <see cref="DefaultArrayPoolProvider.Instance"/>.

@@ -9,9 +9,9 @@ namespace Pidgin.Configuration
     public interface IConfiguration<TToken>
     {
         /// <summary>
-        /// A function which can compute a new <see cref="SourcePos"/> representing the position after consuming a token.
+        /// A function which can compute a <see cref="SourcePosDelta"/> representing the change in position from consuming a token.
         /// </summary>
-        Func<TToken, SourcePos, SourcePos> SourcePosCalculator { get; }
+        Func<TToken, SourcePosDelta> SourcePosCalculator { get; }
 
         /// <summary>
         /// The <see cref="IArrayPoolProvider"/>

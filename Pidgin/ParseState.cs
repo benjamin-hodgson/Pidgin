@@ -16,7 +16,7 @@ namespace Pidgin
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
         public IConfiguration<TToken> Configuration { get; }
-        private readonly Func<TToken, SourcePos, SourcePos> _sourcePosCalculator;
+        private readonly Func<TToken, SourcePosDelta> _sourcePosCalculator;
         private readonly ArrayPool<TToken>? _arrayPool;
         private readonly ITokenStream<TToken>? _stream;
         private readonly int _bufferChunkSize;
@@ -27,8 +27,8 @@ namespace Pidgin
         private int _currentIndex;
         private int _bufferedCount;
 
-        private int _lastSourcePosLocation;
-        private SourcePos _lastSourcePos;
+        private int _lastSourcePosDeltaLocation;
+        private SourcePosDelta _lastSourcePosDelta;
 
         // a monotonic stack of locations.
         // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
@@ -50,8 +50,8 @@ namespace Pidgin
             _currentIndex = 0;
             _bufferedCount = span.Length;
 
-            _lastSourcePosLocation = 0;
-            _lastSourcePos = new SourcePos(1,1);
+            _lastSourcePosDeltaLocation = 0;
+            _lastSourcePosDelta = SourcePosDelta.Zero;
 
             _eof = default;
             _unexpected = default;
@@ -74,8 +74,8 @@ namespace Pidgin
             _currentIndex = 0;
             _bufferedCount = 0;
 
-            _lastSourcePosLocation = 0;
-            _lastSourcePos = new SourcePos(1,1);
+            _lastSourcePosDeltaLocation = 0;
+            _lastSourcePosDelta = SourcePosDelta.Zero;
 
             _eof = default;
             _unexpected = default;
@@ -177,7 +177,7 @@ namespace Pidgin
                 // newBufferLength |------------------|
 
 
-                UpdateLastSourcePos();
+                UpdateLastSourcePosDelta();
 
                 if (newBufferLength > _buffer!.Length)
                 {
@@ -228,20 +228,20 @@ namespace Pidgin
             _currentIndex -= delta;
         }
 
-        public SourcePos ComputeSourcePos()
+        public SourcePosDelta ComputeSourcePosDelta()
         {
-            UpdateLastSourcePos();
-            return ComputeSourcePosAt(Location);
+            UpdateLastSourcePosDelta();
+            return ComputeSourcePosDeltaAt(Location);
         }
 
-        private void UpdateLastSourcePos()
+        private void UpdateLastSourcePosDelta()
         {
             var location = _bookmarks.Count > 0
                 ? _bookmarks[0]
                 : Location;
 
-            _lastSourcePos = ComputeSourcePosAt(location);
-            _lastSourcePosLocation = location;
+            _lastSourcePosDelta = ComputeSourcePosDeltaAt(location);
+            _lastSourcePosDeltaLocation = location;
         }
 
         public void Dispose()

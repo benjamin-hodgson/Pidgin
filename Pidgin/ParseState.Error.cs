@@ -33,7 +33,7 @@ namespace Pidgin
             {
                 builder.Add(e);
             }
-            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosAt(_errorLocation), _message);
+            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosDeltaAt(_errorLocation), _message);
         }
     }
 }

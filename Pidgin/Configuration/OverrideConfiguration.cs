@@ -4,12 +4,12 @@ namespace Pidgin.Configuration
 {
     internal class OverrideConfiguration<TToken> : IConfiguration<TToken>
     {
-        public Func<TToken, SourcePos, SourcePos> SourcePosCalculator { get; }
+        public Func<TToken, SourcePosDelta> SourcePosCalculator { get; }
         public IArrayPoolProvider ArrayPoolProvider { get; }
 
         public OverrideConfiguration(
             IConfiguration<TToken> next,
-            Func<TToken, SourcePos, SourcePos>? posCalculator = null,
+            Func<TToken, SourcePosDelta>? posCalculator = null,
             IArrayPoolProvider? arrayPoolProvider = null
         )
         {

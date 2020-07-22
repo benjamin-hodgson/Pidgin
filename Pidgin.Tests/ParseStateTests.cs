@@ -15,7 +15,7 @@ namespace Pidgin.Tests
             var input = "";
             var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
-            Assert.Equal(new SourcePos(1, 1), state.ComputeSourcePos());
+            Assert.Equal(SourcePosDelta.Zero, state.ComputeSourcePosDelta());
             Assert.False(state.HasCurrent);
         }
 
@@ -41,7 +41,7 @@ namespace Pidgin.Tests
             Consume('f', ref state);
             Consume(new string('o', ChunkSize), ref state);
             Assert.False(state.HasCurrent);
-            Assert.Equal(new SourcePos(1, input.Length + 1 /* because Col is 1-indexed */), state.ComputeSourcePos());
+            Assert.Equal(new SourcePosDelta(0, input.Length), state.ComputeSourcePosDelta());
         }
 
         [Fact]
@@ -114,7 +114,7 @@ namespace Pidgin.Tests
 
                 state.Advance(input.Length);
 
-                Assert.Equal(new SourcePos(1, 5), state.ComputeSourcePos());
+                Assert.Equal(new SourcePosDelta(0, 4), state.ComputeSourcePosDelta());
             }
         }
 
@@ -132,16 +132,16 @@ namespace Pidgin.Tests
 
                 state.Advance(input.Length);
 
-                Assert.Equal(new SourcePos(7, Vector<short>.Count * 2 + 9), state.ComputeSourcePos());
+                Assert.Equal(new SourcePosDelta(6, Vector<short>.Count * 2 + 8), state.ComputeSourcePosDelta());
             }
             {
                 var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
                 state.Advance(1);
-                state.ComputeSourcePos();
+                state.ComputeSourcePosDelta();
                 state.Advance(input.Length - 1);
 
-                Assert.Equal(new SourcePos(7, Vector<short>.Count * 2 + 9), state.ComputeSourcePos());
+                Assert.Equal(new SourcePosDelta(6, Vector<short>.Count * 2 + 8), state.ComputeSourcePosDelta());
             }
         }
 
@@ -155,10 +155,10 @@ namespace Pidgin.Tests
             Consume('f', ref state);
             Consume(new string('o', inputLength - 1), ref state);
             Assert.False(state.HasCurrent);
-            Assert.Equal(new SourcePos(1, inputLength + 1), state.ComputeSourcePos());
+            Assert.Equal(new SourcePosDelta(0, inputLength), state.ComputeSourcePosDelta());
 
             state.Rewind();
-            Assert.Equal(new SourcePos(1, 1), state.ComputeSourcePos());
+            Assert.Equal(SourcePosDelta.Zero, state.ComputeSourcePosDelta());
             Consume('f', ref state);
         }
 
@@ -172,28 +172,28 @@ namespace Pidgin.Tests
             state.PushBookmark();
             Consume('a' + new string('o', inputLength - 2), ref state);
             Assert.False(state.HasCurrent);
-            Assert.Equal(new SourcePos(1, inputLength + 1), state.ComputeSourcePos());
+            Assert.Equal(new SourcePosDelta(0, inputLength), state.ComputeSourcePosDelta());
 
             state.Rewind();
-            Assert.Equal(new SourcePos(1, 2), state.ComputeSourcePos());
+            Assert.Equal(SourcePosDelta.OneCol, state.ComputeSourcePosDelta());
             Consume('a', ref state);
         }
 
         private static void Consume(char expected, ref ParseState<char> state)
         {
-            var oldCol = state.ComputeSourcePos().Col;
+            var oldCols = state.ComputeSourcePosDelta().Cols;
             Assert.True(state.HasCurrent);
             Assert.Equal(expected, state.Current);
             state.Advance();
-            Assert.Equal(oldCol + 1, state.ComputeSourcePos().Col);
+            Assert.Equal(oldCols + 1, state.ComputeSourcePosDelta().Cols);
         }
 
         private static void Consume(string expected, ref ParseState<char> state)
         {
-            var oldCol = state.ComputeSourcePos().Col;
+            var oldCols = state.ComputeSourcePosDelta().Cols;
             AssertEqual(expected.AsSpan(), state.LookAhead(expected.Length));
             state.Advance(expected.Length);
-            Assert.Equal(oldCol + expected.Length, state.ComputeSourcePos().Col);
+            Assert.Equal(oldCols + expected.Length, state.ComputeSourcePosDelta().Cols);
         }
 
         private static void AssertEqual(ReadOnlySpan<char> expected, ReadOnlySpan<char> actual)

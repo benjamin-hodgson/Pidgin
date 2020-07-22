@@ -32,6 +32,17 @@ namespace Pidgin
         }
 
         /// <summary>
+        /// Add a <see cref="SourcePosDelta"/> to this <see cref="SourcePos"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="SourcePosDelta"/> to add to this <see cref="SourcePos"/>.</param>
+        /// <returns>A <see cref="SourcePos"/> representing the composition of this and <paramref name="other"/>.</returns>
+        public SourcePos Plus(SourcePosDelta other)
+            => new SourcePos(
+                this.Line + other.Lines,
+                (other.Lines == 0 ? this.Col : 1) + other.Cols
+            );
+
+        /// <summary>
         /// Creates a <see cref="SourcePos"/> with the column number incremented by one
         /// </summary>
         /// <returns>A <see cref="SourcePos"/> with the column number incremented by one</returns>
@@ -43,6 +54,15 @@ namespace Pidgin
         /// <returns>A <see cref="SourcePos"/> with the line number incremented by one and the column number reset to 1</returns>
         public SourcePos NewLine()
             => new SourcePos(Line + 1, 1);
+
+        /// <summary>
+        /// Add a <see cref="SourcePosDelta"/> to this <see cref="SourcePos"/>.
+        /// </summary>
+        /// <param name="left">The <see cref="SourcePos"/>.</param>
+        /// <param name="right">The <see cref="SourcePosDelta"/> to add to this <see cref="SourcePos"/>.</param>
+        /// <returns>A <see cref="SourcePos"/> representing the composition of <paramref name="left"/> and <paramref name="right"/>.</returns>
+        public static SourcePos operator +(SourcePos left, SourcePosDelta right)
+            => left.Plus(right);
 
         /// <inheritdoc/>
         public bool Equals(SourcePos other)

@@ -6,15 +6,22 @@ namespace Pidgin
         /// A parser which returns the current source position
         /// </summary>
         /// <returns>A parser which returns the current source position</returns>
-        public static Parser<TToken, SourcePos> CurrentPos { get; }
+        public static Parser<TToken, SourcePosDelta> CurrentSourcePosDelta { get; }
             = new CurrentPosParser<TToken>();
+
+        /// <summary>
+        /// A parser which returns the current source position
+        /// </summary>
+        /// <returns>A parser which returns the current source position</returns>
+        public static Parser<TToken, SourcePos> CurrentPos { get; }
+            = CurrentSourcePosDelta.Select(d => new SourcePos(1, 1) + d);
     }
 
-    internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePos>
+    internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePosDelta>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePos result)
+        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePosDelta result)
         {
-            result = state.ComputeSourcePos();
+            result = state.ComputeSourcePosDelta();
             return true;
         }
     }

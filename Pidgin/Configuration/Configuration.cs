@@ -28,7 +28,7 @@ namespace Pidgin.Configuration
         /// </returns>
         public static IConfiguration<TToken> WithPosCalculator<TToken>(
             this IConfiguration<TToken> configuration,
-            Func<TToken, SourcePos, SourcePos> posCalculator
+            Func<TToken, SourcePosDelta> posCalculator
         )
         {
             if (configuration == null)
