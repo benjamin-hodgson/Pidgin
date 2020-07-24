@@ -201,7 +201,7 @@ namespace Pidgin
                 _bufferStartLocation += keepFrom;
                 _currentIndex = keepSeenLength;
                 _bufferedCount = keepLength;
-                _bufferedCount += _stream!.ReadInto(_buffer.AsSpan().Slice(_bufferedCount, amountToRead));
+                _bufferedCount += _stream!.Read(_buffer.AsSpan().Slice(_bufferedCount, amountToRead));
             }
         }
         
@@ -248,10 +248,10 @@ namespace Pidgin
         {
             if (_buffer != null)
             {
+                _stream!.OnParserEnd(_buffer.AsSpan().Slice(_currentIndex, _bufferedCount - _currentIndex));
                 _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }
-            _stream?.Dispose();
             _bookmarks.Dispose();
         }
     }

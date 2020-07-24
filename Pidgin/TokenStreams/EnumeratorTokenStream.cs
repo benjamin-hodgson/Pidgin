@@ -14,7 +14,7 @@ namespace Pidgin.TokenStreams
         }
 
 
-        public int ReadInto(Span<TToken> buffer)
+        public int Read(Span<TToken> buffer)
         {
             for (var i = 0; i < buffer.Length; i++)
             {
@@ -27,7 +27,5 @@ namespace Pidgin.TokenStreams
             }
             return buffer.Length;
         }
-
-        public void Dispose() { }
     }
 }

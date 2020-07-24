@@ -14,8 +14,6 @@ namespace Pidgin.TokenStreams
             _input = input;
         }
 
-        public int ReadInto(Span<byte> buffer) => _input.Read(buffer);
-
-        public void Dispose() { }
+        public int Read(Span<byte> buffer) => _input.Read(buffer);
     }
 }

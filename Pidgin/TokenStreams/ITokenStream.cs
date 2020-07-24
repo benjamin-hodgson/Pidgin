@@ -2,9 +2,10 @@ using System;
 
 namespace Pidgin.TokenStreams
 {
-    internal interface ITokenStream<TToken> : IDisposable
+    internal interface ITokenStream<TToken>
     {
         int ChunkSizeHint => 1024;
-        int ReadInto(Span<TToken> buffer);
+        int Read(Span<TToken> buffer);
+        void OnParserEnd(ReadOnlySpan<TToken> unconsumed) { }
     }
 }

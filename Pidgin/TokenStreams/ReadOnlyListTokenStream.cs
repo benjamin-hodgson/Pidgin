@@ -16,7 +16,7 @@ namespace Pidgin.TokenStreams
             _input = value;
         }
 
-        public int ReadInto(Span<TToken> buffer)
+        public int Read(Span<TToken> buffer)
         {
             var actualLength = Math.Min(_input.Count - _index, buffer.Length);
             for (var i = 0; i < actualLength; i++)
@@ -26,7 +26,5 @@ namespace Pidgin.TokenStreams
             }
             return actualLength;
         }
-
-        public void Dispose() { }
     }
 }
