@@ -25,13 +25,25 @@ namespace Pidgin.Tests
         [Fact]
         public void TestReturnMultipleChunks()
         {
-            var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("")));
-            stream.OnParserEnd("aa");
+            var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
             stream.OnParserEnd("bb");
+            stream.OnParserEnd("aa");
 
-            var chunk = new char[4].AsSpan();
+            var chunk = new char[6].AsSpan();
             stream.Read(chunk);
-            Assert.Equal("bbaa", chunk.ToString());
+            Assert.Equal("aabbcc", chunk.ToString());
+        }
+
+        [Fact]
+        public void TestReturnMultipleChunks_GrowBuffer()
+        {
+            var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
+            stream.OnParserEnd("bb");
+            stream.OnParserEnd(new string('a', 16));  // default buffer size is 16
+
+            var chunk = new char[20].AsSpan();
+            stream.Read(chunk);
+            Assert.Equal(new string('a', 16) + "bbcc", chunk.ToString());
         }
     }
 }
