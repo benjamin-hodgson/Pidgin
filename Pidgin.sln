@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin.Bench", "Pidgin.Benc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pidgin.Examples", "Pidgin.Examples\Pidgin.Examples.csproj", "{AD13B4FB-A743-4584-93C3-1EB77B461FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pidgin.Bench.FParsec", "Pidgin.Bench.FParsec\Pidgin.Bench.FParsec.fsproj", "{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Pidgin.Bench.FParsec", "Pidgin.Bench.FParsec\Pidgin.Bench.FParsec.fsproj", "{6E014557-0C35-47B7-B1CC-FE2ECB8D7423}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
