@@ -6,6 +6,6 @@ namespace Pidgin.TokenStreams
     {
         int ChunkSizeHint => 1024;
         int Read(Span<TToken> buffer);
-        void OnParserEnd(ReadOnlySpan<TToken> unconsumed) { }
+        void Return(ReadOnlySpan<TToken> leftovers) { }
     }
 }

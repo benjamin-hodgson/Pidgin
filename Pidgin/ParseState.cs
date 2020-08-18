@@ -248,7 +248,7 @@ namespace Pidgin
         {
             if (_buffer != null)
             {
-                _stream!.OnParserEnd(_buffer.AsSpan().Slice(_currentIndex, _bufferedCount - _currentIndex));
+                _stream!.Return(_buffer.AsSpan().Slice(_currentIndex, _bufferedCount - _currentIndex));
                 _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }

@@ -34,21 +34,21 @@ namespace Pidgin.TokenStreams
             return bufferedCount + _next.Read(buffer.Slice(bufferedCount));
         }
 
-        public void OnParserEnd(ReadOnlySpan<TToken> unconsumed)
+        public void Return(ReadOnlySpan<TToken> leftovers)
         {
-            if (unconsumed.Length == 0)
+            if (leftovers.Length == 0)
             {
                 return;
             }
             if (_buffer == null)
             {
-                _buffer = _pool.Rent(unconsumed.Length);
+                _buffer = _pool.Rent(leftovers.Length);
                 _bufferStart = _buffer.Length;
             }
-            if (_bufferStart < unconsumed.Length)
+            if (_bufferStart < leftovers.Length)
             {
                 var bufferedCount = _buffer.Length - _bufferStart;
-                var newBuffer = _pool.Rent(bufferedCount + unconsumed.Length);
+                var newBuffer = _pool.Rent(bufferedCount + leftovers.Length);
                 var newBufferStart = newBuffer.Length - bufferedCount;
 
                 Array.Copy(_buffer, _bufferStart, newBuffer, newBufferStart, bufferedCount);
@@ -57,8 +57,8 @@ namespace Pidgin.TokenStreams
                 _buffer = newBuffer;
                 _bufferStart = newBufferStart;
             }
-            _bufferStart -= unconsumed.Length;
-            unconsumed.CopyTo(_buffer.AsSpan().Slice(_bufferStart));
+            _bufferStart -= leftovers.Length;
+            leftovers.CopyTo(_buffer.AsSpan().Slice(_bufferStart));
         }
 
         public void Dispose()
