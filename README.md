@@ -61,7 +61,7 @@ Assert.Throws<ParseException>(() => Digit.ParseOrThrow("a"));
 ```csharp
 Parser<char, string> parser = String("foo");
 Assert.AreEqual("foo", parser.ParseOrThrow("foo"));
-Assert.Throws<ParseException>(() => parser.ParseOrThrow("bar")));
+Assert.Throws<ParseException>(() => parser.ParseOrThrow("bar"));
 ```
 
 `Return` (and its synonym `FromResult`) never consumes any input, and just returns the given value. Likewise, `Fail` always fails without consuming any input.
@@ -83,7 +83,7 @@ Parser<char, string> parser1 = String("foo");
 Parser<char, string> parser2 = String("bar");
 Parser<char, string> sequencedParser = parser1.Then(parser2);
 Assert.AreEqual("bar", sequencedParser.ParseOrThrow("foobar"));  // "foo" got thrown away
-Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
+Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food"));
 ```
 
 `Before` throws away the second result, not the first.
@@ -93,7 +93,7 @@ Parser<char, string> parser1 = String("foo");
 Parser<char, string> parser2 = String("bar");
 Parser<char, string> sequencedParser = parser1.Before(parser2);
 Assert.AreEqual("foo", sequencedParser.ParseOrThrow("foobar"));  // "bar" got thrown away
-Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
+Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food"));
 ```
 
 `Map` does a similar job, except it keeps both results and applies a transformation function to them. This is especially useful when you want your parser to return a custom data structure. (`Map` has overloads which operate on between one and eight parsers; the one-parser version also has a postfix synonym `Select`.)
@@ -102,8 +102,8 @@ Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
 Parser<char, string> parser1 = String("foo");
 Parser<char, string> parser2 = String("bar");
 Parser<char, string> sequencedParser = Map((foo, bar) => bar + foo, parser1, parser2);
-Assert.AreEqual("barfoo", sequencedParser.ParseOrThrow("foobar")));
-Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
+Assert.AreEqual("barfoo", sequencedParser.ParseOrThrow("foobar"));
+Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food"));
 ```
 
 `Bind` uses the result of a parser to choose the next parser. This enables parsing of context-sensitive languages. For example, here's a parser which parses any character repeated twice.
@@ -113,7 +113,7 @@ Assert.Throws<ParseException>(() => sequencedParser.ParseOrThrow("food")));
 Parser<char, char> parser = Any.Bind(c => Char(c));
 Assert.AreEqual('a', parser.ParseOrThrow("aa"));
 Assert.AreEqual('b', parser.ParseOrThrow("bb"));
-Assert.Throws<ParseException>(() => parser.ParseOrThrow("ab")));
+Assert.Throws<ParseException>(() => parser.ParseOrThrow("ab"));
 ```
 
 Pidgin parsers support LINQ query syntax. It may be easier to see what the above example does when it's written out using LINQ:
@@ -135,7 +135,7 @@ Parsers written like this look like a simple imperative script. "Run the `Any` p
 Parser<char, string> parser = String("foo").Or(String("bar"));
 Assert.AreEqual("foo", parser.ParseOrThrow("foo"));
 Assert.AreEqual("bar", parser.ParseOrThrow("bar"));
-Assert.Throws<ParseError>(() => parser.ParseOrThrow("baz"));
+Assert.Throws<ParseException>(() => parser.ParseOrThrow("baz"));
 ```
 
 `OneOf` is equivalent to `Or`, except it takes a variable number of arguments. Here's a parser which is equivalent to the one using `Or` above:
@@ -148,7 +148,7 @@ If one of `Or` or `OneOf`'s component parsers fails _after consuming input_, the
 
 ```csharp
 Parser<char, string> parser = String("food").Or(String("foul"));
-Assert.Throws<ParseError>(() => parser.ParseOrThrow("foul"));  // why didn't it choose the second option?
+Assert.Throws<ParseException>(() => parser.ParseOrThrow("foul"));  // why didn't it choose the second option?
 ```
 
 What happened here? When a parser successfully parses a character from the input stream, it advances the input stream to the next character. `Or` only chooses the next alternative if the given parser fails _without consuming any input_; Pidgin does not perform any lookahead or backtracking by default. Backtracking is enabled using the `Try` function.
@@ -179,12 +179,12 @@ However, Pidgin does not support left recursion. A parser must consume some inpu
 ```csharp
 Parser<char, int> arithmetic = null;
 Parser<char, int> addExpr = Map(
-    (x, y) => x + y,
+    (x, _, y) => x + y,
     Rec(() => arithmetic),
     Char('+'),
     Rec(() => arithmetic)
 );
-arithmetic = addExpr.Or(Digit.Select(char.GetNumericValue));
+arithmetic = addExpr.Or(Digit.Select(d => (int)char.GetNumericValue(d)));
 
 arithmetic.Parse("2+2");  // stack overflow!
 ```
