@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+using Pidgin.Bench.ParlotParsers;
 using Pidgin.Bench.SpracheParsers;
 using Pidgin.Bench.SuperpowerParsers;
 using Pidgin.Examples.Json;
@@ -47,7 +48,12 @@ namespace Pidgin.Bench
         [Benchmark, BenchmarkCategory("Big")]
         public void BigJson_FParsec()
         {
-            Pidgin.Bench.FParsec.JsonParser.parse(_bigJson);
+            FParsec.JsonParser.parse(_bigJson);
+        }
+        [Benchmark, BenchmarkCategory("Big")]
+        public void BigJson_Parlot()
+        {
+            ParlotJsonParser.Parse(_bigJson);
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Long")]
@@ -68,7 +74,12 @@ namespace Pidgin.Bench
         [Benchmark, BenchmarkCategory("Long")]
         public void LongJson_FParsec()
         {
-            Pidgin.Bench.FParsec.JsonParser.parse(_longJson);
+            FParsec.JsonParser.parse(_longJson);
+        }
+        [Benchmark, BenchmarkCategory("Long")]
+        public void LongJson_Parlot()
+        {
+            ParlotJsonParser.Parse(_longJson);
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Deep")]
@@ -90,7 +101,12 @@ namespace Pidgin.Bench
         [Benchmark, BenchmarkCategory("Deep")]
         public void DeepJson_FParsec()
         {
-            Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
+            FParsec.JsonParser.parse(_deepJson);
+        }
+        [Benchmark, BenchmarkCategory("Deep")]
+        public void DeepJson_Parlot()
+        {
+            ParlotJsonParser.Parse(_deepJson);
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Wide")]
@@ -111,7 +127,12 @@ namespace Pidgin.Bench
         [Benchmark, BenchmarkCategory("Wide")]
         public void WideJson_FParsec()
         {
-            Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
+            FParsec.JsonParser.parse(_wideJson);
+        }
+        [Benchmark, BenchmarkCategory("Wide")]
+        public void WideJson_Parlot()
+        {
+            ParlotJsonParser.Parse(_wideJson);
         }
         
         private static IJson BuildJson(int length, int depth, int width)
