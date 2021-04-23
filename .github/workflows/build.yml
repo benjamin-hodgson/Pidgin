@@ -20,6 +20,10 @@ jobs:
       with:
         dotnet-version: 3.1.x
         
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        
     - name: Restore nuget packages
       run: dotnet restore
       
@@ -44,7 +48,13 @@ jobs:
       run: |
         dotnet nuget push nupkgs/* -k ${{ secrets.NUGET_KEY }}
         dotnet nuget add source https://nuget.pkg.github.com/benjamin-hodgson/index.json --name github
-        dotnet nuget push nupkgs/* --source github -k ${{ secrets.GH_PKGS_TOKEN }}
+        dotnet nuget push nupkgs/* --source github -k ${{ secrets.GITHUB_TOKEN }}
+        
+    - uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: Pidgin.Docs/_site
+        target-folder: ${{ steps.get_version.outputs.VERSION }}
       
     - uses: actions/upload-artifact@v2
       with:
