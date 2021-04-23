@@ -42,7 +42,7 @@ jobs:
     - name: Push nuget packages
       if: startsWith(github.ref, 'refs/tags/')
       run: |
-        dotnet nuget push nukpgs/* -k ${{ secrets.NUGET_KEY }}
+        dotnet nuget push nupkgs/* -k ${{ secrets.NUGET_KEY }}
         dotnet nuget add source https://nuget.pkg.github.com/benjamin-hodgson/index.json --name github
         dotnet nuget push nupkgs/* --source github -k ${{ secrets.GH_PKGS_TOKEN }}
       
