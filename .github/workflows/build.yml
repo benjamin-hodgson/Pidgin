@@ -24,13 +24,17 @@ jobs:
       id: get_version
       run: |
         shopt -s extglob
-        echo ::set-output name=VERSION::${GITHUB_REF#@(refs/tags/|refs/heads/)}
+        if  [[ $GITHUB_REF == refs/tags/* ]] ;
+        then
+            echo ::set-output name=VERSION_SUFFIX::build.${{ github.run_id }}
+        fi
+        echo ::set-output name=BRANCH::${GITHUB_REF#@(refs/tags/|refs/heads/)}
         
     - name: Restore nuget packages
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore --configuration Release --version-suffix ${{ steps.get_version.outputs.VERSION_SUFFIX }}
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
@@ -56,7 +60,7 @@ jobs:
       with:
         branch: gh-pages
         folder: Pidgin.Docs/_site
-        target-folder: ${{ steps.get_version.outputs.VERSION }}
+        target-folder: ${{ steps.get_version.outputs.BRANCH }}
       
     - uses: actions/upload-artifact@v2
       with:
