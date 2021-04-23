@@ -51,9 +51,8 @@ jobs:
         
     - name: Push nuget packages
       run: |
-        dotnet nuget push nupkgs/* -k ${{ secrets.NUGET_KEY }}
-        dotnet nuget add source https://nuget.pkg.github.com/benjamin-hodgson/index.json --name github
-        dotnet nuget push nupkgs/* --source github -k ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push nupkgs/* --source https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
+        dotnet nuget push nupkgs/* --source https://nuget.pkg.github.com/benjamin-hodgson/index.json -k ${{ secrets.GITHUB_TOKEN }}
         
     - uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
