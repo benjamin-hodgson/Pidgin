@@ -50,7 +50,6 @@ jobs:
         args: Pidgin.Docs/docfx.json
         
     - name: Push nuget packages
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
         dotnet nuget push nupkgs/* -k ${{ secrets.NUGET_KEY }}
         dotnet nuget add source https://nuget.pkg.github.com/benjamin-hodgson/index.json --name github
