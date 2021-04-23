@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 5.0.x
         
     - name: Restore nuget packages
-      run: dotnet restore --configuration Release
+      run: dotnet restore
       
     - name: Build
       run: dotnet build --no-restore --configuration Release
