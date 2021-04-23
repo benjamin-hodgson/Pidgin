@@ -33,8 +33,21 @@ jobs:
     - name: Pack
       run: dotnet pack --no-build --configuration Release -o nupkgs
       
-    - uses: actions/upload-artifact@v2.2.3
+    - uses: nikeee/docfx-action@v1.0.0
+      with:
+        args: Pidgin.Docs/docfx.json
+      
+    - uses: actions/upload-artifact@v2
       with:
         name: nupkgs
         path: nupkgs
-
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: BenchmarkDotNet.Artifacts
+        path: BenchmarkDotNet.Artifacts
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Pidgin.Docs
+        path: Pidgin.Docs/_site
