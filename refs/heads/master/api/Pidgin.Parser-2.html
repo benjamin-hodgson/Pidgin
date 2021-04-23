@@ -1,0 +1,2872 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Parser&lt;TToken, T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Parser&lt;TToken, T&gt;
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin.Parser`2">
+  
+  
+  <h1 id="Pidgin_Parser_2" data-uid="Pidgin.Parser`2" class="text-break">Class Parser&lt;TToken, T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a parser which consumes a stream of values of type <code data-dev-comment-type="typeparamref" class="typeparamref">TToken</code> and returns a value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>.
+A parser can either succeed, and return a value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>, or fail and return a <a class="xref" href="Pidgin.ParseError-1.html">ParseError&lt;TToken&gt;</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">Parser&lt;TToken, T&gt;</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Pidgin.html">Pidgin</a></h6>
+  <h6><strong>Assembly</strong>: Pidgin.dll</h6>
+  <h5 id="Pidgin_Parser_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Parser&lt;TToken, T&gt; : object</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td><p>The type of the tokens in the parser&apos;s input stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the value returned by the parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This type is not intended to be subclassed by users of the library</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Assert_Func__1_System_Boolean__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Assert(Func%7B%601%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Assert.cs/#L12">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Assert_" data-uid="Pidgin.Parser`2.Assert*"></a>
+  <h4 id="Pidgin_Parser_2_Assert_Func__1_System_Boolean__" data-uid="Pidgin.Parser`2.Assert(Func{`1,System.Boolean})">Assert(Func&lt;T, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Assert(Func&lt;T, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate to apply to the value returned by the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Assert_Func__1_System_Boolean__Func__1_System_String__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Assert(Func%7B%601%2CSystem.Boolean%7D%2CFunc%7B%601%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Assert.cs/#L46">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Assert_" data-uid="Pidgin.Parser`2.Assert*"></a>
+  <h4 id="Pidgin_Parser_2_Assert_Func__1_System_Boolean__Func__1_System_String__" data-uid="Pidgin.Parser`2.Assert(Func{`1,System.Boolean},Func{`1,System.String})">Assert(Func&lt;T, Boolean&gt;, Func&lt;T, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Assert(Func&lt;T, bool&gt; predicate, Func&lt;T, string&gt; message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate to apply to the value returned by the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">message</span></td>
+        <td><p>A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Assert_Func__1_System_Boolean__System_String_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Assert(Func%7B%601%2CSystem.Boolean%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Assert.cs/#L27">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Assert_" data-uid="Pidgin.Parser`2.Assert*"></a>
+  <h4 id="Pidgin_Parser_2_Assert_Func__1_System_Boolean__System_String_" data-uid="Pidgin.Parser`2.Assert(Func{`1,System.Boolean},System.String)">Assert(Func&lt;T, Boolean&gt;, String)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Assert(Func&lt;T, bool&gt; predicate, string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate to apply to the value returned by the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>A custom error message to return when the value returned by the current parser fails to satisfy the predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_AtLeastOnce.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.AtLeastOnce%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Many.cs/#L144">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_AtLeastOnce_" data-uid="Pidgin.Parser`2.AtLeastOnce*"></a>
+  <h4 id="Pidgin_Parser_2_AtLeastOnce" data-uid="Pidgin.Parser`2.AtLeastOnce">AtLeastOnce()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies the current parser one or more times.
+The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; AtLeastOnce()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser that applies the current parser one or more times</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.AtLeastOnceUntil%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Until.cs/#L33">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_AtLeastOnceUntil_" data-uid="Pidgin.Parser`2.AtLeastOnceUntil*"></a>
+  <h4 id="Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.AtLeastOnceUntil``1(Pidgin.Parser{`0,``0})">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies this parser one or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">terminator</span></td>
+        <td><p>A parser to parse a terminator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Before__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Before%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Before.cs/#L14">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Before_" data-uid="Pidgin.Parser`2.Before*"></a>
+  <h4 id="Pidgin_Parser_2_Before__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.Before``1(Pidgin.Parser{`0,``0})">Before&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies the current parser followed by the specified parser.
+The resulting parser returns the result of the current parser, ignoring the result of the second parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Before&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to apply after applying the current parser.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that applies the current parser followed by the specified parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the value returned by the second parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Between__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Between%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Between.cs/#L14">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Between_" data-uid="Pidgin.Parser`2.Between*"></a>
+  <h4 id="Pidgin_Parser_2_Between__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.Between``1(Pidgin.Parser{`0,``0})">Between&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies the specified parser both before and after applying the current parser.
+The resulting parser returns the result of the current parser, ignoring the return value of the bracketing parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Between&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to apply before and after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that applies the specified parser before and after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the value returned by the bracketing parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Between__2_Pidgin_Parser__0___0__Pidgin_Parser__0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Between%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2CPidgin.Parser%7B%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Between.cs/#L32">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Between_" data-uid="Pidgin.Parser`2.Between*"></a>
+  <h4 id="Pidgin_Parser_2_Between__2_Pidgin_Parser__0___0__Pidgin_Parser__0___1__" data-uid="Pidgin.Parser`2.Between``2(Pidgin.Parser{`0,``0},Pidgin.Parser{`0,``1})">Between&lt;U, V&gt;(Parser&lt;TToken, U&gt;, Parser&lt;TToken, V&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies the specified parsers before and after applying the current parser.
+The resulting parser returns the result of the current parser, ignoring the return values of the bracketing parsers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Between&lt;U, V&gt;(Parser&lt;TToken, U&gt; parser1, Parser&lt;TToken, V&gt; parser2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser1</span></td>
+        <td><p>The parser to apply before applying the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, V&gt;</td>
+        <td><span class="parametername">parser2</span></td>
+        <td><p>The parser to apply after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that applies the specified parsers before and after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the value returned by the first parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">V</span></td>
+        <td><p>The type of the value returned by the second parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Bind__1_Func__1_Pidgin_Parser__0___0___.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Bind%60%601(Func%7B%601%2CPidgin.Parser%7B%600%2C%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Bind.cs/#L14">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Bind_" data-uid="Pidgin.Parser`2.Bind*"></a>
+  <h4 id="Pidgin_Parser_2_Bind__1_Func__1_Pidgin_Parser__0___0___" data-uid="Pidgin.Parser`2.Bind``1(Func{`1,Pidgin.Parser{`0,``0}})">Bind&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies a transformation function to the return value of the current parser.
+The transformation function dynamically chooses a second parser, which is applied after applying the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Bind&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the return value of the second parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Bind__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Bind%60%602(Func%7B%601%2CPidgin.Parser%7B%600%2C%60%600%7D%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Bind.cs/#L32">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Bind_" data-uid="Pidgin.Parser`2.Bind*"></a>
+  <h4 id="Pidgin_Parser_2_Bind__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__" data-uid="Pidgin.Parser`2.Bind``2(Func{`1,Pidgin.Parser{`0,``0}},Func{`1,``0,``1})">Bind&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies a transformation function to the return value of the current parser.
+The transformation function dynamically chooses a second parser, which is applied after applying the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, R&gt; Bind&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt; selector, Func&lt;T, U, R&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A function to apply to the return values of the two parsers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</td>
+        <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the return value of the second parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td><p>The type of the return value of the resulting parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Cast__1.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Cast%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Cast.cs/#L11">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Cast_" data-uid="Pidgin.Parser`2.Cast*"></a>
+  <h4 id="Pidgin_Parser_2_Cast__1" data-uid="Pidgin.Parser`2.Cast``1">Cast&lt;U&gt;()</h4>
+  <div class="markdown level1 summary"><p>Cast the return value of the current parser to the specified result type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Cast&lt;U&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which returns this parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type to cast the return value to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_IgnoreResult.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.IgnoreResult%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.WithResult.cs/#L42">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_IgnoreResult_" data-uid="Pidgin.Parser`2.IgnoreResult*"></a>
+  <h4 id="Pidgin_Parser_2_IgnoreResult" data-uid="Pidgin.Parser`2.IgnoreResult">IgnoreResult()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which behaves like the current parser but returns <a class="xref" href="Pidgin.Unit.html#Pidgin_Unit_Value">Value</a>.
+Equivalent to <code>p.WithResult(Unit.Value)</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; IgnoreResult()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</td>
+        <td><p>A parser which behaves like the current parser but returns <a class="xref" href="Pidgin.Unit.html#Pidgin_Unit_Value">Value</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Labelled_System_String_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Labelled(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Labelled.cs/#L16">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Labelled_" data-uid="Pidgin.Parser`2.Labelled*"></a>
+  <h4 id="Pidgin_Parser_2_Labelled_System_String_" data-uid="Pidgin.Parser`2.Labelled(System.String)">Labelled(String)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser equivalent to the current parser, with a custom label.
+The label will be reported in an error message if the parser fails, instead of the default error message.
+<a class="xref" href="Pidgin.ParseError-1.html#Pidgin_ParseError_1_Expected">Expected</a>
+<a class="xref" href="Pidgin.Expected-1.html#Pidgin_Expected_1_Label">Label</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Labelled(string label)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">label</span></td>
+        <td><p>The custom label to apply to the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser equivalent to the current parser, with a custom label</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Many.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Many%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Many.cs/#L135">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Many_" data-uid="Pidgin.Parser`2.Many*"></a>
+  <h4 id="Pidgin_Parser_2_Many" data-uid="Pidgin.Parser`2.Many">Many()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser zero or more times.
+The resulting parser fails if the current parser fails after consuming input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; Many()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser zero or more times</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Map__1_Func__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Map%60%601(Func%7B%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Select.cs/#L30">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Map_" data-uid="Pidgin.Parser`2.Map*"></a>
+  <h4 id="Pidgin_Parser_2_Map__1_Func__1___0__" data-uid="Pidgin.Parser`2.Map``1(Func{`1,``0})">Map&lt;U&gt;(Func&lt;T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the specified transformation function to the result of the current parser.
+This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Map__3_Func___1___2__Pidgin_Parser___0___1__">Map&lt;TToken, T1, R&gt;(Func&lt;T1, R&gt;, Parser&lt;TToken, T1&gt;)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Map&lt;U&gt;(Func&lt;T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the transformation function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.MapWithInput%60%601(Pidgin.ReadOnlySpanFunc%7B%600%2C%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.MapWithInput.cs/#L23">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_MapWithInput_" data-uid="Pidgin.Parser`2.MapWithInput*"></a>
+  <h4 id="Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__" data-uid="Pidgin.Parser`2.MapWithInput``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})">MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a parser which runs the current parser and applies a selector function.
+The selector function receives a <see cref="!:ReadOnlySpan&lt;TToken>"></see> as its first argument, and the result of the current parser as its second argument.
+The <see cref="!:ReadOnlySpan&lt;TToken>"></see> represents the sequence of input tokens which were consumed by the parser.</p>
+<p>This allows you to write &quot;pattern&quot;-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.</p>
+<p>This function is an alternative name for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__">Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ReadOnlySpanFunc-3.html">ReadOnlySpanFunc</a>&lt;TToken, T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A selector function which computes a result of type <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.
+The arguments of the selector function are a <see cref="!:ReadOnlySpan&lt;TToken>"></see> containing the sequence of input tokens which were consumed by this parser,
+and the result of this parser.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which runs the current parser and applies a selector function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_OfType__1.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.OfType%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.OfType.cs/#L10">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_OfType_" data-uid="Pidgin.Parser`2.OfType*"></a>
+  <h4 id="Pidgin_Parser_2_OfType__1" data-uid="Pidgin.Parser`2.OfType``1">OfType&lt;U&gt;()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which casts the return value of the current parser to the specified result type, or fails if the return value is not an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; OfType&lt;U&gt;()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which returns the current parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>, if the value is an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type to cast the return value of the current parser to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Optional.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Optional%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Optional.cs/#L22">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Optional_" data-uid="Pidgin.Parser`2.Optional*"></a>
+  <h4 id="Pidgin_Parser_2_Optional" data-uid="Pidgin.Parser`2.Optional">Optional()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser and returns <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> if the current parser fails without consuming any input.
+The resulting parser fails if the current parser fails after consuming input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Maybe&lt;T&gt;&gt; Optional()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser and returns <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> if the current parser fails without consuming any input</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Or_Pidgin_Parser__0__1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Or(Pidgin.Parser%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Or.cs/#L13">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Or_" data-uid="Pidgin.Parser`2.Or*"></a>
+  <h4 id="Pidgin_Parser_2_Or_Pidgin_Parser__0__1__" data-uid="Pidgin.Parser`2.Or(Pidgin.Parser{`0,`1})">Or(Parser&lt;TToken, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which tries to apply the current parser, applying the specified parser if the current parser fails without consuming any input.
+The resulting parser fails if both the current parser and the alternative parser fail, or if the current parser fails after consuming input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Or(Parser&lt;TToken, T&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The alternative parser to apply if the current parser fails without consuming any input</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser which tries to apply the current parser, and applies <code data-dev-comment-type="paramref" class="paramref">parser</code> if the current parser fails without consuming any input.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_RecoverWith_Func_Pidgin_ParseError__0__Pidgin_Parser__0__1___.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.RecoverWith(Func%7BPidgin.ParseError%7B%600%7D%2CPidgin.Parser%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.RecoverWith.cs/#L12">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_RecoverWith_" data-uid="Pidgin.Parser`2.RecoverWith*"></a>
+  <h4 id="Pidgin_Parser_2_RecoverWith_Func_Pidgin_ParseError__0__Pidgin_Parser__0__1___" data-uid="Pidgin.Parser`2.RecoverWith(Func{Pidgin.ParseError{`0},Pidgin.Parser{`0,`1}})">RecoverWith(Func&lt;ParseError&lt;TToken&gt;, Parser&lt;TToken, T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which runs the current parser, running <code data-dev-comment-type="paramref" class="paramref">errorHandler</code> on failure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; RecoverWith(Func&lt;ParseError&lt;TToken&gt;, Parser&lt;TToken, T&gt;&gt; errorHandler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Pidgin.ParseError-1.html">ParseError</a>&lt;TToken&gt;, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;&gt;</td>
+        <td><span class="parametername">errorHandler</span></td>
+        <td><p>A function which returns a parser to apply when the current parser fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser which runs the current parser, running <code data-dev-comment-type="paramref" class="paramref">errorHandler</code> on failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Repeat_System_Int32_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Repeat(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Repeat.cs/#L47">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Repeat_" data-uid="Pidgin.Parser`2.Repeat*"></a>
+  <h4 id="Pidgin_Parser_2_Repeat_System_Int32_" data-uid="Pidgin.Parser`2.Repeat(System.Int32)">Repeat(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser <code data-dev-comment-type="paramref" class="paramref">count</code> times.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; Repeat(int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of times to apply the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser <code data-dev-comment-type="paramref" class="paramref">count</code> times.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Select__1_Func__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Select%60%601(Func%7B%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Select.cs/#L14">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Select_" data-uid="Pidgin.Parser`2.Select*"></a>
+  <h4 id="Pidgin_Parser_2_Select__1_Func__1___0__" data-uid="Pidgin.Parser`2.Select``1(Func{`1,``0})">Select&lt;U&gt;(Func&lt;T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the specified transformation function to the result of the current parser.
+This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Map__3_Func___1___2__Pidgin_Parser___0___1__">Map&lt;TToken, T1, R&gt;(Func&lt;T1, R&gt;, Parser&lt;TToken, T1&gt;)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Select&lt;U&gt;(Func&lt;T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the transformation function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SelectMany__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SelectMany%60%602(Func%7B%601%2CPidgin.Parser%7B%600%2C%60%600%7D%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.SelectMany.cs/#L16">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SelectMany_" data-uid="Pidgin.Parser`2.SelectMany*"></a>
+  <h4 id="Pidgin_Parser_2_SelectMany__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__" data-uid="Pidgin.Parser`2.SelectMany``2(Func{`1,Pidgin.Parser{`0,``0}},Func{`1,``0,``1})">SelectMany&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies a transformation function to the return value of the current parser.
+The transformation function dynamically chooses a second parser, which is applied after applying the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, R&gt; SelectMany&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt; selector, Func&lt;T, U, R&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A function to apply to the return values of the two parsers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</td>
+        <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the return value of the second parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td><p>The type of the return value of the resulting parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Separated__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Separated%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L15">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Separated_" data-uid="Pidgin.Parser`2.Separated*"></a>
+  <h4 id="Pidgin_Parser_2_Separated__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.Separated``1(Pidgin.Parser{`0,``0})">Separated&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser repeatedly, interleaved with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; Separated&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser repeatedly, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SeparatedAndOptionallyTerminated__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SeparatedAndOptionallyTerminated%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L80">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SeparatedAndOptionallyTerminated_" data-uid="Pidgin.Parser`2.SeparatedAndOptionallyTerminated*"></a>
+  <h4 id="Pidgin_Parser_2_SeparatedAndOptionallyTerminated__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SeparatedAndOptionallyTerminated``1(Pidgin.Parser{`0,``0})">SeparatedAndOptionallyTerminated&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser repeatedly, interleaved and optionally terminated with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; SeparatedAndOptionallyTerminated&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser repeatedly, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SeparatedAndOptionallyTerminatedAtLeastOnce__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SeparatedAndOptionallyTerminatedAtLeastOnce%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L97">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SeparatedAndOptionallyTerminatedAtLeastOnce_" data-uid="Pidgin.Parser`2.SeparatedAndOptionallyTerminatedAtLeastOnce*"></a>
+  <h4 id="Pidgin_Parser_2_SeparatedAndOptionallyTerminatedAtLeastOnce__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SeparatedAndOptionallyTerminatedAtLeastOnce``1(Pidgin.Parser{`0,``0})">SeparatedAndOptionallyTerminatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser at least once, interleaved and optionally terminated with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; SeparatedAndOptionallyTerminatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser at least once, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SeparatedAndTerminated__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SeparatedAndTerminated%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L48">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SeparatedAndTerminated_" data-uid="Pidgin.Parser`2.SeparatedAndTerminated*"></a>
+  <h4 id="Pidgin_Parser_2_SeparatedAndTerminated__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SeparatedAndTerminated``1(Pidgin.Parser{`0,``0})">SeparatedAndTerminated&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser repeatedly, interleaved and terminated with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; SeparatedAndTerminated&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser repeatedly, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SeparatedAndTerminatedAtLeastOnce__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SeparatedAndTerminatedAtLeastOnce%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L64">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SeparatedAndTerminatedAtLeastOnce_" data-uid="Pidgin.Parser`2.SeparatedAndTerminatedAtLeastOnce*"></a>
+  <h4 id="Pidgin_Parser_2_SeparatedAndTerminatedAtLeastOnce__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SeparatedAndTerminatedAtLeastOnce``1(Pidgin.Parser{`0,``0})">SeparatedAndTerminatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser at least once, interleaved and terminated with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; SeparatedAndTerminatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser at least once, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SeparatedAtLeastOnce__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SeparatedAtLeastOnce%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Separated.cs/#L32">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SeparatedAtLeastOnce_" data-uid="Pidgin.Parser`2.SeparatedAtLeastOnce*"></a>
+  <h4 id="Pidgin_Parser_2_SeparatedAtLeastOnce__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SeparatedAtLeastOnce``1(Pidgin.Parser{`0,``0})">SeparatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser at least once, interleaved with a specified parser.
+The resulting parser ignores the return value of the separator parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; SeparatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt; separator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies the current parser at least once, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the separator parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SkipAtLeastOnce.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SkipAtLeastOnce%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Many.cs/#L210">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SkipAtLeastOnce_" data-uid="Pidgin.Parser`2.SkipAtLeastOnce*"></a>
+  <h4 id="Pidgin_Parser_2_SkipAtLeastOnce" data-uid="Pidgin.Parser`2.SkipAtLeastOnce">SkipAtLeastOnce()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies the current parser one or more times, discarding the results.
+This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnce">AtLeastOnce()</a>, if you don&apos;t need the results.
+The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; SkipAtLeastOnce()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</td>
+        <td><p>A parser that applies the current parser one or more times, discarding the results</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SkipAtLeastOnceUntil%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Until.cs/#L69">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SkipAtLeastOnceUntil_" data-uid="Pidgin.Parser`2.SkipAtLeastOnceUntil*"></a>
+  <h4 id="Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SkipAtLeastOnceUntil``1(Pidgin.Parser{`0,``0})">SkipAtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies this parser one or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.
+This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t need the results.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; SkipAtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">terminator</span></td>
+        <td><p>A parser to parse a terminator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</td>
+        <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SkipMany.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SkipMany%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Many.cs/#L200">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SkipMany_" data-uid="Pidgin.Parser`2.SkipMany*"></a>
+  <h4 id="Pidgin_Parser_2_SkipMany" data-uid="Pidgin.Parser`2.SkipMany">SkipMany()</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser zero or more times, discarding the results.
+This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Many">Many()</a>, if you don&apos;t need the results.
+The resulting parser fails if the current parser fails after consuming input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; SkipMany()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</td>
+        <td><p>A parser which applies the current parser zero or more times</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.SkipUntil%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Until.cs/#L51">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_SkipUntil_" data-uid="Pidgin.Parser`2.SkipUntil*"></a>
+  <h4 id="Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.SkipUntil``1(Pidgin.Parser{`0,``0})">SkipUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies this parser zero or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.
+This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__">Until&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t need the results.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; SkipUntil&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">terminator</span></td>
+        <td><p>A parser to parse a terminator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</td>
+        <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Slice%60%601(Pidgin.ReadOnlySpanFunc%7B%600%2C%601%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Slice.cs/#L23">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Slice_" data-uid="Pidgin.Parser`2.Slice*"></a>
+  <h4 id="Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__" data-uid="Pidgin.Parser`2.Slice``1(Pidgin.ReadOnlySpanFunc{`0,`1,``0})">Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a parser which runs the current parser and applies a selector function.
+The selector function receives a <see cref="!:ReadOnlySpan&lt;TToken>"></see> as its first argument, and the result of the current parser as its second argument.
+The <see cref="!:ReadOnlySpan&lt;TToken>"></see> represents the sequence of input tokens which were consumed by the parser.</p>
+<p>This allows you to write &quot;pattern&quot;-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.</p>
+<p>This function is an alternative name for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__">MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ReadOnlySpanFunc-3.html">ReadOnlySpanFunc</a>&lt;TToken, T, U&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A selector function which computes a result of type <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.
+The arguments of the selector function are a <see cref="!:ReadOnlySpan&lt;TToken>"></see> containing the sequence of input tokens which were consumed by this parser,
+and the result of this parser.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which runs the current parser and applies a selector function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Then__1_Func__1_Pidgin_Parser__0___0___.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Then%60%601(Func%7B%601%2CPidgin.Parser%7B%600%2C%60%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Then.cs/#L56">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Then_" data-uid="Pidgin.Parser`2.Then*"></a>
+  <h4 id="Pidgin_Parser_2_Then__1_Func__1_Pidgin_Parser__0___0___" data-uid="Pidgin.Parser`2.Then``1(Func{`1,Pidgin.Parser{`0,``0}})">Then&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies a transformation function to the return value of the current parser.
+The transformation function dynamically chooses a second parser, which is applied after applying the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Then&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the return value of the second parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_Then__1_Func__1_Pidgin_Parser__0___0____remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__1_Func__1_Pidgin_Parser__0___0___">Bind&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;)</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Then__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Then%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Then.cs/#L14">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Then_" data-uid="Pidgin.Parser`2.Then*"></a>
+  <h4 id="Pidgin_Parser_2_Then__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.Then``1(Pidgin.Parser{`0,``0})">Then&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser followed by a specified parser.
+The resulting parser returns the result of the second parser, ignoring the result of the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Then&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser to apply after applying the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the second parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Then__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Then%60%602(Func%7B%601%2CPidgin.Parser%7B%600%2C%60%600%7D%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Then.cs/#L74">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Then_" data-uid="Pidgin.Parser`2.Then*"></a>
+  <h4 id="Pidgin_Parser_2_Then__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__" data-uid="Pidgin.Parser`2.Then``2(Func{`1,Pidgin.Parser{`0,``0}},Func{`1,``0,``1})">Then&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that applies a transformation function to the return value of the current parser.
+The transformation function dynamically chooses a second parser, which is applied after applying the current parser.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, R&gt; Then&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt; selector, Func&lt;T, U, R&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A function to apply to the return values of the two parsers</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</td>
+        <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The type of the return value of the second parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td><p>The type of the return value of the resulting parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_Then__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__2_Func__1_Pidgin_Parser__0___0___Func__1___0___1__">Bind&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Then__2_Pidgin_Parser__0___0__Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Then%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Then.cs/#L35">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Then_" data-uid="Pidgin.Parser`2.Then*"></a>
+  <h4 id="Pidgin_Parser_2_Then__2_Pidgin_Parser__0___0__Func__1___0___1__" data-uid="Pidgin.Parser`2.Then``2(Pidgin.Parser{`0,``0},Func{`1,``0,``1})">Then&lt;U, R&gt;(Parser&lt;TToken, U&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies the current parser followed by a specified parser, applying a function to the two results.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, R&gt; Then&lt;U, R&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;T, U, R&gt; result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser to apply after applying the current parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">result</span></td>
+        <td><p>A function to apply to the two parsed values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</td>
+        <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of the second parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td><p>The return type of the composed parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_Then__2_Pidgin_Parser__0___0__Func__1___0___1___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is a synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Map__4_Func___1___2___3__Pidgin_Parser___0___1__Pidgin_Parser___0___2__">Map&lt;TToken, T1, T2, R&gt;(Func&lt;T1, T2, R&gt;, Parser&lt;TToken, T1&gt;, Parser&lt;TToken, T2&gt;)</a>
+with the arguments rearranged.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_ThenReturn__1___0_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.ThenReturn%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.WithResult.cs/#L34">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_ThenReturn_" data-uid="Pidgin.Parser`2.ThenReturn*"></a>
+  <h4 id="Pidgin_Parser_2_ThenReturn__1___0_" data-uid="Pidgin.Parser`2.ThenReturn``1(``0)">ThenReturn&lt;U&gt;(U)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which behaves like the current parser but returns <code data-dev-comment-type="paramref" class="paramref">result</code> after a successful parse.
+This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_WithResult__1___0_">WithResult&lt;U&gt;(U)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; ThenReturn&lt;U&gt;(U result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">U</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which behaves like the current parser but returns <code data-dev-comment-type="paramref" class="paramref">result</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_ThenReturn__1___0__examples">Examples</h5>
+  <p>Equivalent to using <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Select__1_Func__1___0__">Select&lt;U&gt;(Func&lt;T, U&gt;)</a> with a function that returns a fixed value,
+or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Parser__0___0__">Then&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> with <a class="xref" href="Pidgin.Parser-1.html#Pidgin_Parser_1_Return__1___0_">Return&lt;T&gt;(T)</a>.</p>
+<pre><code>p.ThenReturn(x) == p.Select(_ => x) == p.Then(Return(x));</code></pre>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Trace_Func__1_System_String__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Trace(Func%7B%601%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Trace.cs/#L13">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Trace_" data-uid="Pidgin.Parser`2.Trace*"></a>
+  <h4 id="Pidgin_Parser_2_Trace_Func__1_System_String__" data-uid="Pidgin.Parser`2.Trace(Func{`1,System.String})">Trace(Func&lt;T, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>For debugging use.</p>
+<p>Creates a new parser which runs the current parser and prints the given message to the console.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Trace(Func&lt;T, string&gt; message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser which runs the current parser and prints the given message to the console.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Trace_System_String_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Trace(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Trace.cs/#L32">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Trace_" data-uid="Pidgin.Parser`2.Trace*"></a>
+  <h4 id="Pidgin_Parser_2_Trace_System_String_" data-uid="Pidgin.Parser`2.Trace(System.String)">Trace(String)</h4>
+  <div class="markdown level1 summary"><p>For debugging use.</p>
+<p>Creates a new parser which runs the current parser and prints the given message to the console.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Trace(string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser which runs the current parser and prints the given message to the console.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_TraceResult.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.TraceResult%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Trace.cs/#L47">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_TraceResult_" data-uid="Pidgin.Parser`2.TraceResult*"></a>
+  <h4 id="Pidgin_Parser_2_TraceResult" data-uid="Pidgin.Parser`2.TraceResult">TraceResult()</h4>
+  <div class="markdown level1 summary"><p>For debugging use.</p>
+<p>Creates a new parser which runs the current parser and prints the result to the console.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; TraceResult()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser which runs the current parser and prints the result to the console.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Until%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Until.cs/#L16">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Until_" data-uid="Pidgin.Parser`2.Until*"></a>
+  <h4 id="Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Parser`2.Until``1(Pidgin.Parser{`0,``0})">Until&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which applies this parser zero or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; Until&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">terminator</span></td>
+        <td><p>A parser to parse a terminator</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <span class="xref">IEnumerable</span>&lt;T&gt;&gt;</td>
+        <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_Where_Func__1_System_Boolean__.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.Where(Func%7B%601%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.Where.cs/#L13">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_Where_" data-uid="Pidgin.Parser`2.Where*"></a>
+  <h4 id="Pidgin_Parser_2_Where_Func__1_System_Boolean__" data-uid="Pidgin.Parser`2.Where(Func{`1,System.Boolean})">Where(Func&lt;T, Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Where(Func&lt;T, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate to apply to the value returned by the current parser</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_Where_Func__1_System_Boolean___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function is a synonym of <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Assert_Func__1_System_Boolean__">Assert(Func&lt;T, Boolean&gt;)</a></p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2_WithResult__1___0_.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602.WithResult%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.WithResult.cs/#L18">View Source</a>
+  </span>
+  <a id="Pidgin_Parser_2_WithResult_" data-uid="Pidgin.Parser`2.WithResult*"></a>
+  <h4 id="Pidgin_Parser_2_WithResult__1___0_" data-uid="Pidgin.Parser`2.WithResult``1(``0)">WithResult&lt;U&gt;(U)</h4>
+  <div class="markdown level1 summary"><p>Creates a parser which behaves like the current parser but returns <code data-dev-comment-type="paramref" class="paramref">result</code> after a successful parse.
+This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_ThenReturn__1___0_">ThenReturn&lt;U&gt;(U)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; WithResult&lt;U&gt;(U result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">U</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>The result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><p>A parser which behaves like the current parser but returns <code data-dev-comment-type="paramref" class="paramref">result</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Pidgin_Parser_2_WithResult__1___0__examples">Examples</h5>
+  <p>Equivalent to using <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Select__1_Func__1___0__">Select&lt;U&gt;(Func&lt;T, U&gt;)</a> with a function that returns a fixed value,
+or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Parser__0___0__">Then&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> with <a class="xref" href="Pidgin.Parser-1.html#Pidgin_Parser_1_Return__1___0_">Return&lt;T&gt;(T)</a>.</p>
+<pre><code>p.WithResult(x) == p.Select(_ => x) == p.Then(Return(x));</code></pre>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseReadOnlyList&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseReadOnlyListOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___">ParserExtensions.ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_Parser_2.md&amp;value=---%0Auid%3A%20Pidgin.Parser%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/Parser.WithResult.cs/#L3" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
