@@ -1,0 +1,40 @@
+name: Build and pack
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore nuget packages
+      run: dotnet restore --configuration Release
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Test
+      run: dotnet test --no-build --configuration Release --verbosity normal
+      
+    - name: Benchmarks
+      run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f *
+      
+    - name: Pack
+      run: dotnet pack --no-build --configuration Release -o nupkgs
+      
+    - uses: actions/upload-artifact@v2.2.3
+      with:
+        name: nupkgs
+        path: nupkgs
+
