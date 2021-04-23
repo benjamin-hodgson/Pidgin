@@ -18,6 +18,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
     
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
