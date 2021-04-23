@@ -28,7 +28,7 @@ jobs:
       run: dotnet test --no-build --configuration Release --verbosity normal
       
     - name: Benchmarks
-      run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f *
+      run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
       
     - name: Pack
       run: dotnet pack --no-build --configuration Release -o nupkgs
