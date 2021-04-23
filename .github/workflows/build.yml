@@ -44,7 +44,7 @@ jobs:
 #       run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
       
     - name: Pack
-      run: dotnet pack --no-build --configuration Release -o nupkgs
+      run: dotnet pack --no-build --configuration Release -o nupkgs --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
       
     - uses: nikeee/docfx-action@v1.0.0
       with:
