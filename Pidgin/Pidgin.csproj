@@ -9,7 +9,7 @@
     <PackageTags>parser;parsing;language;compiler</PackageTags>
 
     <PackageProjectUrl>https://github.com/benjamin-hodgson/Pidgin</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/benjamin-hodgson/Pidgin/blob/master/LICENSE</PackageLicenseUrl>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
