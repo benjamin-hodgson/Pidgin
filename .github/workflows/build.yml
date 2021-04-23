@@ -34,7 +34,8 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --no-restore --configuration Release --version-suffix ${{ steps.get_version.outputs.VERSION_SUFFIX }}
+      run: |
+        dotnet build --no-restore --configuration Release --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
