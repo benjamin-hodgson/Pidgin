@@ -24,7 +24,7 @@ jobs:
       id: get_version
       run: |
         shopt -s extglob
-        if  [[ $GITHUB_REF == refs/tags/* ]] ;
+        if [[ $GITHUB_REF == refs/heads/* ]] ;
         then
             echo ::set-output name=VERSION_SUFFIX::build.${{ github.run_id }}
         fi
