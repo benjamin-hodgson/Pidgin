@@ -34,17 +34,16 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: |
-        dotnet build --no-restore --configuration Release --version-suffix ''
+      run: dotnet build --no-restore --configuration Release --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
       
-#     - name: Benchmarks
-#       run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
+    - name: Benchmarks
+      run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
       
     - name: Pack
-      run: dotnet pack --no-build --configuration Release -o nupkgs --version-suffix ''
+      run: dotnet pack --no-build --configuration Release -o nupkgs --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
       
     - uses: nikeee/docfx-action@v1.0.0
       with:
