@@ -22,7 +22,9 @@ jobs:
         
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF#@(refs/tags/|refs/heads/)}
+      run: |
+        shopt -s extglob
+        echo ::set-output name=VERSION::${GITHUB_REF#@(refs/tags/|refs/heads/)}
         
     - name: Restore nuget packages
       run: dotnet restore
