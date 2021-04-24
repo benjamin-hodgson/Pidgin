@@ -57,22 +57,24 @@ jobs:
     - name: Pack
       run: dotnet pack --no-build --configuration Release -o nupkgs -p:Version=${{ steps.get_version.outputs.VERSION }}
       
-    - uses: nikeee/docfx-action@v1.0.0
+    - name: Build docs
+      uses: nikeee/docfx-action@v1.0.0
       with:
         args: Pidgin.Docs/docfx.json
         
-    - name: Push nuget packages
-      if: github.event_name != 'pull_request'
-      run: |
-        dotnet nuget push nupkgs/* --source https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
-        dotnet nuget push nupkgs/* --source https://nuget.pkg.github.com/benjamin-hodgson/index.json -k ${{ secrets.GITHUB_TOKEN }}
-        
-    - uses: JamesIves/github-pages-deploy-action@4.1.1
+    - name: Deploy docs
+      uses: JamesIves/github-pages-deploy-action@4.1.1
       if: github.event_name != 'pull_request'
       with:
         branch: gh-pages
         folder: Pidgin.Docs/_site
         target-folder: ${{ steps.get_version.outputs.BRANCH }}
+        
+    - name: Push nuget packages
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        dotnet nuget push nupkgs/* --source https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
+        dotnet nuget push nupkgs/* --source https://nuget.pkg.github.com/benjamin-hodgson/index.json -k ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create Github Release
       uses: softprops/action-gh-release@v1
