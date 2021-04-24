@@ -53,10 +53,7 @@ jobs:
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
-      
-    - name: Benchmarks
-      run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
-      
+
     - name: Pack
       run: dotnet pack --no-build --configuration Release -o nupkgs -p:Version=${{ steps.get_version.outputs.VERSION }}
       
@@ -90,11 +87,6 @@ jobs:
       with:
         name: nupkgs
         path: nupkgs
-    
-    - uses: actions/upload-artifact@v2
-      with:
-        name: BenchmarkDotNet.Artifacts
-        path: BenchmarkDotNet.Artifacts
     
     - uses: actions/upload-artifact@v2
       with:
