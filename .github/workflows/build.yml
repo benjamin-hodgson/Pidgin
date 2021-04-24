@@ -25,23 +25,30 @@ jobs:
     - name: Get last tag
       id: last_tag
       uses: WyriHaximus/github-action-get-previous-tag@v1
+      
+    - name: Get next version
+      id: next_version
+      uses: WyriHaximus/github-action-next-semvers@v1
+      with:
+        version: ${{ steps.previoustag.outputs.tag }}
         
     - name: Get the version
       id: get_version
       run: |
         shopt -s extglob
         echo ::set-output name=BRANCH::${GITHUB_REF#@(refs/tags/|refs/heads/)}
-        echo ::set-output name=VERSION_PREFIX::${${{ steps.last_tag.outputs.tag }}#@v}
-        if ! [[ $GITHUB_REF == refs/tags/* ]] ;
+        if [[ $GITHUB_REF == refs/tags/* ]] ;
+        else
+            echo ::set-output name=VERSION::${GITHUB_REF#@refs/tags/v}
         then
-            echo ::set-output name=VERSION_SUFFIX::build.${{ github.run_id }}
+            echo ::set-output name=VERSION::${{ steps.next_version.outputs.patch }}-build.${{ github.run_id }}
         fi
         
     - name: Restore nuget packages
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --no-restore --configuration Release -p:VersionPrefix=${{ steps.get_version.outputs.VERSION_PREFIX }} --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
+      run: dotnet build --no-restore --configuration Release -p:Version=${{ steps.get_version.outputs.VERSION }}
       
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal
@@ -50,7 +57,7 @@ jobs:
       run: dotnet run --no-build --configuration Release --project Pidgin.Bench/Pidgin.Bench.csproj -- -f '*'
       
     - name: Pack
-      run: dotnet pack --no-build --configuration Release -o nupkgs -p:VersionPrefix=${{ steps.get_version.outputs.VERSION_PREFIX }} --version-suffix '${{ steps.get_version.outputs.VERSION_SUFFIX }}'
+      run: dotnet pack --no-build --configuration Release -o nupkgs -p:Version=${{ steps.get_version.outputs.VERSION }}
       
     - uses: nikeee/docfx-action@v1.0.0
       with:
