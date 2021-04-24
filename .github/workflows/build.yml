@@ -31,7 +31,7 @@ jobs:
       id: next_version
       uses: WyriHaximus/github-action-next-semvers@v1
       with:
-        version: ${{ steps.previoustag.outputs.tag }}
+        version: ${{ steps.last_tag.outputs.tag }}
         
     - name: Get the version
       id: get_version
