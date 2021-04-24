@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
+    
     <Authors>benjamin.hodgson</Authors>
     <Copyright>© Benjamin Hodgson, 2017</Copyright>
     <Description>A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.</Description>
@@ -20,14 +22,6 @@
     
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
-    <TargetFrameworks>netstandard2.0;netcoreapp3.0;net451</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(APPVEYOR)' == ''">
-    <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
