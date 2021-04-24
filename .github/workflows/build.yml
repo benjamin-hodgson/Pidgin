@@ -33,7 +33,7 @@ jobs:
       with:
         version: ${{ steps.last_tag.outputs.tag }}
         
-    - name: Get the version
+    - name: Compute version for this build
       id: get_version
       run: |
         shopt -s extglob
