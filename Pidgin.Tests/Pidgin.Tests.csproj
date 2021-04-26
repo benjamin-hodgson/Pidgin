@@ -1,25 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
-    <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
-    <TargetFrameworks>net461;netcoreapp3.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(APPVEYOR)' == ''">
-    <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="../Pidgin/Pidgin.csproj" />

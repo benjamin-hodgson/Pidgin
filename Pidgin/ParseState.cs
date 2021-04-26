@@ -13,7 +13,7 @@ namespace Pidgin
     internal ref partial struct ParseState<TToken>
     {
         private static readonly bool _needsClear =
-#if NETCOREAPP
+#if NETSTANDARD21
             System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 #else
             !typeof(TToken).IsPrimitive;

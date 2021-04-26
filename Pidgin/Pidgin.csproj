@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/benjamin-hodgson/Pidgin/blob/master/LICENSE</PackageLicenseUrl>
 
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <LangVersion>8.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -24,8 +25,8 @@
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
-    <DefineConstants>$(DefineConstants);NETCOREAPP</DefineConstants>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <DefineConstants>$(DefineConstants);NETSTANDARD21</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

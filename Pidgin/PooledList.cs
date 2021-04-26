@@ -3,7 +3,6 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Pidgin
@@ -14,7 +13,7 @@ namespace Pidgin
     internal struct PooledList<T>
     {
         private static readonly bool _needsClear =
-#if NETCOREAPP
+#if NETSTANDARD21
             System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<T>();
 #else
             !typeof(T).IsPrimitive;
