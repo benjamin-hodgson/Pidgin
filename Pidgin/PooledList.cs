@@ -70,7 +70,7 @@ namespace Pidgin
         public void AddRange(ImmutableArray<T> items)
         {
             GrowIfNecessary(items.Length);
-            items.CopyTo(_items, _count);
+            items.CopyTo(_items!, _count);
             _count += items.Length;
         }
         public void AddRange(ReadOnlySpan<T> items)
@@ -125,7 +125,7 @@ namespace Pidgin
             {
                 return -1;
             }
-            return Array.IndexOf(_items, item, 0, _count);
+            return Array.IndexOf(_items!, item, 0, _count);
         }
 
         public void Insert(int index, T item)
@@ -147,11 +147,11 @@ namespace Pidgin
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
             _count--;
-            Array.Copy(_items, index + 1, _items, index, _count - index);
+            Array.Copy(_items!, index + 1, _items!, index, _count - index);
         }
 
         public bool Contains(T item)
-            => Array.IndexOf(_items, item, 0, _count) >= 0;
+            => Array.IndexOf(_items!, item, 0, _count) >= 0;
 
         public void CopyTo(T[] array, int arrayIndex)
         {
@@ -167,7 +167,7 @@ namespace Pidgin
             {
                 throw new ArgumentException();
             }
-            Array.Copy(_items, 0, array, arrayIndex, _count);
+            Array.Copy(_items!, 0, array, arrayIndex, _count);
         }
 
         public bool Remove(T item)
@@ -197,6 +197,7 @@ namespace Pidgin
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MemberNotNull(nameof(_arrayPool), nameof(_items))]
         private void GrowIfNecessary(int additionalSpace)
         {
             if (_arrayPool == null)
@@ -212,6 +213,7 @@ namespace Pidgin
                 Grow(additionalSpace);
             }
         }
+        [MemberNotNull(nameof(_items))]
         private void Init(int space)
         {
             _items = _arrayPool.Rent(Math.Max(InitialCapacity, space));

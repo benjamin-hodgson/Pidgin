@@ -131,10 +131,10 @@ namespace Pidgin
         }
 
         /// <inheritdoc/>
-        public bool Equals(ParseError<TToken> other)
-            => this.Unexpected.Equals(other.Unexpected)
+        public bool Equals(ParseError<TToken>? other)
+            => this.Unexpected.Equals(other?.Unexpected)
             && this.EOF == other.EOF
-            && (this.Expected == null && other.Expected == null || this.Expected.SequenceEqual(other.Expected))
+            && (this.Expected == null && other.Expected == null || this.Expected!.SequenceEqual(other.Expected))
             && this.ErrorPos.Equals(other.ErrorPos)
             && object.Equals(this.Message, other.Message);
         

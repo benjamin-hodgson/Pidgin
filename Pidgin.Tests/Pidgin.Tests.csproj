@@ -4,6 +4,8 @@
     <TargetFrameworks>net5.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
+
+    <NoWarn>xUnit2013</NoWarn>
     
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
