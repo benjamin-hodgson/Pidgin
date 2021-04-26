@@ -40,7 +40,7 @@ jobs:
         echo ::set-output name=BRANCH::${GITHUB_REF#@(refs/tags/|refs/heads/)}
         if [[ $GITHUB_REF == refs/tags/* ]] ;
         then
-            echo ::set-output name=VERSION::${GITHUB_REF#@refs/tags/v}
+            echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
         else
             echo ::set-output name=VERSION::${{ steps.next_version.outputs.patch }}-build.${{ github.run_id }}
         fi
