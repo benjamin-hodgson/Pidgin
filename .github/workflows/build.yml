@@ -73,8 +73,8 @@ jobs:
     - name: Push nuget packages
       if: startsWith(github.ref, 'refs/tags/')
       run: |
-        dotnet nuget push nupkgs/* --source https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
-        dotnet nuget push nupkgs/* --source https://nuget.pkg.github.com/benjamin-hodgson/index.json -k ${{ secrets.GITHUB_TOKEN }}
+        dotnet nuget push 'nupkgs/*' --source https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_KEY }}
+        dotnet nuget push 'nupkgs/*' --source https://nuget.pkg.github.com/benjamin-hodgson/index.json -k ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create Github Release
       uses: softprops/action-gh-release@v1
