@@ -4,7 +4,12 @@ using System.Runtime.CompilerServices;
 
 namespace Pidgin.TokenStreams
 {
-    internal class ResumableTokenStream<TToken> : ITokenStream<TToken>, IDisposable
+    /// <summary>
+    /// An <see cref="ITokenStream{TToken}"/> implementation which wraps another <see cref="ITokenStream{TToken}"/>
+    /// and adds support for resumable parsing.
+    /// </summary>
+    /// <typeparam name="TToken">The type of tokens returned by the wrapped <see cref="ITokenStream{TToken}"/>.</typeparam>
+    public class ResumableTokenStream<TToken> : ITokenStream<TToken>, IDisposable
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
         private readonly ArrayPool<TToken> _pool;
@@ -12,6 +17,15 @@ namespace Pidgin.TokenStreams
         private TToken[]? _buffer = null;
         private int _bufferStart = 0;  // amount of empty space at left-hand end of _buffer, aka index of first value
 
+        /// <summary>
+        /// Creates an <see cref="ITokenStream{TToken}"/> implementation which
+        /// adds support for resumable parsing to <paramref name="next"/>.
+        /// </summary>
+        /// <param name="next">The <see cref="ITokenStream{TToken}"/> to wrap.</param>
+        /// <param name="pool">
+        /// An <see cref="ArrayPool{TToken}"/> to use for the internal buffer.
+        /// Defaults to <see cref="ArrayPool{TToken}.Shared"/>.
+        /// </param>
         public ResumableTokenStream(ITokenStream<TToken> next, ArrayPool<TToken>? pool = null)
         {
             if (next == null)
@@ -22,6 +36,13 @@ namespace Pidgin.TokenStreams
             _pool = pool ?? ArrayPool<TToken>.Shared;
         }
 
+        /// <summary>
+        /// Read up to <c>buffer.Length</c> tokens into <paramref name="buffer"/>.
+        /// Return the actual number of tokens read, which may be fewer than
+        /// the size of the buffer if the stream has reached the end.
+        /// </summary>
+        /// <param name="buffer">The buffer to read tokens into.</param>
+        /// <returns>The actual number of tokens read.</returns>
         public int Read(Span<TToken> buffer)
         {
             var bufferedCount = 0;
@@ -34,6 +55,11 @@ namespace Pidgin.TokenStreams
             return bufferedCount + _next.Read(buffer.Slice(bufferedCount));
         }
 
+        /// <summary>
+        /// Push some un-consumed tokens back into the stream.
+        /// <see cref="Parser{TToken, T}"/>s call this method when they are finished parsing.
+        /// </summary>
+        /// <param name="leftovers">The leftovers to push back into the stream.</param>
         public void Return(ReadOnlySpan<TToken> leftovers)
         {
             if (leftovers.Length == 0)
@@ -61,6 +87,7 @@ namespace Pidgin.TokenStreams
             leftovers.CopyTo(_buffer.AsSpan().Slice(_bufferStart));
         }
 
+        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>
         public void Dispose()
         {
             if (_buffer != null)
