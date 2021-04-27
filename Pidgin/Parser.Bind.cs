@@ -57,7 +57,7 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
         {
             var success = _parser.TryParse(ref state, ref expecteds, out var childResult);
             if (!success)

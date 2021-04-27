@@ -19,7 +19,7 @@ namespace Pidgin
 
     internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePosDelta>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePosDelta result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePosDelta result)
         {
             result = state.ComputeSourcePosDelta();
             return true;

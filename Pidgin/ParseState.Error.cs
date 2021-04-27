@@ -1,17 +1,14 @@
-using System;
-using System.Buffers;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 
 namespace Pidgin
 {
-    internal partial struct ParseState<TToken>
+    public partial struct ParseState<TToken>
     {
         private bool _eof;
         private Maybe<TToken> _unexpected;
         private int _errorLocation;
         private string? _message;
+        /// <summary>Gets or sets the error</summary>
         public InternalError<TToken> Error
         {
             get
@@ -26,6 +23,10 @@ namespace Pidgin
                 _message = value.Message;
             }
         }
+        /// <summary>
+        /// Construct a <see cref="ParseError{TToken}"/> from the current <see cref="Error"/>
+        /// and the supplied <paramref name="expecteds"/>.
+        /// </summary>
         public ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
         {
             var builder = ImmutableArray.CreateBuilder<Expected<TToken>>(expecteds.Count);

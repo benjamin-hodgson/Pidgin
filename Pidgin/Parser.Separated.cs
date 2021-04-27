@@ -116,7 +116,7 @@ namespace Pidgin
             _remainderParser = separator.Then(parser);
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
@@ -177,7 +177,7 @@ namespace Pidgin
             _separator = separator;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {

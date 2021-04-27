@@ -28,7 +28,7 @@ namespace Pidgin
             _factory = factory;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
         {
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {

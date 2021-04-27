@@ -5,7 +5,7 @@ using Pidgin.Configuration;
 
 namespace Pidgin
 {
-    internal partial struct ParseState<TToken>
+    public partial struct ParseState<TToken>
     {
         private SourcePosDelta ComputeSourcePosDeltaAt(int location)
         {

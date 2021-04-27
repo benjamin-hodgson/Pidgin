@@ -431,7 +431,7 @@ namespace Pidgin
             _p1 = parser1;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -471,7 +471,7 @@ namespace Pidgin
             _p2 = parser2;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -523,7 +523,7 @@ namespace Pidgin
             _p3 = parser3;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -587,7 +587,7 @@ namespace Pidgin
             _p4 = parser4;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -663,7 +663,7 @@ namespace Pidgin
             _p5 = parser5;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -751,7 +751,7 @@ namespace Pidgin
             _p6 = parser6;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -851,7 +851,7 @@ namespace Pidgin
             _p7 = parser7;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
@@ -963,7 +963,7 @@ namespace Pidgin
             _p8 = parser8;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
             
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);

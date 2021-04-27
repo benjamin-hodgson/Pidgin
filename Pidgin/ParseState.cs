@@ -2,19 +2,28 @@ using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Pidgin.TokenStreams;
 using Pidgin.Configuration;
 
 namespace Pidgin
 {
     /// <summary>
-    /// A mutable struct! Careful!
+    /// Represents the state of a parsing process.
+    /// Includes functionality managing and buffering the input stream,
+    /// reporting errors, and computing source positions.
+    ///
+    /// For efficiency, this object is implemented as a mutable struct
+    /// and is intended to be passed by reference.
+    /// 
+    /// WARNING: This API is <strong>unstable</strong>
+    /// and subject to change in future versions of the library.
     /// </summary>
+    /// <typeparam name="TToken">The type of tokens consumed by the parser.</typeparam>
     [StructLayout(LayoutKind.Auto)]
-    internal ref partial struct ParseState<TToken>
+    public ref partial struct ParseState<TToken>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
+        /// <summary>Gets the parser configuration</summary>
         public IConfiguration<TToken> Configuration { get; }
         private readonly Func<TToken, SourcePosDelta> _sourcePosCalculator;
         private readonly ArrayPool<TToken>? _arrayPool;
@@ -35,7 +44,7 @@ namespace Pidgin
         // because dropping the buffer's prefix would invalidate the bookmarks
         private PooledList<int> _bookmarks;
 
-        public ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
+        internal ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
             Configuration = configuration;
             _sourcePosCalculator = Configuration.SourcePosCalculator;
@@ -59,7 +68,7 @@ namespace Pidgin
             _message = default;
         }
 
-        public ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
+        internal ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
         {
             Configuration = configuration;
             _sourcePosCalculator = Configuration.SourcePosCalculator;
@@ -86,9 +95,8 @@ namespace Pidgin
         }
 
         /// <summary>
-        /// How many tokens have been consumed in total?
+        /// Returns the total number of tokens which have been consumed
         /// </summary>
-        /// <value></value>
         public int Location
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -98,6 +106,9 @@ namespace Pidgin
             }
         }
 
+        /// <summary>
+        /// Returns true if the parser has not reached the end of the input.
+        /// </summary>
         public bool HasCurrent
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -106,6 +117,9 @@ namespace Pidgin
                 return _currentIndex < _bufferedCount;
             }
         }
+        /// <summary>
+        /// Returns the current token.
+        /// </summary>
         public TToken Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -115,6 +129,10 @@ namespace Pidgin
             }
         }
 
+        /// <summary>
+        /// Advance the input stream by <paramref name="count"/> tokens.
+        /// </summary>
+        /// <param name="count">The number of tokens to advance.</param>
         public void Advance(int count = 1)
         {
             if (_stream == null)
@@ -136,13 +154,20 @@ namespace Pidgin
         }
 
         // if it returns a span shorter than count it's because you reached the end of the input
+        /// <summary>
+        /// Returns a <see cref="Span{TToken}"/> containing the next <paramref name="count"/> tokens.
+        /// 
+        /// This method may return a span shorter than <paramref name="count"/>,
+        /// if the parser reaches the end of the input stream.
+        /// </summary>
+        /// <param name="count">The number of tokens to advance.</param>
         public ReadOnlySpan<TToken> LookAhead(int count)
         {
             Buffer(count);
             return _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
         }
         // if it returns a span shorter than count it's because you looked further back than the buffer goes
-        public ReadOnlySpan<TToken> LookBehind(int count)
+        internal ReadOnlySpan<TToken> LookBehind(int count)
         {
             var start = Math.Max(0, _currentIndex - count);
             return _span.Slice(start, _currentIndex - start);
@@ -205,16 +230,19 @@ namespace Pidgin
             }
         }
         
+        /// <summary>Start buffering the input</summary>
         public void PushBookmark()
         {
             _bookmarks.Add(Location);
         }
 
+        /// <summary>Stop buffering the input</summary>
         public void PopBookmark()
         {
             _bookmarks.Pop();
         }
 
+        /// <summary>Return to the last bookmark</summary>
         public void Rewind()
         {
             var bookmark = _bookmarks.Pop();
@@ -228,7 +256,7 @@ namespace Pidgin
             _currentIndex -= delta;
         }
 
-        public SourcePosDelta ComputeSourcePosDelta()
+        internal SourcePosDelta ComputeSourcePosDelta()
         {
             UpdateLastSourcePosDelta();
             return ComputeSourcePosDeltaAt(Location);
@@ -244,6 +272,10 @@ namespace Pidgin
             _lastSourcePosDeltaLocation = location;
         }
 
+        /// <summary>
+        /// Returns any allocated memory to the pool.
+        /// This method is called automatically by the library.
+        /// </summary>
         public void Dispose()
         {
             if (_buffer != null)

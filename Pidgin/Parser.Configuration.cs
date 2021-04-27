@@ -11,7 +11,7 @@ namespace Pidgin
 
     internal class ConfigurationParser<TToken> : Parser<TToken, IConfiguration<TToken>>
     {
-        internal override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IConfiguration<TToken> result)
+        public override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IConfiguration<TToken> result)
         {
             result = state.Configuration;
             return true;

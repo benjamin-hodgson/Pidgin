@@ -32,6 +32,18 @@ namespace Pidgin
         // Why pass the error by reference?
         // I previously passed Result around directly, which has an Error property,
         // but copying it around turned out to be too expensive because ParseError is a large struct
-        internal abstract bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result);
+
+        /// <summary>
+        /// Override this method to implement a custom parser.
+        /// Use this if you can't do what you need using the base parser combinators.
+        ///
+        /// WARNING: This API is <strong>unstable</strong>
+        /// and subject to change in future versions of the library.
+        /// </summary>
+        /// <param name="state">The parser's state.</param>
+        /// <param name="expecteds">A list to which the parser can add its expected tokens when it fails</param>
+        /// <param name="result">The result</param>
+        /// <returns>True if the parser succeeded, false if it failed.</returns>
+        public abstract bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result);
     }
 }

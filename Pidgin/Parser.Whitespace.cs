@@ -33,7 +33,7 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        internal override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
+        public override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
         {
             result = Unit.Value;
             var chunk = state.LookAhead(32);
