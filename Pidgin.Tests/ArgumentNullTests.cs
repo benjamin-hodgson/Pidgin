@@ -83,7 +83,7 @@ namespace Pidgin.Tests
             from m in typeof(Parser<int, int>).GetMethods(BindingFlags.Public | BindingFlags.Instance)
             let ps = m.GetParameters()
             where ps.Any()
-            where !new[]{ "Parse", "Equals", "WithResult", "ThenReturn" }.Contains(m.Name)
+            where !new[]{ "TryParse", "Equals", "WithResult", "ThenReturn" }.Contains(m.Name)
             from args in GetArgs(ps)
             select new object[]
             {
