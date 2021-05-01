@@ -166,13 +166,13 @@ namespace Pidgin
                 grandchildExpecteds.Clear();
                 // choose the longest match, preferring the left-most error in a tie,
                 // except the first time (avoid returning "OneOf had no arguments").
-                if (firstTime || state.Error.ErrorLocation > err.ErrorLocation)
+                if (firstTime || state.ErrorLocation > err.ErrorLocation)
                 {
-                    err = state.Error;
+                    err = state.GetError();
                 }
                 firstTime = false;
             }
-            state.Error = err;
+            state.SetError(err);
             expecteds.AddRange(childExpecteds.AsSpan());
             childExpecteds.Dispose();
             grandchildExpecteds.Dispose();

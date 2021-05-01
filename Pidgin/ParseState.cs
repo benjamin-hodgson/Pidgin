@@ -64,7 +64,7 @@ namespace Pidgin
 
             _eof = default;
             _unexpected = default;
-            _errorLocation = default;
+            ErrorLocation = default;
             _message = default;
         }
 
@@ -88,7 +88,7 @@ namespace Pidgin
 
             _eof = default;
             _unexpected = default;
-            _errorLocation = default;
+            ErrorLocation = default;
             _message = default;
 
             Buffer(0);

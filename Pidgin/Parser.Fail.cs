@@ -35,12 +35,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            state.Error = new InternalError<TToken>(
-                Maybe.Nothing<TToken>(),
-                false,
-                state.Location,
-                _message
-            );
+            state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message);
             expecteds.Add(_expected);
             result = default;
             return false;

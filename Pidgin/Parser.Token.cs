@@ -56,12 +56,7 @@ namespace Pidgin
         {
             if (!state.HasCurrent)
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 expecteds.Add(Expected);
                 result = default;
                 return false;
@@ -69,12 +64,7 @@ namespace Pidgin
             var token = state.Current;
             if (!EqualityComparer<TToken>.Default.Equals(token, _token))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(token),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(token), false, state.Location, null);
                 expecteds.Add(Expected);
                 result = default;
                 return false;
@@ -98,24 +88,14 @@ namespace Pidgin
         {
             if (!state.HasCurrent)
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 result = default;
                 return false;
             }
             var token = state.Current;
             if (!_predicate(token))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(token),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(token), false, state.Location, null);
                 result = default;
                 return false;
             }

@@ -76,12 +76,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<char>(
-                    Maybe.Just(span[errorPos]),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(span[errorPos]), false, state.Location, null);
                 expecteds.Add(Expected);
                 result = null;
                 return false;
@@ -91,12 +86,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<char>(
-                    Maybe.Nothing<char>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<char>(), true, state.Location, null);
                 expecteds.Add(Expected);
                 result = null;
                 return false;

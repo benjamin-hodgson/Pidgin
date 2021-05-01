@@ -6,35 +6,30 @@ namespace Pidgin
     {
         private bool _eof;
         private Maybe<TToken> _unexpected;
-        private int _errorLocation;
+        internal int ErrorLocation { get; private set; }
         private string? _message;
         /// <summary>Gets or sets the error</summary>
-        public InternalError<TToken> Error
+        public void SetError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
         {
-            get
-            {
-                return new InternalError<TToken>(_unexpected, _eof, _errorLocation, _message);
-            }
-            set
-            {
-                _unexpected = value.Unexpected;
-                _eof = value.EOF;
-                _errorLocation = value.ErrorLocation;
-                _message = value.Message;
-            }
+            _unexpected = unexpected;
+            _eof = eof;
+            ErrorLocation = errorLocation;
+            _message = message;
         }
-        /// <summary>
-        /// Construct a <see cref="ParseError{TToken}"/> from the current <see cref="Error"/>
-        /// and the supplied <paramref name="expecteds"/>.
-        /// </summary>
-        public ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
+        internal void SetError(InternalError<TToken> error)
+            => SetError(error.Unexpected, error.EOF, error.ErrorLocation, error.Message);
+
+        internal InternalError<TToken> GetError()
+            => new InternalError<TToken>(_unexpected, _eof, ErrorLocation, _message);
+
+        internal ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
         {
             var builder = ImmutableArray.CreateBuilder<Expected<TToken>>(expecteds.Count);
             foreach (var e in expecteds)
             {
                 builder.Add(e);
             }
-            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosDeltaAt(_errorLocation), _message);
+            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosDeltaAt(ErrorLocation), _message);
         }
     }
 }

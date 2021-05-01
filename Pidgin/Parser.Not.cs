@@ -49,12 +49,7 @@ namespace Pidgin
             
             if (success)
             {
-                state.Error = new InternalError<TToken>(
-                    token,
-                    false,
-                    startingLocation,
-                    null
-                );
+                state.SetError(token, false, startingLocation, null);
                 result = default;
                 return false;
             }

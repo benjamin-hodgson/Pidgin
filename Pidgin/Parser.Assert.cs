@@ -95,12 +95,7 @@ namespace Pidgin
 
             if (!_predicate(result!))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    false,
-                    state.Location,
-                    _message(result!)
-                );
+                state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message(result!));
                 expecteds.Add(_expected);
 
                 result = default;

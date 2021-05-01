@@ -17,12 +17,7 @@ namespace Pidgin
         {
             if (state.HasCurrent)
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(state.Current),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(state.Current), false, state.Location, null);
                 expecteds.Add(new Expected<TToken>());
                 result = default;
                 return false;

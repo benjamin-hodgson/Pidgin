@@ -168,7 +168,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<TToken>(
+                state.SetError(
                     Maybe.Just(span[errorPos]),
                     false,
                     state.Location,
@@ -183,7 +183,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<TToken>(
+                state.SetError(
                     Maybe.Nothing<TToken>(),
                     true,
                     state.Location,
@@ -231,12 +231,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(span[errorPos]),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(span[errorPos]), false, state.Location, null);
                 expecteds.Add(new Expected<TToken>(_valueTokens));
                 result = default;
                 return false;
@@ -246,12 +241,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 expecteds.Add(new Expected<TToken>(_valueTokens));
                 result = default;
                 return false;
