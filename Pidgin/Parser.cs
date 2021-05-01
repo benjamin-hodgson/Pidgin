@@ -37,7 +37,7 @@ namespace Pidgin
         /// Override this method to implement a custom parser.
         /// Use this if you can't do what you need using the base parser combinators.
         ///
-        /// If your parser fails it should return false and call <see cref="ParseState{TToken}.SetError(Maybe{TToken}, bool, int, string?)"/>
+        /// If your parser fails it should return false and call <see cref="ParseState{TToken}.SetError(Maybe{TToken}, bool, int, string?)"/>.
         ///
         /// WARNING: This API is <strong>unstable</strong>
         /// and subject to change in future versions of the library.

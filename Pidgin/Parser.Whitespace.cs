@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using static Pidgin.Parser<char>;
 
 namespace Pidgin
@@ -33,13 +35,54 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        public override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
+        public unsafe override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
         {
+            const long space = (long)' ';
+            const long fourSpaces = space | space << 16 | space << 32 | space << 48;
             result = Unit.Value;
+
+
             var chunk = state.LookAhead(32);
-            while (chunk.Length > 0)
+            while (chunk.Length == 32)
             {
-                for (var i = 0; i < chunk.Length; i++)
+                var ptr = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(chunk));
+                for (var i = 0; i < 8; i++)
+                {
+                    if (*(long*)(ptr + i * 4) != fourSpaces)
+                    {
+                        // there's a non-' ' character somewhere in this group of four
+                        for (var j = 0; j < 4; j++)
+                        {
+                            if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                            {
+                                state.Advance(i * 4 + j);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                state.Advance(32);
+                chunk = state.LookAhead(32);
+            }
+            {
+                var ptr = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(chunk));
+                var numberOfGroupsOfFour = chunk.Length / 4;
+
+                for (var i = 0; i < numberOfGroupsOfFour; i++)
+                {
+                    if (*(long*)(ptr + i * 4) != fourSpaces)
+                    {
+                        for (var j = 0; j < 4; j++)
+                        {
+                            if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                            {
+                                state.Advance(i * 4 + j);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                for (var i = numberOfGroupsOfFour * 4; i < chunk.Length; i++)
                 {
                     if (!char.IsWhiteSpace(chunk[i]))
                     {
@@ -47,9 +90,9 @@ namespace Pidgin
                         return true;
                     }
                 }
-                state.Advance(chunk.Length);
-                chunk = state.LookAhead(32);
             }
+
+            state.Advance(chunk.Length);
             return true;
         }
     }
