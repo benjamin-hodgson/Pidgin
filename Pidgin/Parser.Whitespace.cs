@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using static Pidgin.Parser<char>;
 
 namespace Pidgin
@@ -45,18 +43,20 @@ namespace Pidgin
             var chunk = state.LookAhead(32);
             while (chunk.Length == 32)
             {
-                var ptr = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(chunk));
-                for (var i = 0; i < 8; i++)
+                fixed (char* ptr = chunk)
                 {
-                    if (*(long*)(ptr + i * 4) != fourSpaces)
+                    for (var i = 0; i < 8; i++)
                     {
-                        // there's a non-' ' character somewhere in this group of four
-                        for (var j = 0; j < 4; j++)
+                        if (*(long*)(ptr + i * 4) != fourSpaces)
                         {
-                            if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                            // there's a non-' ' character somewhere in this group of four
+                            for (var j = 0; j < 4; j++)
                             {
-                                state.Advance(i * 4 + j);
-                                return true;
+                                if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                                {
+                                    state.Advance(i * 4 + j);
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -64,11 +64,11 @@ namespace Pidgin
                 state.Advance(32);
                 chunk = state.LookAhead(32);
             }
-            {
-                var ptr = (char*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(chunk));
-                var numberOfGroupsOfFour = chunk.Length / 4;
 
-                for (var i = 0; i < numberOfGroupsOfFour; i++)
+            var remainingGroupsOfFour = chunk.Length / 4;
+            fixed (char* ptr = chunk)
+            {
+                for (var i = 0; i < remainingGroupsOfFour; i++)
                 {
                     if (*(long*)(ptr + i * 4) != fourSpaces)
                     {
@@ -82,13 +82,14 @@ namespace Pidgin
                         }
                     }
                 }
-                for (var i = numberOfGroupsOfFour * 4; i < chunk.Length; i++)
+            }
+
+            for (var i = remainingGroupsOfFour * 4; i < chunk.Length; i++)
+            {
+                if (!char.IsWhiteSpace(chunk[i]))
                 {
-                    if (!char.IsWhiteSpace(chunk[i]))
-                    {
-                        state.Advance(i);
-                        return true;
-                    }
+                    state.Advance(i);
+                    return true;
                 }
             }
 
