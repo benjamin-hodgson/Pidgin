@@ -8,7 +8,7 @@ namespace Pidgin
         private Maybe<TToken> _unexpected;
         internal int ErrorLocation { get; private set; }
         private string? _message;
-        /// <summary>Gets or sets the error</summary>
+        /// <summary>Sets the error. Call this when your parser fails</summary>
         public void SetError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
         {
             _unexpected = unexpected;
