@@ -2002,6 +2002,21 @@ namespace Pidgin.Tests
                     true
                 );
             }
+            {
+                var parser = Char('f').RepeatString(3);
+                AssertSuccess(parser.Parse("fff"), "fff", true);
+                AssertFailure(
+                    parser.Parse("ff"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
+                        new SourcePosDelta(0, 2),
+                        null
+                    ),
+                    true
+                );
+            }
         }
 
         [Fact]
