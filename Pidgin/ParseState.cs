@@ -95,7 +95,8 @@ namespace Pidgin
         }
 
         /// <summary>
-        /// Returns the total number of tokens which have been consumed
+        /// Returns the total number of tokens which have been consumed.
+        /// In other words, the current absolute offset of the input stream.
         /// </summary>
         public int Location
         {
@@ -272,11 +273,7 @@ namespace Pidgin
             _lastSourcePosDeltaLocation = location;
         }
 
-        /// <summary>
-        /// Returns any allocated memory to the pool.
-        /// This method is called automatically by the library.
-        /// </summary>
-        public void Dispose()
+        internal void Dispose()
         {
             if (_buffer != null)
             {
