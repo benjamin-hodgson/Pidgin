@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -73,13 +74,16 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            var childExpecteds = new ExpectedCollector<TToken>();
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out result);
 
-            expecteds.AddIf(ref childExpecteds, success);
+            if (success)
+            {
+                expecteds.AddRange(childExpecteds.AsSpan());
+            }
             childExpecteds.Dispose();
 
             if (!success)
@@ -87,20 +91,20 @@ namespace Pidgin
                 return false;
             }
 
-            if (!_predicate(result))
+            // result is not null hereafter
+
+            if (!_predicate(result!))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    false,
-                    state.Location,
-                    _message(result)
-                );
+                state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message(result!));
                 expecteds.Add(_expected);
 
                 result = default;
                 return false;
             }
+
+            #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return true;
+            #pragma warning restore CS8762
         }
     }
 }

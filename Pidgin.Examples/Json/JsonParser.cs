@@ -25,7 +25,7 @@ namespace Pidgin.Examples.Json
             String.Select<IJson>(s => new JsonString(s));
             
         private static readonly Parser<char, IJson> Json =
-            JsonString.Or(Rec(() => JsonArray)).Or(Rec(() => JsonObject));
+            JsonString.Or(Rec(() => JsonArray!)).Or(Rec(() => JsonObject!));
 
         private static readonly Parser<char, IJson> JsonArray = 
             Json.Between(SkipWhitespaces)

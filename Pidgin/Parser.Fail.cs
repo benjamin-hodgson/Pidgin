@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -32,14 +33,9 @@ namespace Pidgin
             _message = message;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            state.Error = new InternalError<TToken>(
-                Maybe.Nothing<TToken>(),
-                false,
-                state.Location,
-                _message
-            );
+            state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message);
             expecteds.Add(_expected);
             result = default;
             return false;

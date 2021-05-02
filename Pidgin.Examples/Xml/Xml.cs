@@ -17,7 +17,7 @@ namespace Pidgin.Examples.Xml
             Content = content;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType())
             {
@@ -38,10 +38,10 @@ namespace Pidgin.Examples.Xml
             }
         }
 
-        public bool Equals(Tag other)
-            => Name == other.Name
+        public bool Equals(Tag? other)
+            => Name == other?.Name
             && Attributes.SequenceEqual(other.Attributes)
-            && ((ReferenceEquals(null, Content) && ReferenceEquals(null, other.Content)) || Content.SequenceEqual(other.Content));
+            && ((ReferenceEquals(null, Content) && ReferenceEquals(null, other.Content)) || Content!.SequenceEqual(other.Content!));
     }
     
     public class Attribute : IEquatable<Attribute>
@@ -55,7 +55,7 @@ namespace Pidgin.Examples.Xml
             Value = value;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || GetType() != obj.GetType())
             {
@@ -63,8 +63,8 @@ namespace Pidgin.Examples.Xml
             }
             return Equals((Attribute)obj);
         }
-        public bool Equals(Attribute other)
-            => Name == other.Name
+        public bool Equals(Attribute? other)
+            => Name == other?.Name
             && Value == other.Value;
         public override int GetHashCode()
         {

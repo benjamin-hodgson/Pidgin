@@ -169,9 +169,12 @@ namespace Pidgin.Expression
                     .Select<Func<T, T>>(fs =>
                         z =>
                         {
-                            var result = fs.AggregateR(z, (f, x) => f(x));
-                            fs.Clear();
-                            return result;
+                            for (var i = fs.Count - 1; i >= 0; i--)
+                            {
+                                z = fs[i](z);
+                            }
+                            fs.Dispose();
+                            return z;
                         }
                     )
             );
@@ -215,9 +218,12 @@ namespace Pidgin.Expression
                     .Select<Func<T, T>>(fs =>
                         z =>
                         {
-                            var result = fs.Aggregate(z, (x, f) => f(x));
-                            fs.Clear();
-                            return result;
+                            for (var i = 0; i < fs.Count; i++)
+                            {
+                                z = fs[i](z);
+                            }
+                            fs.Dispose();
+                            return z;
                         }
                     )
             );

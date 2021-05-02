@@ -24,8 +24,7 @@ namespace Pidgin
         /// The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.
         /// </summary>
         /// <returns>The sequence of tokens that were expected</returns>
-        public IEnumerable<TToken>? Tokens => InternalTokens.IsDefault ? null : InternalTokens.AsEnumerable();
-        internal ImmutableArray<TToken> InternalTokens { get; }
+        public ImmutableArray<TToken> Tokens { get; }
         /// <summary>
         /// Did the parser expect the end of the input stream?
         /// </summary>
@@ -35,12 +34,12 @@ namespace Pidgin
         internal Expected(string label)
         {
             Label = label;
-            InternalTokens = default;
+            Tokens = default;
         }
         internal Expected(ImmutableArray<TToken> tokens)
         {
             Label = null;
-            InternalTokens = tokens;
+            Tokens = tokens;
         }
 
         private static readonly bool IsChar = typeof(TToken).Equals(typeof(char));
@@ -99,8 +98,8 @@ namespace Pidgin
         /// <inheritdoc/>
         public bool Equals(Expected<TToken> other)
             => object.Equals(Label, other.Label)
-            && ((InternalTokens.IsDefault && InternalTokens.IsDefault)
-                || (!InternalTokens.IsDefault && !InternalTokens.IsDefault && EnumerableExtensions.Equal(InternalTokens, other.InternalTokens))
+            && ((Tokens.IsDefault && Tokens.IsDefault)
+                || (!Tokens.IsDefault && !Tokens.IsDefault && EnumerableExtensions.Equal(Tokens, other.Tokens))
             );
 
         /// <inheritdoc/>
@@ -123,7 +122,7 @@ namespace Pidgin
             {
                 int hash = 17;
                 hash = hash * 23 + Label?.GetHashCode() ?? 0;
-                hash = hash * 23 + EnumerableExtensions.GetHashCode(InternalTokens);
+                hash = hash * 23 + EnumerableExtensions.GetHashCode(Tokens);
                 return hash;
             }
         }
@@ -140,19 +139,19 @@ namespace Pidgin
                 }
                 return -1;
             }
-            if (!InternalTokens.IsDefault)
+            if (!Tokens.IsDefault)
             {
                 if (other.Label != null)
                 {
                     return 1;
                 }
-                if (!other.InternalTokens.IsDefault)
+                if (!other.Tokens.IsDefault)
                 {
-                    return EnumerableExtensions.Compare(InternalTokens, other.InternalTokens);
+                    return EnumerableExtensions.Compare(Tokens, other.Tokens);
                 }
                 return -1;
             }
-            if (other.Label == null && other.InternalTokens == null)
+            if (other.Label == null && other.Tokens == null)
             {
                 return 0;
             }

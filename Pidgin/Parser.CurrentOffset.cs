@@ -12,7 +12,7 @@ namespace Pidgin
 
     internal sealed class CurrentOffsetParser<TToken> : Parser<TToken, int>
     {
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out int result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out int result)
         {
             result = state.Location;
             return true;

@@ -10,7 +10,7 @@ namespace Pidgin
         public int ErrorLocation { get; }
         public string? Message { get; }
 
-        internal InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
+        public InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
         {
             Unexpected = unexpected;
             EOF = eof;

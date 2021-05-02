@@ -1,26 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
 {
     internal static class EnumerableExtensions
     {
-        public static U AggregateR<T, U>(this IEnumerable<T> input, U seed, Func<T, U, U> func)
-        {
-            var list = input is IList<T> l ? l : input.ToList();
-            var z = seed;
-            for (var i = list.Count - 1; i >= 0; i--)
-            {
-                z = func(list[i], z);
-            }
-            return z;
-        }
-
         public static bool Equal<T>(ImmutableArray<T> left, ImmutableArray<T> right)
             => _FastEqual<T>.Go(left, right);
         private static bool SlowEqual<T>(ImmutableArray<T> left, ImmutableArray<T> right)

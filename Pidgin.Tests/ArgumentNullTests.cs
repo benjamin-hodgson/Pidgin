@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 using Xunit;
@@ -84,7 +83,7 @@ namespace Pidgin.Tests
             from m in typeof(Parser<int, int>).GetMethods(BindingFlags.Public | BindingFlags.Instance)
             let ps = m.GetParameters()
             where ps.Any()
-            where !new[]{ "Parse", "Equals", "WithResult", "ThenReturn" }.Contains(m.Name)
+            where !new[]{ "TryParse", "Equals", "WithResult", "ThenReturn" }.Contains(m.Name)
             from args in GetArgs(ps)
             select new object[]
             {
@@ -177,7 +176,7 @@ namespace Pidgin.Tests
         {
             public AParser() { }
 
-            internal override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+            public override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out T result)
             {
                 throw new NotImplementedException();
             }

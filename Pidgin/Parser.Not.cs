@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin
@@ -33,13 +34,13 @@ namespace Pidgin
             _parser = parser;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out Unit result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
         {
             var startingLocation = state.Location;
             var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
             state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
-            var childExpecteds = new ExpectedCollector<TToken>(true);
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out var result1);
 
@@ -48,12 +49,7 @@ namespace Pidgin
             
             if (success)
             {
-                state.Error = new InternalError<TToken>(
-                    token,
-                    false,
-                    startingLocation,
-                    null
-                );
+                state.SetError(token, false, startingLocation, null);
                 result = default;
                 return false;
             }

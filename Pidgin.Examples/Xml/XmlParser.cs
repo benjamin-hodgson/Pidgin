@@ -60,7 +60,7 @@ namespace Pidgin.Examples.Xml
 
         static readonly Parser<char, Tag> Tag =
             from open in OpeningTag
-            from children in Try(Node).Separated(SkipWhitespaces).Between(SkipWhitespaces)
+            from children in Try(Node!).Separated(SkipWhitespaces).Between(SkipWhitespaces)
             from close in ClosingTag
             where open.Name.Equals(close)
             select new Tag(open.Name, open.Attributes, children);

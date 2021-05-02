@@ -2,24 +2,31 @@ using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Pidgin.TokenStreams;
+using Pidgin.Configuration;
 
 namespace Pidgin
 {
     /// <summary>
-    /// A mutable struct! Careful!
+    /// Represents the state of a parsing process.
+    /// Includes functionality managing and buffering the input stream,
+    /// reporting errors, and computing source positions.
+    ///
+    /// For efficiency, this object is implemented as a mutable struct
+    /// and is intended to be passed by reference.
+    /// 
+    /// WARNING: This API is <strong>unstable</strong>
+    /// and subject to change in future versions of the library.
     /// </summary>
+    /// <typeparam name="TToken">The type of tokens consumed by the parser.</typeparam>
     [StructLayout(LayoutKind.Auto)]
-    internal ref partial struct ParseState<TToken>
+    public ref partial struct ParseState<TToken>
     {
-        private static readonly bool _needsClear =
-#if NETSTANDARD21
-            System.Runtime.CompilerServices.RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
-#else
-            !typeof(TToken).IsPrimitive;
-#endif
+        private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
-        private readonly Func<TToken, SourcePos, SourcePos> _posCalculator;
+        /// <summary>Gets the parser configuration</summary>
+        public IConfiguration<TToken> Configuration { get; }
+        private readonly Func<TToken, SourcePosDelta> _sourcePosCalculator;
+        private readonly ArrayPool<TToken>? _arrayPool;
         private readonly ITokenStream<TToken>? _stream;
         private readonly int _bufferChunkSize;
 
@@ -29,18 +36,20 @@ namespace Pidgin
         private int _currentIndex;
         private int _bufferedCount;
 
-        private int _lastSourcePosLocation;
-        private SourcePos _lastSourcePos;
+        private int _lastSourcePosDeltaLocation;
+        private SourcePosDelta _lastSourcePosDelta;
 
         // a monotonic stack of locations.
         // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
         // because dropping the buffer's prefix would invalidate the bookmarks
         private PooledList<int> _bookmarks;
 
-        public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ReadOnlySpan<TToken> span)
+        internal ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
-            _posCalculator = posCalculator;
-            _bookmarks = new PooledList<int>();
+            Configuration = configuration;
+            _sourcePosCalculator = Configuration.SourcePosCalculator;
+            _arrayPool = null;
+            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
             _stream = default;
 
             _bufferChunkSize = 0;
@@ -50,43 +59,45 @@ namespace Pidgin
             _currentIndex = 0;
             _bufferedCount = span.Length;
 
-            _lastSourcePosLocation = 0;
-            _lastSourcePos = new SourcePos(1,1);
+            _lastSourcePosDeltaLocation = 0;
+            _lastSourcePosDelta = SourcePosDelta.Zero;
 
             _eof = default;
             _unexpected = default;
-            _errorLocation = default;
+            ErrorLocation = default;
             _message = default;
         }
 
-        public ParseState(Func<TToken, SourcePos, SourcePos> posCalculator, ITokenStream<TToken> stream)
+        internal ParseState(IConfiguration<TToken> configuration, ITokenStream<TToken> stream)
         {
-            _posCalculator = posCalculator;
-            _bookmarks = new PooledList<int>();
+            Configuration = configuration;
+            _sourcePosCalculator = Configuration.SourcePosCalculator;
+            _arrayPool = Configuration.ArrayPoolProvider.GetArrayPool<TToken>();
+            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
             _stream = stream;
 
             _bufferChunkSize = stream.ChunkSizeHint;
-            _buffer = ArrayPool<TToken>.Shared.Rent(_bufferChunkSize);
+            _buffer = _arrayPool.Rent(_bufferChunkSize);
             _span = _buffer.AsSpan();
             _bufferStartLocation = 0;
             _currentIndex = 0;
             _bufferedCount = 0;
 
-            _lastSourcePosLocation = 0;
-            _lastSourcePos = new SourcePos(1,1);
+            _lastSourcePosDeltaLocation = 0;
+            _lastSourcePosDelta = SourcePosDelta.Zero;
 
             _eof = default;
             _unexpected = default;
-            _errorLocation = default;
+            ErrorLocation = default;
             _message = default;
 
             Buffer(0);
         }
 
         /// <summary>
-        /// How many tokens have been consumed in total?
+        /// Returns the total number of tokens which have been consumed.
+        /// In other words, the current absolute offset of the input stream.
         /// </summary>
-        /// <value></value>
         public int Location
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -96,6 +107,9 @@ namespace Pidgin
             }
         }
 
+        /// <summary>
+        /// Returns true if the parser has not reached the end of the input.
+        /// </summary>
         public bool HasCurrent
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -104,6 +118,9 @@ namespace Pidgin
                 return _currentIndex < _bufferedCount;
             }
         }
+        /// <summary>
+        /// Returns the current token.
+        /// </summary>
         public TToken Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -113,6 +130,10 @@ namespace Pidgin
             }
         }
 
+        /// <summary>
+        /// Advance the input stream by <paramref name="count"/> tokens.
+        /// </summary>
+        /// <param name="count">The number of tokens to advance.</param>
         public void Advance(int count = 1)
         {
             if (_stream == null)
@@ -134,13 +155,20 @@ namespace Pidgin
         }
 
         // if it returns a span shorter than count it's because you reached the end of the input
+        /// <summary>
+        /// Returns a <see cref="Span{TToken}"/> containing the next <paramref name="count"/> tokens.
+        /// 
+        /// This method may return a span shorter than <paramref name="count"/>,
+        /// if the parser reaches the end of the input stream.
+        /// </summary>
+        /// <param name="count">The number of tokens to advance.</param>
         public ReadOnlySpan<TToken> LookAhead(int count)
         {
             Buffer(count);
             return _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
         }
         // if it returns a span shorter than count it's because you looked further back than the buffer goes
-        public ReadOnlySpan<TToken> LookBehind(int count)
+        internal ReadOnlySpan<TToken> LookBehind(int count)
         {
             var start = Math.Max(0, _currentIndex - count);
             return _span.Slice(start, _currentIndex - start);
@@ -175,16 +203,16 @@ namespace Pidgin
                 // newBufferLength |------------------|
 
 
-                UpdateLastSourcePos();
+                UpdateLastSourcePosDelta();
 
                 if (newBufferLength > _buffer!.Length)
                 {
                     // grow the buffer
-                    var newBuffer = ArrayPool<TToken>.Shared.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
+                    var newBuffer = _arrayPool!.Rent(Math.Max(newBufferLength, _buffer.Length * 2));
 
                     Array.Copy(_buffer, keepFrom, newBuffer, 0, keepLength);
 
-                    ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
+                    _arrayPool.Return(_buffer, _needsClear);
                     _buffer = newBuffer;
                     _span = _buffer.AsSpan();
                 }
@@ -199,20 +227,23 @@ namespace Pidgin
                 _bufferStartLocation += keepFrom;
                 _currentIndex = keepSeenLength;
                 _bufferedCount = keepLength;
-                _bufferedCount += _stream!.ReadInto(_buffer, _bufferedCount, amountToRead);
+                _bufferedCount += _stream!.Read(_buffer.AsSpan().Slice(_bufferedCount, amountToRead));
             }
         }
         
+        /// <summary>Start buffering the input</summary>
         public void PushBookmark()
         {
             _bookmarks.Add(Location);
         }
 
+        /// <summary>Stop buffering the input</summary>
         public void PopBookmark()
         {
             _bookmarks.Pop();
         }
 
+        /// <summary>Return to the last bookmark</summary>
         public void Rewind()
         {
             var bookmark = _bookmarks.Pop();
@@ -226,50 +257,31 @@ namespace Pidgin
             _currentIndex -= delta;
         }
 
-        public SourcePos ComputeSourcePos()
+        internal SourcePosDelta ComputeSourcePosDelta()
         {
-            UpdateLastSourcePos();
-            return ComputeSourcePosAt(Location);
+            UpdateLastSourcePosDelta();
+            return ComputeSourcePosDeltaAt(Location);
         }
 
-        private void UpdateLastSourcePos()
+        private void UpdateLastSourcePosDelta()
         {
             var location = _bookmarks.Count > 0
                 ? _bookmarks[0]
                 : Location;
 
-            _lastSourcePos = ComputeSourcePosAt(location);
-            _lastSourcePosLocation = location;
+            _lastSourcePosDelta = ComputeSourcePosDeltaAt(location);
+            _lastSourcePosDeltaLocation = location;
         }
 
-        private SourcePos ComputeSourcePosAt(int location)
-        {
-            if (location < _lastSourcePosLocation)
-            {
-                throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the past. Please report this as a bug in Pidgin!");
-            }
-            if (location > _bufferStartLocation + _bufferedCount)
-            {
-                throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePos from too far in the future. Please report this as a bug in Pidgin!");
-            }
-
-            var pos = _lastSourcePos;
-            for (var i = _lastSourcePosLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
-            {
-                pos = _posCalculator(_span[i], pos);
-            }
-            return pos;
-        }
-
-        public void Dispose()
+        internal void Dispose()
         {
             if (_buffer != null)
             {
-                ArrayPool<TToken>.Shared.Return(_buffer, _needsClear);
+                _stream!.Return(_buffer.AsSpan().Slice(_currentIndex, _bufferedCount - _currentIndex));
+                _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }
-            _stream?.Dispose();
-            _bookmarks.Clear();
+            _bookmarks.Dispose();
         }
     }
 }

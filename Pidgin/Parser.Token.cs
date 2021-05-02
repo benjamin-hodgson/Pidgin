@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -38,7 +39,7 @@ namespace Pidgin
         {
             get
             {
-                if (_expected.InternalTokens.IsDefault)
+                if (_expected.Tokens.IsDefault)
                 {
                     _expected = new Expected<TToken>(ImmutableArray.Create(_token));
                 }
@@ -51,16 +52,11 @@ namespace Pidgin
             _token = token;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TToken result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
         {
             if (!state.HasCurrent)
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 expecteds.Add(Expected);
                 result = default;
                 return false;
@@ -68,12 +64,7 @@ namespace Pidgin
             var token = state.Current;
             if (!EqualityComparer<TToken>.Default.Equals(token, _token))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(token),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(token), false, state.Location, null);
                 expecteds.Add(Expected);
                 result = default;
                 return false;
@@ -93,28 +84,18 @@ namespace Pidgin
             _predicate = predicate;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TToken result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
         {
             if (!state.HasCurrent)
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 result = default;
                 return false;
             }
             var token = state.Current;
             if (!_predicate(token))
             {
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(token),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(token), false, state.Location, null);
                 result = default;
                 return false;
             }

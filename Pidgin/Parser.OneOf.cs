@@ -2,6 +2,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin
@@ -124,7 +125,7 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out T result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
             var firstTime = true;
             var err = new InternalError<TToken>(
@@ -134,13 +135,13 @@ namespace Pidgin
                 "OneOf had no arguments"
             );
 
-            var childExpecteds = new ExpectedCollector<TToken>();  // the expecteds for all loop iterations
-            var grandchildExpecteds = new ExpectedCollector<TToken>();  // the expecteds for the current loop iteration
+            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for all loop iterations
+            var grandchildExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());  // the expecteds for the current loop iteration
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;
-                var success = p.TryParse(ref state, ref grandchildExpecteds, out result);
-                if (success)
+                
+                if (p.TryParse(ref state, ref grandchildExpecteds, out result))
                 {
                     // throw out all expecteds
                     grandchildExpecteds.Dispose();
@@ -154,25 +155,25 @@ namespace Pidgin
                 if (state.Location > thisStartLoc)
                 {
                     // throw out all expecteds except this one
-                    expecteds.Add(ref grandchildExpecteds);
+                    expecteds.AddRange(grandchildExpecteds.AsSpan());
                     childExpecteds.Dispose();
                     grandchildExpecteds.Dispose();
                     result = default;
                     return false;
                 }
 
-                childExpecteds.Add(ref grandchildExpecteds);
+                childExpecteds.AddRange(grandchildExpecteds.AsSpan());
                 grandchildExpecteds.Clear();
                 // choose the longest match, preferring the left-most error in a tie,
                 // except the first time (avoid returning "OneOf had no arguments").
-                if (firstTime || state.Error.ErrorLocation > err.ErrorLocation)
+                if (firstTime || state.ErrorLocation > err.ErrorLocation)
                 {
-                    err = state.Error;
+                    err = state.GetError();
                 }
                 firstTime = false;
             }
-            state.Error = err;
-            expecteds.Add(ref childExpecteds);
+            state.SetError(err);
+            expecteds.AddRange(childExpecteds.AsSpan());
             childExpecteds.Dispose();
             grandchildExpecteds.Dispose();
             result = default;

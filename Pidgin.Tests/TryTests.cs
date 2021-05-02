@@ -67,7 +67,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))),
-                        new SourcePos(1,4),
+                        new SourcePosDelta(0, 3),
                         null
                     ),
                     true
@@ -78,7 +78,7 @@ namespace Pidgin.Tests
                         Maybe.Just(render("g").Single()),
                         false,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))),
-                        new SourcePos(1,6),
+                        new SourcePosDelta(0, 5),
                         null
                     ),
                     true
@@ -89,7 +89,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
-                        new SourcePos(1,2),
+                        SourcePosDelta.OneCol,
                         null
                     ),
                     true
@@ -100,7 +100,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))), new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
-                        new SourcePos(1,1),
+                        SourcePosDelta.Zero,
                         null
                     ),
                     false
@@ -111,7 +111,7 @@ namespace Pidgin.Tests
                         Maybe.Just(render("l").Single()),
                         false,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
-                        new SourcePos(1,4),
+                        new SourcePosDelta(0, 3),
                         null
                     ),
                     true
@@ -133,7 +133,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1, 6),
+                        new SourcePosDelta(0, 5),
                         null
                     ),
                     true
@@ -144,7 +144,7 @@ namespace Pidgin.Tests
                         Maybe.Just(render("g").Single()),
                         false,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1,6),
+                        new SourcePosDelta(0, 5),
                         null
                     ),
                     true
@@ -155,7 +155,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1, 5),
+                        new SourcePosDelta(0, 4),
                         null
                     ),
                     true
@@ -166,7 +166,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1, 4),
+                        new SourcePosDelta(0, 3),
                         null
                     ),
                     true
@@ -177,7 +177,7 @@ namespace Pidgin.Tests
                         Maybe.Nothing<TToken>(),
                         true,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1, 2),
+                        SourcePosDelta.OneCol,
                         null
                     ),
                     true
@@ -188,7 +188,7 @@ namespace Pidgin.Tests
                         Maybe.Just(render("u").Single()),
                         false,
                         ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
-                        new SourcePos(1,3),
+                        new SourcePosDelta(0, 2),
                         null
                     ),
                     true
@@ -202,7 +202,7 @@ namespace Pidgin.Tests
                             new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))),
                             new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))
                         ),
-                        new SourcePos(1, 1),
+                        SourcePosDelta.Zero,
                         null
                     ),
                     false

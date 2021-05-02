@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -44,7 +45,7 @@ namespace Pidgin
         {
             get
             {
-                if (_expected.InternalTokens.IsDefault)
+                if (_expected.Tokens.IsDefault)
                 {
                     _expected = new Expected<char>(_value.ToImmutableArray());
                 }
@@ -57,7 +58,7 @@ namespace Pidgin
             _value = value;
         }
 
-        internal sealed override bool TryParse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds, out string result)
+        public sealed override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, [MaybeNullWhen(false)] out string result)
         {
             var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 
@@ -75,12 +76,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<char>(
-                    Maybe.Just(span[errorPos]),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(span[errorPos]), false, state.Location, null);
                 expecteds.Add(Expected);
                 result = null;
                 return false;
@@ -90,12 +86,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<char>(
-                    Maybe.Nothing<char>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<char>(), true, state.Location, null);
                 expecteds.Add(Expected);
                 result = null;
                 return false;

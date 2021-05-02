@@ -1,32 +1,35 @@
-using System;
-using System.Buffers;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 
 namespace Pidgin
 {
-    internal partial struct ParseState<TToken>
+    public partial struct ParseState<TToken>
     {
         private bool _eof;
         private Maybe<TToken> _unexpected;
-        private int _errorLocation;
+        internal int ErrorLocation { get; private set; }
         private string? _message;
-        public InternalError<TToken> Error
+        /// <summary>Sets the error. Call this when your parser fails</summary>
+        public void SetError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
         {
-            get
-            {
-                return new InternalError<TToken>(_unexpected, _eof, _errorLocation, _message);
-            }
-            set
-            {
-                _unexpected = value.Unexpected;
-                _eof = value.EOF;
-                _errorLocation = value.ErrorLocation;
-                _message = value.Message;
-            }
+            _unexpected = unexpected;
+            _eof = eof;
+            ErrorLocation = errorLocation;
+            _message = message;
         }
-        public ParseError<TToken> BuildError(ref ExpectedCollector<TToken> expecteds)
-            => new ParseError<TToken>(_unexpected, _eof, expecteds.ToImmutableArray(), ComputeSourcePosAt(_errorLocation), _message);
+        internal void SetError(InternalError<TToken> error)
+            => SetError(error.Unexpected, error.EOF, error.ErrorLocation, error.Message);
+
+        internal InternalError<TToken> GetError()
+            => new InternalError<TToken>(_unexpected, _eof, ErrorLocation, _message);
+
+        internal ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
+        {
+            var builder = ImmutableArray.CreateBuilder<Expected<TToken>>(expecteds.Count);
+            foreach (var e in expecteds)
+            {
+                builder.Add(e);
+            }
+            return new ParseError<TToken>(_unexpected, _eof, builder.MoveToImmutable(), ComputeSourcePosDeltaAt(ErrorLocation), _message);
+        }
     }
 }

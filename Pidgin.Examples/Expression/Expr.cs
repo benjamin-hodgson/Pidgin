@@ -17,7 +17,7 @@ namespace Pidgin.Examples.Expression
             Name = name;
         }
 
-        public bool Equals(IExpr other)
+        public bool Equals(IExpr? other)
             => other is Identifier i && this.Name == i.Name;
     }
 
@@ -30,7 +30,7 @@ namespace Pidgin.Examples.Expression
             Value = value;
         }
 
-        public bool Equals(IExpr other)
+        public bool Equals(IExpr? other)
             => other is Literal l && this.Value == l.Value;
     }
 
@@ -45,7 +45,7 @@ namespace Pidgin.Examples.Expression
             Arguments = arguments;
         }
 
-        public bool Equals(IExpr other)
+        public bool Equals(IExpr? other)
             => other is Call c
             && this.Expr.Equals(c.Expr)
             && this.Arguments.SequenceEqual(c.Arguments);
@@ -67,7 +67,7 @@ namespace Pidgin.Examples.Expression
             Expr = expr;
         }
 
-        public bool Equals(IExpr other)
+        public bool Equals(IExpr? other)
             => other is UnaryOp u
             && this.Type == u.Type
             && this.Expr.Equals(u.Expr);
@@ -91,7 +91,7 @@ namespace Pidgin.Examples.Expression
             Right = right;
         }
 
-        public bool Equals(IExpr other)
+        public bool Equals(IExpr? other)
             => other is BinaryOp b
             && this.Type == b.Type
             && this.Left.Equals(b.Left)

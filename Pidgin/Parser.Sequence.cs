@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using LExpression = System.Linq.Expressions.Expression;
@@ -82,7 +83,7 @@ namespace Pidgin
             _parsers = parsers;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T> result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             var ts = new T[_parsers.Length];
             
@@ -90,7 +91,7 @@ namespace Pidgin
             {
                 var p = _parsers[i];
             
-                var success = p.TryParse(ref state, ref expecteds, out ts[i]);
+                var success = p.TryParse(ref state, ref expecteds, out ts[i]!);
             
                 if (!success)
                 {
@@ -149,7 +150,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TEnumerable result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -167,7 +168,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<TToken>(
+                state.SetError(
                     Maybe.Just(span[errorPos]),
                     false,
                     state.Location,
@@ -182,7 +183,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<TToken>(
+                state.SetError(
                     Maybe.Nothing<TToken>(),
                     true,
                     state.Location,
@@ -212,7 +213,7 @@ namespace Pidgin
             _valueTokens = value.ToImmutableArray();
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out TEnumerable result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
             
@@ -230,12 +231,7 @@ namespace Pidgin
             {
                 // strings didn't match
                 state.Advance(errorPos);
-                state.Error = new InternalError<TToken>(
-                    Maybe.Just(span[errorPos]),
-                    false,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Just(span[errorPos]), false, state.Location, null);
                 expecteds.Add(new Expected<TToken>(_valueTokens));
                 result = default;
                 return false;
@@ -245,12 +241,7 @@ namespace Pidgin
             {
                 // strings matched but reached EOF
                 state.Advance(span.Length);
-                state.Error = new InternalError<TToken>(
-                    Maybe.Nothing<TToken>(),
-                    true,
-                    state.Location,
-                    null
-                );
+                state.SetError(Maybe.Nothing<TToken>(), true, state.Location, null);
                 expecteds.Add(new Expected<TToken>(_valueTokens));
                 result = default;
                 return false;

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -56,7 +57,7 @@ namespace Pidgin
             _result = result;
         }
 
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out R result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
         {
             var success = _parser.TryParse(ref state, ref expecteds, out var childResult);
             if (!success)
@@ -66,7 +67,7 @@ namespace Pidgin
                 return false;
             }
 
-            var nextParser = _func(childResult);
+            var nextParser = _func(childResult!);
             var nextSuccess = nextParser.TryParse(ref state, ref expecteds, out var nextResult);
 
             if (!nextSuccess)
@@ -76,7 +77,7 @@ namespace Pidgin
                 return false;
             }
 
-            result = _result(childResult, nextResult);
+            result = _result(childResult!, nextResult!);
             return true;
         }
     }

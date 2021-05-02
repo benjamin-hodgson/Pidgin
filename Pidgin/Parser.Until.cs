@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -90,14 +91,13 @@ namespace Pidgin
         }
 
         // see comment about expecteds in ParseState.Error.cs
-        internal sealed override bool TryParse(ref ParseState<TToken> state, ref ExpectedCollector<TToken> expecteds, out IEnumerable<T>? result)
+        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T>? result)
         {
             var ts = _keepResults ? new List<T>() : null;
 
             var firstItemStartLoc = state.Location;
-            var firstItemSuccess = _parser.TryParse(ref state, ref expecteds, out var result1);
 
-            if (!firstItemSuccess)
+            if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
                 // state.Error set by _parser
                 result = null;
@@ -109,8 +109,8 @@ namespace Pidgin
             }
             ts?.Add(result1);
 
-            var terminatorExpecteds = new ExpectedCollector<TToken>();
-            var itemExpecteds = new ExpectedCollector<TToken>();
+            var terminatorExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            var itemExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
             while (true)
             {
                 var terminatorStartLoc = state.Location;
@@ -125,7 +125,7 @@ namespace Pidgin
                 if (state.Location > terminatorStartLoc)
                 {
                     // state.Error set by _terminator
-                    expecteds.Add(ref terminatorExpecteds);
+                    expecteds.AddRange(terminatorExpecteds.AsSpan());
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
                     result = null;
@@ -140,13 +140,13 @@ namespace Pidgin
                     if (!itemConsumedInput)
                     {
                         // get the expected from both _terminator and _parser
-                        expecteds.Add(ref terminatorExpecteds);
-                        expecteds.Add(ref itemExpecteds);
+                        expecteds.AddRange(terminatorExpecteds.AsSpan());
+                        expecteds.AddRange(itemExpecteds.AsSpan());
                     }
                     else
                     {
                         // throw out the _terminator expecteds and keep only _parser
-                        expecteds.Add(ref itemExpecteds);
+                        expecteds.AddRange(itemExpecteds.AsSpan());
                     }
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
@@ -160,7 +160,7 @@ namespace Pidgin
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");
                 }
-                ts?.Add(itemResult);
+                ts?.Add(itemResult!);
             }
         }
     }

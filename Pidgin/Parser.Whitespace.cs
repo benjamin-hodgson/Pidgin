@@ -33,23 +33,67 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        internal override bool TryParse(ref ParseState<char> state, ref ExpectedCollector<char> expecteds, out Unit result)
+        public unsafe override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
         {
+            const long space = (long)' ';
+            const long fourSpaces = space | space << 16 | space << 32 | space << 48;
             result = Unit.Value;
+
+
             var chunk = state.LookAhead(32);
-            while (chunk.Length > 0)
+            while (chunk.Length == 32)
             {
-                for (var i = 0; i < chunk.Length; i++)
+                fixed (char* ptr = chunk)
                 {
-                    if (!char.IsWhiteSpace(chunk[i]))
+                    for (var i = 0; i < 8; i++)
                     {
-                        state.Advance(i);
-                        return true;
+                        if (*(long*)(ptr + i * 4) != fourSpaces)
+                        {
+                            // there's a non-' ' character somewhere in this group of four
+                            for (var j = 0; j < 4; j++)
+                            {
+                                if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                                {
+                                    state.Advance(i * 4 + j);
+                                    return true;
+                                }
+                            }
+                        }
                     }
                 }
-                state.Advance(chunk.Length);
+                state.Advance(32);
                 chunk = state.LookAhead(32);
             }
+
+            var remainingGroupsOfFour = chunk.Length / 4;
+            fixed (char* ptr = chunk)
+            {
+                for (var i = 0; i < remainingGroupsOfFour; i++)
+                {
+                    if (*(long*)(ptr + i * 4) != fourSpaces)
+                    {
+                        for (var j = 0; j < 4; j++)
+                        {
+                            if (!char.IsWhiteSpace(chunk[i * 4 + j]))
+                            {
+                                state.Advance(i * 4 + j);
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (var i = remainingGroupsOfFour * 4; i < chunk.Length; i++)
+            {
+                if (!char.IsWhiteSpace(chunk[i]))
+                {
+                    state.Advance(i);
+                    return true;
+                }
+            }
+
+            state.Advance(chunk.Length);
             return true;
         }
     }

@@ -177,12 +177,12 @@ namespace Pidgin.Expression
                 .Select<Func<T, T>>(fxs =>
                     z =>
                     {
-                        var result = fxs.Aggregate(
-                            z,
-                            (exp, fx) => fx.ApplyL(exp)
-                        );
-                        fxs.Clear();
-                        return result;
+                        for (var i = 0; i < fxs.Count; i++)
+                        {
+                            z = fxs[i].ApplyL(z);
+                        }
+                        fxs.Dispose();
+                        return z;
                     }
                 );
             var infixR = Op(pTerm, row.InfixROps)
@@ -193,12 +193,14 @@ namespace Pidgin.Expression
                         // move the right-hand term of each operator to the
                         // left-hand side of the next operator on the right,
                         // leaving a hole at the left
-                        var result = fxs.AggregateR(
-                            new Partial<T>((y, _) => y, default(T)!),
-                            (fx, agg) => new Partial<T>(fx.Func, agg.ApplyL(fx.Arg))
-                        );
-                        fxs.Clear();
-                        return z => result.ApplyL(z);
+                        var partial = new Partial<T>((y, _) => y, default(T)!);
+                        for (var i = fxs.Count - 1; i >= 0; i--)
+                        {
+                            var fx = fxs[i];
+                            partial = new Partial<T>(fx.Func, partial.ApplyL(fx.Arg));
+                        }
+                        fxs.Dispose();
+                        return z => partial.ApplyL(z);
                     }
                 );
             
