@@ -67,6 +67,258 @@ references:
   fullName.vb: Pidgin.Comment.CommentParser.SkipNestedBlockComment(Of T, U)(Pidgin.Parser(Of System.Char, T), Pidgin.Parser(Of System.Char, U))
   nameWithType: CommentParser.SkipNestedBlockComment<T, U>(Parser<Char, T>, Parser<Char, U>)
   nameWithType.vb: CommentParser.SkipNestedBlockComment(Of T, U)(Parser(Of Char, T), Parser(Of Char, U))
+- uid: Pidgin.Configuration
+  name: Pidgin.Configuration
+  href: api/Pidgin.Configuration.html
+  commentId: N:Pidgin.Configuration
+  fullName: Pidgin.Configuration
+  nameWithType: Pidgin.Configuration
+- uid: Pidgin.Configuration.CharDefaultConfiguration
+  name: CharDefaultConfiguration
+  href: api/Pidgin.Configuration.CharDefaultConfiguration.html
+  commentId: T:Pidgin.Configuration.CharDefaultConfiguration
+  fullName: Pidgin.Configuration.CharDefaultConfiguration
+  nameWithType: CharDefaultConfiguration
+- uid: Pidgin.Configuration.CharDefaultConfiguration.Instance
+  name: Instance
+  href: api/Pidgin.Configuration.CharDefaultConfiguration.html#Pidgin_Configuration_CharDefaultConfiguration_Instance
+  commentId: P:Pidgin.Configuration.CharDefaultConfiguration.Instance
+  fullName: Pidgin.Configuration.CharDefaultConfiguration.Instance
+  nameWithType: CharDefaultConfiguration.Instance
+- uid: Pidgin.Configuration.CharDefaultConfiguration.Instance*
+  name: Instance
+  href: api/Pidgin.Configuration.CharDefaultConfiguration.html#Pidgin_Configuration_CharDefaultConfiguration_Instance_
+  commentId: Overload:Pidgin.Configuration.CharDefaultConfiguration.Instance
+  isSpec: "True"
+  fullName: Pidgin.Configuration.CharDefaultConfiguration.Instance
+  nameWithType: CharDefaultConfiguration.Instance
+- uid: Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.CharDefaultConfiguration.html#Pidgin_Configuration_CharDefaultConfiguration_SourcePosCalculator
+  commentId: P:Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator
+  fullName: Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator
+  nameWithType: CharDefaultConfiguration.SourcePosCalculator
+- uid: Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator*
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.CharDefaultConfiguration.html#Pidgin_Configuration_CharDefaultConfiguration_SourcePosCalculator_
+  commentId: Overload:Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator
+  isSpec: "True"
+  fullName: Pidgin.Configuration.CharDefaultConfiguration.SourcePosCalculator
+  nameWithType: CharDefaultConfiguration.SourcePosCalculator
+- uid: Pidgin.Configuration.Configuration
+  name: Configuration
+  href: api/Pidgin.Configuration.Configuration.html
+  commentId: T:Pidgin.Configuration.Configuration
+  fullName: Pidgin.Configuration.Configuration
+  nameWithType: Configuration
+- uid: Pidgin.Configuration.Configuration.Default*
+  name: Default
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_Default_
+  commentId: Overload:Pidgin.Configuration.Configuration.Default
+  isSpec: "True"
+  fullName: Pidgin.Configuration.Configuration.Default
+  nameWithType: Configuration.Default
+- uid: Pidgin.Configuration.Configuration.Default``1
+  name: Default<TToken>()
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_Default__1
+  commentId: M:Pidgin.Configuration.Configuration.Default``1
+  name.vb: Default(Of TToken)()
+  fullName: Pidgin.Configuration.Configuration.Default<TToken>()
+  fullName.vb: Pidgin.Configuration.Configuration.Default(Of TToken)()
+  nameWithType: Configuration.Default<TToken>()
+  nameWithType.vb: Configuration.Default(Of TToken)()
+- uid: Pidgin.Configuration.Configuration.WithArrayPoolProvider*
+  name: WithArrayPoolProvider
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_WithArrayPoolProvider_
+  commentId: Overload:Pidgin.Configuration.Configuration.WithArrayPoolProvider
+  isSpec: "True"
+  fullName: Pidgin.Configuration.Configuration.WithArrayPoolProvider
+  nameWithType: Configuration.WithArrayPoolProvider
+- uid: Pidgin.Configuration.Configuration.WithArrayPoolProvider``1(Pidgin.Configuration.IConfiguration{``0},Pidgin.Configuration.IArrayPoolProvider)
+  name: WithArrayPoolProvider<TToken>(IConfiguration<TToken>, IArrayPoolProvider)
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_WithArrayPoolProvider__1_Pidgin_Configuration_IConfiguration___0__Pidgin_Configuration_IArrayPoolProvider_
+  commentId: M:Pidgin.Configuration.Configuration.WithArrayPoolProvider``1(Pidgin.Configuration.IConfiguration{``0},Pidgin.Configuration.IArrayPoolProvider)
+  name.vb: WithArrayPoolProvider(Of TToken)(IConfiguration(Of TToken), IArrayPoolProvider)
+  fullName: Pidgin.Configuration.Configuration.WithArrayPoolProvider<TToken>(Pidgin.Configuration.IConfiguration<TToken>, Pidgin.Configuration.IArrayPoolProvider)
+  fullName.vb: Pidgin.Configuration.Configuration.WithArrayPoolProvider(Of TToken)(Pidgin.Configuration.IConfiguration(Of TToken), Pidgin.Configuration.IArrayPoolProvider)
+  nameWithType: Configuration.WithArrayPoolProvider<TToken>(IConfiguration<TToken>, IArrayPoolProvider)
+  nameWithType.vb: Configuration.WithArrayPoolProvider(Of TToken)(IConfiguration(Of TToken), IArrayPoolProvider)
+- uid: Pidgin.Configuration.Configuration.WithPosCalculator*
+  name: WithPosCalculator
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_WithPosCalculator_
+  commentId: Overload:Pidgin.Configuration.Configuration.WithPosCalculator
+  isSpec: "True"
+  fullName: Pidgin.Configuration.Configuration.WithPosCalculator
+  nameWithType: Configuration.WithPosCalculator
+- uid: Pidgin.Configuration.Configuration.WithPosCalculator``1(Pidgin.Configuration.IConfiguration{``0},Func{``0,Pidgin.SourcePosDelta})
+  name: WithPosCalculator<TToken>(IConfiguration<TToken>, Func<TToken, SourcePosDelta>)
+  href: api/Pidgin.Configuration.Configuration.html#Pidgin_Configuration_Configuration_WithPosCalculator__1_Pidgin_Configuration_IConfiguration___0__Func___0_Pidgin_SourcePosDelta__
+  commentId: M:Pidgin.Configuration.Configuration.WithPosCalculator``1(Pidgin.Configuration.IConfiguration{``0},Func{``0,Pidgin.SourcePosDelta})
+  name.vb: WithPosCalculator(Of TToken)(IConfiguration(Of TToken), Func(Of TToken, SourcePosDelta))
+  fullName: Pidgin.Configuration.Configuration.WithPosCalculator<TToken>(Pidgin.Configuration.IConfiguration<TToken>, Func<TToken, Pidgin.SourcePosDelta>)
+  fullName.vb: Pidgin.Configuration.Configuration.WithPosCalculator(Of TToken)(Pidgin.Configuration.IConfiguration(Of TToken), Func(Of TToken, Pidgin.SourcePosDelta))
+  nameWithType: Configuration.WithPosCalculator<TToken>(IConfiguration<TToken>, Func<TToken, SourcePosDelta>)
+  nameWithType.vb: Configuration.WithPosCalculator(Of TToken)(IConfiguration(Of TToken), Func(Of TToken, SourcePosDelta))
+- uid: Pidgin.Configuration.DefaultArrayPoolProvider
+  name: DefaultArrayPoolProvider
+  href: api/Pidgin.Configuration.DefaultArrayPoolProvider.html
+  commentId: T:Pidgin.Configuration.DefaultArrayPoolProvider
+  fullName: Pidgin.Configuration.DefaultArrayPoolProvider
+  nameWithType: DefaultArrayPoolProvider
+- uid: Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool*
+  name: GetArrayPool
+  href: api/Pidgin.Configuration.DefaultArrayPoolProvider.html#Pidgin_Configuration_DefaultArrayPoolProvider_GetArrayPool_
+  commentId: Overload:Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool
+  isSpec: "True"
+  fullName: Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool
+  nameWithType: DefaultArrayPoolProvider.GetArrayPool
+- uid: Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool``1
+  name: GetArrayPool<T>()
+  href: api/Pidgin.Configuration.DefaultArrayPoolProvider.html#Pidgin_Configuration_DefaultArrayPoolProvider_GetArrayPool__1
+  commentId: M:Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool``1
+  name.vb: GetArrayPool(Of T)()
+  fullName: Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool<T>()
+  fullName.vb: Pidgin.Configuration.DefaultArrayPoolProvider.GetArrayPool(Of T)()
+  nameWithType: DefaultArrayPoolProvider.GetArrayPool<T>()
+  nameWithType.vb: DefaultArrayPoolProvider.GetArrayPool(Of T)()
+- uid: Pidgin.Configuration.DefaultArrayPoolProvider.Instance
+  name: Instance
+  href: api/Pidgin.Configuration.DefaultArrayPoolProvider.html#Pidgin_Configuration_DefaultArrayPoolProvider_Instance
+  commentId: P:Pidgin.Configuration.DefaultArrayPoolProvider.Instance
+  fullName: Pidgin.Configuration.DefaultArrayPoolProvider.Instance
+  nameWithType: DefaultArrayPoolProvider.Instance
+- uid: Pidgin.Configuration.DefaultArrayPoolProvider.Instance*
+  name: Instance
+  href: api/Pidgin.Configuration.DefaultArrayPoolProvider.html#Pidgin_Configuration_DefaultArrayPoolProvider_Instance_
+  commentId: Overload:Pidgin.Configuration.DefaultArrayPoolProvider.Instance
+  isSpec: "True"
+  fullName: Pidgin.Configuration.DefaultArrayPoolProvider.Instance
+  nameWithType: DefaultArrayPoolProvider.Instance
+- uid: Pidgin.Configuration.DefaultConfiguration`1
+  name: DefaultConfiguration<TToken>
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html
+  commentId: T:Pidgin.Configuration.DefaultConfiguration`1
+  name.vb: DefaultConfiguration(Of TToken)
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken)
+  nameWithType: DefaultConfiguration<TToken>
+  nameWithType.vb: DefaultConfiguration(Of TToken)
+- uid: Pidgin.Configuration.DefaultConfiguration`1.ArrayPoolProvider
+  name: ArrayPoolProvider
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_ArrayPoolProvider
+  commentId: P:Pidgin.Configuration.DefaultConfiguration`1.ArrayPoolProvider
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.ArrayPoolProvider
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).ArrayPoolProvider
+  nameWithType: DefaultConfiguration<TToken>.ArrayPoolProvider
+  nameWithType.vb: DefaultConfiguration(Of TToken).ArrayPoolProvider
+- uid: Pidgin.Configuration.DefaultConfiguration`1.ArrayPoolProvider*
+  name: ArrayPoolProvider
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_ArrayPoolProvider_
+  commentId: Overload:Pidgin.Configuration.DefaultConfiguration`1.ArrayPoolProvider
+  isSpec: "True"
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.ArrayPoolProvider
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).ArrayPoolProvider
+  nameWithType: DefaultConfiguration<TToken>.ArrayPoolProvider
+  nameWithType.vb: DefaultConfiguration(Of TToken).ArrayPoolProvider
+- uid: Pidgin.Configuration.DefaultConfiguration`1.Instance
+  name: Instance
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_Instance
+  commentId: P:Pidgin.Configuration.DefaultConfiguration`1.Instance
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.Instance
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).Instance
+  nameWithType: DefaultConfiguration<TToken>.Instance
+  nameWithType.vb: DefaultConfiguration(Of TToken).Instance
+- uid: Pidgin.Configuration.DefaultConfiguration`1.Instance*
+  name: Instance
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_Instance_
+  commentId: Overload:Pidgin.Configuration.DefaultConfiguration`1.Instance
+  isSpec: "True"
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.Instance
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).Instance
+  nameWithType: DefaultConfiguration<TToken>.Instance
+  nameWithType.vb: DefaultConfiguration(Of TToken).Instance
+- uid: Pidgin.Configuration.DefaultConfiguration`1.SourcePosCalculator
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_SourcePosCalculator
+  commentId: P:Pidgin.Configuration.DefaultConfiguration`1.SourcePosCalculator
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.SourcePosCalculator
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).SourcePosCalculator
+  nameWithType: DefaultConfiguration<TToken>.SourcePosCalculator
+  nameWithType.vb: DefaultConfiguration(Of TToken).SourcePosCalculator
+- uid: Pidgin.Configuration.DefaultConfiguration`1.SourcePosCalculator*
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.DefaultConfiguration-1.html#Pidgin_Configuration_DefaultConfiguration_1_SourcePosCalculator_
+  commentId: Overload:Pidgin.Configuration.DefaultConfiguration`1.SourcePosCalculator
+  isSpec: "True"
+  fullName: Pidgin.Configuration.DefaultConfiguration<TToken>.SourcePosCalculator
+  fullName.vb: Pidgin.Configuration.DefaultConfiguration(Of TToken).SourcePosCalculator
+  nameWithType: DefaultConfiguration<TToken>.SourcePosCalculator
+  nameWithType.vb: DefaultConfiguration(Of TToken).SourcePosCalculator
+- uid: Pidgin.Configuration.IArrayPoolProvider
+  name: IArrayPoolProvider
+  href: api/Pidgin.Configuration.IArrayPoolProvider.html
+  commentId: T:Pidgin.Configuration.IArrayPoolProvider
+  fullName: Pidgin.Configuration.IArrayPoolProvider
+  nameWithType: IArrayPoolProvider
+- uid: Pidgin.Configuration.IArrayPoolProvider.GetArrayPool*
+  name: GetArrayPool
+  href: api/Pidgin.Configuration.IArrayPoolProvider.html#Pidgin_Configuration_IArrayPoolProvider_GetArrayPool_
+  commentId: Overload:Pidgin.Configuration.IArrayPoolProvider.GetArrayPool
+  isSpec: "True"
+  fullName: Pidgin.Configuration.IArrayPoolProvider.GetArrayPool
+  nameWithType: IArrayPoolProvider.GetArrayPool
+- uid: Pidgin.Configuration.IArrayPoolProvider.GetArrayPool``1
+  name: GetArrayPool<T>()
+  href: api/Pidgin.Configuration.IArrayPoolProvider.html#Pidgin_Configuration_IArrayPoolProvider_GetArrayPool__1
+  commentId: M:Pidgin.Configuration.IArrayPoolProvider.GetArrayPool``1
+  name.vb: GetArrayPool(Of T)()
+  fullName: Pidgin.Configuration.IArrayPoolProvider.GetArrayPool<T>()
+  fullName.vb: Pidgin.Configuration.IArrayPoolProvider.GetArrayPool(Of T)()
+  nameWithType: IArrayPoolProvider.GetArrayPool<T>()
+  nameWithType.vb: IArrayPoolProvider.GetArrayPool(Of T)()
+- uid: Pidgin.Configuration.IConfiguration`1
+  name: IConfiguration<TToken>
+  href: api/Pidgin.Configuration.IConfiguration-1.html
+  commentId: T:Pidgin.Configuration.IConfiguration`1
+  name.vb: IConfiguration(Of TToken)
+  fullName: Pidgin.Configuration.IConfiguration<TToken>
+  fullName.vb: Pidgin.Configuration.IConfiguration(Of TToken)
+  nameWithType: IConfiguration<TToken>
+  nameWithType.vb: IConfiguration(Of TToken)
+- uid: Pidgin.Configuration.IConfiguration`1.ArrayPoolProvider
+  name: ArrayPoolProvider
+  href: api/Pidgin.Configuration.IConfiguration-1.html#Pidgin_Configuration_IConfiguration_1_ArrayPoolProvider
+  commentId: P:Pidgin.Configuration.IConfiguration`1.ArrayPoolProvider
+  fullName: Pidgin.Configuration.IConfiguration<TToken>.ArrayPoolProvider
+  fullName.vb: Pidgin.Configuration.IConfiguration(Of TToken).ArrayPoolProvider
+  nameWithType: IConfiguration<TToken>.ArrayPoolProvider
+  nameWithType.vb: IConfiguration(Of TToken).ArrayPoolProvider
+- uid: Pidgin.Configuration.IConfiguration`1.ArrayPoolProvider*
+  name: ArrayPoolProvider
+  href: api/Pidgin.Configuration.IConfiguration-1.html#Pidgin_Configuration_IConfiguration_1_ArrayPoolProvider_
+  commentId: Overload:Pidgin.Configuration.IConfiguration`1.ArrayPoolProvider
+  isSpec: "True"
+  fullName: Pidgin.Configuration.IConfiguration<TToken>.ArrayPoolProvider
+  fullName.vb: Pidgin.Configuration.IConfiguration(Of TToken).ArrayPoolProvider
+  nameWithType: IConfiguration<TToken>.ArrayPoolProvider
+  nameWithType.vb: IConfiguration(Of TToken).ArrayPoolProvider
+- uid: Pidgin.Configuration.IConfiguration`1.SourcePosCalculator
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.IConfiguration-1.html#Pidgin_Configuration_IConfiguration_1_SourcePosCalculator
+  commentId: P:Pidgin.Configuration.IConfiguration`1.SourcePosCalculator
+  fullName: Pidgin.Configuration.IConfiguration<TToken>.SourcePosCalculator
+  fullName.vb: Pidgin.Configuration.IConfiguration(Of TToken).SourcePosCalculator
+  nameWithType: IConfiguration<TToken>.SourcePosCalculator
+  nameWithType.vb: IConfiguration(Of TToken).SourcePosCalculator
+- uid: Pidgin.Configuration.IConfiguration`1.SourcePosCalculator*
+  name: SourcePosCalculator
+  href: api/Pidgin.Configuration.IConfiguration-1.html#Pidgin_Configuration_IConfiguration_1_SourcePosCalculator_
+  commentId: Overload:Pidgin.Configuration.IConfiguration`1.SourcePosCalculator
+  isSpec: "True"
+  fullName: Pidgin.Configuration.IConfiguration<TToken>.SourcePosCalculator
+  fullName.vb: Pidgin.Configuration.IConfiguration(Of TToken).SourcePosCalculator
+  nameWithType: IConfiguration<TToken>.SourcePosCalculator
+  nameWithType.vb: IConfiguration(Of TToken).SourcePosCalculator
 - uid: Pidgin.Expected`1
   name: Expected<TToken>
   href: api/Pidgin.Expected-1.html
@@ -762,6 +1014,68 @@ references:
   commentId: F:Pidgin.Expression.UnaryOperatorType.Prefix
   fullName: Pidgin.Expression.UnaryOperatorType.Prefix
   nameWithType: UnaryOperatorType.Prefix
+- uid: Pidgin.ITokenStream`1
+  name: ITokenStream<TToken>
+  href: api/Pidgin.ITokenStream-1.html
+  commentId: T:Pidgin.ITokenStream`1
+  name.vb: ITokenStream(Of TToken)
+  fullName: Pidgin.ITokenStream<TToken>
+  fullName.vb: Pidgin.ITokenStream(Of TToken)
+  nameWithType: ITokenStream<TToken>
+  nameWithType.vb: ITokenStream(Of TToken)
+- uid: Pidgin.ITokenStream`1.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_ChunkSizeHint
+  commentId: P:Pidgin.ITokenStream`1.ChunkSizeHint
+  fullName: Pidgin.ITokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.ITokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ITokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ITokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.ITokenStream`1.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_ChunkSizeHint_
+  commentId: Overload:Pidgin.ITokenStream`1.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.ITokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.ITokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ITokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ITokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.ITokenStream`1.Read(Span{`0})
+  name: Read(Span<TToken>)
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_Read_Span__0__
+  commentId: M:Pidgin.ITokenStream`1.Read(Span{`0})
+  name.vb: Read(Span(Of TToken))
+  fullName: Pidgin.ITokenStream<TToken>.Read(Span<TToken>)
+  fullName.vb: Pidgin.ITokenStream(Of TToken).Read(Span(Of TToken))
+  nameWithType: ITokenStream<TToken>.Read(Span<TToken>)
+  nameWithType.vb: ITokenStream(Of TToken).Read(Span(Of TToken))
+- uid: Pidgin.ITokenStream`1.Read*
+  name: Read
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_Read_
+  commentId: Overload:Pidgin.ITokenStream`1.Read
+  isSpec: "True"
+  fullName: Pidgin.ITokenStream<TToken>.Read
+  fullName.vb: Pidgin.ITokenStream(Of TToken).Read
+  nameWithType: ITokenStream<TToken>.Read
+  nameWithType.vb: ITokenStream(Of TToken).Read
+- uid: Pidgin.ITokenStream`1.Return(ReadOnlySpan{`0})
+  name: Return(ReadOnlySpan<TToken>)
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_Return_ReadOnlySpan__0__
+  commentId: M:Pidgin.ITokenStream`1.Return(ReadOnlySpan{`0})
+  name.vb: Return(ReadOnlySpan(Of TToken))
+  fullName: Pidgin.ITokenStream<TToken>.Return(ReadOnlySpan<TToken>)
+  fullName.vb: Pidgin.ITokenStream(Of TToken).Return(ReadOnlySpan(Of TToken))
+  nameWithType: ITokenStream<TToken>.Return(ReadOnlySpan<TToken>)
+  nameWithType.vb: ITokenStream(Of TToken).Return(ReadOnlySpan(Of TToken))
+- uid: Pidgin.ITokenStream`1.Return*
+  name: Return
+  href: api/Pidgin.ITokenStream-1.html#Pidgin_ITokenStream_1_Return_
+  commentId: Overload:Pidgin.ITokenStream`1.Return
+  isSpec: "True"
+  fullName: Pidgin.ITokenStream<TToken>.Return
+  fullName.vb: Pidgin.ITokenStream(Of TToken).Return
+  nameWithType: ITokenStream<TToken>.Return
+  nameWithType.vb: ITokenStream(Of TToken).Return
 - uid: Pidgin.Maybe
   name: Maybe
   href: api/Pidgin.Maybe.html
@@ -1161,6 +1475,23 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).ErrorPos
   nameWithType: ParseError<TToken>.ErrorPos
   nameWithType.vb: ParseError(Of TToken).ErrorPos
+- uid: Pidgin.ParseError`1.ErrorPosDelta
+  name: ErrorPosDelta
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorPosDelta
+  commentId: P:Pidgin.ParseError`1.ErrorPosDelta
+  fullName: Pidgin.ParseError<TToken>.ErrorPosDelta
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorPosDelta
+  nameWithType: ParseError<TToken>.ErrorPosDelta
+  nameWithType.vb: ParseError(Of TToken).ErrorPosDelta
+- uid: Pidgin.ParseError`1.ErrorPosDelta*
+  name: ErrorPosDelta
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorPosDelta_
+  commentId: Overload:Pidgin.ParseError`1.ErrorPosDelta
+  isSpec: "True"
+  fullName: Pidgin.ParseError<TToken>.ErrorPosDelta
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorPosDelta
+  nameWithType: ParseError<TToken>.ErrorPosDelta
+  nameWithType.vb: ParseError(Of TToken).ErrorPosDelta
 - uid: Pidgin.ParseError`1.Expected
   name: Expected
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_Expected
@@ -1248,14 +1579,15 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).Inequality
   nameWithType: ParseError<TToken>.Inequality
   nameWithType.vb: ParseError(Of TToken).Inequality
-- uid: Pidgin.ParseError`1.RenderErrorMessage
-  name: RenderErrorMessage()
-  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_RenderErrorMessage
-  commentId: M:Pidgin.ParseError`1.RenderErrorMessage
-  fullName: Pidgin.ParseError<TToken>.RenderErrorMessage()
-  fullName.vb: Pidgin.ParseError(Of TToken).RenderErrorMessage()
-  nameWithType: ParseError<TToken>.RenderErrorMessage()
-  nameWithType.vb: ParseError(Of TToken).RenderErrorMessage()
+- uid: Pidgin.ParseError`1.RenderErrorMessage(System.Nullable{Pidgin.SourcePos})
+  name: RenderErrorMessage(Nullable<SourcePos>)
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_RenderErrorMessage_System_Nullable_Pidgin_SourcePos__
+  commentId: M:Pidgin.ParseError`1.RenderErrorMessage(System.Nullable{Pidgin.SourcePos})
+  name.vb: RenderErrorMessage(Nullable(Of SourcePos))
+  fullName: Pidgin.ParseError<TToken>.RenderErrorMessage(System.Nullable<Pidgin.SourcePos>)
+  fullName.vb: Pidgin.ParseError(Of TToken).RenderErrorMessage(System.Nullable(Of Pidgin.SourcePos))
+  nameWithType: ParseError<TToken>.RenderErrorMessage(Nullable<SourcePos>)
+  nameWithType.vb: ParseError(Of TToken).RenderErrorMessage(Nullable(Of SourcePos))
 - uid: Pidgin.ParseError`1.RenderErrorMessage*
   name: RenderErrorMessage
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_RenderErrorMessage_
@@ -1273,6 +1605,14 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).ToString()
   nameWithType: ParseError<TToken>.ToString()
   nameWithType.vb: ParseError(Of TToken).ToString()
+- uid: Pidgin.ParseError`1.ToString(Pidgin.SourcePos)
+  name: ToString(SourcePos)
+  href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ToString_Pidgin_SourcePos_
+  commentId: M:Pidgin.ParseError`1.ToString(Pidgin.SourcePos)
+  fullName: Pidgin.ParseError<TToken>.ToString(Pidgin.SourcePos)
+  fullName.vb: Pidgin.ParseError(Of TToken).ToString(Pidgin.SourcePos)
+  nameWithType: ParseError<TToken>.ToString(SourcePos)
+  nameWithType.vb: ParseError(Of TToken).ToString(SourcePos)
 - uid: Pidgin.ParseError`1.ToString*
   name: ToString
   href: api/Pidgin.ParseError-1.html#Pidgin_ParseError_1_ToString_
@@ -1776,7 +2116,14 @@ references:
 - uid: Pidgin.Parser.Real
   name: Real
   href: api/Pidgin.Parser.html#Pidgin_Parser_Real
-  commentId: F:Pidgin.Parser.Real
+  commentId: P:Pidgin.Parser.Real
+  fullName: Pidgin.Parser.Real
+  nameWithType: Parser.Real
+- uid: Pidgin.Parser.Real*
+  name: Real
+  href: api/Pidgin.Parser.html#Pidgin_Parser_Real_
+  commentId: Overload:Pidgin.Parser.Real
+  isSpec: "True"
   fullName: Pidgin.Parser.Real
   nameWithType: Parser.Real
 - uid: Pidgin.Parser.Rec*
@@ -1829,22 +2176,6 @@ references:
   fullName.vb: Pidgin.Parser.RepeatString(Of TToken)(Pidgin.Parser(Of TToken, System.Char), System.Int32)
   nameWithType: Parser.RepeatString<TToken>(Parser<TToken, Char>, Int32)
   nameWithType.vb: Parser.RepeatString(Of TToken)(Parser(Of TToken, Char), Int32)
-- uid: Pidgin.Parser.ResetDefaultPosCalculator*
-  name: ResetDefaultPosCalculator
-  href: api/Pidgin.Parser.html#Pidgin_Parser_ResetDefaultPosCalculator_
-  commentId: Overload:Pidgin.Parser.ResetDefaultPosCalculator
-  isSpec: "True"
-  fullName: Pidgin.Parser.ResetDefaultPosCalculator
-  nameWithType: Parser.ResetDefaultPosCalculator
-- uid: Pidgin.Parser.ResetDefaultPosCalculator``1
-  name: ResetDefaultPosCalculator<TToken>()
-  href: api/Pidgin.Parser.html#Pidgin_Parser_ResetDefaultPosCalculator__1
-  commentId: M:Pidgin.Parser.ResetDefaultPosCalculator``1
-  name.vb: ResetDefaultPosCalculator(Of TToken)()
-  fullName: Pidgin.Parser.ResetDefaultPosCalculator<TToken>()
-  fullName.vb: Pidgin.Parser.ResetDefaultPosCalculator(Of TToken)()
-  nameWithType: Parser.ResetDefaultPosCalculator<TToken>()
-  nameWithType.vb: Parser.ResetDefaultPosCalculator(Of TToken)()
 - uid: Pidgin.Parser.Separator
   name: Separator
   href: api/Pidgin.Parser.html#Pidgin_Parser_Separator
@@ -1858,22 +2189,6 @@ references:
   isSpec: "True"
   fullName: Pidgin.Parser.Separator
   nameWithType: Parser.Separator
-- uid: Pidgin.Parser.SetDefaultPosCalculator*
-  name: SetDefaultPosCalculator
-  href: api/Pidgin.Parser.html#Pidgin_Parser_SetDefaultPosCalculator_
-  commentId: Overload:Pidgin.Parser.SetDefaultPosCalculator
-  isSpec: "True"
-  fullName: Pidgin.Parser.SetDefaultPosCalculator
-  nameWithType: Parser.SetDefaultPosCalculator
-- uid: Pidgin.Parser.SetDefaultPosCalculator``1(Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name: SetDefaultPosCalculator<TToken>(Func<TToken, SourcePos, SourcePos>)
-  href: api/Pidgin.Parser.html#Pidgin_Parser_SetDefaultPosCalculator__1_Func___0_Pidgin_SourcePos_Pidgin_SourcePos__
-  commentId: M:Pidgin.Parser.SetDefaultPosCalculator``1(Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})
-  name.vb: SetDefaultPosCalculator(Of TToken)(Func(Of TToken, SourcePos, SourcePos))
-  fullName: Pidgin.Parser.SetDefaultPosCalculator<TToken>(Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>)
-  fullName.vb: Pidgin.Parser.SetDefaultPosCalculator(Of TToken)(Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos))
-  nameWithType: Parser.SetDefaultPosCalculator<TToken>(Func<TToken, SourcePos, SourcePos>)
-  nameWithType.vb: Parser.SetDefaultPosCalculator(Of TToken)(Func(Of TToken, SourcePos, SourcePos))
 - uid: Pidgin.Parser.SkipWhitespaces
   name: SkipWhitespaces
   href: api/Pidgin.Parser.html#Pidgin_Parser_SkipWhitespaces
@@ -2033,6 +2348,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken).Any
   nameWithType: Parser<TToken>.Any
   nameWithType.vb: Parser(Of TToken).Any
+- uid: Pidgin.Parser`1.Configuration
+  name: Configuration
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Configuration
+  commentId: P:Pidgin.Parser`1.Configuration
+  fullName: Pidgin.Parser<TToken>.Configuration
+  fullName.vb: Pidgin.Parser(Of TToken).Configuration
+  nameWithType: Parser<TToken>.Configuration
+  nameWithType.vb: Parser(Of TToken).Configuration
+- uid: Pidgin.Parser`1.Configuration*
+  name: Configuration
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_Configuration_
+  commentId: Overload:Pidgin.Parser`1.Configuration
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken>.Configuration
+  fullName.vb: Pidgin.Parser(Of TToken).Configuration
+  nameWithType: Parser<TToken>.Configuration
+  nameWithType.vb: Parser(Of TToken).Configuration
 - uid: Pidgin.Parser`1.CurrentOffset
   name: CurrentOffset
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentOffset
@@ -2067,6 +2399,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken).CurrentPos
   nameWithType: Parser<TToken>.CurrentPos
   nameWithType.vb: Parser(Of TToken).CurrentPos
+- uid: Pidgin.Parser`1.CurrentSourcePosDelta
+  name: CurrentSourcePosDelta
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentSourcePosDelta
+  commentId: P:Pidgin.Parser`1.CurrentSourcePosDelta
+  fullName: Pidgin.Parser<TToken>.CurrentSourcePosDelta
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentSourcePosDelta
+  nameWithType: Parser<TToken>.CurrentSourcePosDelta
+  nameWithType.vb: Parser(Of TToken).CurrentSourcePosDelta
+- uid: Pidgin.Parser`1.CurrentSourcePosDelta*
+  name: CurrentSourcePosDelta
+  href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentSourcePosDelta_
+  commentId: Overload:Pidgin.Parser`1.CurrentSourcePosDelta
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken>.CurrentSourcePosDelta
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentSourcePosDelta
+  nameWithType: Parser<TToken>.CurrentSourcePosDelta
+  nameWithType.vb: Parser(Of TToken).CurrentSourcePosDelta
 - uid: Pidgin.Parser`1.End
   name: End
   href: api/Pidgin.Parser-1.html#Pidgin_Parser_1_End
@@ -2892,6 +3241,24 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).TraceResult
   nameWithType: Parser<TToken, T>.TraceResult
   nameWithType.vb: Parser(Of TToken, T).TraceResult
+- uid: Pidgin.Parser`2.TryParse(Pidgin.ParseState{`0}@,Pidgin.PooledList{Pidgin.Expected{`0}}@,`1@)
+  name: TryParse(ref ParseState<TToken>, ref PooledList<Expected<TToken>>, out T)
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_TryParse_Pidgin_ParseState__0___Pidgin_PooledList_Pidgin_Expected__0_____1__
+  commentId: M:Pidgin.Parser`2.TryParse(Pidgin.ParseState{`0}@,Pidgin.PooledList{Pidgin.Expected{`0}}@,`1@)
+  name.vb: TryParse(ByRef ParseState(Of TToken), ByRef PooledList(Of Expected(Of TToken)), ByRef T)
+  fullName: Pidgin.Parser<TToken, T>.TryParse(ref Pidgin.ParseState<TToken>, ref Pidgin.PooledList<Pidgin.Expected<TToken>>, out T)
+  fullName.vb: Pidgin.Parser(Of TToken, T).TryParse(ByRef Pidgin.ParseState(Of TToken), ByRef Pidgin.PooledList(Of Pidgin.Expected(Of TToken)), ByRef T)
+  nameWithType: Parser<TToken, T>.TryParse(ref ParseState<TToken>, ref PooledList<Expected<TToken>>, out T)
+  nameWithType.vb: Parser(Of TToken, T).TryParse(ByRef ParseState(Of TToken), ByRef PooledList(Of Expected(Of TToken)), ByRef T)
+- uid: Pidgin.Parser`2.TryParse*
+  name: TryParse
+  href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_TryParse_
+  commentId: Overload:Pidgin.Parser`2.TryParse
+  isSpec: "True"
+  fullName: Pidgin.Parser<TToken, T>.TryParse
+  fullName.vb: Pidgin.Parser(Of TToken, T).TryParse
+  nameWithType: Parser<TToken, T>.TryParse
+  nameWithType.vb: Parser(Of TToken, T).TryParse
 - uid: Pidgin.Parser`2.Until*
   name: Until
   href: api/Pidgin.Parser-2.html#Pidgin_Parser_2_Until_
@@ -2959,78 +3326,78 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.Parse
   nameWithType: ParserExtensions.Parse
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Byte, T>, Stream, System.Nullable<Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, System.Nullable(Of Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, System.String, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), System.String, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, TextReader, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})
+  name: Parse<T>(Parser<Byte, T>, Stream, IConfiguration<Byte>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})
+  name.vb: Parse(Of T)(Parser(Of Byte, T), Stream, IConfiguration(Of Byte))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Byte, T>, Stream, Pidgin.Configuration.IConfiguration<System.Byte>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, Pidgin.Configuration.IConfiguration(Of System.Byte))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Byte, T>, Stream, IConfiguration<Byte>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Byte, T), Stream, IConfiguration(Of Byte))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})
+  name: Parse<T>(Parser<Char, T>, String, IConfiguration<Char>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})
+  name.vb: Parse(Of T)(Parser(Of Char, T), String, IConfiguration(Of Char))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, System.String, Pidgin.Configuration.IConfiguration<System.Char>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), System.String, Pidgin.Configuration.IConfiguration(Of System.Char))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, String, IConfiguration<Char>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), String, IConfiguration(Of Char))
+- uid: Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})
+  name: Parse<T>(Parser<Char, T>, TextReader, IConfiguration<Char>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__
+  commentId: M:Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})
+  name.vb: Parse(Of T)(Parser(Of Char, T), TextReader, IConfiguration(Of Char))
+  fullName: Pidgin.ParserExtensions.Parse<T>(Pidgin.Parser<System.Char, T>, TextReader, Pidgin.Configuration.IConfiguration<System.Char>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, Pidgin.Configuration.IConfiguration(Of System.Char))
+  nameWithType: ParserExtensions.Parse<T>(Parser<Char, T>, TextReader, IConfiguration<Char>)
+  nameWithType.vb: ParserExtensions.Parse(Of T)(Parser(Of Char, T), TextReader, IConfiguration(Of Char))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})
+  name: Parse<TToken, T>(Parser<TToken, T>, TToken[], IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, TToken[], IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), TToken(), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, IList<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.Parse<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.Parse(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.Parse<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.Parse(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IConfiguration(Of TToken))
 - uid: Pidgin.ParserExtensions.ParseOrThrow*
   name: ParseOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow_
@@ -3038,78 +3405,78 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseOrThrow
   nameWithType: ParserExtensions.ParseOrThrow
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Byte, T>, Stream, System.Nullable<Func<System.Byte, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, System.Nullable(Of Func(Of System.Byte, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Byte, T>, Stream, Nullable<Func<Byte, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, Nullable(Of Func(Of Byte, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, System.String, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), System.String, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, String, Nullable<Func<Char, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), String, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, TextReader, System.Nullable<Func<System.Char, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, System.Nullable(Of Func(Of System.Char, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, TextReader, Nullable<Func<Char, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, Nullable(Of Func(Of Char, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})
+  name: ParseOrThrow<T>(Parser<Byte, T>, Stream, IConfiguration<Byte>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, IConfiguration(Of Byte))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Byte, T>, Stream, Pidgin.Configuration.IConfiguration<System.Byte>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Byte, T), Stream, Pidgin.Configuration.IConfiguration(Of System.Byte))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Byte, T>, Stream, IConfiguration<Byte>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Byte, T), Stream, IConfiguration(Of Byte))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})
+  name: ParseOrThrow<T>(Parser<Char, T>, String, IConfiguration<Char>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), String, IConfiguration(Of Char))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, System.String, Pidgin.Configuration.IConfiguration<System.Char>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), System.String, Pidgin.Configuration.IConfiguration(Of System.Char))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, String, IConfiguration<Char>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), String, IConfiguration(Of Char))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})
+  name: ParseOrThrow<T>(Parser<Char, T>, TextReader, IConfiguration<Char>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})
+  name.vb: ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, IConfiguration(Of Char))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<T>(Pidgin.Parser<System.Char, T>, TextReader, Pidgin.Configuration.IConfiguration<System.Char>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of T)(Pidgin.Parser(Of System.Char, T), TextReader, Pidgin.Configuration.IConfiguration(Of System.Char))
+  nameWithType: ParserExtensions.ParseOrThrow<T>(Parser<Char, T>, TextReader, IConfiguration<Char>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of T)(Parser(Of Char, T), TextReader, IConfiguration(Of Char))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, TToken[], Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), TToken(), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, TToken[], IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), TToken(), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerable<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerable(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerable(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IEnumerator<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IEnumerator(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerator<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IEnumerator(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IList<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IList(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, IList<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), IList(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, ReadOnlySpan<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), ReadOnlySpan(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IConfiguration(Of TToken))
 - uid: Pidgin.ParserExtensions.ParseReadOnlyList*
   name: ParseReadOnlyList
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList_
@@ -3117,15 +3484,15 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyList
   nameWithType: ParserExtensions.ParseReadOnlyList
-- uid: Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseReadOnlyList<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyList(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseReadOnlyList<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyList(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseReadOnlyList<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseReadOnlyList(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), IConfiguration(Of TToken))
 - uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow*
   name: ParseReadOnlyListOrThrow
   href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow_
@@ -3133,15 +3500,195 @@ references:
   isSpec: "True"
   fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow
   nameWithType: ParserExtensions.ParseReadOnlyListOrThrow
-- uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name: ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___
-  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})
-  name.vb: ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
-  fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, System.Nullable<Func<TToken, Pidgin.SourcePos, Pidgin.SourcePos>>)
-  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), System.Nullable(Of Func(Of TToken, Pidgin.SourcePos, Pidgin.SourcePos)))
-  nameWithType: ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, Nullable<Func<TToken, SourcePos, SourcePos>>)
-  nameWithType.vb: ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), Nullable(Of Func(Of TToken, SourcePos, SourcePos)))
+- uid: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name: ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, IConfiguration<TToken>)
+  href: api/Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), IConfiguration(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, IReadOnlyList<TToken>, Pidgin.Configuration.IConfiguration<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), IReadOnlyList(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: ParserExtensions.ParseReadOnlyListOrThrow<TToken, T>(Parser<TToken, T>, IReadOnlyList<TToken>, IConfiguration<TToken>)
+  nameWithType.vb: ParserExtensions.ParseReadOnlyListOrThrow(Of TToken, T)(Parser(Of TToken, T), IReadOnlyList(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParseState`1
+  name: ParseState<TToken>
+  href: api/Pidgin.ParseState-1.html
+  commentId: T:Pidgin.ParseState`1
+  name.vb: ParseState(Of TToken)
+  fullName: Pidgin.ParseState<TToken>
+  fullName.vb: Pidgin.ParseState(Of TToken)
+  nameWithType: ParseState<TToken>
+  nameWithType.vb: ParseState(Of TToken)
+- uid: Pidgin.ParseState`1.Advance(System.Int32)
+  name: Advance(Int32)
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Advance_System_Int32_
+  commentId: M:Pidgin.ParseState`1.Advance(System.Int32)
+  fullName: Pidgin.ParseState<TToken>.Advance(System.Int32)
+  fullName.vb: Pidgin.ParseState(Of TToken).Advance(System.Int32)
+  nameWithType: ParseState<TToken>.Advance(Int32)
+  nameWithType.vb: ParseState(Of TToken).Advance(Int32)
+- uid: Pidgin.ParseState`1.Advance*
+  name: Advance
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Advance_
+  commentId: Overload:Pidgin.ParseState`1.Advance
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.Advance
+  fullName.vb: Pidgin.ParseState(Of TToken).Advance
+  nameWithType: ParseState<TToken>.Advance
+  nameWithType.vb: ParseState(Of TToken).Advance
+- uid: Pidgin.ParseState`1.Configuration
+  name: Configuration
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Configuration
+  commentId: P:Pidgin.ParseState`1.Configuration
+  fullName: Pidgin.ParseState<TToken>.Configuration
+  fullName.vb: Pidgin.ParseState(Of TToken).Configuration
+  nameWithType: ParseState<TToken>.Configuration
+  nameWithType.vb: ParseState(Of TToken).Configuration
+- uid: Pidgin.ParseState`1.Configuration*
+  name: Configuration
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Configuration_
+  commentId: Overload:Pidgin.ParseState`1.Configuration
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.Configuration
+  fullName.vb: Pidgin.ParseState(Of TToken).Configuration
+  nameWithType: ParseState<TToken>.Configuration
+  nameWithType.vb: ParseState(Of TToken).Configuration
+- uid: Pidgin.ParseState`1.Current
+  name: Current
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Current
+  commentId: P:Pidgin.ParseState`1.Current
+  fullName: Pidgin.ParseState<TToken>.Current
+  fullName.vb: Pidgin.ParseState(Of TToken).Current
+  nameWithType: ParseState<TToken>.Current
+  nameWithType.vb: ParseState(Of TToken).Current
+- uid: Pidgin.ParseState`1.Current*
+  name: Current
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Current_
+  commentId: Overload:Pidgin.ParseState`1.Current
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.Current
+  fullName.vb: Pidgin.ParseState(Of TToken).Current
+  nameWithType: ParseState<TToken>.Current
+  nameWithType.vb: ParseState(Of TToken).Current
+- uid: Pidgin.ParseState`1.HasCurrent
+  name: HasCurrent
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_HasCurrent
+  commentId: P:Pidgin.ParseState`1.HasCurrent
+  fullName: Pidgin.ParseState<TToken>.HasCurrent
+  fullName.vb: Pidgin.ParseState(Of TToken).HasCurrent
+  nameWithType: ParseState<TToken>.HasCurrent
+  nameWithType.vb: ParseState(Of TToken).HasCurrent
+- uid: Pidgin.ParseState`1.HasCurrent*
+  name: HasCurrent
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_HasCurrent_
+  commentId: Overload:Pidgin.ParseState`1.HasCurrent
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.HasCurrent
+  fullName.vb: Pidgin.ParseState(Of TToken).HasCurrent
+  nameWithType: ParseState<TToken>.HasCurrent
+  nameWithType.vb: ParseState(Of TToken).HasCurrent
+- uid: Pidgin.ParseState`1.Location
+  name: Location
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Location
+  commentId: P:Pidgin.ParseState`1.Location
+  fullName: Pidgin.ParseState<TToken>.Location
+  fullName.vb: Pidgin.ParseState(Of TToken).Location
+  nameWithType: ParseState<TToken>.Location
+  nameWithType.vb: ParseState(Of TToken).Location
+- uid: Pidgin.ParseState`1.Location*
+  name: Location
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Location_
+  commentId: Overload:Pidgin.ParseState`1.Location
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.Location
+  fullName.vb: Pidgin.ParseState(Of TToken).Location
+  nameWithType: ParseState<TToken>.Location
+  nameWithType.vb: ParseState(Of TToken).Location
+- uid: Pidgin.ParseState`1.LookAhead(System.Int32)
+  name: LookAhead(Int32)
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_LookAhead_System_Int32_
+  commentId: M:Pidgin.ParseState`1.LookAhead(System.Int32)
+  fullName: Pidgin.ParseState<TToken>.LookAhead(System.Int32)
+  fullName.vb: Pidgin.ParseState(Of TToken).LookAhead(System.Int32)
+  nameWithType: ParseState<TToken>.LookAhead(Int32)
+  nameWithType.vb: ParseState(Of TToken).LookAhead(Int32)
+- uid: Pidgin.ParseState`1.LookAhead*
+  name: LookAhead
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_LookAhead_
+  commentId: Overload:Pidgin.ParseState`1.LookAhead
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.LookAhead
+  fullName.vb: Pidgin.ParseState(Of TToken).LookAhead
+  nameWithType: ParseState<TToken>.LookAhead
+  nameWithType.vb: ParseState(Of TToken).LookAhead
+- uid: Pidgin.ParseState`1.PopBookmark
+  name: PopBookmark()
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_PopBookmark
+  commentId: M:Pidgin.ParseState`1.PopBookmark
+  fullName: Pidgin.ParseState<TToken>.PopBookmark()
+  fullName.vb: Pidgin.ParseState(Of TToken).PopBookmark()
+  nameWithType: ParseState<TToken>.PopBookmark()
+  nameWithType.vb: ParseState(Of TToken).PopBookmark()
+- uid: Pidgin.ParseState`1.PopBookmark*
+  name: PopBookmark
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_PopBookmark_
+  commentId: Overload:Pidgin.ParseState`1.PopBookmark
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.PopBookmark
+  fullName.vb: Pidgin.ParseState(Of TToken).PopBookmark
+  nameWithType: ParseState<TToken>.PopBookmark
+  nameWithType.vb: ParseState(Of TToken).PopBookmark
+- uid: Pidgin.ParseState`1.PushBookmark
+  name: PushBookmark()
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_PushBookmark
+  commentId: M:Pidgin.ParseState`1.PushBookmark
+  fullName: Pidgin.ParseState<TToken>.PushBookmark()
+  fullName.vb: Pidgin.ParseState(Of TToken).PushBookmark()
+  nameWithType: ParseState<TToken>.PushBookmark()
+  nameWithType.vb: ParseState(Of TToken).PushBookmark()
+- uid: Pidgin.ParseState`1.PushBookmark*
+  name: PushBookmark
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_PushBookmark_
+  commentId: Overload:Pidgin.ParseState`1.PushBookmark
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.PushBookmark
+  fullName.vb: Pidgin.ParseState(Of TToken).PushBookmark
+  nameWithType: ParseState<TToken>.PushBookmark
+  nameWithType.vb: ParseState(Of TToken).PushBookmark
+- uid: Pidgin.ParseState`1.Rewind
+  name: Rewind()
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind
+  commentId: M:Pidgin.ParseState`1.Rewind
+  fullName: Pidgin.ParseState<TToken>.Rewind()
+  fullName.vb: Pidgin.ParseState(Of TToken).Rewind()
+  nameWithType: ParseState<TToken>.Rewind()
+  nameWithType.vb: ParseState(Of TToken).Rewind()
+- uid: Pidgin.ParseState`1.Rewind*
+  name: Rewind
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_
+  commentId: Overload:Pidgin.ParseState`1.Rewind
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.Rewind
+  fullName.vb: Pidgin.ParseState(Of TToken).Rewind
+  nameWithType: ParseState<TToken>.Rewind
+  nameWithType.vb: ParseState(Of TToken).Rewind
+- uid: Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int32,System.Nullable{System.String})
+  name: SetError(Maybe<TToken>, Boolean, Int32, Nullable<String>)
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_Nullable_System_String__
+  commentId: M:Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int32,System.Nullable{System.String})
+  name.vb: SetError(Maybe(Of TToken), Boolean, Int32, Nullable(Of String))
+  fullName: Pidgin.ParseState<TToken>.SetError(Pidgin.Maybe<TToken>, System.Boolean, System.Int32, System.Nullable<System.String>)
+  fullName.vb: Pidgin.ParseState(Of TToken).SetError(Pidgin.Maybe(Of TToken), System.Boolean, System.Int32, System.Nullable(Of System.String))
+  nameWithType: ParseState<TToken>.SetError(Maybe<TToken>, Boolean, Int32, Nullable<String>)
+  nameWithType.vb: ParseState(Of TToken).SetError(Maybe(Of TToken), Boolean, Int32, Nullable(Of String))
+- uid: Pidgin.ParseState`1.SetError*
+  name: SetError
+  href: api/Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_
+  commentId: Overload:Pidgin.ParseState`1.SetError
+  isSpec: "True"
+  fullName: Pidgin.ParseState<TToken>.SetError
+  fullName.vb: Pidgin.ParseState(Of TToken).SetError
+  nameWithType: ParseState<TToken>.SetError
+  nameWithType.vb: ParseState(Of TToken).SetError
 - uid: Pidgin.Permutation
   name: Pidgin.Permutation
   href: api/Pidgin.Permutation.html
@@ -3286,6 +3833,318 @@ references:
   fullName.vb: Pidgin.Permutation.PermutationParser(Of TToken, T).Build
   nameWithType: PermutationParser<TToken, T>.Build
   nameWithType.vb: PermutationParser(Of TToken, T).Build
+- uid: Pidgin.PooledList`1
+  name: PooledList<T>
+  href: api/Pidgin.PooledList-1.html
+  commentId: T:Pidgin.PooledList`1
+  name.vb: PooledList(Of T)
+  fullName: Pidgin.PooledList<T>
+  fullName.vb: Pidgin.PooledList(Of T)
+  nameWithType: PooledList<T>
+  nameWithType.vb: PooledList(Of T)
+- uid: Pidgin.PooledList`1.#ctor(ArrayPool{`0})
+  name: PooledList(ArrayPool<T>)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1__ctor_ArrayPool__0__
+  commentId: M:Pidgin.PooledList`1.#ctor(ArrayPool{`0})
+  name.vb: PooledList(ArrayPool(Of T))
+  fullName: Pidgin.PooledList<T>.PooledList(ArrayPool<T>)
+  fullName.vb: Pidgin.PooledList(Of T).PooledList(ArrayPool(Of T))
+  nameWithType: PooledList<T>.PooledList(ArrayPool<T>)
+  nameWithType.vb: PooledList(Of T).PooledList(ArrayPool(Of T))
+- uid: Pidgin.PooledList`1.#ctor*
+  name: PooledList
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1__ctor_
+  commentId: Overload:Pidgin.PooledList`1.#ctor
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.PooledList
+  fullName.vb: Pidgin.PooledList(Of T).PooledList
+  nameWithType: PooledList<T>.PooledList
+  nameWithType.vb: PooledList(Of T).PooledList
+- uid: Pidgin.PooledList`1.Add(`0)
+  name: Add(T)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Add__0_
+  commentId: M:Pidgin.PooledList`1.Add(`0)
+  fullName: Pidgin.PooledList<T>.Add(T)
+  fullName.vb: Pidgin.PooledList(Of T).Add(T)
+  nameWithType: PooledList<T>.Add(T)
+  nameWithType.vb: PooledList(Of T).Add(T)
+- uid: Pidgin.PooledList`1.Add*
+  name: Add
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Add_
+  commentId: Overload:Pidgin.PooledList`1.Add
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Add
+  fullName.vb: Pidgin.PooledList(Of T).Add
+  nameWithType: PooledList<T>.Add
+  nameWithType.vb: PooledList(Of T).Add
+- uid: Pidgin.PooledList`1.AddRange(ICollection{`0})
+  name: AddRange(ICollection<T>)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AddRange_ICollection__0__
+  commentId: M:Pidgin.PooledList`1.AddRange(ICollection{`0})
+  name.vb: AddRange(ICollection(Of T))
+  fullName: Pidgin.PooledList<T>.AddRange(ICollection<T>)
+  fullName.vb: Pidgin.PooledList(Of T).AddRange(ICollection(Of T))
+  nameWithType: PooledList<T>.AddRange(ICollection<T>)
+  nameWithType.vb: PooledList(Of T).AddRange(ICollection(Of T))
+- uid: Pidgin.PooledList`1.AddRange(IEnumerable{`0})
+  name: AddRange(IEnumerable<T>)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AddRange_IEnumerable__0__
+  commentId: M:Pidgin.PooledList`1.AddRange(IEnumerable{`0})
+  name.vb: AddRange(IEnumerable(Of T))
+  fullName: Pidgin.PooledList<T>.AddRange(IEnumerable<T>)
+  fullName.vb: Pidgin.PooledList(Of T).AddRange(IEnumerable(Of T))
+  nameWithType: PooledList<T>.AddRange(IEnumerable<T>)
+  nameWithType.vb: PooledList(Of T).AddRange(IEnumerable(Of T))
+- uid: Pidgin.PooledList`1.AddRange(ImmutableArray{`0})
+  name: AddRange(ImmutableArray<T>)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AddRange_ImmutableArray__0__
+  commentId: M:Pidgin.PooledList`1.AddRange(ImmutableArray{`0})
+  name.vb: AddRange(ImmutableArray(Of T))
+  fullName: Pidgin.PooledList<T>.AddRange(ImmutableArray<T>)
+  fullName.vb: Pidgin.PooledList(Of T).AddRange(ImmutableArray(Of T))
+  nameWithType: PooledList<T>.AddRange(ImmutableArray<T>)
+  nameWithType.vb: PooledList(Of T).AddRange(ImmutableArray(Of T))
+- uid: Pidgin.PooledList`1.AddRange(ReadOnlySpan{`0})
+  name: AddRange(ReadOnlySpan<T>)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AddRange_ReadOnlySpan__0__
+  commentId: M:Pidgin.PooledList`1.AddRange(ReadOnlySpan{`0})
+  name.vb: AddRange(ReadOnlySpan(Of T))
+  fullName: Pidgin.PooledList<T>.AddRange(ReadOnlySpan<T>)
+  fullName.vb: Pidgin.PooledList(Of T).AddRange(ReadOnlySpan(Of T))
+  nameWithType: PooledList<T>.AddRange(ReadOnlySpan<T>)
+  nameWithType.vb: PooledList(Of T).AddRange(ReadOnlySpan(Of T))
+- uid: Pidgin.PooledList`1.AddRange*
+  name: AddRange
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AddRange_
+  commentId: Overload:Pidgin.PooledList`1.AddRange
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.AddRange
+  fullName.vb: Pidgin.PooledList(Of T).AddRange
+  nameWithType: PooledList<T>.AddRange
+  nameWithType.vb: PooledList(Of T).AddRange
+- uid: Pidgin.PooledList`1.AsSpan
+  name: AsSpan()
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AsSpan
+  commentId: M:Pidgin.PooledList`1.AsSpan
+  fullName: Pidgin.PooledList<T>.AsSpan()
+  fullName.vb: Pidgin.PooledList(Of T).AsSpan()
+  nameWithType: PooledList<T>.AsSpan()
+  nameWithType.vb: PooledList(Of T).AsSpan()
+- uid: Pidgin.PooledList`1.AsSpan*
+  name: AsSpan
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_AsSpan_
+  commentId: Overload:Pidgin.PooledList`1.AsSpan
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.AsSpan
+  fullName.vb: Pidgin.PooledList(Of T).AsSpan
+  nameWithType: PooledList<T>.AsSpan
+  nameWithType.vb: PooledList(Of T).AsSpan
+- uid: Pidgin.PooledList`1.Clear
+  name: Clear()
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Clear
+  commentId: M:Pidgin.PooledList`1.Clear
+  fullName: Pidgin.PooledList<T>.Clear()
+  fullName.vb: Pidgin.PooledList(Of T).Clear()
+  nameWithType: PooledList<T>.Clear()
+  nameWithType.vb: PooledList(Of T).Clear()
+- uid: Pidgin.PooledList`1.Clear*
+  name: Clear
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Clear_
+  commentId: Overload:Pidgin.PooledList`1.Clear
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Clear
+  fullName.vb: Pidgin.PooledList(Of T).Clear
+  nameWithType: PooledList<T>.Clear
+  nameWithType.vb: PooledList(Of T).Clear
+- uid: Pidgin.PooledList`1.Contains(`0)
+  name: Contains(T)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Contains__0_
+  commentId: M:Pidgin.PooledList`1.Contains(`0)
+  fullName: Pidgin.PooledList<T>.Contains(T)
+  fullName.vb: Pidgin.PooledList(Of T).Contains(T)
+  nameWithType: PooledList<T>.Contains(T)
+  nameWithType.vb: PooledList(Of T).Contains(T)
+- uid: Pidgin.PooledList`1.Contains*
+  name: Contains
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Contains_
+  commentId: Overload:Pidgin.PooledList`1.Contains
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Contains
+  fullName.vb: Pidgin.PooledList(Of T).Contains
+  nameWithType: PooledList<T>.Contains
+  nameWithType.vb: PooledList(Of T).Contains
+- uid: Pidgin.PooledList`1.CopyTo(`0[],System.Int32)
+  name: CopyTo(T[], Int32)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_CopyTo__0___System_Int32_
+  commentId: M:Pidgin.PooledList`1.CopyTo(`0[],System.Int32)
+  name.vb: CopyTo(T(), Int32)
+  fullName: Pidgin.PooledList<T>.CopyTo(T[], System.Int32)
+  fullName.vb: Pidgin.PooledList(Of T).CopyTo(T(), System.Int32)
+  nameWithType: PooledList<T>.CopyTo(T[], Int32)
+  nameWithType.vb: PooledList(Of T).CopyTo(T(), Int32)
+- uid: Pidgin.PooledList`1.CopyTo*
+  name: CopyTo
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_CopyTo_
+  commentId: Overload:Pidgin.PooledList`1.CopyTo
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.CopyTo
+  fullName.vb: Pidgin.PooledList(Of T).CopyTo
+  nameWithType: PooledList<T>.CopyTo
+  nameWithType.vb: PooledList(Of T).CopyTo
+- uid: Pidgin.PooledList`1.Count
+  name: Count
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Count
+  commentId: P:Pidgin.PooledList`1.Count
+  fullName: Pidgin.PooledList<T>.Count
+  fullName.vb: Pidgin.PooledList(Of T).Count
+  nameWithType: PooledList<T>.Count
+  nameWithType.vb: PooledList(Of T).Count
+- uid: Pidgin.PooledList`1.Count*
+  name: Count
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Count_
+  commentId: Overload:Pidgin.PooledList`1.Count
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Count
+  fullName.vb: Pidgin.PooledList(Of T).Count
+  nameWithType: PooledList<T>.Count
+  nameWithType.vb: PooledList(Of T).Count
+- uid: Pidgin.PooledList`1.Dispose
+  name: Dispose()
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Dispose
+  commentId: M:Pidgin.PooledList`1.Dispose
+  fullName: Pidgin.PooledList<T>.Dispose()
+  fullName.vb: Pidgin.PooledList(Of T).Dispose()
+  nameWithType: PooledList<T>.Dispose()
+  nameWithType.vb: PooledList(Of T).Dispose()
+- uid: Pidgin.PooledList`1.Dispose*
+  name: Dispose
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Dispose_
+  commentId: Overload:Pidgin.PooledList`1.Dispose
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Dispose
+  fullName.vb: Pidgin.PooledList(Of T).Dispose
+  nameWithType: PooledList<T>.Dispose
+  nameWithType.vb: PooledList(Of T).Dispose
+- uid: Pidgin.PooledList`1.IndexOf(`0)
+  name: IndexOf(T)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_IndexOf__0_
+  commentId: M:Pidgin.PooledList`1.IndexOf(`0)
+  fullName: Pidgin.PooledList<T>.IndexOf(T)
+  fullName.vb: Pidgin.PooledList(Of T).IndexOf(T)
+  nameWithType: PooledList<T>.IndexOf(T)
+  nameWithType.vb: PooledList(Of T).IndexOf(T)
+- uid: Pidgin.PooledList`1.IndexOf*
+  name: IndexOf
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_IndexOf_
+  commentId: Overload:Pidgin.PooledList`1.IndexOf
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.IndexOf
+  fullName.vb: Pidgin.PooledList(Of T).IndexOf
+  nameWithType: PooledList<T>.IndexOf
+  nameWithType.vb: PooledList(Of T).IndexOf
+- uid: Pidgin.PooledList`1.Insert(System.Int32,`0)
+  name: Insert(Int32, T)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Insert_System_Int32__0_
+  commentId: M:Pidgin.PooledList`1.Insert(System.Int32,`0)
+  fullName: Pidgin.PooledList<T>.Insert(System.Int32, T)
+  fullName.vb: Pidgin.PooledList(Of T).Insert(System.Int32, T)
+  nameWithType: PooledList<T>.Insert(Int32, T)
+  nameWithType.vb: PooledList(Of T).Insert(Int32, T)
+- uid: Pidgin.PooledList`1.Insert*
+  name: Insert
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Insert_
+  commentId: Overload:Pidgin.PooledList`1.Insert
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Insert
+  fullName.vb: Pidgin.PooledList(Of T).Insert
+  nameWithType: PooledList<T>.Insert
+  nameWithType.vb: PooledList(Of T).Insert
+- uid: Pidgin.PooledList`1.IsReadOnly
+  name: IsReadOnly
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_IsReadOnly
+  commentId: P:Pidgin.PooledList`1.IsReadOnly
+  fullName: Pidgin.PooledList<T>.IsReadOnly
+  fullName.vb: Pidgin.PooledList(Of T).IsReadOnly
+  nameWithType: PooledList<T>.IsReadOnly
+  nameWithType.vb: PooledList(Of T).IsReadOnly
+- uid: Pidgin.PooledList`1.IsReadOnly*
+  name: IsReadOnly
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_IsReadOnly_
+  commentId: Overload:Pidgin.PooledList`1.IsReadOnly
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.IsReadOnly
+  fullName.vb: Pidgin.PooledList(Of T).IsReadOnly
+  nameWithType: PooledList<T>.IsReadOnly
+  nameWithType.vb: PooledList(Of T).IsReadOnly
+- uid: Pidgin.PooledList`1.Item(System.Int32)
+  name: Item[Int32]
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Item_System_Int32_
+  commentId: P:Pidgin.PooledList`1.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: Pidgin.PooledList<T>.Item[System.Int32]
+  fullName.vb: Pidgin.PooledList(Of T).Item(System.Int32)
+  nameWithType: PooledList<T>.Item[Int32]
+  nameWithType.vb: PooledList(Of T).Item(Int32)
+- uid: Pidgin.PooledList`1.Item*
+  name: Item
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Item_
+  commentId: Overload:Pidgin.PooledList`1.Item
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Item
+  fullName.vb: Pidgin.PooledList(Of T).Item
+  nameWithType: PooledList<T>.Item
+  nameWithType.vb: PooledList(Of T).Item
+- uid: Pidgin.PooledList`1.Pop
+  name: Pop()
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Pop
+  commentId: M:Pidgin.PooledList`1.Pop
+  fullName: Pidgin.PooledList<T>.Pop()
+  fullName.vb: Pidgin.PooledList(Of T).Pop()
+  nameWithType: PooledList<T>.Pop()
+  nameWithType.vb: PooledList(Of T).Pop()
+- uid: Pidgin.PooledList`1.Pop*
+  name: Pop
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Pop_
+  commentId: Overload:Pidgin.PooledList`1.Pop
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Pop
+  fullName.vb: Pidgin.PooledList(Of T).Pop
+  nameWithType: PooledList<T>.Pop
+  nameWithType.vb: PooledList(Of T).Pop
+- uid: Pidgin.PooledList`1.Remove(`0)
+  name: Remove(T)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Remove__0_
+  commentId: M:Pidgin.PooledList`1.Remove(`0)
+  fullName: Pidgin.PooledList<T>.Remove(T)
+  fullName.vb: Pidgin.PooledList(Of T).Remove(T)
+  nameWithType: PooledList<T>.Remove(T)
+  nameWithType.vb: PooledList(Of T).Remove(T)
+- uid: Pidgin.PooledList`1.Remove*
+  name: Remove
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_Remove_
+  commentId: Overload:Pidgin.PooledList`1.Remove
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.Remove
+  fullName.vb: Pidgin.PooledList(Of T).Remove
+  nameWithType: PooledList<T>.Remove
+  nameWithType.vb: PooledList(Of T).Remove
+- uid: Pidgin.PooledList`1.RemoveAt(System.Int32)
+  name: RemoveAt(Int32)
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_RemoveAt_System_Int32_
+  commentId: M:Pidgin.PooledList`1.RemoveAt(System.Int32)
+  fullName: Pidgin.PooledList<T>.RemoveAt(System.Int32)
+  fullName.vb: Pidgin.PooledList(Of T).RemoveAt(System.Int32)
+  nameWithType: PooledList<T>.RemoveAt(Int32)
+  nameWithType.vb: PooledList(Of T).RemoveAt(Int32)
+- uid: Pidgin.PooledList`1.RemoveAt*
+  name: RemoveAt
+  href: api/Pidgin.PooledList-1.html#Pidgin_PooledList_1_RemoveAt_
+  commentId: Overload:Pidgin.PooledList`1.RemoveAt
+  isSpec: "True"
+  fullName: Pidgin.PooledList<T>.RemoveAt
+  fullName.vb: Pidgin.PooledList(Of T).RemoveAt
+  nameWithType: PooledList<T>.RemoveAt
+  nameWithType.vb: PooledList(Of T).RemoveAt
 - uid: Pidgin.ReadOnlySpanFunc`3
   name: ReadOnlySpanFunc<T, TParam, TReturn>
   href: api/Pidgin.ReadOnlySpanFunc-3.html
@@ -3616,6 +4475,19 @@ references:
   isSpec: "True"
   fullName: Pidgin.SourcePos.NewLine
   nameWithType: SourcePos.NewLine
+- uid: Pidgin.SourcePos.op_Addition(Pidgin.SourcePos,Pidgin.SourcePosDelta)
+  name: Addition(SourcePos, SourcePosDelta)
+  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_Addition_Pidgin_SourcePos_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePos.op_Addition(Pidgin.SourcePos,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePos.Addition(Pidgin.SourcePos, Pidgin.SourcePosDelta)
+  nameWithType: SourcePos.Addition(SourcePos, SourcePosDelta)
+- uid: Pidgin.SourcePos.op_Addition*
+  name: Addition
+  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_Addition_
+  commentId: Overload:Pidgin.SourcePos.op_Addition
+  isSpec: "True"
+  fullName: Pidgin.SourcePos.Addition
+  nameWithType: SourcePos.Addition
 - uid: Pidgin.SourcePos.op_Equality(Pidgin.SourcePos,Pidgin.SourcePos)
   name: Equality(SourcePos, SourcePos)
   href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_op_Equality_Pidgin_SourcePos_Pidgin_SourcePos_
@@ -3694,6 +4566,623 @@ references:
   isSpec: "True"
   fullName: Pidgin.SourcePos.LessThanOrEqual
   nameWithType: SourcePos.LessThanOrEqual
+- uid: Pidgin.SourcePos.Plus(Pidgin.SourcePosDelta)
+  name: Plus(SourcePosDelta)
+  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Plus_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePos.Plus(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePos.Plus(Pidgin.SourcePosDelta)
+  nameWithType: SourcePos.Plus(SourcePosDelta)
+- uid: Pidgin.SourcePos.Plus*
+  name: Plus
+  href: api/Pidgin.SourcePos.html#Pidgin_SourcePos_Plus_
+  commentId: Overload:Pidgin.SourcePos.Plus
+  isSpec: "True"
+  fullName: Pidgin.SourcePos.Plus
+  nameWithType: SourcePos.Plus
+- uid: Pidgin.SourcePosDelta
+  name: SourcePosDelta
+  href: api/Pidgin.SourcePosDelta.html
+  commentId: T:Pidgin.SourcePosDelta
+  fullName: Pidgin.SourcePosDelta
+  nameWithType: SourcePosDelta
+- uid: Pidgin.SourcePosDelta.#ctor(System.Int32,System.Int32)
+  name: SourcePosDelta(Int32, Int32)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta__ctor_System_Int32_System_Int32_
+  commentId: M:Pidgin.SourcePosDelta.#ctor(System.Int32,System.Int32)
+  fullName: Pidgin.SourcePosDelta.SourcePosDelta(System.Int32, System.Int32)
+  nameWithType: SourcePosDelta.SourcePosDelta(Int32, Int32)
+- uid: Pidgin.SourcePosDelta.#ctor*
+  name: SourcePosDelta
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta__ctor_
+  commentId: Overload:Pidgin.SourcePosDelta.#ctor
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.SourcePosDelta
+  nameWithType: SourcePosDelta.SourcePosDelta
+- uid: Pidgin.SourcePosDelta.Cols
+  name: Cols
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Cols
+  commentId: P:Pidgin.SourcePosDelta.Cols
+  fullName: Pidgin.SourcePosDelta.Cols
+  nameWithType: SourcePosDelta.Cols
+- uid: Pidgin.SourcePosDelta.Cols*
+  name: Cols
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Cols_
+  commentId: Overload:Pidgin.SourcePosDelta.Cols
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Cols
+  nameWithType: SourcePosDelta.Cols
+- uid: Pidgin.SourcePosDelta.CompareTo(Pidgin.SourcePosDelta)
+  name: CompareTo(SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_CompareTo_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.CompareTo(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.CompareTo(Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.CompareTo(SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.CompareTo*
+  name: CompareTo
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_CompareTo_
+  commentId: Overload:Pidgin.SourcePosDelta.CompareTo
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.CompareTo
+  nameWithType: SourcePosDelta.CompareTo
+- uid: Pidgin.SourcePosDelta.Equals(Pidgin.SourcePosDelta)
+  name: Equals(SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Equals_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.Equals(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Equals(Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Equals(SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.Equals(System.Nullable{System.Object})
+  name: Equals(Nullable<Object>)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Equals_System_Nullable_System_Object__
+  commentId: M:Pidgin.SourcePosDelta.Equals(System.Nullable{System.Object})
+  name.vb: Equals(Nullable(Of Object))
+  fullName: Pidgin.SourcePosDelta.Equals(System.Nullable<System.Object>)
+  fullName.vb: Pidgin.SourcePosDelta.Equals(System.Nullable(Of System.Object))
+  nameWithType: SourcePosDelta.Equals(Nullable<Object>)
+  nameWithType.vb: SourcePosDelta.Equals(Nullable(Of Object))
+- uid: Pidgin.SourcePosDelta.Equals*
+  name: Equals
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Equals_
+  commentId: Overload:Pidgin.SourcePosDelta.Equals
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Equals
+  nameWithType: SourcePosDelta.Equals
+- uid: Pidgin.SourcePosDelta.GetHashCode
+  name: GetHashCode()
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_GetHashCode
+  commentId: M:Pidgin.SourcePosDelta.GetHashCode
+  fullName: Pidgin.SourcePosDelta.GetHashCode()
+  nameWithType: SourcePosDelta.GetHashCode()
+- uid: Pidgin.SourcePosDelta.GetHashCode*
+  name: GetHashCode
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_GetHashCode_
+  commentId: Overload:Pidgin.SourcePosDelta.GetHashCode
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.GetHashCode
+  nameWithType: SourcePosDelta.GetHashCode
+- uid: Pidgin.SourcePosDelta.Lines
+  name: Lines
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Lines
+  commentId: P:Pidgin.SourcePosDelta.Lines
+  fullName: Pidgin.SourcePosDelta.Lines
+  nameWithType: SourcePosDelta.Lines
+- uid: Pidgin.SourcePosDelta.Lines*
+  name: Lines
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Lines_
+  commentId: Overload:Pidgin.SourcePosDelta.Lines
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Lines
+  nameWithType: SourcePosDelta.Lines
+- uid: Pidgin.SourcePosDelta.NewLine
+  name: NewLine
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_NewLine
+  commentId: P:Pidgin.SourcePosDelta.NewLine
+  fullName: Pidgin.SourcePosDelta.NewLine
+  nameWithType: SourcePosDelta.NewLine
+- uid: Pidgin.SourcePosDelta.NewLine*
+  name: NewLine
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_NewLine_
+  commentId: Overload:Pidgin.SourcePosDelta.NewLine
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.NewLine
+  nameWithType: SourcePosDelta.NewLine
+- uid: Pidgin.SourcePosDelta.OneCol
+  name: OneCol
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_OneCol
+  commentId: P:Pidgin.SourcePosDelta.OneCol
+  fullName: Pidgin.SourcePosDelta.OneCol
+  nameWithType: SourcePosDelta.OneCol
+- uid: Pidgin.SourcePosDelta.OneCol*
+  name: OneCol
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_OneCol_
+  commentId: Overload:Pidgin.SourcePosDelta.OneCol
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.OneCol
+  nameWithType: SourcePosDelta.OneCol
+- uid: Pidgin.SourcePosDelta.op_Addition(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: Addition(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Addition_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_Addition(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Addition(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Addition(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_Addition*
+  name: Addition
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Addition_
+  commentId: Overload:Pidgin.SourcePosDelta.op_Addition
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Addition
+  nameWithType: SourcePosDelta.Addition
+- uid: Pidgin.SourcePosDelta.op_Equality(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: Equality(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Equality_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_Equality(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Equality(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Equality(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_Equality*
+  name: Equality
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Equality_
+  commentId: Overload:Pidgin.SourcePosDelta.op_Equality
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Equality
+  nameWithType: SourcePosDelta.Equality
+- uid: Pidgin.SourcePosDelta.op_GreaterThan(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: GreaterThan(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_GreaterThan_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_GreaterThan(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.GreaterThan(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.GreaterThan(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_GreaterThan*
+  name: GreaterThan
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_GreaterThan_
+  commentId: Overload:Pidgin.SourcePosDelta.op_GreaterThan
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.GreaterThan
+  nameWithType: SourcePosDelta.GreaterThan
+- uid: Pidgin.SourcePosDelta.op_GreaterThanOrEqual(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: GreaterThanOrEqual(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_GreaterThanOrEqual_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_GreaterThanOrEqual(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.GreaterThanOrEqual(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.GreaterThanOrEqual(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_GreaterThanOrEqual*
+  name: GreaterThanOrEqual
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_GreaterThanOrEqual_
+  commentId: Overload:Pidgin.SourcePosDelta.op_GreaterThanOrEqual
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.GreaterThanOrEqual
+  nameWithType: SourcePosDelta.GreaterThanOrEqual
+- uid: Pidgin.SourcePosDelta.op_Inequality(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: Inequality(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Inequality_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_Inequality(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Inequality(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Inequality(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_Inequality*
+  name: Inequality
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_Inequality_
+  commentId: Overload:Pidgin.SourcePosDelta.op_Inequality
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Inequality
+  nameWithType: SourcePosDelta.Inequality
+- uid: Pidgin.SourcePosDelta.op_LessThan(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: LessThan(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_LessThan_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_LessThan(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.LessThan(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.LessThan(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_LessThan*
+  name: LessThan
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_LessThan_
+  commentId: Overload:Pidgin.SourcePosDelta.op_LessThan
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.LessThan
+  nameWithType: SourcePosDelta.LessThan
+- uid: Pidgin.SourcePosDelta.op_LessThanOrEqual(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  name: LessThanOrEqual(SourcePosDelta, SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_LessThanOrEqual_Pidgin_SourcePosDelta_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.op_LessThanOrEqual(Pidgin.SourcePosDelta,Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.LessThanOrEqual(Pidgin.SourcePosDelta, Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.LessThanOrEqual(SourcePosDelta, SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.op_LessThanOrEqual*
+  name: LessThanOrEqual
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_op_LessThanOrEqual_
+  commentId: Overload:Pidgin.SourcePosDelta.op_LessThanOrEqual
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.LessThanOrEqual
+  nameWithType: SourcePosDelta.LessThanOrEqual
+- uid: Pidgin.SourcePosDelta.Plus(Pidgin.SourcePosDelta)
+  name: Plus(SourcePosDelta)
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Plus_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.Plus(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Plus(Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Plus(SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.Plus*
+  name: Plus
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Plus_
+  commentId: Overload:Pidgin.SourcePosDelta.Plus
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Plus
+  nameWithType: SourcePosDelta.Plus
+- uid: Pidgin.SourcePosDelta.Zero
+  name: Zero
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Zero
+  commentId: P:Pidgin.SourcePosDelta.Zero
+  fullName: Pidgin.SourcePosDelta.Zero
+  nameWithType: SourcePosDelta.Zero
+- uid: Pidgin.SourcePosDelta.Zero*
+  name: Zero
+  href: api/Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Zero_
+  commentId: Overload:Pidgin.SourcePosDelta.Zero
+  isSpec: "True"
+  fullName: Pidgin.SourcePosDelta.Zero
+  nameWithType: SourcePosDelta.Zero
+- uid: Pidgin.TokenStreams
+  name: Pidgin.TokenStreams
+  href: api/Pidgin.TokenStreams.html
+  commentId: N:Pidgin.TokenStreams
+  fullName: Pidgin.TokenStreams
+  nameWithType: Pidgin.TokenStreams
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1
+  name: EnumeratorTokenStream<TToken>
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html
+  commentId: T:Pidgin.TokenStreams.EnumeratorTokenStream`1
+  name.vb: EnumeratorTokenStream(Of TToken)
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken)
+  nameWithType: EnumeratorTokenStream<TToken>
+  nameWithType.vb: EnumeratorTokenStream(Of TToken)
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.#ctor(IEnumerator{`0})
+  name: EnumeratorTokenStream(IEnumerator<TToken>)
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1__ctor_IEnumerator__0__
+  commentId: M:Pidgin.TokenStreams.EnumeratorTokenStream`1.#ctor(IEnumerator{`0})
+  name.vb: EnumeratorTokenStream(IEnumerator(Of TToken))
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.EnumeratorTokenStream(IEnumerator<TToken>)
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).EnumeratorTokenStream(IEnumerator(Of TToken))
+  nameWithType: EnumeratorTokenStream<TToken>.EnumeratorTokenStream(IEnumerator<TToken>)
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).EnumeratorTokenStream(IEnumerator(Of TToken))
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.#ctor*
+  name: EnumeratorTokenStream
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1__ctor_
+  commentId: Overload:Pidgin.TokenStreams.EnumeratorTokenStream`1.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.EnumeratorTokenStream
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).EnumeratorTokenStream
+  nameWithType: EnumeratorTokenStream<TToken>.EnumeratorTokenStream
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).EnumeratorTokenStream
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1_ChunkSizeHint
+  commentId: P:Pidgin.TokenStreams.EnumeratorTokenStream`1.ChunkSizeHint
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: EnumeratorTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1_ChunkSizeHint_
+  commentId: Overload:Pidgin.TokenStreams.EnumeratorTokenStream`1.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: EnumeratorTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.Read(Span{`0})
+  name: Read(Span<TToken>)
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1_Read_Span__0__
+  commentId: M:Pidgin.TokenStreams.EnumeratorTokenStream`1.Read(Span{`0})
+  name.vb: Read(Span(Of TToken))
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.Read(Span<TToken>)
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).Read(Span(Of TToken))
+  nameWithType: EnumeratorTokenStream<TToken>.Read(Span<TToken>)
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).Read(Span(Of TToken))
+- uid: Pidgin.TokenStreams.EnumeratorTokenStream`1.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.EnumeratorTokenStream-1.html#Pidgin_TokenStreams_EnumeratorTokenStream_1_Read_
+  commentId: Overload:Pidgin.TokenStreams.EnumeratorTokenStream`1.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.EnumeratorTokenStream<TToken>.Read
+  fullName.vb: Pidgin.TokenStreams.EnumeratorTokenStream(Of TToken).Read
+  nameWithType: EnumeratorTokenStream<TToken>.Read
+  nameWithType.vb: EnumeratorTokenStream(Of TToken).Read
+- uid: Pidgin.TokenStreams.ListTokenStream`1
+  name: ListTokenStream<TToken>
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html
+  commentId: T:Pidgin.TokenStreams.ListTokenStream`1
+  name.vb: ListTokenStream(Of TToken)
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken)
+  nameWithType: ListTokenStream<TToken>
+  nameWithType.vb: ListTokenStream(Of TToken)
+- uid: Pidgin.TokenStreams.ListTokenStream`1.#ctor(IList{`0})
+  name: ListTokenStream(IList<TToken>)
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1__ctor_IList__0__
+  commentId: M:Pidgin.TokenStreams.ListTokenStream`1.#ctor(IList{`0})
+  name.vb: ListTokenStream(IList(Of TToken))
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.ListTokenStream(IList<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).ListTokenStream(IList(Of TToken))
+  nameWithType: ListTokenStream<TToken>.ListTokenStream(IList<TToken>)
+  nameWithType.vb: ListTokenStream(Of TToken).ListTokenStream(IList(Of TToken))
+- uid: Pidgin.TokenStreams.ListTokenStream`1.#ctor*
+  name: ListTokenStream
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1__ctor_
+  commentId: Overload:Pidgin.TokenStreams.ListTokenStream`1.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.ListTokenStream
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).ListTokenStream
+  nameWithType: ListTokenStream<TToken>.ListTokenStream
+  nameWithType.vb: ListTokenStream(Of TToken).ListTokenStream
+- uid: Pidgin.TokenStreams.ListTokenStream`1.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1_ChunkSizeHint
+  commentId: P:Pidgin.TokenStreams.ListTokenStream`1.ChunkSizeHint
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ListTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ListTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.ListTokenStream`1.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1_ChunkSizeHint_
+  commentId: Overload:Pidgin.TokenStreams.ListTokenStream`1.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ListTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ListTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.ListTokenStream`1.Read(Span{`0})
+  name: Read(Span<TToken>)
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1_Read_Span__0__
+  commentId: M:Pidgin.TokenStreams.ListTokenStream`1.Read(Span{`0})
+  name.vb: Read(Span(Of TToken))
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.Read(Span<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).Read(Span(Of TToken))
+  nameWithType: ListTokenStream<TToken>.Read(Span<TToken>)
+  nameWithType.vb: ListTokenStream(Of TToken).Read(Span(Of TToken))
+- uid: Pidgin.TokenStreams.ListTokenStream`1.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.ListTokenStream-1.html#Pidgin_TokenStreams_ListTokenStream_1_Read_
+  commentId: Overload:Pidgin.TokenStreams.ListTokenStream`1.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ListTokenStream<TToken>.Read
+  fullName.vb: Pidgin.TokenStreams.ListTokenStream(Of TToken).Read
+  nameWithType: ListTokenStream<TToken>.Read
+  nameWithType.vb: ListTokenStream(Of TToken).Read
+- uid: Pidgin.TokenStreams.ReaderTokenStream
+  name: ReaderTokenStream
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html
+  commentId: T:Pidgin.TokenStreams.ReaderTokenStream
+  fullName: Pidgin.TokenStreams.ReaderTokenStream
+  nameWithType: ReaderTokenStream
+- uid: Pidgin.TokenStreams.ReaderTokenStream.#ctor(TextReader)
+  name: ReaderTokenStream(TextReader)
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream__ctor_TextReader_
+  commentId: M:Pidgin.TokenStreams.ReaderTokenStream.#ctor(TextReader)
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.ReaderTokenStream(TextReader)
+  nameWithType: ReaderTokenStream.ReaderTokenStream(TextReader)
+- uid: Pidgin.TokenStreams.ReaderTokenStream.#ctor*
+  name: ReaderTokenStream
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream__ctor_
+  commentId: Overload:Pidgin.TokenStreams.ReaderTokenStream.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.ReaderTokenStream
+  nameWithType: ReaderTokenStream.ReaderTokenStream
+- uid: Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream_ChunkSizeHint
+  commentId: P:Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint
+  nameWithType: ReaderTokenStream.ChunkSizeHint
+- uid: Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream_ChunkSizeHint_
+  commentId: Overload:Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.ChunkSizeHint
+  nameWithType: ReaderTokenStream.ChunkSizeHint
+- uid: Pidgin.TokenStreams.ReaderTokenStream.Read(Span{System.Char})
+  name: Read(Span<Char>)
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream_Read_Span_System_Char__
+  commentId: M:Pidgin.TokenStreams.ReaderTokenStream.Read(Span{System.Char})
+  name.vb: Read(Span(Of Char))
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.Read(Span<System.Char>)
+  fullName.vb: Pidgin.TokenStreams.ReaderTokenStream.Read(Span(Of System.Char))
+  nameWithType: ReaderTokenStream.Read(Span<Char>)
+  nameWithType.vb: ReaderTokenStream.Read(Span(Of Char))
+- uid: Pidgin.TokenStreams.ReaderTokenStream.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.ReaderTokenStream.html#Pidgin_TokenStreams_ReaderTokenStream_Read_
+  commentId: Overload:Pidgin.TokenStreams.ReaderTokenStream.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReaderTokenStream.Read
+  nameWithType: ReaderTokenStream.Read
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1
+  name: ReadOnlyListTokenStream<TToken>
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html
+  commentId: T:Pidgin.TokenStreams.ReadOnlyListTokenStream`1
+  name.vb: ReadOnlyListTokenStream(Of TToken)
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken)
+  nameWithType: ReadOnlyListTokenStream<TToken>
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken)
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.#ctor(IReadOnlyList{`0})
+  name: ReadOnlyListTokenStream(IReadOnlyList<TToken>)
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1__ctor_IReadOnlyList__0__
+  commentId: M:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.#ctor(IReadOnlyList{`0})
+  name.vb: ReadOnlyListTokenStream(IReadOnlyList(Of TToken))
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.ReadOnlyListTokenStream(IReadOnlyList<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).ReadOnlyListTokenStream(IReadOnlyList(Of TToken))
+  nameWithType: ReadOnlyListTokenStream<TToken>.ReadOnlyListTokenStream(IReadOnlyList<TToken>)
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).ReadOnlyListTokenStream(IReadOnlyList(Of TToken))
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.#ctor*
+  name: ReadOnlyListTokenStream
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1__ctor_
+  commentId: Overload:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.ReadOnlyListTokenStream
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).ReadOnlyListTokenStream
+  nameWithType: ReadOnlyListTokenStream<TToken>.ReadOnlyListTokenStream
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).ReadOnlyListTokenStream
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1_ChunkSizeHint
+  commentId: P:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.ChunkSizeHint
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ReadOnlyListTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1_ChunkSizeHint_
+  commentId: Overload:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.ChunkSizeHint
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).ChunkSizeHint
+  nameWithType: ReadOnlyListTokenStream<TToken>.ChunkSizeHint
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).ChunkSizeHint
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.Read(Span{`0})
+  name: Read(Span<TToken>)
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1_Read_Span__0__
+  commentId: M:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.Read(Span{`0})
+  name.vb: Read(Span(Of TToken))
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.Read(Span<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).Read(Span(Of TToken))
+  nameWithType: ReadOnlyListTokenStream<TToken>.Read(Span<TToken>)
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).Read(Span(Of TToken))
+- uid: Pidgin.TokenStreams.ReadOnlyListTokenStream`1.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html#Pidgin_TokenStreams_ReadOnlyListTokenStream_1_Read_
+  commentId: Overload:Pidgin.TokenStreams.ReadOnlyListTokenStream`1.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>.Read
+  fullName.vb: Pidgin.TokenStreams.ReadOnlyListTokenStream(Of TToken).Read
+  nameWithType: ReadOnlyListTokenStream<TToken>.Read
+  nameWithType.vb: ReadOnlyListTokenStream(Of TToken).Read
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1
+  name: ResumableTokenStream<TToken>
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html
+  commentId: T:Pidgin.TokenStreams.ResumableTokenStream`1
+  name.vb: ResumableTokenStream(Of TToken)
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken)
+  nameWithType: ResumableTokenStream<TToken>
+  nameWithType.vb: ResumableTokenStream(Of TToken)
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.#ctor(Pidgin.ITokenStream{`0},System.Nullable{ArrayPool{`0}})
+  name: ResumableTokenStream(ITokenStream<TToken>, Nullable<ArrayPool<TToken>>)
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1__ctor_Pidgin_ITokenStream__0__System_Nullable_ArrayPool__0___
+  commentId: M:Pidgin.TokenStreams.ResumableTokenStream`1.#ctor(Pidgin.ITokenStream{`0},System.Nullable{ArrayPool{`0}})
+  name.vb: ResumableTokenStream(ITokenStream(Of TToken), Nullable(Of ArrayPool(Of TToken)))
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.ResumableTokenStream(Pidgin.ITokenStream<TToken>, System.Nullable<ArrayPool<TToken>>)
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).ResumableTokenStream(Pidgin.ITokenStream(Of TToken), System.Nullable(Of ArrayPool(Of TToken)))
+  nameWithType: ResumableTokenStream<TToken>.ResumableTokenStream(ITokenStream<TToken>, Nullable<ArrayPool<TToken>>)
+  nameWithType.vb: ResumableTokenStream(Of TToken).ResumableTokenStream(ITokenStream(Of TToken), Nullable(Of ArrayPool(Of TToken)))
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.#ctor*
+  name: ResumableTokenStream
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1__ctor_
+  commentId: Overload:Pidgin.TokenStreams.ResumableTokenStream`1.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.ResumableTokenStream
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).ResumableTokenStream
+  nameWithType: ResumableTokenStream<TToken>.ResumableTokenStream
+  nameWithType.vb: ResumableTokenStream(Of TToken).ResumableTokenStream
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Dispose
+  name: Dispose()
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose
+  commentId: M:Pidgin.TokenStreams.ResumableTokenStream`1.Dispose
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Dispose()
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Dispose()
+  nameWithType: ResumableTokenStream<TToken>.Dispose()
+  nameWithType.vb: ResumableTokenStream(Of TToken).Dispose()
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Dispose*
+  name: Dispose
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_
+  commentId: Overload:Pidgin.TokenStreams.ResumableTokenStream`1.Dispose
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Dispose
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Dispose
+  nameWithType: ResumableTokenStream<TToken>.Dispose
+  nameWithType.vb: ResumableTokenStream(Of TToken).Dispose
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Read(Span{`0})
+  name: Read(Span<TToken>)
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Read_Span__0__
+  commentId: M:Pidgin.TokenStreams.ResumableTokenStream`1.Read(Span{`0})
+  name.vb: Read(Span(Of TToken))
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Read(Span<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Read(Span(Of TToken))
+  nameWithType: ResumableTokenStream<TToken>.Read(Span<TToken>)
+  nameWithType.vb: ResumableTokenStream(Of TToken).Read(Span(Of TToken))
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Read_
+  commentId: Overload:Pidgin.TokenStreams.ResumableTokenStream`1.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Read
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Read
+  nameWithType: ResumableTokenStream<TToken>.Read
+  nameWithType.vb: ResumableTokenStream(Of TToken).Read
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Return(ReadOnlySpan{`0})
+  name: Return(ReadOnlySpan<TToken>)
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Return_ReadOnlySpan__0__
+  commentId: M:Pidgin.TokenStreams.ResumableTokenStream`1.Return(ReadOnlySpan{`0})
+  name.vb: Return(ReadOnlySpan(Of TToken))
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Return(ReadOnlySpan<TToken>)
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Return(ReadOnlySpan(Of TToken))
+  nameWithType: ResumableTokenStream<TToken>.Return(ReadOnlySpan<TToken>)
+  nameWithType.vb: ResumableTokenStream(Of TToken).Return(ReadOnlySpan(Of TToken))
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Return*
+  name: Return
+  href: api/Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Return_
+  commentId: Overload:Pidgin.TokenStreams.ResumableTokenStream`1.Return
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Return
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Return
+  nameWithType: ResumableTokenStream<TToken>.Return
+  nameWithType.vb: ResumableTokenStream(Of TToken).Return
+- uid: Pidgin.TokenStreams.StreamTokenStream
+  name: StreamTokenStream
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html
+  commentId: T:Pidgin.TokenStreams.StreamTokenStream
+  fullName: Pidgin.TokenStreams.StreamTokenStream
+  nameWithType: StreamTokenStream
+- uid: Pidgin.TokenStreams.StreamTokenStream.#ctor(Stream)
+  name: StreamTokenStream(Stream)
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream__ctor_Stream_
+  commentId: M:Pidgin.TokenStreams.StreamTokenStream.#ctor(Stream)
+  fullName: Pidgin.TokenStreams.StreamTokenStream.StreamTokenStream(Stream)
+  nameWithType: StreamTokenStream.StreamTokenStream(Stream)
+- uid: Pidgin.TokenStreams.StreamTokenStream.#ctor*
+  name: StreamTokenStream
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream__ctor_
+  commentId: Overload:Pidgin.TokenStreams.StreamTokenStream.#ctor
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.StreamTokenStream.StreamTokenStream
+  nameWithType: StreamTokenStream.StreamTokenStream
+- uid: Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream_ChunkSizeHint
+  commentId: P:Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint
+  fullName: Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint
+  nameWithType: StreamTokenStream.ChunkSizeHint
+- uid: Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint*
+  name: ChunkSizeHint
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream_ChunkSizeHint_
+  commentId: Overload:Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.StreamTokenStream.ChunkSizeHint
+  nameWithType: StreamTokenStream.ChunkSizeHint
+- uid: Pidgin.TokenStreams.StreamTokenStream.Read(Span{System.Byte})
+  name: Read(Span<Byte>)
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream_Read_Span_System_Byte__
+  commentId: M:Pidgin.TokenStreams.StreamTokenStream.Read(Span{System.Byte})
+  name.vb: Read(Span(Of Byte))
+  fullName: Pidgin.TokenStreams.StreamTokenStream.Read(Span<System.Byte>)
+  fullName.vb: Pidgin.TokenStreams.StreamTokenStream.Read(Span(Of System.Byte))
+  nameWithType: StreamTokenStream.Read(Span<Byte>)
+  nameWithType.vb: StreamTokenStream.Read(Span(Of Byte))
+- uid: Pidgin.TokenStreams.StreamTokenStream.Read*
+  name: Read
+  href: api/Pidgin.TokenStreams.StreamTokenStream.html#Pidgin_TokenStreams_StreamTokenStream_Read_
+  commentId: Overload:Pidgin.TokenStreams.StreamTokenStream.Read
+  isSpec: "True"
+  fullName: Pidgin.TokenStreams.StreamTokenStream.Read
+  nameWithType: StreamTokenStream.Read
 - uid: Pidgin.Unit
   name: Unit
   href: api/Pidgin.Unit.html

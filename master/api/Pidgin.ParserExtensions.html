@@ -91,13 +91,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CSystem.Nullable%7BFunc%7BSystem.Byte%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CPidgin.Configuration.IConfiguration%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L78">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L80">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, Nullable&lt;Func&lt;Byte, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})">Parse&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, IConfiguration&lt;Byte&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code>.
 Note that more characters may be consumed from <code data-dev-comment-type="paramref" class="paramref">input</code> than were required for parsing.
 You may need to manually rewind <code data-dev-comment-type="paramref" class="paramref">input</code></p>
@@ -105,7 +105,7 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;byte, T&gt; Parse&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, Func&lt;byte, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;byte, T&gt; Parse&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, IConfiguration&lt;byte&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -130,9 +130,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -170,19 +170,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CSystem.Nullable%7BFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CPidgin.Configuration.IConfiguration%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L21">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L23">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, String, Nullable&lt;Func&lt;Char, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, String, IConfiguration&lt;Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, Func&lt;char, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, IConfiguration&lt;char&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -207,9 +207,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -247,19 +247,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CSystem.Nullable%7BFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CPidgin.Configuration.IConfiguration%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L88">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L90">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, Nullable&lt;Func&lt;Char, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, IConfiguration&lt;Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, Func&lt;char, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, IConfiguration&lt;char&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -284,9 +284,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -324,19 +324,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L98">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L100">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -361,9 +361,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -405,19 +405,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L51">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L53">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -442,9 +442,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -486,19 +486,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L66">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L68">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -523,9 +523,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -567,19 +567,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L31">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L33">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -604,9 +604,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -648,19 +648,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L108">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L110">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
-  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -685,9 +685,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -729,19 +729,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CSystem.Nullable%7BFunc%7BSystem.Byte%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CPidgin.Configuration.IConfiguration%7BSystem.Byte%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L203">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L204">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_System_Nullable_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,System.Nullable{Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, Nullable&lt;Func&lt;Byte, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Pidgin_Configuration_IConfiguration_System_Byte__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Pidgin.Configuration.IConfiguration{System.Byte})">ParseOrThrow&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, IConfiguration&lt;Byte&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, Func&lt;byte, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, IConfiguration&lt;byte&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -766,9 +766,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -822,19 +822,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CSystem.Nullable%7BFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CPidgin.Configuration.IConfiguration%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L148">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L149">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, String, Nullable&lt;Func&lt;Char, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Pidgin.Configuration.IConfiguration{System.Char})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, String, IConfiguration&lt;Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, Func&lt;char, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, IConfiguration&lt;char&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -859,9 +859,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -915,19 +915,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CSystem.Nullable%7BFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CPidgin.Configuration.IConfiguration%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L214">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L215">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_System_Nullable_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,System.Nullable{Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, Nullable&lt;Func&lt;Char, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Pidgin_Configuration_IConfiguration_System_Char__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Pidgin.Configuration.IConfiguration{System.Char})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, IConfiguration&lt;Char&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, Func&lt;char, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, IConfiguration&lt;char&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -952,9 +952,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1008,19 +1008,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L225">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L226">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Pidgin.Configuration.IConfiguration{``0})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1045,9 +1045,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1105,19 +1105,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L181">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L182">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1142,9 +1142,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1202,19 +1202,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L192">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L193">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Pidgin.Configuration.IConfiguration{``0})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1239,9 +1239,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1299,19 +1299,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L159">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L160">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Pidgin.Configuration.IConfiguration{``0})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1336,9 +1336,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1396,19 +1396,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L236">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L237">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Pidgin.Configuration.IConfiguration{``0})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1433,9 +1433,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1493,19 +1493,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyList%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyList%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L41">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L43">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseReadOnlyList_" data-uid="Pidgin.ParserExtensions.ParseReadOnlyList*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseReadOnlyList&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})">ParseReadOnlyList&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; ParseReadOnlyList&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; ParseReadOnlyList&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1530,9 +1530,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1574,19 +1574,19 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyListOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CSystem.Nullable%7BFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyListOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CPidgin.Configuration.IConfiguration%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L170">View Source</a>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L171">View Source</a>
   </span>
   <a id="Pidgin_ParserExtensions_ParseReadOnlyListOrThrow_" data-uid="Pidgin.ParserExtensions.ParseReadOnlyListOrThrow*"></a>
-  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__System_Nullable_Func___0_Pidgin_SourcePos_Pidgin_SourcePos___" data-uid="Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},System.Nullable{Func{``0,Pidgin.SourcePos,Pidgin.SourcePos}})">ParseReadOnlyListOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Nullable&lt;Func&lt;TToken, SourcePos, SourcePos&gt;&gt;)</h4>
+  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Pidgin_Configuration_IConfiguration___0__" data-uid="Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Pidgin.Configuration.IConfiguration{``0})">ParseReadOnlyListOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, IConfiguration&lt;TToken&gt;)</h4>
   <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T ParseReadOnlyListOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt;? calculatePos = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T ParseReadOnlyListOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, IConfiguration&lt;TToken&gt; configuration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1611,9 +1611,9 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;&gt;</td>
-        <td><span class="parametername">calculatePos</span></td>
-        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+        <td><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration, or null to use the default configuration</p>
 </td>
       </tr>
     </tbody>
@@ -1680,7 +1680,7 @@ You may need to manually rewind <code data-dev-comment-type="paramref" class="pa
                     <a href="https://github.com/benjamin-hodgson/Pidgin/new/master/apiSpec/new?filename=Pidgin_ParserExtensions.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/master/Pidgin/ParserExtensions.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
