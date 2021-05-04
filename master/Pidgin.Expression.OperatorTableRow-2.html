@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class OperatorTableRow&lt;TToken, T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class OperatorTableRow&lt;TToken, T&gt;
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin.Expression.OperatorTableRow`2">
+  
+  
+  <h1 id="Pidgin_Expression_OperatorTableRow_2" data-uid="Pidgin.Expression.OperatorTableRow`2" class="text-break">Class OperatorTableRow&lt;TToken, T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a row in a table of operators.
+Contains a collection of parsers for operators at a single precendence level.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">OperatorTableRow&lt;TToken, T&gt;</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Pidgin.Expression.html">Pidgin.Expression</a></h6>
+  <h6><strong>Assembly</strong>: Pidgin.dll</h6>
+  <h5 id="Pidgin_Expression_OperatorTableRow_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class OperatorTableRow&lt;TToken, T&gt; : Object</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2__ctor_" data-uid="Pidgin.Expression.OperatorTableRow`2.#ctor*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2__ctor_System_Collections_Generic_IEnumerable_Pidgin_Parser__0_System_Func__1__1__1____System_Collections_Generic_IEnumerable_Pidgin_Parser__0_System_Func__1__1__1____System_Collections_Generic_IEnumerable_Pidgin_Parser__0_System_Func__1__1__1____System_Collections_Generic_IEnumerable_Pidgin_Parser__0_System_Func__1__1____System_Collections_Generic_IEnumerable_Pidgin_Parser__0_System_Func__1__1____" data-uid="Pidgin.Expression.OperatorTableRow`2.#ctor(System.Collections.Generic.IEnumerable{Pidgin.Parser{`0,System.Func{`1,`1,`1}}},System.Collections.Generic.IEnumerable{Pidgin.Parser{`0,System.Func{`1,`1,`1}}},System.Collections.Generic.IEnumerable{Pidgin.Parser{`0,System.Func{`1,`1,`1}}},System.Collections.Generic.IEnumerable{Pidgin.Parser{`0,System.Func{`1,`1}}},System.Collections.Generic.IEnumerable{Pidgin.Parser{`0,System.Func{`1,`1}}})">OperatorTableRow(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt;, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt;, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt;, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a row in a table of operators containing a collection of parsers for operators at a single precedence level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OperatorTableRow(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; infixNOps, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; infixLOps, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; infixROps, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; prefixOps, IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; postfixOps)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">infixNOps</span></td>
+        <td><p>A collection of parsers for the non-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">infixLOps</span></td>
+        <td><p>A collection of parsers for the left-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">infixROps</span></td>
+        <td><p>A collection of parsers for the right-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">prefixOps</span></td>
+        <td><p>A collection of parsers for the prefix operators at this precedence level</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, T&gt;&gt;&gt;</td>
+        <td><span class="parametername">postfixOps</span></td>
+        <td><p>A collection of parsers for the postfix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_Empty_" data-uid="Pidgin.Expression.OperatorTableRow`2.Empty*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_Empty" data-uid="Pidgin.Expression.OperatorTableRow`2.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>An empty row in a table of operators</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static OperatorTableRow&lt;TToken, T&gt; Empty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>An empty row in a table of operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_InfixLOps_" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixLOps*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_InfixLOps" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixLOps">InfixLOps</h4>
+  <div class="markdown level1 summary"><p>A collection of parsers for the left-associative infix operators at this precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; InfixLOps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><p>A collection of parsers for the left-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_InfixNOps_" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixNOps*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_InfixNOps" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixNOps">InfixNOps</h4>
+  <div class="markdown level1 summary"><p>A collection of parsers for the non-associative infix operators at this precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; InfixNOps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><p>A collection of parsers for the non-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_InfixROps_" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixROps*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_InfixROps" data-uid="Pidgin.Expression.OperatorTableRow`2.InfixROps">InfixROps</h4>
+  <div class="markdown level1 summary"><p>A collection of parsers for the right-associative infix operators at this precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T, T&gt;&gt;&gt; InfixROps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, T, T&gt;&gt;&gt;</td>
+        <td><p>A collection of parsers for the right-associative infix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_PostfixOps_" data-uid="Pidgin.Expression.OperatorTableRow`2.PostfixOps*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_PostfixOps" data-uid="Pidgin.Expression.OperatorTableRow`2.PostfixOps">PostfixOps</h4>
+  <div class="markdown level1 summary"><p>A collection of parsers for the postfix operators at this precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; PostfixOps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, T&gt;&gt;&gt;</td>
+        <td><p>A collection of parsers for the postfix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_PrefixOps_" data-uid="Pidgin.Expression.OperatorTableRow`2.PrefixOps*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_PrefixOps" data-uid="Pidgin.Expression.OperatorTableRow`2.PrefixOps">PrefixOps</h4>
+  <div class="markdown level1 summary"><p>A collection of parsers for the prefix operators at this precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt; PrefixOps { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, T&gt;&gt;&gt;</td>
+        <td><p>A collection of parsers for the prefix operators at this precedence level</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Pidgin_Expression_OperatorTableRow_2_And_" data-uid="Pidgin.Expression.OperatorTableRow`2.And*"></a>
+  <h4 id="Pidgin_Expression_OperatorTableRow_2_And_Pidgin_Expression_OperatorTableRow__0__1__" data-uid="Pidgin.Expression.OperatorTableRow`2.And(Pidgin.Expression.OperatorTableRow{`0,`1})">And(OperatorTableRow&lt;TToken, T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Combine two rows at the same precedence level</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public OperatorTableRow&lt;TToken, T&gt; And(OperatorTableRow&lt;TToken, T&gt; otherRow)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">otherRow</span></td>
+        <td><p>A collection of parsers for operators</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Expression.OperatorTableRow-2.html">OperatorTableRow</a>&lt;TToken, T&gt;</td>
+        <td><p>The current collection of parsers combined with <code data-dev-comment-type="paramref" class="paramref">otherRow</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

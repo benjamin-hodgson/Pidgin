@@ -232,7 +232,7 @@ $(function () {
     // Highlight the searching keywords
     function highlightKeywords() {
       var q = url('?q');
-      if (q !== null) {
+      if (q) {
         var keywords = q.split("%20");
         keywords.forEach(function (keyword) {
           if (keyword !== "") {
@@ -326,7 +326,7 @@ $(function () {
                 var itemBrief = extractContentBrief(hit.keywords);
 
                 var itemNode = $('<div>').attr('class', 'sr-item');
-                var itemTitleNode = $('<div>').attr('class', 'item-title').append($('<a>').attr('href', itemHref).attr("target", "_blank").text(itemTitle));
+                var itemTitleNode = $('<div>').attr('class', 'item-title').append($('<a>').attr('href', itemHref).attr("target", "_blank").attr("rel", "noopener noreferrer").text(itemTitle));
                 var itemHrefNode = $('<div>').attr('class', 'item-href').text(itemRawHref);
                 var itemBriefNode = $('<div>').attr('class', 'item-brief').text(itemBrief);
                 itemNode.append(itemTitleNode).append(itemHrefNode).append(itemBriefNode);
@@ -346,69 +346,15 @@ $(function () {
 
   // Update href in navbar
   function renderNavbar() {
-    var navbar = $('#navbar ul')[0];
-    if (typeof (navbar) === 'undefined') {
-      loadNavbar();
-    } else {
-      $('#navbar ul a.active').parents('li').addClass(active);
-      renderBreadcrumb();
-      showSearch();
-    }
+    $('#navbar ul a.active').parents('li').addClass(active);
+    renderBreadcrumb();
+    showSearch();
     
     function showSearch() {
       if ($('#search-results').length !== 0) {
           $('#search').show();
           $('body').trigger("searchEvent");
       }
-    }
-
-    function loadNavbar() {
-      var navbarPath = $("meta[property='docfx\\:navrel']").attr("content");
-      if (!navbarPath) {
-        return;
-      }
-      navbarPath = navbarPath.replace(/\\/g, '/');
-      var tocPath = $("meta[property='docfx\\:tocrel']").attr("content") || '';
-      if (tocPath) tocPath = tocPath.replace(/\\/g, '/');
-      $.get(navbarPath, function (data) {
-        $(data).find("#toc>ul").appendTo("#navbar");
-        showSearch();
-        var index = navbarPath.lastIndexOf('/');
-        var navrel = '';
-        if (index > -1) {
-          navrel = navbarPath.substr(0, index + 1);
-        }
-        $('#navbar>ul').addClass('navbar-nav');
-        var currentAbsPath = util.getAbsolutePath(window.location.pathname);
-        // set active item
-        $('#navbar').find('a[href]').each(function (i, e) {
-          var href = $(e).attr("href");
-          if (util.isRelativePath(href)) {
-            href = navrel + href;
-            $(e).attr("href", href);
-
-            var isActive = false;
-            var originalHref = e.name;
-            if (originalHref) {
-              originalHref = navrel + originalHref;
-              if (util.getDirectory(util.getAbsolutePath(originalHref)) === util.getDirectory(util.getAbsolutePath(tocPath))) {
-                isActive = true;
-              }
-            } else {
-              if (util.getAbsolutePath(href) === currentAbsPath) {
-                var dropdown = $(e).attr('data-toggle') == "dropdown"
-                if (!dropdown) {
-                  isActive = true;
-                }
-              }
-            }
-            if (isActive) {
-              $(e).addClass(active);
-            }
-          }
-        });
-        renderNavbar();
-      });
     }
   }
 
@@ -556,7 +502,10 @@ $(function () {
         if (index > -1) {
           tocrel = tocPath.substr(0, index + 1);
         }
-        var currentHref = util.getAbsolutePath(window.location.pathname);
+        var currentHref = util.getCurrentWindowAbsolutePath();
+        if(!currentHref.endsWith('.html')) {
+          currentHref += '.html';
+        }
         $('#sidetoc').find('a[href]').each(function (i, e) {
           var href = $(e).attr("href");
           if (util.isRelativePath(href)) {
@@ -1054,14 +1003,25 @@ $(function () {
     this.getAbsolutePath = getAbsolutePath;
     this.isRelativePath = isRelativePath;
     this.isAbsolutePath = isAbsolutePath;
+    this.getCurrentWindowAbsolutePath = getCurrentWindowAbsolutePath;
     this.getDirectory = getDirectory;
     this.formList = formList;
 
     function getAbsolutePath(href) {
-      // Use anchor to normalize href
-      var anchor = $('<a href="' + href + '"></a>')[0];
-      // Ignore protocal, remove search and query
-      return anchor.host + anchor.pathname;
+      if (isAbsolutePath(href)) return href;
+      var currentAbsPath = getCurrentWindowAbsolutePath();
+      var stack = currentAbsPath.split("/");
+      stack.pop();
+      var parts = href.split("/");
+      for (var i=0; i< parts.length; i++) {
+        if (parts[i] == ".") continue;
+        if (parts[i] == ".." && stack.length > 0)
+          stack.pop();
+        else
+          stack.push(parts[i]);
+      }
+      var p = stack.join("/");
+      return p;
     }
 
     function isRelativePath(href) {
@@ -1075,6 +1035,9 @@ $(function () {
       return (/^(?:[a-z]+:)?\/\//i).test(href);
     }
 
+    function getCurrentWindowAbsolutePath() {
+      return window.location.origin + window.location.pathname;
+    }
     function getDirectory(href) {
       if (!href) return '';
       var index = href.lastIndexOf('/');

@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Pidgin
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Pidgin
+   ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin">
+  
+  <h1 id="Pidgin" data-uid="Pidgin" class="text-break">Namespace Pidgin
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a></h4>
+      <section><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>)</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Maybe.html">Maybe</a></h4>
+      <section><p>Constructor functions, extension methods and utilities for working with <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a></p>
+</section>
+      <h4><a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a></h4>
+      <section><p>Represents a single possibly absent value. Like <code>Nullable</code> but works for reference types as well as value types.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.ParseError-1.html">ParseError&lt;TToken&gt;</a></h4>
+      <section><p>Represents an error encountered during parsing.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.ParseException.html">ParseException</a></h4>
+      <section><p>Thrown when a parse error is encountered during parsing</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Parser.html">Parser</a></h4>
+      <section><p>Constructor functions, extension methods and utilities for <a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a>.
+This class is intended to be imported statically (&quot;using static Pidgin.Parser&quot;).</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Parser-1.html">Parser&lt;TToken&gt;</a></h4>
+      <section><p>Constructor functions, extension methods and utilities for <a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a>
+This class is intended to be imported statically, with the type parameter set to the type of tokens in your input stream (&quot;using static Pidgin.Parser&lt;char&gt;&quot;).</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a></h4>
+      <section><p>Represents a parser which consumes a stream of values of type <code data-dev-comment-type="typeparamref" class="typeparamref">TToken</code> and returns a value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>.
+A parser can either succeed, and return a value of type <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>, or fail and return a <a class="xref" href="Pidgin.ParseError-1.html">ParseError&lt;TToken&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.ParserExtensions.html">ParserExtensions</a></h4>
+      <section><p>Extension methods for running parsers</p>
+</section>
+      <h4><a class="xref" href="Pidgin.ParseState-1.html">ParseState&lt;TToken&gt;</a></h4>
+      <section><p>Represents the state of a parsing process.
+Includes functionality managing and buffering the input stream,
+reporting errors, and computing source positions.</p>
+<p>For efficiency, this object is implemented as a mutable struct
+and is intended to be passed by reference.</p>
+<p>WARNING: This API is <strong>unstable</strong>
+and subject to change in future versions of the library.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.PooledList-1.html">PooledList&lt;T&gt;</a></h4>
+      <section><p>A version of <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List&lt;T&gt;</a> which uses an array pool.</p>
+<p>For efficiency, <a class="xref" href="Pidgin.PooledList-1.html">PooledList&lt;T&gt;</a> is implemented as a mutable struct.
+It&apos;s intended to be passed by reference.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.ReadOnlySpanFunc-3.html">ReadOnlySpanFunc&lt;T, TParam, TReturn&gt;</a></h4>
+      <section><p>A function which computes a result from a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a> and an additional argument.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Result-2.html">Result&lt;TToken, T&gt;</a></h4>
+      <section><p>Represents the result of parsing.
+A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error</p>
+</section>
+      <h4><a class="xref" href="Pidgin.SourcePos.html">SourcePos</a></h4>
+      <section><p>Represents a (line, col) position in an input stream</p>
+</section>
+      <h4><a class="xref" href="Pidgin.SourcePosDelta.html">SourcePosDelta</a></h4>
+      <section><p>Represents a difference in textual lines and columns corresponding to a region of an input stream.</p>
+</section>
+      <h4><a class="xref" href="Pidgin.Unit.html">Unit</a></h4>
+      <section><p>An uninteresting type with only one value (<a class="xref" href="Pidgin.Unit.html#Pidgin_Unit_Value">Value</a>) and no fields.
+Like <code>void</code>, but valid as a type parameter</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="Pidgin.ITokenStream-1.html">ITokenStream&lt;TToken&gt;</a></h4>
+      <section><p>An interface for streams of <code data-dev-comment-type="typeparamref" class="typeparamref">TToken</code>, which can be consumed by <a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a>s.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
