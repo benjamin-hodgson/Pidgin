@@ -1,4 +1,1 @@
-Pidgin
-======
-
-See the [api docs](xref:Pidgin).
+See [the api docs](xref:Pidgin).
