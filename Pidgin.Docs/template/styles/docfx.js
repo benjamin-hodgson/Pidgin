@@ -1,3 +1,5 @@
+// Forked from https://github.com/dotnet/docfx/blob/dev/src/docfx.website.themes/default/styles/docfx.js
+
 // Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.
 $(function () {
   var active = 'active';
