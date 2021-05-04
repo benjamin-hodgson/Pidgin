@@ -1,0 +1,6 @@
+*
+!.gitignore
+!docfx.json
+!index.md
+!template
+!template/**
