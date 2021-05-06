@@ -4,7 +4,7 @@
         "src": [
           {
             "files": [
-              "Pidgin/Pidgin.csproj"
+              "Pidgin/bin/Release/net5.0/Pidgin.dll"
             ],
             "src": ".."
           }
