@@ -76,8 +76,8 @@ $(document).ready(() => {
         let indexReady = false;
 
         const thisFile = $("script#main-js").attr("src");
-        const relHref = thisFile.replace(/\/js\/main.js$/, "");
-        const worker = new Worker(relHref + '/js/search-worker.js');
+        const relHref = thisFile.replace(/\/main.js$/, "");
+        const worker = new Worker(relHref + '/search-worker.js');
         worker.onmessage = function (oEvent) {
             switch (oEvent.data.e) {
                 case 'index-ready':
