@@ -4,7 +4,7 @@
         "src": [
           {
             "files": [
-              "Pidgin/bin/Release/net5.0/Pidgin.dll"
+              "Pidgin/Pidgin.csproj"
             ],
             "src": ".."
           }
@@ -24,13 +24,9 @@
       "dest": "_site",
       "globalMetadata": {
           "_enableSearch": true,
-          "_disableBreadcrumb": true
+          "_disableBreadcrumb": true,
+          "_appTitle": "Pidgin"
       },
-      "template": [
-        "default",
-        "./template"
-      ],
-      "postProcessors": [],
       "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ]
     }
   }

@@ -18,6 +18,11 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+
+    - uses: actions/checkout@v2
+      with:
+        repository: benjamin-hodgson/DocFXTemplate
+        path: DocFXTemplate
     
     - uses: actions/setup-dotnet@v1
       with:
@@ -60,7 +65,7 @@ jobs:
     - name: Build docs
       uses: nikeee/docfx-action@v1.0.0
       with:
-        args: Pidgin.Docs/docfx.json
+        args: Pidgin.Docs/docfx.json -t DocFXTemplate
         
     - name: Deploy docs
       uses: JamesIves/github-pages-deploy-action@4.1.1
