@@ -75,9 +75,7 @@ $(document).ready(() => {
 
         let indexReady = false;
 
-        const thisFile = $("script#main-js").attr("src");
-        const relHref = thisFile.replace(/\/main.js$/, "");
-        const worker = new Worker(relHref + '/search-worker.js');
+        const worker = new Worker('js/search-worker.js');
         worker.onmessage = function (oEvent) {
             switch (oEvent.data.e) {
                 case 'index-ready':
@@ -116,7 +114,7 @@ $(document).ready(() => {
             const $ul = $('<ul class="search-results-list">');
             $('#search-results').empty().append($ul);
             for (const hit of hits) {
-                var itemHref = relHref + hit.href;
+                var itemHref = hit.href;
                 var itemTitle = hit.title;
                 var itemNode = $('<li>');
                 var itemTitleNode = $('<h2>').append($('<a class="xref">').attr('href', itemHref).text(itemTitle));
