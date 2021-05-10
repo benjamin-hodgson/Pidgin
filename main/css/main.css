@@ -9,6 +9,9 @@ header {
 header .title {
     margin: 0;
 }
+header .title a {
+    color: inherit;
+}
 
 #toc {
     background-color: var(--background-alt);
