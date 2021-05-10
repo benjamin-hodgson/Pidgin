@@ -1,4 +1,9 @@
 {
+  "index.html": {
+    "href": "index.html",
+    "title": "Page Redirection",
+    "keywords": ""
+  },
   "Pidgin.Comment.CommentParser.html": {
     "href": "Pidgin.Comment.CommentParser.html",
     "title": "Class CommentParser | Pidgin",
