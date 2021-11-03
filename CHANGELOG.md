@@ -1,6 +1,30 @@
 Changelog
 =========
 
+3.0.0
+-----
+
+### Removed
+
+* Removed support for .NET 4 and .NET Core 3.1. Pidgin is now a .NET 5 library.
+
+### Added
+
+* Published the (previously internal) `TokenStream` API. You can now write parsers which consume custom input streams.
+* Support for resumable parsing, through the `ResumableTokenStream` class.
+* An **experimental** API for writing your own parsers by subclassing `Parser`.
+
+### Changed
+
+* `Parser.Real` is now a property and not a method.
+* A new design for computing source positions. `posCalculator` now returns a `SourcePosDelta` struct representing the amount of text covered by a token, rather than updating the current source position in place.
+  * Performance improvements in the code which computes source positions.
+* The `Parse` methods in `ParseExtensions` now take an `IConfiguration` object as an optional parameter (instead of a `posCalculator` func).
+  * If you were using `posCalculator`, you can instead subclass `DefaultConfiguration` and override the `PosCalculator` property.
+* Performance improvements across the board thanks to a new `Span`-based implementation.
+* Performance improvements in `SkipWhitespaces`.
+* A new CI build system based on GitHub Actions.
+
 2.5.0
 -----
 
