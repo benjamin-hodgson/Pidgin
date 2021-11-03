@@ -119,16 +119,6 @@ button.link {
     flex: 0 0 160px;
 }
 
-@media (max-width:600px) {
-    .columns {
-        flex-direction: column;
-    }
-    .col-md, .col-sm {
-        flex: auto;
-    }
-}
-
-
 .row-space {
     display: flex;
     flex-direction: row;
@@ -136,19 +126,26 @@ button.link {
     align-items: center;
 }
 
-
 .hide {
     display: none;
 }
 .sm\:block {
     display: none;
 }
+
 @media (max-width:900px) {
     .md\:hide {
         display: none;
     }
 }
 @media (max-width: 600px) {
+    .columns, .row-space {
+        flex-direction: column;
+    }
+    .col-md, .col-sm {
+        flex: auto;
+    }
+    
     .sm\:block {
         display: block;
     }
