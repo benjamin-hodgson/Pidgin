@@ -17,10 +17,15 @@
     
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
