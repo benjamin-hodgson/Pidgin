@@ -834,6 +834,32 @@ namespace Pidgin.Tests
                     false
                 );
             }
+            {
+                var parser = Char('b').After(Char('a'));
+                AssertSuccess(parser.Parse("ab"), 'b', true);
+                AssertFailure(
+                    parser.Parse("a"),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
+                        SourcePosDelta.OneCol,
+                        null
+                    ),
+                    true
+                );
+                AssertFailure(
+                    parser.Parse(""),
+                    new ParseError<char>(
+                        Maybe.Nothing<char>(),
+                        true,
+                        ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
+                        SourcePosDelta.Zero,
+                        null
+                    ),
+                    false
+                );
+            }
         }
 
         [Fact]
