@@ -35,17 +35,6 @@ namespace Pidgin
             }
             return new CIStringParser(str);
         }
-        
-        /// <summary>
-        /// Creates a parser that parses and returns a literal string, in a case whose case-sensitivity depends on the ignoreCase variable
-        /// </summary>
-        /// <param name="str">The string to parse</param>
-        /// <param name="ignoreCase">Flag, true: parser  values in a case insensitive manner, false: case sensitive</param>
-        /// <returns>Creates a parser that parses and returns a literal string, in a case whose case-sensitivity depends on the ignoreCase variable</returns>
-        public static Parser<char, string> String(string str, bool ignoreCase)
-        {
-            return ignoreCase ? CIString(str): String(str);
-        }
     }
     
     internal sealed class CIStringParser : Parser<char, string>
