@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using Pidgin.Expression;
@@ -32,6 +33,7 @@ namespace Pidgin.Bench
                 Parser.Num,
                 new[] { new[] { infixR } }
             );
+            RuntimeHelpers.RunClassConstructor(typeof(FarkleParsers.FarkleExpressionParser).TypeHandle);
         }
 
         [Benchmark, BenchmarkCategory("Long")]
@@ -54,6 +56,16 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
         }
+        [Benchmark, BenchmarkCategory("Long")]
+        public void LongInfixL_Farkle()
+        {
+            FarkleParsers.FarkleExpressionParser.ParseL(_bigExpression);
+        }
+        [Benchmark, BenchmarkCategory("Long")]
+        public void LongInfixR_Farkle()
+        {
+            FarkleParsers.FarkleExpressionParser.ParseR(_bigExpression);
+        }
 
         [Benchmark, BenchmarkCategory("Short")]
         public void ShortInfixL_Pidgin()
@@ -74,6 +86,16 @@ namespace Pidgin.Bench
         public void ShortInfixR_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");
+        }
+        [Benchmark, BenchmarkCategory("Short")]
+        public void ShortInfixL_Farkle()
+        {
+            FarkleParsers.FarkleExpressionParser.ParseL("1+1");
+        }
+        [Benchmark, BenchmarkCategory("Short")]
+        public void ShortInfixR_Farkle()
+        {
+            FarkleParsers.FarkleExpressionParser.ParseR("1+1");
         }
     }
 }
