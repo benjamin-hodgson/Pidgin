@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+using Pidgin.Bench.FarkleParsers;
 using Pidgin.Bench.SpracheParsers;
 using Pidgin.Bench.SuperpowerParsers;
 using Pidgin.Examples.Json;
@@ -27,6 +29,7 @@ namespace Pidgin.Bench
             _longJson = BuildJson(256, 1, 1).ToString()!;
             _wideJson = BuildJson(1, 1, 256).ToString()!;
             _deepJson = BuildJson(1, 256, 1).ToString()!;
+            RuntimeHelpers.RunClassConstructor(typeof(FarkleJsonParser).TypeHandle);
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Big")]
@@ -49,6 +52,8 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_bigJson);
         }
+        [Benchmark, BenchmarkCategory("Big")]
+        public void BigJson_Farkle() => FarkleJsonParser.Parse(_bigJson);
 
         [Benchmark(Baseline = true), BenchmarkCategory("Long")]
         public void LongJson_Pidgin()
@@ -70,6 +75,8 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_longJson);
         }
+        [Benchmark, BenchmarkCategory("Long")]
+        public void LongJson_Farkle() => FarkleJsonParser.Parse(_longJson);
 
         [Benchmark(Baseline = true), BenchmarkCategory("Deep")]
         public void DeepJson_Pidgin()
@@ -92,6 +99,8 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
         }
+        [Benchmark, BenchmarkCategory("Deep")]
+        public void DeepJson_Farkle() => FarkleJsonParser.Parse(_deepJson);
 
         [Benchmark(Baseline = true), BenchmarkCategory("Wide")]
         public void WideJson_Pidgin()
@@ -113,7 +122,9 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
         }
-        
+        [Benchmark, BenchmarkCategory("Wide")]
+        public void WideJson_Farkle() => FarkleJsonParser.Parse(_wideJson);
+
         private static IJson BuildJson(int length, int depth, int width)
             => new JsonArray(
                 Enumerable.Repeat(1, length)
