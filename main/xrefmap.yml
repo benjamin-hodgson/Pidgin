@@ -1682,6 +1682,21 @@ references:
   commentId: Overload:Pidgin.Parser.CIChar
   fullName: Pidgin.Parser.CIChar
   nameWithType: Parser.CIChar
+- uid: Pidgin.Parser.CIEnum*
+  name: CIEnum
+  href: Pidgin.Parser.html#Pidgin_Parser_CIEnum_
+  commentId: Overload:Pidgin.Parser.CIEnum
+  fullName: Pidgin.Parser.CIEnum
+  nameWithType: Parser.CIEnum
+- uid: Pidgin.Parser.CIEnum``1
+  name: CIEnum<TEnum>()
+  href: Pidgin.Parser.html#Pidgin_Parser_CIEnum__1
+  commentId: M:Pidgin.Parser.CIEnum``1
+  name.vb: CIEnum(Of TEnum)()
+  fullName: Pidgin.Parser.CIEnum<TEnum>()
+  fullName.vb: Pidgin.Parser.CIEnum(Of TEnum)()
+  nameWithType: Parser.CIEnum<TEnum>()
+  nameWithType.vb: Parser.CIEnum(Of TEnum)()
 - uid: Pidgin.Parser.CIOneOf(System.Char[])
   name: CIOneOf(Char[])
   href: Pidgin.Parser.html#Pidgin_Parser_CIOneOf_System_Char___
@@ -1754,6 +1769,21 @@ references:
   commentId: Overload:Pidgin.Parser.EndOfLine
   fullName: Pidgin.Parser.EndOfLine
   nameWithType: Parser.EndOfLine
+- uid: Pidgin.Parser.Enum*
+  name: Enum
+  href: Pidgin.Parser.html#Pidgin_Parser_Enum_
+  commentId: Overload:Pidgin.Parser.Enum
+  fullName: Pidgin.Parser.Enum
+  nameWithType: Parser.Enum
+- uid: Pidgin.Parser.Enum``1
+  name: Enum<TEnum>()
+  href: Pidgin.Parser.html#Pidgin_Parser_Enum__1
+  commentId: M:Pidgin.Parser.Enum``1
+  name.vb: Enum(Of TEnum)()
+  fullName: Pidgin.Parser.Enum<TEnum>()
+  fullName.vb: Pidgin.Parser.Enum(Of TEnum)()
+  nameWithType: Parser.Enum<TEnum>()
+  nameWithType.vb: Parser.Enum(Of TEnum)()
 - uid: Pidgin.Parser.HexNum
   name: HexNum
   href: Pidgin.Parser.html#Pidgin_Parser_HexNum
