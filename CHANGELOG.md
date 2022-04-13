@@ -1,6 +1,14 @@
 Changelog
 =========
 
+3.1.0
+-----
+
+### Added
+
+* A pair of parsers for enum values, `Enum` and `CIEnum`. Thanks @RomanSoloweow!
+
+
 3.0.0
 -----
 
