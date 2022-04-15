@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -46,6 +47,11 @@ namespace Pidgin
         /// <param name="expecteds">A list to which the parser can add its expected tokens when it fails</param>
         /// <param name="result">The result</param>
         /// <returns>True if the parser succeeded, false if it failed.</returns>
-        public abstract bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result);
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public abstract bool TryParse(
+            ref ParseState<TToken> state,
+            ref PooledList<Expected<TToken>> expecteds,
+            [MaybeNullWhen(false)] out T result
+        );
     }
 }

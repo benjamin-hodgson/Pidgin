@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Pidgin.Configuration;
@@ -19,6 +20,7 @@ namespace Pidgin
     /// </summary>
     /// <typeparam name="TToken">The type of tokens consumed by the parser.</typeparam>
     [StructLayout(LayoutKind.Auto)]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
     public ref partial struct ParseState<TToken>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
@@ -32,6 +34,7 @@ namespace Pidgin
 
         private TToken[]? _buffer;
         private ReadOnlySpan<TToken> _span;
+        private int _keepFromLocation;  // leftmost bookmark which hasn't been discarded
         private int _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
         private int _currentIndex;
         private int _bufferedCount;
@@ -39,17 +42,13 @@ namespace Pidgin
         private int _lastSourcePosDeltaLocation;
         private SourcePosDelta _lastSourcePosDelta;
 
-        // a monotonic stack of locations.
-        // I know you'll forget this, so: you can't make this into a stack of _currentIndexes,
-        // because dropping the buffer's prefix would invalidate the bookmarks
-        private PooledList<int> _bookmarks;
 
         internal ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
             Configuration = configuration;
             _sourcePosCalculator = Configuration.SourcePosCalculator;
             _arrayPool = null;
-            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
+            _keepFromLocation = -1;
             _stream = default;
 
             _bufferChunkSize = 0;
@@ -73,7 +72,7 @@ namespace Pidgin
             Configuration = configuration;
             _sourcePosCalculator = Configuration.SourcePosCalculator;
             _arrayPool = Configuration.ArrayPoolProvider.GetArrayPool<TToken>();
-            _bookmarks = new PooledList<int>(Configuration.ArrayPoolProvider.GetArrayPool<int>());
+            _keepFromLocation = -1;
             _stream = stream;
 
             _bufferChunkSize = stream.ChunkSizeHint;
@@ -181,8 +180,8 @@ namespace Pidgin
             if (readAheadTo >= _bufferedCount && _stream != null)
             {
                 // we're about to read past the end of the current chunk. Pull a new chunk from the stream
-                var keepSeenLength = _bookmarks.Count > 0
-                    ? Location - _bookmarks[0]
+                var keepSeenLength = _keepFromLocation >= 0
+                    ? Location - _keepFromLocation
                     : 0;
                 var keepFrom = _currentIndex - keepSeenLength;
                 var keepLength = _bufferedCount - keepFrom;
@@ -232,22 +231,31 @@ namespace Pidgin
         }
         
         /// <summary>Start buffering the input</summary>
-        public void PushBookmark()
+        public int Bookmark()
         {
-            _bookmarks.Add(Location);
+            if (_keepFromLocation < 0)
+            {
+                _keepFromLocation = Location;
+            }
+            return Location;
         }
 
         /// <summary>Stop buffering the input</summary>
-        public void PopBookmark()
+        public void DiscardBookmark(int bookmark)
         {
-            _bookmarks.Pop();
+            if (bookmark < _keepFromLocation || bookmark > Location)
+            {
+                throw new ArgumentOutOfRangeException(nameof(bookmark), bookmark, "Tried to discard a bookmark ");
+            }
+            if (bookmark == _keepFromLocation)
+            {
+                _keepFromLocation = -1;
+            }
         }
 
-        /// <summary>Return to the last bookmark</summary>
-        public void Rewind()
+        /// <summary>Return to a bookmark previously obtained from <see cref="Bookmark"/> and discard it</summary>
+        public void Rewind(int bookmark)
         {
-            var bookmark = _bookmarks.Pop();
-            
             var delta = Location - bookmark;
 
             if (delta > _currentIndex)
@@ -255,6 +263,7 @@ namespace Pidgin
                 throw new InvalidOperationException("Tried to rewind past the start of the input. Please report this as a bug in Pidgin!");
             }
             _currentIndex -= delta;
+            DiscardBookmark(bookmark);
         }
 
         internal SourcePosDelta ComputeSourcePosDelta()
@@ -265,8 +274,8 @@ namespace Pidgin
 
         private void UpdateLastSourcePosDelta()
         {
-            var location = _bookmarks.Count > 0
-                ? _bookmarks[0]
+            var location = _keepFromLocation >= 0
+                ? _keepFromLocation
                 : Location;
 
             _lastSourcePosDelta = ComputeSourcePosDeltaAt(location);
@@ -281,7 +290,6 @@ namespace Pidgin
                 _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }
-            _bookmarks.Dispose();
         }
     }
 }

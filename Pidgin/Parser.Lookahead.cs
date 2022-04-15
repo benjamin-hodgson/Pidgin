@@ -33,15 +33,15 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         {
-            state.PushBookmark();
+            var bookmark = state.Bookmark();
 
             if (_parser.TryParse(ref state, ref expecteds, out result))
             {
-                state.Rewind();
+                state.Rewind(bookmark);
                 return true;
             }
             
-            state.PopBookmark();
+            state.DiscardBookmark(bookmark);
             return false;
         }
     }

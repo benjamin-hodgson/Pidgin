@@ -39,13 +39,13 @@ namespace Pidgin
             var startingLocation = state.Location;
             var token = state.HasCurrent ? Maybe.Just(state.Current) : Maybe.Nothing<TToken>();
 
-            state.PushBookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
+            var bookmark = state.Bookmark();  // make sure we don't throw out the buffer, we may need it to compute a SourcePos
             var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var success = _parser.TryParse(ref state, ref childExpecteds, out var result1);
 
             childExpecteds.Dispose();
-            state.PopBookmark();
+            state.DiscardBookmark(bookmark);
             
             if (success)
             {

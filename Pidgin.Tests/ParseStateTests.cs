@@ -150,14 +150,14 @@ namespace Pidgin.Tests
             var input = ('f' + new string('o', inputLength - 1));
             var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
-            state.PushBookmark();
+            var bookmark = state.Bookmark();
 
             Consume('f', ref state);
             Consume(new string('o', inputLength - 1), ref state);
             Assert.False(state.HasCurrent);
             Assert.Equal(new SourcePosDelta(0, inputLength), state.ComputeSourcePosDelta());
 
-            state.Rewind();
+            state.Rewind(bookmark);
             Assert.Equal(SourcePosDelta.Zero, state.ComputeSourcePosDelta());
             Consume('f', ref state);
         }
@@ -169,12 +169,12 @@ namespace Pidgin.Tests
 
             Consume('f', ref state);
 
-            state.PushBookmark();
+            var bookmark = state.Bookmark();
             Consume('a' + new string('o', inputLength - 2), ref state);
             Assert.False(state.HasCurrent);
             Assert.Equal(new SourcePosDelta(0, inputLength), state.ComputeSourcePosDelta());
 
-            state.Rewind();
+            state.Rewind(bookmark);
             Assert.Equal(SourcePosDelta.OneCol, state.ComputeSourcePosDelta());
             Consume('a', ref state);
         }

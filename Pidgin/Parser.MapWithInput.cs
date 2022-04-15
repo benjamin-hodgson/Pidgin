@@ -33,8 +33,8 @@ namespace Pidgin
 
     internal class MapWithInputParser<TToken, T, U> : Parser<TToken, U>
     {
-        private Parser<TToken, T> _parser;
-        private ReadOnlySpanFunc<TToken, T, U> _selector;
+        private readonly Parser<TToken, T> _parser;
+        private readonly ReadOnlySpanFunc<TToken, T, U> _selector;
 
         public MapWithInputParser(Parser<TToken, T> parser, ReadOnlySpanFunc<TToken, T, U> selector)
         {
@@ -46,11 +46,11 @@ namespace Pidgin
         {
             var start = state.Location;
 
-            state.PushBookmark();  // don't discard input buffer
+            var bookmark = state.Bookmark();  // don't discard input buffer
 
             if (!_parser.TryParse(ref state, ref expecteds, out var result1))
             {
-                state.PopBookmark();
+                state.DiscardBookmark(bookmark);
                 result = default;
                 return false;
             }
@@ -59,7 +59,7 @@ namespace Pidgin
             var delta = state.Location - start;
             result = _selector(state.LookBehind(delta), result1);
 
-            state.PopBookmark();
+            state.DiscardBookmark(bookmark);
 
             return true;
         }
