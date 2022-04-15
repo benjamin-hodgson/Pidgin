@@ -3448,6 +3448,22 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).Advance
   nameWithType: ParseState<TToken>.Advance
   nameWithType.vb: ParseState(Of TToken).Advance
+- uid: Pidgin.ParseState`1.Bookmark
+  name: Bookmark()
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark
+  commentId: M:Pidgin.ParseState`1.Bookmark
+  fullName: Pidgin.ParseState<TToken>.Bookmark()
+  fullName.vb: Pidgin.ParseState(Of TToken).Bookmark()
+  nameWithType: ParseState<TToken>.Bookmark()
+  nameWithType.vb: ParseState(Of TToken).Bookmark()
+- uid: Pidgin.ParseState`1.Bookmark*
+  name: Bookmark
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark_
+  commentId: Overload:Pidgin.ParseState`1.Bookmark
+  fullName: Pidgin.ParseState<TToken>.Bookmark
+  fullName.vb: Pidgin.ParseState(Of TToken).Bookmark
+  nameWithType: ParseState<TToken>.Bookmark
+  nameWithType.vb: ParseState(Of TToken).Bookmark
 - uid: Pidgin.ParseState`1.Configuration
   name: Configuration
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Configuration
@@ -3480,6 +3496,22 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).Current
   nameWithType: ParseState<TToken>.Current
   nameWithType.vb: ParseState(Of TToken).Current
+- uid: Pidgin.ParseState`1.DiscardBookmark(System.Int32)
+  name: DiscardBookmark(Int32)
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_DiscardBookmark_System_Int32_
+  commentId: M:Pidgin.ParseState`1.DiscardBookmark(System.Int32)
+  fullName: Pidgin.ParseState<TToken>.DiscardBookmark(System.Int32)
+  fullName.vb: Pidgin.ParseState(Of TToken).DiscardBookmark(System.Int32)
+  nameWithType: ParseState<TToken>.DiscardBookmark(Int32)
+  nameWithType.vb: ParseState(Of TToken).DiscardBookmark(Int32)
+- uid: Pidgin.ParseState`1.DiscardBookmark*
+  name: DiscardBookmark
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_DiscardBookmark_
+  commentId: Overload:Pidgin.ParseState`1.DiscardBookmark
+  fullName: Pidgin.ParseState<TToken>.DiscardBookmark
+  fullName.vb: Pidgin.ParseState(Of TToken).DiscardBookmark
+  nameWithType: ParseState<TToken>.DiscardBookmark
+  nameWithType.vb: ParseState(Of TToken).DiscardBookmark
 - uid: Pidgin.ParseState`1.HasCurrent
   name: HasCurrent
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_HasCurrent
@@ -3528,46 +3560,14 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).LookAhead
   nameWithType: ParseState<TToken>.LookAhead
   nameWithType.vb: ParseState(Of TToken).LookAhead
-- uid: Pidgin.ParseState`1.PopBookmark
-  name: PopBookmark()
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_PopBookmark
-  commentId: M:Pidgin.ParseState`1.PopBookmark
-  fullName: Pidgin.ParseState<TToken>.PopBookmark()
-  fullName.vb: Pidgin.ParseState(Of TToken).PopBookmark()
-  nameWithType: ParseState<TToken>.PopBookmark()
-  nameWithType.vb: ParseState(Of TToken).PopBookmark()
-- uid: Pidgin.ParseState`1.PopBookmark*
-  name: PopBookmark
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_PopBookmark_
-  commentId: Overload:Pidgin.ParseState`1.PopBookmark
-  fullName: Pidgin.ParseState<TToken>.PopBookmark
-  fullName.vb: Pidgin.ParseState(Of TToken).PopBookmark
-  nameWithType: ParseState<TToken>.PopBookmark
-  nameWithType.vb: ParseState(Of TToken).PopBookmark
-- uid: Pidgin.ParseState`1.PushBookmark
-  name: PushBookmark()
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_PushBookmark
-  commentId: M:Pidgin.ParseState`1.PushBookmark
-  fullName: Pidgin.ParseState<TToken>.PushBookmark()
-  fullName.vb: Pidgin.ParseState(Of TToken).PushBookmark()
-  nameWithType: ParseState<TToken>.PushBookmark()
-  nameWithType.vb: ParseState(Of TToken).PushBookmark()
-- uid: Pidgin.ParseState`1.PushBookmark*
-  name: PushBookmark
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_PushBookmark_
-  commentId: Overload:Pidgin.ParseState`1.PushBookmark
-  fullName: Pidgin.ParseState<TToken>.PushBookmark
-  fullName.vb: Pidgin.ParseState(Of TToken).PushBookmark
-  nameWithType: ParseState<TToken>.PushBookmark
-  nameWithType.vb: ParseState(Of TToken).PushBookmark
-- uid: Pidgin.ParseState`1.Rewind
-  name: Rewind()
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind
-  commentId: M:Pidgin.ParseState`1.Rewind
-  fullName: Pidgin.ParseState<TToken>.Rewind()
-  fullName.vb: Pidgin.ParseState(Of TToken).Rewind()
-  nameWithType: ParseState<TToken>.Rewind()
-  nameWithType.vb: ParseState(Of TToken).Rewind()
+- uid: Pidgin.ParseState`1.Rewind(System.Int32)
+  name: Rewind(Int32)
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_System_Int32_
+  commentId: M:Pidgin.ParseState`1.Rewind(System.Int32)
+  fullName: Pidgin.ParseState<TToken>.Rewind(System.Int32)
+  fullName.vb: Pidgin.ParseState(Of TToken).Rewind(System.Int32)
+  nameWithType: ParseState<TToken>.Rewind(Int32)
+  nameWithType.vb: ParseState(Of TToken).Rewind(Int32)
 - uid: Pidgin.ParseState`1.Rewind*
   name: Rewind
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_

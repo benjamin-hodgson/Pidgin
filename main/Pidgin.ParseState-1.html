@@ -411,6 +411,74 @@ In other words, the current absolute offset of the input stream.</p>
                         
         
                 
+                <a id="Pidgin_ParseState_1_Bookmark_"></a>
+                <h4 id="Pidgin_ParseState_1_Bookmark"><a href="#Pidgin_ParseState_1_Bookmark">Bookmark()</a></h4>
+                <div><p>Start buffering the input</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public int Bookmark()</code></pre>
+
+        
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+        
+        
+        
+        
+        
+        
+                        
+        
+                
+                <a id="Pidgin_ParseState_1_DiscardBookmark_"></a>
+                <h4 id="Pidgin_ParseState_1_DiscardBookmark_System_Int32_"><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int32_">DiscardBookmark(Int32)</a></h4>
+                <div><p>Stop buffering the input</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public void DiscardBookmark(int bookmark)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
+                                    <td><p>bookmark</p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+        
+        
+        
+        
+        
+        
+        
+                        
+        
+                
                 <a id="Pidgin_ParseState_1_LookAhead_"></a>
                 <h4 id="Pidgin_ParseState_1_LookAhead_System_Int32_"><a href="#Pidgin_ParseState_1_LookAhead_System_Int32_">LookAhead(Int32)</a></h4>
                 <div><p>Returns a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.span-1">Span&lt;T&gt;</a> containing the next <code data-dev-comment-type="paramref" class="paramref">count</code> tokens.</p>
@@ -464,49 +532,30 @@ if the parser reaches the end of the input stream.</p>
                         
         
                 
-                <a id="Pidgin_ParseState_1_PopBookmark_"></a>
-                <h4 id="Pidgin_ParseState_1_PopBookmark"><a href="#Pidgin_ParseState_1_PopBookmark">PopBookmark()</a></h4>
-                <div><p>Stop buffering the input</p>
-</div>
-                <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public void PopBookmark()</code></pre>
-
-        
-        
-        
-        
-        
-        
-        
-        
-                        
-        
-                
-                <a id="Pidgin_ParseState_1_PushBookmark_"></a>
-                <h4 id="Pidgin_ParseState_1_PushBookmark"><a href="#Pidgin_ParseState_1_PushBookmark">PushBookmark()</a></h4>
-                <div><p>Start buffering the input</p>
-</div>
-                <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public void PushBookmark()</code></pre>
-
-        
-        
-        
-        
-        
-        
-        
-        
-                        
-        
-                
                 <a id="Pidgin_ParseState_1_Rewind_"></a>
-                <h4 id="Pidgin_ParseState_1_Rewind"><a href="#Pidgin_ParseState_1_Rewind">Rewind()</a></h4>
-                <div><p>Return to the last bookmark</p>
+                <h4 id="Pidgin_ParseState_1_Rewind_System_Int32_"><a href="#Pidgin_ParseState_1_Rewind_System_Int32_">Rewind(Int32)</a></h4>
+                <div><p>Return to a bookmark previously obtained from <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark">Bookmark()</a> and discard it</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public void Rewind()</code></pre>
+                    <pre><code class="lang-csharp hljs">public void Rewind(int bookmark)</code></pre>
 
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
+                                    <td><p>bookmark</p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
         
         
         
@@ -599,10 +648,10 @@ if the parser reaches the end of the input stream.</p>
 
                             <ul>
                                     <li><a href="#Pidgin_ParseState_1_Advance_System_Int32_">Advance(Int32)</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_Bookmark">Bookmark()</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int32_">DiscardBookmark(Int32)</a></li>
                                     <li><a href="#Pidgin_ParseState_1_LookAhead_System_Int32_">LookAhead(Int32)</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_PopBookmark">PopBookmark()</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_PushBookmark">PushBookmark()</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_Rewind">Rewind()</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_Rewind_System_Int32_">Rewind(Int32)</a></li>
                                     <li><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_">SetError(Maybe&lt;TToken&gt;, Boolean, Int32, String)</a></li>
                             </ul>
                         </li>
