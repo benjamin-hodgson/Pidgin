@@ -1,7 +1,7 @@
 Pidgin
 ======
 
-A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.
+A lightweight, fast, and flexible parsing library for C#.
 
 Installing
 ----------
