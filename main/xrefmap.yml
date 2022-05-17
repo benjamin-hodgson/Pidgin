@@ -4315,6 +4315,18 @@ references:
   commentId: Overload:Pidgin.SourcePos.#ctor
   fullName: Pidgin.SourcePos.SourcePos
   nameWithType: SourcePos.SourcePos
+- uid: Pidgin.SourcePos.Add(Pidgin.SourcePosDelta)
+  name: Add(SourcePosDelta)
+  href: Pidgin.SourcePos.html#Pidgin_SourcePos_Add_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePos.Add(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePos.Add(Pidgin.SourcePosDelta)
+  nameWithType: SourcePos.Add(SourcePosDelta)
+- uid: Pidgin.SourcePos.Add*
+  name: Add
+  href: Pidgin.SourcePos.html#Pidgin_SourcePos_Add_
+  commentId: Overload:Pidgin.SourcePos.Add
+  fullName: Pidgin.SourcePos.Add
+  nameWithType: SourcePos.Add
 - uid: Pidgin.SourcePos.Col
   name: Col
   href: Pidgin.SourcePos.html#Pidgin_SourcePos_Col
@@ -4519,6 +4531,18 @@ references:
   commentId: Overload:Pidgin.SourcePosDelta.#ctor
   fullName: Pidgin.SourcePosDelta.SourcePosDelta
   nameWithType: SourcePosDelta.SourcePosDelta
+- uid: Pidgin.SourcePosDelta.Add(Pidgin.SourcePosDelta)
+  name: Add(SourcePosDelta)
+  href: Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Add_Pidgin_SourcePosDelta_
+  commentId: M:Pidgin.SourcePosDelta.Add(Pidgin.SourcePosDelta)
+  fullName: Pidgin.SourcePosDelta.Add(Pidgin.SourcePosDelta)
+  nameWithType: SourcePosDelta.Add(SourcePosDelta)
+- uid: Pidgin.SourcePosDelta.Add*
+  name: Add
+  href: Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Add_
+  commentId: Overload:Pidgin.SourcePosDelta.Add
+  fullName: Pidgin.SourcePosDelta.Add
+  nameWithType: SourcePosDelta.Add
 - uid: Pidgin.SourcePosDelta.Cols
   name: Cols
   href: Pidgin.SourcePosDelta.html#Pidgin_SourcePosDelta_Cols
@@ -4979,6 +5003,14 @@ references:
   fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Dispose()
   nameWithType: ResumableTokenStream<TToken>.Dispose()
   nameWithType.vb: ResumableTokenStream(Of TToken).Dispose()
+- uid: Pidgin.TokenStreams.ResumableTokenStream`1.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_System_Boolean_
+  commentId: M:Pidgin.TokenStreams.ResumableTokenStream`1.Dispose(System.Boolean)
+  fullName: Pidgin.TokenStreams.ResumableTokenStream<TToken>.Dispose(System.Boolean)
+  fullName.vb: Pidgin.TokenStreams.ResumableTokenStream(Of TToken).Dispose(System.Boolean)
+  nameWithType: ResumableTokenStream<TToken>.Dispose(Boolean)
+  nameWithType.vb: ResumableTokenStream(Of TToken).Dispose(Boolean)
 - uid: Pidgin.TokenStreams.ResumableTokenStream`1.Dispose*
   name: Dispose
   href: Pidgin.TokenStreams.ResumableTokenStream-1.html#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_

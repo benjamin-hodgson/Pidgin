@@ -267,7 +267,7 @@ adds support for resumable parsing to <code data-dev-comment-type="paramref" cla
                                     <td><p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;TToken&gt;</p></td>
                                     <td><p>pool</p></td>
                                     <td><p>An <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a> to use for the internal buffer.
-Defaults to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.buffers.arraypool-1.shared#system-buffers-arraypool-1-shared">Shared</a>.</p>
+Defaults to <span class="xref">System.Buffers.ArrayPool`1.Shared</span>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -293,6 +293,41 @@ Defaults to <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.b
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
 
+        
+        
+        
+        
+        
+        
+        
+        
+                        
+        
+                
+                <a id="Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_"></a>
+                <h4 id="Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_System_Boolean_"><a href="#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_System_Boolean_">Dispose(Boolean)</a></h4>
+                <div><p>Return any buffers to the <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a></p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p>disposing</p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
         
         
         
@@ -430,6 +465,7 @@ the size of the buffer if the stream has reached the end.</p>
 
                             <ul>
                                     <li><a href="#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose">Dispose()</a></li>
+                                    <li><a href="#Pidgin_TokenStreams_ResumableTokenStream_1_Dispose_System_Boolean_">Dispose(Boolean)</a></li>
                                     <li><a href="#Pidgin_TokenStreams_ResumableTokenStream_1_Read_System_Span__0__">Read(Span&lt;TToken&gt;)</a></li>
                                     <li><a href="#Pidgin_TokenStreams_ResumableTokenStream_1_Return_System_ReadOnlySpan__0__">Return(ReadOnlySpan&lt;TToken&gt;)</a></li>
                             </ul>
