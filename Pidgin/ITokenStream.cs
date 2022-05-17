@@ -23,7 +23,7 @@ namespace Pidgin
         ///
         /// <see cref="ITokenStream{TToken}"/> implementations may override this
         /// method if they want to implement resumable parsing.
-        /// (See <see cref="Pidgin.TokenStreams.ResumableTokenStream{TToken}"/>.)
+        /// (See <see cref="TokenStreams.ResumableTokenStream{TToken}"/>.)
         /// The default implementation does nothing and discards the <paramref name="leftovers"/>.
         /// </summary>
         /// <param name="leftovers">The leftovers to push back into the stream.</param>

@@ -21,11 +21,11 @@ namespace Pidgin
             return new FailParser<TToken, T>(message);
         }
     }
-        
+
     internal sealed class FailParser<TToken, T> : Parser<TToken, T>
     {
         private static readonly Expected<TToken> _expected
-            = new Expected<TToken>(ImmutableArray<TToken>.Empty);
+            = new(ImmutableArray<TToken>.Empty);
         private readonly string _message;
 
         public FailParser(string message)

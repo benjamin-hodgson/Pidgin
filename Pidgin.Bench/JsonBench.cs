@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+
 using Pidgin.Bench.SpracheParsers;
 using Pidgin.Bench.SuperpowerParsers;
 using Pidgin.Examples.Json;
@@ -13,12 +15,12 @@ namespace Pidgin.Bench
     [MemoryDiagnoser, GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     public class JsonBench
     {
-        #nullable disable
+#nullable disable
         private string _bigJson;
         private string _longJson;
         private string _wideJson;
         private string _deepJson;
-        #nullable restore
+#nullable restore
 
         [GlobalSetup]
         public void Setup()
@@ -113,7 +115,7 @@ namespace Pidgin.Bench
         {
             Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
         }
-        
+
         private static IJson BuildJson(int length, int depth, int width)
             => new JsonArray(
                 Enumerable.Repeat(1, length)
@@ -128,17 +130,21 @@ namespace Pidgin.Bench
             }
             return new JsonObject(
                 Enumerable.Repeat(1, width)
-                    .Select(_ => new KeyValuePair<string, IJson>(RandomString(5), BuildObject(depth-1, width)))
+                    .Select(_ => new KeyValuePair<string, IJson>(RandomString(5), BuildObject(depth - 1, width)))
                     .ToImmutableDictionary()
             );
         }
 
-        private static Random random = new Random();
+        private static readonly Random _random = new();
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+            return new string(
+                Enumerable
+                    .Repeat(chars, length)
+                    .Select(s => s[_random.Next(s.Length)])
+                    .ToArray()
+            );
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Pidgin.TokenStreams
                 _buffer.AsSpan().Slice(_bufferStart, bufferedCount).CopyTo(buffer);
                 _bufferStart += bufferedCount;
             }
-            return bufferedCount + _next.Read(buffer.Slice(bufferedCount));
+            return bufferedCount + _next.Read(buffer[bufferedCount..]);
         }
 
         /// <summary>
@@ -78,13 +78,13 @@ namespace Pidgin.TokenStreams
                 var newBufferStart = newBuffer.Length - bufferedCount;
 
                 Array.Copy(_buffer, _bufferStart, newBuffer, newBufferStart, bufferedCount);
-                
+
                 _pool.Return(_buffer, _needsClear);
                 _buffer = newBuffer;
                 _bufferStart = newBufferStart;
             }
             _bufferStart -= leftovers.Length;
-            leftovers.CopyTo(_buffer.AsSpan().Slice(_bufferStart));
+            leftovers.CopyTo(_buffer.AsSpan()[_bufferStart..]);
         }
 
         /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>

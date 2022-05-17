@@ -22,7 +22,7 @@ namespace Pidgin
             }
             return WithExpected(ImmutableArray.Create(new Expected<TToken>(label)));
         }
-            
+
         internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
             => new WithExpectedParser<TToken, T>(this, expected);
     }
@@ -50,9 +50,9 @@ namespace Pidgin
 
             // result is not null here
 
-            #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
+#pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return success;
-            #pragma warning restore CS8762
+#pragma warning restore CS8762
         }
     }
 }

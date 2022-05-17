@@ -18,21 +18,18 @@ namespace Pidgin
     public struct PooledList<T> : IDisposable, IList<T>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
-        private const int InitialCapacity = 16;
+        private const int _initialCapacity = 16;
 
         private ArrayPool<T> _arrayPool;
         private T[]? _items;
-        private int _count;
 
         /// <summary>The number of elements in the list</summary>
         /// <returns>The number of elements in the list</returns>
         public int Count
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                return _count;
-            }
+            get;
+            private set;
         }
 
         /// <summary>Returns false</summary>
@@ -44,7 +41,7 @@ namespace Pidgin
         {
             _arrayPool = arrayPool;
             _items = null;
-            _count = 0;
+            Count = 0;
         }
 
         /// <summary>Gets or sets the element at index <paramref name="index"/>.</summary>
@@ -55,7 +52,7 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
-                if (index >= _count)
+                if (index >= Count)
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
@@ -64,7 +61,7 @@ namespace Pidgin
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
-                if (index >= _count)
+                if (index >= Count)
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
@@ -78,32 +75,32 @@ namespace Pidgin
         public void Add(T item)
         {
             GrowIfNecessary(1);
-            _items![_count] = item;
-            _count++;
+            _items![Count] = item;
+            Count++;
         }
         /// <summary>Adds a collection of items to the end of the list.</summary>
         /// <param name="items">The items to add</param>
         public void AddRange(ImmutableArray<T> items)
         {
             GrowIfNecessary(items.Length);
-            items.CopyTo(_items!, _count);
-            _count += items.Length;
+            items.CopyTo(_items!, Count);
+            Count += items.Length;
         }
         /// <summary>Adds a collection of items to the end of the list.</summary>
         /// <param name="items">The items to add</param>
         public void AddRange(ReadOnlySpan<T> items)
         {
             GrowIfNecessary(items.Length);
-            items.CopyTo(_items.AsSpan().Slice(_count));
-            _count += items.Length;
+            items.CopyTo(_items.AsSpan()[Count..]);
+            Count += items.Length;
         }
         /// <summary>Adds a collection of items to the end of the list.</summary>
         /// <param name="items">The items to add</param>
         public void AddRange(ICollection<T> items)
         {
             GrowIfNecessary(items.Count);
-            items.CopyTo(_items, _count);
-            _count += items.Count;
+            items.CopyTo(_items, Count);
+            Count += items.Count;
         }
         /// <summary>Adds a collection of items to the end of the list.</summary>
         /// <param name="items">The items to add</param>
@@ -134,17 +131,17 @@ namespace Pidgin
         /// <returns>The last item in the list.</returns>
         public T Pop()
         {
-            if (_count == 0)
+            if (Count == 0)
             {
                 ThrowInvalidOperationException();
             }
-            _count--;
-            return _items![_count];
+            Count--;
+            return _items![Count];
         }
 
         /// <summary>Returns a <see cref="Span{T}"/> view of the list.</summary>
         /// <returns>A <see cref="Span{T}"/> view of the list.</returns>
-        public Span<T> AsSpan() => _items.AsSpan().Slice(0, _count);
+        public Span<T> AsSpan() => _items.AsSpan()[..Count];
 
         /// <summary>
         /// Searches for <paramref name="item"/> in the list and returns its index.
@@ -154,11 +151,11 @@ namespace Pidgin
         /// <returns>The index of <paramref name="item"/>, or <c>-1</c> if it is missing.</returns>
         public int IndexOf(T item)
         {
-            if (_count == 0)
+            if (Count == 0)
             {
                 return -1;
             }
-            return Array.IndexOf(_items!, item, 0, _count);
+            return Array.IndexOf(_items!, item, 0, Count);
         }
 
         /// <summary>
@@ -169,14 +166,14 @@ namespace Pidgin
         /// <exception cref="ArgumentOutOfRangeException">The index is outside the bounds of the list.</exception>
         public void Insert(int index, T item)
         {
-            if (index < 0 || index > _count)
+            if (index < 0 || index > Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
             GrowIfNecessary(1);
-            Array.Copy(_items, index, _items, index + 1, _count - index);
+            Array.Copy(_items, index, _items, index + 1, Count - index);
             _items![index] = item;
-            _count++;
+            Count++;
         }
 
         /// <summary>
@@ -186,12 +183,12 @@ namespace Pidgin
         /// <exception cref="ArgumentOutOfRangeException">The index is outside the bounds of the list.</exception>
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= _count)
+            if (index < 0 || index >= Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
-            _count--;
-            Array.Copy(_items!, index + 1, _items!, index, _count - index);
+            Count--;
+            Array.Copy(_items!, index + 1, _items!, index, Count - index);
         }
 
         /// <summary>
@@ -200,7 +197,7 @@ namespace Pidgin
         /// <param name="item">The item to search for.</param>
         /// <returns>True if the item is in the list, false if it is not.</returns>
         public bool Contains(T item)
-            => Array.IndexOf(_items!, item, 0, _count) >= 0;
+            => Array.IndexOf(_items!, item, 0, Count) >= 0;
 
         /// <summary>
         /// Copies the list into an array.
@@ -220,11 +217,11 @@ namespace Pidgin
             {
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
             }
-            if (_count > array.Length - arrayIndex)
+            if (Count > array.Length - arrayIndex)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Array wasn't long enough");
             }
-            Array.Copy(_items!, 0, array, arrayIndex, _count);
+            Array.Copy(_items!, 0, array, arrayIndex, Count);
         }
 
         /// <summary>
@@ -249,7 +246,7 @@ namespace Pidgin
         /// </summary>
         public void Clear()
         {
-            _count = 0;
+            Count = 0;
         }
 
         /// <summary>
@@ -262,7 +259,7 @@ namespace Pidgin
                 _arrayPool.Return(_items, _needsClear);
             }
             _items = null;
-            _count = 0;
+            Count = 0;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -277,7 +274,7 @@ namespace Pidgin
             {
                 Init(additionalSpace);
             }
-            else if (_count + additionalSpace >= _items.Length)
+            else if (Count + additionalSpace >= _items.Length)
             {
                 Grow(additionalSpace);
             }
@@ -285,20 +282,20 @@ namespace Pidgin
         [MemberNotNull(nameof(_items))]
         private void Init(int space)
         {
-            _items = _arrayPool.Rent(Math.Max(InitialCapacity, space));
+            _items = _arrayPool.Rent(Math.Max(_initialCapacity, space));
         }
 
         private void Grow(int additionalSpace)
         {
-            var newBuffer = _arrayPool.Rent(Math.Max(_items!.Length * 2, _count + additionalSpace));
-            Array.Copy(_items, newBuffer, _count);
+            var newBuffer = _arrayPool.Rent(Math.Max(_items!.Length * 2, Count + additionalSpace));
+            Array.Copy(_items, newBuffer, Count);
             _arrayPool.Return(_items, _needsClear);
             _items = newBuffer;
         }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 yield return _items![i];
             }

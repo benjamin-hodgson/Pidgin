@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+
 using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
@@ -9,7 +11,7 @@ namespace Pidgin
     internal static class EnumerableExtensions
     {
         public static bool Equal<T>(ImmutableArray<T> left, ImmutableArray<T> right)
-            => _FastEqual<T>.Go(left, right);
+            => FastEqualInternal<T>.Go(left, right);
         private static bool SlowEqual<T>(ImmutableArray<T> left, ImmutableArray<T> right)
         {
             var comparer = EqualityComparer<T>.Default;
@@ -30,6 +32,7 @@ namespace Pidgin
             return true;
         }
         // struct trick, inline Equals
+        [SuppressMessage("CodeQuality", "IDE0051", Justification = "Called through reflection")]  // "Private member is unused"
         private static bool FastEqual<T>(ImmutableArray<T> left, ImmutableArray<T> right) where T : struct, IEquatable<T>
         {
             if (left.Length != right.Length)
@@ -54,7 +57,7 @@ namespace Pidgin
             {
                 return 0;
             }
-            int hash = 17;
+            var hash = 17;
             foreach (var x in arr)
             {
                 hash = hash * 23 + x!.GetHashCode();
@@ -64,7 +67,7 @@ namespace Pidgin
 
 
         public static int Compare<T>(ImmutableArray<T> left, ImmutableArray<T> right)
-            => _FastCompare<T>.Go(left, right);
+            => FastCompareInternal<T>.Go(left, right);
         private static int SlowCompare<T>(ImmutableArray<T> left, ImmutableArray<T> right)
         {
             var comparer = Comparer<T>.Default;
@@ -91,6 +94,7 @@ namespace Pidgin
             return 0;
         }
         // struct trick, inline CompareTo
+        [SuppressMessage("CodeQuality", "IDE0051", Justification = "Called through reflection")]  // "Private member is unused"
         private static int FastCompare<T>(ImmutableArray<T> left, ImmutableArray<T> right) where T : struct, IComparable<T>
         {
             for (var i = 0; i < Math.Max(left.Length, right.Length); i++)
@@ -115,11 +119,10 @@ namespace Pidgin
             return 0;
         }
 
-
-        static class _FastEqual<T>
+        private static class FastEqualInternal<T>
         {
-            private static Func<ImmutableArray<T>, ImmutableArray<T>, bool>? _callFastEqual;
-            static _FastEqual()
+            private static readonly Func<ImmutableArray<T>, ImmutableArray<T>, bool>? _callFastEqual;
+            static FastEqualInternal()
             {
                 var type = typeof(T);
                 var typeInfo = type.GetTypeInfo();
@@ -149,10 +152,10 @@ namespace Pidgin
             }
         }
 
-        static class _FastCompare<T>
+        private static class FastCompareInternal<T>
         {
-            private static Comparison<ImmutableArray<T>>? _callFastCompare;
-            static _FastCompare()
+            private static readonly Comparison<ImmutableArray<T>>? _callFastCompare;
+            static FastCompareInternal()
             {
                 var type = typeof(T);
                 var typeInfo = type.GetTypeInfo();

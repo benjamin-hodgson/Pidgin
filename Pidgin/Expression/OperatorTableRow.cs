@@ -65,14 +65,14 @@ namespace Pidgin.Expression
         /// <returns>An empty row in a table of operators</returns>
         public static OperatorTableRow<TToken, T> Empty { get; }
             = new OperatorTableRow<TToken, T>(null, null, null, null, null);
-        
+
         /// <summary>
         /// Combine two rows at the same precedence level
         /// </summary>
         /// <param name="otherRow">A collection of parsers for operators</param>
         /// <returns>The current collection of parsers combined with <paramref name="otherRow"/></returns>
         public OperatorTableRow<TToken, T> And(OperatorTableRow<TToken, T> otherRow)
-            => new OperatorTableRow<TToken, T>(
+            => new(
                 InfixNOps.Concat(otherRow.InfixNOps),
                 InfixLOps.Concat(otherRow.InfixLOps),
                 InfixROps.Concat(otherRow.InfixROps),

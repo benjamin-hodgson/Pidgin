@@ -17,9 +17,9 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(parser));
             }
-            return this.Between(parser, parser);
+            return Between(parser, parser);
         }
-            
+
         /// <summary>
         /// Creates a parser that applies the specified parsers before and after applying the current parser.
         /// The resulting parser returns the result of the current parser, ignoring the return values of the bracketing parsers.

@@ -6,7 +6,7 @@ namespace Pidgin.Examples.Json
     public interface IJson
     {
     }
-    
+
     public class JsonArray : IJson
     {
         public ImmutableArray<IJson> Elements { get; }
@@ -26,7 +26,7 @@ namespace Pidgin.Examples.Json
             Members = members;
         }
         public override string ToString()
-            => $"{{{string.Join(",", Members.Select(kvp => $"\"{kvp.Key}\":{kvp.Value.ToString()}"))}}}";
+            => $"{{{string.Join(",", Members.Select(kvp => $"\"{kvp.Key}\":{kvp.Value}"))}}}";
     }
 
     public class JsonString : IJson

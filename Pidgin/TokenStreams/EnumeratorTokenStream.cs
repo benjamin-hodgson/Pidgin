@@ -12,7 +12,7 @@ namespace Pidgin.TokenStreams
         /// <summary>Returns 16.</summary>
         /// <returns>16</returns>
         public int ChunkSizeHint => 16;
-        
+
         private readonly IEnumerator<TToken> _input;
 
         /// <summary>

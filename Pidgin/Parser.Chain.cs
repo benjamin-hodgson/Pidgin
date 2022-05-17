@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 using Pidgin.Configuration;
 
 namespace Pidgin
@@ -71,7 +72,7 @@ namespace Pidgin
                 result = default;
                 return false;
             }
-            
+
             result = chainer.GetResult();
             return true;
         }

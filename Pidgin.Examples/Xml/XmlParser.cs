@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 
@@ -7,65 +8,58 @@ namespace Pidgin.Examples.Xml
 {
     public static class XmlParser
     {
-        public static Result<char, Tag> Parse(string input) => Node.Parse(input);
+        public static Result<char, Tag> Parse(string input) => _node.Parse(input);
 
-        static readonly Parser<char, string> Identifier =
+        private static readonly Parser<char, string> _identifier =
             from first in Token(char.IsLetter)
             from rest in Token(char.IsLetterOrDigit).ManyString()
             select first + rest;
-
-        static readonly Parser<char, char> LT = Char('<');
-        static readonly Parser<char, char> GT = Char('>');
-        static readonly Parser<char, char> Quote = Char('"');
-        static readonly Parser<char, char> Equal = Char('=');
-        static readonly Parser<char, char> Slash = Char('/');
-        static readonly Parser<char, Unit> SlashGT =
-            Slash.Then(Whitespaces).Then(GT).Then(Return(Unit.Value));
-        static readonly Parser<char, Unit> LTSlash = 
-            LT.Then(Whitespaces).Then(Slash).Then(Return(Unit.Value));
-        
-        static readonly Parser<char, string> AttrValue = 
+        private static readonly Parser<char, char> _lt = Char('<');
+        private static readonly Parser<char, char> _gt = Char('>');
+        private static readonly Parser<char, char> _quote = Char('"');
+        private static readonly Parser<char, char> _equal = Char('=');
+        private static readonly Parser<char, char> _slash = Char('/');
+        private static readonly Parser<char, Unit> _slashGT =
+            _slash.Then(Whitespaces).Then(_gt).Then(Return(Unit.Value));
+        private static readonly Parser<char, Unit> _ltSlash =
+            _lt.Then(Whitespaces).Then(_slash).Then(Return(Unit.Value));
+        private static readonly Parser<char, string> _attrValue =
             Token(c => c != '"').ManyString();
-
-        static readonly Parser<char, Attribute> Attr = 
-            from name in Identifier
-            from eq in Equal.Between(SkipWhitespaces)
-            from val in AttrValue.Between(Quote)
+        private static readonly Parser<char, Attribute> _attr =
+            from name in _identifier
+            from eq in _equal.Between(SkipWhitespaces)
+            from val in _attrValue.Between(_quote)
             select new Attribute(name, val);
-
-        static readonly Parser<char, OpeningTagInfo> TagBody =
-            from name in Identifier
+        private static readonly Parser<char, OpeningTagInfo> _tagBody =
+            from name in _identifier
             from attrs in (
                 from ws in Try(Whitespace.SkipAtLeastOnce())
-                from attrs in Attr.Separated(SkipWhitespaces)
+                from attrs in _attr.Separated(SkipWhitespaces)
                 select attrs
             ).Optional()
             select new OpeningTagInfo(name, attrs.GetValueOrDefault(Enumerable.Empty<Attribute>()));
-
-        static readonly Parser<char, Tag> EmptyElementTag =
-            from opening in LT
-            from body in TagBody.Between(SkipWhitespaces)
-            from closing in SlashGT
+        private static readonly Parser<char, Tag> _emptyElementTag =
+            from opening in _lt
+            from body in _tagBody.Between(SkipWhitespaces)
+            from closing in _slashGT
             select new Tag(body.Name, body.Attributes, null);
-
-        static readonly Parser<char, OpeningTagInfo> OpeningTag =
-            TagBody
+        private static readonly Parser<char, OpeningTagInfo> _openingTag =
+            _tagBody
                 .Between(SkipWhitespaces)
-                .Between(LT, GT);
+                .Between(_lt, _gt);
 
-        static Parser<char, string> ClosingTag =>
-            Identifier
+        private static Parser<char, string> ClosingTag =>
+            _identifier
                 .Between(SkipWhitespaces)
-                .Between(LTSlash, GT);
+                .Between(_ltSlash, _gt);
 
-        static readonly Parser<char, Tag> Tag =
-            from open in OpeningTag
-            from children in Try(Node!).Separated(SkipWhitespaces).Between(SkipWhitespaces)
+        private static readonly Parser<char, Tag> _tag =
+            from open in _openingTag
+            from children in Try(_node!).Separated(SkipWhitespaces).Between(SkipWhitespaces)
             from close in ClosingTag
             where open.Name.Equals(close)
             select new Tag(open.Name, open.Attributes, children);
-    
-        static readonly Parser<char, Tag> Node = Try(EmptyElementTag).Or(Tag);
+        private static readonly Parser<char, Tag> _node = Try(_emptyElementTag).Or(_tag);
 
         private struct OpeningTagInfo
         {

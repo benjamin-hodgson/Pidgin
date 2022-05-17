@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using static Pidgin.Parser<char>;
 
 namespace Pidgin
@@ -33,7 +34,7 @@ namespace Pidgin
 
     internal class SkipWhitespacesParser : Parser<char, Unit>
     {
-        public unsafe override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
+        public override unsafe bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
         {
             const long space = (long)' ';
             const long fourSpaces = space | space << 16 | space << 32 | space << 48;

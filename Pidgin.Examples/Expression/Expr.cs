@@ -18,7 +18,7 @@ namespace Pidgin.Examples.Expression
         }
 
         public bool Equals(IExpr? other)
-            => other is Identifier i && this.Name == i.Name;
+            => other is Identifier i && Name == i.Name;
     }
 
     public class Literal : IExpr
@@ -31,7 +31,7 @@ namespace Pidgin.Examples.Expression
         }
 
         public bool Equals(IExpr? other)
-            => other is Literal l && this.Value == l.Value;
+            => other is Literal l && Value == l.Value;
     }
 
     public class Call : IExpr
@@ -47,8 +47,8 @@ namespace Pidgin.Examples.Expression
 
         public bool Equals(IExpr? other)
             => other is Call c
-            && this.Expr.Equals(c.Expr)
-            && this.Arguments.SequenceEqual(c.Arguments);
+            && Expr.Equals(c.Expr)
+            && Arguments.SequenceEqual(c.Arguments);
     }
 
     public enum UnaryOperatorType
@@ -69,8 +69,8 @@ namespace Pidgin.Examples.Expression
 
         public bool Equals(IExpr? other)
             => other is UnaryOp u
-            && this.Type == u.Type
-            && this.Expr.Equals(u.Expr);
+            && Type == u.Type
+            && Expr.Equals(u.Expr);
     }
 
     public enum BinaryOperatorType
@@ -93,8 +93,8 @@ namespace Pidgin.Examples.Expression
 
         public bool Equals(IExpr? other)
             => other is BinaryOp b
-            && this.Type == b.Type
-            && this.Left.Equals(b.Left)
-            && this.Right.Equals(b.Right);
+            && Type == b.Type
+            && Left.Equals(b.Left)
+            && Right.Equals(b.Right);
     }
 }

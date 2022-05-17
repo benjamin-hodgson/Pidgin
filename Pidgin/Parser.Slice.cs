@@ -21,6 +21,6 @@ namespace Pidgin
         /// <typeparam name="U">The result type</typeparam>
         /// <returns>A parser which runs the current parser and applies a selector function.</returns>
         public Parser<TToken, U> Slice<U>(ReadOnlySpanFunc<TToken, T, U> selector)
-            => this.MapWithInput(selector);
+            => MapWithInput(selector);
     }
 }

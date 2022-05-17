@@ -44,7 +44,7 @@ namespace Pidgin
             }
             return Parser.Map(result, this, parser);
         }
-        
+
         /// <summary>
         /// Creates a parser that applies a transformation function to the return value of the current parser.
         /// The transformation function dynamically chooses a second parser, which is applied after applying the current parser.

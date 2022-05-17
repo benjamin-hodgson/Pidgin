@@ -25,12 +25,12 @@ namespace Pidgin.Examples.Xml
             }
             return Equals((Tag)obj);
         }
-        
+
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = 17;
+                var hash = 17;
                 hash = hash * 23 + Name.GetHashCode();
                 hash = hash * 23 + Attributes.GetHashCode();
                 hash = hash * 23 + Content?.GetHashCode() ?? 0;
@@ -41,9 +41,9 @@ namespace Pidgin.Examples.Xml
         public bool Equals(Tag? other)
             => Name == other?.Name
             && Attributes.SequenceEqual(other.Attributes)
-            && ((ReferenceEquals(null, Content) && ReferenceEquals(null, other.Content)) || Content!.SequenceEqual(other.Content!));
+            && ((Content is null && other.Content is null) || Content!.SequenceEqual(other.Content!));
     }
-    
+
     public class Attribute : IEquatable<Attribute>
     {
         public string Name { get; }
@@ -66,15 +66,6 @@ namespace Pidgin.Examples.Xml
         public bool Equals(Attribute? other)
             => Name == other?.Name
             && Value == other.Value;
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                int hash = 17;
-                hash = hash * 23 + Name.GetHashCode();
-                hash = hash * 23 + Value.GetHashCode();
-                return hash;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine(Name, Value);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+
 using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
@@ -86,13 +87,13 @@ namespace Pidgin
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
         {
             var ts = new T[_parsers.Length];
-            
+
             for (var i = 0; i < _parsers.Length; i++)
             {
                 var p = _parsers[i];
-            
+
                 var success = p.TryParse(ref state, ref expecteds, out ts[i]!);
-            
+
                 if (!success)
                 {
                     result = null;
@@ -153,7 +154,7 @@ namespace Pidgin
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
-            
+
             var errorPos = -1;
             for (var i = 0; i < span.Length; i++)
             {
@@ -216,7 +217,7 @@ namespace Pidgin
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
         {
             var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
-            
+
             var errorPos = -1;
             for (var i = 0; i < span.Length; i++)
             {

@@ -16,7 +16,7 @@ namespace Pidgin
         /// <param name="result">The result</param>
         /// <returns>A parser which behaves like the current parser but returns <paramref name="result"/>.</returns>
         public Parser<TToken, U> WithResult<U>(U result)
-            => this.Select(_ => result);
+            => Select(_ => result);
 
         /// <summary>
         /// Creates a parser which behaves like the current parser but returns <paramref name="result"/> after a successful parse.
@@ -32,7 +32,7 @@ namespace Pidgin
         /// <param name="result">The result</param>
         /// <returns>A parser which behaves like the current parser but returns <paramref name="result"/>.</returns>
         public Parser<TToken, U> ThenReturn<U>(U result)
-            => this.Select(_ => result);
+            => Select(_ => result);
 
         /// <summary>
         /// Creates a parser which behaves like the current parser but returns <see cref="Unit.Value"/>.
@@ -40,6 +40,6 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser which behaves like the current parser but returns <see cref="Unit.Value"/>.</returns>
         public Parser<TToken, Unit> IgnoreResult()
-            => this.WithResult(Unit.Value);
+            => WithResult(Unit.Value);
     }
 }

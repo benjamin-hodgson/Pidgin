@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pidgin.CodeGen
 {
-    static class MapGenerator
+    internal static class MapGenerator
     {
         public static void Generate()
         {
@@ -144,21 +144,21 @@ namespace Pidgin
                 result = default;
                 return false;
             }}";
-        
+
         private static string EnglishNumber(int num)
         {
-            switch (num)
+            return num switch
             {
-                case 1: return "first";
-                case 2: return "second";
-                case 3: return "third";
-                case 4: return "fourth";
-                case 5: return "fifth";
-                case 6: return "sixth";
-                case 7: return "seventh";
-                case 8: return "eighth";
-            }
-            throw new ArgumentOutOfRangeException(nameof(num));
+                1 => "first",
+                2 => "second",
+                3 => "third",
+                4 => "fourth",
+                5 => "fifth",
+                6 => "sixth",
+                7 => "seventh",
+                8 => "eighth",
+                _ => throw new ArgumentOutOfRangeException(nameof(num)),
+            };
         }
     }
 }

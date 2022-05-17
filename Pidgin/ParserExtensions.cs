@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.CompilerServices;
-using Pidgin.TokenStreams;
+
 using Pidgin.Configuration;
+using Pidgin.TokenStreams;
+
 using Config = Pidgin.Configuration.Configuration;
 
 namespace Pidgin
@@ -99,7 +102,7 @@ namespace Pidgin
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, TToken[] input, IConfiguration<TToken>? configuration = null)
             => parser.Parse(input.AsSpan(), configuration);
-        
+
         /// <summary>
         /// Applies <paramref name="parser"/> to <paramref name="input"/>
         /// </summary>
@@ -115,7 +118,8 @@ namespace Pidgin
             return result;
         }
         [MethodImpl(MethodImplOptions.NoInlining)]
-        private static void KeepAlive<TToken>(ref ReadOnlySpan<TToken> span) {}
+        [SuppressMessage("style", "IDE0060")]  // "Remove unused parameter"
+        private static void KeepAlive<TToken>(ref ReadOnlySpan<TToken> span) { }
 
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, IConfiguration<TToken>? configuration)
         {

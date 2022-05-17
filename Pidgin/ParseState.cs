@@ -3,6 +3,7 @@ using System.Buffers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
 using Pidgin.Configuration;
 
 namespace Pidgin
@@ -141,16 +142,15 @@ namespace Pidgin
                 _currentIndex = Math.Min(_currentIndex + count, _span.Length);
                 return;
             }
-            
+
             var alreadyBufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
             _currentIndex += alreadyBufferedCount;
             count -= alreadyBufferedCount;
 
             Buffer(count);
-            
+
             var bufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
             _currentIndex += bufferedCount;
-            count -= bufferedCount;
         }
 
         // if it returns a span shorter than count it's because you reached the end of the input
@@ -170,7 +170,7 @@ namespace Pidgin
         internal ReadOnlySpan<TToken> LookBehind(int count)
         {
             var start = Math.Max(0, _currentIndex - count);
-            return _span.Slice(start, _currentIndex - start);
+            return _span[start.._currentIndex];
         }
 
         // postcondition: bufferedLength >= _currentIndex + min(readAhead, AmountLeft(_stream))
@@ -229,7 +229,7 @@ namespace Pidgin
                 _bufferedCount += _stream!.Read(_buffer.AsSpan().Slice(_bufferedCount, amountToRead));
             }
         }
-        
+
         /// <summary>Start buffering the input</summary>
         public int Bookmark()
         {
@@ -286,7 +286,7 @@ namespace Pidgin
         {
             if (_buffer != null)
             {
-                _stream!.Return(_buffer.AsSpan().Slice(_currentIndex, _bufferedCount - _currentIndex));
+                _stream!.Return(_buffer.AsSpan()[_currentIndex.._bufferedCount]);
                 _arrayPool!.Return(_buffer, _needsClear);
                 _buffer = null;
             }

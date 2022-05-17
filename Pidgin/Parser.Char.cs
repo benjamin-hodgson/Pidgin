@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+
 using static Pidgin.Parser<char>;
 
 namespace Pidgin
@@ -30,7 +31,7 @@ namespace Pidgin
             );
             return Token(c => char.ToLowerInvariant(c) == theChar)
                 .WithExpected(expected);
-        } 
+        }
 
         /// <summary>
         /// Creates a parser which parses and returns a character if it is not one of the specified characters.

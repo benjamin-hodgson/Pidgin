@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Pidgin
 {
@@ -38,7 +37,7 @@ namespace Pidgin
         /// <summary>
         /// The parser's return value
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the result was not a successful one</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the result was not a successful one</exception>
         /// <returns>The parser's return value</returns>
         public T Value
         {
@@ -54,7 +53,7 @@ namespace Pidgin
         /// <summary>
         /// The parse error
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">Thrown when the result was a successful one</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the result was a successful one</exception>
         /// <returns>The parse error</returns>
         public ParseError<TToken>? Error
         {
@@ -118,7 +117,7 @@ namespace Pidgin
         /// <returns>The final result</returns>
         public Result<TToken, U> SelectMany<U>(Func<T, Result<TToken, U>> selector)
             => SelectMany(selector, (t, u) => u);
-        
+
         /// <summary>
         /// Projects the value of the result into a result, and flattens the resulting value into a single result, applying a result selector function to the two values.
         /// </summary>
@@ -161,7 +160,7 @@ namespace Pidgin
         /// Cast the value contained in the result to the specified output type
         /// </summary>
         /// <typeparam name="U">The type to cast the contained value to</typeparam>
-        /// <exception cref="System.InvalidCastException">Thrown when the contained value is not an instance of <typeparamref name="U"/></exception>
+        /// <exception cref="InvalidCastException">Thrown when the contained value is not an instance of <typeparamref name="U"/></exception>
         /// <returns>A result containing this result's value casted to <typeparamref name="U"/></returns>
         public Result<TToken, U> Cast<U>()
             => Success

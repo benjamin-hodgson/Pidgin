@@ -37,9 +37,9 @@ namespace Pidgin
         /// <param name="other">The <see cref="SourcePosDelta"/> to add to this <see cref="SourcePos"/>.</param>
         /// <returns>A <see cref="SourcePos"/> representing the composition of this and <paramref name="other"/>.</returns>
         public SourcePos Plus(SourcePosDelta other)
-            => new SourcePos(
-                this.Line + other.Lines,
-                (other.Lines == 0 ? this.Col : 1) + other.Cols
+            => new(
+                Line + other.Lines,
+                (other.Lines == 0 ? Col : 1) + other.Cols
             );
 
         /// <summary>
@@ -47,13 +47,13 @@ namespace Pidgin
         /// </summary>
         /// <returns>A <see cref="SourcePos"/> with the column number incremented by one</returns>
         public SourcePos IncrementCol()
-            => new SourcePos(Line, Col + 1);
+            => new(Line, Col + 1);
         /// <summary>
         /// Creates a <see cref="SourcePos"/> with the line number incremented by one and the column number reset to 1
         /// </summary>
         /// <returns>A <see cref="SourcePos"/> with the line number incremented by one and the column number reset to 1</returns>
         public SourcePos NewLine()
-            => new SourcePos(Line + 1, 1);
+            => new(Line + 1, 1);
 
         /// <summary>
         /// Add a <see cref="SourcePosDelta"/> to this <see cref="SourcePos"/>.
@@ -71,9 +71,9 @@ namespace Pidgin
 
         /// <inheritdoc/>
         public override bool Equals(object? other)
-            => !ReferenceEquals(null, other)
-            && other is SourcePos
-            && Equals((SourcePos)other);
+            => other is not null
+            && other is SourcePos pos
+            && Equals(pos);
 
         /// <inheritdoc/>
         public static bool operator ==(SourcePos left, SourcePos right)
@@ -81,13 +81,13 @@ namespace Pidgin
         /// <inheritdoc/>
         public static bool operator !=(SourcePos left, SourcePos right)
             => !left.Equals(right);
-        
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = 17;
+                var hash = 17;
                 hash = hash * 23 + Line.GetHashCode();
                 hash = hash * 23 + Col.GetHashCode();
                 return hash;

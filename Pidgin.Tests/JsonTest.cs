@@ -1,18 +1,18 @@
 using Pidgin.Examples.Json;
+
 using Xunit;
 
-namespace Pidgin.Tests
+namespace Pidgin.Tests;
+
+public class JsonTest
 {
-    public class JsonTest
+    [Fact]
+    public void TestJsonObject()
     {
-        [Fact]
-        public void TestJsonObject()
-        {
-            var input = "[ { \"foo\" : \"bar\" } , [ \"baz\" ] ]";
+        var input = "[ { \"foo\" : \"bar\" } , [ \"baz\" ] ]";
 
-            var result = JsonParser.Parse(input);
+        var result = JsonParser.Parse(input);
 
-            Assert.Equal("[{\"foo\":\"bar\"},[\"baz\"]]", result.Value.ToString());
-        }
+        Assert.Equal("[{\"foo\":\"bar\"},[\"baz\"]]", result.Value.ToString());
     }
 }

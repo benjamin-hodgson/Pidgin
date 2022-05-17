@@ -42,7 +42,7 @@ namespace Pidgin
             }
 
             var recoverParser = _errorHandler(state.BuildError(ref childExpecteds));
-            
+
             childExpecteds.Dispose();
 
             return recoverParser.TryParse(ref state, ref expecteds, out result);

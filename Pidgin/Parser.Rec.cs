@@ -85,7 +85,7 @@ namespace Pidgin
             return new RecParser<TToken, T>(parser);
         }
     }
-        
+
     internal sealed class RecParser<TToken, T> : Parser<TToken, T>
     {
         private readonly Lazy<Parser<TToken, T>> _lazy;

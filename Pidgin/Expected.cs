@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using System.Text;
+
 using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin
@@ -30,7 +29,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>True if the parser expected the end of the input stream</returns>
         public bool IsEof => Label == null && Tokens == null;
-        
+
         internal Expected(string label)
         {
             Label = label;
@@ -42,7 +41,7 @@ namespace Pidgin
             Tokens = tokens;
         }
 
-        private static readonly bool IsChar = typeof(TToken).Equals(typeof(char));
+        private static readonly bool _isChar = typeof(TToken).Equals(typeof(char));
         internal void AppendTo(StringBuilder sb)
         {
             if (IsEof)
@@ -58,7 +57,7 @@ namespace Pidgin
 
             var tokens = Tokens!;
             sb.Append('"');
-            if (IsChar)
+            if (_isChar)
             {
                 foreach (var token in tokens)
                 {
@@ -104,9 +103,9 @@ namespace Pidgin
 
         /// <inheritdoc/>
         public override bool Equals(object? other)
-            => !ReferenceEquals(null, other)
-            && other is Expected<TToken>
-            && Equals((Expected<TToken>)other);
+            => other is not null
+            && other is Expected<TToken> expected
+            && Equals(expected);
 
         /// <inheritdoc/>
         public static bool operator ==(Expected<TToken> left, Expected<TToken> right)
@@ -120,7 +119,7 @@ namespace Pidgin
         {
             unchecked
             {
-                int hash = 17;
+                var hash = 17;
                 hash = hash * 23 + Label?.GetHashCode() ?? 0;
                 hash = hash * 23 + EnumerableExtensions.GetHashCode(Tokens);
                 return hash;

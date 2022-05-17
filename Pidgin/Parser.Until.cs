@@ -21,9 +21,9 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(terminator));
             }
             return terminator.Then(ReturnEmptyEnumerable)
-                .Or(this.AtLeastOnceUntil(terminator));
+                .Or(AtLeastOnceUntil(terminator));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds.
         /// Fails if this parser fails or if <paramref name="terminator"/> fails after consuming input.
@@ -56,9 +56,9 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof(terminator));
             }
             return terminator.Then(ReturnUnit)
-                .Or(this.SkipAtLeastOnceUntil(terminator));
+                .Or(SkipAtLeastOnceUntil(terminator));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies this parser one or more times until <paramref name="terminator"/> succeeds, discarding the results.
         /// This is more efficient than <see cref="AtLeastOnceUntil{U}(Parser{TToken, U})"/> if you don't need the results.
@@ -114,7 +114,7 @@ namespace Pidgin
             while (true)
             {
                 var terminatorStartLoc = state.Location;
-                var terminatorSuccess = _terminator.TryParse(ref state, ref terminatorExpecteds, out var terminatorResult);
+                var terminatorSuccess = _terminator.TryParse(ref state, ref terminatorExpecteds, out _);
                 if (terminatorSuccess)
                 {
                     terminatorExpecteds.Dispose();

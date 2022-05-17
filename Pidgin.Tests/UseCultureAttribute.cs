@@ -5,43 +5,41 @@ using System.Threading;
 
 using Xunit.Sdk;
 
-namespace Pidgin.Tests
+namespace Pidgin.Tests;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+public class UseCultureAttribute : BeforeAfterTestAttribute
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class UseCultureAttribute : BeforeAfterTestAttribute
+    private readonly Lazy<CultureInfo> _culture;
+    private readonly Lazy<CultureInfo> _uiCulture;
+    private CultureInfo? _originalCulture;
+    private CultureInfo? _originalUICulture;
+
+    public UseCultureAttribute(string culture)
+        : this(culture, culture) { }
+
+    public UseCultureAttribute(string culture, string uiCulture)
     {
-        readonly Lazy<CultureInfo> culture;
-        readonly Lazy<CultureInfo> uiCulture;
+        _culture = new Lazy<CultureInfo>(() => new(culture));
+        _uiCulture = new Lazy<CultureInfo>(() => new(uiCulture));
+    }
 
-        CultureInfo? originalCulture;
-        CultureInfo? originalUICulture;
+    public CultureInfo Culture => _culture.Value;
 
-        public UseCultureAttribute(string culture)
-            : this(culture, culture) { }
+    public CultureInfo UICulture => _uiCulture.Value;
 
-        public UseCultureAttribute(string culture, string uiCulture)
-        {
-            this.culture = new Lazy<CultureInfo>(() => new CultureInfo(culture));
-            this.uiCulture = new Lazy<CultureInfo>(() => new CultureInfo(uiCulture));
-        }
+    public override void Before(MethodInfo methodUnderTest)
+    {
+        _originalCulture = Thread.CurrentThread.CurrentCulture;
+        _originalUICulture = Thread.CurrentThread.CurrentUICulture;
 
-        public CultureInfo Culture { get { return culture.Value; } }
+        Thread.CurrentThread.CurrentCulture = Culture;
+        Thread.CurrentThread.CurrentUICulture = UICulture;
+    }
 
-        public CultureInfo UICulture { get { return uiCulture.Value; } }
-
-        public override void Before(MethodInfo methodUnderTest)
-        {
-            originalCulture = Thread.CurrentThread.CurrentCulture;
-            originalUICulture = Thread.CurrentThread.CurrentUICulture;
-
-            Thread.CurrentThread.CurrentCulture = Culture;
-            Thread.CurrentThread.CurrentUICulture = UICulture;
-        }
-
-        public override void After(MethodInfo methodUnderTest)
-        {
-            Thread.CurrentThread.CurrentCulture = originalCulture!;
-            Thread.CurrentThread.CurrentUICulture = originalUICulture!;
-        }
+    public override void After(MethodInfo methodUnderTest)
+    {
+        Thread.CurrentThread.CurrentCulture = _originalCulture!;
+        Thread.CurrentThread.CurrentUICulture = _originalUICulture!;
     }
 }

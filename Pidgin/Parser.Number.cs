@@ -4,11 +4,11 @@ namespace Pidgin
 {
     public static partial class Parser
     {
-        private static readonly Parser<char, string> SignString
+        private static readonly Parser<char, string> _signString
             = Char('-').ThenReturn("-")
                 .Or(Char('+').ThenReturn("+"))
                 .Or(Parser<char>.Return(""));
-        private static readonly Parser<char, int> Sign
+        private static readonly Parser<char, int> _sign
             = Char('+').ThenReturn(1)
                 .Or(Char('-').ThenReturn(-1))
                 .Or(Parser<char>.Return(1));
@@ -56,7 +56,7 @@ namespace Pidgin
         public static Parser<char, int> Int(int @base)
             => Map(
                 (sign, num) => sign * num,
-                Sign,
+                _sign,
                 UnsignedInt(@base)
             ).Labelled($"base-{@base} number");
 
@@ -96,20 +96,20 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser which parses a long integer in the given base with an optional sign.
-        /// The resulting <see cref="System.Int64" /> is not checked for overflow.
+        /// The resulting <see cref="long" /> is not checked for overflow.
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses a long integer with an optional sign</returns>
         public static Parser<char, long> Long(int @base)
             => Map(
                 (sign, num) => sign * num,
-                Sign,
+                _sign,
                 UnsignedLong(@base)
             ).Labelled($"base-{@base} number");
 
         /// <summary>
         /// A parser which parses a long integer in the given base without a sign.
-        /// The resulting <see cref="System.Int64" /> is not checked for overflow.
+        /// The resulting <see cref="long" /> is not checked for overflow.
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses a long integer without a sign.</returns>
@@ -140,7 +140,7 @@ namespace Pidgin
             {
             }
         }
-        
+
         private static Parser<char, int> DigitChar(int @base)
             => @base <= 10
                 ? Parser<char>.Token(c => c >= '0' && c < '0' + @base)
@@ -152,7 +152,7 @@ namespace Pidgin
                         || c >= 'a' && c < 'a' + @base - 10
                     )
                     .Select(c => GetLetterOrDigitValue(c));
-        
+
         private static Parser<char, long> DigitCharLong(int @base)
             => @base <= 10
                 ? Parser<char>.Token(c => c >= '0' && c < '0' + @base)
@@ -168,11 +168,11 @@ namespace Pidgin
         private static int GetDigitValue(char c) => c - '0';
         private static int GetLetterOrDigitValue(char c)
         {
-            if (c >= '0' && c <= '9')
+            if (c is >= '0' and <= '9')
             {
                 return GetDigitValue(c);
             }
-            if (c >= 'A' && c <= 'Z')
+            if (c is >= 'A' and <= 'Z')
             {
                 return GetUpperLetterOffset(c) + 10;
             }
@@ -184,11 +184,11 @@ namespace Pidgin
         private static long GetDigitValueLong(char c) => c - '0';
         private static long GetLetterOrDigitValueLong(char c)
         {
-            if (c >= '0' && c <= '9')
+            if (c is >= '0' and <= '9')
             {
                 return GetDigitValueLong(c);
             }
-            if (c >= 'A' && c <= 'Z')
+            if (c is >= 'A' and <= 'Z')
             {
                 return GetUpperLetterOffsetLong(c) + 10;
             }
@@ -198,26 +198,27 @@ namespace Pidgin
         private static long GetLowerLetterOffsetLong(char c) => c - 'a';
 
 
-        private static Parser<char, Unit> _fractionalPart
+        private static readonly Parser<char, Unit> _fractionalPart
             = Char('.').Then(Digit.SkipAtLeastOnce());
-        private static Parser<char, Unit> _optionalFractionalPart
+        private static readonly Parser<char, Unit> _optionalFractionalPart
             = _fractionalPart.Or(Parser<char>.Return(Unit.Value));
         /// <summary>
         /// A parser which parses a floating point number with an optional sign.
         /// </summary>
         /// <returns>A parser which parses a floating point number with an optional sign</returns>
         public static Parser<char, double> Real { get; }
-            = SignString
+            = _signString
                 .Then(
                     // if we saw an integral part, the fractional part is optional
                     _fractionalPart
                         .Or(Digit.SkipAtLeastOnce().Then(_optionalFractionalPart))
                 )
                 .Then(
-                    CIChar('e').Then(SignString).Then(Digit.SkipAtLeastOnce())
+                    CIChar('e').Then(_signString).Then(Digit.SkipAtLeastOnce())
                         .Or(Parser<char>.Return(Unit.Value))
                 )
-                .MapWithInput((span, _) => {
+                .MapWithInput((span, _) =>
+                {
                     var success = double.TryParse(span.ToString(), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
                     if (success)
                     {

@@ -17,7 +17,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>True if and only if the parse error was due to encountering the end of the input stream while parsing</returns>
         public bool EOF { get; }
-        
+
         /// <summary>
         /// The token which caused the parse error.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>An error message</returns>
         public string ToString(SourcePos initialSourcePos) => RenderErrorMessage(initialSourcePos);
-        
+
         /// <summary>
         /// Render the parse error as a string
         /// </summary>
@@ -77,7 +77,7 @@ namespace Pidgin
         {
             var pos = (initialSourcePos ?? new SourcePos(1, 1)) + ErrorPosDelta;
             var sb = new StringBuilder();
-            
+
             sb.Append("Parse error.");
             if (Message != null)
             {
@@ -132,30 +132,30 @@ namespace Pidgin
 
         /// <inheritdoc/>
         public bool Equals(ParseError<TToken>? other)
-            => this.Unexpected.Equals(other?.Unexpected)
-            && this.EOF == other.EOF
-            && (this.Expected == null && other.Expected == null || this.Expected!.SequenceEqual(other.Expected))
-            && this.ErrorPos.Equals(other.ErrorPos)
-            && object.Equals(this.Message, other.Message);
-        
+            => Unexpected.Equals(other?.Unexpected)
+            && EOF == other.EOF
+            && (Expected == null && other.Expected == null || Expected!.SequenceEqual(other.Expected))
+            && ErrorPos.Equals(other.ErrorPos)
+            && object.Equals(Message, other.Message);
+
         /// <inheritdoc/>
         public override bool Equals(object? other)
-            => other is ParseError<TToken>
-            && Equals((ParseError<TToken>)other);
-        
+            => other is ParseError<TToken> error
+            && Equals(error);
+
         /// <inheritdoc/>
         public static bool operator ==(ParseError<TToken> left, ParseError<TToken> right)
             => left.Equals(right);
         /// <inheritdoc/>
         public static bool operator !=(ParseError<TToken> left, ParseError<TToken> right)
             => !left.Equals(right);
-        
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = 17;
+                var hash = 17;
                 hash = hash * 23 + Unexpected.GetHashCode();
                 hash = hash * 23 + EOF.GetHashCode();
                 hash = hash * 23 + Expected.GetHashCode();

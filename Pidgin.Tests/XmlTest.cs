@@ -1,84 +1,85 @@
 using Pidgin.Examples.Xml;
+
 using Xunit;
+
 using Attribute = Pidgin.Examples.Xml.Attribute;
 
-namespace Pidgin.Tests
+namespace Pidgin.Tests;
+
+public class XmlTest
 {
-    public class XmlTest
+
+    [Fact]
+    public void TestParseSelfClosingTagWithoutAttributes()
     {
-
-        [Fact]
-        public void TestParseSelfClosingTagWithoutAttributes()
         {
-            {
-                var input = "<foo/>";
-                var expected = new Tag("foo", new Attribute[] {}, null);
+            var input = "<foo/>";
+            var expected = new Tag("foo", new Attribute[] { }, null);
 
-                var result = XmlParser.Parse(input);
-                
-                Assert.True(result.Success);
-                Assert.Equal(expected, result.Value);
-            }
+            var result = XmlParser.Parse(input);
+
+            Assert.True(result.Success);
+            Assert.Equal(expected, result.Value);
         }
+    }
 
-        [Fact]
-        public void TestParseSelfClosingTagWithAttributes()
+    [Fact]
+    public void TestParseSelfClosingTagWithAttributes()
+    {
         {
-            {
-                var input = "<foo bar=\"baz\" wibble=\"wobble\"/>";
-                var expected = new Tag("foo", new[] { new Attribute("bar", "baz"), new Attribute("wibble", "wobble") }, null);
+            var input = "<foo bar=\"baz\" wibble=\"wobble\"/>";
+            var expected = new Tag("foo", new[] { new Attribute("bar", "baz"), new Attribute("wibble", "wobble") }, null);
 
-                var result = XmlParser.Parse(input);
-    
-                Assert.True(result.Success);
-                Assert.NotNull(result.Value);
-                Assert.Equal(expected, result.Value);
-            }
+            var result = XmlParser.Parse(input);
+
+            Assert.True(result.Success);
+            Assert.NotNull(result.Value);
+            Assert.Equal(expected, result.Value);
         }
+    }
 
-        [Fact]
-        public void TestParseTagWithNoContentAndNoAttributes()
+    [Fact]
+    public void TestParseTagWithNoContentAndNoAttributes()
+    {
         {
-            {
-                var input = "<foo> </foo>";
-                var expected = new Tag("foo", new Attribute[]{}, new Tag[]{});
+            var input = "<foo> </foo>";
+            var expected = new Tag("foo", new Attribute[] { }, new Tag[] { });
 
-                var result = XmlParser.Parse(input);
+            var result = XmlParser.Parse(input);
 
-                Assert.True(result.Success);
-                Assert.NotNull(result.Value);
-                Assert.Equal(expected, result.Value);
-            }
+            Assert.True(result.Success);
+            Assert.NotNull(result.Value);
+            Assert.Equal(expected, result.Value);
         }
+    }
 
-        [Fact]
-        public void TestParseTagWithContentAndAttributes()
+    [Fact]
+    public void TestParseTagWithContentAndAttributes()
+    {
         {
-            {
-                var input = "<foo bar=\"baz\" wibble=\"wobble\"><bar></bar><baz/></foo>";
-                var expected = new Tag(
-                    "foo",
-                    new[] { new Attribute("bar", "baz"), new Attribute("wibble", "wobble") },
-                    new[] { new Tag("bar", new Attribute[]{}, new Tag[]{}), new Tag("baz", new Attribute[]{}, null) });
-                
-                var result = XmlParser.Parse(input);
+            var input = "<foo bar=\"baz\" wibble=\"wobble\"><bar></bar><baz/></foo>";
+            var expected = new Tag(
+                "foo",
+                new[] { new Attribute("bar", "baz"), new Attribute("wibble", "wobble") },
+                new[] { new Tag("bar", new Attribute[] { }, new Tag[] { }), new Tag("baz", new Attribute[] { }, null) });
 
-                Assert.True(result.Success);
-                Assert.NotNull(result.Value);
-                Assert.Equal(expected, result.Value);
-            }
+            var result = XmlParser.Parse(input);
+
+            Assert.True(result.Success);
+            Assert.NotNull(result.Value);
+            Assert.Equal(expected, result.Value);
         }
+    }
 
-        [Fact]
-        public void TestParseMismatchingTags()
+    [Fact]
+    public void TestParseMismatchingTags()
+    {
         {
-            {
-                var input = "<foo></bar>";
+            var input = "<foo></bar>";
 
-                var result = XmlParser.Parse(input);
+            var result = XmlParser.Parse(input);
 
-                Assert.False(result.Success);
-            }
+            Assert.False(result.Success);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(str));
             }
-            return Parser<char>.Sequence<string>(str);
+            return Parser<char>.Sequence(str);
         }
-        
+
         /// <summary>
         /// Creates a parser that parses and returns a literal string, in a case insensitive manner.
         /// The parser returns the actual string parsed.
@@ -36,7 +36,7 @@ namespace Pidgin
             return new CIStringParser(str);
         }
     }
-    
+
     internal sealed class CIStringParser : Parser<char, string>
     {
         private readonly string _value;

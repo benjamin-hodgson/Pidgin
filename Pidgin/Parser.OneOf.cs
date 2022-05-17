@@ -140,7 +140,7 @@ namespace Pidgin
             foreach (var p in _parsers)
             {
                 var thisStartLoc = state.Location;
-                
+
                 if (p.TryParse(ref state, ref grandchildExpecteds, out result))
                 {
                     // throw out all expecteds
@@ -187,7 +187,7 @@ namespace Pidgin
             var list = parsers is ICollection<Parser<TToken, T>> coll
                 ? new List<Parser<TToken, T>>(coll.Count)
                 : new List<Parser<TToken, T>>();
-            
+
             foreach (var p in parsers)
             {
                 if (p == null)

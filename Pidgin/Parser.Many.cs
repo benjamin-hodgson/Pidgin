@@ -19,7 +19,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(parser));
             }
-            
+
             return parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
         }
 
@@ -38,7 +38,7 @@ namespace Pidgin
 
             return parser.AtLeastOnceString().Or(Parser<TToken>.Return(""));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
         /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
@@ -55,7 +55,7 @@ namespace Pidgin
             return parser.AtLeastOncePooled()
                 .Select(sb => GetStringAndDispose(sb));
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, concatenating the resulting string pieces.
         /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
@@ -139,7 +139,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser which applies the current parser zero or more times</returns>
         public Parser<TToken, IEnumerable<T>> Many()
-            => this.AtLeastOnce()
+            => AtLeastOnce()
                 .Or(ReturnEmptyEnumerable);
 
         /// <summary>
@@ -148,34 +148,32 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser that applies the current parser one or more times</returns>
         public Parser<TToken, IEnumerable<T>> AtLeastOnce()
-            => this.ChainAtLeastOnce<IEnumerable<T>, ListChainer>(c => new ListChainer(null));
+            => ChainAtLeastOnce<IEnumerable<T>, ListChainer>(c => ListChainer.Create());
 
         private struct ListChainer : IChainer<T, IEnumerable<T>>
         {
-            private readonly List<T> _list;
-
-            public ListChainer(object? dummy)
-            {
-                _list = new List<T>();
-            }
+            private readonly List<T> List { get; init; }
 
             public void Apply(T value)
             {
-                _list.Add(value);
+                List.Add(value);
             }
 
             public IEnumerable<T> GetResult()
             {
-                return _list;
+                return List;
             }
 
             public void OnError()
             {
             }
+
+            public static ListChainer Create()
+                => new() { List = new List<T>() };
         }
 
         internal Parser<TToken, PooledList<T>> AtLeastOncePooled()
-            => this.ChainAtLeastOnce<PooledList<T>, PooledListChainer>(c => new PooledListChainer(c.ArrayPoolProvider.GetArrayPool<T>()));
+            => ChainAtLeastOnce<PooledList<T>, PooledListChainer>(c => new PooledListChainer(c.ArrayPoolProvider.GetArrayPool<T>()));
 
         private struct PooledListChainer : IChainer<T, PooledList<T>>
         {
@@ -209,7 +207,7 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser which applies the current parser zero or more times</returns>
         public Parser<TToken, Unit> SkipMany()
-            => this.SkipAtLeastOnce()
+            => SkipAtLeastOnce()
                 .Or(ReturnUnit);
 
         /// <summary>
@@ -219,15 +217,15 @@ namespace Pidgin
         /// </summary>
         /// <returns>A parser that applies the current parser one or more times, discarding the results</returns>
         public Parser<TToken, Unit> SkipAtLeastOnce()
-            => this.ChainAtLeastOnce<Unit, NullChainer>(c => new NullChainer());
+            => ChainAtLeastOnce<Unit, NullChainer>(c => new NullChainer());
 
         private struct NullChainer : IChainer<T, Unit>
         {
-            public void Apply(T value) {}
+            public void Apply(T value) { }
 
             public Unit GetResult() => Unit.Value;
 
-            public void OnError() {}
+            public void OnError() { }
         }
     }
 }

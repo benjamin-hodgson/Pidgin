@@ -17,7 +17,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(parser));
             }
-            return this.Then(parser, (t, u) => t);
+            return Then(parser, (t, u) => t);
         }
     }
 }

@@ -26,17 +26,13 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            switch (type)
+            return type switch
             {
-                case BinaryOperatorType.NonAssociative:
-                    return InfixN(opParser);
-                case BinaryOperatorType.LeftAssociative:
-                    return InfixL(opParser);
-                case BinaryOperatorType.RightAssociative:
-                    return InfixR(opParser);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type));
-            }
+                BinaryOperatorType.NonAssociative => InfixN(opParser),
+                BinaryOperatorType.LeftAssociative => InfixL(opParser),
+                BinaryOperatorType.RightAssociative => InfixR(opParser),
+                _ => throw new ArgumentOutOfRangeException(nameof(type)),
+            };
         }
 
         /// <summary>
@@ -56,15 +52,12 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            switch (type)
+            return type switch
             {
-                case UnaryOperatorType.Prefix:
-                    return Prefix(opParser);
-                case UnaryOperatorType.Postfix:
-                    return Postfix(opParser);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type));
-            }
+                UnaryOperatorType.Prefix => Prefix(opParser),
+                UnaryOperatorType.Postfix => Postfix(opParser),
+                _ => throw new ArgumentOutOfRangeException(nameof(type)),
+            };
         }
 
         /// <summary>
@@ -80,7 +73,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            return new OperatorTableRow<TToken, T>(new[]{ opParser }, null, null, null, null );
+            return new OperatorTableRow<TToken, T>(new[] { opParser }, null, null, null, null);
         }
 
         /// <summary>
@@ -96,7 +89,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            return new OperatorTableRow<TToken, T>(null, new[]{ opParser }, null, null, null);
+            return new OperatorTableRow<TToken, T>(null, new[] { opParser }, null, null, null);
         }
 
         /// <summary>
@@ -112,7 +105,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            return new OperatorTableRow<TToken, T>(null, null, new[]{ opParser }, null, null);
+            return new OperatorTableRow<TToken, T>(null, null, new[] { opParser }, null, null);
         }
 
         /// <summary>
@@ -128,7 +121,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            return new OperatorTableRow<TToken, T>(null, null, null, new[]{ opParser }, null);
+            return new OperatorTableRow<TToken, T>(null, null, null, new[] { opParser }, null);
         }
 
         /// <summary>
@@ -144,9 +137,9 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(opParser));
             }
-            return new OperatorTableRow<TToken, T>(null, null, null, null, new[]{ opParser });
+            return new OperatorTableRow<TToken, T>(null, null, null, null, new[] { opParser });
         }
-        
+
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
         /// By default <see cref="Prefix"/> operators can only appear onc, so <c>- - 1</c> would not be parsed as "minus minus 1".
@@ -195,7 +188,7 @@ namespace Pidgin.Expression
         /// <returns>A row in a table of operators which contains a chainable collection of prefix operators</returns>
         public static OperatorTableRow<TToken, T> PrefixChainable<TToken, T>(params Parser<TToken, Func<T, T>>[] opParsers)
             => PrefixChainable(opParsers.AsEnumerable());
-        
+
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of postfix operators.
         /// By default <see cref="Postfix"/> operators can only appear onc, so <c>foo()()</c> would not be parsed as "call(call(foo))".

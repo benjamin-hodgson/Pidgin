@@ -16,7 +16,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
-            return this.Select(x =>
+            return Select(x =>
             {
                 Console.WriteLine(message(x));
                 return x;
@@ -35,7 +35,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
-            return this.Trace(_ => message);
+            return Trace(_ => message);
         }
 
         /// <summary>
@@ -44,6 +44,6 @@ namespace Pidgin
         /// Creates a new parser which runs the current parser and prints the result to the console.
         /// </summary>
         /// <returns>A parser which runs the current parser and prints the result to the console.</returns>
-        public Parser<TToken, T> TraceResult() => this.Trace(x => x!.ToString()!);
+        public Parser<TToken, T> TraceResult() => Trace(x => x!.ToString()!);
     }
 }

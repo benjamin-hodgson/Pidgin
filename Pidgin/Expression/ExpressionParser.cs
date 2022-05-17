@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using static Pidgin.Parser;
 
 namespace Pidgin.Expression
@@ -57,7 +58,7 @@ namespace Pidgin.Expression
             expr = Build(term, operatorTable);
             return expr;
         }
-        
+
         /// <summary>
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTable"/>.
         /// The operator table is a sequence of operators in precedence order:
@@ -161,8 +162,8 @@ namespace Pidgin.Expression
 
         private static Parser<TToken, T> Build<TToken, T>(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {
-            var returnIdentity = Parser<TToken>.Return<Func<T,T>>(x => x);
-            var returnIdentityArray = new[]{ returnIdentity };
+            var returnIdentity = Parser<TToken>.Return<Func<T, T>>(x => x);
+            var returnIdentityArray = new[] { returnIdentity };
 
             var pTerm = Map(
                 (pre, tm, post) => post(pre(tm)),
@@ -203,14 +204,14 @@ namespace Pidgin.Expression
                         return z => partial.ApplyL(z);
                     }
                 );
-            
+
             var op = OneOf(
                 infixN,
                 infixL,
                 infixR,
                 returnIdentity
             );
-            
+
             return Map(
                 (x, f) => f(x),
                 pTerm,

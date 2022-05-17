@@ -61,7 +61,7 @@ namespace Pidgin
     internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
     {
         private static readonly Expected<TToken> _expected
-            = new Expected<TToken>("result satisfying assertion");
+            = new("result satisfying assertion");
 
         private readonly Parser<TToken, T> _parser;
         private readonly Func<T, bool> _predicate;
@@ -102,9 +102,9 @@ namespace Pidgin
                 return false;
             }
 
-            #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
+#pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return true;
-            #pragma warning restore CS8762
+#pragma warning restore CS8762
         }
     }
 }

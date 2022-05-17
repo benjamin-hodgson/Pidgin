@@ -20,7 +20,7 @@ namespace Pidgin
             => SetError(error.Unexpected, error.EOF, error.ErrorLocation, error.Message);
 
         internal InternalError<TToken> GetError()
-            => new InternalError<TToken>(_unexpected, _eof, ErrorLocation, _message);
+            => new(_unexpected, _eof, ErrorLocation, _message);
 
         internal ParseError<TToken> BuildError(ref PooledList<Expected<TToken>> expecteds)
         {

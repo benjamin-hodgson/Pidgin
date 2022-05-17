@@ -19,10 +19,10 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(separator));
             }
-            return this.SeparatedAtLeastOnce(separator)
+            return SeparatedAtLeastOnce(separator)
                 .Or(ReturnEmptyEnumerable);
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.
@@ -52,9 +52,9 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(separator));
             }
-            return this.Before(separator).Many();
+            return Before(separator).Many();
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and terminated with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.
@@ -68,7 +68,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(separator));
             }
-            return this.Before(separator).AtLeastOnce();
+            return Before(separator).AtLeastOnce();
         }
 
         /// <summary>
@@ -84,10 +84,10 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(separator));
             }
-            return this.SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
+            return SeparatedAndOptionallyTerminatedAtLeastOnce(separator)
                 .Or(ReturnEmptyEnumerable);
         }
-        
+
         /// <summary>
         /// Creates a parser which applies the current parser at least once, interleaved and optionally terminated with a specified parser.
         /// The resulting parser ignores the return value of the separator parser.

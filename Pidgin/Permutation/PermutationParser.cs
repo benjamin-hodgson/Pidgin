@@ -15,7 +15,7 @@ namespace Pidgin.Permutation
         /// <typeparam name="TToken">The type of tokens to be consumed by the permutation parser.</typeparam>
         /// <returns></returns>
         public static PermutationParser<TToken, Unit> Create<TToken>()
-            => new PermutationParser<TToken, Unit>(
+            => new(
                 () => Unit.Value,
                 ImmutableList.Create<PermutationParserBranch<TToken, Unit>>()
             );

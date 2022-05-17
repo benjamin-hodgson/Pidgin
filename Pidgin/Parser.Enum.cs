@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Pidgin
@@ -20,7 +19,7 @@ namespace Pidgin
                 .Select(System.Enum.Parse<TEnum>)
                 .Labelled("enum " + typeof(TEnum).Name);
         }
-        
+
         /// <summary>
         /// Creates a parser that parses and returns one of enum values, in a case insensitive manner.
         /// </summary>
@@ -32,9 +31,9 @@ namespace Pidgin
             return OneOf(System.Enum.GetNames<TEnum>()
                     .Select(CIString)
                     .Select(Try))
-                .Select(x=> System.Enum.Parse<TEnum>(x, true))
+                .Select(x => System.Enum.Parse<TEnum>(x, true))
                 .Labelled("enum " + typeof(TEnum).Name);
         }
-        
+
     }
 }

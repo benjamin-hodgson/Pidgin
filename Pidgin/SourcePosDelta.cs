@@ -35,9 +35,9 @@ namespace Pidgin
         /// <param name="other">The <see cref="SourcePosDelta"/> to add to this one.</param>
         /// <returns>A <see cref="SourcePosDelta"/> representing the composition of this and <paramref name="other"/>.</returns>
         public SourcePosDelta Plus(SourcePosDelta other)
-            => new SourcePosDelta(
-                this.Lines + other.Lines,
-                (other.Lines == 0 ? this.Cols : 0) + other.Cols
+            => new(
+                Lines + other.Lines,
+                (other.Lines == 0 ? Cols : 0) + other.Cols
             );
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace Pidgin
 
         /// <inheritdoc/>
         public override bool Equals(object? other)
-            => !ReferenceEquals(null, other)
-            && other is SourcePosDelta
-            && Equals((SourcePosDelta)other);
+            => other is not null
+            && other is SourcePosDelta delta
+            && Equals(delta);
 
         /// <inheritdoc/>
         public static bool operator ==(SourcePosDelta left, SourcePosDelta right)
@@ -84,13 +84,13 @@ namespace Pidgin
         /// <inheritdoc/>
         public static bool operator !=(SourcePosDelta left, SourcePosDelta right)
             => !left.Equals(right);
-        
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = 17;
+                var hash = 17;
                 hash = hash * 23 + Lines.GetHashCode();
                 hash = hash * 23 + Cols.GetHashCode();
                 return hash;

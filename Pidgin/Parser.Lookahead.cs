@@ -40,7 +40,7 @@ namespace Pidgin
                 state.Rewind(bookmark);
                 return true;
             }
-            
+
             state.DiscardBookmark(bookmark);
             return false;
         }
