@@ -1,14 +1,20 @@
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Examples.Expression
 {
-    public interface IExpr : IEquatable<IExpr>
+    public abstract class Expr : IEquatable<Expr>
     {
+        public abstract bool Equals(Expr? other);
+
+        public override bool Equals(object? obj) => Equals(obj as Expr);
+
+        public abstract override int GetHashCode();
     }
 
-    public class Identifier : IExpr
+    public class Identifier : Expr
     {
         public string Name { get; }
 
@@ -17,11 +23,13 @@ namespace Pidgin.Examples.Expression
             Name = name;
         }
 
-        public bool Equals(IExpr? other)
+        public override bool Equals(Expr? other)
             => other is Identifier i && Name == i.Name;
+
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.Ordinal);
     }
 
-    public class Literal : IExpr
+    public class Literal : Expr
     {
         public int Value { get; }
 
@@ -30,25 +38,30 @@ namespace Pidgin.Examples.Expression
             Value = value;
         }
 
-        public bool Equals(IExpr? other)
+        public override bool Equals(Expr? other)
             => other is Literal l && Value == l.Value;
+
+        public override int GetHashCode() => Value;
     }
 
-    public class Call : IExpr
+    [SuppressMessage("naming", "CA1716")]  // "Rename type so that it no longer conflicts with a reserved language keyword"
+    public class Call : Expr
     {
-        public IExpr Expr { get; }
-        public ImmutableArray<IExpr> Arguments { get; }
+        public Expr Expr { get; }
+        public ImmutableArray<Expr> Arguments { get; }
 
-        public Call(IExpr expr, ImmutableArray<IExpr> arguments)
+        public Call(Expr expr, ImmutableArray<Expr> arguments)
         {
             Expr = expr;
             Arguments = arguments;
         }
 
-        public bool Equals(IExpr? other)
+        public override bool Equals(Expr? other)
             => other is Call c
             && Expr.Equals(c.Expr)
             && Arguments.SequenceEqual(c.Arguments);
+            
+        public override int GetHashCode() => HashCode.Combine(Expr, Arguments);
     }
 
     public enum UnaryOperatorType
@@ -56,21 +69,23 @@ namespace Pidgin.Examples.Expression
         Neg,
         Complement
     }
-    public class UnaryOp : IExpr
+    public class UnaryOp : Expr
     {
         public UnaryOperatorType Type { get; }
-        public IExpr Expr { get; }
+        public Expr Expr { get; }
 
-        public UnaryOp(UnaryOperatorType type, IExpr expr)
+        public UnaryOp(UnaryOperatorType type, Expr expr)
         {
             Type = type;
             Expr = expr;
         }
 
-        public bool Equals(IExpr? other)
+        public override bool Equals(Expr? other)
             => other is UnaryOp u
             && Type == u.Type
             && Expr.Equals(u.Expr);
+
+        public override int GetHashCode() => HashCode.Combine(Type, Expr);
     }
 
     public enum BinaryOperatorType
@@ -78,23 +93,25 @@ namespace Pidgin.Examples.Expression
         Add,
         Mul
     }
-    public class BinaryOp : IExpr
+    public class BinaryOp : Expr
     {
         public BinaryOperatorType Type { get; }
-        public IExpr Left { get; }
-        public IExpr Right { get; }
+        public Expr Left { get; }
+        public Expr Right { get; }
 
-        public BinaryOp(BinaryOperatorType type, IExpr left, IExpr right)
+        public BinaryOp(BinaryOperatorType type, Expr left, Expr right)
         {
             Type = type;
             Left = left;
             Right = right;
         }
 
-        public bool Equals(IExpr? other)
+        public override bool Equals(Expr? other)
             => other is BinaryOp b
             && Type == b.Type
             && Left.Equals(b.Left)
             && Right.Equals(b.Right);
+
+        public override int GetHashCode() => HashCode.Combine(Type, Left, Right);
     }
 }

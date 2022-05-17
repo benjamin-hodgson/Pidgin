@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin
 {
@@ -6,6 +7,7 @@ namespace Pidgin
     /// An interface for streams of <typeparamref name="TToken"/>, which can be consumed by <see cref="Parser{TToken, T}"/>s.
     /// </summary>
     /// <typeparam name="TToken">The type of tokens the stream produces</typeparam>
+    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
     public interface ITokenStream<TToken>
     {
         /// <summary>
@@ -27,6 +29,7 @@ namespace Pidgin
         /// The default implementation does nothing and discards the <paramref name="leftovers"/>.
         /// </summary>
         /// <param name="leftovers">The leftovers to push back into the stream.</param>
+        [SuppressMessage("naming", "CA1716")]  // "Rename member so that it no longer conflicts with a reserved language keyword"
         void Return(ReadOnlySpan<TToken> leftovers) { }
 
         /// <summary>

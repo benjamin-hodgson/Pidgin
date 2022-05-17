@@ -102,9 +102,9 @@ namespace Pidgin
             );
 
         /// <inheritdoc/>
-        public override bool Equals(object? other)
-            => other is not null
-            && other is Expected<TToken> expected
+        public override bool Equals(object? obj)
+            => obj is not null
+            && obj is Expected<TToken> expected
             && Equals(expected);
 
         /// <inheritdoc/>
@@ -115,16 +115,7 @@ namespace Pidgin
             => !left.Equals(right);
 
         /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 23 + Label?.GetHashCode() ?? 0;
-                hash = hash * 23 + EnumerableExtensions.GetHashCode(Tokens);
-                return hash;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine(Label, EnumerableExtensions.GetHashCode(Tokens));
 
         /// <inheritdoc/>
         public int CompareTo(Expected<TToken> other)
@@ -134,7 +125,7 @@ namespace Pidgin
             {
                 if (other.Label != null)
                 {
-                    return string.Compare(Label, other.Label);
+                    return string.Compare(Label, other.Label, StringComparison.Ordinal);
                 }
                 return -1;
             }

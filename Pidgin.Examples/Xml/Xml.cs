@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Examples.Xml
@@ -26,17 +27,7 @@ namespace Pidgin.Examples.Xml
             return Equals((Tag)obj);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 23 + Name.GetHashCode();
-                hash = hash * 23 + Attributes.GetHashCode();
-                hash = hash * 23 + Content?.GetHashCode() ?? 0;
-                return hash;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine(Name, Attributes, Content);
 
         public bool Equals(Tag? other)
             => Name == other?.Name
@@ -44,6 +35,7 @@ namespace Pidgin.Examples.Xml
             && ((Content is null && other.Content is null) || Content!.SequenceEqual(other.Content!));
     }
 
+    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Attribute'"
     public class Attribute : IEquatable<Attribute>
     {
         public string Name { get; }

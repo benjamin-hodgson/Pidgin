@@ -22,29 +22,29 @@ namespace Pidgin.Examples.Json
             Token(c => c != '"')
                 .ManyString()
                 .Between(_quote);
-        private static readonly Parser<char, IJson> _jsonString =
-            _string.Select<IJson>(s => new JsonString(s));
+        private static readonly Parser<char, Json> _jsonString =
+            _string.Select<Json>(s => new JsonString(s));
 
-        private static readonly Parser<char, IJson> _json =
+        private static readonly Parser<char, Json> _json =
             _jsonString.Or(Rec(() => _jsonArray!)).Or(Rec(() => _jsonObject!));
 
-        private static readonly Parser<char, IJson> _jsonArray =
+        private static readonly Parser<char, Json> _jsonArray =
             _json.Between(SkipWhitespaces)
                 .Separated(_comma)
                 .Between(_lBracket, _rBracket)
-                .Select<IJson>(els => new JsonArray(els.ToImmutableArray()));
+                .Select<Json>(els => new JsonArray(els.ToImmutableArray()));
 
-        private static readonly Parser<char, KeyValuePair<string, IJson>> _jsonMember =
+        private static readonly Parser<char, KeyValuePair<string, Json>> _jsonMember =
             _string
                 .Before(_colonWhitespace)
-                .Then(_json, (name, val) => new KeyValuePair<string, IJson>(name, val));
+                .Then(_json, (name, val) => new KeyValuePair<string, Json>(name, val));
 
-        private static readonly Parser<char, IJson> _jsonObject =
+        private static readonly Parser<char, Json> _jsonObject =
             _jsonMember.Between(SkipWhitespaces)
                 .Separated(_comma)
                 .Between(_lBrace, _rBrace)
-                .Select<IJson>(kvps => new JsonObject(kvps.ToImmutableDictionary()));
+                .Select<Json>(kvps => new JsonObject(kvps.ToImmutableDictionary()));
 
-        public static Result<char, IJson> Parse(string input) => _json.Parse(input);
+        public static Result<char, Json> Parse(string input) => _json.Parse(input);
     }
 }

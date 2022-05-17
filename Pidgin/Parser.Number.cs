@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Pidgin
@@ -53,6 +54,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses an integer with an optional sign</returns>
+        [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
         public static Parser<char, int> Int(int @base)
             => Map(
                 (sign, num) => sign * num,
@@ -100,6 +102,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="base">The base in which the number is notated, between 1 and 36</param>
         /// <returns>A parser which parses a long integer with an optional sign</returns>
+        [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
         public static Parser<char, long> Long(int @base)
             => Map(
                 (sign, num) => sign * num,

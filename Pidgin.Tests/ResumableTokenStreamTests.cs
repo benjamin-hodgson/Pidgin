@@ -13,7 +13,7 @@ public class ReusableTokenStreamTests
     public void TestResume()
     {
         var input = "aaabb";
-        var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader(input)));
+        using var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader(input)));
 
         // consume two 'a's, reject the third one
         var chunk = new char[3].AsSpan();
@@ -27,7 +27,7 @@ public class ReusableTokenStreamTests
     [Fact]
     public void TestReturnMultipleChunks()
     {
-        var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
+        using var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
         stream.Return("bb");
         stream.Return("aa");
 
@@ -39,7 +39,7 @@ public class ReusableTokenStreamTests
     [Fact]
     public void TestReturnMultipleChunks_GrowBuffer()
     {
-        var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
+        using var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader("cc")));
         stream.Return("bb");
         stream.Return(new string('a', 16));  // default buffer size is 16
 

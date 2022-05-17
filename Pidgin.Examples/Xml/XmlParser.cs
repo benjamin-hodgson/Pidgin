@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,7 +58,7 @@ namespace Pidgin.Examples.Xml
             from open in _openingTag
             from children in Try(_node!).Separated(SkipWhitespaces).Between(SkipWhitespaces)
             from close in ClosingTag
-            where open.Name.Equals(close)
+            where open.Name.Equals(close, StringComparison.Ordinal)
             select new Tag(open.Name, open.Attributes, children);
         private static readonly Parser<char, Tag> _node = Try(_emptyElementTag).Or(_tag);
 

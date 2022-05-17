@@ -17,35 +17,35 @@ namespace Pidgin.Examples.Expression
         private static Parser<char, T> Parenthesised<T>(Parser<char, T> parser)
             => parser.Between(Tok("("), Tok(")"));
 
-        private static Parser<char, Func<IExpr, IExpr, IExpr>> Binary(Parser<char, BinaryOperatorType> op)
-            => op.Select<Func<IExpr, IExpr, IExpr>>(type => (l, r) => new BinaryOp(type, l, r));
-        private static Parser<char, Func<IExpr, IExpr>> Unary(Parser<char, UnaryOperatorType> op)
-            => op.Select<Func<IExpr, IExpr>>(type => o => new UnaryOp(type, o));
+        private static Parser<char, Func<Expr, Expr, Expr>> Binary(Parser<char, BinaryOperatorType> op)
+            => op.Select<Func<Expr, Expr, Expr>>(type => (l, r) => new BinaryOp(type, l, r));
+        private static Parser<char, Func<Expr, Expr>> Unary(Parser<char, UnaryOperatorType> op)
+            => op.Select<Func<Expr, Expr>>(type => o => new UnaryOp(type, o));
 
-        private static readonly Parser<char, Func<IExpr, IExpr, IExpr>> _add
+        private static readonly Parser<char, Func<Expr, Expr, Expr>> _add
             = Binary(Tok("+").ThenReturn(BinaryOperatorType.Add));
-        private static readonly Parser<char, Func<IExpr, IExpr, IExpr>> _mul
+        private static readonly Parser<char, Func<Expr, Expr, Expr>> _mul
             = Binary(Tok("*").ThenReturn(BinaryOperatorType.Mul));
-        private static readonly Parser<char, Func<IExpr, IExpr>> _neg
+        private static readonly Parser<char, Func<Expr, Expr>> _neg
             = Unary(Tok("-").ThenReturn(UnaryOperatorType.Neg));
-        private static readonly Parser<char, Func<IExpr, IExpr>> _complement
+        private static readonly Parser<char, Func<Expr, Expr>> _complement
             = Unary(Tok("~").ThenReturn(UnaryOperatorType.Complement));
 
-        private static readonly Parser<char, IExpr> _identifier
+        private static readonly Parser<char, Expr> _identifier
             = Tok(Letter.Then(LetterOrDigit.ManyString(), (h, t) => h + t))
-                .Select<IExpr>(name => new Identifier(name))
+                .Select<Expr>(name => new Identifier(name))
                 .Labelled("identifier");
-        private static readonly Parser<char, IExpr> _literal
+        private static readonly Parser<char, Expr> _literal
             = Tok(Num)
-                .Select<IExpr>(value => new Literal(value))
+                .Select<Expr>(value => new Literal(value))
                 .Labelled("integer literal");
 
-        private static Parser<char, Func<IExpr, IExpr>> Call(Parser<char, IExpr> subExpr)
+        private static Parser<char, Func<Expr, Expr>> Call(Parser<char, Expr> subExpr)
             => Parenthesised(subExpr.Separated(Tok(",")))
-                .Select<Func<IExpr, IExpr>>(args => method => new Call(method, args.ToImmutableArray()))
+                .Select<Func<Expr, Expr>>(args => method => new Call(method, args.ToImmutableArray()))
                 .Labelled("function call");
 
-        private static readonly Parser<char, IExpr> _expr = ExpressionParser.Build<char, IExpr>(
+        private static readonly Parser<char, Expr> _expr = ExpressionParser.Build<char, Expr>(
             expr => (
                 OneOf(
                     _identifier,
@@ -62,7 +62,7 @@ namespace Pidgin.Examples.Expression
             )
         ).Labelled("expression");
 
-        public static IExpr ParseOrThrow(string input)
+        public static Expr ParseOrThrow(string input)
             => _expr.ParseOrThrow(input);
     }
 }

@@ -114,7 +114,13 @@ namespace Pidgin.Permutation
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
         public PermutationParser<TToken, (T, Maybe<U>)> AddOptional<U>(Parser<TToken, U> parser)
-            => AddOptional(parser.Select(Maybe.Just), Maybe.Nothing<U>());
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return AddOptional(parser.Select(Maybe.Just), Maybe.Nothing<U>());
+        }
 
         /// <summary>
         /// Adds an optional parser to the collection.
@@ -158,7 +164,13 @@ namespace Pidgin.Permutation
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
         public PermutationParser<TToken, R> AddOptional<U, R>(Parser<TToken, U> parser, Func<T, Maybe<U>, R> resultSelector)
-            => AddOptional(parser.Select(Maybe.Just), () => Maybe.Nothing<U>(), resultSelector);
+        {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
+            return AddOptional(parser.Select(Maybe.Just), () => Maybe.Nothing<U>(), resultSelector);
+        }
 
         /// <summary>
         /// Adds an optional parser to the collection.
@@ -208,7 +220,7 @@ namespace Pidgin.Permutation
 
             var this_exit = _exit;
             return new PermutationParser<TToken, R>(
-                this_exit == null ? null as Func<R> : () => resultSelector(this_exit!(), defaultValueFactory()),
+                this_exit == null ? null : () => resultSelector(this_exit!(), defaultValueFactory()),
                 ConvertForestAndAddParser(b => b.AddOptional(parser, defaultValueFactory, resultSelector), parser, resultSelector)
             );
         }

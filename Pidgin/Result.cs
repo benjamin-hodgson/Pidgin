@@ -24,13 +24,13 @@ namespace Pidgin
             Success = true;
             ConsumedInput = consumedInput;
             _value = value;
-            _error = default(ParseError<TToken>);
+            _error = default;
         }
         internal Result(bool consumedInput, ParseError<TToken> error)
         {
             Success = false;
             ConsumedInput = consumedInput;
-            _value = default(T)!;
+            _value = default!;
             _error = error;
         }
 
@@ -83,7 +83,14 @@ namespace Pidgin
         /// Get the value, or return the result of calling the specified function.
         /// </summary>
         /// <returns>The value if <see cref="Success"/> is true, or the result of calling the specified function.</returns>
-        public T GetValueOrDefault(Func<T> value) => Success ? _value : value();
+        public T GetValueOrDefault(Func<T> value) 
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+            return Success ? _value : value();
+        }
 
         /// <summary>
         /// Tear down this parse result using a function for the two possible outcomes.
@@ -94,9 +101,19 @@ namespace Pidgin
         /// <param name="failure">Called when the result does not have a value</param>
         /// <returns>The result of calling the <paramref name="success"/> or <paramref name="failure"/> function</returns>
         public U Match<U>(Func<T, U> success, Func<ParseError<TToken>, U> failure)
-            => Success
+        {
+            if (success == null)
+            {
+                throw new ArgumentNullException(nameof(success));
+            }
+            if (failure == null)
+            {
+                throw new ArgumentNullException(nameof(failure));
+            }
+            return Success
                 ? success(_value)
                 : failure(Error!);
+        }
 
         /// <summary>
         /// Project the value contained in the result
@@ -105,9 +122,15 @@ namespace Pidgin
         /// <typeparam name="U">The type of the resulting value</typeparam>
         /// <returns>The result of applying the transformation function to the contained value</returns>
         public Result<TToken, U> Select<U>(Func<T, U> selector)
-            => Success
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            return Success
                 ? new Result<TToken, U>(ConsumedInput, selector(_value))
                 : new Result<TToken, U>(ConsumedInput, Error!);
+        }
 
         /// <summary>
         /// Projects the value of the result into a result, and flattens the resulting value into a single result.
@@ -128,6 +151,14 @@ namespace Pidgin
         /// <returns>The result of applying <paramref name="selector"/> to the contained value and <paramref name="result"/> to the intermediate values</returns>
         public Result<TToken, R> SelectMany<U, R>(Func<T, Result<TToken, U>> selector, Func<T, U, R> result)
         {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
             if (!Success)
             {
                 return new Result<TToken, R>(ConsumedInput, Error!);
@@ -146,7 +177,13 @@ namespace Pidgin
         /// <param name="result">A fallback result if this one has an error</param>
         /// <returns>This result, if <see cref="Success"/> == true, or the result of calling <paramref name="result"/></returns>
         public Result<TToken, T> Or(Func<Result<TToken, T>> result)
-            => !Success ? result() : this;
+        {
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+            return !Success ? result() : this;
+        }
 
         /// <summary>
         /// Choose the first successful result

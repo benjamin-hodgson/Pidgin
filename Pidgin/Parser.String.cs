@@ -12,6 +12,7 @@ namespace Pidgin
         /// <param name="str">The string to parse</param>
         /// <returns>A parser that parses and returns a literal string</returns>
         /// 
+        [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
         public static Parser<char, string> String(string str)
         {
             if (str == null)

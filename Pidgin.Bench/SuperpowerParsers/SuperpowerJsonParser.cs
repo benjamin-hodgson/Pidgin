@@ -29,29 +29,29 @@ namespace Pidgin.Bench.SuperpowerParsers
                 .Many()
                 .Between(_quote, _quote)
                 .Select(string.Concat);
-        private static readonly TextParser<IJson> _jsonString =
-            _string.Select(s => (IJson)new JsonString(s));
+        private static readonly TextParser<Json> _jsonString =
+            _string.Select(s => (Json)new JsonString(s));
 
-        private static readonly TextParser<IJson> _json =
+        private static readonly TextParser<Json> _json =
             _jsonString.Or(Superpower.Parse.Ref(() => _jsonArray)).Or(Superpower.Parse.Ref(() => _jsonObject));
 
-        private static readonly TextParser<IJson> _jsonArray =
+        private static readonly TextParser<Json> _jsonArray =
             _json.Between(Character.WhiteSpace.Many(), Character.WhiteSpace.Many())
                 .ManyDelimitedBy(_comma)
                 .Between(_lBracket, _rBracket)
-                .Select(els => (IJson)new JsonArray(els.ToImmutableArray()));
+                .Select(els => (Json)new JsonArray(els.ToImmutableArray()));
 
-        private static readonly TextParser<KeyValuePair<string, IJson>> _jsonMember =
+        private static readonly TextParser<KeyValuePair<string, Json>> _jsonMember =
             from name in _string.SelectMany(_ => _colonWhitespace, (name, ws) => name)  // avoid allocating a transparent identifier for a result we don't care about
             from val in _json
-            select new KeyValuePair<string, IJson>(name, val);
+            select new KeyValuePair<string, Json>(name, val);
 
-        private static readonly TextParser<IJson> _jsonObject =
+        private static readonly TextParser<Json> _jsonObject =
             _jsonMember.Between(Character.WhiteSpace.Many(), Character.WhiteSpace.Many())
                 .ManyDelimitedBy(_comma)
                 .Between(_lBrace, _rBrace)
-                .Select(kvps => (IJson)new JsonObject(kvps.ToImmutableDictionary()));
+                .Select(kvps => (Json)new JsonObject(kvps.ToImmutableDictionary()));
 
-        public static IJson Parse(string input) => _json.Parse(input);
+        public static Json Parse(string input) => _json.Parse(input);
     }
 }

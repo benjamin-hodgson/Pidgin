@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -6,6 +8,7 @@ namespace Pidgin
         /// A parser which returns the number of input tokens which have been consumed.
         /// </summary>
         /// <returns>A parser which returns the number of input tokens which have been consumed</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, int> CurrentOffset { get; }
             = new CurrentOffsetParser<TToken>();
     }

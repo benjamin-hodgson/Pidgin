@@ -1,3 +1,5 @@
+using System;
+
 using Pidgin.Examples.Xml;
 
 using Xunit;
@@ -14,7 +16,7 @@ public class XmlTest
     {
         {
             var input = "<foo/>";
-            var expected = new Tag("foo", new Attribute[] { }, null);
+            var expected = new Tag("foo", Array.Empty<Attribute>(), null);
 
             var result = XmlParser.Parse(input);
 
@@ -43,7 +45,7 @@ public class XmlTest
     {
         {
             var input = "<foo> </foo>";
-            var expected = new Tag("foo", new Attribute[] { }, new Tag[] { });
+            var expected = new Tag("foo", Array.Empty<Attribute>(), Array.Empty<Tag>());
 
             var result = XmlParser.Parse(input);
 
@@ -61,7 +63,7 @@ public class XmlTest
             var expected = new Tag(
                 "foo",
                 new[] { new Attribute("bar", "baz"), new Attribute("wibble", "wobble") },
-                new[] { new Tag("bar", new Attribute[] { }, new Tag[] { }), new Tag("baz", new Attribute[] { }, null) });
+                new[] { new Tag("bar", Array.Empty<Attribute>(), Array.Empty<Tag>()), new Tag("baz", Array.Empty<Attribute>(), null) });
 
             var result = XmlParser.Parse(input);
 

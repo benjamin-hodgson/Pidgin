@@ -43,6 +43,13 @@ namespace Pidgin
             );
 
         /// <summary>
+        /// Add a <see cref="SourcePosDelta"/> to this <see cref="SourcePos"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="SourcePosDelta"/> to add to this <see cref="SourcePos"/>.</param>
+        /// <returns>A <see cref="SourcePos"/> representing the composition of this and <paramref name="other"/>.</returns>
+        public SourcePos Add(SourcePosDelta other) => Plus(other);
+
+        /// <summary>
         /// Creates a <see cref="SourcePos"/> with the column number incremented by one
         /// </summary>
         /// <returns>A <see cref="SourcePos"/> with the column number incremented by one</returns>
@@ -70,9 +77,9 @@ namespace Pidgin
             && Col == other.Col;
 
         /// <inheritdoc/>
-        public override bool Equals(object? other)
-            => other is not null
-            && other is SourcePos pos
+        public override bool Equals(object? obj)
+            => obj is not null
+            && obj is SourcePos pos
             && Equals(pos);
 
         /// <inheritdoc/>
@@ -83,16 +90,7 @@ namespace Pidgin
             => !left.Equals(right);
 
         /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 23 + Line.GetHashCode();
-                hash = hash * 23 + Col.GetHashCode();
-                return hash;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine(Line, Col);
 
         /// <inheritdoc/>
         public int CompareTo(SourcePos other)

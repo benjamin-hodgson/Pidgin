@@ -122,6 +122,7 @@ namespace Pidgin
         private static class FastEqualInternal<T>
         {
             private static readonly Func<ImmutableArray<T>, ImmutableArray<T>, bool>? _callFastEqual;
+            [SuppressMessage("design", "CA1810")]  // "Initialize all static fields when those fields are declared and remove the static constructor"
             static FastEqualInternal()
             {
                 var type = typeof(T);
@@ -155,6 +156,7 @@ namespace Pidgin
         private static class FastCompareInternal<T>
         {
             private static readonly Comparison<ImmutableArray<T>>? _callFastCompare;
+            [SuppressMessage("design", "CA1810")]  // "Initialize all static fields when those fields are declared and remove the static constructor"
             static FastCompareInternal()
             {
                 var type = typeof(T);

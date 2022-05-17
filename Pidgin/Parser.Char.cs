@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using static Pidgin.Parser<char>;
@@ -14,6 +15,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="character">The character to parse</param>
         /// <returns>A parser which parses and returns a single character</returns>
+        [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
         public static Parser<char, char> Char(char character) => Token(character);
 
         /// <summary>

@@ -12,6 +12,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="token">The token to parse</param>
         /// <returns>A parser that parses and returns a single token</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, TToken> Token(TToken token)
             // equivalent to Token(token.Equals) but with better error messages
             => new TokenParser<TToken>(token);
@@ -21,6 +22,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="predicate">A predicate function to apply to a token</param>
         /// <returns>A parser that parses and returns a single token satisfying a predicate</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, TToken> Token(Func<TToken, bool> predicate)
         {
             if (predicate == null)

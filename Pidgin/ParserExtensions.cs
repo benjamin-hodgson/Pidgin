@@ -55,10 +55,12 @@ namespace Pidgin
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, IEnumerable<TToken> input, IConfiguration<TToken>? configuration = null)
         {
-            using (var e = input.GetEnumerator())
+            if (input == null)
             {
-                return Parse(parser, e, configuration);
+                throw new ArgumentNullException(nameof(input));
             }
+            using var e = input.GetEnumerator();
+            return Parse(parser, e, configuration);
         }
 
         /// <summary>
@@ -112,6 +114,10 @@ namespace Pidgin
         /// <returns>The result of parsing</returns>
         public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, IConfiguration<TToken>? configuration = null)
         {
+            if (parser == null)
+            {
+                throw new ArgumentNullException(nameof(parser));
+            }
             var state = new ParseState<TToken>(configuration ?? Config.Default<TToken>(), input);
             var result = DoParse(parser, ref state);
             KeepAlive(ref input);

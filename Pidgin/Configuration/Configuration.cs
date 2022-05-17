@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pidgin.Configuration
 {
     /// <summary>
     /// Methods for creating and updating <see cref="IConfiguration{TToken}"/>s.
     /// </summary>
+    [SuppressMessage("naming", "CA1724")]  // "The type name conflicts with the namespace name 'System.Configuration'"
     public static class Configuration
     {
         /// <summary>

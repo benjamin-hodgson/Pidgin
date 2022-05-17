@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Attributes;
@@ -116,13 +117,13 @@ namespace Pidgin.Bench
             Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
         }
 
-        private static IJson BuildJson(int length, int depth, int width)
+        private static Json BuildJson(int length, int depth, int width)
             => new JsonArray(
                 Enumerable.Repeat(1, length)
                     .Select(_ => BuildObject(depth, width))
                     .ToImmutableArray()
             );
-        private static IJson BuildObject(int depth, int width)
+        private static Json BuildObject(int depth, int width)
         {
             if (depth == 0)
             {
@@ -130,12 +131,13 @@ namespace Pidgin.Bench
             }
             return new JsonObject(
                 Enumerable.Repeat(1, width)
-                    .Select(_ => new KeyValuePair<string, IJson>(RandomString(5), BuildObject(depth - 1, width)))
+                    .Select(_ => new KeyValuePair<string, Json>(RandomString(5), BuildObject(depth - 1, width)))
                     .ToImmutableDictionary()
             );
         }
 
         private static readonly Random _random = new();
+        [SuppressMessage("security", "CA5394")]  // Use cryptographically secure random number generators
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

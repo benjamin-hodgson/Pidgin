@@ -1,16 +1,18 @@
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Examples.Json
 {
-    public interface IJson
+    [SuppressMessage("naming", "CA1724")]  // "The type name conflicts with the namespace name"
+    public abstract class Json
     {
     }
 
-    public class JsonArray : IJson
+    public class JsonArray : Json
     {
-        public ImmutableArray<IJson> Elements { get; }
-        public JsonArray(ImmutableArray<IJson> elements)
+        public ImmutableArray<Json> Elements { get; }
+        public JsonArray(ImmutableArray<Json> elements)
         {
             Elements = elements;
         }
@@ -18,10 +20,10 @@ namespace Pidgin.Examples.Json
             => $"[{string.Join(",", Elements.Select(e => e.ToString()))}]";
     }
 
-    public class JsonObject : IJson
+    public class JsonObject : Json
     {
-        public IImmutableDictionary<string, IJson> Members { get; }
-        public JsonObject(IImmutableDictionary<string, IJson> members)
+        public IImmutableDictionary<string, Json> Members { get; }
+        public JsonObject(IImmutableDictionary<string, Json> members)
         {
             Members = members;
         }
@@ -29,7 +31,7 @@ namespace Pidgin.Examples.Json
             => $"{{{string.Join(",", Members.Select(kvp => $"\"{kvp.Key}\":{kvp.Value}"))}}}";
     }
 
-    public class JsonString : IJson
+    public class JsonString : Json
     {
         public string Value { get; }
         public JsonString(string value)

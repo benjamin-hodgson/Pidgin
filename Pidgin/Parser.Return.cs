@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Pidgin
 {
     public static partial class Parser<TToken>
@@ -8,6 +10,7 @@ namespace Pidgin
         /// <param name="value">The value to return</param>
         /// <typeparam name="T">The type of the value to return</typeparam>
         /// <returns>A parser which returns the specified value without consuming any input</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, T> Return<T>(T value)
             => new ReturnParser<TToken, T>(value);
     }

@@ -15,7 +15,7 @@ public class ParseStateTests
     public void TestEmptyInput()
     {
         var input = "";
-        var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
+        using var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
         Assert.Equal(SourcePosDelta.Zero, state.ComputeSourcePosDelta());
         Assert.False(state.HasCurrent);
@@ -112,7 +112,7 @@ public class ParseStateTests
     {
         {
             var input = "a\n\nb";
-            var state = new ParseState<char>(DefaultConfiguration<char>.Instance, input.AsSpan());
+            using var state = new ParseState<char>(DefaultConfiguration<char>.Instance, input.AsSpan());
 
             state.Advance(input.Length);
 
@@ -130,14 +130,14 @@ public class ParseStateTests
             + "aa";  // a partial chunk with no newlines
 
         {
-            var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
+            using var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
             state.Advance(input.Length);
 
             Assert.Equal(new SourcePosDelta(6, Vector<short>.Count * 2 + 8), state.ComputeSourcePosDelta());
         }
         {
-            var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
+            using var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
             state.Advance(1);
             state.ComputeSourcePosDelta();
@@ -149,7 +149,7 @@ public class ParseStateTests
 
     private static void AlignedChunkTest(int inputLength)
     {
-        var input = ('f' + new string('o', inputLength - 1));
+        var input = 'f' + new string('o', inputLength - 1);
         var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
         var bookmark = state.Bookmark();

@@ -324,7 +324,7 @@ public class StringParserTests : ParserTestBase
             AssertSuccess(parser.Parse("-1"), -1L, true);
             AssertSuccess(parser.Parse("12345"), 12345L, true);
             var tooBigForInt = ((long)int.MaxValue) + 1;
-            AssertSuccess(parser.Parse(tooBigForInt.ToString()), tooBigForInt, true);
+            AssertSuccess(parser.Parse(tooBigForInt.ToString(null as IFormatProvider)), tooBigForInt, true);
             AssertSuccess(parser.Parse("1a"), 1, true);
             AssertFailure(
                 parser.Parse(""),
@@ -2121,8 +2121,8 @@ public class StringParserTests : ParserTestBase
             AssertSuccess(parser.Parse("foo "), new[] { "foo" }, true);
             AssertSuccess(parser.Parse("foo foo "), new[] { "foo", "foo" }, true);
             AssertSuccess(parser.Parse("foo bar"), new[] { "foo" }, true);
-            AssertSuccess(parser.Parse(""), new string[] { }, false);
-            AssertSuccess(parser.Parse("bar"), new string[] { }, false);
+            AssertSuccess(parser.Parse(""), Array.Empty<string>(), false);
+            AssertSuccess(parser.Parse("bar"), Array.Empty<string>(), false);
             AssertFailure(
                 parser.Parse("foo"),
                 new ParseError<char>(
@@ -2260,8 +2260,8 @@ public class StringParserTests : ParserTestBase
             AssertSuccess(parser.Parse("foo foo bar"), new[] { "foo", "foo" }, true);
             AssertSuccess(parser.Parse("foo bar"), new[] { "foo" }, true);
             AssertSuccess(parser.Parse("foobar"), new[] { "foo" }, true);
-            AssertSuccess(parser.Parse(""), new string[] { }, false);
-            AssertSuccess(parser.Parse("bar"), new string[] { }, false);
+            AssertSuccess(parser.Parse(""), Array.Empty<string>(), false);
+            AssertSuccess(parser.Parse("bar"), Array.Empty<string>(), false);
             AssertFailure(
                 parser.Parse("four"),
                 new ParseError<char>(

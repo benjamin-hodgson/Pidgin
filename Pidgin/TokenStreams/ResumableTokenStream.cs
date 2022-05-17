@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace Pidgin.TokenStreams
@@ -9,6 +10,7 @@ namespace Pidgin.TokenStreams
     /// and adds support for resumable parsing.
     /// </summary>
     /// <typeparam name="TToken">The type of tokens returned by the wrapped <see cref="ITokenStream{TToken}"/>.</typeparam>
+    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
     public class ResumableTokenStream<TToken> : ITokenStream<TToken>, IDisposable
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
@@ -90,7 +92,14 @@ namespace Pidgin.TokenStreams
         /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>
         public void Dispose()
         {
-            if (_buffer != null)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && _buffer != null)
             {
                 _pool.Return(_buffer, _needsClear);
                 _bufferStart = 0;

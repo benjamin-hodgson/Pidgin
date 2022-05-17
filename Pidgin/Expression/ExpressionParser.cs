@@ -53,6 +53,10 @@ namespace Pidgin.Expression
             IEnumerable<OperatorTableRow<TToken, T>> operatorTable
         )
         {
+            if (termFactory == null)
+            {
+                throw new ArgumentNullException(nameof(termFactory));
+            }
             Parser<TToken, T>? expr = null;
             var term = termFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -91,6 +95,10 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>> operatorTableFactory
         )
         {
+            if (operatorTableFactory == null)
+            {
+                throw new ArgumentNullException(nameof(operatorTableFactory));
+            }
             Parser<TToken, T>? expr = null;
             var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -113,6 +121,10 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>> operatorTableFactory
         )
         {
+            if (operatorTableFactory == null)
+            {
+                throw new ArgumentNullException(nameof(operatorTableFactory));
+            }
             Parser<TToken, T>? expr = null;
             var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -133,6 +145,10 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<OperatorTableRow<TToken, T>> operatorTable)> termAndOperatorTableFactory
         )
         {
+            if (termAndOperatorTableFactory == null)
+            {
+                throw new ArgumentNullException(nameof(termAndOperatorTableFactory));
+            }
             Parser<TToken, T>? expr = null;
             var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -153,6 +169,10 @@ namespace Pidgin.Expression
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>> operatorTable)> termAndOperatorTableFactory
         )
         {
+            if (termAndOperatorTableFactory == null)
+            {
+                throw new ArgumentNullException(nameof(termAndOperatorTableFactory));
+            }
             Parser<TToken, T>? expr = null;
             var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);

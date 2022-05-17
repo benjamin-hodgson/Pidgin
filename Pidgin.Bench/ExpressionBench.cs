@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using BenchmarkDotNet.Attributes;
@@ -69,11 +70,13 @@ namespace Pidgin.Bench
             _rightAssoc.ParseOrThrow("1+1");
         }
         [Benchmark(Baseline = true), BenchmarkCategory("Short")]
+        [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
         public void ShortInfixL_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseL("1+1");
         }
         [Benchmark, BenchmarkCategory("Short")]
+        [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
         public void ShortInfixR_FParsec()
         {
             Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");

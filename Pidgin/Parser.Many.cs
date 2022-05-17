@@ -81,10 +81,6 @@ namespace Pidgin
                 _list = new PooledList<char>(arrayPool);
             }
 
-            public void Setup()
-            {
-            }
-
             public void Apply(string value)
             {
                 _list.AddRange(value.AsSpan());

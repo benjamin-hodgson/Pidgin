@@ -50,7 +50,7 @@ public class TryTests : ParserTestBase
     }
 
 
-    private void DoTest<TToken, TInput>(
+    private static void DoTest<TToken, TInput>(
         Func<Parser<TToken, IEnumerable<TToken>>, TInput, Result<TToken, IEnumerable<TToken>>> parseFunc,
         Func<string, IEnumerable<TToken>> render,
         Func<string, TInput> toInput

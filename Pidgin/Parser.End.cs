@@ -8,6 +8,7 @@ namespace Pidgin
         /// Creates a parser which parses the end of the input stream
         /// </summary>
         /// <returns>A parser which parses the end of the input stream and returns <see cref="Unit.Value"/></returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, Unit> End { get; } = new EndParser<TToken>();
     }
 

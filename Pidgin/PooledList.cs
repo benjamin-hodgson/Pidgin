@@ -15,6 +15,7 @@ namespace Pidgin
     /// It's intended to be passed by reference.
     /// </summary>
     /// <typeparam name="T">The type of elements of the list</typeparam>
+    [SuppressMessage("performance", "CA1815", Justification = "This type is not meant to be equatable")]  // "Struct should override Equals"
     public struct PooledList<T> : IDisposable, IList<T>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
@@ -98,6 +99,10 @@ namespace Pidgin
         /// <param name="items">The items to add</param>
         public void AddRange(ICollection<T> items)
         {
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items));
+            }
             GrowIfNecessary(items.Count);
             items.CopyTo(_items, Count);
             Count += items.Count;
@@ -106,6 +111,10 @@ namespace Pidgin
         /// <param name="items">The items to add</param>
         public void AddRange(IEnumerable<T> items)
         {
+            if (items == null)
+            {
+                throw new ArgumentNullException(nameof(items));
+            }
             switch (items)
             {
                 case T[] a:

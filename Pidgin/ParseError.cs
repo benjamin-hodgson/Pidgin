@@ -139,30 +139,18 @@ namespace Pidgin
             && object.Equals(Message, other.Message);
 
         /// <inheritdoc/>
-        public override bool Equals(object? other)
-            => other is ParseError<TToken> error
+        public override bool Equals(object? obj)
+            => obj is ParseError<TToken> error
             && Equals(error);
 
         /// <inheritdoc/>
         public static bool operator ==(ParseError<TToken> left, ParseError<TToken> right)
-            => left.Equals(right);
+            => (left is null && right is null) || (left is not null && left.Equals(right));
         /// <inheritdoc/>
         public static bool operator !=(ParseError<TToken> left, ParseError<TToken> right)
-            => !left.Equals(right);
+            => !(left == right);
 
         /// <inheritdoc/>
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 23 + Unexpected.GetHashCode();
-                hash = hash * 23 + EOF.GetHashCode();
-                hash = hash * 23 + Expected.GetHashCode();
-                hash = hash * 23 + ErrorPos.GetHashCode();
-                hash = hash * 23 + Message?.GetHashCode() ?? 0;
-                return hash;
-            }
-        }
+        public override int GetHashCode() => HashCode.Combine(Unexpected, EOF, Expected, ErrorPos, Message);
     }
 }

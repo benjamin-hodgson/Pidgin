@@ -16,6 +16,7 @@ namespace Pidgin
         /// </summary>
         /// <param name="tokens">A sequence of tokens</param>
         /// <returns>A parser that parses a literal sequence of tokens</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, TToken[]> Sequence(params TToken[] tokens)
         {
             if (tokens == null)
@@ -31,6 +32,7 @@ namespace Pidgin
         /// <typeparam name="TEnumerable">The type of tokens to parse</typeparam>
         /// <param name="tokens">A sequence of tokens</param>
         /// <returns>A parser that parses a literal sequence of tokens</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, TEnumerable> Sequence<TEnumerable>(TEnumerable tokens)
             where TEnumerable : IEnumerable<TToken>
         {
@@ -48,6 +50,7 @@ namespace Pidgin
         /// <typeparam name="T">The return type of the parsers</typeparam>
         /// <param name="parsers">A sequence of parsers</param>
         /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(params Parser<TToken, T>[] parsers)
         {
             return Sequence(parsers.AsEnumerable());
@@ -60,6 +63,7 @@ namespace Pidgin
         /// <typeparam name="T">The return type of the parsers</typeparam>
         /// <param name="parsers">A sequence of parsers</param>
         /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(IEnumerable<Parser<TToken, T>> parsers)
         {
             if (parsers == null)
@@ -120,6 +124,7 @@ namespace Pidgin
             return new SequenceTokenParserSlow<TToken, TEnumerable>(tokens);
         }
 
+        [SuppressMessage("design", "CA1810")]  // "Initialize all static fields when those fields are declared and remove the static constructor"
         static SequenceTokenParser()
         {
             var ttoken = typeof(TToken).GetTypeInfo();

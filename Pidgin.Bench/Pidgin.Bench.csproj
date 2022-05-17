@@ -3,7 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <IsPackable>false</IsPackable>
-        <SignAssembly>false</SignAssembly>
+        <SignAssembly>false</SignAssembly>  <!-- Sprache is not signed -->
+        <NoWarn>$(NoWarn);CA1812</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

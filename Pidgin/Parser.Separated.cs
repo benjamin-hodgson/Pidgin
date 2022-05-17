@@ -134,7 +134,7 @@ namespace Pidgin
             return true;
         }
 
-        private bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, List<T> ts)
+        private static bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, List<T> ts)
         {
             var lastStartingLoc = state.Location;
             var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());

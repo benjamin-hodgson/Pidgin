@@ -80,7 +80,14 @@ namespace Pidgin
         /// </summary>
         /// <param name="value">A function to call to create a default value, if the <see cref="Maybe{T}"/> does not contain a value</param>
         /// <returns>The value if <see cref="HasValue"/> is true, or the result of calling <paramref name="value"/>.</returns>
-        public T GetValueOrDefault(Func<T> value) => HasValue ? _value : value();
+        public T GetValueOrDefault(Func<T> value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+            return HasValue ? _value : value();
+        }
 
         /// <summary>
         /// Tear down this <see cref="Maybe{T}"/> using a function for the two possible outcomes.
@@ -91,7 +98,17 @@ namespace Pidgin
         /// <param name="nothing">Called when the result does not have a value</param>
         /// <returns>The result of calling the <paramref name="just"/> or <paramref name="nothing"/> function</returns>
         public U Match<U>(Func<T, U> just, Func<U> nothing)
-            => HasValue ? just(_value) : nothing();
+        {
+            if (just == null)
+            {
+                throw new ArgumentNullException(nameof(just));
+            }
+            if (nothing == null)
+            {
+                throw new ArgumentNullException(nameof(nothing));
+            }
+            return HasValue ? just(_value) : nothing();
+        }
 
         /// <summary>
         /// Project the value contained in the <see cref="Maybe{T}"/> using the specified transformation function.
@@ -100,7 +117,13 @@ namespace Pidgin
         /// <typeparam name="U">The type of the resulting value</typeparam>
         /// <returns>The result of applying the transformation function to the contained value, or <see cref="Maybe.Nothing{U}()"/></returns>
         public Maybe<U> Select<U>(Func<T, U> selector)
-            => HasValue ? Maybe.Just(selector(_value)) : Maybe.Nothing<U>();
+        {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            return HasValue ? Maybe.Just(selector(_value)) : Maybe.Nothing<U>();
+        }
 
         /// <summary>
         /// Filter a <see cref="Maybe{T}"/> according to a predicate.
@@ -108,7 +131,13 @@ namespace Pidgin
         /// <param name="predicate">A predicate to apply to the value contained within the <see cref="Maybe{T}"/>.</param>
         /// <returns>A <see cref="Maybe{T}"/> containing the current <see cref="Maybe{T}"/>'s <see cref="Value"/>, if the <see cref="HasValue"/> property returns true and the value satisfies the predicate, or <see cref="Maybe.Nothing{T}()"/></returns>
         public Maybe<T> Where(Func<T, bool> predicate)
-            => HasValue && predicate(_value) ? this : Maybe.Nothing<T>();
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+            return HasValue && predicate(_value) ? this : Maybe.Nothing<T>();
+        }
 
         /// <summary>
         /// Projects the element of the <see cref="Maybe{T}"/> into a possibly-absent value, and flattens the resulting value into a single <see cref="Maybe{T}"/>.
@@ -129,6 +158,14 @@ namespace Pidgin
         /// <returns>The result of applying <paramref name="selector"/> to the contained value and <paramref name="result"/> to the intermediate values, or <see cref="Maybe.Nothing{R}()"/> if the <see cref="HasValue"/> property returns false or the selector returns an absent value</returns>
         public Maybe<R> SelectMany<U, R>(Func<T, Maybe<U>> selector, Func<T, U, R> result)
         {
+            if (selector == null)
+            {
+                throw new ArgumentNullException(nameof(selector));
+            }
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
             if (!HasValue)
             {
                 return Maybe.Nothing<R>();
@@ -164,8 +201,8 @@ namespace Pidgin
             || (!HasValue && !other.HasValue);
 
         /// <inheritdoc/>
-        public override bool Equals(object? other)
-            => other is Maybe<T> maybe
+        public override bool Equals(object? obj)
+            => obj is Maybe<T> maybe
             && Equals(maybe);
 
         /// <inheritdoc/>

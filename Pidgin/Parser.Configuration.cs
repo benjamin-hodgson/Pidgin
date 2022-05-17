@@ -7,6 +7,7 @@ namespace Pidgin
     public static partial class Parser<TToken>
     {
         /// <summary>A parser which returns the current <see cref="IConfiguration{TToken}"/>.</summary>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, IConfiguration<TToken>> Configuration { get; } = new ConfigurationParser<TToken>();
     }
 

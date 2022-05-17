@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Expression
@@ -7,6 +8,7 @@ namespace Pidgin.Expression
     /// <summary>
     /// Methods to create <see cref="OperatorTableRow{TToken, T}"/> values.
     /// </summary>
+    [SuppressMessage("naming", "CA1716")]  // "Rename type so that it no longer conflicts with a reserved language keyword"
     public static class Operator
     {
         /// <summary>

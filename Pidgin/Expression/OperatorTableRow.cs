@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Expression
@@ -63,6 +64,7 @@ namespace Pidgin.Expression
         /// An empty row in a table of operators
         /// </summary>
         /// <returns>An empty row in a table of operators</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static OperatorTableRow<TToken, T> Empty { get; }
             = new OperatorTableRow<TToken, T>(null, null, null, null, null);
 
@@ -72,12 +74,18 @@ namespace Pidgin.Expression
         /// <param name="otherRow">A collection of parsers for operators</param>
         /// <returns>The current collection of parsers combined with <paramref name="otherRow"/></returns>
         public OperatorTableRow<TToken, T> And(OperatorTableRow<TToken, T> otherRow)
-            => new(
+        {
+            if (otherRow == null)
+            {
+                throw new ArgumentNullException(nameof(otherRow));
+            }
+            return new(
                 InfixNOps.Concat(otherRow.InfixNOps),
                 InfixLOps.Concat(otherRow.InfixLOps),
                 InfixROps.Concat(otherRow.InfixROps),
                 PrefixOps.Concat(otherRow.PrefixOps),
                 PostfixOps.Concat(otherRow.PostfixOps)
             );
+        }
     }
 }

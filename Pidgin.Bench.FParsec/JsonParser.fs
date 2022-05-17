@@ -4,7 +4,7 @@ open FParsec
 open Pidgin.Examples.Json
 open System.Collections.Immutable
 
-let upcastJson (x : IJson) = x
+let upcastJson (x : Json) = x
 
 let lbrace : Parser<char, unit> = pchar '{'
 let rbrace : Parser<char, unit> = pchar '}'

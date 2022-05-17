@@ -12,6 +12,7 @@ namespace Pidgin
         /// <param name="message">A custom error message</param>
         /// <typeparam name="T">The return type of the resulting parser</typeparam>
         /// <returns>A parser which always fails</returns>
+        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, T> Fail<T>(string message = "Failed")
         {
             if (message == null)
