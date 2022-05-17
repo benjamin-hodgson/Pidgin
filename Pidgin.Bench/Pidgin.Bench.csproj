@@ -1,21 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <IsPackable>false</IsPackable>
+        <SignAssembly>false</SignAssembly>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../Pidgin/Pidgin.csproj" />
-    <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
-    <ProjectReference Include="../Pidgin.Bench.FParsec/Pidgin.Bench.FParsec.fsproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../Pidgin/Pidgin.csproj" />
+        <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
+        <ProjectReference Include="../Pidgin.Bench.FParsec/Pidgin.Bench.FParsec.fsproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Sprache" Version="2.3.1" />
-    <PackageReference Include="Superpower" Version="2.3.0" />
-    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Sprache" Version="2.3.1" />
+        <PackageReference Include="Superpower" Version="2.3.0" />
+        <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    </ItemGroup>
 </Project>

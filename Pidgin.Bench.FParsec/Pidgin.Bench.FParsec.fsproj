@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="JsonParser.fs" />
-    <Compile Include="ExpressionParser.fs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Include="JsonParser.fs" />
+        <Compile Include="ExpressionParser.fs" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../Pidgin.Examples/Pidgin.Examples.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FParsec" Version="1.1.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FParsec" Version="1.1.1" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    </ItemGroup>
 
 </Project>

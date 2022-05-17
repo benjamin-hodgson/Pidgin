@@ -1,20 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-    <Nullable>enable</Nullable>
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Pidgin.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../Pidgin/Pidgin.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../Pidgin/Pidgin.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-      <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    </ItemGroup>
 
 </Project>

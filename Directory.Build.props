@@ -1,0 +1,21 @@
+<Project>
+    <PropertyGroup>
+        <Authors>benjamin.hodgson</Authors>
+        <Copyright>© Benjamin Hodgson, 2017</Copyright>
+        <Description>A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.</Description>
+        <PackageTags>parser;parsing;language;compiler</PackageTags>
+
+        <PackageProjectUrl>https://github.com/benjamin-hodgson/Pidgin</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/benjamin-hodgson/Pidgin</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Pidgin.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
+</Project>
