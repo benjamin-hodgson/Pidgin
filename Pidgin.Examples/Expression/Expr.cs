@@ -60,7 +60,7 @@ namespace Pidgin.Examples.Expression
             => other is Call c
             && Expr.Equals(c.Expr)
             && Arguments.SequenceEqual(c.Arguments);
-            
+
         public override int GetHashCode() => HashCode.Combine(Expr, Arguments);
     }
 

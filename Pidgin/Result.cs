@@ -83,7 +83,7 @@ namespace Pidgin
         /// Get the value, or return the result of calling the specified function.
         /// </summary>
         /// <returns>The value if <see cref="Success"/> is true, or the result of calling the specified function.</returns>
-        public T GetValueOrDefault(Func<T> value) 
+        public T GetValueOrDefault(Func<T> value)
         {
             if (value == null)
             {
