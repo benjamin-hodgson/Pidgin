@@ -980,7 +980,7 @@ When the character is one of the given characters, the parser fails without cons
                 <a id="Pidgin_Parser_AtLeastOnceString_"></a>
                 <h4 id="Pidgin_Parser_AtLeastOnceString__1_Pidgin_Parser___0_System_Char__"><a href="#Pidgin_Parser_AtLeastOnceString__1_Pidgin_Parser___0_System_Char__">AtLeastOnceString&lt;TToken&gt;(Parser&lt;TToken, Char&gt;)</a></h4>
                 <div><p>Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
-Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
+Equivalent to <code>parser.AtLeastOnce().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, string&gt; AtLeastOnceString&lt;TToken&gt;(this Parser&lt;TToken, char&gt; parser)</code></pre>
@@ -1729,7 +1729,7 @@ Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
                 <a id="Pidgin_Parser_ManyString_"></a>
                 <h4 id="Pidgin_Parser_ManyString__1_Pidgin_Parser___0_System_String__"><a href="#Pidgin_Parser_ManyString__1_Pidgin_Parser___0_System_String__">ManyString&lt;TToken&gt;(Parser&lt;TToken, String&gt;)</a></h4>
                 <div><p>Creates a parser which applies the current parser zero or more times, concatenating the resulting string pieces.
-Equivalent to <code>parser.Many().Select(cs =&gt; string.Concat(cs))</code></p>
+Equivalent to <code>parser.AtLeastOnce().Select(cs =&gt; string.Concat(cs))</code></p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static Parser&lt;TToken, string&gt; ManyString&lt;TToken&gt;(this Parser&lt;TToken, string&gt; parser)</code></pre>
