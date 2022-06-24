@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class PermutationParser&lt;TToken, T&gt;
      | Pidgin ">
-      <meta name="generator" content="docfx 2.56.7.0">
+      <meta name="generator" content="docfx 2.59.2.0">
     
       
       <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -252,7 +252,7 @@ If you want to run a parser optionally, use <a class="xref" href="Pidgin.Permuta
                 <div><p>Adds a parser to the collection.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, ValueTuple&lt;T, U&gt;&gt; Add&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; Add&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -283,7 +283,7 @@ If you want to run a parser optionally, use <a class="xref" href="Pidgin.Permuta
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</p></td>
+                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;T, U&gt;&gt;</p></td>
                                     <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added.</p>
 </td>
                                 </tr>
@@ -398,7 +398,7 @@ If you want to run a parser optionally, use <a class="xref" href="Pidgin.Permuta
 In that case, <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> will be returned.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, ValueTuple&lt;T, Maybe&lt;U&gt;&gt;&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, Maybe&lt;U&gt;)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -429,7 +429,7 @@ In that case, <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">N
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;U&gt;&gt;&gt;</p></td>
+                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;T, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;U&gt;&gt;&gt;</p></td>
                                     <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
 </td>
                                 </tr>
@@ -467,7 +467,7 @@ In that case, <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">N
 In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> will be returned.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, ValueTuple&lt;T, U&gt;&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, U defaultValue)</code></pre>
+                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, U defaultValue)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -504,7 +504,7 @@ In that case, <code data-dev-comment-type="paramref" class="paramref">defaultVal
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</p></td>
+                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;T, U&gt;&gt;</p></td>
                                     <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
 </td>
                                 </tr>
@@ -542,7 +542,7 @@ In that case, <code data-dev-comment-type="paramref" class="paramref">defaultVal
 In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValueFactory</code> will be called to get a value to return.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, ValueTuple&lt;T, U&gt;&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;U&gt; defaultValueFactory)</code></pre>
+                    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;U&gt; defaultValueFactory)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -579,7 +579,7 @@ In that case, <code data-dev-comment-type="paramref" class="paramref">defaultVal
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</p></td>
+                                    <td><p><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;T, U&gt;&gt;</p></td>
                                     <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
 </td>
                                 </tr>

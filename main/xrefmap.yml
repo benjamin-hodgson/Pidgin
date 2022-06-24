@@ -667,23 +667,23 @@ references:
   nameWithType: ExpressionParser.Build<TToken, T>(Func<Parser<TToken, T>, Parser<TToken, T>>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>)
   nameWithType.vb: ExpressionParser.Build(Of TToken, T)(Func(Of Parser(Of TToken, T), Parser(Of TToken, T)), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))
 - uid: Pidgin.Expression.ExpressionParser.Build``2(System.Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},System.Collections.Generic.IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}})
-  name: Build<TToken, T>(Func<Parser<TToken, T>, ValueTuple<Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>>>)
+  name: Build<TToken, T>(Func<Parser<TToken, T>, (Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>)>)
   href: Pidgin.Expression.ExpressionParser.html#Pidgin_Expression_ExpressionParser_Build__2_System_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1_____
   commentId: M:Pidgin.Expression.ExpressionParser.Build``2(System.Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},System.Collections.Generic.IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}})
-  name.vb: Build(Of TToken, T)(Func(Of Parser(Of TToken, T), ValueTuple(Of Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))))
+  name.vb: Build(Of TToken, T)(Func(Of Parser(Of TToken, T), (Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))(Of Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))))
   fullName: Pidgin.Expression.ExpressionParser.Build<TToken, T>(System.Func<Pidgin.Parser<TToken, T>, System.ValueTuple<Pidgin.Parser<TToken, T>, System.Collections.Generic.IEnumerable<Pidgin.Expression.OperatorTableRow<TToken, T>>>>)
   fullName.vb: Pidgin.Expression.ExpressionParser.Build(Of TToken, T)(System.Func(Of Pidgin.Parser(Of TToken, T), System.ValueTuple(Of Pidgin.Parser(Of TToken, T), System.Collections.Generic.IEnumerable(Of Pidgin.Expression.OperatorTableRow(Of TToken, T)))))
-  nameWithType: ExpressionParser.Build<TToken, T>(Func<Parser<TToken, T>, ValueTuple<Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>>>)
-  nameWithType.vb: ExpressionParser.Build(Of TToken, T)(Func(Of Parser(Of TToken, T), ValueTuple(Of Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))))
+  nameWithType: ExpressionParser.Build<TToken, T>(Func<Parser<TToken, T>, (Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>)>)
+  nameWithType.vb: ExpressionParser.Build(Of TToken, T)(Func(Of Parser(Of TToken, T), (Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))(Of Parser(Of TToken, T), IEnumerable(Of OperatorTableRow(Of TToken, T)))))
 - uid: Pidgin.Expression.ExpressionParser.Build``2(System.Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}}})
-  name: Build<TToken, T>(Func<Parser<TToken, T>, ValueTuple<Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>>>)
+  name: Build<TToken, T>(Func<Parser<TToken, T>, (Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>)>)
   href: Pidgin.Expression.ExpressionParser.html#Pidgin_Expression_ExpressionParser_Build__2_System_Func_Pidgin_Parser___0___1__System_ValueTuple_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable_System_Collections_Generic_IEnumerable_Pidgin_Expression_OperatorTableRow___0___1______
   commentId: M:Pidgin.Expression.ExpressionParser.Build``2(System.Func{Pidgin.Parser{``0,``1},System.ValueTuple{Pidgin.Parser{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Pidgin.Expression.OperatorTableRow{``0,``1}}}}})
-  name.vb: Build(Of TToken, T)(Func(Of Parser(Of TToken, T), ValueTuple(Of Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))))
+  name.vb: Build(Of TToken, T)(Func(Of Parser(Of TToken, T), (Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))(Of Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))))
   fullName: Pidgin.Expression.ExpressionParser.Build<TToken, T>(System.Func<Pidgin.Parser<TToken, T>, System.ValueTuple<Pidgin.Parser<TToken, T>, System.Collections.Generic.IEnumerable<System.Collections.Generic.IEnumerable<Pidgin.Expression.OperatorTableRow<TToken, T>>>>>)
   fullName.vb: Pidgin.Expression.ExpressionParser.Build(Of TToken, T)(System.Func(Of Pidgin.Parser(Of TToken, T), System.ValueTuple(Of Pidgin.Parser(Of TToken, T), System.Collections.Generic.IEnumerable(Of System.Collections.Generic.IEnumerable(Of Pidgin.Expression.OperatorTableRow(Of TToken, T))))))
-  nameWithType: ExpressionParser.Build<TToken, T>(Func<Parser<TToken, T>, ValueTuple<Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>>>)
-  nameWithType.vb: ExpressionParser.Build(Of TToken, T)(Func(Of Parser(Of TToken, T), ValueTuple(Of Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))))
+  nameWithType: ExpressionParser.Build<TToken, T>(Func<Parser<TToken, T>, (Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>)>)
+  nameWithType.vb: ExpressionParser.Build(Of TToken, T)(Func(Of Parser(Of TToken, T), (Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))(Of Parser(Of TToken, T), IEnumerable(Of IEnumerable(Of OperatorTableRow(Of TToken, T))))))
 - uid: Pidgin.Expression.Operator
   name: Operator
   href: Pidgin.Expression.Operator.html

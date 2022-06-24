@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "/github/workspace/Pidgin.Docs",
+  "source_base_path": "/home/runner/work/Pidgin/Pidgin/Pidgin.Docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Comment.CommentParser.html",
-          "hash": "EpRvgu6c0jGQaxCXWFt4ng=="
+          "hash": "An1QdmhF6SHw67K8+XxYeVtMrI6gDTV0LqUkMMg4v34="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Comment.html",
-          "hash": "QQsr2bZV071M/9XBxaH6aQ=="
+          "hash": "ZSjA36enehnbp41C5/b36mKZ1WnyZVhh9F6rTZU9GFw="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.CharDefaultConfiguration.html",
-          "hash": "qHgWwoAUF0VQ1kvDpBNphg=="
+          "hash": "KegBJ2DD0BrqbZ4e12qaiDBM/DOlLk1kWqYwGemq0DI="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.Configuration.html",
-          "hash": "C+Wo9HrDmjxYT/aS+05PKw=="
+          "hash": "qACfiw6Fqd25pUj06w7IzsHlTcGNrrK+g0Rc62Dp0YA="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.DefaultArrayPoolProvider.html",
-          "hash": "d5oQon/Ab5oAbrqr6JidFA=="
+          "hash": "QV3DcM5E3vyLXZZKhhpuB9No2tms4TdS2BYgQXckl7Y="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.DefaultConfiguration-1.html",
-          "hash": "/i9Hdwx/qCaHPHaYrlNcbw=="
+          "hash": "X2EpIBIP0/nkT6uREX9Uqhp5doiCVtO/XwMLsiSwP+U="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.IArrayPoolProvider.html",
-          "hash": "LmQtpQ0wYFO1SnFsdsPdnA=="
+          "hash": "ZWgANST4po7kwP4zb+LlBkiRZn/ZXdsrUxjoAJc06+g="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.IConfiguration-1.html",
-          "hash": "M2XOQyBLMXPpZY/5MvBcnQ=="
+          "hash": "229zL+/3wbDGorm0Ba2ZoJyVHNW57adzUjK1r6ICS+I="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Configuration.html",
-          "hash": "Z1ax/wz4MEkI/MzPQMC15Q=="
+          "hash": "US2JnEAwChQ7Kk7OyrQV1fpcSD1JGq69/1aZJ2+QLSw="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expected-1.html",
-          "hash": "Dym9cP25NzO1OOfRW/gajg=="
+          "hash": "HxutgG2ez3r4jv+bYIpNTwz7w4T47vU4pX05YbkzxNU="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.BinaryOperatorType.html",
-          "hash": "hrorF+Gr7jD6GROvmx6YEA=="
+          "hash": "d75kf+kC6rk1VmrwKwseRdWwj913gaoNfzfF15lzxXI="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.ExpressionParser.html",
-          "hash": "teUaTXFRn+vWV0v4QFsQBA=="
+          "hash": "4kJYclq0M5lXyqQ/58+vKWX0tRCdoJvi120kDkjJmzo="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.Operator.html",
-          "hash": "KgkjVfVlZgx0NHzsHoZWLw=="
+          "hash": "Dfi1n95cPtFCCL4DpZbknewazl+XOJnyVBs9dbCW3C4="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.OperatorTableRow-2.html",
-          "hash": "7XjetQEwt8aoxUEz7R1Msg=="
+          "hash": "QAQHAMBpvcQwdggXqzU0hJ+D3eqPVhIsz6No2Rz1bYU="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.UnaryOperatorType.html",
-          "hash": "Y86LzshdlFHSDkPg5jrZxw=="
+          "hash": "FGZnaz/que5yvzLQ6A9Zja3mCX8/wBsSJ8FJJGWKH3M="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Expression.html",
-          "hash": "U4FBb38l/uK71gOSWfp+TQ=="
+          "hash": "f/R9S17NRRgLGrKyxoIHKI13/XepalysbE4avb9+Km8="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ITokenStream-1.html",
-          "hash": "ccwfmQtLC4JtHFS+F8wcSg=="
+          "hash": "VPA3gLFkENm58DhF8YS4H83CMAEo/E7ony6oJb6Q+e4="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Maybe-1.html",
-          "hash": "nrrMOBErpGPwMedUicgK0Q=="
+          "hash": "BbkkeHgHIDAusJ4qVYj+9m/nSeVKTRXgVZErj3X8cXc="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Maybe.html",
-          "hash": "Xh/VeWG5tUNzeWJ3uGFiKw=="
+          "hash": "I7rEIkR+XjDH1CzvuWtz2kFr/g0FLECUWmSeI6WnIzo="
         }
       },
       "is_incremental": false,
@@ -246,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ParseError-1.html",
-          "hash": "7wObQlA8Upbhrbdzoqg0hw=="
+          "hash": "Yef+7XxTC8R6u7dO2WsuIbOFINCz9r2sOIsIepWyKKg="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ParseException.html",
-          "hash": "owiht7ra7mNSMDWZhghb+A=="
+          "hash": "1MT1DEW1XI9rZVjPNOGY4UTc5cHWc9c/h0U4WqyUaJ0="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ParseState-1.html",
-          "hash": "fn8HQGBf8dw3TvoI6mX5tQ=="
+          "hash": "lCsQt2UyDZwdVtDJGS5Wes/5YRrSw48+H/Szftyyt/w="
         }
       },
       "is_incremental": false,
@@ -282,7 +282,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Parser-1.html",
-          "hash": "DnmgiiG0NTwvy9glRALCvg=="
+          "hash": "1TDNO+wMW+VtrGko9P5HOZlXhqY0LZir8JnUtLcmzpU="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Parser-2.html",
-          "hash": "0+LfNy7voC2qfX23FU6Yiw=="
+          "hash": "qVOIPBlMLklZHoFLqV87EguwUVwAskv6kk+/ymO5N2A="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Parser.html",
-          "hash": "cxGafD0N6zLGoW/JhFeTYQ=="
+          "hash": "Ma6kMS4cSNsSxBSLGI3OW9BDdjD7lB+O+F1msLwUpZg="
         }
       },
       "is_incremental": false,
@@ -318,7 +318,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ParserExtensions.html",
-          "hash": "Y+bnX1CJy6+5u2UqE6PZyw=="
+          "hash": "TuD8ciTIExOEJ6f41Qc8T7WwkhKJ8RWNWuuVZEP1Irc="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Permutation.PermutationParser-2.html",
-          "hash": "7eOTMrMrz0ylu/h4JF7k2Q=="
+          "hash": "VoX73EgUkjm5PLvmohDh+R6nsSnXG9rGWh/W4+bsngs="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Permutation.PermutationParser.html",
-          "hash": "pFlg3OzWiCbIobydq/ZBGg=="
+          "hash": "5NYeTiQG20xw+aG5JScLtsHPk9t9uzcDuFlJKs+/mKo="
         }
       },
       "is_incremental": false,
@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Permutation.html",
-          "hash": "Zylskf4DvJ89F5UEaXbHlg=="
+          "hash": "XuuSP1NylPDZHaUxbNYwOx6yYWCeGUFVa23rySFeRTY="
         }
       },
       "is_incremental": false,
@@ -366,7 +366,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.PooledList-1.html",
-          "hash": "wjBjtACrXz7pYTYq6ucXnw=="
+          "hash": "OE0yHnkYhOWKkAKjXIEiBnKLVCa+lgC25BAMx4y0YQM="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.ReadOnlySpanFunc-3.html",
-          "hash": "8HiXBG2W0gCdqNv8M10D7A=="
+          "hash": "7XbB5SIw/MWT2mGyh3Z+6sRGvRof4q32OXh7gDGLU8c="
         }
       },
       "is_incremental": false,
@@ -390,7 +390,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Result-2.html",
-          "hash": "WSDM0Xo9y+Onkkat7wdRyw=="
+          "hash": "Vj6S4J8hkm2erP9ygXXPLM9qtHcPHMAXs3z3kdEMdKc="
         }
       },
       "is_incremental": false,
@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.SourcePos.html",
-          "hash": "77E/kG//xlPqZNfgO+G6yg=="
+          "hash": "KW/UKjxW0Z7TkrhhiFp0h4ocr6mw+9hELZoEXACr8xE="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.SourcePosDelta.html",
-          "hash": "ubvQGZM8DKwTxHpGnAArUQ=="
+          "hash": "P4ZFC4iL4530QzdyFV875hL348jYuKe4BpgPriZWKK0="
         }
       },
       "is_incremental": false,
@@ -426,7 +426,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.EnumeratorTokenStream-1.html",
-          "hash": "xMHhuDIpilPorw3C3586tg=="
+          "hash": "vkcSJyKSNP2iyV2yW+mKr17I40h8PtC7aM5HCSaZMfs="
         }
       },
       "is_incremental": false,
@@ -438,7 +438,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.ListTokenStream-1.html",
-          "hash": "guxns7hcQ2v+q3+l1YsMCA=="
+          "hash": "rRt4fThed+xOq9BENRzlQSwkcf20BlDpATGyYGCnb3o="
         }
       },
       "is_incremental": false,
@@ -450,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html",
-          "hash": "a5KoTAvyWzJwyu1VUTKG5w=="
+          "hash": "tRphLnwps0NuAoBHlhKD3oZ9hfqUdbyolPKLzCrUao4="
         }
       },
       "is_incremental": false,
@@ -462,7 +462,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.ReaderTokenStream.html",
-          "hash": "Wz6TJTmgaVDYYGzOnS8Yyw=="
+          "hash": "PLuVNpcl7qMRGc0+Fx93ckwfWqTn/uENQwLEoj8UJ5U="
         }
       },
       "is_incremental": false,
@@ -474,7 +474,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.ResumableTokenStream-1.html",
-          "hash": "w2jZsNWw7zi0WC7uX9QEog=="
+          "hash": "y8bLkv9xuv1lhLjlJANcOSfe6pDoqczgsOuFvLJdki4="
         }
       },
       "is_incremental": false,
@@ -486,7 +486,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.StreamTokenStream.html",
-          "hash": "znF4Q2KfAP6Ws+dhncYZrQ=="
+          "hash": "OJchDrYxXKcX62ZQvCN3BU5k2gTwUW5qzN3w4vypM+M="
         }
       },
       "is_incremental": false,
@@ -498,7 +498,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.TokenStreams.html",
-          "hash": "OjNOVeX6fjdO/bjddSel8w=="
+          "hash": "ZFG3wghSzu1SZSLNeZjzH0AmtBax7D48jEHF/Z/jyHk="
         }
       },
       "is_incremental": false,
@@ -510,7 +510,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.Unit.html",
-          "hash": "Q27ugmhRCKDWFUZbvbD8OQ=="
+          "hash": "5QYOX7tMvUyNVOFFrfs2n87jL1hlC8dP34kctiXJO/U="
         }
       },
       "is_incremental": false,
@@ -522,7 +522,7 @@
       "output": {
         ".html": {
           "relative_path": "Pidgin.html",
-          "hash": "BR889E9VrKgxz6uRfC+K+A=="
+          "hash": "GeG/sspwnmjIsE5QteobKckCQe7NXxkoKOwkRwqLhEI="
         }
       },
       "is_incremental": false,
@@ -534,7 +534,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "INus+VsdtwZS010fV4zbEA=="
+          "hash": "Wsn5uIdPWq7zAl687sKC4sPlidZwDs3ebXaScKxk9qk="
         }
       },
       "is_incremental": false,
