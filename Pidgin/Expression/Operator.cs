@@ -144,7 +144,7 @@ namespace Pidgin.Expression
 
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
-        /// By default <see cref="Prefix"/> operators can only appear onc, so <c>- - 1</c> would not be parsed as "minus minus 1".
+        /// By default <see cref="Prefix"/> operators can only appear once, so <c>- - 1</c> would not be parsed as "minus minus 1".
         /// 
         /// This method is equivalent to:
         /// <code>
@@ -175,7 +175,7 @@ namespace Pidgin.Expression
             );
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of prefix operators.
-        /// By default <see cref="Prefix"/> operators can only appear onc, so <c>- - 1</c> would not be parsed as "minus minus 1".
+        /// By default <see cref="Prefix"/> operators can only appear once, so <c>- - 1</c> would not be parsed as "minus minus 1".
         /// 
         /// This method is equivalent to:
         /// <code>
@@ -193,7 +193,7 @@ namespace Pidgin.Expression
 
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of postfix operators.
-        /// By default <see cref="Postfix"/> operators can only appear onc, so <c>foo()()</c> would not be parsed as "call(call(foo))".
+        /// By default <see cref="Postfix"/> operators can only appear once, so <c>foo()()</c> would not be parsed as "call(call(foo))".
         /// 
         /// This method is equivalent to:
         /// <code>
@@ -224,7 +224,7 @@ namespace Pidgin.Expression
             );
         /// <summary>
         /// Creates a row in a table of operators which contains a chainable collection of postfix operators.
-        /// By default <see cref="Postfix"/> operators can only appear onc, so <c>foo()()</c> would not be parsed as "call(call(foo))".
+        /// By default <see cref="Postfix"/> operators can only appear once, so <c>foo()()</c> would not be parsed as "call(call(foo))".
         /// 
         /// This method is equivalent to:
         /// <code>
