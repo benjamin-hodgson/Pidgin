@@ -591,7 +591,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
                 <a id="Pidgin_Expression_Operator_PostfixChainable_"></a>
                 <h4 id="Pidgin_Expression_Operator_PostfixChainable__2_Pidgin_Parser___0_System_Func___1___1_____"><a href="#Pidgin_Expression_Operator_PostfixChainable__2_Pidgin_Parser___0_System_Func___1___1_____">PostfixChainable&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;[])</a></h4>
                 <div><p>Creates a row in a table of operators which contains a chainable collection of postfix operators.
-By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_System_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_System_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear once, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
 <p>This method is equivalent to:</p>
 <pre><code>Postfix(
     OneOf(opParsers)
@@ -669,7 +669,7 @@ By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expressi
                 <a id="Pidgin_Expression_Operator_PostfixChainable_"></a>
                 <h4 id="Pidgin_Expression_Operator_PostfixChainable__2_System_Collections_Generic_IEnumerable_Pidgin_Parser___0_System_Func___1___1____"><a href="#Pidgin_Expression_Operator_PostfixChainable__2_System_Collections_Generic_IEnumerable_Pidgin_Parser___0_System_Func___1___1____">PostfixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;)</a></h4>
                 <div><p>Creates a row in a table of operators which contains a chainable collection of postfix operators.
-By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_System_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Postfix__2_Pidgin_Parser___0_System_Func___1___1___">Postfix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear once, so <code>foo()()</code> would not be parsed as &quot;call(call(foo))&quot;.</p>
 <p>This method is equivalent to:</p>
 <pre><code>Postfix(
     OneOf(opParsers)
@@ -820,7 +820,7 @@ Can be combined with other <a class="xref" href="Pidgin.Expression.OperatorTable
                 <a id="Pidgin_Expression_Operator_PrefixChainable_"></a>
                 <h4 id="Pidgin_Expression_Operator_PrefixChainable__2_Pidgin_Parser___0_System_Func___1___1_____"><a href="#Pidgin_Expression_Operator_PrefixChainable__2_Pidgin_Parser___0_System_Func___1___1_____">PrefixChainable&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;[])</a></h4>
                 <div><p>Creates a row in a table of operators which contains a chainable collection of prefix operators.
-By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_System_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_System_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear once, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
 <p>This method is equivalent to:</p>
 <pre><code>Prefix(
     OneOf(opParsers)
@@ -898,7 +898,7 @@ By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expressi
                 <a id="Pidgin_Expression_Operator_PrefixChainable_"></a>
                 <h4 id="Pidgin_Expression_Operator_PrefixChainable__2_System_Collections_Generic_IEnumerable_Pidgin_Parser___0_System_Func___1___1____"><a href="#Pidgin_Expression_Operator_PrefixChainable__2_System_Collections_Generic_IEnumerable_Pidgin_Parser___0_System_Func___1___1____">PrefixChainable&lt;TToken, T&gt;(IEnumerable&lt;Parser&lt;TToken, Func&lt;T, T&gt;&gt;&gt;)</a></h4>
                 <div><p>Creates a row in a table of operators which contains a chainable collection of prefix operators.
-By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_System_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear onc, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
+By default <a class="xref" href="Pidgin.Expression.Operator.html#Pidgin_Expression_Operator_Prefix__2_Pidgin_Parser___0_System_Func___1___1___">Prefix&lt;TToken, T&gt;(Parser&lt;TToken, Func&lt;T, T&gt;&gt;)</a> operators can only appear once, so <code>- - 1</code> would not be parsed as &quot;minus minus 1&quot;.</p>
 <p>This method is equivalent to:</p>
 <pre><code>Prefix(
     OneOf(opParsers)
