@@ -1,15 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
+    <Import Project="../Pidgin.BuildTool.props" />
 
     <ItemGroup>
         <ProjectReference Include="../Pidgin/Pidgin.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
     </ItemGroup>
 
 </Project>

@@ -214,7 +214,7 @@ namespace Pidgin.Expression
                         // move the right-hand term of each operator to the
                         // left-hand side of the next operator on the right,
                         // leaving a hole at the left
-                        var partial = new Partial<T>((y, _) => y, default(T)!);
+                        var partial = new Partial<T>((y, _) => y, default!);
                         for (var i = fxs.Count - 1; i >= 0; i--)
                         {
                             var fx = fxs[i];

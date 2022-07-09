@@ -2,21 +2,21 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Pidgin.CodeGen
+namespace Pidgin.CodeGen;
+
+internal static class MapGenerator
 {
-    internal static class MapGenerator
+    public static void Generate()
     {
-        public static void Generate()
-        {
-            File.WriteAllText("Pidgin/Parser.Map.Generated.cs", GenerateFile());
-        }
+        File.WriteAllText("Pidgin/Parser.Map.Generated.cs", GenerateFile());
+    }
 
-        private static string GenerateFile()
-        {
-            var methods = Enumerable.Range(1, 8).Select(n => GenerateMethod(n));
-            var classes = Enumerable.Range(1, 8).Select(n => GenerateClass(n));
+    private static string GenerateFile()
+    {
+        var methods = Enumerable.Range(1, 8).Select(n => GenerateMethod(n));
+        var classes = Enumerable.Range(1, 8).Select(n => GenerateClass(n));
 
-            return $@"#region GeneratedCode
+        return $@"#region GeneratedCode
 using System;
 
 namespace Pidgin
@@ -41,32 +41,32 @@ namespace Pidgin
 }}
 #endregion
 ";
-        }
+    }
 
 
-        private static string GenerateMethod(int num)
-        {
-            var nums = Enumerable.Range(1, num);
-            var parserParams = nums.Select(n => $"Parser<TToken, T{n}> parser{n}");
-            var parserFields = nums.Select(n => $"private readonly Parser<TToken, T{n}> _p{n};");
-            var parserParamNames = nums.Select(n => $"parser{n}");
-            var types = string.Join(", ", nums.Select(n => "T" + n));
-            var checkArgsForNull = string.Concat(parserParamNames.Select(x => $@"
+    private static string GenerateMethod(int num)
+    {
+        var nums = Enumerable.Range(1, num);
+        var parserParams = nums.Select(n => $"Parser<TToken, T{n}> parser{n}");
+        var parserFields = nums.Select(n => $"private readonly Parser<TToken, T{n}> _p{n};");
+        var parserParamNames = nums.Select(n => $"parser{n}");
+        var types = string.Join(", ", nums.Select(n => "T" + n));
+        var checkArgsForNull = string.Concat(parserParamNames.Select(x => $@"
             if ({x} == null)
             {{
                 throw new ArgumentNullException(nameof({x}));
             }}"));
-            var mapReturnExpr = num == 1
-                ? $@"parser1 is MapParserBase<TToken, T1> p
+        var mapReturnExpr = num == 1
+            ? $@"parser1 is MapParserBase<TToken, T1> p
                 ? p.Map(func)
                 : new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})"
-                : $"new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})";
+            : $"new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})";
 
-            var typeParamDocs = nums.Select(n => $"<typeparam name=\"T{n}\">The return type of the {EnglishNumber(n)} parser</typeparam>");
-            var paramDocs = nums.Select(n => $"<param name=\"parser{n}\">The {EnglishNumber(n)} parser</param>");
+        var typeParamDocs = nums.Select(n => $"<typeparam name=\"T{n}\">The return type of the {EnglishNumber(n)} parser</typeparam>");
+        var paramDocs = nums.Select(n => $"<param name=\"parser{n}\">The {EnglishNumber(n)} parser</param>");
 
 
-            return $@"
+        return $@"
         /// <summary>
         /// Creates a parser that applies the specified parsers sequentially and applies the specified transformation function to their results.
         /// </summary>
@@ -87,23 +87,23 @@ namespace Pidgin
 
             return {mapReturnExpr};
         }}";
-        }
+    }
 
 
-        private static string GenerateClass(int num)
-        {
-            var nums = Enumerable.Range(1, num);
-            var parserParams = nums.Select(n => $"Parser<TToken, T{n}> parser{n}");
-            var parserFields = nums.Select(n => $"private readonly Parser<TToken, T{n}> _p{n};");
-            var parserParamNames = nums.Select(n => $"parser{n}");
-            var parserFieldNames = nums.Select(n => $"_p{n}");
-            var parserFieldAssignments = nums.Select(n => $"_p{n} = parser{n};");
-            var results = nums.Select(n => $"result{n}");
-            var types = string.Join(", ", nums.Select(n => "T" + n));
-            var parts = nums.Select(GenerateMethodBodyPart);
-            var funcArgNames = nums.Select(n => "x" + n);
+    private static string GenerateClass(int num)
+    {
+        var nums = Enumerable.Range(1, num);
+        var parserParams = nums.Select(n => $"Parser<TToken, T{n}> parser{n}");
+        var parserFields = nums.Select(n => $"private readonly Parser<TToken, T{n}> _p{n};");
+        var parserParamNames = nums.Select(n => $"parser{n}");
+        var parserFieldNames = nums.Select(n => $"_p{n}");
+        var parserFieldAssignments = nums.Select(n => $"_p{n} = parser{n};");
+        var results = nums.Select(n => $"result{n}");
+        var types = string.Join(", ", nums.Select(n => "T" + n));
+        var parts = nums.Select(GenerateMethodBodyPart);
+        var funcArgNames = nums.Select(n => "x" + n);
 
-            return $@"
+        return $@"
     internal sealed class Map{num}Parser<TToken, {types}, R> : MapParserBase<TToken, R>
     {{
         private readonly Func<{types}, R> _func;
@@ -134,10 +134,10 @@ namespace Pidgin
                 {string.Join($",{Environment.NewLine}                ", parserFieldNames)}
             );
     }}";
-        }
+    }
 
-        private static string GenerateMethodBodyPart(int num)
-            => $@"
+    private static string GenerateMethodBodyPart(int num)
+        => $@"
             var success{num} = _p{num}.TryParse(ref state, ref expecteds, out var result{num});
             if (!success{num})
             {{
@@ -145,20 +145,19 @@ namespace Pidgin
                 return false;
             }}";
 
-        private static string EnglishNumber(int num)
+    private static string EnglishNumber(int num)
+    {
+        return num switch
         {
-            return num switch
-            {
-                1 => "first",
-                2 => "second",
-                3 => "third",
-                4 => "fourth",
-                5 => "fifth",
-                6 => "sixth",
-                7 => "seventh",
-                8 => "eighth",
-                _ => throw new ArgumentOutOfRangeException(nameof(num)),
-            };
-        }
+            1 => "first",
+            2 => "second",
+            3 => "third",
+            4 => "fourth",
+            5 => "fifth",
+            6 => "sixth",
+            7 => "seventh",
+            8 => "eighth",
+            _ => throw new ArgumentOutOfRangeException(nameof(num)),
+        };
     }
 }

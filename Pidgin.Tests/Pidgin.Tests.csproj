@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <IsPackable>false</IsPackable>
+    <Import Project="../Pidgin.BuildTool.props" />
 
+    <PropertyGroup>
         <NoWarn>$(NoWarn);xUnit2013;CA1062</NoWarn>
     </PropertyGroup>
 

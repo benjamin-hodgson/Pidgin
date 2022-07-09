@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
+    <Import Project="../Pidgin.BuildTool.props" />
 
     <ItemGroup>
         <Compile Include="JsonParser.fs" />
@@ -15,7 +13,6 @@
 
     <ItemGroup>
         <PackageReference Include="FParsec" Version="1.1.1" />
-        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
