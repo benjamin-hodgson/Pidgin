@@ -1703,6 +1703,88 @@ public class StringParserTests : ParserTestBase
     }
 
     [Fact]
+    public void TestManyThen()
+    {
+        {
+            var parser = String("foo").ManyThen(Char(' '));
+            AssertSuccess(parser.Parse(" "), (Enumerable.Empty<string>(), ' '), true);
+            AssertSuccess(parser.Parse(" bar"), (Enumerable.Empty<string>(), ' '), true);
+            AssertSuccess(parser.Parse("foo "), (new[] { "foo" }, ' '), true);
+            AssertSuccess(parser.Parse("foofoo "), (new[] { "foo", "foo" }, ' '), true);
+            AssertFailure(
+                parser.Parse(""),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("foo"),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("bar"),
+                new ParseError<char>(
+                    Maybe.Just('b'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("food"),
+                new ParseError<char>(
+                    Maybe.Just('d'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 2),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foofoul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 5),
+                    null
+                ),
+                true
+            );
+        }
+        {
+            var parser = Return(1).ManyThen(Char(' '));
+            Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+        }
+    }
+
+    [Fact]
     public void TestSkipUntil()
     {
         {
@@ -1780,6 +1862,88 @@ public class StringParserTests : ParserTestBase
         }
         {
             var parser = Return(1).SkipUntil(Char(' '));
+            Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+        }
+    }
+
+    [Fact]
+    public void TestSkipManyThen()
+    {
+        {
+            var parser = String("foo").SkipManyThen(Char(' '));
+            AssertSuccess(parser.Parse(" "), ' ', true);
+            AssertSuccess(parser.Parse(" bar"), ' ', true);
+            AssertSuccess(parser.Parse("foo "), ' ', true);
+            AssertSuccess(parser.Parse("foofoo "), ' ', true);
+            AssertFailure(
+                parser.Parse(""),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("foo"),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("bar"),
+                new ParseError<char>(
+                    Maybe.Just('b'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("food"),
+                new ParseError<char>(
+                    Maybe.Just('d'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 2),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foofoul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 5),
+                    null
+                ),
+                true
+            );
+        }
+        {
+            var parser = Return(1).SkipManyThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
         }
     }
@@ -1887,6 +2051,108 @@ public class StringParserTests : ParserTestBase
     }
 
     [Fact]
+    public void TestAtLeastOnceThen()
+    {
+        {
+            var parser = String("foo").AtLeastOnceThen(Char(' '));
+            AssertSuccess(parser.Parse("foo "), (new[] { "foo" }, ' '), true);
+            AssertSuccess(parser.Parse("foofoo "), (new[] { "foo", "foo" }, ' '), true);
+            AssertFailure(
+                parser.Parse(" "),
+                new ParseError<char>(
+                    Maybe.Just(' '),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse(" bar"),
+                new ParseError<char>(
+                    Maybe.Just(' '),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse(""),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("foo"),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("bar"),
+                new ParseError<char>(
+                    Maybe.Just('b'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("food"),
+                new ParseError<char>(
+                    Maybe.Just('d'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 2),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foofoul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 5),
+                    null
+                ),
+                true
+            );
+        }
+        {
+            var parser = Return(1).AtLeastOnceThen(Char(' '));
+            Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+        }
+    }
+
+    [Fact]
     public void TestSkipAtLeastOnceUntil()
     {
         {
@@ -1984,6 +2250,108 @@ public class StringParserTests : ParserTestBase
         }
         {
             var parser = Return(1).SkipAtLeastOnceUntil(Char(' '));
+            Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
+        }
+    }
+
+    [Fact]
+    public void TestSkipAtLeastOnceThen()
+    {
+        {
+            var parser = String("foo").SkipAtLeastOnceThen(Char(' '));
+            AssertSuccess(parser.Parse("foo "), ' ', true);
+            AssertSuccess(parser.Parse("foofoo "), ' ', true);
+            AssertFailure(
+                parser.Parse(" "),
+                new ParseError<char>(
+                    Maybe.Just(' '),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse(" bar"),
+                new ParseError<char>(
+                    Maybe.Just(' '),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse(""),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("foo"),
+                new ParseError<char>(
+                    Maybe.Nothing<char>(),
+                    true,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("bar"),
+                new ParseError<char>(
+                    Maybe.Just('b'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    SourcePosDelta.Zero,
+                    null
+                ),
+                false
+            );
+            AssertFailure(
+                parser.Parse("food"),
+                new ParseError<char>(
+                    Maybe.Just('d'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 3),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 2),
+                    null
+                ),
+                true
+            );
+            AssertFailure(
+                parser.Parse("foofoul"),
+                new ParseError<char>(
+                    Maybe.Just('u'),
+                    false,
+                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    new SourcePosDelta(0, 5),
+                    null
+                ),
+                true
+            );
+        }
+        {
+            var parser = Return(1).SkipAtLeastOnceThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
         }
     }
