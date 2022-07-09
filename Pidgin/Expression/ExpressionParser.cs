@@ -7,8 +7,50 @@ using static Pidgin.Parser;
 namespace Pidgin.Expression
 {
     /// <summary>
-    /// Contains tools for parsing expression languages with associative infix operators.
+    /// <para>
+    /// Contains tools for parsing expression
+    /// languages with associative infix operators.
+    /// </para>
+    /// <para>
+    /// To get started, write a <see cref="Parser{TToken, T}"/>,
+    /// to parse an atomic term in your expression language,
+    /// and use the <see cref="Operator"/> class to create a table
+    /// of operator parsers in order of their precedence.
+    /// Then call one of the
+    /// <see cref="Build{TToken, T}(Parser{TToken, T}, IEnumerable{OperatorTableRow{TToken, T}})"/>
+    /// overloads to compile the table of operators into a
+    /// <see cref="Parser{TToken,T}"/>.
+    /// </para>
     /// </summary>
+    /// <remarks>
+    /// Since it's common for an expression language to have a
+    /// recursive structure, overloads of
+    /// <see cref="Build{TToken, T}(Parser{TToken, T}, IEnumerable{OperatorTableRow{TToken, T}})"/>
+    /// are provided which take a function. The function's argument
+    /// will be the completed parser for a whole expression.
+    /// This allows you to write recursive parsers.
+    /// </remarks>
+    /// <example name="ExpressionParser example">
+    /// Here is an example of a parser for mathematical
+    /// expressions. The parser computes the result of the
+    /// expression (although in practice your parser would
+    /// probably return an AST).
+    /// <code doctest="true">
+    /// var operators = new[]
+    /// {
+    ///     Operator.Prefix(Char('-').ThenReturn&lt;Func&lt;int, int&gt;&gt;(x =&gt; -x)),
+    ///     Operator.InfixL(Char('*').ThenReturn&lt;Func&lt;int, int, int&gt;&gt;((x, y) =&gt; x * y)),
+    ///     Operator.InfixL(Char('+').ThenReturn&lt;Func&lt;int, int, int&gt;&gt;((x, y) =&gt; x + y))
+    /// };
+    /// var parser = ExpressionParser.Build(
+    ///     expr => Num.Or(expr.Between(Char('('), Char(')'))),
+    ///     operators
+    /// );
+    /// Console.WriteLine(parser.ParseOrThrow("-3*(370+9)*37"));
+    /// // Output:
+    /// // -42069
+    /// </code>
+    /// </example>
     public static class ExpressionParser
     {
         /// <summary>
