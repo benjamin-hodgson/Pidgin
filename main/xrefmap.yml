@@ -2574,6 +2574,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).AtLeastOnce
   nameWithType: Parser<TToken, T>.AtLeastOnce
   nameWithType.vb: Parser(Of TToken, T).AtLeastOnce
+- uid: Pidgin.Parser`2.AtLeastOnceThen*
+  name: AtLeastOnceThen
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceThen_
+  commentId: Overload:Pidgin.Parser`2.AtLeastOnceThen
+  fullName: Pidgin.Parser<TToken, T>.AtLeastOnceThen
+  fullName.vb: Pidgin.Parser(Of TToken, T).AtLeastOnceThen
+  nameWithType: Parser<TToken, T>.AtLeastOnceThen
+  nameWithType.vb: Parser(Of TToken, T).AtLeastOnceThen
+- uid: Pidgin.Parser`2.AtLeastOnceThen``1(Pidgin.Parser{`0,``0})
+  name: AtLeastOnceThen<U>(Parser<TToken, U>)
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceThen__1_Pidgin_Parser__0___0__
+  commentId: M:Pidgin.Parser`2.AtLeastOnceThen``1(Pidgin.Parser{`0,``0})
+  name.vb: AtLeastOnceThen(Of U)(Parser(Of TToken, U))
+  fullName: Pidgin.Parser<TToken, T>.AtLeastOnceThen<U>(Pidgin.Parser<TToken, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).AtLeastOnceThen(Of U)(Pidgin.Parser(Of TToken, U))
+  nameWithType: Parser<TToken, T>.AtLeastOnceThen<U>(Parser<TToken, U>)
+  nameWithType.vb: Parser(Of TToken, T).AtLeastOnceThen(Of U)(Parser(Of TToken, U))
 - uid: Pidgin.Parser`2.AtLeastOnceUntil*
   name: AtLeastOnceUntil
   href: Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceUntil_
@@ -2725,6 +2742,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).Many
   nameWithType: Parser<TToken, T>.Many
   nameWithType.vb: Parser(Of TToken, T).Many
+- uid: Pidgin.Parser`2.ManyThen*
+  name: ManyThen
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_ManyThen_
+  commentId: Overload:Pidgin.Parser`2.ManyThen
+  fullName: Pidgin.Parser<TToken, T>.ManyThen
+  fullName.vb: Pidgin.Parser(Of TToken, T).ManyThen
+  nameWithType: Parser<TToken, T>.ManyThen
+  nameWithType.vb: Parser(Of TToken, T).ManyThen
+- uid: Pidgin.Parser`2.ManyThen``1(Pidgin.Parser{`0,``0})
+  name: ManyThen<U>(Parser<TToken, U>)
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_ManyThen__1_Pidgin_Parser__0___0__
+  commentId: M:Pidgin.Parser`2.ManyThen``1(Pidgin.Parser{`0,``0})
+  name.vb: ManyThen(Of U)(Parser(Of TToken, U))
+  fullName: Pidgin.Parser<TToken, T>.ManyThen<U>(Pidgin.Parser<TToken, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).ManyThen(Of U)(Pidgin.Parser(Of TToken, U))
+  nameWithType: Parser<TToken, T>.ManyThen<U>(Parser<TToken, U>)
+  nameWithType.vb: Parser(Of TToken, T).ManyThen(Of U)(Parser(Of TToken, U))
 - uid: Pidgin.Parser`2.Map*
   name: Map
   href: Pidgin.Parser-2.html#Pidgin_Parser_2_Map_
@@ -2994,6 +3028,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipAtLeastOnce
   nameWithType: Parser<TToken, T>.SkipAtLeastOnce
   nameWithType.vb: Parser(Of TToken, T).SkipAtLeastOnce
+- uid: Pidgin.Parser`2.SkipAtLeastOnceThen*
+  name: SkipAtLeastOnceThen
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipAtLeastOnceThen_
+  commentId: Overload:Pidgin.Parser`2.SkipAtLeastOnceThen
+  fullName: Pidgin.Parser<TToken, T>.SkipAtLeastOnceThen
+  fullName.vb: Pidgin.Parser(Of TToken, T).SkipAtLeastOnceThen
+  nameWithType: Parser<TToken, T>.SkipAtLeastOnceThen
+  nameWithType.vb: Parser(Of TToken, T).SkipAtLeastOnceThen
+- uid: Pidgin.Parser`2.SkipAtLeastOnceThen``1(Pidgin.Parser{`0,``0})
+  name: SkipAtLeastOnceThen<U>(Parser<TToken, U>)
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipAtLeastOnceThen__1_Pidgin_Parser__0___0__
+  commentId: M:Pidgin.Parser`2.SkipAtLeastOnceThen``1(Pidgin.Parser{`0,``0})
+  name.vb: SkipAtLeastOnceThen(Of U)(Parser(Of TToken, U))
+  fullName: Pidgin.Parser<TToken, T>.SkipAtLeastOnceThen<U>(Pidgin.Parser<TToken, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).SkipAtLeastOnceThen(Of U)(Pidgin.Parser(Of TToken, U))
+  nameWithType: Parser<TToken, T>.SkipAtLeastOnceThen<U>(Parser<TToken, U>)
+  nameWithType.vb: Parser(Of TToken, T).SkipAtLeastOnceThen(Of U)(Parser(Of TToken, U))
 - uid: Pidgin.Parser`2.SkipAtLeastOnceUntil*
   name: SkipAtLeastOnceUntil
   href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipAtLeastOnceUntil_
@@ -3027,6 +3078,23 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken, T).SkipMany
   nameWithType: Parser<TToken, T>.SkipMany
   nameWithType.vb: Parser(Of TToken, T).SkipMany
+- uid: Pidgin.Parser`2.SkipManyThen*
+  name: SkipManyThen
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipManyThen_
+  commentId: Overload:Pidgin.Parser`2.SkipManyThen
+  fullName: Pidgin.Parser<TToken, T>.SkipManyThen
+  fullName.vb: Pidgin.Parser(Of TToken, T).SkipManyThen
+  nameWithType: Parser<TToken, T>.SkipManyThen
+  nameWithType.vb: Parser(Of TToken, T).SkipManyThen
+- uid: Pidgin.Parser`2.SkipManyThen``1(Pidgin.Parser{`0,``0})
+  name: SkipManyThen<U>(Parser<TToken, U>)
+  href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipManyThen__1_Pidgin_Parser__0___0__
+  commentId: M:Pidgin.Parser`2.SkipManyThen``1(Pidgin.Parser{`0,``0})
+  name.vb: SkipManyThen(Of U)(Parser(Of TToken, U))
+  fullName: Pidgin.Parser<TToken, T>.SkipManyThen<U>(Pidgin.Parser<TToken, U>)
+  fullName.vb: Pidgin.Parser(Of TToken, T).SkipManyThen(Of U)(Pidgin.Parser(Of TToken, U))
+  nameWithType: Parser<TToken, T>.SkipManyThen<U>(Parser<TToken, U>)
+  nameWithType.vb: Parser(Of TToken, T).SkipManyThen(Of U)(Parser(Of TToken, U))
 - uid: Pidgin.Parser`2.SkipUntil*
   name: SkipUntil
   href: Pidgin.Parser-2.html#Pidgin_Parser_2_SkipUntil_

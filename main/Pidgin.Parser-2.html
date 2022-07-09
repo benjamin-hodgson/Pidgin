@@ -465,10 +465,83 @@ The resulting parser fails if the current parser fails the first time it is appl
                         
         
                 
+                <a id="Pidgin_Parser_2_AtLeastOnceThen_"></a>
+                <h4 id="Pidgin_Parser_2_AtLeastOnceThen__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_AtLeastOnceThen__1_Pidgin_Parser__0___0__">AtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
+                <div><p>Creates a parser which applies this parser one or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, (IEnumerable&lt;T&gt;, U)&gt; AtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>terminator</p></td>
+                                    <td><p>A parser to parse a terminator</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;, U&gt;&gt;</p></td>
+                                    <td><p>A parser which applies this parser repeatedly
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>U</p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+        
+        
+        
+        
+        
+                        
+        
+                
                 <a id="Pidgin_Parser_2_AtLeastOnceUntil_"></a>
                 <h4 id="Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
-                <div><p>Creates a parser which applies this parser one or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
-Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+                <div><p>Creates a parser which applies this parser one or more times until
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.
 The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
 </div>
                 <h5>Declaration</h5>
@@ -504,7 +577,8 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+                                    <td><p>A parser which applies this parser repeatedly
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
 </td>
                                 </tr>
                             </tbody>
@@ -530,6 +604,10 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
         
         
+                    <h5 id="Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
+                    <div><p><code>p.AtLeastOnceUntil(q)</code> is equivalent to
+<code>p.AtLeastOnceThen(q).Select(t =&gt; t.Item1)</code></p>
+</div>
         
                         
         
@@ -1083,6 +1161,77 @@ The resulting parser fails if the current parser fails after consuming input.</p
                             </tbody>
                         </table>
         
+        
+        
+        
+        
+        
+        
+                        
+        
+                
+                <a id="Pidgin_Parser_2_ManyThen_"></a>
+                <h4 id="Pidgin_Parser_2_ManyThen__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_ManyThen__1_Pidgin_Parser__0___0__">ManyThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
+                <div><p>Creates a parser which applies this parser zero or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, (IEnumerable&lt;T&gt;, U)&gt; ManyThen&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>terminator</p></td>
+                                    <td><p>A parser to parse a terminator</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;, U&gt;&gt;</p></td>
+                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>U</p></td>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
         
         
         
@@ -2092,11 +2241,88 @@ The resulting parser fails if the current parser fails the first time it is appl
                         
         
                 
+                <a id="Pidgin_Parser_2_SkipAtLeastOnceThen_"></a>
+                <h4 id="Pidgin_Parser_2_SkipAtLeastOnceThen__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_SkipAtLeastOnceThen__1_Pidgin_Parser__0___0__">SkipAtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
+                <div><p>Creates a parser which applies this parser one or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds,
+discarding the results. This is more efficient than
+<a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceThen__1_Pidgin_Parser__0___0__">AtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a>
+if you don&apos;t need the results. Fails if this parser fails or if
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; SkipAtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>terminator</p></td>
+                                    <td><p>A parser to parse a terminator</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>A parser which applies this parser repeatedly until
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>U</p></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+        
+        
+        
+        
+        
+                        
+        
+                
                 <a id="Pidgin_Parser_2_SkipAtLeastOnceUntil_"></a>
                 <h4 id="Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0__">SkipAtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
-                <div><p>Creates a parser which applies this parser one or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.
-This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t need the results.
-Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+                <div><p>Creates a parser which applies this parser one or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds,
+discarding the results. This is more efficient than
+<a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a>
+if you don&apos;t need the results.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.
 The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
 </div>
                 <h5>Declaration</h5>
@@ -2132,7 +2358,8 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</p></td>
-                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+                                    <td><p>A parser which applies this parser repeatedly until
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2158,6 +2385,10 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
         
         
+                    <h5 id="Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
+                    <div><p><code>p.SkipAtLeastOnceUntil(q)</code> is equivalent to
+<code>p.SkipAtLeastOnceThen(q).ThenReturn(Unit.Value)</code></p>
+</div>
         
                         
         
@@ -2198,11 +2429,90 @@ The resulting parser fails if the current parser fails after consuming input.</p
                         
         
                 
+                <a id="Pidgin_Parser_2_SkipManyThen_"></a>
+                <h4 id="Pidgin_Parser_2_SkipManyThen__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_SkipManyThen__1_Pidgin_Parser__0___0__">SkipManyThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
+                <div><p>Creates a parser which applies this parser zero or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds,
+discarding the results. This is more efficient than
+<a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_ManyThen__1_Pidgin_Parser__0___0__">ManyThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t
+need the results.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; SkipManyThen&lt;U&gt;(Parser&lt;TToken, U&gt; terminator)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>terminator</p></td>
+                                    <td><p>A parser to parse a terminator</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
+                                    <td><p>A parser which applies this parser repeatedly until
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>U</p></td>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+        
+        
+        
+        
+        
+                        
+        
+                
                 <a id="Pidgin_Parser_2_SkipUntil_"></a>
                 <h4 id="Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0__">SkipUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
-                <div><p>Creates a parser which applies this parser zero or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.
-This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__">Until&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t need the results.
-Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+                <div><p>Creates a parser which applies this parser zero or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds,
+discarding the results. This is more efficient than
+<a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__">Until&lt;U&gt;(Parser&lt;TToken, U&gt;)</a> if you don&apos;t
+need the results.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.
 The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
 </div>
                 <h5>Declaration</h5>
@@ -2265,6 +2575,10 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
         
         
+                    <h5 id="Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
+                    <div><p><code>p.SkipUntil(q)</code> is equivalent to
+<code>p.SkipManyThen(q).ThenReturn(Unit.Value)</code></p>
+</div>
         
                         
         
@@ -2932,8 +3246,10 @@ and subject to change in future versions of the library.</p>
                 
                 <a id="Pidgin_Parser_2_Until_"></a>
                 <h4 id="Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__"><a href="#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0__">Until&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></h4>
-                <div><p>Creates a parser which applies this parser zero or more times until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
-Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code> fails after consuming input.
+                <div><p>Creates a parser which applies this parser zero or more times
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.
+Fails if this parser fails or if <code data-dev-comment-type="paramref" class="paramref">terminator</code>
+fails after consuming input.
 The return value of <code data-dev-comment-type="paramref" class="paramref">terminator</code> is ignored.</p>
 </div>
                 <h5>Declaration</h5>
@@ -2996,6 +3312,10 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
         
         
+                    <h5 id="Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
+                    <div><p><code>p.Until(q)</code> is equivalent to
+<code>p.ManyThen(q).Select(t =&gt; t.Item1)</code></p>
+</div>
         
                         
         
@@ -3196,6 +3516,7 @@ or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Par
                                     <li><a href="#Pidgin_Parser_2_Assert_System_Func__1_System_Boolean__System_Func__1_System_String__">Assert(Func&lt;T, Boolean&gt;, Func&lt;T, String&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Assert_System_Func__1_System_Boolean__System_String_">Assert(Func&lt;T, Boolean&gt;, String)</a></li>
                                     <li><a href="#Pidgin_Parser_2_AtLeastOnce">AtLeastOnce()</a></li>
+                                    <li><a href="#Pidgin_Parser_2_AtLeastOnceThen__1_Pidgin_Parser__0___0__">AtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0__">AtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Before__1_Pidgin_Parser__0___0__">Before&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Between__1_Pidgin_Parser__0___0__">Between&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
@@ -3206,6 +3527,7 @@ or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Par
                                     <li><a href="#Pidgin_Parser_2_IgnoreResult">IgnoreResult()</a></li>
                                     <li><a href="#Pidgin_Parser_2_Labelled_System_String_">Labelled(String)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Many">Many()</a></li>
+                                    <li><a href="#Pidgin_Parser_2_ManyThen__1_Pidgin_Parser__0___0__">ManyThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Map__1_System_Func__1___0__">Map&lt;U&gt;(Func&lt;T, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_MapWithInput__1_Pidgin_ReadOnlySpanFunc__0__1___0__">MapWithInput&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_OfType__1">OfType&lt;U&gt;()</a></li>
@@ -3222,8 +3544,10 @@ or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Par
                                     <li><a href="#Pidgin_Parser_2_SeparatedAndTerminatedAtLeastOnce__1_Pidgin_Parser__0___0__">SeparatedAndTerminatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_SeparatedAtLeastOnce__1_Pidgin_Parser__0___0__">SeparatedAtLeastOnce&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_SkipAtLeastOnce">SkipAtLeastOnce()</a></li>
+                                    <li><a href="#Pidgin_Parser_2_SkipAtLeastOnceThen__1_Pidgin_Parser__0___0__">SkipAtLeastOnceThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0__">SkipAtLeastOnceUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_SkipMany">SkipMany()</a></li>
+                                    <li><a href="#Pidgin_Parser_2_SkipManyThen__1_Pidgin_Parser__0___0__">SkipManyThen&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0__">SkipUntil&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Slice__1_Pidgin_ReadOnlySpanFunc__0__1___0__">Slice&lt;U&gt;(ReadOnlySpanFunc&lt;TToken, T, U&gt;)</a></li>
                                     <li><a href="#Pidgin_Parser_2_Then__1_Pidgin_Parser__0___0__">Then&lt;U&gt;(Parser&lt;TToken, U&gt;)</a></li>
