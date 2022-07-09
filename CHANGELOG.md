@@ -1,6 +1,22 @@
 Changelog
 =========
 
+3.2.0
+-----
+
+### Added
+
+* Four new combinators: `ManyThen`, `AtLeastOnceThen`, `SkipManyThen`, and `SkipAtLeastOnceThen`
+  * These are versions of `Until`, `AtLeastOnceUntil`, `SkipUntil`, and `SkipAtLeastOnceUntil` which return the terminator.
+  * Thanks to @chyyran and @atrauzzi, who asked for this in [#121](https://github.com/benjamin-hodgson/Pidgin/issues/121)
+
+### Changed
+
+* Improved documentation for `ExpressionParser`, now including an example.
+  * Thanks to @hswami, who asked for this in [#113](https://github.com/benjamin-hodgson/Pidgin/issues/113)
+* Removed some Nuget dependencies which are no longer required (since they are part of .NET 5).
+
+
 3.1.0
 -----
 
