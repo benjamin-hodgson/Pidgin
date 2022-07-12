@@ -5,7 +5,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <SignAssembly>false</SignAssembly>  <!-- Sprache is not signed -->
-        <NoWarn>$(NoWarn);CA1812</NoWarn>
+        <NoWarn>$(NoWarn);CA1812;CA5394</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

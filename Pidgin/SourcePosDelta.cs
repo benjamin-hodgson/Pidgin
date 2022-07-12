@@ -1,32 +1,43 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace Pidgin
 {
     /// <summary>
     /// Represents a difference in textual lines and columns corresponding to a region of an input stream.
     /// </summary>
+    [StructLayout(LayoutKind.Explicit)]
     public readonly struct SourcePosDelta : IEquatable<SourcePosDelta>, IComparable<SourcePosDelta>
     {
+        private const ulong _linesMask = 0xFFFFFFFF00000000;
+        private const ulong _colsMask = 0x00000000FFFFFFFF;
+        [FieldOffset(0)]
+        private readonly ulong _data;
+
         /// <summary>
         /// Gets the number of lines represented by the <see cref="SourcePosDelta"/>.
         /// </summary>
         /// <returns>The number of lines</returns>
-        public int Lines { get; }
+        public int Lines => (int)((_data & _linesMask) >> 32);
         /// <summary>
         /// Gets the number of columns represented by the <see cref="SourcePosDelta"/>.
         /// </summary>
         /// <returns>The number of columns</returns>
-        public int Cols { get; }
+        public int Cols => (int)(_data & _colsMask);
 
         /// <summary>
         /// Create a new <see cref="SourcePosDelta"/> with the specified number of lines and columns.
         /// </summary>
         /// <param name="lines">The number of lines</param>
         /// <param name="cols">The number of columns</param>
-        public SourcePosDelta(int lines, int cols)
+        public SourcePosDelta(int lines, int cols) : this((((ulong)lines) << 32) | (uint)cols)
         {
-            Lines = lines;
-            Cols = cols;
+        }
+
+        private SourcePosDelta(ulong data)
+        {
+            _data = data;
         }
 
         /// <summary>
@@ -34,11 +45,17 @@ namespace Pidgin
         /// </summary>
         /// <param name="other">The <see cref="SourcePosDelta"/> to add to this one.</param>
         /// <returns>A <see cref="SourcePosDelta"/> representing the composition of this and <paramref name="other"/>.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SourcePosDelta Plus(SourcePosDelta other)
-            => new(
-                Lines + other.Lines,
-                (other.Lines == 0 ? Cols : 0) + other.Cols
-            );
+        {
+            var mask = other.Lines == 0
+                ? ulong.MaxValue
+                : _linesMask;
+            // There's a possibility of the Cols overflowing into the Lines here.
+            // I'm not too concerned about that, because the Cols
+            // would've overflowed by themselves anyway
+            return new((_data & mask) + other._data);
+        }
 
         /// <summary>
         /// Add two <see cref="SourcePosDelta"/>s.
@@ -73,6 +90,9 @@ namespace Pidgin
         /// <returns>A <see cref="SourcePosDelta"/> representing the composition of <paramref name="left"/> and <paramref name="right"/>.</returns>
         public static SourcePosDelta operator +(SourcePosDelta left, SourcePosDelta right)
             => left.Plus(right);
+
+        ///
+        public override string ToString() => $"({Lines}, {Cols})";
 
         /// <inheritdoc/>
         public bool Equals(SourcePosDelta other)
