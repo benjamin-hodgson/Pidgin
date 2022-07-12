@@ -6,6 +6,7 @@
         <OutputType>Exe</OutputType>
         <SignAssembly>false</SignAssembly>  <!-- Sprache is not signed -->
         <NoWarn>$(NoWarn);CA1812;CA5394</NoWarn>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
