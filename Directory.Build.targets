@@ -1,0 +1,9 @@
+<Project>
+
+    <!-- https://github.com/NuGet/Home/issues/11949#issuecomment-1184772230 -->
+    <ItemGroup Label="F#/CentralPackageVersions workaround" Condition="'$(MSBuildProjectExtension)' == '.fsproj'">
+        <PackageReference Update="FSharp.Core" IsImplicitlyDefined="true" />
+        <PackageReference Update="System.ValueTuple" IsImplicitlyDefined="true" />
+    </ItemGroup>
+
+</Project>

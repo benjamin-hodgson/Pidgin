@@ -1,7 +1,8 @@
 <Project>
+
     <PropertyGroup>
         <Authors>benjamin.hodgson</Authors>
-        <Copyright>© Benjamin Hodgson, 2017</Copyright>
+        <Copyright>© Benjamin Hodgson, 2017-2022</Copyright>
         <Description>A lightweight, fast, and flexible parsing library for C#, developed at Stack Overflow.</Description>
         <PackageTags>parser;parsing;language;compiler</PackageTags>
 
@@ -17,9 +18,13 @@
         
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Pidgin.snk</AssemblyOriginatorKeyFile>
+
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <NoWarn>$(NoWarn);NU1507</NoWarn>
         
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <AnalysisMode>all</AnalysisMode>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
+
 </Project>
