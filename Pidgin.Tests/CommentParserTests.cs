@@ -50,11 +50,6 @@ public class CommentParserTests : ParserTestBase
 
     private static void TestCommentParser(Parser<char, Unit> parser, string comment)
     {
-        AssertPartialParse(
-            parser,
-            comment,
-            Unit.Value,
-            comment.Length
-        );
+        AssertFullParse(parser, comment, Unit.Value);
     }
 }
