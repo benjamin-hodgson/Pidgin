@@ -106,9 +106,9 @@ public class ExpressionParserTests : ParserTestBase
 
     public static IEnumerable<object[]> InfixNCases()
     {
-        yield return new object[]{ "1", new Lit(1), 1 };
-        yield return new object[]{ "1*2", new Times(new Lit(1), new Lit(2)), 3 };
-        yield return new object[]{ "1*2*3", new Times(new Lit(1), new Lit(2)), 3 };  // shouldn't consume "*3"
+        yield return new object[] { "1", new Lit(1), 1 };
+        yield return new object[] { "1*2", new Times(new Lit(1), new Lit(2)), 3 };
+        yield return new object[] { "1*2*3", new Times(new Lit(1), new Lit(2)), 3 };  // shouldn't consume "*3"
     }
 
     [Theory]
@@ -152,7 +152,7 @@ public class ExpressionParserTests : ParserTestBase
         };
 
         {
-            
+
             // should work with large inputs
             var numbers = Enumerable.Repeat(1, 100000);
             var input = string.Join("+", numbers);

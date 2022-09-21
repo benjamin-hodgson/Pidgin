@@ -83,7 +83,7 @@ public class PooledListTests
     public void TestBugInAddRange()
     {
         var expected = $"longer than the initial capacity, which is {PooledList<char>.InitialCapacity}";
-        
+
         // fail if I make InitialCapacity larger without updating test
         Assert.True(expected.Length > PooledList<char>.InitialCapacity);
 
