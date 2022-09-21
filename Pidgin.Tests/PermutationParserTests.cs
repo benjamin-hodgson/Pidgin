@@ -1,5 +1,3 @@
-using System.Linq;
-
 using Pidgin.Permutation;
 
 using Xunit;
@@ -8,10 +6,15 @@ using static Pidgin.Parser;
 
 namespace Pidgin.Tests;
 
-public class PermutationParserTests
+public class PermutationParserTests : ParserTestBase
 {
-    [Fact]
-    public void TestSimplePermutation()
+    [Theory]
+    [InlineData("abc")]
+    [InlineData("bac")]
+    [InlineData("bca")]
+    [InlineData("cba")]
+    [InlineData("cab")]
+    public void TestSimplePermutation(string value)
     {
         var parser = PermutationParser
             .Create<char>()
@@ -27,13 +30,18 @@ public class PermutationParserTests
                 }
             );
 
-        var results = new[] { "abc", "bac", "bca", "cba" }.Select(x => parser.ParseOrThrow(x));
-
-        Assert.All(results, x => Assert.Equal("abc", x));
+        AssertFullParse(parser, value, "abc");
     }
 
-    [Fact]
-    public void TestOptionalPermutation()
+    [Theory]
+    [InlineData("abc", "abc")]
+    [InlineData("bac", "abc")]
+    [InlineData("bca", "abc")]
+    [InlineData("cba", "abc")]
+    [InlineData("cab", "abc")]
+    [InlineData("ac", "a_c")]
+    [InlineData("ca", "a_c")]
+    public void TestOptionalPermutation(string input, string expected)
     {
         var parser = PermutationParser
             .Create<char>()
@@ -49,10 +57,6 @@ public class PermutationParserTests
                 }
             );
 
-        var results1 = new[] { "abc", "bac", "bca", "cba" }.Select(x => parser.ParseOrThrow(x));
-        Assert.All(results1, x => Assert.Equal("abc", x));
-
-        var results2 = new[] { "ac", "ca" }.Select(x => parser.ParseOrThrow(x));
-        Assert.All(results2, x => Assert.Equal("a_c", x));
+        AssertFullParse(parser, input, expected);
     }
 }

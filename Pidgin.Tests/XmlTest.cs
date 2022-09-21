@@ -10,7 +10,6 @@ namespace Pidgin.Tests;
 
 public class XmlTest
 {
-
     [Fact]
     public void TestParseSelfClosingTagWithoutAttributes()
     {

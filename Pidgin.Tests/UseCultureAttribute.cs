@@ -42,5 +42,4 @@ public sealed class UseCultureAttribute : BeforeAfterTestAttribute
         Thread.CurrentThread.CurrentCulture = _originalCulture!;
         Thread.CurrentThread.CurrentUICulture = _originalUICulture!;
     }
-
 }
