@@ -33,7 +33,7 @@ public static class SuperpowerJsonParser
         _string.Select(s => (Json)new JsonString(s));
 
     private static readonly TextParser<Json> _json =
-        _jsonString.Or(Superpower.Parse.Ref(() => _jsonArray)).Or(Superpower.Parse.Ref(() => _jsonObject));
+        _jsonString.Or(Superpower.Parse.Ref(() => _jsonArray!)).Or(Superpower.Parse.Ref(() => _jsonObject!));
 
     private static readonly TextParser<Json> _jsonArray =
         _json.Between(Character.WhiteSpace.Many(), Character.WhiteSpace.Many())
