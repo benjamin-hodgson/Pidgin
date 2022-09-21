@@ -1427,6 +1427,22 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).Equals
   nameWithType: ParseError<TToken>.Equals
   nameWithType.vb: ParseError(Of TToken).Equals
+- uid: Pidgin.ParseError`1.ErrorOffset
+  name: ErrorOffset
+  href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorOffset
+  commentId: P:Pidgin.ParseError`1.ErrorOffset
+  fullName: Pidgin.ParseError<TToken>.ErrorOffset
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorOffset
+  nameWithType: ParseError<TToken>.ErrorOffset
+  nameWithType.vb: ParseError(Of TToken).ErrorOffset
+- uid: Pidgin.ParseError`1.ErrorOffset*
+  name: ErrorOffset
+  href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorOffset_
+  commentId: Overload:Pidgin.ParseError`1.ErrorOffset
+  fullName: Pidgin.ParseError<TToken>.ErrorOffset
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorOffset
+  nameWithType: ParseError<TToken>.ErrorOffset
+  nameWithType.vb: ParseError(Of TToken).ErrorOffset
 - uid: Pidgin.ParseError`1.ErrorPos
   name: ErrorPos
   href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorPos
