@@ -19,7 +19,7 @@ namespace Pidgin
     public struct PooledList<T> : IDisposable, IList<T>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
-        private const int _initialCapacity = 16;
+        internal const int InitialCapacity = 16;  // for testing
 
         private ArrayPool<T> _arrayPool;
         private T[]? _items;
@@ -291,7 +291,7 @@ namespace Pidgin
         [MemberNotNull(nameof(_items))]
         private void Init(int space)
         {
-            _items = _arrayPool.Rent(Math.Max(_initialCapacity, space));
+            _items = _arrayPool.Rent(Math.Max(InitialCapacity, space));
         }
 
         private void Grow(int additionalSpace)

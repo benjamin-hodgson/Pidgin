@@ -80,9 +80,13 @@ public class PooledListTests
     }
 
     [Fact]
-    public void TerribleBugWhenAppendingString()
+    public void TestBugInAddRange()
     {
-        var expected = "longer than the initial capacity, which is 16";
+        var expected = $"longer than the initial capacity, which is {PooledList<char>.InitialCapacity}";
+        
+        // fail if I make InitialCapacity larger without updating test
+        Assert.True(expected.Length > PooledList<char>.InitialCapacity);
+
         var builder = new PooledList<char>();
         builder.AddRange(expected.AsSpan());
         Assert.Equal(expected, new string(builder.AsSpan()));
