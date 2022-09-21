@@ -61,18 +61,18 @@ public class TryTests : ParserTestBase
                 Try(Parser<TToken>.Sequence(render("foo")))
                     .Then(Parser<TToken>.Sequence(render("bar")))
                     .Or(Parser<TToken>.Sequence(render("four")));
-            AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"), true);
-            AssertSuccess(parseFunc(parser, toInput("four")), render("four"), true);  // it should have consumed the "fo" but then backtracked
+            AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"));
+            AssertSuccess(parseFunc(parser, toInput("four")), render("four"));  // it should have consumed the "fo" but then backtracked
             AssertFailure(
                 parseFunc(parser, toInput("foo")),
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))),
+                    3,
                     new SourcePosDelta(0, 3),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foobag")),
@@ -80,10 +80,10 @@ public class TryTests : ParserTestBase
                     Maybe.Just(render("g").Single()),
                     false,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))),
+                    5,
                     new SourcePosDelta(0, 5),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("f")),
@@ -91,10 +91,10 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
+                    1,
                     SourcePosDelta.OneCol,
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("")),
@@ -102,10 +102,10 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))), new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
+                    0,
                     SourcePosDelta.Zero,
                     null
-                ),
-                false
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foul")),
@@ -113,10 +113,10 @@ public class TryTests : ParserTestBase
                     Maybe.Just(render("l").Single()),
                     false,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("four")))),
+                    3,
                     new SourcePosDelta(0, 3),
                     null
-                ),
-                true
+                )
             );
         }
         {
@@ -125,20 +125,20 @@ public class TryTests : ParserTestBase
                     Try(Parser<TToken>.Sequence(render("bar"))).Or(Parser<TToken>.Sequence(render("baz")))
                 )
             ).Or(Parser<TToken>.Sequence(render("foobat")));
-            AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"), true);
-            AssertSuccess(parseFunc(parser, toInput("foobaz")), render("baz"), true);
+            AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"));
+            AssertSuccess(parseFunc(parser, toInput("foobaz")), render("baz"));
             // "" -> "foo" -> "fooba[r]" -> "foo" -> "fooba[z]" -> "foo" -> "" -> "foobat"
-            AssertSuccess(parseFunc(parser, toInput("foobat")), render("foobat"), true);
+            AssertSuccess(parseFunc(parser, toInput("foobat")), render("foobat"));
             AssertFailure(
                 parseFunc(parser, toInput("fooba")),
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    5,
                     new SourcePosDelta(0, 5),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foobag")),
@@ -146,10 +146,10 @@ public class TryTests : ParserTestBase
                     Maybe.Just(render("g").Single()),
                     false,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    5,
                     new SourcePosDelta(0, 5),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foob")),
@@ -157,10 +157,10 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    4,
                     new SourcePosDelta(0, 4),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foo")),
@@ -168,10 +168,10 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    3,
                     new SourcePosDelta(0, 3),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("f")),
@@ -179,10 +179,10 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    1,
                     SourcePosDelta.OneCol,
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("foul")),
@@ -190,10 +190,10 @@ public class TryTests : ParserTestBase
                     Maybe.Just(render("u").Single()),
                     false,
                     ImmutableArray.Create(new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))),
+                    2,
                     new SourcePosDelta(0, 2),
                     null
-                ),
-                true
+                )
             );
             AssertFailure(
                 parseFunc(parser, toInput("")),
@@ -204,10 +204,10 @@ public class TryTests : ParserTestBase
                         new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))),
                         new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))
                     ),
+                    0,
                     SourcePosDelta.Zero,
                     null
-                ),
-                false
+                )
             );
         }
     }

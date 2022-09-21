@@ -134,12 +134,11 @@ namespace Pidgin
         }
         private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ref ParseState<TToken> state)
         {
-            var startingLoc = state.Location;
             var expecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
             var result1 = parser.TryParse(ref state, ref expecteds, out var result)
-                ? new Result<TToken, T>(state.Location > startingLoc, result)
-                : new Result<TToken, T>(state.Location > startingLoc, state.BuildError(ref expecteds));
+                ? new Result<TToken, T>(result)
+                : new Result<TToken, T>(state.BuildError(ref expecteds));
 
             expecteds.Dispose();
             state.Dispose();  // ensure we return the state's buffers to the buffer pool

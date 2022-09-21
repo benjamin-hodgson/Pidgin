@@ -34,6 +34,12 @@ namespace Pidgin
         /// The offset in the input stream at which the parse error occurred
         /// </summary>
         /// <returns>The offset in the input stream at which the parse error occurred</returns>
+        public int ErrorOffset { get; }
+
+        /// <summary>
+        /// The offset in the input stream at which the parse error occurred
+        /// </summary>
+        /// <returns>The offset in the input stream at which the parse error occurred</returns>
         public SourcePosDelta ErrorPosDelta { get; }
 
         /// <summary>
@@ -48,11 +54,19 @@ namespace Pidgin
         /// <returns>A custom error message, or null if the error was created without a custom error message</returns>
         public string? Message { get; }
 
-        internal ParseError(Maybe<TToken> unexpected, bool eof, ImmutableArray<Expected<TToken>> expected, SourcePosDelta errorPosDelta, string? message)
+        internal ParseError(
+            Maybe<TToken> unexpected,
+            bool eof,
+            ImmutableArray<Expected<TToken>> expected,
+            int errorOffset,
+            SourcePosDelta errorPosDelta,
+            string? message
+        )
         {
             Unexpected = unexpected;
             EOF = eof;
             Expected = expected;
+            ErrorOffset = errorOffset;
             ErrorPosDelta = errorPosDelta;
             Message = message;
         }
@@ -135,6 +149,7 @@ namespace Pidgin
             => Unexpected.Equals(other?.Unexpected)
             && EOF == other.EOF
             && (Expected == null && other.Expected == null || Expected!.SequenceEqual(other.Expected))
+            && ErrorOffset.Equals(other.ErrorOffset)
             && ErrorPos.Equals(other.ErrorPos)
             && object.Equals(Message, other.Message);
 
@@ -151,6 +166,6 @@ namespace Pidgin
             => !(left == right);
 
         /// <inheritdoc/>
-        public override int GetHashCode() => HashCode.Combine(Unexpected, EOF, Expected, ErrorPos, Message);
+        public override int GetHashCode() => HashCode.Combine(Unexpected, EOF, Expected, ErrorOffset, ErrorPos, Message);
     }
 }

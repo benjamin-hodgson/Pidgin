@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using Pidgin.Expression;
@@ -13,10 +14,11 @@ namespace Pidgin.Tests;
 
 public class ExpressionParserTests : ParserTestBase
 {
-    private abstract class Expr : IEquatable<Expr>
+    [SuppressMessage("Design", "CA1034")]
+    public abstract class Expr : IEquatable<Expr>
     {
-        public override bool Equals(object? other)
-            => other is Expr expr && Equals(expr);
+        public override bool Equals(object? obj)
+            => obj is Expr expr && Equals(expr);
         public bool Equals(Expr? other)
         {
             if (other == null)
@@ -102,8 +104,16 @@ public class ExpressionParserTests : ParserTestBase
         }
     }
 
-    [Fact]
-    public void TestInfixN()
+    public static IEnumerable<object[]> InfixNCases()
+    {
+        yield return new object[]{ "1", new Lit(1), 1 };
+        yield return new object[]{ "1*2", new Times(new Lit(1), new Lit(2)), 3 };
+        yield return new object[]{ "1*2*3", new Times(new Lit(1), new Lit(2)), 3 };  // shouldn't consume "*3"
+    }
+
+    [Theory]
+    [MemberData(nameof(InfixNCases))]
+    public void TestInfixN(string input, Expr expected, int consumed)
     {
         var parser = ExpressionParser.Build(
             Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
@@ -115,25 +125,48 @@ public class ExpressionParserTests : ParserTestBase
             }
         );
 
-        AssertSuccess(
-            parser.Parse("1"),
-            new Lit(1),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1*2"),
-            new Times(new Lit(1), new Lit(2)),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1*2*3"),
-            new Times(new Lit(1), new Lit(2)),
-            true
-        );
+        AssertPartialParse(parser, input, expected, consumed);
     }
 
-    [Fact]
-    public void TestInfixL()
+    public static IEnumerable<object[]> InfixLCases()
+    {
+        yield return new object[]
+        {
+            "1",
+            new Lit(1),
+        };
+        yield return new object[]
+        {
+            "1+2+3+4",
+            new Plus(new Plus(new Plus(new Lit(1), new Lit(2)), new Lit(3)), new Lit(4)),
+        };
+        yield return new object[]
+        {
+            "1+2-3+4",
+            new Plus(new Minus(new Plus(new Lit(1), new Lit(2)), new Lit(3)), new Lit(4)),
+        };
+        yield return new object[]
+        {
+            "1*2*3+4*5",
+            new Plus(new Times(new Times(new Lit(1), new Lit(2)), new Lit(3)), new Times(new Lit(4), new Lit(5))),
+        };
+
+        {
+            
+            // should work with large inputs
+            var numbers = Enumerable.Repeat(1, 100000);
+            var input = string.Join("+", numbers);
+            var expected = numbers
+                .Select(n => new Lit(n))
+                .Cast<Expr>()
+                .Aggregate((acc, x) => new Plus(acc, x));
+            yield return new object[] { input, expected };
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(InfixLCases))]
+    public void TestInfixL(string input, Expr expected)
     {
         var parser = ExpressionParser.Build(
             Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
@@ -151,43 +184,48 @@ public class ExpressionParserTests : ParserTestBase
             }
         );
 
-        AssertSuccess(
-            parser.Parse("1"),
-            new Lit(1),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1+2+3+4"),
-            new Plus(new Plus(new Plus(new Lit(1), new Lit(2)), new Lit(3)), new Lit(4)),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1+2-3+4"),
-            new Plus(new Minus(new Plus(new Lit(1), new Lit(2)), new Lit(3)), new Lit(4)),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1*2*3+4*5"),
-            new Plus(new Times(new Times(new Lit(1), new Lit(2)), new Lit(3)), new Times(new Lit(4), new Lit(5))),
-            true
-        );
-
-        // should work with large inputs
-        var numbers = Enumerable.Repeat(1, 100000);
-        var input = string.Join("+", numbers);
-        var expected = numbers
-            .Select(n => new Lit(n))
-            .Cast<Expr>()
-            .Aggregate((Expr?)null, (acc, x) => acc == null ? x : new Plus(acc, x));
-        AssertSuccess(
-            parser.Parse(input)!,
-            expected,
-            true
-        );
+        AssertFullParse(parser, input, expected);
     }
 
-    [Fact]
-    public void TestInfixR()
+    public static IEnumerable<object[]> InfixRCases()
+    {
+        yield return new object[]
+        {
+            "1",
+            new Lit(1),
+        };
+        yield return new object[]
+        {
+            "1+2+3+4",
+            new Plus(new Lit(1), new Plus(new Lit(2), new Plus(new Lit(3), new Lit(4)))),
+        };
+        // yeah it's not mathematically accurate but who cares, it's a test
+        yield return new object[]
+        {
+            "1+2-3+4",
+            new Plus(new Lit(1), new Minus(new Lit(2), new Plus(new Lit(3), new Lit(4)))),
+        };
+        yield return new object[]
+        {
+            "1*2*3+4*5",
+            new Plus(new Times(new Lit(1), new Times(new Lit(2), new Lit(3))), new Times(new Lit(4), new Lit(5))),
+        };
+
+        {
+            // should work with large inputs
+            var numbers = Enumerable.Repeat(1, 100000);
+            var expected = numbers
+                .Select(n => new Lit(n))
+                .Cast<Expr>()
+                .Reverse()
+                .Aggregate((acc, x) => new Plus(x, acc));
+            yield return new object[] { string.Join("+", numbers), expected };
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(InfixRCases))]
+    public void TestInfixR(string input, Expr expected)
     {
         var parser = ExpressionParser.Build(
             Digit.Select<Expr>(x => new Lit((int)char.GetNumericValue(x))),
@@ -210,46 +248,14 @@ public class ExpressionParserTests : ParserTestBase
                 }
             }
         );
-
-        AssertSuccess(
-            parser.Parse("1"),
-            new Lit(1),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1+2+3+4"),
-            new Plus(new Lit(1), new Plus(new Lit(2), new Plus(new Lit(3), new Lit(4)))),
-            true
-        );
-        // yeah it's not mathematically accurate but who cares, it's a test
-        AssertSuccess(
-            parser.Parse("1+2-3+4"),
-            new Plus(new Lit(1), new Minus(new Lit(2), new Plus(new Lit(3), new Lit(4)))),
-            true
-        );
-        AssertSuccess(
-            parser.Parse("1*2*3+4*5"),
-            new Plus(new Times(new Lit(1), new Times(new Lit(2), new Lit(3))), new Times(new Lit(4), new Lit(5))),
-            true
-        );
-
-        // should work with large inputs
-        var numbers = Enumerable.Repeat(1, 100000);
-        var input = string.Join("+", numbers);
-        var expected = numbers
-            .Select(n => new Lit(n))
-            .Cast<Expr>()
-            .Reverse()
-            .Aggregate((Expr?)null, (acc, x) => acc == null ? x : new Plus(x, acc));
-        AssertSuccess(
-            parser.Parse(input)!,
-            expected,
-            true
-        );
+        AssertFullParse(parser, input, expected);
     }
 
-    [Fact]
-    public void TestPrefix()
+    [Theory]
+    [InlineData("true", true)]
+    [InlineData("!true", false)]
+    [InlineData("!(!true)", true)]
+    public void TestPrefix(string input, bool expected)
     {
         var parser = ExpressionParser.Build(
             expr =>
@@ -267,13 +273,19 @@ public class ExpressionParserTests : ParserTestBase
             }
         );
 
-        AssertSuccess(parser.Parse("true"), true, true);
-        AssertSuccess(parser.Parse("!true"), false, true);
-        AssertSuccess(parser.Parse("!(!true)"), true, true);
+        AssertFullParse(parser, input, expected);
     }
 
-    [Fact]
-    public void TestPrefixChainable()
+    [Theory]
+    [InlineData("true", true)]
+    [InlineData("!true", false)]
+    [InlineData("!(!true)", true)]
+    [InlineData("!!true", true)]
+    [InlineData("!~true", true)]
+    [InlineData("~!true", true)]
+    [InlineData("!~!true", false)]
+    [InlineData("~!~true", false)]
+    public void TestPrefixChainable(string input, bool expected)
     {
         var parser = ExpressionParser.Build(
             expr =>
@@ -292,55 +304,48 @@ public class ExpressionParserTests : ParserTestBase
             }
         );
 
-        AssertSuccess(parser.Parse("true"), true, true);
-        AssertSuccess(parser.Parse("!true"), false, true);
-        AssertSuccess(parser.Parse("!(!true)"), true, true);
-        AssertSuccess(parser.Parse("!!true"), true, true);
-        AssertSuccess(parser.Parse("!~true"), true, true);
-        AssertSuccess(parser.Parse("~!true"), true, true);
+        AssertFullParse(parser, input, expected);
     }
 
-    [Fact]
-    public void TestPostfix()
+    [Theory]
+    [InlineData("f")]
+    [InlineData("f()")]
+    public void TestPostfix(string value)
     {
-        Func<dynamic> f = () => true;
-
-        var termParser = String("f").Select<dynamic>(_ => f);
+        var termParser = String("f");
         var parser = ExpressionParser.Build(
             termParser,
             new[]
             {
                 new[]
                 {
-                    Operator.Postfix(String("()").Select<Func<dynamic, dynamic>>(_ => g => g()))
+                    Operator.Postfix(String("()").ThenReturn<Func<string, string>>(f => f + "()"))
                 }
             }
         );
 
-        AssertSuccess(parser.Parse("f"), f, true);
-        AssertSuccess(parser.Parse("f()"), f(), true);
+        AssertFullParse(parser, value, value);
     }
 
-    [Fact]
-    public void TestPostfixChainable()
+    [Theory]
+    [InlineData("f")]
+    [InlineData("f()")]
+    [InlineData("f()()")]
+    [InlineData("f()()()")]
+    public void TestPostfixChainable(string value)
     {
-        Func<dynamic> f = () => true;
-        Func<Func<dynamic>> g = () => f;
-
-        var termParser = String("f").Select<dynamic>(_ => f).Or(String("g").Select<dynamic>(_ => g));
+        var termParser = String("f");
         var parser = ExpressionParser.Build(
             termParser,
             new[]
             {
                 new[]
                 {
-                    Operator.PostfixChainable(String("()").Select<Func<dynamic, dynamic>>(_ => h => h()))
+                    Operator.PostfixChainable(String("()").ThenReturn<Func<string, string>>(f => f + "()"))
                 }
             }
         );
 
-        AssertSuccess(parser.Parse("f"), f, true);
-        AssertSuccess(parser.Parse("f()"), f(), true);
-        AssertSuccess(parser.Parse("g()()"), g()(), true);
+        AssertFullParse(parser, value, value);
     }
 }
