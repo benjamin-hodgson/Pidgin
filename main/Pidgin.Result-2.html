@@ -200,7 +200,7 @@
         <h1 id="Pidgin_Result_2"><a href="#Pidgin_Result_2">Class Result&lt;TToken, T&gt;
         </a></h1>
         <div><p>Represents the result of parsing.
-A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error</p>
+A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true), in which case it contains a value, or it may be a failure, in which case it contains an error.</p>
 </div>
             <h5>Inheritance</h5>
             <ul>
@@ -222,11 +222,13 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                 <tbody>
                         <tr>
                             <td><p>TToken</p></td>
-                            <td></td>
+                            <td><p>The type of the tokens in the parser&apos;s input stream.</p>
+</td>
                         </tr>
                         <tr>
                             <td><p>T</p></td>
-                            <td></td>
+                            <td><p>The type of the value returned by the parser.</p>
+</td>
                         </tr>
                 </tbody>
             </table>
@@ -239,7 +241,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                 
                 <a id="Pidgin_Result_2_Error_"></a>
                 <h4 id="Pidgin_Result_2_Error"><a href="#Pidgin_Result_2_Error">Error</a></h4>
-                <div><p>The parse error</p>
+                <div><p>The parse error.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public ParseError&lt;TToken&gt; Error { get; }</code></pre>
@@ -259,8 +261,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.ParseError-1.html">ParseError</a>&lt;TToken&gt;</p></td>
-                                    <td><p>The parse error</p>
-</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -280,7 +281,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                         <tbody>
                             <tr>
                                 <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p></td>
-                                <td><p>Thrown when the result was a successful one</p>
+                                <td><p>Thrown when the result was a successful one.</p>
 </td>
                             </tr>
                         </tbody>
@@ -289,7 +290,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                 
                 <a id="Pidgin_Result_2_Success_"></a>
                 <h4 id="Pidgin_Result_2_Success"><a href="#Pidgin_Result_2_Success">Success</a></h4>
-                <div><p>Did the parse succeed?</p>
+                <div><p>Did the parse succeed?.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public bool Success { get; }</code></pre>
@@ -309,7 +310,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
-                                    <td><p>A value indicating whether the parse was successful</p>
+                                    <td><p>A value indicating whether the parse was successful.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -323,7 +324,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                 
                 <a id="Pidgin_Result_2_Value_"></a>
                 <h4 id="Pidgin_Result_2_Value"><a href="#Pidgin_Result_2_Value">Value</a></h4>
-                <div><p>The parser&apos;s return value</p>
+                <div><p>The parser&apos;s return value.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public T Value { get; }</code></pre>
@@ -343,8 +344,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                             <tbody>
                                 <tr>
                                     <td><p><span class="xref">T</span></p></td>
-                                    <td><p>The parser&apos;s return value</p>
-</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -364,7 +364,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                         <tbody>
                             <tr>
                                 <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p></td>
-                                <td><p>Thrown when the result was not a successful one</p>
+                                <td><p>Thrown when the result was not a successful one.</p>
 </td>
                             </tr>
                         </tbody>
@@ -376,7 +376,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                 
                 <a id="Pidgin_Result_2_Cast_"></a>
                 <h4 id="Pidgin_Result_2_Cast__1"><a href="#Pidgin_Result_2_Cast__1">Cast&lt;U&gt;()</a></h4>
-                <div><p>Cast the value contained in the result to the specified output type</p>
+                <div><p>Cast the value contained in the result to the specified output type.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Result&lt;TToken, U&gt; Cast&lt;U&gt;()</code></pre>
@@ -393,7 +393,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A result containing this result&apos;s value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+                                    <td><p>A result containing this result&apos;s value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -410,7 +410,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type to cast the contained value to</p>
+                                    <td><p>The type to cast the contained value to.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -433,7 +433,7 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                         <tbody>
                             <tr>
                                 <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidcastexception">InvalidCastException</a></p></td>
-                                <td><p>Thrown when the contained value is not an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+                                <td><p>Thrown when the contained value is not an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
 </td>
                             </tr>
                         </tbody>
@@ -494,7 +494,8 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                                 <tr>
                                     <td><p><span class="xref">T</span></p></td>
                                     <td><p>default</p></td>
-                                    <td></td>
+                                    <td><p>The default value.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -545,7 +546,8 @@ A parse result may be successful (<a class="xref" href="Pidgin.Result-2.html#Pid
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</p></td>
                                     <td><p>value</p></td>
-                                    <td></td>
+                                    <td><p>A function which computes a default value.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -597,13 +599,13 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, U&gt;</p></td>
                                     <td><p>success</p></td>
-                                    <td><p>Called when the result has a value</p>
+                                    <td><p>Called when the result has a value.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="Pidgin.ParseError-1.html">ParseError</a>&lt;TToken&gt;, U&gt;</p></td>
                                     <td><p>failure</p></td>
-                                    <td><p>Called when the result does not have a value</p>
+                                    <td><p>Called when the result does not have a value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -620,7 +622,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><span class="xref">U</span></p></td>
-                                    <td><p>The result of calling the <code data-dev-comment-type="paramref" class="paramref">success</code> or <code data-dev-comment-type="paramref" class="paramref">failure</code> function</p>
+                                    <td><p>The result of calling the <code data-dev-comment-type="paramref" class="paramref">success</code> or <code data-dev-comment-type="paramref" class="paramref">failure</code> function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -637,7 +639,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type</p>
+                                    <td><p>The return type.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -653,7 +655,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                 
                 <a id="Pidgin_Result_2_Or_"></a>
                 <h4 id="Pidgin_Result_2_Or_Pidgin_Result__0__1__"><a href="#Pidgin_Result_2_Or_Pidgin_Result__0__1__">Or(Result&lt;TToken, T&gt;)</a></h4>
-                <div><p>Choose the first successful result</p>
+                <div><p>Choose the first successful result.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Result&lt;TToken, T&gt; Or(Result&lt;TToken, T&gt; result)</code></pre>
@@ -671,7 +673,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A fallback result if this one has an error</p>
+                                    <td><p>A fallback result if this one has an error.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -688,7 +690,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or <code data-dev-comment-type="paramref" class="paramref">result</code></p>
+                                    <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or <code data-dev-comment-type="paramref" class="paramref">result</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -705,7 +707,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                 
                 <a id="Pidgin_Result_2_Or_"></a>
                 <h4 id="Pidgin_Result_2_Or_System_Func_Pidgin_Result__0__1___"><a href="#Pidgin_Result_2_Or_System_Func_Pidgin_Result__0__1___">Or(Func&lt;Result&lt;TToken, T&gt;&gt;)</a></h4>
-                <div><p>Choose the first successful result</p>
+                <div><p>Choose the first successful result.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Result&lt;TToken, T&gt; Or(Func&lt;Result&lt;TToken, T&gt;&gt; result)</code></pre>
@@ -723,7 +725,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A fallback result if this one has an error</p>
+                                    <td><p>A fallback result if this one has an error.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -740,7 +742,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or the result of calling <code data-dev-comment-type="paramref" class="paramref">result</code></p>
+                                    <td><p>This result, if <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</a> == true, or the result of calling <code data-dev-comment-type="paramref" class="paramref">result</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -757,7 +759,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                 
                 <a id="Pidgin_Result_2_Select_"></a>
                 <h4 id="Pidgin_Result_2_Select__1_System_Func__1___0__"><a href="#Pidgin_Result_2_Select__1_System_Func__1___0__">Select&lt;U&gt;(Func&lt;T, U&gt;)</a></h4>
-                <div><p>Project the value contained in the result</p>
+                <div><p>Project the value contained in the result.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Result&lt;TToken, U&gt; Select&lt;U&gt;(Func&lt;T, U&gt; selector)</code></pre>
@@ -775,7 +777,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, U&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function to apply to the contained value</p>
+                                    <td><p>A transformation function to apply to the contained value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -792,7 +794,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>The result of applying the transformation function to the contained value</p>
+                                    <td><p>The result of applying the transformation function to the contained value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -809,7 +811,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the resulting value</p>
+                                    <td><p>The type of the resulting value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -843,7 +845,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function to apply to the contained value</p>
+                                    <td><p>A transformation function to apply to the contained value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -860,7 +862,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>The final result</p>
+                                    <td><p>The final result.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -877,7 +879,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the resulting possibly-absent value</p>
+                                    <td><p>The type of the resulting possibly-absent value.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -911,13 +913,13 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function to apply to the contained value</p>
+                                    <td><p>A transformation function to apply to the contained value.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, U, R&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A transformation function to apply to the contained value and the value contained in the selected <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a></p>
+                                    <td><p>A transformation function to apply to the contained value and the value contained in the selected <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -934,7 +936,7 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, R&gt;</p></td>
-                                    <td><p>The result of applying <code data-dev-comment-type="paramref" class="paramref">selector</code> to the contained value and <code data-dev-comment-type="paramref" class="paramref">result</code> to the intermediate values</p>
+                                    <td><p>The result of applying <code data-dev-comment-type="paramref" class="paramref">selector</code> to the contained value and <code data-dev-comment-type="paramref" class="paramref">result</code> to the intermediate values.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -951,12 +953,12 @@ If <a class="xref" href="Pidgin.Result-2.html#Pidgin_Result_2_Success">Success</
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the value to select</p>
+                                    <td><p>The type of the value to select.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>R</p></td>
-                                    <td><p>The type of the resulting possibly-absent value</p>
+                                    <td><p>The type of the resulting possibly-absent value.</p>
 </td>
                                 </tr>
                             </tbody>

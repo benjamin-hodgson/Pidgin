@@ -202,7 +202,7 @@
         <div><p>Represents a parsing expectation for error reporting.
 Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
 a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
-or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>)</p>
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
 </div>
             <h5>Inheritance</h5>
             <ul>
@@ -229,7 +229,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 <tbody>
                         <tr>
                             <td><p>TToken</p></td>
-                            <td></td>
+                            <td><p>The type of tokens in the parser&apos;s input stream.</p>
+</td>
                         </tr>
                 </tbody>
             </table>
@@ -242,7 +243,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_IsEof_"></a>
                 <h4 id="Pidgin_Expected_1_IsEof"><a href="#Pidgin_Expected_1_IsEof">IsEof</a></h4>
-                <div><p>Did the parser expect the end of the input stream?</p>
+                <div><p>Did the parser expect the end of the input stream?.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public bool IsEof { get; }</code></pre>
@@ -262,7 +263,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
-                                    <td><p>True if the parser expected the end of the input stream</p>
+                                    <td><p>True if the parser expected the end of the input stream.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -296,7 +297,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
-                                    <td><p>The label</p>
+                                    <td><p>The label.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -330,7 +331,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;TToken&gt;</p></td>
-                                    <td><p>The sequence of tokens that were expected</p>
+                                    <td><p>The sequence of tokens that were expected.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -561,7 +562,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_Equality_"></a>
                 <h4 id="Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__">Equality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Equality operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator ==(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -578,12 +580,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -615,7 +619,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_GreaterThan_"></a>
                 <h4 id="Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Comparison operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator&gt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -632,12 +637,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -669,7 +676,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_GreaterThanOrEqual_"></a>
                 <h4 id="Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Comparison operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator &gt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -686,12 +694,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -723,7 +733,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_Inequality_"></a>
                 <h4 id="Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__">Inequality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Inequality operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator !=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -740,12 +751,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -777,7 +790,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_LessThan_"></a>
                 <h4 id="Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__">LessThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Comparison operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator &lt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -794,12 +808,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -831,7 +847,8 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 
                 <a id="Pidgin_Expected_1_op_LessThanOrEqual_"></a>
                 <h4 id="Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">LessThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Comparison operator.</p>
+</div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public static bool operator &lt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
@@ -848,12 +865,14 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>left</p></td>
-                                    <td></td>
+                                    <td><p>The left <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;</p></td>
                                     <td><p>right</p></td>
-                                    <td></td>
+                                    <td><p>The right <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a>.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>

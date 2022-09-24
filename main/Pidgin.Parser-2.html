@@ -222,19 +222,19 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                 <tbody>
                         <tr>
                             <td><p>TToken</p></td>
-                            <td><p>The type of the tokens in the parser&apos;s input stream</p>
+                            <td><p>The type of the tokens in the parser&apos;s input stream.</p>
 </td>
                         </tr>
                         <tr>
                             <td><p>T</p></td>
-                            <td><p>The type of the value returned by the parser</p>
+                            <td><p>The type of the value returned by the parser.</p>
 </td>
                         </tr>
                 </tbody>
             </table>
         
             <h5><strong>Remarks</strong></h5>
-            <div><p>This type is not intended to be subclassed by users of the library</p>
+            <div><p>This type is not intended to be subclassed by users of the library.</p>
 </div>
         
         
@@ -282,7 +282,7 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</p></td>
                                     <td><p>predicate</p></td>
-                                    <td><p>The predicate to apply to the value returned by the current parser</p>
+                                    <td><p>The predicate to apply to the value returned by the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -299,7 +299,7 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -334,13 +334,13 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</p></td>
                                     <td><p>predicate</p></td>
-                                    <td><p>The predicate to apply to the value returned by the current parser</p>
+                                    <td><p>The predicate to apply to the value returned by the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</p></td>
                                     <td><p>message</p></td>
-                                    <td><p>A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate</p>
+                                    <td><p>A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -357,7 +357,7 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -392,13 +392,13 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</p></td>
                                     <td><p>predicate</p></td>
-                                    <td><p>The predicate to apply to the value returned by the current parser</p>
+                                    <td><p>The predicate to apply to the value returned by the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
                                     <td><p>message</p></td>
-                                    <td><p>A custom error message to return when the value returned by the current parser fails to satisfy the predicate</p>
+                                    <td><p>A custom error message to return when the value returned by the current parser fails to satisfy the predicate.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -415,7 +415,7 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -433,7 +433,7 @@ A parser can either succeed, and return a value of type <code data-dev-comment-t
                 <a id="Pidgin_Parser_2_AtLeastOnce_"></a>
                 <h4 id="Pidgin_Parser_2_AtLeastOnce"><a href="#Pidgin_Parser_2_AtLeastOnce">AtLeastOnce()</a></h4>
                 <div><p>Creates a parser that applies the current parser one or more times.
-The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input</p>
+The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Parser&lt;TToken, IEnumerable&lt;T&gt;&gt; AtLeastOnce()</code></pre>
@@ -450,7 +450,7 @@ The resulting parser fails if the current parser fails the first time it is appl
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser that applies the current parser one or more times</p>
+                                    <td><p>A parser that applies the current parser one or more times.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -488,7 +488,7 @@ fails after consuming input.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -506,7 +506,7 @@ fails after consuming input.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;, U&gt;&gt;</p></td>
                                     <td><p>A parser which applies this parser repeatedly
-until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -523,7 +523,8 @@ until <code data-dev-comment-type="paramref" class="paramref">terminator</code> 
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The return type of the <code data-dev-comment-type="paramref" class="paramref">terminator</code> parser.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -560,7 +561,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -578,7 +579,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
                                     <td><p>A parser which applies this parser repeatedly
-until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -595,7 +596,8 @@ until <code data-dev-comment-type="paramref" class="paramref">terminator</code> 
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The return type of the <code data-dev-comment-type="paramref" class="paramref">terminator</code> parser.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -606,7 +608,7 @@ until <code data-dev-comment-type="paramref" class="paramref">terminator</code> 
         
                     <h5 id="Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_AtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
                     <div><p><code>p.AtLeastOnceUntil(q)</code> is equivalent to
-<code>p.AtLeastOnceThen(q).Select(t =&gt; t.Item1)</code></p>
+<code>p.AtLeastOnceThen(q).Select(t =&gt; t.Item1)</code>.</p>
 </div>
         
                         
@@ -650,7 +652,7 @@ The resulting parser returns the result of the current parser, ignoring the resu
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that applies the current parser followed by the specified parser</p>
+                                    <td><p>A parser that applies the current parser followed by the specified parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -667,7 +669,7 @@ The resulting parser returns the result of the current parser, ignoring the resu
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the value returned by the second parser</p>
+                                    <td><p>The type of the value returned by the second parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -702,7 +704,7 @@ The resulting parser returns the result of the current parser, ignoring the retu
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>parser</p></td>
-                                    <td><p>The parser to apply before and after applying the current parser</p>
+                                    <td><p>The parser to apply before and after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -719,7 +721,7 @@ The resulting parser returns the result of the current parser, ignoring the retu
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that applies the specified parser before and after applying the current parser</p>
+                                    <td><p>A parser that applies the specified parser before and after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -736,7 +738,7 @@ The resulting parser returns the result of the current parser, ignoring the retu
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the value returned by the bracketing parser</p>
+                                    <td><p>The type of the value returned by the bracketing parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -771,13 +773,13 @@ The resulting parser returns the result of the current parser, ignoring the retu
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>parser1</p></td>
-                                    <td><p>The parser to apply before applying the current parser</p>
+                                    <td><p>The parser to apply before applying the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, V&gt;</p></td>
                                     <td><p>parser2</p></td>
-                                    <td><p>The parser to apply after applying the current parser</p>
+                                    <td><p>The parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -794,7 +796,7 @@ The resulting parser returns the result of the current parser, ignoring the retu
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that applies the specified parsers before and after applying the current parser</p>
+                                    <td><p>A parser that applies the specified parsers before and after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -811,12 +813,12 @@ The resulting parser returns the result of the current parser, ignoring the retu
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the value returned by the first parser</p>
+                                    <td><p>The type of the value returned by the first parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>V</p></td>
-                                    <td><p>The type of the value returned by the second parser</p>
+                                    <td><p>The type of the value returned by the second parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -851,7 +853,7 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+                                    <td><p>A transformation function which returns a parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -885,7 +887,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the return value of the second parser</p>
+                                    <td><p>The type of the return value of the second parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -920,13 +922,13 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+                                    <td><p>A transformation function which returns a parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, U, R&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A function to apply to the return values of the two parsers</p>
+                                    <td><p>A function to apply to the return values of the two parsers.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -943,7 +945,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</p></td>
-                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -960,12 +962,12 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the return value of the second parser</p>
+                                    <td><p>The type of the return value of the second parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>R</p></td>
-                                    <td><p>The type of the return value of the resulting parser</p>
+                                    <td><p>The type of the return value of the resulting parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -981,7 +983,7 @@ The transformation function dynamically chooses a second parser, which is applie
                 
                 <a id="Pidgin_Parser_2_Cast_"></a>
                 <h4 id="Pidgin_Parser_2_Cast__1"><a href="#Pidgin_Parser_2_Cast__1">Cast&lt;U&gt;()</a></h4>
-                <div><p>Cast the return value of the current parser to the specified result type</p>
+                <div><p>Cast the return value of the current parser to the specified result type.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Parser&lt;TToken, U&gt; Cast&lt;U&gt;()</code></pre>
@@ -998,7 +1000,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A parser which returns this parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+                                    <td><p>A parser which returns this parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1015,7 +1017,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type to cast the return value to</p>
+                                    <td><p>The type to cast the return value to.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1038,7 +1040,7 @@ The transformation function dynamically chooses a second parser, which is applie
                         <tbody>
                             <tr>
                                 <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidcastexception">InvalidCastException</a></p></td>
-                                <td><p>Thrown when the return value is not an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+                                <td><p>Thrown when the return value is not an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
 </td>
                             </tr>
                         </tbody>
@@ -1103,7 +1105,7 @@ The label will be reported in an error message if the parser fails, instead of t
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
                                     <td><p>label</p></td>
-                                    <td><p>The custom label to apply to the current parser</p>
+                                    <td><p>The custom label to apply to the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1120,7 +1122,7 @@ The label will be reported in an error message if the parser fails, instead of t
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser equivalent to the current parser, with a custom label</p>
+                                    <td><p>A parser equivalent to the current parser, with a custom label.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1155,7 +1157,7 @@ The resulting parser fails if the current parser fails after consuming input.</p
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser zero or more times</p>
+                                    <td><p>A parser which applies the current parser zero or more times.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1193,7 +1195,7 @@ fails after consuming input.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1210,7 +1212,7 @@ fails after consuming input.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;, U&gt;&gt;</p></td>
-                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1227,7 +1229,7 @@ fails after consuming input.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1262,7 +1264,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, U&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function</p>
+                                    <td><p>A transformation function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1279,7 +1281,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser</p>
+                                    <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1296,7 +1298,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the transformation function</p>
+                                    <td><p>The return type of the transformation function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1370,7 +1372,7 @@ and the result of this parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The result type</p>
+                                    <td><p>The result type.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1403,7 +1405,7 @@ and the result of this parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A parser which returns the current parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>, if the value is an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code></p>
+                                    <td><p>A parser which returns the current parser&apos;s return value casted to <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>, if the value is an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">U</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1420,7 +1422,7 @@ and the result of this parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type to cast the return value of the current parser to</p>
+                                    <td><p>The type to cast the return value of the current parser to.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1454,7 +1456,7 @@ The resulting parser fails if the current parser fails after consuming input.</p
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser and returns <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> if the current parser fails without consuming any input</p>
+                                    <td><p>A parser which applies the current parser and returns <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> if the current parser fails without consuming any input.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1490,7 +1492,7 @@ The resulting parser fails if both the current parser and the alternative parser
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
                                     <td><p>parser</p></td>
-                                    <td><p>The alternative parser to apply if the current parser fails without consuming any input</p>
+                                    <td><p>The alternative parser to apply if the current parser fails without consuming any input.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1594,7 +1596,7 @@ The resulting parser fails if both the current parser and the alternative parser
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
                                     <td><p>count</p></td>
-                                    <td><p>The number of times to apply the current parser</p>
+                                    <td><p>The number of times to apply the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1635,7 +1637,7 @@ The resulting parser fails if both the current parser and the alternative parser
                         <tbody>
                             <tr>
                                 <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p></td>
-                                <td><p><code data-dev-comment-type="paramref" class="paramref">count</code> is less than 0</p>
+                                <td><p><code data-dev-comment-type="paramref" class="paramref">count</code> is less than 0.</p>
 </td>
                             </tr>
                         </tbody>
@@ -1663,7 +1665,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, U&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function</p>
+                                    <td><p>A transformation function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1680,7 +1682,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser</p>
+                                    <td><p>A parser which applies <code data-dev-comment-type="paramref" class="paramref">selector</code> to the result of the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1697,7 +1699,7 @@ This is an infix synonym for <a class="xref" href="Pidgin.Parser.html#Pidgin_Par
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the transformation function</p>
+                                    <td><p>The return type of the transformation function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1732,13 +1734,13 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+                                    <td><p>A transformation function which returns a parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, U, R&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A function to apply to the return values of the two parsers</p>
+                                    <td><p>A function to apply to the return values of the two parsers.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1755,7 +1757,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</p></td>
-                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1772,12 +1774,12 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the return value of the second parser</p>
+                                    <td><p>The type of the return value of the second parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>R</p></td>
-                                    <td><p>The type of the return value of the resulting parser</p>
+                                    <td><p>The type of the return value of the resulting parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1812,7 +1814,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1829,7 +1831,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser repeatedly, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser repeatedly, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1846,7 +1848,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1881,7 +1883,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1898,7 +1900,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser repeatedly, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser repeatedly, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1915,7 +1917,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1950,7 +1952,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1967,7 +1969,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser at least once, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser at least once, interleaved and optionally terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -1984,7 +1986,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2019,7 +2021,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2036,7 +2038,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser repeatedly, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser repeatedly, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2053,7 +2055,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2088,7 +2090,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2105,7 +2107,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser at least once, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser at least once, interleaved and terminated by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2122,7 +2124,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2157,7 +2159,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>separator</p></td>
-                                    <td><p>A parser which parses a separator to be interleaved with the current parser</p>
+                                    <td><p>A parser which parses a separator to be interleaved with the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2174,7 +2176,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies the current parser at least once, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code></p>
+                                    <td><p>A parser which applies the current parser at least once, interleaved by <code data-dev-comment-type="paramref" class="paramref">separator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2191,7 +2193,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the separator parser</p>
+                                    <td><p>The return type of the separator parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2209,7 +2211,7 @@ The resulting parser ignores the return value of the separator parser.</p>
                 <h4 id="Pidgin_Parser_2_SkipAtLeastOnce"><a href="#Pidgin_Parser_2_SkipAtLeastOnce">SkipAtLeastOnce()</a></h4>
                 <div><p>Creates a parser that applies the current parser one or more times, discarding the results.
 This is more efficient than <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_AtLeastOnce">AtLeastOnce()</a>, if you don&apos;t need the results.
-The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input</p>
+The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public Parser&lt;TToken, Unit&gt; SkipAtLeastOnce()</code></pre>
@@ -2226,7 +2228,7 @@ The resulting parser fails if the current parser fails the first time it is appl
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</p></td>
-                                    <td><p>A parser that applies the current parser one or more times, discarding the results</p>
+                                    <td><p>A parser that applies the current parser one or more times, discarding the results.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2266,7 +2268,7 @@ if you don&apos;t need the results. Fails if this parser fails or if
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2284,7 +2286,7 @@ if you don&apos;t need the results. Fails if this parser fails or if
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>A parser which applies this parser repeatedly until
-<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2301,7 +2303,8 @@ if you don&apos;t need the results. Fails if this parser fails or if
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The return type of the <code data-dev-comment-type="paramref" class="paramref">terminator</code> parser.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2341,7 +2344,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2359,7 +2362,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</p></td>
                                     <td><p>A parser which applies this parser repeatedly until
-<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2376,7 +2379,8 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The return type of the <code data-dev-comment-type="paramref" class="paramref">terminator</code> parser.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2387,7 +2391,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
                     <h5 id="Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_SkipAtLeastOnceUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
                     <div><p><code>p.SkipAtLeastOnceUntil(q)</code> is equivalent to
-<code>p.SkipAtLeastOnceThen(q).ThenReturn(Unit.Value)</code></p>
+<code>p.SkipAtLeastOnceThen(q).ThenReturn(Unit.Value)</code>.</p>
 </div>
         
                         
@@ -2414,7 +2418,7 @@ The resulting parser fails if the current parser fails after consuming input.</p
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</p></td>
-                                    <td><p>A parser which applies the current parser zero or more times</p>
+                                    <td><p>A parser which applies the current parser zero or more times.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2455,7 +2459,7 @@ fails after consuming input.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2473,7 +2477,7 @@ fails after consuming input.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>A parser which applies this parser repeatedly until
-<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+<code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2490,7 +2494,7 @@ fails after consuming input.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2531,7 +2535,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2548,7 +2552,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="Pidgin.Unit.html">Unit</a>&gt;</p></td>
-                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results</p>
+                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds, discarding the results.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2565,7 +2569,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2577,7 +2581,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
                     <h5 id="Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_SkipUntil__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
                     <div><p><code>p.SkipUntil(q)</code> is equivalent to
-<code>p.SkipManyThen(q).ThenReturn(Unit.Value)</code></p>
+<code>p.SkipManyThen(q).ThenReturn(Unit.Value)</code>.</p>
 </div>
         
                         
@@ -2643,7 +2647,7 @@ and the result of this parser.</p>
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The result type</p>
+                                    <td><p>The result type.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2678,7 +2682,7 @@ The resulting parser returns the result of the second parser, ignoring the resul
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>parser</p></td>
-                                    <td><p>A parser to apply after applying the current parser</p>
+                                    <td><p>A parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2695,7 +2699,7 @@ The resulting parser returns the result of the second parser, ignoring the resul
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
-                                    <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code></p>
+                                    <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2712,7 +2716,7 @@ The resulting parser returns the result of the second parser, ignoring the resul
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the second parser</p>
+                                    <td><p>The return type of the second parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2747,7 +2751,7 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+                                    <td><p>A transformation function which returns a parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2781,7 +2785,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the return value of the second parser</p>
+                                    <td><p>The type of the return value of the second parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2792,7 +2796,7 @@ The transformation function dynamically chooses a second parser, which is applie
         
         
                     <h5 id="Pidgin_Parser_2_Then__1_System_Func__1_Pidgin_Parser__0___0____remarks"><a href="#Pidgin_Parser_2_Then__1_System_Func__1_Pidgin_Parser__0___0____remarks">Remarks</a></h5>
-                    <div><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__1_System_Func__1_Pidgin_Parser__0___0___">Bind&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;)</a></p>
+                    <div><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__1_System_Func__1_Pidgin_Parser__0___0___">Bind&lt;U&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;)</a>.</p>
 </div>
         
                         
@@ -2818,13 +2822,13 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>parser</p></td>
-                                    <td><p>A parser to apply after applying the current parser</p>
+                                    <td><p>A parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, U, R&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A function to apply to the two parsed values</p>
+                                    <td><p>A function to apply to the two parsed values.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2841,7 +2845,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</p></td>
-                                    <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code></p>
+                                    <td><p>A parser which applies the current parser followed by <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2858,12 +2862,12 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of the second parser</p>
+                                    <td><p>The return type of the second parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>R</p></td>
-                                    <td><p>The return type of the composed parser</p>
+                                    <td><p>The return type of the composed parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2902,13 +2906,13 @@ The transformation function dynamically chooses a second parser, which is applie
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;&gt;</p></td>
                                     <td><p>selector</p></td>
-                                    <td><p>A transformation function which returns a parser to apply after applying the current parser</p>
+                                    <td><p>A transformation function which returns a parser to apply after applying the current parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, U, R&gt;</p></td>
                                     <td><p>result</p></td>
-                                    <td><p>A function to apply to the return values of the two parsers</p>
+                                    <td><p>A function to apply to the return values of the two parsers.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2925,7 +2929,7 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, R&gt;</p></td>
-                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function</p>
+                                    <td><p>A parser which applies the current parser before applying the result of the <code data-dev-comment-type="paramref" class="paramref">selector</code> function.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2942,12 +2946,12 @@ The transformation function dynamically chooses a second parser, which is applie
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The type of the return value of the second parser</p>
+                                    <td><p>The type of the return value of the second parser.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p>R</p></td>
-                                    <td><p>The type of the return value of the resulting parser</p>
+                                    <td><p>The type of the return value of the resulting parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -2958,7 +2962,7 @@ The transformation function dynamically chooses a second parser, which is applie
         
         
                     <h5 id="Pidgin_Parser_2_Then__2_System_Func__1_Pidgin_Parser__0___0___System_Func__1___0___1___remarks"><a href="#Pidgin_Parser_2_Then__2_System_Func__1_Pidgin_Parser__0___0___System_Func__1___0___1___remarks">Remarks</a></h5>
-                    <div><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__2_System_Func__1_Pidgin_Parser__0___0___System_Func__1___0___1__">Bind&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</a></p>
+                    <div><p>This function is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Bind__2_System_Func__1_Pidgin_Parser__0___0___System_Func__1___0___1__">Bind&lt;U, R&gt;(Func&lt;T, Parser&lt;TToken, U&gt;&gt;, Func&lt;T, U, R&gt;)</a>.</p>
 </div>
         
                         
@@ -2985,7 +2989,7 @@ This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2
                                 <tr>
                                     <td><p><span class="xref">U</span></p></td>
                                     <td><p>result</p></td>
-                                    <td><p>The result</p>
+                                    <td><p>The result.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3019,7 +3023,8 @@ This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The type of the result.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -3058,7 +3063,8 @@ or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Par
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</p></td>
                                     <td><p>message</p></td>
-                                    <td></td>
+                                    <td><p>A message to write to the console.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -3110,7 +3116,8 @@ or <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Then__1_Pidgin_Par
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
                                     <td><p>message</p></td>
-                                    <td></td>
+                                    <td><p>A message to write to the console.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -3206,13 +3213,13 @@ and subject to change in future versions of the library.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.PooledList-1.html">PooledList</a>&lt;<a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;&gt;</p></td>
                                     <td><p>expecteds</p></td>
-                                    <td><p>A list to which the parser can add its expected tokens when it fails</p>
+                                    <td><p>A list to which the parser can add its expected tokens when it fails.</p>
 </td>
                                 </tr>
                                 <tr>
                                     <td><p><span class="xref">T</span></p></td>
                                     <td><p>result</p></td>
-                                    <td><p>The result</p>
+                                    <td><p>The result.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3268,7 +3275,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</p></td>
                                     <td><p>terminator</p></td>
-                                    <td><p>A parser to parse a terminator</p>
+                                    <td><p>A parser to parse a terminator.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3285,7 +3292,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;&gt;</p></td>
-                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds</p>
+                                    <td><p>A parser which applies this parser repeatedly until <code data-dev-comment-type="paramref" class="paramref">terminator</code> succeeds.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3302,7 +3309,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code></p>
+                                    <td><p>The return type of <code data-dev-comment-type="paramref" class="paramref">terminator</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3314,7 +3321,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
                     <h5 id="Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0___remarks"><a href="#Pidgin_Parser_2_Until__1_Pidgin_Parser__0___0___remarks">Remarks</a></h5>
                     <div><p><code>p.Until(q)</code> is equivalent to
-<code>p.ManyThen(q).Select(t =&gt; t.Item1)</code></p>
+<code>p.ManyThen(q).Select(t =&gt; t.Item1)</code>.</p>
 </div>
         
                         
@@ -3340,7 +3347,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</p></td>
                                     <td><p>predicate</p></td>
-                                    <td><p>The predicate to apply to the value returned by the current parser</p>
+                                    <td><p>The predicate to apply to the value returned by the current parser.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3357,7 +3364,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
-                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code></p>
+                                    <td><p>A parser that fails if the value returned by the current parser fails to satisfy <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3369,7 +3376,7 @@ The return value of <code data-dev-comment-type="paramref" class="paramref">term
         
         
                     <h5 id="Pidgin_Parser_2_Where_System_Func__1_System_Boolean___remarks"><a href="#Pidgin_Parser_2_Where_System_Func__1_System_Boolean___remarks">Remarks</a></h5>
-                    <div><p>This function is a synonym of <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Assert_System_Func__1_System_Boolean__">Assert(Func&lt;T, Boolean&gt;)</a></p>
+                    <div><p>This function is a synonym of <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2_Assert_System_Func__1_System_Boolean__">Assert(Func&lt;T, Boolean&gt;)</a>.</p>
 </div>
         
                         
@@ -3396,7 +3403,7 @@ This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2
                                 <tr>
                                     <td><p><span class="xref">U</span></p></td>
                                     <td><p>result</p></td>
-                                    <td><p>The result</p>
+                                    <td><p>The result.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -3430,7 +3437,8 @@ This is a synonym for <a class="xref" href="Pidgin.Parser-2.html#Pidgin_Parser_2
                             <tbody>
                                 <tr>
                                     <td><p>U</p></td>
-                                    <td></td>
+                                    <td><p>The type of the result.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>

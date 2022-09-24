@@ -241,7 +241,7 @@ and subject to change in future versions of the library.</p>
                 
                 <a id="Pidgin_ParseState_1_Configuration_"></a>
                 <h4 id="Pidgin_ParseState_1_Configuration"><a href="#Pidgin_ParseState_1_Configuration">Configuration</a></h4>
-                <div><p>Gets the parser configuration</p>
+                <div><p>Gets the parser configuration.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public IConfiguration&lt;TToken&gt; Configuration { get; }</code></pre>
@@ -413,7 +413,7 @@ In other words, the current absolute offset of the input stream.</p>
                 
                 <a id="Pidgin_ParseState_1_Bookmark_"></a>
                 <h4 id="Pidgin_ParseState_1_Bookmark"><a href="#Pidgin_ParseState_1_Bookmark">Bookmark()</a></h4>
-                <div><p>Start buffering the input</p>
+                <div><p>Start buffering the input.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public int Bookmark()</code></pre>
@@ -430,7 +430,8 @@ In other words, the current absolute offset of the input stream.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
-                                    <td></td>
+                                    <td><p>The location of the bookmark.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -446,7 +447,7 @@ In other words, the current absolute offset of the input stream.</p>
                 
                 <a id="Pidgin_ParseState_1_DiscardBookmark_"></a>
                 <h4 id="Pidgin_ParseState_1_DiscardBookmark_System_Int32_"><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int32_">DiscardBookmark(Int32)</a></h4>
-                <div><p>Stop buffering the input</p>
+                <div><p>Stop buffering the input.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public void DiscardBookmark(int bookmark)</code></pre>
@@ -464,7 +465,8 @@ In other words, the current absolute offset of the input stream.</p>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
                                     <td><p>bookmark</p></td>
-                                    <td></td>
+                                    <td><p>The location of the bookmark.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -518,7 +520,8 @@ if the parser reaches the end of the input stream.</p>
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;TToken&gt;</p></td>
-                                    <td></td>
+                                    <td><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a> containing the tokens.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -534,7 +537,7 @@ if the parser reaches the end of the input stream.</p>
                 
                 <a id="Pidgin_ParseState_1_Rewind_"></a>
                 <h4 id="Pidgin_ParseState_1_Rewind_System_Int32_"><a href="#Pidgin_ParseState_1_Rewind_System_Int32_">Rewind(Int32)</a></h4>
-                <div><p>Return to a bookmark previously obtained from <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark">Bookmark()</a> and discard it</p>
+                <div><p>Return to a bookmark previously obtained from <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark">Bookmark()</a> and discard it.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public void Rewind(int bookmark)</code></pre>
@@ -552,7 +555,8 @@ if the parser reaches the end of the input stream.</p>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
                                     <td><p>bookmark</p></td>
-                                    <td></td>
+                                    <td><p>The location of the bookmark.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -569,7 +573,7 @@ if the parser reaches the end of the input stream.</p>
                 
                 <a id="Pidgin_ParseState_1_SetError_"></a>
                 <h4 id="Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_"><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_">SetError(Maybe&lt;TToken&gt;, Boolean, Int32, String)</a></h4>
-                <div><p>Sets the error. Call this when your parser fails</p>
+                <div><p>Sets the error. Call this when your parser fails.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang-csharp hljs">public void SetError(Maybe&lt;TToken&gt; unexpected, bool eof, int errorLocation, string message)</code></pre>
@@ -587,22 +591,26 @@ if the parser reaches the end of the input stream.</p>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;TToken&gt;</p></td>
                                     <td><p>unexpected</p></td>
-                                    <td></td>
+                                    <td><p>The token that wasn&apos;t expected.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
                                     <td><p>eof</p></td>
-                                    <td></td>
+                                    <td><p>Whether the parser unexpectedly reached the end of the input.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
                                     <td><p>errorLocation</p></td>
-                                    <td></td>
+                                    <td><p>The location at which the parse error was encountered.</p>
+</td>
                                 </tr>
                                 <tr>
                                     <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
                                     <td><p>message</p></td>
-                                    <td></td>
+                                    <td><p>An error message.</p>
+</td>
                                 </tr>
                             </tbody>
                         </table>
