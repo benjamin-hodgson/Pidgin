@@ -10,7 +10,10 @@ namespace Pidgin.Permutation
 
         public abstract Parser<TToken, T> Build();
     }
+
+#pragma warning disable SA1402  // "File may only contain a single type"
     internal sealed class PermutationParserBranchImpl<TToken, U, T, R> : PermutationParserBranch<TToken, R>
+#pragma warning restore SA1402  // "File may only contain a single type"
     {
         private readonly Parser<TToken, U> _parser;
         private readonly PermutationParser<TToken, T> _perm;

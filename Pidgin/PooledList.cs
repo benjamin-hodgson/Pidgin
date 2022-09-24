@@ -14,8 +14,8 @@ namespace Pidgin
     /// For efficiency, <see cref="PooledList{T}"/> is implemented as a mutable struct.
     /// It's intended to be passed by reference.
     /// </summary>
-    /// <typeparam name="T">The type of elements of the list</typeparam>
-    [SuppressMessage("performance", "CA1815", Justification = "This type is not meant to be equatable")]  // "Struct should override Equals"
+    /// <typeparam name="T">The type of elements of the list.</typeparam>
+    [SuppressMessage("performance", "CA1815:Struct should override Equals", Justification = "This type is not meant to be equatable")]
     public struct PooledList<T> : IDisposable, IList<T>
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
@@ -24,8 +24,7 @@ namespace Pidgin
         private ArrayPool<T> _arrayPool;
         private T[]? _items;
 
-        /// <summary>The number of elements in the list</summary>
-        /// <returns>The number of elements in the list</returns>
+        /// <summary>The number of elements in the list.</summary>
         public int Count
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -33,11 +32,12 @@ namespace Pidgin
             private set;
         }
 
-        /// <summary>Returns false</summary>
-        /// <returns>False</returns>
+        /// <summary>Returns false.</summary>
+        /// <returns>False.</returns>
         public bool IsReadOnly => false;
 
         /// <summary>Creates a <see cref="PooledList{T}"/> which uses the supplied <see cref="ArrayPool{T}"/>.</summary>
+        /// <param name="arrayPool">The array pool.</param>
         public PooledList(ArrayPool<T> arrayPool)
         {
             _arrayPool = arrayPool;
@@ -46,7 +46,7 @@ namespace Pidgin
         }
 
         /// <summary>Gets or sets the element at index <paramref name="index"/>.</summary>
-        /// <param name="index">The index</param>
+        /// <param name="index">The index.</param>
         /// <returns>The element at index <paramref name="index"/>.</returns>
         public T this[int index]
         {
@@ -57,8 +57,10 @@ namespace Pidgin
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
+
                 return _items![index];
             }
+
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
@@ -66,12 +68,13 @@ namespace Pidgin
                 {
                     ThrowArgumentOutOfRangeException(nameof(index));
                 }
+
                 _items![index] = value;
             }
         }
 
         /// <summary>Adds an item to the end of the list.</summary>
-        /// <param name="item">The item to add</param>
+        /// <param name="item">The item to add.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Add(T item)
         {
@@ -79,42 +82,48 @@ namespace Pidgin
             _items![Count] = item;
             Count++;
         }
+
         /// <summary>Adds a collection of items to the end of the list.</summary>
-        /// <param name="items">The items to add</param>
+        /// <param name="items">The items to add.</param>
         public void AddRange(ImmutableArray<T> items)
         {
             GrowIfNecessary(items.Length);
             items.CopyTo(_items!, Count);
             Count += items.Length;
         }
+
         /// <summary>Adds a collection of items to the end of the list.</summary>
-        /// <param name="items">The items to add</param>
+        /// <param name="items">The items to add.</param>
         public void AddRange(ReadOnlySpan<T> items)
         {
             GrowIfNecessary(items.Length);
             items.CopyTo(_items.AsSpan()[Count..]);
             Count += items.Length;
         }
+
         /// <summary>Adds a collection of items to the end of the list.</summary>
-        /// <param name="items">The items to add</param>
+        /// <param name="items">The items to add.</param>
         public void AddRange(ICollection<T> items)
         {
             if (items == null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
             GrowIfNecessary(items.Count);
             items.CopyTo(_items, Count);
             Count += items.Count;
         }
+
         /// <summary>Adds a collection of items to the end of the list.</summary>
-        /// <param name="items">The items to add</param>
+        /// <param name="items">The items to add.</param>
         public void AddRange(IEnumerable<T> items)
         {
             if (items == null)
             {
                 throw new ArgumentNullException(nameof(items));
             }
+
             switch (items)
             {
                 case T[] a:
@@ -131,6 +140,7 @@ namespace Pidgin
                     {
                         Add(item);
                     }
+
                     return;
             }
         }
@@ -144,6 +154,7 @@ namespace Pidgin
             {
                 ThrowInvalidOperationException();
             }
+
             Count--;
             return _items![Count];
         }
@@ -164,6 +175,7 @@ namespace Pidgin
             {
                 return -1;
             }
+
             return Array.IndexOf(_items!, item, 0, Count);
         }
 
@@ -179,6 +191,7 @@ namespace Pidgin
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
+
             GrowIfNecessary(1);
             Array.Copy(_items, index, _items, index + 1, Count - index);
             _items![index] = item;
@@ -196,6 +209,7 @@ namespace Pidgin
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
+
             Count--;
             Array.Copy(_items!, index + 1, _items!, index, Count - index);
         }
@@ -222,14 +236,17 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(array));
             }
+
             if (arrayIndex < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
             }
+
             if (Count > array.Length - arrayIndex)
             {
                 throw new ArgumentException("Array wasn't long enough");
             }
+
             Array.Copy(_items!, 0, array, arrayIndex, Count);
         }
 
@@ -246,6 +263,7 @@ namespace Pidgin
             {
                 return false;
             }
+
             RemoveAt(ix);
             return true;
         }
@@ -267,6 +285,7 @@ namespace Pidgin
             {
                 _arrayPool.Return(_items, _needsClear);
             }
+
             _items = null;
             Count = 0;
         }
@@ -279,6 +298,7 @@ namespace Pidgin
             {
                 _arrayPool = ArrayPool<T>.Shared;
             }
+
             if (_items == null)
             {
                 Init(additionalSpace);
@@ -288,6 +308,7 @@ namespace Pidgin
                 Grow(additionalSpace);
             }
         }
+
         [MemberNotNull(nameof(_items))]
         private void Init(int space)
         {
@@ -318,6 +339,7 @@ namespace Pidgin
         {
             throw CreateArgumentOutOfRangeException(paramName);
         }
+
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static Exception CreateArgumentOutOfRangeException(string paramName)
             => new ArgumentOutOfRangeException(paramName);
@@ -327,6 +349,7 @@ namespace Pidgin
         {
             throw CreateInvalidOperationException();
         }
+
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static Exception CreateInvalidOperationException()
             => new InvalidOperationException();

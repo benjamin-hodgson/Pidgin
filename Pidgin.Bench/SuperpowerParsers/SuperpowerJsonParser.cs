@@ -22,6 +22,7 @@ public static class SuperpowerJsonParser
     private static readonly TextParser<char> _colon = Character.EqualTo(':');
     private static readonly TextParser<char> _colonWhitespace =
         _colon.Between(Character.WhiteSpace.Many(), Character.WhiteSpace.Many());
+
     private static readonly TextParser<char> _comma = Character.EqualTo(',');
 
     private static readonly TextParser<string> _string =
@@ -29,6 +30,7 @@ public static class SuperpowerJsonParser
             .Many()
             .Between(_quote, _quote)
             .Select(string.Concat);
+
     private static readonly TextParser<Json> _jsonString =
         _string.Select(s => (Json)new JsonString(s));
 
@@ -41,8 +43,9 @@ public static class SuperpowerJsonParser
             .Between(_lBracket, _rBracket)
             .Select(els => (Json)new JsonArray(els.ToImmutableArray()));
 
+    // avoid allocating a transparent identifier for a result we don't care about
     private static readonly TextParser<KeyValuePair<string, Json>> _jsonMember =
-        from name in _string.SelectMany(_ => _colonWhitespace, (name, ws) => name)  // avoid allocating a transparent identifier for a result we don't care about
+        from name in _string.SelectMany(_ => _colonWhitespace, (name, ws) => name)
         from val in _json
         select new KeyValuePair<string, Json>(name, val);
 

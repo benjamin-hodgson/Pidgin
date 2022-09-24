@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace Pidgin
 {
     /// <summary>
-    /// A mutable struct! Careful!
+    /// A mutable struct! Careful!.
     /// </summary>
     internal struct InplaceStringBuilder
     {
@@ -40,6 +40,7 @@ namespace Pidgin
             {
                 throw new InvalidOperationException();
             }
+
             return _value;
         }
     }

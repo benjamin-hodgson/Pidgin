@@ -8,7 +8,9 @@ namespace Pidgin.Examples.Xml;
 public class Tag : IEquatable<Tag>
 {
     public string Name { get; }
+
     public IEnumerable<Attribute> Attributes { get; }
+
     public IEnumerable<Tag>? Content { get; }
 
     public Tag(string name, IEnumerable<Attribute> attributes, IEnumerable<Tag>? content)
@@ -24,6 +26,7 @@ public class Tag : IEquatable<Tag>
         {
             return false;
         }
+
         return Equals((Tag)obj);
     }
 
@@ -35,10 +38,15 @@ public class Tag : IEquatable<Tag>
         && ((Content is null && other.Content is null) || Content!.SequenceEqual(other.Content!));
 }
 
-[SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Attribute'"
+[SuppressMessage(
+    "naming",
+    "CA1711:Rename type name so that it does not end in 'Stream'",
+    Justification = "Example code"
+)]
 public class Attribute : IEquatable<Attribute>
 {
     public string Name { get; }
+
     public string Value { get; }
 
     public Attribute(string name, string value)
@@ -53,10 +61,13 @@ public class Attribute : IEquatable<Attribute>
         {
             return false;
         }
+
         return Equals((Attribute)obj);
     }
+
     public bool Equals(Attribute? other)
         => Name == other?.Name
         && Value == other.Value;
+
     public override int GetHashCode() => HashCode.Combine(Name, Value);
 }

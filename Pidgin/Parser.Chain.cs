@@ -7,18 +7,27 @@ namespace Pidgin
 {
     public partial class Parser<TToken, T>
     {
-        internal Parser<TToken, U> ChainAtLeastOnce<U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory) where TChainer : struct, IChainer<T, U>
+        internal Parser<TToken, U> ChainAtLeastOnce<U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)
+            where TChainer : struct, IChainer<T, U>
             => new ChainAtLeastOnceLParser<TToken, T, U, TChainer>(this, factory);
     }
 
     internal interface IChainer<in T, out U>
     {
         void Apply(T value);
+
         U GetResult();
+
         void OnError();
     }
 
-    internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, U> where TChainer : struct, IChainer<T, U>
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
+    internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, U>
+        where TChainer : struct, IChainer<T, U>
     {
         private readonly Parser<TToken, T> _parser;
         private readonly Func<IConfiguration<TToken>, TChainer> _factory;
@@ -53,21 +62,24 @@ namespace Pidgin
                     chainer.OnError();
                     throw new InvalidOperationException("Many() used with a parser which consumed no input");
                 }
+
                 chainer.Apply(childResult);
 
                 lastStartLoc = endLoc;
             }
+
             var lastParserConsumedInput = state.Location > lastStartLoc;
             if (lastParserConsumedInput)
             {
                 expecteds.AddRange(childExpecteds.AsSpan());
-
             }
+
             childExpecteds.Dispose();
 
-            if (lastParserConsumedInput)  // the most recent parser failed after consuming input
+            if (lastParserConsumedInput)
             {
-                // state.Error set by _parser
+                // the most recent parser failed after consuming input.
+                // state.Error was set by _parser
                 chainer.OnError();
                 result = default;
                 return false;

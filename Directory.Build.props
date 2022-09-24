@@ -1,5 +1,4 @@
 <Project>
-
     <PropertyGroup>
         <Authors>benjamin.hodgson</Authors>
         <Copyright>© Benjamin Hodgson, 2017-2022</Copyright>
@@ -27,4 +26,10 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

@@ -12,27 +12,27 @@ namespace Pidgin
     public static partial class Parser<TToken>
     {
         /// <summary>
-        /// Creates a parser that parses and returns a literal sequence of tokens
+        /// Creates a parser that parses and returns a literal sequence of tokens.
         /// </summary>
-        /// <param name="tokens">A sequence of tokens</param>
-        /// <returns>A parser that parses a literal sequence of tokens</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <param name="tokens">A sequence of tokens.</param>
+        /// <returns>A parser that parses a literal sequence of tokens.</returns>
         public static Parser<TToken, TToken[]> Sequence(params TToken[] tokens)
         {
             if (tokens == null)
             {
                 throw new ArgumentNullException(nameof(tokens));
             }
+
             return Sequence<TToken[]>(tokens);
         }
+
         /// <summary>
         /// Creates a parser that parses and returns a literal sequence of tokens.
         /// The input enumerable is enumerated and copied to a list.
         /// </summary>
-        /// <typeparam name="TEnumerable">The type of tokens to parse</typeparam>
-        /// <param name="tokens">A sequence of tokens</param>
-        /// <returns>A parser that parses a literal sequence of tokens</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <typeparam name="TEnumerable">The type of tokens to parse.</typeparam>
+        /// <param name="tokens">A sequence of tokens.</param>
+        /// <returns>A parser that parses a literal sequence of tokens.</returns>
         public static Parser<TToken, TEnumerable> Sequence<TEnumerable>(TEnumerable tokens)
             where TEnumerable : IEnumerable<TToken>
         {
@@ -40,17 +40,17 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(tokens));
             }
+
             return SequenceTokenParser<TToken, TEnumerable>.Create(tokens);
         }
 
         /// <summary>
         /// Creates a parser that applies a sequence of parsers and collects the results.
-        /// This parser fails if any of its constituent parsers fail
+        /// This parser fails if any of its constituent parsers fail.
         /// </summary>
-        /// <typeparam name="T">The return type of the parsers</typeparam>
-        /// <param name="parsers">A sequence of parsers</param>
-        /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <typeparam name="T">The return type of the parsers.</typeparam>
+        /// <param name="parsers">A sequence of parsers.</param>
+        /// <returns>A parser that applies a sequence of parsers and collects the results.</returns>
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(params Parser<TToken, T>[] parsers)
         {
             return Sequence(parsers.AsEnumerable());
@@ -58,27 +58,33 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser that applies a sequence of parsers and collects the results.
-        /// This parser fails if any of its constituent parsers fail
+        /// This parser fails if any of its constituent parsers fail.
         /// </summary>
-        /// <typeparam name="T">The return type of the parsers</typeparam>
-        /// <param name="parsers">A sequence of parsers</param>
-        /// <returns>A parser that applies a sequence of parsers and collects the results</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <typeparam name="T">The return type of the parsers.</typeparam>
+        /// <param name="parsers">A sequence of parsers.</param>
+        /// <returns>A parser that applies a sequence of parsers and collects the results.</returns>
         public static Parser<TToken, IEnumerable<T>> Sequence<T>(IEnumerable<Parser<TToken, T>> parsers)
         {
             if (parsers == null)
             {
                 throw new ArgumentNullException(nameof(parsers));
             }
+
             var parsersArray = parsers.ToArray();
             if (parsersArray.Length == 1)
             {
                 return parsersArray[0].Select(x => new[] { x }.AsEnumerable());
             }
+
             return new SequenceParser<TToken, T>(parsersArray);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
     {
         private readonly Parser<TToken, T>[] _parsers;
@@ -110,10 +116,15 @@ namespace Pidgin
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal static class SequenceTokenParser<TToken, TEnumerable>
         where TEnumerable : IEnumerable<TToken>
     {
-        private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>>? _createParser;
+        private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>>? _createParser = GetCreateParser();
 
         public static Parser<TToken, TEnumerable> Create(TEnumerable tokens)
         {
@@ -121,28 +132,36 @@ namespace Pidgin
             {
                 return _createParser(tokens);
             }
+
             return new SequenceTokenParserSlow<TToken, TEnumerable>(tokens);
         }
 
-        [SuppressMessage("design", "CA1810")]  // "Initialize all static fields when those fields are declared and remove the static constructor"
-        static SequenceTokenParser()
+        private static Func<TEnumerable, Parser<TToken, TEnumerable>>? GetCreateParser()
         {
             var ttoken = typeof(TToken).GetTypeInfo();
             var equatable = typeof(IEquatable<TToken>).GetTypeInfo();
-            if (ttoken.IsValueType && equatable.IsAssignableFrom(ttoken))
+
+            if (!ttoken.IsValueType || !equatable.IsAssignableFrom(ttoken))
             {
-                var ctor = typeof(SequenceTokenParserFast<,>)
-                    .MakeGenericType(typeof(TToken), typeof(TEnumerable))
-                    .GetTypeInfo()
-                    .DeclaredConstructors
-                    .Single();
-                var param = LExpression.Parameter(typeof(TEnumerable));
-                var create = LExpression.New(ctor, param);
-                _createParser = LExpression.Lambda<Func<TEnumerable, Parser<TToken, TEnumerable>>>(create, param).Compile();
+                return null;
             }
+
+            var ctor = typeof(SequenceTokenParserFast<,>)
+                .MakeGenericType(typeof(TToken), typeof(TEnumerable))
+                .GetTypeInfo()
+                .DeclaredConstructors
+                .Single();
+            var param = LExpression.Parameter(typeof(TEnumerable));
+            var create = LExpression.New(ctor, param);
+            return LExpression.Lambda<Func<TEnumerable, Parser<TToken, TEnumerable>>>(create, param).Compile();
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class SequenceTokenParserFast<TToken, TEnumerable> : Parser<TToken, TEnumerable>
         where TToken : struct, IEquatable<TToken>
         where TEnumerable : IEnumerable<TToken>
@@ -207,6 +226,11 @@ namespace Pidgin
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class SequenceTokenParserSlow<TToken, TEnumerable> : Parser<TToken, TEnumerable>
         where TEnumerable : IEnumerable<TToken>
     {

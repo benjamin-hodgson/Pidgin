@@ -9,24 +9,30 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser which always fails without consuming any input.
         /// </summary>
-        /// <param name="message">A custom error message</param>
-        /// <typeparam name="T">The return type of the resulting parser</typeparam>
-        /// <returns>A parser which always fails</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <param name="message">A custom error message.</param>
+        /// <typeparam name="T">The return type of the resulting parser.</typeparam>
+        /// <returns>A parser which always fails.</returns>
         public static Parser<TToken, T> Fail<T>(string message = "Failed")
         {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
             return new FailParser<TToken, T>(message);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class FailParser<TToken, T> : Parser<TToken, T>
     {
         private static readonly Expected<TToken> _expected
             = new(ImmutableArray<TToken>.Empty);
+
         private readonly string _message;
 
         public FailParser(string message)

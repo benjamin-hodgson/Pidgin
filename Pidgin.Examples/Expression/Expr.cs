@@ -44,10 +44,11 @@ public class Literal : Expr
     public override int GetHashCode() => Value;
 }
 
-[SuppressMessage("naming", "CA1716")]  // "Rename type so that it no longer conflicts with a reserved language keyword"
+[SuppressMessage("naming", "CA1716:Type conflicts with reserved language keyword", Justification = "Example code")]
 public class Call : Expr
 {
     public Expr Expr { get; }
+
     public ImmutableArray<Expr> Arguments { get; }
 
     public Call(Expr expr, ImmutableArray<Expr> arguments)
@@ -69,9 +70,11 @@ public enum UnaryOperatorType
     Neg,
     Complement
 }
+
 public class UnaryOp : Expr
 {
     public UnaryOperatorType Type { get; }
+
     public Expr Expr { get; }
 
     public UnaryOp(UnaryOperatorType type, Expr expr)
@@ -93,10 +96,13 @@ public enum BinaryOperatorType
     Add,
     Mul
 }
+
 public class BinaryOp : Expr
 {
     public BinaryOperatorType Type { get; }
+
     public Expr Left { get; }
+
     public Expr Right { get; }
 
     public BinaryOp(BinaryOperatorType type, Expr left, Expr right)

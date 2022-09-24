@@ -7,12 +7,16 @@ namespace Pidgin.TokenStreams
     /// <summary>
     /// An <see cref="ITokenStream{TToken}"/> implementation based on an <see cref="IReadOnlyList{TToken}"/>.
     /// </summary>
-    /// <typeparam name="TToken">The type of tokens in the list</typeparam>
-    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
+    /// <typeparam name="TToken">The type of tokens in the list.</typeparam>
+    [SuppressMessage(
+        "naming",
+        "CA1711:Rename type name so that it does not end in 'Stream'",
+        Justification = "It's a TokenStream, not a System.IO.Stream"
+    )]
     public sealed class ReadOnlyListTokenStream<TToken> : ITokenStream<TToken>
     {
         /// <summary>Returns 16.</summary>
-        /// <returns>16</returns>
+        /// <returns>16.</returns>
         public int ChunkSizeHint => 16;
 
         private readonly IReadOnlyList<TToken> _input;
@@ -42,6 +46,7 @@ namespace Pidgin.TokenStreams
                 buffer[i] = _input[_index];
                 _index++;
             }
+
             return actualLength;
         }
     }

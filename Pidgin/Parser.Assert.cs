@@ -8,56 +8,66 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
         /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
+        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate)
         {
             if (predicate == null)
             {
                 throw new ArgumentNullException(nameof(predicate));
             }
+
             return Assert(predicate, "Assertion failed");
         }
 
         /// <summary>
         /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
         /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser</param>
-        /// <param name="message">A custom error message to return when the value returned by the current parser fails to satisfy the predicate</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
+        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+        /// <param name="message">A custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
+        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate, string message)
         {
             if (predicate == null)
             {
                 throw new ArgumentNullException(nameof(predicate));
             }
+
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
             return Assert(predicate, _ => message);
         }
 
         /// <summary>
         /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
         /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser</param>
-        /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/></returns>
+        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+        /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
+        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
         public Parser<TToken, T> Assert(Func<T, bool> predicate, Func<T, string> message)
         {
             if (predicate == null)
             {
                 throw new ArgumentNullException(nameof(predicate));
             }
+
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
             return new AssertParser<TToken, T>(this, predicate, message);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
     {
         private static readonly Expected<TToken> _expected
@@ -84,6 +94,7 @@ namespace Pidgin
             {
                 expecteds.AddRange(childExpecteds.AsSpan());
             }
+
             childExpecteds.Dispose();
 
             if (!success)
@@ -92,7 +103,6 @@ namespace Pidgin
             }
 
             // result is not null hereafter
-
             if (!_predicate(result!))
             {
                 state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message(result!));

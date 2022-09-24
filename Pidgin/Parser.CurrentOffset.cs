@@ -7,12 +7,15 @@ namespace Pidgin
         /// <summary>
         /// A parser which returns the number of input tokens which have been consumed.
         /// </summary>
-        /// <returns>A parser which returns the number of input tokens which have been consumed</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
         public static Parser<TToken, int> CurrentOffset { get; }
             = new CurrentOffsetParser<TToken>();
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class CurrentOffsetParser<TToken> : Parser<TToken, int>
     {
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out int result)

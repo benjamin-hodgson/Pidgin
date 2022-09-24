@@ -10,19 +10,20 @@ namespace Pidgin
         /// <summary>
         /// Gets the number of lines represented by the <see cref="SourcePosDelta"/>.
         /// </summary>
-        /// <returns>The number of lines</returns>
+        /// <returns>The number of lines.</returns>
         public int Lines { get; }
+
         /// <summary>
         /// Gets the number of columns represented by the <see cref="SourcePosDelta"/>.
         /// </summary>
-        /// <returns>The number of columns</returns>
+        /// <returns>The number of columns.</returns>
         public int Cols { get; }
 
         /// <summary>
         /// Create a new <see cref="SourcePosDelta"/> with the specified number of lines and columns.
         /// </summary>
-        /// <param name="lines">The number of lines</param>
-        /// <param name="cols">The number of columns</param>
+        /// <param name="lines">The number of lines.</param>
+        /// <param name="cols">The number of columns.</param>
         public SourcePosDelta(int lines, int cols)
         {
             Lines = lines;
@@ -50,19 +51,16 @@ namespace Pidgin
         /// <summary>
         /// A <see cref="SourcePosDelta"/> representing no change in the source position.
         /// </summary>
-        /// <returns>A <see cref="SourcePosDelta"/> representing no change in the source position.</returns>
         public static SourcePosDelta Zero { get; } = new SourcePosDelta(0, 0);
 
         /// <summary>
         /// A <see cref="SourcePosDelta"/> representing a newline being consumed.
         /// </summary>
-        /// <returns>A <see cref="SourcePosDelta"/> representing a newline being consumed.</returns>
         public static SourcePosDelta NewLine { get; } = new SourcePosDelta(1, 0);
 
         /// <summary>
         /// A <see cref="SourcePosDelta"/> representing a single column being consumed.
         /// </summary>
-        /// <returns>A <see cref="SourcePosDelta"/> representing a single column being consumed.</returns>
         public static SourcePosDelta OneCol { get; } = new SourcePosDelta(0, 1);
 
         /// <summary>
@@ -85,10 +83,15 @@ namespace Pidgin
             && obj is SourcePosDelta delta
             && Equals(delta);
 
-        /// <inheritdoc/>
+        /// <summary>Equality operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator ==(SourcePosDelta left, SourcePosDelta right)
             => left.Equals(right);
-        /// <inheritdoc/>
+
+        /// <summary>Inequality operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator !=(SourcePosDelta left, SourcePosDelta right)
             => !left.Equals(right);
 
@@ -103,19 +106,31 @@ namespace Pidgin
             {
                 return lineCmp;
             }
+
             return Cols.CompareTo(other.Cols);
         }
 
-        /// <inheritdoc/>
+        /// <summary>Comparison operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator >(SourcePosDelta left, SourcePosDelta right)
             => left.CompareTo(right) > 0;
-        /// <inheritdoc/>
+
+        /// <summary>Comparison operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator <(SourcePosDelta left, SourcePosDelta right)
             => left.CompareTo(right) < 0;
-        /// <inheritdoc/>
+
+        /// <summary>Comparison operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator >=(SourcePosDelta left, SourcePosDelta right)
             => left.CompareTo(right) >= 0;
-        /// <inheritdoc/>
+
+        /// <summary>Comparison operator.</summary>
+        /// <param name="left">The left <see cref="SourcePosDelta"/>.</param>
+        /// <param name="right">The right <see cref="SourcePosDelta"/>.</param>
         public static bool operator <=(SourcePosDelta left, SourcePosDelta right)
             => left.CompareTo(right) <= 0;
     }

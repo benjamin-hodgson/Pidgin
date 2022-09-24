@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +11,7 @@ public class ParserTestBase
     {
         AssertPartialParse(parser, input, expected, input.Length);
     }
+
     protected static void AssertPartialParse<T>(Parser<char, T> parser, string input, T expected, int consumed)
     {
         var p = Parser.Map(

@@ -8,35 +8,39 @@ namespace Pidgin
     public static partial class Parser<TToken>
     {
         /// <summary>
-        /// Creates a parser that parses and returns a single token
+        /// Creates a parser that parses and returns a single token.
         /// </summary>
-        /// <param name="token">The token to parse</param>
-        /// <returns>A parser that parses and returns a single token</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <param name="token">The token to parse.</param>
+        /// <returns>A parser that parses and returns a single token.</returns>
         public static Parser<TToken, TToken> Token(TToken token)
-            // equivalent to Token(token.Equals) but with better error messages
             => new TokenParser<TToken>(token);
 
         /// <summary>
-        /// Creates a parser that parses and returns a single token satisfying a predicate
+        /// Creates a parser that parses and returns a single token satisfying a predicate.
         /// </summary>
-        /// <param name="predicate">A predicate function to apply to a token</param>
-        /// <returns>A parser that parses and returns a single token satisfying a predicate</returns>
-        [SuppressMessage("design", "CA1000")]  // "Do not declare static members on generic types"
+        /// <param name="predicate">A predicate function to apply to a token.</param>
+        /// <returns>A parser that parses and returns a single token satisfying a predicate.</returns>
         public static Parser<TToken, TToken> Token(Func<TToken, bool> predicate)
         {
             if (predicate == null)
             {
                 throw new ArgumentNullException(nameof(predicate));
             }
+
             return new PredicateTokenParser<TToken>(predicate);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
     {
         private readonly TToken _token;
         private Expected<TToken> _expected;
+
         private Expected<TToken> Expected
         {
             get
@@ -45,6 +49,7 @@ namespace Pidgin
                 {
                     _expected = new Expected<TToken>(ImmutableArray.Create(_token));
                 }
+
                 return _expected;
             }
         }
@@ -63,6 +68,7 @@ namespace Pidgin
                 result = default;
                 return false;
             }
+
             var token = state.Current;
             if (!EqualityComparer<TToken>.Default.Equals(token, _token))
             {
@@ -71,12 +77,18 @@ namespace Pidgin
                 result = default;
                 return false;
             }
+
             state.Advance();
             result = token;
             return true;
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class PredicateTokenParser<TToken> : Parser<TToken, TToken>
     {
         private readonly Func<TToken, bool> _predicate;
@@ -94,6 +106,7 @@ namespace Pidgin
                 result = default;
                 return false;
             }
+
             var token = state.Current;
             if (!_predicate(token))
             {
@@ -101,6 +114,7 @@ namespace Pidgin
                 result = default;
                 return false;
             }
+
             state.Advance();
             result = token;
             return true;

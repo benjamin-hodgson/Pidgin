@@ -10,7 +10,11 @@ namespace Pidgin.TokenStreams
     /// and adds support for resumable parsing.
     /// </summary>
     /// <typeparam name="TToken">The type of tokens returned by the wrapped <see cref="ITokenStream{TToken}"/>.</typeparam>
-    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
+    [SuppressMessage(
+        "naming",
+        "CA1711:Rename type name so that it does not end in 'Stream'",
+        Justification = "It's a TokenStream, not a System.IO.Stream"
+    )]
     public class ResumableTokenStream<TToken> : ITokenStream<TToken>, IDisposable
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
@@ -34,6 +38,7 @@ namespace Pidgin.TokenStreams
             {
                 throw new ArgumentNullException(nameof(next));
             }
+
             _next = next;
             _pool = pool ?? ArrayPool<TToken>.Shared;
         }
@@ -54,6 +59,7 @@ namespace Pidgin.TokenStreams
                 _buffer.AsSpan().Slice(_bufferStart, bufferedCount).CopyTo(buffer);
                 _bufferStart += bufferedCount;
             }
+
             return bufferedCount + _next.Read(buffer[bufferedCount..]);
         }
 
@@ -68,11 +74,13 @@ namespace Pidgin.TokenStreams
             {
                 return;
             }
+
             if (_buffer == null)
             {
                 _buffer = _pool.Rent(leftovers.Length);
                 _bufferStart = _buffer.Length;
             }
+
             if (_bufferStart < leftovers.Length)
             {
                 var bufferedCount = _buffer.Length - _bufferStart;
@@ -85,18 +93,20 @@ namespace Pidgin.TokenStreams
                 _buffer = newBuffer;
                 _bufferStart = newBufferStart;
             }
+
             _bufferStart -= leftovers.Length;
             leftovers.CopyTo(_buffer.AsSpan()[_bufferStart..]);
         }
 
-        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>
+        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/>.</summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/></summary>
+        /// <summary>Return any buffers to the <see cref="ArrayPool{TToken}"/>.</summary>
+        /// <param name="disposing">True if this method is being called by <see cref="Dispose()"/>.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && _buffer != null)

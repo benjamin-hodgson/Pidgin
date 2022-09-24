@@ -14,6 +14,7 @@ public class DocumentationTests
         using static {nameof(Pidgin)}.{nameof(Parser)};
         using static {nameof(Pidgin)}.{nameof(Parser)}<char>;
     ";
+
     [Theory]
     [DocTestData(typeof(Parser), Preamble = _preamble)]
     public async Task TestDocumentation(DocTest test)

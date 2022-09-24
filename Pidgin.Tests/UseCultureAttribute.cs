@@ -14,11 +14,15 @@ public sealed class UseCultureAttribute : BeforeAfterTestAttribute
     private readonly CultureInfo _uiCulture;
     private CultureInfo? _originalCulture;
     private CultureInfo? _originalUICulture;
+
     public string Culture { get; }
+
     public string UiCulture { get; }
 
     public UseCultureAttribute(string culture)
-        : this(culture, culture) { }
+        : this(culture, culture)
+    {
+    }
 
     public UseCultureAttribute(string culture, string uiCulture)
     {

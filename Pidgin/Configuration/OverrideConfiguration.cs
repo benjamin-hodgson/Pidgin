@@ -5,6 +5,7 @@ namespace Pidgin.Configuration
     internal class OverrideConfiguration<TToken> : IConfiguration<TToken>
     {
         public Func<TToken, SourcePosDelta> SourcePosCalculator { get; }
+
         public IArrayPoolProvider ArrayPoolProvider { get; }
 
         public OverrideConfiguration(

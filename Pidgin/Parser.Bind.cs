@@ -9,8 +9,8 @@ namespace Pidgin
         /// Creates a parser that applies a transformation function to the return value of the current parser.
         /// The transformation function dynamically chooses a second parser, which is applied after applying the current parser.
         /// </summary>
-        /// <param name="selector">A transformation function which returns a parser to apply after applying the current parser</param>
-        /// <typeparam name="U">The type of the return value of the second parser</typeparam>
+        /// <param name="selector">A transformation function which returns a parser to apply after applying the current parser.</param>
+        /// <typeparam name="U">The type of the return value of the second parser.</typeparam>
         /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function.</returns>
         public Parser<TToken, U> Bind<U>(Func<T, Parser<TToken, U>> selector)
         {
@@ -18,6 +18,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(selector));
             }
+
             return Bind(selector, (t, u) => u);
         }
 
@@ -25,25 +26,32 @@ namespace Pidgin
         /// Creates a parser that applies a transformation function to the return value of the current parser.
         /// The transformation function dynamically chooses a second parser, which is applied after applying the current parser.
         /// </summary>
-        /// <param name="selector">A transformation function which returns a parser to apply after applying the current parser</param>
-        /// <param name="result">A function to apply to the return values of the two parsers</param>
-        /// <typeparam name="U">The type of the return value of the second parser</typeparam>
-        /// <typeparam name="R">The type of the return value of the resulting parser</typeparam>
-        /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function</returns>
+        /// <param name="selector">A transformation function which returns a parser to apply after applying the current parser.</param>
+        /// <param name="result">A function to apply to the return values of the two parsers.</param>
+        /// <typeparam name="U">The type of the return value of the second parser.</typeparam>
+        /// <typeparam name="R">The type of the return value of the resulting parser.</typeparam>
+        /// <returns>A parser which applies the current parser before applying the result of the <paramref name="selector"/> function.</returns>
         public Parser<TToken, R> Bind<U, R>(Func<T, Parser<TToken, U>> selector, Func<T, U, R> result)
         {
             if (selector == null)
             {
                 throw new ArgumentNullException(nameof(selector));
             }
+
             if (result == null)
             {
                 throw new ArgumentNullException(nameof(result));
             }
+
             return new BindParser<TToken, T, U, R>(this, selector, result);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class BindParser<TToken, T, U, R> : Parser<TToken, R>
     {
         private readonly Parser<TToken, T> _parser;

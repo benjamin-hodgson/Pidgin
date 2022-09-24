@@ -43,7 +43,6 @@ namespace Pidgin
 ";
     }
 
-
     private static string GenerateMethod(int num)
     {
         var nums = Enumerable.Range(1, num);
@@ -64,7 +63,6 @@ namespace Pidgin
 
         var typeParamDocs = nums.Select(n => $"<typeparam name=\"T{n}\">The return type of the {EnglishNumber(n)} parser</typeparam>");
         var paramDocs = nums.Select(n => $"<param name=\"parser{n}\">The {EnglishNumber(n)} parser</param>");
-
 
         return $@"
         /// <summary>
@@ -88,7 +86,6 @@ namespace Pidgin
             return {mapReturnExpr};
         }}";
     }
-
 
     private static string GenerateClass(int num)
     {

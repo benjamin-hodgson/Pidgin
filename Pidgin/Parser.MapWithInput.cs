@@ -9,9 +9,9 @@ namespace Pidgin
         /// Returns a parser which runs the current parser and applies a selector function.
         /// The selector function receives a <see cref="ReadOnlySpan{TToken}"/> as its first argument, and the result of the current parser as its second argument.
         /// The <see cref="ReadOnlySpan{TToken}"/> represents the sequence of input tokens which were consumed by the parser.
-        /// 
+        ///
         /// This allows you to write "pattern"-style parsers which match a sequence of tokens and return a view of the part of the input stream which they matched.
-        /// 
+        ///
         /// This function is an alternative name for <see cref="Slice"/>.
         /// </summary>
         /// <param name="selector">
@@ -19,7 +19,7 @@ namespace Pidgin
         /// The arguments of the selector function are a <see cref="ReadOnlySpan{TToken}"/> containing the sequence of input tokens which were consumed by this parser,
         /// and the result of this parser.
         /// </param>
-        /// <typeparam name="U">The result type</typeparam>
+        /// <typeparam name="U">The result type.</typeparam>
         /// <returns>A parser which runs the current parser and applies a selector function.</returns>
         public Parser<TToken, U> MapWithInput<U>(ReadOnlySpanFunc<TToken, T, U> selector)
         {
@@ -27,10 +27,16 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(selector));
             }
+
             return new MapWithInputParser<TToken, T, U>(this, selector);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal class MapWithInputParser<TToken, T, U> : Parser<TToken, U>
     {
         private readonly Parser<TToken, T> _parser;
@@ -54,7 +60,6 @@ namespace Pidgin
                 result = default;
                 return false;
             }
-
 
             var delta = state.Location - start;
             result = _selector(state.LookBehind(delta), result1);

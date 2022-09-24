@@ -58,8 +58,10 @@ namespace Pidgin.Expression
         /// <paramref name="operatorTable"/> is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
         /// </summary>
-        /// <param name="term">A parser for a single term in an expression language</param>
-        /// <param name="operatorTable">A table of operators</param>
+        /// <param name="term">A parser for a single term in an expression language.</param>
+        /// <param name="operatorTable">A table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
         /// <returns>A parser for expressions built from the operators in <paramref name="operatorTable"/>.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
@@ -71,8 +73,10 @@ namespace Pidgin.Expression
         /// <paramref name="operatorTable"/> is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
         /// </summary>
-        /// <param name="term">A parser for a single term in an expression language</param>
-        /// <param name="operatorTable">A table of operators</param>
+        /// <param name="term">A parser for a single term in an expression language.</param>
+        /// <param name="operatorTable">A table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
         /// <returns>A parser for expressions built from the operators in <paramref name="operatorTable"/>.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
@@ -83,12 +87,14 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTable"/>.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="termFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="termFactory">A function which produces a parser for a single term</param>
-        /// <param name="operatorTable">A table of operators</param>
+        /// <param name="termFactory">A function which produces a parser for a single term.</param>
+        /// <param name="operatorTable">A table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
         /// <returns>A parser for expressions built from the operators in <paramref name="operatorTable"/>.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Func<Parser<TToken, T>, Parser<TToken, T>> termFactory,
@@ -99,6 +105,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(termFactory));
             }
+
             Parser<TToken, T>? expr = null;
             var term = termFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -109,12 +116,14 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTable"/>.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="termFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="termFactory">A function which produces a parser for a single term</param>
-        /// <param name="operatorTable">A table of operators</param>
+        /// <param name="termFactory">A function which produces a parser for a single term.</param>
+        /// <param name="operatorTable">A table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
         /// <returns>A parser for expressions built from the operators in <paramref name="operatorTable"/>.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Func<Parser<TToken, T>, Parser<TToken, T>> termFactory,
@@ -125,13 +134,15 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTableFactory"/>'s result.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="operatorTableFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="term">A parser for a single term in an expression language</param>
-        /// <param name="operatorTableFactory">A function which produces a table of operators</param>
-        /// <returns>A parser for expressions built from the operators in the operator table</returns>
+        /// <param name="term">A parser for a single term in an expression language.</param>
+        /// <param name="operatorTableFactory">A function which produces a table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
+        /// <returns>A parser for expressions built from the operators in the operator table.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
             Func<Parser<TToken, T>, IEnumerable<OperatorTableRow<TToken, T>>> operatorTableFactory
@@ -141,6 +152,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(operatorTableFactory));
             }
+
             Parser<TToken, T>? expr = null;
             var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -151,13 +163,15 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="operatorTableFactory"/>'s result.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="operatorTableFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="term">A parser for a single term in an expression language</param>
-        /// <param name="operatorTableFactory">A function which produces a table of operators</param>
-        /// <returns>A parser for expressions built from the operators in the operator table</returns>
+        /// <param name="term">A parser for a single term in an expression language.</param>
+        /// <param name="operatorTableFactory">A function which produces a table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
+        /// <returns>A parser for expressions built from the operators in the operator table.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Parser<TToken, T> term,
             Func<Parser<TToken, T>, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>>> operatorTableFactory
@@ -167,6 +181,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(operatorTableFactory));
             }
+
             Parser<TToken, T>? expr = null;
             var operatorTable = operatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -177,12 +192,14 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="termAndOperatorTableFactory"/>'s second result.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="termAndOperatorTableFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="termAndOperatorTableFactory">A function which produces a parser for a single term and a table of operators</param>
-        /// <returns>A parser for expressions built from the operators in the operator table</returns>
+        /// <param name="termAndOperatorTableFactory">A function which produces a parser for a single term and a table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
+        /// <returns>A parser for expressions built from the operators in the operator table.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<OperatorTableRow<TToken, T>> operatorTable)> termAndOperatorTableFactory
         )
@@ -191,6 +208,7 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(termAndOperatorTableFactory));
             }
+
             Parser<TToken, T>? expr = null;
             var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
@@ -201,12 +219,14 @@ namespace Pidgin.Expression
         /// Builds a parser for expressions built from the operators in <paramref name="termAndOperatorTableFactory"/>'s second result.
         /// The operator table is a sequence of operators in precedence order:
         /// the operators in the first row have the highest precedence and operators in later rows have lower precedence.
-        /// 
+        ///
         /// This overload is useful for recursive expressions (for example, languages with parenthesised subexpressions).
         /// <paramref name="termAndOperatorTableFactory"/>'s argument will be a parser which parses a full subexpression.
         /// </summary>
-        /// <param name="termAndOperatorTableFactory">A function which produces a parser for a single term and a table of operators</param>
-        /// <returns>A parser for expressions built from the operators in the operator table</returns>
+        /// <param name="termAndOperatorTableFactory">A function which produces a parser for a single term and a table of operators.</param>
+        /// <typeparam name="TToken">The token type.</typeparam>
+        /// <typeparam name="T">The return type of the parser.</typeparam>
+        /// <returns>A parser for expressions built from the operators in the operator table.</returns>
         public static Parser<TToken, T> Build<TToken, T>(
             Func<Parser<TToken, T>, (Parser<TToken, T> term, IEnumerable<IEnumerable<OperatorTableRow<TToken, T>>> operatorTable)> termAndOperatorTableFactory
         )
@@ -215,12 +235,12 @@ namespace Pidgin.Expression
             {
                 throw new ArgumentNullException(nameof(termAndOperatorTableFactory));
             }
+
             Parser<TToken, T>? expr = null;
             var (term, operatorTable) = termAndOperatorTableFactory(Rec(() => expr!));
             expr = Build(term, operatorTable);
             return expr;
         }
-
 
         private static Parser<TToken, T> Build<TToken, T>(Parser<TToken, T> term, OperatorTableRow<TToken, T> row)
         {
@@ -244,6 +264,7 @@ namespace Pidgin.Expression
                         {
                             z = fxs[i].ApplyL(z);
                         }
+
                         fxs.Dispose();
                         return z;
                     }
@@ -262,6 +283,7 @@ namespace Pidgin.Expression
                             var fx = fxs[i];
                             partial = new Partial<T>(fx.Func, partial.ApplyL(fx.Arg));
                         }
+
                         fxs.Dispose();
                         return z => partial.ApplyL(z);
                     }
@@ -294,12 +316,15 @@ namespace Pidgin.Expression
         private struct Partial<T>
         {
             public Func<T, T, T> Func { get; }
+
             public T Arg { get; }
+
             public Partial(Func<T, T, T> func, T arg)
             {
                 Func = func;
                 Arg = arg;
             }
+
             public T ApplyL(T arg) => Func(arg, Arg);
         }
     }

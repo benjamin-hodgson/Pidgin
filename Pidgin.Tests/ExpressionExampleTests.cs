@@ -20,10 +20,8 @@ public class ExpressionExampleTests
                 new Literal(12),
                 new Literal(3)
             ),
-
             new BinaryOp(
                 BinaryOperatorType.Mul,
-
                 new Call(
                     new Call(
                         new Identifier("foo"),
@@ -34,7 +32,6 @@ public class ExpressionExampleTests
                     ),
                     ImmutableArray.Create<Expr>()
                 ),
-
                 new BinaryOp(
                     BinaryOperatorType.Add,
                     new Literal(2),

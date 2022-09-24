@@ -38,45 +38,59 @@ public class ExpressionBench
         );
     }
 
-    [Benchmark, BenchmarkCategory("Long")]
+    [Benchmark]
+    [BenchmarkCategory("Long")]
     public void LongInfixL_Pidgin()
     {
         _leftAssoc.ParseOrThrow(_bigExpression);
     }
-    [Benchmark, BenchmarkCategory("Long")]
+
+    [Benchmark]
+    [BenchmarkCategory("Long")]
     public void LongInfixR_Pidgin()
     {
         _rightAssoc.ParseOrThrow(_bigExpression);
     }
-    [Benchmark(Baseline = true), BenchmarkCategory("Long")]
+
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Long")]
     public void LongInfixL_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseL(_bigExpression);
     }
-    [Benchmark, BenchmarkCategory("Long")]
+
+    [Benchmark]
+    [BenchmarkCategory("Long")]
     public void LongInfixR_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
     }
 
-    [Benchmark, BenchmarkCategory("Short")]
+    [Benchmark]
+    [BenchmarkCategory("Short")]
     public void ShortInfixL_Pidgin()
     {
         _leftAssoc.ParseOrThrow("1+1");
     }
-    [Benchmark, BenchmarkCategory("Short")]
+
+    [Benchmark]
+    [BenchmarkCategory("Short")]
     public void ShortInfixR_Pidgin()
     {
         _rightAssoc.ParseOrThrow("1+1");
     }
-    [Benchmark(Baseline = true), BenchmarkCategory("Short")]
-    [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
+
+    [Benchmark(Baseline = true)]
+    [BenchmarkCategory("Short")]
+    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
     public void ShortInfixL_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseL("1+1");
     }
-    [Benchmark, BenchmarkCategory("Short")]
-    [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
+
+    [Benchmark]
+    [BenchmarkCategory("Short")]
+    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
     public void ShortInfixR_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");

@@ -6,8 +6,12 @@ namespace Pidgin
     /// <summary>
     /// An interface for streams of <typeparamref name="TToken"/>, which can be consumed by <see cref="Parser{TToken, T}"/>s.
     /// </summary>
-    /// <typeparam name="TToken">The type of tokens the stream produces</typeparam>
-    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
+    /// <typeparam name="TToken">The type of tokens the stream produces.</typeparam>
+    [SuppressMessage(
+        "naming",
+        "CA1711:Rename type name so that it does not end in 'Stream'",
+        Justification = "It's a TokenStream, not a System.IO.Stream"
+    )]
     public interface ITokenStream<TToken>
     {
         /// <summary>
@@ -29,8 +33,14 @@ namespace Pidgin
         /// The default implementation does nothing and discards the <paramref name="leftovers"/>.
         /// </summary>
         /// <param name="leftovers">The leftovers to push back into the stream.</param>
-        [SuppressMessage("naming", "CA1716")]  // "Rename member so that it no longer conflicts with a reserved language keyword"
-        void Return(ReadOnlySpan<TToken> leftovers) { }
+        [SuppressMessage(
+            "naming",
+            "CA1716:Rename member so that it no longer conflicts with a reserved language keyword",
+            Justification = "Would be a breaking change"
+        )]
+        void Return(ReadOnlySpan<TToken> leftovers)
+        {
+        }
 
         /// <summary>
         /// A hint to the parser indicating a default number of tokens to request when calling <see cref="Read"/>.

@@ -14,21 +14,22 @@ public class StringBench
     private static readonly string _whitespace = new(' ', 65536);
 
     [Benchmark]
-    [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
-    [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
+    [SuppressMessage("design", "CA1720:Identifier contains type name", Justification = "Doesn't matter for test code")]
+    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
     public void String()
     {
         _string.ParseOrThrow(_input);
     }
+
     [Benchmark]
-    [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
+    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
     public void CIString()
     {
         _cistring.ParseOrThrow(_input);
     }
 
     [Benchmark]
-    [SuppressMessage("performance", "CA1822")]  // Member does not access instance data and can be marked as static
+    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
     public void SkipWhitespaces()
     {
         Parser.SkipWhitespaces.ParseOrThrow(_whitespace);

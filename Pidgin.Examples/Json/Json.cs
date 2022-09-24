@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pidgin.Examples.Json;
 
-[SuppressMessage("naming", "CA1724")]  // "The type name conflicts with the namespace name"
+[SuppressMessage("naming", "CA1724:The type name conflicts with the namespace name", Justification = "Example code")]
 public abstract class Json
 {
 }
@@ -12,10 +12,12 @@ public abstract class Json
 public class JsonArray : Json
 {
     public ImmutableArray<Json> Elements { get; }
+
     public JsonArray(ImmutableArray<Json> elements)
     {
         Elements = elements;
     }
+
     public override string ToString()
         => $"[{string.Join(",", Elements.Select(e => e.ToString()))}]";
 }
@@ -23,10 +25,12 @@ public class JsonArray : Json
 public class JsonObject : Json
 {
     public IImmutableDictionary<string, Json> Members { get; }
+
     public JsonObject(IImmutableDictionary<string, Json> members)
     {
         Members = members;
     }
+
     public override string ToString()
         => $"{{{string.Join(",", Members.Select(kvp => $"\"{kvp.Key}\":{kvp.Value}"))}}}";
 }
@@ -34,6 +38,7 @@ public class JsonObject : Json
 public class JsonString : Json
 {
     public string Value { get; }
+
     public JsonString(string value)
     {
         Value = value;

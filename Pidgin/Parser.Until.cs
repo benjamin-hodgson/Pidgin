@@ -16,19 +16,20 @@ namespace Pidgin
         /// </summary>
         /// <remarks>
         /// <c>p.Until(q)</c> is equivalent to
-        /// <c>p.ManyThen(q).Select(t => t.Item1)</c>
+        /// <c>p.ManyThen(q).Select(t => t.Item1)</c>.
         /// </remarks>
         /// <typeparam name="U">
-        /// The return type of <paramref name="terminator"/>
+        /// The return type of <paramref name="terminator"/>.
         /// </typeparam>
-        /// <param name="terminator">A parser to parse a terminator</param>
-        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds</returns>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds.</returns>
         public Parser<TToken, IEnumerable<T>> Until<U>(Parser<TToken, U> terminator)
         {
             if (terminator == null)
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return ManyThen(terminator).Select((Func<(IEnumerable<T>, U), IEnumerable<T>>)(tup => tup.Item1));
         }
 
@@ -38,15 +39,16 @@ namespace Pidgin
         /// Fails if this parser fails or if <paramref name="terminator"/>
         /// fails after consuming input.
         /// </summary>
-        /// <typeparam name="U">The return type of <paramref name="terminator"/></typeparam>
-        /// <param name="terminator">A parser to parse a terminator</param>
-        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds</returns>
+        /// <typeparam name="U">The return type of <paramref name="terminator"/>.</typeparam>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds.</returns>
         public Parser<TToken, (IEnumerable<T>, U)> ManyThen<U>(Parser<TToken, U> terminator)
         {
             if (terminator == null)
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return terminator.Select(t => (Enumerable.Empty<T>(), t))
                 .Or(AtLeastOnceThen(terminator));
         }
@@ -60,12 +62,13 @@ namespace Pidgin
         /// </summary>
         /// <remarks>
         /// <c>p.AtLeastOnceUntil(q)</c> is equivalent to
-        /// <c>p.AtLeastOnceThen(q).Select(t => t.Item1)</c>
+        /// <c>p.AtLeastOnceThen(q).Select(t => t.Item1)</c>.
         /// </remarks>
-        /// <param name="terminator">A parser to parse a terminator</param>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <typeparam name="U">The return type of the <paramref name="terminator"/> parser.</typeparam>
         /// <returns>
         /// A parser which applies this parser repeatedly
-        /// until <paramref name="terminator"/> succeeds
+        /// until <paramref name="terminator"/> succeeds.
         /// </returns>
         public Parser<TToken, IEnumerable<T>> AtLeastOnceUntil<U>(Parser<TToken, U> terminator)
         {
@@ -73,6 +76,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return AtLeastOnceThen(terminator).Select(new Func<(IEnumerable<T>, U), IEnumerable<T>>(tup => tup.Item1));
         }
 
@@ -82,10 +86,11 @@ namespace Pidgin
         /// Fails if this parser fails or if <paramref name="terminator"/>
         /// fails after consuming input.
         /// </summary>
-        /// <param name="terminator">A parser to parse a terminator</param>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <typeparam name="U">The return type of the <paramref name="terminator"/> parser.</typeparam>
         /// <returns>
         /// A parser which applies this parser repeatedly
-        /// until <paramref name="terminator"/> succeeds
+        /// until <paramref name="terminator"/> succeeds.
         /// </returns>
         public Parser<TToken, (IEnumerable<T>, U)> AtLeastOnceThen<U>(Parser<TToken, U> terminator)
         {
@@ -93,6 +98,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return new AtLeastOnceThenParser<TToken, T, U>(this, terminator, true)!;
         }
 
@@ -108,17 +114,18 @@ namespace Pidgin
         /// </summary>
         /// <remarks>
         /// <c>p.SkipUntil(q)</c> is equivalent to
-        /// <c>p.SkipManyThen(q).ThenReturn(Unit.Value)</c>
+        /// <c>p.SkipManyThen(q).ThenReturn(Unit.Value)</c>.
         /// </remarks>
-        /// <typeparam name="U">The return type of <paramref name="terminator"/></typeparam>
-        /// <param name="terminator">A parser to parse a terminator</param>
-        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds, discarding the results</returns>
+        /// <typeparam name="U">The return type of <paramref name="terminator"/>.</typeparam>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <returns>A parser which applies this parser repeatedly until <paramref name="terminator"/> succeeds, discarding the results.</returns>
         public Parser<TToken, Unit> SkipUntil<U>(Parser<TToken, U> terminator)
         {
             if (terminator == null)
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return SkipManyThen(terminator).Then(ReturnUnit);
         }
 
@@ -131,11 +138,11 @@ namespace Pidgin
         /// Fails if this parser fails or if <paramref name="terminator"/>
         /// fails after consuming input.
         /// </summary>
-        /// <typeparam name="U">The return type of <paramref name="terminator"/></typeparam>
-        /// <param name="terminator">A parser to parse a terminator</param>
+        /// <typeparam name="U">The return type of <paramref name="terminator"/>.</typeparam>
+        /// <param name="terminator">A parser to parse a terminator.</param>
         /// <returns>
         /// A parser which applies this parser repeatedly until
-        /// <paramref name="terminator"/> succeeds, discarding the results
+        /// <paramref name="terminator"/> succeeds, discarding the results.
         /// </returns>
         public Parser<TToken, U> SkipManyThen<U>(Parser<TToken, U> terminator)
         {
@@ -143,6 +150,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return terminator.Or(SkipAtLeastOnceThen(terminator));
         }
 
@@ -158,12 +166,13 @@ namespace Pidgin
         /// </summary>
         /// <remarks>
         /// <c>p.SkipAtLeastOnceUntil(q)</c> is equivalent to
-        /// <c>p.SkipAtLeastOnceThen(q).ThenReturn(Unit.Value)</c>
+        /// <c>p.SkipAtLeastOnceThen(q).ThenReturn(Unit.Value)</c>.
         /// </remarks>
-        /// <param name="terminator">A parser to parse a terminator</param>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <typeparam name="U">The return type of the <paramref name="terminator"/> parser.</typeparam>
         /// <returns>
         /// A parser which applies this parser repeatedly until
-        /// <paramref name="terminator"/> succeeds, discarding the results
+        /// <paramref name="terminator"/> succeeds, discarding the results.
         /// </returns>
         public Parser<TToken, Unit> SkipAtLeastOnceUntil<U>(Parser<TToken, U> terminator)
         {
@@ -171,6 +180,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return SkipAtLeastOnceThen(terminator).Then(ReturnUnit);
         }
 
@@ -182,10 +192,11 @@ namespace Pidgin
         /// if you don't need the results. Fails if this parser fails or if
         /// <paramref name="terminator"/> fails after consuming input.
         /// </summary>
-        /// <param name="terminator">A parser to parse a terminator</param>
+        /// <param name="terminator">A parser to parse a terminator.</param>
+        /// <typeparam name="U">The return type of the <paramref name="terminator"/> parser.</typeparam>
         /// <returns>
         /// A parser which applies this parser repeatedly until
-        /// <paramref name="terminator"/> succeeds, discarding the results
+        /// <paramref name="terminator"/> succeeds, discarding the results.
         /// </returns>
         public Parser<TToken, U> SkipAtLeastOnceThen<U>(Parser<TToken, U> terminator)
         {
@@ -193,17 +204,24 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(terminator));
             }
+
             return new AtLeastOnceThenParser<TToken, T, U>(this, terminator, false).Select(tup => tup.Item2);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class AtLeastOnceThenParser<TToken, T, U> : Parser<TToken, (IEnumerable<T>?, U)>
     {
         private readonly Parser<TToken, T> _parser;
         private readonly Parser<TToken, U> _terminator;
         private readonly bool _keepResults;
 
-        public AtLeastOnceThenParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults) : base()
+        public AtLeastOnceThenParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults)
+            : base()
         {
             _parser = parser;
             _terminator = terminator;
@@ -223,10 +241,12 @@ namespace Pidgin
                 result = (null, default!);
                 return false;
             }
+
             if (state.Location <= firstItemStartLoc)
             {
                 throw new InvalidOperationException("Until() used with a parser which consumed no input");
             }
+
             ts?.Add(result1);
 
             var terminatorExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
@@ -242,6 +262,7 @@ namespace Pidgin
                     result = (ts!, terminatorResult!);
                     return true;
                 }
+
                 if (state.Location > terminatorStartLoc)
                 {
                     // state.Error set by _terminator
@@ -268,11 +289,13 @@ namespace Pidgin
                         // throw out the _terminator expecteds and keep only _parser
                         expecteds.AddRange(itemExpecteds.AsSpan());
                     }
+
                     terminatorExpecteds.Dispose();
                     itemExpecteds.Dispose();
                     result = (null, default!);
                     return false;
                 }
+
                 // throw out both sets of expecteds
                 terminatorExpecteds.Clear();
                 itemExpecteds.Clear();
@@ -280,6 +303,7 @@ namespace Pidgin
                 {
                     throw new InvalidOperationException("Until() used with a parser which consumed no input");
                 }
+
                 ts?.Add(itemResult!);
             }
         }

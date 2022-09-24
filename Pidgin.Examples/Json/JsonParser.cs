@@ -16,12 +16,14 @@ public static class JsonParser
     private static readonly Parser<char, char> _colon = Char(':');
     private static readonly Parser<char, char> _colonWhitespace =
         _colon.Between(SkipWhitespaces);
+
     private static readonly Parser<char, char> _comma = Char(',');
 
     private static readonly Parser<char, string> _string =
         Token(c => c != '"')
             .ManyString()
             .Between(_quote);
+
     private static readonly Parser<char, Json> _jsonString =
         _string.Select<Json>(s => new JsonString(s));
 

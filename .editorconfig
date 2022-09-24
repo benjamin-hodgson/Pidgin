@@ -137,9 +137,107 @@ dotnet_diagnostic.IDE0005.severity = warning  # remove unnecessary import
 
 #### Code analysis opt-outs ####
 
-dotnet_diagnostic.CA1200.severity = none  # "Avoid using cref tags with a prefix". Doesn't work well with pastedoc
-dotnet_diagnostic.CA1805.severity = silent  # "Member is explicitly initialized to its default value"
+# CA1200: Avoid using cref tags with a prefix
+#   Justification: Doesn't work well with pastedoc
+dotnet_diagnostic.CA1200.severity = none
 
+# CA1805: Member is explicitly initialized to its default value
+#   Justification: I don't like this rule
+dotnet_diagnostic.CA1805.severity = none
+
+
+#### StyleCop opt-outs ####
+
+# SA1000: Keywords must be spaced correctly
+#   Justification: This rule hasn't been updated
+#   for C# 9 (target typed new)
+dotnet_diagnostic.SA1000.severity = none
+
+# SA1009: Closing parenthesis should not be preceded by a space
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1009.severity = none
+
+# SA1011: Closing square bracket should be followed by a space
+#   Justification: This rule has not been updated for C#8 (nullable reference types)
+dotnet_diagnostic.SA1011.severity = none
+
+# SA1101: Prefix local calls with this
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1101.severity = none
+
+# SA1111: Closing parenthesis should be on line of last parameter
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1111.severity = none
+
+# SA1122: Use string.Empty for empty strings
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1122.severity = none
+
+
+# SA1200: Using directive should appear inside a namespace declaration
+#   Justification: I don't like this rule and it doesn't suit C#10
+#   (file scoped namespaces)
+dotnet_diagnostic.SA1200.severity = none
+
+# SA1201: Elements must appear in the correct order
+#   Justification: I don't like StyleCop's defaults
+#   and they don't seem to be configurable
+dotnet_diagnostic.SA1201.severity = none
+
+# SA1202: internal members should come before 'private' members
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1202.severity = none
+
+# SA1204: Static elements must appear before instance elements
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1204.severity = none
+
+# SA1214: Readonly elements must appear before non-readonly elements
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1214.severity = none
+
+# SA1309: Field should not begin with an underscore
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1309.severity = none
+
+# SA1313: Parameter should begin with lower-case letter
+#   Justification: This rule hasn't been updated
+#   for C# 9 (records)
+dotnet_diagnostic.SA1313.severity = none
+
+# SA1314: Type parameter names should begin with T
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1314.severity = none
+
+# SA1413 Use trailing comma in multi-line initializers
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1413.severity = none
+
+# SA1600: Elements should be documented
+#   Justification: This rule fires on internal members,
+#   and is covered by the C# compiler anyway
+dotnet_diagnostic.SA1600.severity = none
+
+# SA1601: Partial elements should be documented
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1601.severity = none
+
+# SA1602: Enum members should be documented
+#   Justification: This rule fires on internal members,
+#   and is covered by the C# compiler anyway
+dotnet_diagnostic.SA1602.severity = none
+
+# SA1623: The documentation for a property should start with 'Gets'
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1623.severity = none
+
+# SA1633: The file header is missing or not located at the top of the file
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1633.severity = none
+
+# SA1642: Constructor summary documentation should begin with standard text
+#   Justification: I don't like this rule
+dotnet_diagnostic.SA1642.severity = none
 
 #### C# Formatting Rules ####
 

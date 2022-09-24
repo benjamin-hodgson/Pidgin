@@ -7,18 +7,19 @@ namespace Pidgin
     public static partial class Parser
     {
         /// <summary>
-        /// Creates a parser that parses and returns a literal string
+        /// Creates a parser that parses and returns a literal string.
         /// </summary>
-        /// <param name="str">The string to parse</param>
-        /// <returns>A parser that parses and returns a literal string</returns>
-        /// 
-        [SuppressMessage("design", "CA1720")]  // "Identifier contains type name"
+        /// <param name="str">The string to parse.</param>
+        /// <returns>A parser that parses and returns a literal string.</returns>
+        ///
+        [SuppressMessage("design", "CA1720:Identifier contains type name", Justification = "Would be a breaking change")]
         public static Parser<char, string> String(string str)
         {
             if (str == null)
             {
                 throw new ArgumentNullException(nameof(str));
             }
+
             return Parser<char>.Sequence(str);
         }
 
@@ -26,7 +27,7 @@ namespace Pidgin
         /// Creates a parser that parses and returns a literal string, in a case insensitive manner.
         /// The parser returns the actual string parsed.
         /// </summary>
-        /// <param name="str">The string to parse</param>
+        /// <param name="str">The string to parse.</param>
         /// <returns>A parser that parses and returns a literal string, in a case insensitive manner.</returns>
         public static Parser<char, string> CIString(string str)
         {
@@ -34,14 +35,21 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(str));
             }
+
             return new CIStringParser(str);
         }
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class CIStringParser : Parser<char, string>
     {
         private readonly string _value;
         private Expected<char> _expected;
+
         private Expected<char> Expected
         {
             get
@@ -50,6 +58,7 @@ namespace Pidgin
                 {
                     _expected = new Expected<char>(_value.ToImmutableArray());
                 }
+
                 return _expected;
             }
         }

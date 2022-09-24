@@ -9,9 +9,10 @@ namespace Pidgin
     {
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, packing the resulting characters into a string.
-        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>.
         /// </summary>
-        /// <param name="parser">A parser returning a single character</param>
+        /// <param name="parser">A parser returning a single character.</param>
+        /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
         /// <returns>A parser which applies the current parser zero or more times, packing the resulting characters into a string.</returns>
         public static Parser<TToken, string> ManyString<TToken>(this Parser<TToken, char> parser)
         {
@@ -25,9 +26,10 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser which applies the current parser zero or more times, concatenating the resulting string pieces.
-        /// Equivalent to <c>parser.AtLeastOnce().Select(cs => string.Concat(cs))</c>
+        /// Equivalent to <c>parser.AtLeastOnce().Select(cs => string.Concat(cs))</c>.
         /// </summary>
-        /// <param name="parser">A parser returning a single character</param>
+        /// <param name="parser">A parser returning a single character.</param>
+        /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
         /// <returns>A parser which applies the current parser zero or more times, concatenating the resulting string pieces.</returns>
         public static Parser<TToken, string> ManyString<TToken>(this Parser<TToken, string> parser)
         {
@@ -41,9 +43,10 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, packing the resulting characters into a string.
-        /// Equivalent to <c>parser.AtLeastOnce().Select(cs => string.Concat(cs))</c>
+        /// Equivalent to <c>parser.AtLeastOnce().Select(cs => string.Concat(cs))</c>.
         /// </summary>
-        /// <param name="parser">A parser returning a single character</param>
+        /// <param name="parser">A parser returning a single character.</param>
+        /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
         /// <returns>A parser which applies the current parser one or more times, packing the resulting characters into a string.</returns>
         public static Parser<TToken, string> AtLeastOnceString<TToken>(this Parser<TToken, char> parser)
         {
@@ -58,9 +61,10 @@ namespace Pidgin
 
         /// <summary>
         /// Creates a parser which applies the current parser one or more times, concatenating the resulting string pieces.
-        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>
+        /// Equivalent to <c>parser.Many().Select(cs => string.Concat(cs))</c>.
         /// </summary>
-        /// <param name="parser">A parser returning a single character</param>
+        /// <param name="parser">A parser returning a single character.</param>
+        /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
         /// <returns>A parser which applies the current parser one or more times, concatenating the resulting string pieces.</returns>
         public static Parser<TToken, string> AtLeastOnceString<TToken>(this Parser<TToken, string> parser)
         {
@@ -105,6 +109,7 @@ namespace Pidgin
     public abstract partial class Parser<TToken, T>
     {
         private static Parser<TToken, IEnumerable<T>>? _returnEmptyEnumerable;
+
         private static Parser<TToken, IEnumerable<T>> ReturnEmptyEnumerable
         {
             get
@@ -113,10 +118,13 @@ namespace Pidgin
                 {
                     _returnEmptyEnumerable = Parser<TToken>.Return(Enumerable.Empty<T>());
                 }
+
                 return _returnEmptyEnumerable;
             }
         }
+
         private static Parser<TToken, Unit>? _returnUnit;
+
         private static Parser<TToken, Unit> ReturnUnit
         {
             get
@@ -125,6 +133,7 @@ namespace Pidgin
                 {
                     _returnUnit = Parser<TToken>.Return(Unit.Value);
                 }
+
                 return _returnUnit;
             }
         }
@@ -133,16 +142,16 @@ namespace Pidgin
         /// Creates a parser which applies the current parser zero or more times.
         /// The resulting parser fails if the current parser fails after consuming input.
         /// </summary>
-        /// <returns>A parser which applies the current parser zero or more times</returns>
+        /// <returns>A parser which applies the current parser zero or more times.</returns>
         public Parser<TToken, IEnumerable<T>> Many()
             => AtLeastOnce()
                 .Or(ReturnEmptyEnumerable);
 
         /// <summary>
         /// Creates a parser that applies the current parser one or more times.
-        /// The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input
+        /// The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input.
         /// </summary>
-        /// <returns>A parser that applies the current parser one or more times</returns>
+        /// <returns>A parser that applies the current parser one or more times.</returns>
         public Parser<TToken, IEnumerable<T>> AtLeastOnce()
             => ChainAtLeastOnce<IEnumerable<T>, ListChainer>(c => ListChainer.Create());
 
@@ -201,7 +210,7 @@ namespace Pidgin
         /// This is more efficient than <see cref="Many()"/>, if you don't need the results.
         /// The resulting parser fails if the current parser fails after consuming input.
         /// </summary>
-        /// <returns>A parser which applies the current parser zero or more times</returns>
+        /// <returns>A parser which applies the current parser zero or more times.</returns>
         public Parser<TToken, Unit> SkipMany()
             => SkipAtLeastOnce()
                 .Or(ReturnUnit);
@@ -209,19 +218,23 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that applies the current parser one or more times, discarding the results.
         /// This is more efficient than <see cref="AtLeastOnce()"/>, if you don't need the results.
-        /// The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input
+        /// The resulting parser fails if the current parser fails the first time it is applied, or if the current parser fails after consuming input.
         /// </summary>
-        /// <returns>A parser that applies the current parser one or more times, discarding the results</returns>
+        /// <returns>A parser that applies the current parser one or more times, discarding the results.</returns>
         public Parser<TToken, Unit> SkipAtLeastOnce()
-            => ChainAtLeastOnce<Unit, NullChainer>(c => new NullChainer());
+            => ChainAtLeastOnce<Unit, NullChainer>(c => default);
 
         private struct NullChainer : IChainer<T, Unit>
         {
-            public void Apply(T value) { }
+            public void Apply(T value)
+            {
+            }
 
             public Unit GetResult() => Unit.Value;
 
-            public void OnError() { }
+            public void OnError()
+            {
+            }
         }
     }
 }

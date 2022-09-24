@@ -6,9 +6,10 @@ namespace Pidgin
     {
         /// <summary>
         /// For debugging use.
-        /// 
+        ///
         /// Creates a new parser which runs the current parser and prints the given message to the console.
         /// </summary>
+        /// <param name="message">A message to write to the console.</param>
         /// <returns>A parser which runs the current parser and prints the given message to the console.</returns>
         public Parser<TToken, T> Trace(Func<T, string> message)
         {
@@ -16,6 +17,7 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
             return Select(x =>
             {
                 Console.WriteLine(message(x));
@@ -25,9 +27,10 @@ namespace Pidgin
 
         /// <summary>
         /// For debugging use.
-        /// 
+        ///
         /// Creates a new parser which runs the current parser and prints the given message to the console.
         /// </summary>
+        /// <param name="message">A message to write to the console.</param>
         /// <returns>A parser which runs the current parser and prints the given message to the console.</returns>
         public Parser<TToken, T> Trace(string message)
         {
@@ -35,12 +38,13 @@ namespace Pidgin
             {
                 throw new ArgumentNullException(nameof(message));
             }
+
             return Trace(_ => message);
         }
 
         /// <summary>
         /// For debugging use.
-        /// 
+        ///
         /// Creates a new parser which runs the current parser and prints the result to the console.
         /// </summary>
         /// <returns>A parser which runs the current parser and prints the result to the console.</returns>

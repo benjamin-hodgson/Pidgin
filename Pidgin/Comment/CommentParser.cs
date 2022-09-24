@@ -6,14 +6,15 @@ using static Pidgin.Parser<char>;
 namespace Pidgin.Comment
 {
     /// <summary>
-    /// Contains functions to build parsers which skip over comments
+    /// Contains functions to build parsers which skip over comments.
     /// </summary>
     public static class CommentParser
     {
         /// <summary>
         /// Creates a parser which runs <paramref name="lineCommentStart"/>, then skips the rest of the line.
         /// </summary>
-        /// <param name="lineCommentStart">A parser to recognise a lexeme which starts a line comment</param>
+        /// <param name="lineCommentStart">A parser to recognise a lexeme which starts a line comment.</param>
+        /// <typeparam name="T">The return type of the <paramref name="lineCommentStart"/> parser.</typeparam>
         /// <returns>A parser which runs <paramref name="lineCommentStart"/>, then skips the rest of the line.</returns>
         public static Parser<char, Unit> SkipLineComment<T>(Parser<char, T> lineCommentStart)
         {
@@ -32,8 +33,10 @@ namespace Pidgin.Comment
         /// Creates a parser which runs <paramref name="blockCommentStart"/>,
         /// then skips everything until <paramref name="blockCommentEnd"/>.
         /// </summary>
-        /// <param name="blockCommentStart">A parser to recognise a lexeme which starts a multi-line block comment</param>
-        /// <param name="blockCommentEnd">A parser to recognise a lexeme which ends a multi-line block comment</param>
+        /// <param name="blockCommentStart">A parser to recognise a lexeme which starts a multi-line block comment.</param>
+        /// <param name="blockCommentEnd">A parser to recognise a lexeme which ends a multi-line block comment.</param>
+        /// <typeparam name="T">The return type of the <paramref name="blockCommentStart"/> parser.</typeparam>
+        /// <typeparam name="U">The return type of the <paramref name="blockCommentEnd"/> parser.</typeparam>
         /// <returns>
         /// A parser which runs <paramref name="blockCommentStart"/>, then skips everything until <paramref name="blockCommentEnd"/>.
         /// </returns>
@@ -43,6 +46,7 @@ namespace Pidgin.Comment
             {
                 throw new ArgumentNullException(nameof(blockCommentStart));
             }
+
             if (blockCommentEnd == null)
             {
                 throw new ArgumentNullException(nameof(blockCommentEnd));
@@ -57,8 +61,10 @@ namespace Pidgin.Comment
         /// Creates a parser which runs <paramref name="blockCommentStart"/>,
         /// then skips everything until <paramref name="blockCommentEnd"/>, accounting for nested comments.
         /// </summary>
-        /// <param name="blockCommentStart">A parser to recognise a lexeme which starts a multi-line block comment</param>
-        /// <param name="blockCommentEnd">A parser to recognise a lexeme which ends a multi-line block comment</param>
+        /// <param name="blockCommentStart">A parser to recognise a lexeme which starts a multi-line block comment.</param>
+        /// <param name="blockCommentEnd">A parser to recognise a lexeme which ends a multi-line block comment.</param>
+        /// <typeparam name="T">The return type of the <paramref name="blockCommentStart"/> parser.</typeparam>
+        /// <typeparam name="U">The return type of the <paramref name="blockCommentEnd"/> parser.</typeparam>
         /// <returns>
         /// A parser which runs <paramref name="blockCommentStart"/>,
         /// then skips everything until <paramref name="blockCommentEnd"/>, accounting for nested comments.
@@ -69,6 +75,7 @@ namespace Pidgin.Comment
             {
                 throw new ArgumentNullException(nameof(blockCommentStart));
             }
+
             if (blockCommentEnd == null)
             {
                 throw new ArgumentNullException(nameof(blockCommentEnd));

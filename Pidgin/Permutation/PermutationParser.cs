@@ -5,7 +5,7 @@ using System.Linq;
 namespace Pidgin.Permutation
 {
     /// <summary>
-    /// Contains tools for running sequences of parsers in an order-insensitive manner
+    /// Contains tools for running sequences of parsers in an order-insensitive manner.
     /// </summary>
     public static class PermutationParser
     {
@@ -13,7 +13,7 @@ namespace Pidgin.Permutation
         /// Creates an empty instance of <see cref="PermutationParser{TToken, T}"/>.
         /// </summary>
         /// <typeparam name="TToken">The type of tokens to be consumed by the permutation parser.</typeparam>
-        /// <returns></returns>
+        /// <returns>An empty instance of <see cref="PermutationParser{TToken, T}"/>.</returns>
         public static PermutationParser<TToken, Unit> Create<TToken>()
             => new(
                 () => Unit.Value,
@@ -23,23 +23,27 @@ namespace Pidgin.Permutation
 
     /// <summary>
     /// A permutation parser represents a collection of parsers which can be run in an order-insensitive manner.
-    /// 
+    ///
     /// Declaration modifiers in C# are an example of an order-insensitive grammar.
     /// Modifiers can appear in any order: <c>protected internal static readonly int x;</c>
     /// means the same as <c>internal readonly protected static int x;</c>.
-    /// 
+    ///
     /// Usage of this class involves calling <see cref="Add{U}(Parser{TToken, U})"/>
     /// or <see cref="AddOptional{U}(Parser{TToken, U}, U)"/> to add parsers to the permutation parser,
     /// and then calling <see cref="Build"/> to create a parser which runs them in an order-insensitive manner
     /// and returns the results in a nested tuple.
-    /// 
+    ///
     /// Note that the parsers that are added to the permutation parser must always consume input before succeeding.
     /// If a parser succeeds on empty input the permutation parser will not work correctly.
     /// If you want to run a parser optionally, use <see cref="AddOptional{U}(Parser{TToken, U}, U)"/>.
-    /// 
+    ///
     /// This class is immutable.
     /// </summary>
+    /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+#pragma warning disable SA1402  // "File may only contain a single type"
     public sealed class PermutationParser<TToken, T>
+#pragma warning restore SA1402  // "File may only contain a single type"
     {
         private readonly Func<T>? _exit;
         private readonly ImmutableList<PermutationParserBranch<TToken, T>> _forest;
@@ -64,6 +68,7 @@ namespace Pidgin.Permutation
             {
                 return forest.Or(Parser<TToken>.Return(_exit).Select(f => f()));
             }
+
             return forest;
         }
 
@@ -71,6 +76,7 @@ namespace Pidgin.Permutation
         /// Adds a parser to the collection.
         /// </summary>
         /// <param name="parser">The parser to add to the collection.</param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added.
         /// </returns>
@@ -84,6 +90,8 @@ namespace Pidgin.Permutation
         /// <param name="resultSelector">
         /// A transformation function to apply to the result of the current permutation parser and the result of <paramref name="parser"/>.
         /// </param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
+        /// <typeparam name="R">The return type of the resulting permutation parser.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added.
         /// </returns>
@@ -93,10 +101,12 @@ namespace Pidgin.Permutation
             {
                 throw new ArgumentNullException(nameof(parser));
             }
+
             if (resultSelector == null)
             {
                 throw new ArgumentNullException(nameof(resultSelector));
             }
+
             return new PermutationParser<TToken, R>(
                 null,
                 ConvertForestAndAddParser(b => b.Add(parser, resultSelector), parser, resultSelector)
@@ -105,11 +115,12 @@ namespace Pidgin.Permutation
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <see cref="Maybe.Nothing{T}"/> will be returned.
         /// </summary>
         /// <param name="parser">The parser to add to the collection.</param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -119,17 +130,19 @@ namespace Pidgin.Permutation
             {
                 throw new ArgumentNullException(nameof(parser));
             }
+
             return AddOptional(parser.Select(Maybe.Just), Maybe.Nothing<U>());
         }
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <paramref name="defaultValue"/> will be returned.
         /// </summary>
         /// <param name="parser">The parser to add to the collection.</param>
         /// <param name="defaultValue">A default value to return if <paramref name="parser"/> fails.</param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -138,12 +151,13 @@ namespace Pidgin.Permutation
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <paramref name="defaultValueFactory"/> will be called to get a value to return.
         /// </summary>
         /// <param name="parser">The parser to add to the collection.</param>
         /// <param name="defaultValueFactory">A factory for a default value to return if <paramref name="parser"/> fails.</param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -152,7 +166,7 @@ namespace Pidgin.Permutation
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <see cref="Maybe.Nothing{T}"/> will be returned.
         /// </summary>
@@ -160,6 +174,8 @@ namespace Pidgin.Permutation
         /// <param name="resultSelector">
         /// A transformation function to apply to the result of the current permutation parser and the result of <paramref name="parser"/>.
         /// </param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
+        /// <typeparam name="R">The return type of the resulting permutation parser.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -169,12 +185,13 @@ namespace Pidgin.Permutation
             {
                 throw new ArgumentNullException(nameof(parser));
             }
+
             return AddOptional(parser.Select(Maybe.Just), () => Maybe.Nothing<U>(), resultSelector);
         }
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <paramref name="defaultValue"/> will be returned.
         /// </summary>
@@ -183,6 +200,8 @@ namespace Pidgin.Permutation
         /// <param name="resultSelector">
         /// A transformation function to apply to the result of the current permutation parser and the result of <paramref name="parser"/>.
         /// </param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
+        /// <typeparam name="R">The return type of the resulting permutation parser.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -191,7 +210,7 @@ namespace Pidgin.Permutation
 
         /// <summary>
         /// Adds an optional parser to the collection.
-        /// 
+        ///
         /// The resulting permutation parser will successfully parse a phrase even if <paramref name="parser"/> never succeeds.
         /// In that case, <paramref name="defaultValueFactory"/> will be called to get a value to return.
         /// </summary>
@@ -200,6 +219,8 @@ namespace Pidgin.Permutation
         /// <param name="resultSelector">
         /// A transformation function to apply to the result of the current permutation parser and the result of <paramref name="parser"/>.
         /// </param>
+        /// <typeparam name="U">The return type of the parser to add to the collection.</typeparam>
+        /// <typeparam name="R">The return type of the resulting permutation parser.</typeparam>
         /// <returns>
         /// A new permutation parser representing the current collection of parsers with <paramref name="parser"/> added optionally.
         /// </returns>
@@ -209,10 +230,12 @@ namespace Pidgin.Permutation
             {
                 throw new ArgumentNullException(nameof(parser));
             }
+
             if (defaultValueFactory == null)
             {
                 throw new ArgumentNullException(nameof(defaultValueFactory));
             }
+
             if (resultSelector == null)
             {
                 throw new ArgumentNullException(nameof(resultSelector));

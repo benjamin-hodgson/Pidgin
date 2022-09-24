@@ -14,6 +14,7 @@ namespace Pidgin
             {
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePosDelta from too far in the past. Please report this as a bug in Pidgin!");
             }
+
             if (location > _bufferStartLocation + _bufferedCount)
             {
                 throw new ArgumentOutOfRangeException(nameof(location), location, "Tried to compute a SourcePosDelta from too far in the future. Please report this as a bug in Pidgin!");
@@ -35,6 +36,7 @@ namespace Pidgin
             {
                 pos += _sourcePosCalculator(_span[i]);
             }
+
             return pos;
         }
 
@@ -50,6 +52,7 @@ namespace Pidgin
             var cols = 0;
 
             var i = input.Length - 1;
+
             // count cols after last newline
             while (i >= 0 && lines == 0)
             {
@@ -65,16 +68,20 @@ namespace Pidgin
                 {
                     cols++;
                 }
+
                 i--;
             }
+
             while (i >= 0)
             {
                 if (input[i] == '\n')
                 {
                     lines++;
                 }
+
                 i--;
             }
+
             return _lastSourcePosDelta + new SourcePosDelta(lines, cols);
         }
     }

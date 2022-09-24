@@ -21,6 +21,7 @@ public class StringParserTests : ParserTestBase
             AssertPartialParse(parser, "", 'a', 0);
             AssertPartialParse(parser, "foobar", 'a', 0);
         }
+
         {
             var parser = FromResult('a');
             AssertPartialParse(parser, "", 'a', 0);
@@ -78,6 +79,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = AnyCharExcept('a', 'b', 'c');
             AssertPartialParse(parser, "e", 'e', 1);
@@ -94,6 +96,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Token('a'.Equals);
             AssertPartialParse(parser, "a", 'a', 1);
@@ -123,6 +126,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Any;
             AssertPartialParse(parser, "a", 'a', 1);
@@ -141,6 +145,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Whitespace;
             AssertPartialParse(parser, "\r", '\r', 1);
@@ -223,7 +228,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>()),
+                    ImmutableArray.Create(default(Expected<char>)),
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -294,6 +299,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = HexNum;
             AssertFullParse(parser, "09", 0x09);
@@ -316,6 +322,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = OctalNum;
             AssertFullParse(parser, "7", 7);
@@ -332,6 +339,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = LongNum;
             AssertFullParse(parser, "0", 0L);
@@ -393,6 +401,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Real;
             AssertFullParse(parser, "0", 0d);
@@ -443,7 +452,6 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, ".12345e-10", .12345e-10d);
             AssertFullParse(parser, "+.12345e-10", +.12345e-10d);
             AssertFullParse(parser, "-.12345e-10", -.12345e-10d);
-
 
             AssertFailure(
                 parser,
@@ -544,7 +552,8 @@ public class StringParserTests : ParserTestBase
         }
     }
 
-    [Fact, UseCulture("nb-NO")]
+    [Fact]
+    [UseCulture("nb-NO")]
     public void TestRealParserWithDifferentCultureInfo()
     {
         var parser = Real;
@@ -595,6 +604,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Sequence(Char('f'), Char('o'), Char('o'));
             AssertFullParse(parser, "foo", "foo");
@@ -720,6 +730,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Any.Bind(c => Token(c.Equals), (x, y) => new { x, y });
             AssertFullParse(parser, "aa", new { x = 'a', y = 'a' });
@@ -736,6 +747,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Any.Then(c => Token(c.Equals), (x, y) => new { x, y });
             AssertFullParse(parser, "aa", new { x = 'a', y = 'a' });
@@ -752,6 +764,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser =
                 from x in Any
@@ -771,6 +784,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('x').Then(c => Char('y'));
             AssertFullParse(parser, "xy", 'y');
@@ -832,6 +846,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('a').Then(Char('b'), (a, b) => new { a, b });
             AssertFullParse(parser, "ab", new { a = 'a', b = 'b' });
@@ -860,6 +875,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('a').Before(Char('b'));
             AssertFullParse(parser, "ab", 'a');
@@ -909,14 +925,17 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('a').Select(a => new { a });
             AssertFullParse(parser, "a", new { a = 'a' });
         }
+
         {
             var parser = Char('a').Map(a => new { a });
             AssertFullParse(parser, "a", new { a = 'a' });
         }
+
         {
             var parser =
                 from a in Char('a')
@@ -944,6 +963,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('a').Or(Char('b'));
             AssertFullParse(parser, "a", 'a');
@@ -961,6 +981,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = String("foo").Or(String("bar"));
             AssertFullParse(parser, "foo", "foo");
@@ -978,8 +999,10 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = String("foo").Or(String("foul"));
+
             // because the first parser consumed input
             AssertFailure(
                 parser,
@@ -994,6 +1017,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Try(String("foo")).Or(String("foul"));
             AssertFullParse(parser, "foul", "foul");
@@ -1021,6 +1045,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = OneOf("abc");
             AssertFullParse(parser, "a", 'a');
@@ -1039,6 +1064,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = OneOf(String("foo"), String("bar"));
             AssertFullParse(parser, "foo", "foo");
@@ -1101,6 +1127,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = CIOneOf("abc");
             AssertFullParse(parser, "a", 'a');
@@ -1138,6 +1165,7 @@ public class StringParserTests : ParserTestBase
             var parser = Not(String("food")).Then(String("bar"));
             AssertFullParse(parser, "foobar", "bar");
         }
+
         {
             var parser = Not(OneOf(Char('a'), Char('b'), Char('c')));
             AssertPartialParse(parser, "e", Unit.Value, 0);
@@ -1154,6 +1182,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Not(Return('f'));
             AssertFailure(
@@ -1169,6 +1198,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             // test to make sure it doesn't throw out the buffer, for the purposes of computing error position
             var str = new string('a', 10000);
@@ -1186,6 +1216,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             // test error pos calculation
             var parser = Char('a').Then(Not(Char('b')));
@@ -1235,6 +1266,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             // should backtrack on success
             var parser = Lookahead(String("foo")).Then(String("food"));
@@ -1262,6 +1294,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = String("nabble").ThenReturn((ParseError<char>?)null)
                 .Or(
@@ -1353,6 +1386,7 @@ public class StringParserTests : ParserTestBase
             var parser = Char('a').Assert('a'.Equals);
             AssertFullParse(parser, "a", 'a');
         }
+
         {
             var parser = Char('a').Assert('b'.Equals);
             AssertFailure(
@@ -1368,10 +1402,12 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('a').Where('a'.Equals);
             AssertFullParse(parser, "a", 'a');
         }
+
         {
             var parser = Char('a').Where('b'.Equals);
             AssertFailure(
@@ -1424,6 +1460,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Whitespaces;
             AssertFullParse(parser, "    ", new[] { ' ', ' ', ' ', ' ' });
@@ -1432,6 +1469,7 @@ public class StringParserTests : ParserTestBase
             AssertPartialParse(parser, "abc", Enumerable.Empty<char>(), 0);
             AssertPartialParse(parser, "", Enumerable.Empty<char>(), 0);
         }
+
         {
             var parser = Return(1).Many();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1449,6 +1487,7 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, "ff", "ff");
             AssertPartialParse(parser, "fo", "f", 1);
         }
+
         {
             var parser = String("f").ManyString();
             AssertPartialParse(parser, "", "", 0);
@@ -1457,6 +1496,7 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, "ff", "ff");
             AssertPartialParse(parser, "fo", "f", 1);
         }
+
         {
             var parser = Return('f').ManyString();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1498,6 +1538,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = SkipWhitespaces.Then(Char('a'));
             AssertFullParse(parser, "    a", 'a');
@@ -1510,6 +1551,7 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, new string(' ', 64) + "a", 'a');
             AssertFullParse(parser, new string(' ', 65) + "a", 'a');
         }
+
         {
             var parser = Return(1).SkipMany();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1573,6 +1615,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).AtLeastOnce();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1612,6 +1655,7 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, "ff", "ff");
             AssertPartialParse(parser, "fg", "f", 1);
         }
+
         {
             var parser = String("f").AtLeastOnceString();
             AssertFailure(
@@ -1642,6 +1686,7 @@ public class StringParserTests : ParserTestBase
             AssertFullParse(parser, "ff", "ff");
             AssertPartialParse(parser, "fg", "f", 1);
         }
+
         {
             var parser = Return('f').AtLeastOnceString();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1705,6 +1750,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).SkipAtLeastOnce();
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1793,6 +1839,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).Until(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1881,6 +1928,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).ManyThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -1969,6 +2017,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).SkipUntil(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2057,6 +2106,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).SkipManyThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2167,6 +2217,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).AtLeastOnceUntil(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2277,6 +2328,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).AtLeastOnceThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2387,6 +2439,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).SkipAtLeastOnceUntil(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2497,6 +2550,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Return(1).SkipAtLeastOnceThen(Char(' '));
             Assert.Throws<InvalidOperationException>(() => parser.Parse(""));
@@ -2522,6 +2576,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Char('f').RepeatString(3);
             AssertFullParse(parser, "fff", "fff");
@@ -2905,6 +2960,7 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Try(String("foo")).Optional();
             AssertFullParse(parser, "foo", Maybe.Just("foo"));
@@ -2913,6 +2969,7 @@ public class StringParserTests : ParserTestBase
             AssertPartialParse(parser, "", Maybe.Nothing<string>(), 0);
             AssertPartialParse(parser, "four", Maybe.Nothing<string>(), 0);
         }
+
         {
             var parser = Char('+').Optional().Then(Digit).Select(char.GetNumericValue);
             AssertFullParse(parser, "1", 1);
@@ -2939,7 +2996,9 @@ public class StringParserTests : ParserTestBase
             var parser = String("abc").Many().MapWithInput((input, result) => (input.ToString(), result.Count()));
             AssertFullParse(parser, "abc", ("abc", 1));
             AssertFullParse(parser, "abcabc", ("abcabc", 2));
-            AssertFullParse(  // long input, to check that it doesn't discard the buffer
+
+            // long input, to check that it doesn't discard the buffer
+            AssertFullParse(
                 parser,
                 string.Concat(Enumerable.Repeat("abc", 5000)),
                 (string.Concat(Enumerable.Repeat("abc", 5000)), 5000)
@@ -3006,12 +3065,17 @@ public class StringParserTests : ParserTestBase
         }
     }
 
-    private class TestCast1 { }
+    private class TestCast1
+    {
+    }
+
     private class TestCast2 : TestCast1
     {
         public override bool Equals(object? other) => other is TestCast2;
+
         public override int GetHashCode() => 1;
     }
+
     [Fact]
     public void TestCast()
     {
@@ -3019,6 +3083,7 @@ public class StringParserTests : ParserTestBase
             var parser = Return(new TestCast2()).Cast<TestCast1>();
             AssertPartialParse(parser, "", new TestCast2(), 0);
         }
+
         {
             var parser = Return(new TestCast1()).OfType<TestCast2>();
             AssertFailure(
@@ -3043,10 +3108,12 @@ public class StringParserTests : ParserTestBase
             var parser = CurrentSourcePosDelta;
             AssertPartialParse(parser, "", SourcePosDelta.Zero, 0);
         }
+
         {
             var parser = String("foo").Then(CurrentSourcePosDelta);
             AssertFullParse(parser, "foo", new SourcePosDelta(0, 3));
         }
+
         {
             var parser = Try(String("foo")).Or(Return("")).Then(CurrentSourcePosDelta);
             AssertPartialParse(parser, "f", SourcePosDelta.Zero, 0);  // it should backtrack
@@ -3076,6 +3143,5 @@ public class StringParserTests : ParserTestBase
 
         result = Parser.CIEnum<TestEnum>().Parse(value2);
         Assert.Equal(TestEnum.Value2, result.Value);
-
     }
 }

@@ -7,11 +7,15 @@ namespace Pidgin.TokenStreams
     /// <summary>
     /// An <see cref="ITokenStream{TToken}"/> implementation based on a <see cref="TextReader"/>.
     /// </summary>
-    [SuppressMessage("naming", "CA1711")]  // "Rename type name so that it does not end in 'Stream'"
+    [SuppressMessage(
+        "naming",
+        "CA1711:Rename type name so that it does not end in 'Stream'",
+        Justification = "It's a TokenStream, not a System.IO.Stream"
+    )]
     public class ReaderTokenStream : ITokenStream<char>
     {
         /// <summary>Returns 4096.</summary>
-        /// <returns>4096</returns>
+        /// <returns>4096.</returns>
         public int ChunkSizeHint => 4096;
 
         private readonly TextReader _input;

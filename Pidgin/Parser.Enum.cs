@@ -6,10 +6,10 @@ namespace Pidgin
     public static partial class Parser
     {
         /// <summary>
-        /// Creates a parser that parses and returns one of enum values
+        /// Creates a parser that parses and returns one of enum values.
         /// </summary>
-        /// <typeparam name="TEnum">Enum type</typeparam>
-        /// <returns>A parser that parses and returns one of enum values</returns>
+        /// <typeparam name="TEnum">Enum type.</typeparam>
+        /// <returns>A parser that parses and returns one of enum values.</returns>
         public static Parser<char, TEnum> Enum<TEnum>()
             where TEnum : struct, Enum
         {
@@ -23,8 +23,8 @@ namespace Pidgin
         /// <summary>
         /// Creates a parser that parses and returns one of enum values, in a case insensitive manner.
         /// </summary>
-        /// <typeparam name="TEnum">Enum type</typeparam>
-        /// <returns>A parser that parses and returns one of enum values</returns>
+        /// <typeparam name="TEnum">Enum type.</typeparam>
+        /// <returns>A parser that parses and returns one of enum values.</returns>
         public static Parser<char, TEnum> CIEnum<TEnum>()
             where TEnum : struct, Enum
         {
@@ -34,6 +34,5 @@ namespace Pidgin
                 .Select(x => System.Enum.Parse<TEnum>(x, true))
                 .Labelled("enum " + typeof(TEnum).Name);
         }
-
     }
 }

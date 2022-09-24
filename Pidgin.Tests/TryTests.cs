@@ -18,43 +18,49 @@ public class TryTests : ParserTestBase
     {
         DoTest((p, x) => p.Parse(x), x => x, x => x);
     }
+
     [Fact]
     public void TestList()
     {
         DoTest((p, x) => p.Parse(x), x => x, x => x.ToCharArray());
     }
+
     [Fact]
     public void TestReadOnlyList()
     {
         DoTest((p, x) => p.ParseReadOnlyList(x), x => x, x => x.ToCharArray());
     }
+
     [Fact]
     public void TestEnumerator()
     {
         DoTest((p, x) => p.Parse(x), x => x, x => x.AsEnumerable());
     }
+
     [Fact]
     public void TestReader()
     {
         DoTest((p, x) => p.Parse(x), x => x, x => new StringReader(x));
     }
+
     [Fact]
     public void TestStream()
     {
         DoTest((p, x) => p.Parse(x), Encoding.ASCII.GetBytes, x => new MemoryStream(Encoding.ASCII.GetBytes(x)));
     }
+
     [Fact]
     public void TestSpan()
     {
         DoTest((p, x) => p.Parse(x.Span), x => x, x => x.AsMemory());
     }
 
-
     private static void DoTest<TToken, TInput>(
         Func<Parser<TToken, IEnumerable<TToken>>, TInput, Result<TToken, IEnumerable<TToken>>> parseFunc,
         Func<string, IEnumerable<TToken>> render,
         Func<string, TInput> toInput
-    ) where TToken : IEquatable<TToken>
+    )
+        where TToken : IEquatable<TToken>
     {
         {
             var parser =
@@ -119,6 +125,7 @@ public class TryTests : ParserTestBase
                 )
             );
         }
+
         {
             var parser = Try(
                 Parser<TToken>.Sequence(render("foo")).Then(
@@ -127,6 +134,7 @@ public class TryTests : ParserTestBase
             ).Or(Parser<TToken>.Sequence(render("foobat")));
             AssertSuccess(parseFunc(parser, toInput("foobar")), render("bar"));
             AssertSuccess(parseFunc(parser, toInput("foobaz")), render("baz"));
+
             // "" -> "foo" -> "fooba[r]" -> "foo" -> "fooba[z]" -> "foo" -> "" -> "foobat"
             AssertSuccess(parseFunc(parser, toInput("foobat")), render("foobat"));
             AssertFailure(

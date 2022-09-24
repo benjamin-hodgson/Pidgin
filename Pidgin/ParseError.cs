@@ -9,13 +9,13 @@ namespace Pidgin
     /// <summary>
     /// Represents an error encountered during parsing.
     /// </summary>
-    /// <typeparam name="TToken">The type of tokens in the input stream</typeparam>
+    /// <typeparam name="TToken">The type of tokens in the input stream.</typeparam>
     public class ParseError<TToken> : IEquatable<ParseError<TToken>>
     {
         /// <summary>
-        /// Was the parse error due to encountering the end of the input stream while parsing?
+        /// Was the parse error due to encountering the end of the input stream while parsing?.
         /// </summary>
-        /// <returns>True if and only if the parse error was due to encountering the end of the input stream while parsing</returns>
+        /// <returns>True if and only if the parse error was due to encountering the end of the input stream while parsing.</returns>
         public bool EOF { get; }
 
         /// <summary>
@@ -25,33 +25,30 @@ namespace Pidgin
         public Maybe<TToken> Unexpected { get; }
 
         /// <summary>
-        /// A collection of expected inputs
+        /// A collection of expected inputs.
         /// </summary>
-        /// <returns>The collection of expected inputs</returns>
+        /// <returns>The collection of expected inputs.</returns>
         public IEnumerable<Expected<TToken>> Expected { get; }
 
         /// <summary>
-        /// The offset in the input stream at which the parse error occurred
+        /// The offset in the input stream at which the parse error occurred.
         /// </summary>
-        /// <returns>The offset in the input stream at which the parse error occurred</returns>
         public int ErrorOffset { get; }
 
         /// <summary>
-        /// The offset in the input stream at which the parse error occurred
+        /// The offset in the input stream at which the parse error occurred.
         /// </summary>
-        /// <returns>The offset in the input stream at which the parse error occurred</returns>
         public SourcePosDelta ErrorPosDelta { get; }
 
         /// <summary>
-        /// The position in the input stream at which the parse error occurred
+        /// The position in the input stream at which the parse error occurred.
         /// </summary>
-        /// <returns>The position in the input stream at which the parse error occurred</returns>
         public SourcePos ErrorPos => new SourcePos(1, 1) + ErrorPosDelta;
 
         /// <summary>
-        /// A custom error message
+        /// A custom error message.
         /// </summary>
-        /// <returns>A custom error message, or null if the error was created without a custom error message</returns>
+        /// <returns>A custom error message, or null if the error was created without a custom error message.</returns>
         public string? Message { get; }
 
         internal ParseError(
@@ -72,21 +69,23 @@ namespace Pidgin
         }
 
         /// <summary>
-        /// Render the parse error as a string
+        /// Render the parse error as a string.
         /// </summary>
-        /// <returns>An error message</returns>
+        /// <returns>An error message.</returns>
         public override string ToString() => RenderErrorMessage();
 
         /// <summary>
-        /// Render the parse error as a string
+        /// Render the parse error as a string.
         /// </summary>
-        /// <returns>An error message</returns>
+        /// <param name="initialSourcePos">The <see cref="SourcePos"/> of the beginning of the parse.</param>
+        /// <returns>An error message.</returns>
         public string ToString(SourcePos initialSourcePos) => RenderErrorMessage(initialSourcePos);
 
         /// <summary>
-        /// Render the parse error as a string
+        /// Render the parse error as a string.
         /// </summary>
-        /// <returns>An error message</returns>
+        /// <param name="initialSourcePos">The <see cref="SourcePos"/> of the beginning of the parse.</param>
+        /// <returns>An error message.</returns>
         public string RenderErrorMessage(SourcePos? initialSourcePos = null)
         {
             var pos = (initialSourcePos ?? new SourcePos(1, 1)) + ErrorPosDelta;
@@ -99,18 +98,21 @@ namespace Pidgin
                 sb.Append("    ");
                 sb.Append(Message);
             }
+
             if (EOF || Unexpected.HasValue)
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("    unexpected ");
                 sb.Append(EOF ? "EOF" : Unexpected.Value!.ToString());
             }
+
             if (Expected?.Any(e => e.Tokens.IsDefault || e.Tokens.Length != 0) == true)
             {
                 sb.Append(Environment.NewLine);
                 sb.Append("    expected ");
                 AppendExpectedString(Expected, sb);
             }
+
             sb.Append(Environment.NewLine);
             sb.Append("    at line ");
             sb.Append(pos.Line);
@@ -130,17 +132,21 @@ namespace Pidgin
                 {
                     sb.Append(", ");
                 }
+
                 if (count >= 1)
                 {
                     last.AppendTo(sb);
                 }
+
                 last = x;
                 count++;
             }
+
             if (count >= 2)
             {
                 sb.Append(", or ");
             }
+
             last.AppendTo(sb);
         }
 
@@ -148,7 +154,7 @@ namespace Pidgin
         public bool Equals(ParseError<TToken>? other)
             => Unexpected.Equals(other?.Unexpected)
             && EOF == other.EOF
-            && (Expected == null && other.Expected == null || Expected!.SequenceEqual(other.Expected))
+            && ((Expected == null && other.Expected == null) || Expected!.SequenceEqual(other.Expected))
             && ErrorOffset.Equals(other.ErrorOffset)
             && ErrorPos.Equals(other.ErrorPos)
             && object.Equals(Message, other.Message);
@@ -158,10 +164,15 @@ namespace Pidgin
             => obj is ParseError<TToken> error
             && Equals(error);
 
-        /// <inheritdoc/>
+        /// <summary>Equality operator.</summary>
+        /// <param name="left">The left <see cref="ParseError{TToken}"/>.</param>
+        /// <param name="right">The right <see cref="ParseError{TToken}"/>.</param>
         public static bool operator ==(ParseError<TToken> left, ParseError<TToken> right)
             => (left is null && right is null) || (left is not null && left.Equals(right));
-        /// <inheritdoc/>
+
+        /// <summary>Inequality operator.</summary>
+        /// <param name="left">The left <see cref="ParseError{TToken}"/>.</param>
+        /// <param name="right">The right <see cref="ParseError{TToken}"/>.</param>
         public static bool operator !=(ParseError<TToken> left, ParseError<TToken> right)
             => !(left == right);
 

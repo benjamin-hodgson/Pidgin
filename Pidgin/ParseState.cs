@@ -15,7 +15,7 @@ namespace Pidgin
     ///
     /// For efficiency, this object is implemented as a mutable struct
     /// and is intended to be passed by reference.
-    /// 
+    ///
     /// WARNING: This API is <strong>unstable</strong>
     /// and subject to change in future versions of the library.
     /// </summary>
@@ -26,8 +26,9 @@ namespace Pidgin
     {
         private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<TToken>();
 
-        /// <summary>Gets the parser configuration</summary>
+        /// <summary>Gets the parser configuration.</summary>
         public IConfiguration<TToken> Configuration { get; }
+
         private readonly Func<TToken, SourcePosDelta> _sourcePosCalculator;
         private readonly ArrayPool<TToken>? _arrayPool;
         private readonly ITokenStream<TToken>? _stream;
@@ -42,7 +43,6 @@ namespace Pidgin
 
         private int _lastSourcePosDeltaLocation;
         private SourcePosDelta _lastSourcePosDelta;
-
 
         internal ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
         {
@@ -118,6 +118,7 @@ namespace Pidgin
                 return _currentIndex < _bufferedCount;
             }
         }
+
         /// <summary>
         /// Returns the current token.
         /// </summary>
@@ -154,18 +155,21 @@ namespace Pidgin
         }
 
         // if it returns a span shorter than count it's because you reached the end of the input
+
         /// <summary>
         /// Returns a <see cref="Span{TToken}"/> containing the next <paramref name="count"/> tokens.
-        /// 
+        ///
         /// This method may return a span shorter than <paramref name="count"/>,
         /// if the parser reaches the end of the input stream.
         /// </summary>
         /// <param name="count">The number of tokens to advance.</param>
+        /// <returns>A <see cref="ReadOnlySpan{T}"/> containing the tokens.</returns>
         public ReadOnlySpan<TToken> LookAhead(int count)
         {
             Buffer(count);
             return _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
         }
+
         // if it returns a span shorter than count it's because you looked further back than the buffer goes
         internal ReadOnlySpan<TToken> LookBehind(int count)
         {
@@ -188,19 +192,19 @@ namespace Pidgin
                 var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - _bufferedCount);
                 var newBufferLength = keepLength + amountToRead;
 
-                //                  _currentIndex
-                //                        |
-                //                        | _bufferedCount
-                //              keepFrom  |      |
-                //                 |      |      | readAheadTo
-                //                 |      |      |    |
-                //              abcdefghijklmnopqrstuvwxyz
-                //       readAhead        |-----------|
-                //  keepSeenLength |------|
-                //      keepLength |-------------|
-                //    amountToRead               |----|
-                // newBufferLength |------------------|
-
+                /*                  _currentIndex
+                 *                        |
+                 *                        | _bufferedCount
+                 *              keepFrom  |      |
+                 *                 |      |      | readAheadTo
+                 *                 |      |      |    |
+                 *              abcdefghijklmnopqrstuvwxyz
+                 *       readAhead        |-----------|
+                 *  keepSeenLength |------|
+                 *      keepLength |-------------|
+                 *    amountToRead               |----|
+                 * newBufferLength |------------------|
+                 */
 
                 UpdateLastSourcePosDelta();
 
@@ -223,6 +227,7 @@ namespace Pidgin
                     // Could prevent it by using a ring buffer, but might make reads slower
                     Array.Copy(_buffer, keepFrom, _buffer, 0, keepLength);
                 }
+
                 _bufferStartLocation += keepFrom;
                 _currentIndex = keepSeenLength;
                 _bufferedCount = keepLength;
@@ -230,30 +235,35 @@ namespace Pidgin
             }
         }
 
-        /// <summary>Start buffering the input</summary>
+        /// <summary>Start buffering the input.</summary>
+        /// <returns>The location of the bookmark.</returns>
         public int Bookmark()
         {
             if (_keepFromLocation < 0)
             {
                 _keepFromLocation = Location;
             }
+
             return Location;
         }
 
-        /// <summary>Stop buffering the input</summary>
+        /// <summary>Stop buffering the input.</summary>
+        /// <param name="bookmark">The location of the bookmark.</param>
         public void DiscardBookmark(int bookmark)
         {
             if (bookmark < _keepFromLocation || bookmark > Location)
             {
                 throw new ArgumentOutOfRangeException(nameof(bookmark), bookmark, "Tried to discard a bookmark ");
             }
+
             if (bookmark == _keepFromLocation)
             {
                 _keepFromLocation = -1;
             }
         }
 
-        /// <summary>Return to a bookmark previously obtained from <see cref="Bookmark"/> and discard it</summary>
+        /// <summary>Return to a bookmark previously obtained from <see cref="Bookmark"/> and discard it.</summary>
+        /// <param name="bookmark">The location of the bookmark.</param>
         public void Rewind(int bookmark)
         {
             var delta = Location - bookmark;
@@ -262,6 +272,7 @@ namespace Pidgin
             {
                 throw new InvalidOperationException("Tried to rewind past the start of the input. Please report this as a bug in Pidgin!");
             }
+
             _currentIndex -= delta;
             DiscardBookmark(bookmark);
         }

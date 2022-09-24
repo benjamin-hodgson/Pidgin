@@ -12,14 +12,15 @@ namespace Pidgin
         /// <seealso cref="ParseError{TToken}.Expected"/>
         /// <seealso cref="Expected{TToken}.Label"/>
         /// </summary>
-        /// <param name="label">The custom label to apply to the current parser</param>
-        /// <returns>A parser equivalent to the current parser, with a custom label</returns>
+        /// <param name="label">The custom label to apply to the current parser.</param>
+        /// <returns>A parser equivalent to the current parser, with a custom label.</returns>
         public Parser<TToken, T> Labelled(string label)
         {
             if (label == null)
             {
                 throw new ArgumentNullException(nameof(label));
             }
+
             return WithExpected(ImmutableArray.Create(new Expected<TToken>(label)));
         }
 
@@ -27,6 +28,11 @@ namespace Pidgin
             => new WithExpectedParser<TToken, T>(this, expected);
     }
 
+    [SuppressMessage(
+        "StyleCop.CSharp.MaintainabilityRules",
+        "SA1402:FileMayOnlyContainASingleType",
+        Justification = "This class belongs next to the accompanying API method"
+    )]
     internal sealed class WithExpectedParser<TToken, T> : Parser<TToken, T>
     {
         private readonly Parser<TToken, T> _parser;
@@ -46,10 +52,10 @@ namespace Pidgin
             {
                 expecteds.AddRange(_expected);
             }
+
             childExpecteds.Dispose();
 
             // result is not null here
-
 #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
             return success;
 #pragma warning restore CS8762

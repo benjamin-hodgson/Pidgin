@@ -20,6 +20,7 @@ public static class SpracheJsonParser
     private static readonly Sprache.Parser<char> _colon = Char(':');
     private static readonly Sprache.Parser<char> _colonWhitespace =
         _colon.Contained(WhiteSpace.Many(), WhiteSpace.Many());
+
     private static readonly Sprache.Parser<char> _comma = Char(',');
 
     private static readonly Sprache.Parser<string> _string =
@@ -27,6 +28,7 @@ public static class SpracheJsonParser
             .Many()
             .Contained(_quote, _quote)
             .Select(string.Concat);
+
     private static readonly Sprache.Parser<Json> _jsonString =
         _string.Select(s => new JsonString(s));
 
@@ -39,8 +41,9 @@ public static class SpracheJsonParser
             .Contained(_lBracket, _rBracket)
             .Select(els => new JsonArray(els.ToImmutableArray()));
 
+    // avoid allocating a transparent identifier for a result we don't care about
     private static readonly Sprache.Parser<KeyValuePair<string, Json>> _jsonMember =
-        from name in _string.SelectMany(_ => _colonWhitespace, (name, ws) => name)  // avoid allocating a transparent identifier for a result we don't care about
+        from name in _string.SelectMany(_ => _colonWhitespace, (name, ws) => name)
         from val in _json
         select new KeyValuePair<string, Json>(name, val);
 

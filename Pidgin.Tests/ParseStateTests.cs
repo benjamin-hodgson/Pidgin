@@ -37,7 +37,7 @@ public class ParseStateTests
     [Fact]
     public void TestDiscardChunk()
     {
-        var input = ('f' + new string('o', ChunkSize));  // Length == ChunkSize + 1
+        var input = 'f' + new string('o', ChunkSize);  // Length == ChunkSize + 1
         var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
         Consume('f', ref state);
@@ -56,6 +56,7 @@ public class ParseStateTests
         // ^----
         AlignedChunkTest(ChunkSize);
     }
+
     [Fact]
     public void TestSaveWholeChunkUnaligned()
     {
@@ -66,6 +67,7 @@ public class ParseStateTests
         //  ^----
         UnalignedChunkTest(ChunkSize);
     }
+
     [Fact]
     public void TestSaveMoreThanWholeChunkAligned()
     {
@@ -76,6 +78,7 @@ public class ParseStateTests
         // ^-----
         AlignedChunkTest(ChunkSize + 1);
     }
+
     [Fact]
     public void TestSaveMoreThanWholeChunkUnaligned()
     {
@@ -86,6 +89,7 @@ public class ParseStateTests
         //  ^----
         UnalignedChunkTest(ChunkSize + 1);
     }
+
     [Fact]
     public void TestSaveLessThanWholeChunkAligned()
     {
@@ -96,6 +100,7 @@ public class ParseStateTests
         // ^-----
         AlignedChunkTest(ChunkSize - 1);
     }
+
     [Fact]
     public void TestSaveLessThanWholeChunkUnaligned()
     {
@@ -124,18 +129,18 @@ public class ParseStateTests
     public void TestComputeSourcePos_CharDefault()
     {
         var input = "a\n\nb" // a partial chunk containing multiple newlines
-            + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // multiple whole chunks with multiple newlines
-            + "\n" + new string('a', Vector<short>.Count - 2) + "\n"  // ...
-            + "\t" + new string('a', Vector<short>.Count * 2 - 2) + "\t"  // multiple whole chunks with tabs and no newlines
+            + "\n" + new string('a', Vector<short>.Count - 2) + "\n" // multiple whole chunks with multiple newlines
+            + "\n" + new string('a', Vector<short>.Count - 2) + "\n" // ...
+            + "\t" + new string('a', (Vector<short>.Count * 2) - 2) + "\t" // multiple whole chunks with tabs and no newlines
             + "aa";  // a partial chunk with no newlines
-
         {
             using var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
             state.Advance(input.Length);
 
-            Assert.Equal(new SourcePosDelta(6, Vector<short>.Count * 2 + 8), state.ComputeSourcePosDelta());
+            Assert.Equal(new SourcePosDelta(6, (Vector<short>.Count * 2) + 8), state.ComputeSourcePosDelta());
         }
+
         {
             using var state = new ParseState<char>(CharDefaultConfiguration.Instance, input.AsSpan());
 
@@ -143,7 +148,7 @@ public class ParseStateTests
             state.ComputeSourcePosDelta();
             state.Advance(input.Length - 1);
 
-            Assert.Equal(new SourcePosDelta(6, Vector<short>.Count * 2 + 8), state.ComputeSourcePosDelta());
+            Assert.Equal(new SourcePosDelta(6, (Vector<short>.Count * 2) + 8), state.ComputeSourcePosDelta());
         }
     }
 
@@ -166,7 +171,7 @@ public class ParseStateTests
 
     private static void UnalignedChunkTest(int inputLength)
     {
-        var input = ("fa" + new string('o', inputLength - 2));
+        var input = "fa" + new string('o', inputLength - 2);
         var state = new ParseState<char>(CharDefaultConfiguration.Instance, ToStream(input));
 
         Consume('f', ref state);
