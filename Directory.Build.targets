@@ -6,24 +6,4 @@
         <PackageReference Update="System.ValueTuple" IsImplicitlyDefined="true" />
     </ItemGroup>
 
-    <Target Name="GetVersionFromGit" BeforeTargets="GetAssemblyVersion;GenerateNuspec">
-        <Exec Command="git describe"
-            EchoOff="true"
-            ConsoleToMsBuild="true"
-            StandardErrorImportance="low"
-            StandardOutputImportance="low"
-            WorkingDirectory="$(MsBuildThisFileDirectory)">
-			<Output TaskParameter="ConsoleOutput" PropertyName="_GitDescribe"/>
-        </Exec>
-
-        <PropertyGroup>
-            <Version>$(_GitDescribe.TrimStart('v'))</Version>
-            <!--
-                Have to manually update the PackageVersion here because
-                by default it is set to $(Version) during evaluation
-            -->
-            <PackageVersion>$(Version)</PackageVersion>
-        </PropertyGroup>
-    </Target>
-
 </Project>
