@@ -18,6 +18,10 @@
 
         <PropertyGroup>
             <Version>$(_GitDescribe.TrimStart('v'))</Version>
+            <!--
+                Have to manually update the PackageVersion here because
+                by default it is set to $(Version) during evaluation
+            -->
             <PackageVersion>$(Version)</PackageVersion>
         </PropertyGroup>
     </Target>
