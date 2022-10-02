@@ -16,6 +16,8 @@
         <PropertyGroup>
             <Version>$(GitTag.TrimStart('v'))</Version>
         </PropertyGroup>
+
+        <Message Importance="High" Text="Final version: $(Version)" />
     </Target>
 
 </Project>
