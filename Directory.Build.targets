@@ -7,11 +7,12 @@
     </ItemGroup>
 
     <PropertyGroup>
+        <GitInfoReportImportance>high</GitInfoReportImportance>
         <GitThisAssembly>false</GitThisAssembly>
         <GitDefaultBranch>main</GitDefaultBranch>
     </PropertyGroup>
 
-    <Target Name="SetVersion" DependsOnTargets="GitVersion" BeforeTargets="GetAssemblyVersion">
+    <Target Name="SetVersion" DependsOnTargets="GitInfoReport" BeforeTargets="GetAssemblyVersion">
         <PropertyGroup>
             <Version>$(GitTag.TrimStart('v'))</Version>
         </PropertyGroup>
