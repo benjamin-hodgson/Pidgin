@@ -6,18 +6,20 @@
         <PackageReference Update="System.ValueTuple" IsImplicitlyDefined="true" />
     </ItemGroup>
 
-    <PropertyGroup>
-        <GitInfoReportImportance>high</GitInfoReportImportance>
-        <GitThisAssembly>false</GitThisAssembly>
-        <GitDefaultBranch>main</GitDefaultBranch>
-    </PropertyGroup>
+    <Target Name="GetVersionFromGit" BeforeTargets="GetAssemblyVersion;GenerateNuspec">
+        <Exec Command="git describe"
+            EchoOff="true"
+            ConsoleToMsBuild="true"
+            StandardErrorImportance="low"
+            StandardOutputImportance="low"
+            WorkingDirectory="$(MsBuildThisFileDirectory)">
+			<Output TaskParameter="ConsoleOutput" PropertyName="_GitDescribe"/>
+        </Exec>
 
-    <Target Name="SetVersion" DependsOnTargets="GitInfoReport" BeforeTargets="GetAssemblyVersion">
         <PropertyGroup>
-            <Version>$(GitTag.TrimStart('v'))</Version>
+            <Version>$(_GitDescribe.TrimStart('v'))</Version>
+            <PackageVersion>$(Version)</PackageVersion>
         </PropertyGroup>
-
-        <Message Importance="High" Text="Final version: $(Version)" />
     </Target>
 
 </Project>
