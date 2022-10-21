@@ -1,26 +1,12 @@
 root = true
 
-# All files
 [*]
 indent_style = space
-
-# Xml files
-[*.xml]
 indent_size = 4
 tab_width = 4
 
 end_of_line = lf
 insert_final_newline = true
 
-# generated code
 [*.Generated.cs]
 generated_code = true
-
-# C# files
-[*.cs]
-
-indent_size = 4
-tab_width = 4
-
-end_of_line = lf
-insert_final_newline = true
