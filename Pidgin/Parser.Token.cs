@@ -82,6 +82,9 @@ namespace Pidgin
             result = token;
             return true;
         }
+
+        public static implicit operator TokenParser<TToken>(TToken token)
+            => new TokenParser<TToken>(token);
     }
 
     [SuppressMessage(

@@ -88,6 +88,7 @@ namespace Pidgin
     internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
     {
         private readonly Parser<TToken, T>[] _parsers;
+        internal IReadOnlyCollection<Parser<TToken, T>> Parsers => _parsers;
 
         public SequenceParser(Parser<TToken, T>[] parsers)
         {
