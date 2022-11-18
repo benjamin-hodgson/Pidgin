@@ -3,9 +3,8 @@
     <Import Project="../Pidgin.BuildTool.props" />
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>exe</OutputType>
         <SignAssembly>false</SignAssembly>  <!-- Sprache is not signed -->
-        <NoWarn>$(NoWarn);CA1812</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
