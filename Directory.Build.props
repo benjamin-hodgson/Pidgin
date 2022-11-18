@@ -15,7 +15,6 @@
         <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Pidgin.snk</AssemblyOriginatorKeyFile>
 
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-        <NoWarn>$(NoWarn);NU1507</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,10 +4,10 @@
     "name": "C# (.NET)",
     "build": {
         "dockerfile": "Dockerfile",
-        "args": { 
+        "args": {
             // Update 'VARIANT' to pick a .NET Core version: 3.1, 6.0
             // Append -bullseye or -focal to pin to an OS version.
-            "VARIANT": "6.0-focal",
+            "VARIANT": "7.0",
             // Options
             "NODE_VERSION": "none"
         }
@@ -16,7 +16,7 @@
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.
-        "vscode": {	
+        "vscode": {
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
                 "ms-dotnettools.csharp"
@@ -34,7 +34,7 @@
     //        dotnet dev-certs https --trust; dotnet dev-certs https -ep "$env:USERPROFILE/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
     //    * macOS/Linux terminal:
     //        dotnet dev-certs https --trust; dotnet dev-certs https -ep "${HOME}/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
-    // 
+    //
     // 2. Uncomment these 'remoteEnv' lines:
     //    "remoteEnv": {
     // 	      "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
