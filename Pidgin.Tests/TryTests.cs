@@ -218,5 +218,28 @@ public class TryTests : ParserTestBase
                 )
             );
         }
+
+        {
+            // Bug #140 - nested Try()s with the same starting location;
+            // second (longer) one tries to rewind
+            var parser = Try(
+                Try(Parser<TToken>.Sequence(render("foo")))
+                    .Then(Parser<TToken>.Sequence(render("bar")))
+            );
+
+            AssertFailure(
+                parseFunc(parser, toInput("fooba")),
+                new ParseError<TToken>(
+                    Maybe.Nothing<TToken>(),
+                    true,
+                    ImmutableArray.Create(
+                        new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))
+                    ),
+                    5,
+                    new SourcePosDelta(0, 5),
+                    null
+                )
+            );
+        }
     }
 }

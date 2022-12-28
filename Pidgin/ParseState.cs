@@ -41,6 +41,8 @@ public ref partial struct ParseState<TToken>
     private int _currentIndex;
     private int _bufferedCount;
 
+    private int _numberOfBookmarks;
+
     private int _lastSourcePosDeltaLocation;
     private SourcePosDelta _lastSourcePosDelta;
 
@@ -61,6 +63,8 @@ public ref partial struct ParseState<TToken>
 
         _lastSourcePosDeltaLocation = 0;
         _lastSourcePosDelta = SourcePosDelta.Zero;
+
+        _numberOfBookmarks = 0;
 
         _eof = default;
         _unexpected = default;
@@ -85,6 +89,8 @@ public ref partial struct ParseState<TToken>
 
         _lastSourcePosDeltaLocation = 0;
         _lastSourcePosDelta = SourcePosDelta.Zero;
+
+        _numberOfBookmarks = 0;
 
         _eof = default;
         _unexpected = default;
@@ -244,6 +250,8 @@ public ref partial struct ParseState<TToken>
             _keepFromLocation = Location;
         }
 
+        _numberOfBookmarks++;
+
         return Location;
     }
 
@@ -251,12 +259,14 @@ public ref partial struct ParseState<TToken>
     /// <param name="bookmark">The location of the bookmark.</param>
     public void DiscardBookmark(int bookmark)
     {
-        if (bookmark < _keepFromLocation || bookmark > Location)
+        if (bookmark < _keepFromLocation || bookmark > Location || _numberOfBookmarks <= 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(bookmark), bookmark, "Tried to discard a bookmark ");
+            throw new ArgumentOutOfRangeException(nameof(bookmark), bookmark, "Tried to discard a bookmark with invalid state. Please report this as a bug in Pidgin!");
         }
 
-        if (bookmark == _keepFromLocation)
+        _numberOfBookmarks--;
+
+        if (_numberOfBookmarks == 0)
         {
             _keepFromLocation = -1;
         }
