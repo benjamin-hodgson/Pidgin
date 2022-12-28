@@ -1,0 +1,792 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PermutationParser&lt;TToken, T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PermutationParser&lt;TToken, T&gt;
+   ">
+    <meta name="generator" content="docfx 2.55.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin.Permutation.PermutationParser`2">
+  
+  
+  <h1 id="Pidgin_Permutation_PermutationParser_2" data-uid="Pidgin.Permutation.PermutationParser`2" class="text-break">Class PermutationParser&lt;TToken, T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A permutation parser represents a collection of parsers which can be run in an order-insensitive manner.</p>
+<p>Declaration modifiers in C# are an example of an order-insensitive grammar.
+Modifiers can appear in any order: <code>protected internal static readonly int x;</code>
+means the same as <code>internal readonly protected static int x;</code>.</p>
+<p>Usage of this class involves calling <a class="xref" href="Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_Add__1_Pidgin_Parser__0___0__">Add&lt;U&gt;(Parser&lt;TToken, U&gt;)</a>
+or <a class="xref" href="Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0____0_">AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt;, U)</a> to add parsers to the permutation parser,
+and then calling <a class="xref" href="Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_Build">Build()</a> to create a parser which runs them in an order-insensitive manner
+and returns the results in a nested tuple.</p>
+<p>Note that the parsers that are added to the permutation parser must always consume input before succeeding.
+If a parser succeeds on empty input the permutation parser will not work correctly.
+If you want to run a parser optionally, use <a class="xref" href="Pidgin.Permutation.PermutationParser-2.html#Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0____0_">AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt;, U)</a>.</p>
+<p>This class is immutable.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">PermutationParser&lt;TToken, T&gt;</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Pidgin.Permutation.html">Pidgin.Permutation</a></h6>
+  <h6><strong>Assembly</strong>: Pidgin.dll</h6>
+  <h5 id="Pidgin_Permutation_PermutationParser_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class PermutationParser&lt;TToken, T&gt; : object</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_Add__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.Add%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L77">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_Add_" data-uid="Pidgin.Permutation.PermutationParser`2.Add*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_Add__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Permutation.PermutationParser`2.Add``1(Pidgin.Parser{`0,``0})">Add&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds a parser to the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; Add&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_Add__2_Pidgin_Parser__0___0__Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.Add%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L90">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_Add_" data-uid="Pidgin.Permutation.PermutationParser`2.Add*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_Add__2_Pidgin_Parser__0___0__Func__1___0___1__" data-uid="Pidgin.Permutation.PermutationParser`2.Add``2(Pidgin.Parser{`0,``0},Func{`1,``0,``1})">Add&lt;U, R&gt;(Parser&lt;TToken, U&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds a parser to the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, R&gt; Add&lt;U, R&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;T, U, R&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transformation function to apply to the result of the current permutation parser and the result of <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, R&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%601(Pidgin.Parser%7B%600%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L116">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0__" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``1(Pidgin.Parser{`0,``0})">AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, Maybe&lt;U&gt;)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;U&gt;&gt;&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0____0_.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%601(Pidgin.Parser%7B%600%2C%60%600%7D%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L130">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0____0_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``1(Pidgin.Parser{`0,``0},``0)">AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt;, U)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, U defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">U</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>A default value to return if <code data-dev-comment-type="paramref" class="paramref">parser</code> fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0__Func___0__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%601(Pidgin.Parser%7B%600%2C%60%600%7D%2CFunc%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L144">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__1_Pidgin_Parser__0___0__Func___0__" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``1(Pidgin.Parser{`0,``0},Func{``0})">AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt;, Func&lt;U&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValueFactory</code> will be called to get a value to return.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, (T, U)&gt; AddOptional&lt;U&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;U&gt; defaultValueFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;U&gt;</td>
+        <td><span class="parametername">defaultValueFactory</span></td>
+        <td><p>A factory for a default value to return if <code data-dev-comment-type="paramref" class="paramref">parser</code> fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;T, U&gt;&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0____0_Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2C%60%600%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L177">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0____0_Func__1___0___1__" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``2(Pidgin.Parser{`0,``0},``0,Func{`1,``0,``1})">AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt;, U, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, R&gt; AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt; parser, U defaultValue, Func&lt;T, U, R&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">U</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>A default value to return if <code data-dev-comment-type="paramref" class="paramref">parser</code> fails.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transformation function to apply to the result of the current permutation parser and the result of <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, R&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0__Func___0__Func__1___0___1__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2CFunc%7B%60%600%7D%2CFunc%7B%601%2C%60%600%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L194">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0__Func___0__Func__1___0___1__" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``2(Pidgin.Parser{`0,``0},Func{``0},Func{`1,``0,``1})">AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt;, Func&lt;U&gt;, Func&lt;T, U, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <code data-dev-comment-type="paramref" class="paramref">defaultValueFactory</code> will be called to get a value to return.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, R&gt; AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;U&gt; defaultValueFactory, Func&lt;T, U, R&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;U&gt;</td>
+        <td><span class="parametername">defaultValueFactory</span></td>
+        <td><p>A factory for a default value to return if <code data-dev-comment-type="paramref" class="paramref">parser</code> fails.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, U, R&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transformation function to apply to the result of the current permutation parser and the result of <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, R&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0__Func__1_Pidgin_Maybe___0____1__.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.AddOptional%60%602(Pidgin.Parser%7B%600%2C%60%600%7D%2CFunc%7B%601%2CPidgin.Maybe%7B%60%600%7D%2C%60%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L160">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_AddOptional_" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_AddOptional__2_Pidgin_Parser__0___0__Func__1_Pidgin_Maybe___0____1__" data-uid="Pidgin.Permutation.PermutationParser`2.AddOptional``2(Pidgin.Parser{`0,``0},Func{`1,Pidgin.Maybe{``0},``1})">AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt;, Func&lt;T, Maybe&lt;U&gt;, R&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds an optional parser to the collection.</p>
+<p>The resulting permutation parser will successfully parse a phrase even if <code data-dev-comment-type="paramref" class="paramref">parser</code> never succeeds.
+In that case, <a class="xref" href="Pidgin.Maybe.html#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a> will be returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PermutationParser&lt;TToken, R&gt; AddOptional&lt;U, R&gt;(Parser&lt;TToken, U&gt; parser, Func&lt;T, Maybe&lt;U&gt;, R&gt; resultSelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, U&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>The parser to add to the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T, <a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;U&gt;, R&gt;</td>
+        <td><span class="parametername">resultSelector</span></td>
+        <td><p>A transformation function to apply to the result of the current permutation parser and the result of <code data-dev-comment-type="paramref" class="paramref">parser</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Permutation.PermutationParser-2.html">PermutationParser</a>&lt;TToken, R&gt;</td>
+        <td><p>A new permutation parser representing the current collection of parsers with <code data-dev-comment-type="paramref" class="paramref">parser</code> added optionally.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">U</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">R</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2_Build.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602.Build%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L60">View Source</a>
+  </span>
+  <a id="Pidgin_Permutation_PermutationParser_2_Build_" data-uid="Pidgin.Permutation.PermutationParser`2.Build*"></a>
+  <h4 id="Pidgin_Permutation_PermutationParser_2_Build" data-uid="Pidgin.Permutation.PermutationParser`2.Build">Build()</h4>
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a> which runs the current
+collection of parsers in an order-insensitive manner.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Parser&lt;TToken, T&gt; Build()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><p>A <a class="xref" href="Pidgin.Parser-2.html">Parser&lt;TToken, T&gt;</a> which runs the current collection of parsers in an order-insensitive manner.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.5.0/apiSpec/new?filename=Pidgin_Permutation_PermutationParser_2.md&amp;value=---%0Auid%3A%20Pidgin.Permutation.PermutationParser%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.5.0/Pidgin/Permutation/PermutationParser.cs/#L42" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

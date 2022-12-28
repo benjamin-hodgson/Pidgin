@@ -1,0 +1,1713 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ParserExtensions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ParserExtensions
+   ">
+    <meta name="generator" content="docfx 2.40.11.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Pidgin.ParserExtensions">
+  
+  
+  <h1 id="Pidgin_ParserExtensions" data-uid="Pidgin.ParserExtensions" class="text-break">Class ParserExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>Extension methods for running parsers</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ParserExtensions</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Pidgin.html">Pidgin</a></h6>
+  <h6><strong>Assembly</strong>: Pidgin.dll</h6>
+  <h5 id="Pidgin_ParserExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ParserExtensions : object</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CFunc%7BSystem.Byte%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L78">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, Func&lt;Byte, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code>.
+Note that more characters may be consumed from <code data-dev-comment-type="paramref" class="paramref">input</code> than were required for parsing.
+You may need to manually rewind <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;byte, T&gt; Parse&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, Func&lt;byte, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L21">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, String, Func&lt;Char, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, Func&lt;char, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input string</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L88">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, Func&lt;Char, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;char, T&gt; Parse&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, Func&lt;char, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TextReader</span></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input reader</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L98">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td>TToken[]</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input array</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L51">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L66">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerator</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input enumerator</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L31">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input list</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.Parse%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L108">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_Parse_" data-uid="Pidgin.ParserExtensions.Parse*"></a>
+  <h4 id="Pidgin_ParserExtensions_Parse__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.Parse``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">Parse&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; Parse&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input span</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Byte%2C%60%600%7D%2CStream%2CFunc%7BSystem.Byte%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L196">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Byte___0__Stream_Func_System_Byte_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Byte,``0},Stream,Func{System.Byte,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;T&gt;(Parser&lt;Byte, T&gt;, Stream, Func&lt;Byte, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;byte, T&gt; parser, Stream input, Func&lt;byte, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CSystem.String%2CFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L141">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},System.String,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, String, Func&lt;Char, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, string input, Func&lt;char, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input string</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%601(Pidgin.Parser%7BSystem.Char%2C%60%600%7D%2CTextReader%2CFunc%7BSystem.Char%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L207">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__TextReader_Func_System_Char_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``1(Pidgin.Parser{System.Char,``0},TextReader,Func{System.Char,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;T&gt;(Parser&lt;Char, T&gt;, TextReader, Func&lt;Char, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;T&gt;(this Parser&lt;char, T&gt; parser, TextReader input, Func&lt;char, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TextReader</span></td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input reader</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2C%60%600%5B%5D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L218">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1____0___Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},``0[],Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, TToken[], Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, TToken[] input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td>TToken[]</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input array</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerable%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L174">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerable___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerable{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerable&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIEnumerator%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L185">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IEnumerator___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IEnumerator{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IEnumerator&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerator</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input enumerator</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIList%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L152">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__IList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},IList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input list</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CReadOnlySpan%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L229">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseOrThrow_" data-uid="Pidgin.ParserExtensions.ParseOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__ReadOnlySpan___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},ReadOnlySpan{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input span</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyList%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L41">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseReadOnlyList_" data-uid="Pidgin.ParserExtensions.ParseReadOnlyList*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyList__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseReadOnlyList``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseReadOnlyList&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;TToken, T&gt; ParseReadOnlyList&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IReadOnlyList</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input list</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, T&gt;</td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions.ParseReadOnlyListOrThrow%60%602(Pidgin.Parser%7B%60%600%2C%60%601%7D%2CIReadOnlyList%7B%60%600%7D%2CFunc%7B%60%600%2CPidgin.SourcePos%2CPidgin.SourcePos%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L163">View Source</a>
+  </span>
+  <a id="Pidgin_ParserExtensions_ParseReadOnlyListOrThrow_" data-uid="Pidgin.ParserExtensions.ParseReadOnlyListOrThrow*"></a>
+  <h4 id="Pidgin_ParserExtensions_ParseReadOnlyListOrThrow__2_Pidgin_Parser___0___1__IReadOnlyList___0__Func___0_Pidgin_SourcePos_Pidgin_SourcePos__" data-uid="Pidgin.ParserExtensions.ParseReadOnlyListOrThrow``2(Pidgin.Parser{``0,``1},IReadOnlyList{``0},Func{``0,Pidgin.SourcePos,Pidgin.SourcePos})">ParseReadOnlyListOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IReadOnlyList&lt;TToken&gt;, Func&lt;TToken, SourcePos, SourcePos&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies <code data-dev-comment-type="paramref" class="paramref">parser</code> to <code data-dev-comment-type="paramref" class="paramref">input</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T ParseReadOnlyListOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, IReadOnlyList&lt;TToken&gt; input, Func&lt;TToken, SourcePos, SourcePos&gt; calculatePos = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</td>
+        <td><span class="parametername">parser</span></td>
+        <td><p>A parser</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IReadOnlyList</span>&lt;TToken&gt;</td>
+        <td><span class="parametername">input</span></td>
+        <td><p>An input list</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;TToken, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>, <a class="xref" href="Pidgin.SourcePos.html">SourcePos</a>&gt;</td>
+        <td><span class="parametername">calculatePos</span></td>
+        <td><p>A function to calculate the new position after consuming a token, or null to use the default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The result of parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TToken</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Pidgin.ParseException.html">ParseException</a></td>
+        <td><p>Thrown when an error occurs during parsing</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/new/v2.1.0/apiSpec/new?filename=Pidgin_ParserExtensions.md&amp;value=---%0Auid%3A%20Pidgin.ParserExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/benjamin-hodgson/Pidgin/blob/v2.1.0/Pidgin/ParserExtensions.cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
