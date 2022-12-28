@@ -1,6 +1,19 @@
 Changelog
 =========
 
+3.2.1
+-----
+
+### Fixed
+
+* A critical bug in `Try()` which had been broken in 3.2.0.
+  * Thanks to @PJB3005 for reporting this bug in [#140](https://github.com/benjamin-hodgson/Pidgin/issues/140)
+
+### Added
+
+* Support for Source Link
+
+
 3.2.0
 -----
 
