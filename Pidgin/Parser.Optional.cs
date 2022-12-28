@@ -1,27 +1,28 @@
-namespace Pidgin;
-
-public abstract partial class Parser<TToken, T>
+namespace Pidgin
 {
-    private static Parser<TToken, Maybe<T>>? _returnNothing;
-
-    private static Parser<TToken, Maybe<T>> ReturnNothing
+    public abstract partial class Parser<TToken, T>
     {
-        get
+        private static Parser<TToken, Maybe<T>>? _returnNothing;
+
+        private static Parser<TToken, Maybe<T>> ReturnNothing
         {
-            if (_returnNothing == null)
+            get
             {
-                _returnNothing = Parser<TToken>.Return(Maybe.Nothing<T>());
+                if (_returnNothing == null)
+                {
+                    _returnNothing = Parser<TToken>.Return(Maybe.Nothing<T>());
+                }
+
+                return _returnNothing;
             }
-
-            return _returnNothing;
         }
-    }
 
-    /// <summary>
-    /// Creates a parser which applies the current parser and returns <see cref="Maybe.Nothing{T}()"/> if the current parser fails without consuming any input.
-    /// The resulting parser fails if the current parser fails after consuming input.
-    /// </summary>
-    /// <returns>A parser which applies the current parser and returns <see cref="Maybe.Nothing{T}()"/> if the current parser fails without consuming any input.</returns>
-    public Parser<TToken, Maybe<T>> Optional()
-        => Select(Maybe.Just).Or(ReturnNothing);
+        /// <summary>
+        /// Creates a parser which applies the current parser and returns <see cref="Maybe.Nothing{T}()"/> if the current parser fails without consuming any input.
+        /// The resulting parser fails if the current parser fails after consuming input.
+        /// </summary>
+        /// <returns>A parser which applies the current parser and returns <see cref="Maybe.Nothing{T}()"/> if the current parser fails without consuming any input.</returns>
+        public Parser<TToken, Maybe<T>> Optional()
+            => Select(Maybe.Just).Or(ReturnNothing);
+    }
 }

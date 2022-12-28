@@ -1,22 +1,23 @@
 using System;
 
-namespace Pidgin;
-
-public abstract partial class Parser<TToken, T>
+namespace Pidgin
 {
-    /// <summary>
-    /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
-    /// </summary>
-    /// <remarks>This function is a synonym of <see cref="Assert(Func{T, bool})"/>.</remarks>
-    /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
-    /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
-    public Parser<TToken, T> Where(Func<T, bool> predicate)
+    public abstract partial class Parser<TToken, T>
     {
-        if (predicate == null)
+        /// <summary>
+        /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
+        /// </summary>
+        /// <remarks>This function is a synonym of <see cref="Assert(Func{T, bool})"/>.</remarks>
+        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
+        public Parser<TToken, T> Where(Func<T, bool> predicate)
         {
-            throw new ArgumentNullException(nameof(predicate));
-        }
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
 
-        return Assert(predicate);
+            return Assert(predicate);
+        }
     }
 }

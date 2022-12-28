@@ -1,46 +1,47 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Pidgin;
-
-/// <summary>
-/// A mutable struct! Careful!.
-/// </summary>
-internal struct InplaceStringBuilder
+namespace Pidgin
 {
-    private int _offset;
-    private readonly int _capacity;
-    private readonly string _value;
-
-    public InplaceStringBuilder(int capacity)
+    /// <summary>
+    /// A mutable struct! Careful!.
+    /// </summary>
+    internal struct InplaceStringBuilder
     {
-        _offset = 0;
-        _capacity = capacity;
-        _value = new string('\0', capacity);
-    }
+        private int _offset;
+        private readonly int _capacity;
+        private readonly string _value;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public unsafe void Append(char c)
-    {
-        if (_offset >= _capacity)
+        public InplaceStringBuilder(int capacity)
         {
-            throw new InvalidOperationException();
+            _offset = 0;
+            _capacity = capacity;
+            _value = new string('\0', capacity);
         }
 
-        fixed (char* destination = _value)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public unsafe void Append(char c)
         {
-            destination[_offset] = c;
-            _offset++;
-        }
-    }
+            if (_offset >= _capacity)
+            {
+                throw new InvalidOperationException();
+            }
 
-    public override string ToString()
-    {
-        if (_capacity != _offset)
+            fixed (char* destination = _value)
+            {
+                destination[_offset] = c;
+                _offset++;
+            }
+        }
+
+        public override string ToString()
         {
-            throw new InvalidOperationException();
-        }
+            if (_capacity != _offset)
+            {
+                throw new InvalidOperationException();
+            }
 
-        return _value;
+            return _value;
+        }
     }
 }

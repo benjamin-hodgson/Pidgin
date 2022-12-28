@@ -1,17 +1,18 @@
-namespace Pidgin.Expression;
-
-/// <summary>
-/// The type of the unary operator: prefix or postfix.
-/// </summary>
-public enum UnaryOperatorType
+namespace Pidgin.Expression
 {
     /// <summary>
-    /// Denotes a prefix operator
+    /// The type of the unary operator: prefix or postfix.
     /// </summary>
-    Prefix,
+    public enum UnaryOperatorType
+    {
+        /// <summary>
+        /// Denotes a prefix operator
+        /// </summary>
+        Prefix,
 
-    /// <summary>
-    /// Denotes a postfix operator
-    /// </summary>
-    Postfix
+        /// <summary>
+        /// Denotes a postfix operator
+        /// </summary>
+        Postfix
+    }
 }
