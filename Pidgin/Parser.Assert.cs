@@ -1,120 +1,119 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Pidgin
+namespace Pidgin;
+
+public abstract partial class Parser<TToken, T>
 {
-    public abstract partial class Parser<TToken, T>
+    /// <summary>
+    /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
+    /// </summary>
+    /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+    /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
+    public Parser<TToken, T> Assert(Func<T, bool> predicate)
     {
-        /// <summary>
-        /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
-        /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
-        public Parser<TToken, T> Assert(Func<T, bool> predicate)
+        if (predicate == null)
         {
-            if (predicate == null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
-
-            return Assert(predicate, "Assertion failed");
+            throw new ArgumentNullException(nameof(predicate));
         }
 
-        /// <summary>
-        /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
-        /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
-        /// <param name="message">A custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
-        public Parser<TToken, T> Assert(Func<T, bool> predicate, string message)
-        {
-            if (predicate == null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
-
-            if (message == null)
-            {
-                throw new ArgumentNullException(nameof(message));
-            }
-
-            return Assert(predicate, _ => message);
-        }
-
-        /// <summary>
-        /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
-        /// </summary>
-        /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
-        /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
-        /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
-        public Parser<TToken, T> Assert(Func<T, bool> predicate, Func<T, string> message)
-        {
-            if (predicate == null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
-
-            if (message == null)
-            {
-                throw new ArgumentNullException(nameof(message));
-            }
-
-            return new AssertParser<TToken, T>(this, predicate, message);
-        }
+        return Assert(predicate, "Assertion failed");
     }
 
-    [SuppressMessage(
-        "StyleCop.CSharp.MaintainabilityRules",
-        "SA1402:FileMayOnlyContainASingleType",
-        Justification = "This class belongs next to the accompanying API method"
-    )]
-    internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
+    /// <summary>
+    /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
+    /// </summary>
+    /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+    /// <param name="message">A custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
+    /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
+    public Parser<TToken, T> Assert(Func<T, bool> predicate, string message)
     {
-        private static readonly Expected<TToken> _expected
-            = new("result satisfying assertion");
-
-        private readonly Parser<TToken, T> _parser;
-        private readonly Func<T, bool> _predicate;
-        private readonly Func<T, string> _message;
-
-        public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
+        if (predicate == null)
         {
-            _parser = parser;
-            _predicate = predicate;
-            _message = message;
+            throw new ArgumentNullException(nameof(predicate));
         }
 
-        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+        if (message == null)
         {
-            var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+            throw new ArgumentNullException(nameof(message));
+        }
 
-            var success = _parser.TryParse(ref state, ref childExpecteds, out result);
+        return Assert(predicate, _ => message);
+    }
 
-            if (success)
-            {
-                expecteds.AddRange(childExpecteds.AsSpan());
-            }
+    /// <summary>
+    /// Creates a parser that fails if the value returned by the current parser fails to satisfy a predicate.
+    /// </summary>
+    /// <param name="predicate">The predicate to apply to the value returned by the current parser.</param>
+    /// <param name="message">A function to produce a custom error message to return when the value returned by the current parser fails to satisfy the predicate.</param>
+    /// <returns>A parser that fails if the value returned by the current parser fails to satisfy <paramref name="predicate"/>.</returns>
+    public Parser<TToken, T> Assert(Func<T, bool> predicate, Func<T, string> message)
+    {
+        if (predicate == null)
+        {
+            throw new ArgumentNullException(nameof(predicate));
+        }
 
-            childExpecteds.Dispose();
+        if (message == null)
+        {
+            throw new ArgumentNullException(nameof(message));
+        }
 
-            if (!success)
-            {
-                return false;
-            }
+        return new AssertParser<TToken, T>(this, predicate, message);
+    }
+}
 
-            // result is not null hereafter
-            if (!_predicate(result!))
-            {
-                state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message(result!));
-                expecteds.Add(_expected);
+[SuppressMessage(
+    "StyleCop.CSharp.MaintainabilityRules",
+    "SA1402:FileMayOnlyContainASingleType",
+    Justification = "This class belongs next to the accompanying API method"
+)]
+internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
+{
+    private static readonly Expected<TToken> _expected
+        = new("result satisfying assertion");
 
-                result = default;
-                return false;
-            }
+    private readonly Parser<TToken, T> _parser;
+    private readonly Func<T, bool> _predicate;
+    private readonly Func<T, string> _message;
+
+    public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
+    {
+        _parser = parser;
+        _predicate = predicate;
+        _message = message;
+    }
+
+    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    {
+        var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
+
+        var success = _parser.TryParse(ref state, ref childExpecteds, out result);
+
+        if (success)
+        {
+            expecteds.AddRange(childExpecteds.AsSpan());
+        }
+
+        childExpecteds.Dispose();
+
+        if (!success)
+        {
+            return false;
+        }
+
+        // result is not null hereafter
+        if (!_predicate(result!))
+        {
+            state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message(result!));
+            expecteds.Add(_expected);
+
+            result = default;
+            return false;
+        }
 
 #pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
-            return true;
+        return true;
 #pragma warning restore CS8762
-        }
     }
 }
