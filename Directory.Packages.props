@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <GlobalPackageReference Include="Benjamin.Pizza.BuildScripts" Version="2.1.0" />
+        <GlobalPackageReference Include="Benjamin.Pizza.BuildScripts" Version="2.*" />
         <GlobalPackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
         <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
