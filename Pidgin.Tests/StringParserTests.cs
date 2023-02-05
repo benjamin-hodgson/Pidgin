@@ -3069,7 +3069,7 @@ public class StringParserTests : ParserTestBase
     {
     }
 
-    private class TestCast2 : TestCast1
+    private sealed class TestCast2 : TestCast1
     {
         public override bool Equals(object? other) => other is TestCast2;
 

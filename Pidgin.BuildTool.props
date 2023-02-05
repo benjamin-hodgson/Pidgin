@@ -1,5 +1,6 @@
 <Project>
     <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <NoWarn>$(NoWarn);SA0001</NoWarn>
         <RollForward>major</RollForward>

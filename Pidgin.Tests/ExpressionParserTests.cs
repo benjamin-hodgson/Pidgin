@@ -69,7 +69,7 @@ public class ExpressionParserTests : ParserTestBase
         public override int GetHashCode() => 0;  // doesn't matter
     }
 
-    private class Lit : Expr
+    private sealed class Lit : Expr
     {
         public int Value { get; }
 
@@ -79,7 +79,7 @@ public class ExpressionParserTests : ParserTestBase
         }
     }
 
-    private class Plus : Expr
+    private sealed class Plus : Expr
     {
         public Expr Left { get; }
 
@@ -92,7 +92,7 @@ public class ExpressionParserTests : ParserTestBase
         }
     }
 
-    private class Minus : Expr
+    private sealed class Minus : Expr
     {
         public Expr Left { get; }
 
@@ -105,7 +105,7 @@ public class ExpressionParserTests : ParserTestBase
         }
     }
 
-    private class Times : Expr
+    private sealed class Times : Expr
     {
         public Expr Left { get; }
 
