@@ -5,6 +5,8 @@
     <PropertyGroup>
         <OutputType>exe</OutputType>
         <SignAssembly>false</SignAssembly>  <!-- Sprache is not signed -->
+        <!-- https://github.com/dotnet/roslyn-analyzers/pull/6504 -->
+        <NoWarn>$(NoWarn);CA1852</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,4 +20,5 @@
         <PackageReference Include="Sprache" />
         <PackageReference Include="Superpower" />
     </ItemGroup>
+
 </Project>
