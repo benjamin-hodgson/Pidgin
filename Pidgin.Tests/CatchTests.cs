@@ -65,12 +65,12 @@ public partial class CatchTests : ParserTestBase
                 Parser<TToken>.Sequence(render("foo"))
                 .Or(Parser<TToken>.Sequence(render("1throw"))
                     .Then(Parser<TToken>.Sequence(render("after"))
-                        .RecoverWith(e => throw new CatchTest1Exception())))
+                        .RecoverWith(e => throw new InvalidOperationException())))
                 .Or(Parser<TToken>.Sequence(render("2throw"))
                     .Then(Parser<TToken>.Sequence(render("after"))
-                        .RecoverWith(e => throw new CatchTest2Exception())))
-                .Catch<CatchTest1Exception>((e, i) => Parser<TToken>.Any.Repeat(i))
-                .Catch<CatchTest2Exception>((e) => Parser<TToken>.Any.Many());
+                        .RecoverWith(e => throw new NotImplementedException())))
+                .Catch<InvalidOperationException>((e, i) => Parser<TToken>.Any.Repeat(i))
+                .Catch<NotImplementedException>((e) => Parser<TToken>.Any.Many());
             AssertSuccess(parseFunc(parser, toInput("foobar")), render("foo"));
             AssertSuccess(parseFunc(parser, toInput("1throwafter")), render("after"));
             AssertSuccess(parseFunc(parser, toInput("1throwandrecover")), render("1throwa")); // it should have consumed the "1throwa" but then backtracked

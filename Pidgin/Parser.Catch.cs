@@ -31,17 +31,6 @@ public abstract partial class Parser<TToken, T>
     }
 }
 
-/// <summary>
-/// A parser to wrap previous parser and catch exceptions of specified type and provides
-/// an opportunity to recover.
-/// </summary>
-/// <remarks>
-/// The previous parser may e.g. throw an exception in a delegate used with
-/// <see cref="Parser{TToken, T}.Select{U}(Func{T, U})"/>.
-/// </remarks>
-/// <typeparam name="TToken">The type of tokens in the parser's input stream.</typeparam>
-/// <typeparam name="T">The return type of the parser.</typeparam>
-/// <typeparam name="TException">Exception type to catch.</typeparam>
 internal sealed class CatchParser<TToken, T, TException> : Parser<TToken, T>
     where TException : Exception
 {
