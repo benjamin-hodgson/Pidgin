@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Reflection;
-
-using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin;
 
@@ -41,7 +38,7 @@ public static partial class Parser<TToken>
             throw new ArgumentNullException(nameof(tokens));
         }
 
-        return SequenceTokenParser<TToken, TEnumerable>.Create(tokens);
+        return new SequenceTokenParser<TToken, TEnumerable>(tokens);
     }
 
     /// <summary>
@@ -121,123 +118,13 @@ internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
     "SA1402:FileMayOnlyContainASingleType",
     Justification = "This class belongs next to the accompanying API method"
 )]
-internal static class SequenceTokenParser<TToken, TEnumerable>
-    where TEnumerable : IEnumerable<TToken>
-{
-    private static readonly Func<TEnumerable, Parser<TToken, TEnumerable>>? _createParser = GetCreateParser();
-
-    public static Parser<TToken, TEnumerable> Create(TEnumerable tokens)
-    {
-        if (_createParser != null)
-        {
-            return _createParser(tokens);
-        }
-
-        return new SequenceTokenParserSlow<TToken, TEnumerable>(tokens);
-    }
-
-    private static Func<TEnumerable, Parser<TToken, TEnumerable>>? GetCreateParser()
-    {
-        var ttoken = typeof(TToken).GetTypeInfo();
-        var equatable = typeof(IEquatable<TToken>).GetTypeInfo();
-
-        if (!ttoken.IsValueType || !equatable.IsAssignableFrom(ttoken))
-        {
-            return null;
-        }
-
-        var ctor = typeof(SequenceTokenParserFast<,>)
-            .MakeGenericType(typeof(TToken), typeof(TEnumerable))
-            .GetTypeInfo()
-            .DeclaredConstructors
-            .Single();
-        var param = LExpression.Parameter(typeof(TEnumerable));
-        var create = LExpression.New(ctor, param);
-        return LExpression.Lambda<Func<TEnumerable, Parser<TToken, TEnumerable>>>(create, param).Compile();
-    }
-}
-
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
-internal sealed class SequenceTokenParserFast<TToken, TEnumerable> : Parser<TToken, TEnumerable>
-    where TToken : struct, IEquatable<TToken>
+internal sealed class SequenceTokenParser<TToken, TEnumerable> : Parser<TToken, TEnumerable>
     where TEnumerable : IEnumerable<TToken>
 {
     private readonly TEnumerable _value;
     private readonly ImmutableArray<TToken> _valueTokens;
 
-    public SequenceTokenParserFast(TEnumerable value)
-    {
-        _value = value;
-        _valueTokens = value.ToImmutableArray();
-    }
-
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
-    {
-        var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
-
-        var errorPos = -1;
-        for (var i = 0; i < span.Length; i++)
-        {
-            if (!span[i].Equals(_valueTokens[i]))
-            {
-                errorPos = i;
-                break;
-            }
-        }
-
-        if (errorPos != -1)
-        {
-            // strings didn't match
-            state.Advance(errorPos);
-            state.SetError(
-                Maybe.Just(span[errorPos]),
-                false,
-                state.Location,
-                null
-            );
-            expecteds.Add(new Expected<TToken>(_valueTokens));
-            result = default;
-            return false;
-        }
-
-        if (span.Length < _valueTokens.Length)
-        {
-            // strings matched but reached EOF
-            state.Advance(span.Length);
-            state.SetError(
-                Maybe.Nothing<TToken>(),
-                true,
-                state.Location,
-                null
-            );
-            expecteds.Add(new Expected<TToken>(_valueTokens));
-            result = default;
-            return false;
-        }
-
-        // OK
-        state.Advance(_valueTokens.Length);
-        result = _value;
-        return true;
-    }
-}
-
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
-internal sealed class SequenceTokenParserSlow<TToken, TEnumerable> : Parser<TToken, TEnumerable>
-    where TEnumerable : IEnumerable<TToken>
-{
-    private readonly TEnumerable _value;
-    private readonly ImmutableArray<TToken> _valueTokens;
-
-    public SequenceTokenParserSlow(TEnumerable value)
+    public SequenceTokenParser(TEnumerable value)
     {
         _value = value;
         _valueTokens = value.ToImmutableArray();

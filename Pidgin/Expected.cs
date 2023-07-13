@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
-
-using LExpression = System.Linq.Expressions.Expression;
 
 namespace Pidgin;
 
@@ -65,11 +65,7 @@ public readonly struct Expected<TToken> : IEquatable<Expected<TToken>>, ICompara
         sb.Append('"');
         if (_isChar)
         {
-            foreach (var token in tokens)
-            {
-                var chr = CastToChar(token);
-                sb.Append(chr);
-            }
+            sb.Append(UnsafeCastToChar(tokens.AsSpan()));
         }
         else
         {
@@ -192,19 +188,9 @@ public readonly struct Expected<TToken> : IEquatable<Expected<TToken>>, ICompara
     public static bool operator <=(Expected<TToken> left, Expected<TToken> right)
         => left.CompareTo(right) <= 0;
 
-    private static Func<TToken, char>? _castToChar;
-
-    private static Func<TToken, char> CastToChar
-    {
-        get
-        {
-            if (_castToChar == null)
-            {
-                var param = LExpression.Parameter(typeof(TToken));
-                _castToChar = LExpression.Lambda<Func<TToken, char>>(param, param).Compile();
-            }
-
-            return _castToChar;
-        }
-    }
+    private static ReadOnlySpan<char> UnsafeCastToChar(ReadOnlySpan<TToken> span)
+        => MemoryMarshal.CreateReadOnlySpan(
+            ref Unsafe.As<TToken, char>(ref MemoryMarshal.GetReference(span)),
+            span.Length
+        );
 }
