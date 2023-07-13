@@ -1,6 +1,13 @@
 Changelog
 =========
 
+3.2.2
+-----
+
+### Added
+
+* Support for AOT/trimming deployment scenarios.
+
 3.2.1
 -----
 
