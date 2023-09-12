@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
-
 using Xunit;
-
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 
