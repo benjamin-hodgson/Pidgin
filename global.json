@@ -2,5 +2,8 @@
     "sdk": {
         "version": "7.0.100",
         "rollForward": "latestMajor"
+    },
+    "msbuild-sdks": {
+        "Microsoft.Build.NoTargets": "3.7.0"
     }
 }

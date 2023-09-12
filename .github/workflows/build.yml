@@ -8,12 +8,13 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-  
+
 
 jobs:
   build:
     uses: benjamin-hodgson/BuildScripts/.github/workflows/dotnet.yml@main
     with:
       DOCS_FOLDER: Pidgin.Docs
+      USE_NEW_DOCS: true
     secrets:
       NUGET_KEY: ${{ secrets.NUGET_KEY }}

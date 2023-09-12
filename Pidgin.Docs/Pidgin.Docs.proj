@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+    <Import Project="../Pidgin.BuildTool.props" />
+
+    <PropertyGroup>
+        <IsDocumentationProject>true</IsDocumentationProject>
+        <DocumentationSiteTitle>Pidgin</DocumentationSiteTitle>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../Pidgin/Pidgin.csproj">
+            <OutputItemType>DocumentationAssembly</OutputItemType>
+        </ProjectReference>
+    </ItemGroup>
+
+</Project>

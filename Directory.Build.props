@@ -11,6 +11,7 @@
 
         <Nullable>enable</Nullable>
 
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Pidgin.snk</AssemblyOriginatorKeyFile>
 
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
