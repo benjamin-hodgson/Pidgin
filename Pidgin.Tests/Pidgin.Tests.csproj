@@ -3,7 +3,6 @@
 
     <PropertyGroup>
         <NoWarn>$(NoWarn);xUnit2013;CA1062;CA2007</NoWarn>
-        <NoWarn>$(NoWarn);SA1217</NoWarn>  <!-- "'using static' directives must be ordered alphabetically." Seems broken though -->
     </PropertyGroup>
 
     <ItemGroup>
