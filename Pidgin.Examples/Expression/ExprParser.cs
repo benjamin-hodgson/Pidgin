@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Immutable;
-
 using Pidgin.Expression;
-
 using static Pidgin.Parser;
 
 namespace Pidgin.Examples.Expression;

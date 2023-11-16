@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using static Pidgin.Parser<char>;
 using static Pidgin.Parser;
+using static Pidgin.Parser<char>;
 
 namespace Pidgin.Examples.Xml;
 

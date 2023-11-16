@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 using Pidgin.Configuration;
 
 namespace Pidgin;

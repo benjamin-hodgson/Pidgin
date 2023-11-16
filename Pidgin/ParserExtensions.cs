@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 using Pidgin.Configuration;
 using Pidgin.TokenStreams;
-
 using Config = Pidgin.Configuration.Configuration;
 
 namespace Pidgin;

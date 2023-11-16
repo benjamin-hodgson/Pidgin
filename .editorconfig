@@ -8,5 +8,10 @@ tab_width = 4
 end_of_line = lf
 insert_final_newline = true
 
+[*.cs]
+# seemingly a bug in `dotnet format`
+dotnet_sort_system_directives_first = false
+dotnet_separate_import_directive_groups = false
+
 [*.Generated.cs]
 generated_code = true

@@ -1,9 +1,6 @@
 using System;
-
 using Pidgin.Examples.Xml;
-
 using Xunit;
-
 using Attribute = Pidgin.Examples.Xml.Attribute;
 
 namespace Pidgin.Tests;

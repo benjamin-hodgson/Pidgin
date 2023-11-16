@@ -1,10 +1,8 @@
 using System;
 using System.IO;
 using System.Numerics;
-
 using Pidgin.Configuration;
 using Pidgin.TokenStreams;
-
 using Xunit;
 
 namespace Pidgin.Tests;

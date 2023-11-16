@@ -1,7 +1,5 @@
 using System.Threading.Tasks;
-
 using Benjamin.Pizza.DocTest;
-
 using Xunit;
 
 namespace Pidgin.Tests;
