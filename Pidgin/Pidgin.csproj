@@ -5,7 +5,7 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <TargetFramework>net5.0</TargetFramework>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
-        <LangVersion>10</LangVersion>
+        <LangVersion>12</LangVersion>
         <IsAotCompatible>true</IsAotCompatible>
         <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>

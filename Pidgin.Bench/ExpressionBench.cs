@@ -56,14 +56,14 @@ public class ExpressionBench
     [BenchmarkCategory("Long")]
     public void LongInfixL_FParsec()
     {
-        Pidgin.Bench.FParsec.ExpressionParser.parseL(_bigExpression);
+        FParsec.ExpressionParser.parseL(_bigExpression);
     }
 
     [Benchmark]
     [BenchmarkCategory("Long")]
     public void LongInfixR_FParsec()
     {
-        Pidgin.Bench.FParsec.ExpressionParser.parseR(_bigExpression);
+        FParsec.ExpressionParser.parseR(_bigExpression);
     }
 
     [Benchmark]

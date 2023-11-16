@@ -113,7 +113,7 @@ public class JsonBench
     [BenchmarkCategory("Deep")]
     public void DeepJson_FParsec()
     {
-        Pidgin.Bench.FParsec.JsonParser.parse(_deepJson);
+        FParsec.JsonParser.parse(_deepJson);
     }
 
     [Benchmark(Baseline = true)]
@@ -141,11 +141,11 @@ public class JsonBench
     [BenchmarkCategory("Wide")]
     public void WideJson_FParsec()
     {
-        Pidgin.Bench.FParsec.JsonParser.parse(_wideJson);
+        FParsec.JsonParser.parse(_wideJson);
     }
 
-    private static Json BuildJson(int length, int depth, int width)
-        => new JsonArray(
+    private static JsonArray BuildJson(int length, int depth, int width)
+        => new(
             Enumerable.Repeat(1, length)
                 .Select(_ => BuildObject(depth, width))
                 .ToImmutableArray()

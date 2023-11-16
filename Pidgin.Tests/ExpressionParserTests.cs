@@ -31,7 +31,7 @@ public class ExpressionParserTests : ParserTestBase
             // but it blew the stack on big inputs
             var stack = new Stack<(Expr, Expr)>();
             stack.Push((this, other));
-            while (stack.Any())
+            while (stack.Count > 0)
             {
                 var (l, r) = stack.Pop();
 

@@ -212,8 +212,8 @@ public class ParseStateTests
         }
     }
 
-    private static ITokenStream<char> ToStream(string input)
-        => new ReaderTokenStream(new StringReader(input));
+    private static ReaderTokenStream ToStream(string input)
+        => new(new StringReader(input));
 
     private static int ChunkSize => ToStream("").ChunkSizeHint;
 }

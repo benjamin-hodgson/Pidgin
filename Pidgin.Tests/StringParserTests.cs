@@ -11,6 +11,8 @@ using static Pidgin.Parser<char>;
 
 namespace Pidgin.Tests;
 
+#pragma warning disable CA1861  // Prefer 'static readonly' fields over constant array arguments if the called method is called repeatedly and is not mutating the passed array
+
 public class StringParserTests : ParserTestBase
 {
     [Fact]
@@ -37,7 +39,7 @@ public class StringParserTests : ParserTestBase
             var expectedError = new ParseError<char>(
                 Maybe.Nothing<char>(),
                 false,
-                ImmutableArray.Create(new Expected<char>(ImmutableArray.Create<char>())),
+                [new Expected<char>(ImmutableArray.Create<char>())],
                 0,
                 SourcePosDelta.Zero,
                 "message"
@@ -60,7 +62,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a'))),
+                    [new Expected<char>(ImmutableArray.Create('a'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -72,7 +74,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a'))),
+                    [new Expected<char>(ImmutableArray.Create('a'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -138,7 +140,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("any character")),
+                    [new Expected<char>("any character")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -159,7 +161,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("whitespace")),
+                    [new Expected<char>("whitespace")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -171,7 +173,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("whitespace")),
+                    [new Expected<char>("whitespace")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -195,7 +197,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))),
+                    [new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -207,7 +209,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))),
+                    [new Expected<char>(ImmutableArray.Create('A')), new Expected<char>(ImmutableArray.Create('a'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -228,7 +230,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(default(Expected<char>)),
+                    [default(Expected<char>)],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -256,7 +258,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -268,7 +270,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -280,7 +282,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -292,7 +294,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -315,7 +317,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('g'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("hexadecimal number")),
+                    [new Expected<char>("hexadecimal number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -332,7 +334,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('8'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("octal number")),
+                    [new Expected<char>("octal number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -358,7 +360,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -370,7 +372,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -382,7 +384,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -394,7 +396,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("number")),
+                    [new Expected<char>("number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -459,7 +461,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -471,7 +473,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -483,7 +485,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -495,7 +497,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -507,7 +509,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -519,7 +521,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -531,7 +533,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     7,
                     new SourcePosDelta(0, 7),
                     null
@@ -543,7 +545,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('e'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("real number")),
+                    [new Expected<char>("real number")],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -573,7 +575,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -585,7 +587,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -597,7 +599,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -607,15 +609,15 @@ public class StringParserTests : ParserTestBase
 
         {
             var parser = Sequence(Char('f'), Char('o'), Char('o'));
-            AssertFullParse(parser, "foo", "foo");
-            AssertPartialParse(parser, "food", "foo", 3);
+            AssertFullParse(parser, "foo", "foo".ToArray());
+            AssertPartialParse(parser, "food", "foo".ToArray(), 3);
             AssertFailure(
                 parser,
                 "bar",
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("f"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -627,7 +629,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("o"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("o"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -639,7 +641,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("f"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -665,7 +667,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -677,7 +679,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -689,7 +691,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -701,7 +703,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -794,7 +796,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('y'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('x'))),
+                    [new Expected<char>(ImmutableArray.Create('x'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -806,7 +808,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('x'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('y'))),
+                    [new Expected<char>(ImmutableArray.Create('y'))],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -827,7 +829,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("b"))],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -839,7 +841,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("a"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -856,7 +858,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("b"))],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -868,7 +870,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("a"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -885,7 +887,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("b"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("b"))],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -897,7 +899,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("a"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("a"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -918,7 +920,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("c"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("c"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -956,7 +958,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create<char>()), new Expected<char>(ImmutableArray.Create('a'))),
+                    [new Expected<char>(ImmutableArray.Create<char>()), new Expected<char>(ImmutableArray.Create('a'))],
                     0,
                     SourcePosDelta.Zero,
                     "test"
@@ -974,7 +976,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('c'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b'))),
+                    [new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -992,7 +994,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1010,7 +1012,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1038,7 +1040,11 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c'))),
+                    [
+                        new Expected<char>(ImmutableArray.Create('a')),
+                        new Expected<char>(ImmutableArray.Create('b')),
+                        new Expected<char>(ImmutableArray.Create('c')),
+                    ],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1057,7 +1063,11 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('a')), new Expected<char>(ImmutableArray.Create('b')), new Expected<char>(ImmutableArray.Create('c'))),
+                    [
+                        new Expected<char>(ImmutableArray.Create('a')),
+                        new Expected<char>(ImmutableArray.Create('b')),
+                        new Expected<char>(ImmutableArray.Create('c')),
+                    ],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1075,7 +1085,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('q'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo")), new Expected<char>(ImmutableArray.CreateRange("bar"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo")), new Expected<char>(ImmutableArray.CreateRange("bar"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1087,7 +1097,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1113,14 +1123,15 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(
+                    [
                         new Expected<char>(ImmutableArray.Create('a')),
                         new Expected<char>(ImmutableArray.Create('A')),
                         new Expected<char>(ImmutableArray.Create('b')),
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
-                    ),
+,
+                    ],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1142,14 +1153,15 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(
+                    [
                         new Expected<char>(ImmutableArray.Create('a')),
                         new Expected<char>(ImmutableArray.Create('A')),
                         new Expected<char>(ImmutableArray.Create('b')),
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
-                    ),
+,
+                    ],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1247,7 +1259,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1259,7 +1271,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('e'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1287,7 +1299,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1309,7 +1321,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1358,7 +1370,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('e'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("using"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("using"))],
                     4,
                     new SourcePosDelta(0, 4),
                     null
@@ -1370,7 +1382,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('1'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("identifier")),
+                    [new Expected<char>("identifier")],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -1395,7 +1407,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     false,
-                    ImmutableArray.Create(new Expected<char>("result satisfying assertion")),
+                    [new Expected<char>("result satisfying assertion")],
                     1,
                     SourcePosDelta.OneCol,
                     "Assertion failed"
@@ -1416,7 +1428,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     false,
-                    ImmutableArray.Create(new Expected<char>("result satisfying assertion")),
+                    [new Expected<char>("result satisfying assertion")],
                     1,
                     SourcePosDelta.OneCol,
                     "Assertion failed"
@@ -1441,7 +1453,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1453,7 +1465,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1519,7 +1531,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1531,7 +1543,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1569,7 +1581,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1581,7 +1593,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1596,7 +1608,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1608,7 +1620,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1633,7 +1645,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
+                    [new Expected<char>(ImmutableArray.Create('f'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1645,7 +1657,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
+                    [new Expected<char>(ImmutableArray.Create('f'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1664,7 +1676,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
+                    [new Expected<char>(ImmutableArray.Create('f'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1676,7 +1688,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create('f'))),
+                    [new Expected<char>(ImmutableArray.Create('f'))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1704,7 +1716,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1716,7 +1728,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1731,7 +1743,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1743,7 +1755,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1772,7 +1784,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1784,7 +1796,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1796,7 +1808,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1808,7 +1820,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1820,7 +1832,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1832,7 +1844,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1861,7 +1873,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1873,7 +1885,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1885,7 +1897,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1897,7 +1909,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1909,7 +1921,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -1921,7 +1933,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -1950,7 +1962,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1962,7 +1974,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1974,7 +1986,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -1986,7 +1998,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -1998,7 +2010,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2010,7 +2022,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2039,7 +2051,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2051,7 +2063,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2063,7 +2075,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2075,7 +2087,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2087,7 +2099,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2099,7 +2111,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2126,7 +2138,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2138,7 +2150,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2150,7 +2162,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2162,7 +2174,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2174,7 +2186,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2186,7 +2198,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2198,7 +2210,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2210,7 +2222,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2237,7 +2249,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2249,7 +2261,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2261,7 +2273,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2273,7 +2285,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2285,7 +2297,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2297,7 +2309,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2309,7 +2321,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2321,7 +2333,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2348,7 +2360,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2360,7 +2372,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2372,7 +2384,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2384,7 +2396,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2396,7 +2408,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2408,7 +2420,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2420,7 +2432,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2432,7 +2444,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2459,7 +2471,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2471,7 +2483,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just(' '),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2483,7 +2495,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2495,7 +2507,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2507,7 +2519,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2519,7 +2531,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.Create(' ')), new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2531,7 +2543,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2543,7 +2555,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -2569,7 +2581,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -2586,7 +2598,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("f"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("f"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2611,7 +2623,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2623,7 +2635,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     4,
                     new SourcePosDelta(0, 4),
                     null
@@ -2646,7 +2658,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2658,7 +2670,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2670,7 +2682,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2682,7 +2694,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     4,
                     new SourcePosDelta(0, 4),
                     null
@@ -2707,7 +2719,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
+                    [new Expected<char>(ImmutableArray.CreateRange(" "))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2719,7 +2731,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2731,7 +2743,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
+                    [new Expected<char>(ImmutableArray.CreateRange(" "))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2743,7 +2755,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
+                    [new Expected<char>(ImmutableArray.CreateRange(" "))],
                     7,
                     new SourcePosDelta(0, 7),
                     null
@@ -2766,7 +2778,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2778,7 +2790,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.Create(' '))),
+                    [new Expected<char>(ImmutableArray.Create(' '))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2790,7 +2802,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2802,7 +2814,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2814,7 +2826,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
+                    [new Expected<char>(ImmutableArray.CreateRange(" "))],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -2826,7 +2838,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange(" "))),
+                    [new Expected<char>(ImmutableArray.CreateRange(" "))],
                     7,
                     new SourcePosDelta(0, 7),
                     null
@@ -2856,7 +2868,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2868,7 +2880,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     6,
                     new SourcePosDelta(0, 6),
                     null
@@ -2896,7 +2908,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     true,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2908,7 +2920,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -2920,7 +2932,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2953,7 +2965,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("foo"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("foo"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -2980,7 +2992,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('a'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("digit")),
+                    [new Expected<char>("digit")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -3010,7 +3022,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('d'),
                     false,
-                    ImmutableArray.Create(new Expected<char>(ImmutableArray.CreateRange("abc"))),
+                    [new Expected<char>(ImmutableArray.CreateRange("abc"))],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -3044,7 +3056,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('b'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("bar")),
+                    [new Expected<char>("bar")],
                     0,
                     SourcePosDelta.Zero,
                     null
@@ -3056,7 +3068,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Just('u'),
                     false,
-                    ImmutableArray.Create(new Expected<char>("bar")),
+                    [new Expected<char>("bar")],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -3092,7 +3104,7 @@ public class StringParserTests : ParserTestBase
                 new ParseError<char>(
                     Maybe.Nothing<char>(),
                     false,
-                    ImmutableArray.Create(new Expected<char>("result of type TestCast2")),
+                    [new Expected<char>("result of type TestCast2")],
                     0,
                     SourcePosDelta.Zero,
                     "Expected a TestCast2 but got a TestCast1"
@@ -3145,3 +3157,5 @@ public class StringParserTests : ParserTestBase
         Assert.Equal(TestEnum.Value2, result.Value);
     }
 }
+
+#pragma warning restore CA1861  // Prefer 'static readonly' fields over constant array arguments if the called method is called repeatedly and is not mutating the passed array

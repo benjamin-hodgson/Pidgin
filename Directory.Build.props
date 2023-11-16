@@ -15,5 +15,6 @@
         <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Pidgin.snk</AssemblyOriginatorKeyFile>
 
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <UseArtifactsOutput>true</UseArtifactsOutput>
     </PropertyGroup>
 </Project>

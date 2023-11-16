@@ -25,12 +25,10 @@ public class ExpressionExampleTests
                 new Call(
                     new Call(
                         new Identifier("foo"),
-                        ImmutableArray.Create<Expr>(
-                            new UnaryOp(UnaryOperatorType.Neg, new Literal(3)),
-                            new Identifier("x")
-                        )
+                        [new UnaryOp(UnaryOperatorType.Neg, new Literal(3)), new Identifier("x")
+]
                     ),
-                    ImmutableArray.Create<Expr>()
+                    []
                 ),
                 new BinaryOp(
                     BinaryOperatorType.Add,

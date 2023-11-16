@@ -54,7 +54,15 @@ public class ParserTestBase
         }
         else
         {
-            Assert.Equal(expected, actual);
+            try
+            {
+                Assert.Equal(expected, actual);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(actual!.GetType());
+                throw;
+            }
         }
     }
 }

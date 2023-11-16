@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
     <Import Project="../Pidgin.BuildTool.props" />
 
     <ItemGroup>
         <ProjectReference Include="../Pidgin/Pidgin.csproj" />
     </ItemGroup>
+
 </Project>
