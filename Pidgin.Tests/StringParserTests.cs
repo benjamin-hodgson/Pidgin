@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
+
 using Xunit;
+
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 
@@ -1128,6 +1130,7 @@ public class StringParserTests : ParserTestBase
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
+,
                     ],
                     0,
                     SourcePosDelta.Zero,
@@ -1157,6 +1160,7 @@ public class StringParserTests : ParserTestBase
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
+,
                     ],
                     0,
                     SourcePosDelta.Zero,

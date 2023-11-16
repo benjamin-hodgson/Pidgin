@@ -3,6 +3,7 @@ using System.Buffers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
 using Pidgin.Configuration;
 
 namespace Pidgin;

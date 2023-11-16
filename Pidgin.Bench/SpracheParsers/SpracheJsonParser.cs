@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
+
 using Pidgin.Examples.Json;
+
 using Sprache;
+
 using static Sprache.Parse;
 
 namespace Pidgin.Bench.SpracheParsers;

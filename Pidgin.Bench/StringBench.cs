@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+
 using BenchmarkDotNet.Attributes;
 
 namespace Pidgin.Bench;

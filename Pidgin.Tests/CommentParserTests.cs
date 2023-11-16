@@ -1,5 +1,7 @@
 using Pidgin.Comment;
+
 using Xunit;
+
 using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
 

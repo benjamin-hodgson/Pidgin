@@ -1,9 +1,12 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+
 using Pidgin.Expression;
+
 using static Pidgin.Parser<char>;
 
 namespace Pidgin.Bench;

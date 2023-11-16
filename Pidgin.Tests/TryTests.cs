@@ -214,6 +214,7 @@ public class TryTests : ParserTestBase
                     [
                         new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))),
                         new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))
+,
                     ],
                     0,
                     SourcePosDelta.Zero,
