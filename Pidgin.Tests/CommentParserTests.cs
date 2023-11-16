@@ -2,8 +2,8 @@ using Pidgin.Comment;
 
 using Xunit;
 
-using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
+using static Pidgin.Parser;
 
 namespace Pidgin.Tests;
 

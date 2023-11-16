@@ -6,8 +6,8 @@ using System.Text;
 
 using Xunit;
 
-using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
+using static Pidgin.Parser;
 
 namespace Pidgin.Tests;
 
@@ -1130,7 +1130,6 @@ public class StringParserTests : ParserTestBase
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
-,
                     ],
                     0,
                     SourcePosDelta.Zero,
@@ -1160,7 +1159,6 @@ public class StringParserTests : ParserTestBase
                         new Expected<char>(ImmutableArray.Create('B')),
                         new Expected<char>(ImmutableArray.Create('c')),
                         new Expected<char>(ImmutableArray.Create('C'))
-,
                     ],
                     0,
                     SourcePosDelta.Zero,

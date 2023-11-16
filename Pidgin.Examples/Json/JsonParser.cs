@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 
-using static Pidgin.Parser;
 using static Pidgin.Parser<char>;
+using static Pidgin.Parser;
 
 namespace Pidgin.Examples.Json;
 
