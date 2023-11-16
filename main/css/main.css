@@ -78,7 +78,7 @@ header .title a {
     position: sticky;
     top: 24px;
     margin-top: 24px;
-    max-height: 400px;
+    max-height: 80vh;
     overflow: auto;
 }
 

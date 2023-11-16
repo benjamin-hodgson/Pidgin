@@ -4,25 +4,25 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Class ParseException
-     | Pidgin </title>
+ | Pidgin </title>
         <meta name="viewport" content="width=device-width">
         <meta name="title" content="Class ParseException
-     | Pidgin ">
-        <meta name="generator" content="docfx 2.59.2.0">
+ | Pidgin ">
+        <meta name="generator" content="docfx ">
+
     
-        
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut" "icon"="" href="/favicon.ico" type="image/x-icon">
-        
+    
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2.1.1/out/water.min.css" integrity="sha256-QST90Wzz4PEr5KlclQaOCsjc00FTyf86Wrj41oqZB4w=" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/highlight.css">
-        
+    
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script async="" id="highlightjs-script" src="js/third-party/highlight.js"></script>
         <script defer="" src="js/main.js"></script>
-        
-        
+    
+    
     </head>
     <body>
         <header class="row-space">
@@ -67,19 +67,19 @@
                                                             <a href="Pidgin.ParseException.html" title="ParseException" class="active active-i">ParseException</a>
                                                     </li>
                                                     <li>
+                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
                                                             <a href="Pidgin.Parser.html" title="Parser" class="">Parser</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.ParserExtensions.html" title="ParserExtensions" class="">ParserExtensions</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
+                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.PooledList-1.html" title="PooledList&lt;T&gt;" class="">PooledList&lt;T&gt;</a>
@@ -178,10 +178,10 @@
                                                             <a href="Pidgin.TokenStreams.ListTokenStream-1.html" title="ListTokenStream&lt;TToken&gt;" class="">ListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
+                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.TokenStreams.ResumableTokenStream-1.html" title="ResumableTokenStream&lt;TToken&gt;" class="">ResumableTokenStream&lt;TToken&gt;</a>
@@ -198,27 +198,87 @@
             <div class="col columns">
 <article class="col">
         <h1 id="Pidgin_ParseException"><a href="#Pidgin_ParseException">Class ParseException
-        </a></h1>
+</a></h1>
         <div><p>Thrown when a parse error is encountered during parsing.</p>
 </div>
             <h5>Inheritance</h5>
             <ul>
-                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></li>
+                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></li>
+                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></li>
                 <li>ParseException</li>
             </ul>
-        
-        
+            <h5>Implements</h5>
+            <ul>
+                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable">ISerializable</a></li>
+            </ul>
+
+            <h5>Inherited Members</h5>
+            <ul>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception">Exception.GetBaseException()</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.getobjectdata">Exception.GetObjectData(SerializationInfo, StreamingContext)</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.tostring">Exception.ToString()</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.gettype">Exception.GetType()</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.targetsite">Exception.TargetSite</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.message">Exception.Message</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.data">Exception.Data</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.innerexception">Exception.InnerException</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.helplink">Exception.HelpLink</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.source">Exception.Source</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.hresult">Exception.HResult</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.stacktrace">Exception.StackTrace</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+                    </li>
+            </ul>
+
         <h5>Declaration</h5>
-        <pre><code class="lang-csharp hljs">public sealed class ParseException : Exception</code></pre>
-        
-        
-        
-        
-        
+        <pre><code class="lang- hljs">public sealed class ParseException : Exception, ISerializable</code></pre>
 
-        
 
-    </article>
+
+
+        <h3 id="implements"><a href="#implements">Implements</a></h3>
+        <div>
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable">ISerializable</a>
+        </div>
+
+
+
+
+</article>
 
 <div class="col col-sm sticky md:hide">
     <h5>In This Article</h5>
@@ -226,7 +286,7 @@
         <ul class="active">
             <li>
                 <a class="active" href="#Pidgin_ParseException">Class ParseException
-    </a>
+</a>
                 <ul class="active">
                 </ul>
             </li>
@@ -243,5 +303,5 @@
             <span>Generated by <strong>DocFX</strong></span>
         </footer>
 
-            </body>
+    </body>
 </html>

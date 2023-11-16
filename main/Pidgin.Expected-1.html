@@ -3,26 +3,26 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Class Expected&lt;TToken&gt;
-     | Pidgin </title>
+        <title>Struct Expected&lt;TToken&gt;
+ | Pidgin </title>
         <meta name="viewport" content="width=device-width">
-        <meta name="title" content="Class Expected&lt;TToken&gt;
-     | Pidgin ">
-        <meta name="generator" content="docfx 2.59.2.0">
+        <meta name="title" content="Struct Expected&lt;TToken&gt;
+ | Pidgin ">
+        <meta name="generator" content="docfx ">
+
     
-        
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut" "icon"="" href="/favicon.ico" type="image/x-icon">
-        
+    
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2.1.1/out/water.min.css" integrity="sha256-QST90Wzz4PEr5KlclQaOCsjc00FTyf86Wrj41oqZB4w=" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/highlight.css">
-        
+    
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script async="" id="highlightjs-script" src="js/third-party/highlight.js"></script>
         <script defer="" src="js/main.js"></script>
-        
-        
+    
+    
     </head>
     <body>
         <header class="row-space">
@@ -67,19 +67,19 @@
                                                             <a href="Pidgin.ParseException.html" title="ParseException" class="">ParseException</a>
                                                     </li>
                                                     <li>
+                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
                                                             <a href="Pidgin.Parser.html" title="Parser" class="">Parser</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.ParserExtensions.html" title="ParserExtensions" class="">ParserExtensions</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
+                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.PooledList-1.html" title="PooledList&lt;T&gt;" class="">PooledList&lt;T&gt;</a>
@@ -178,10 +178,10 @@
                                                             <a href="Pidgin.TokenStreams.ListTokenStream-1.html" title="ListTokenStream&lt;TToken&gt;" class="">ListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
+                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.TokenStreams.ResumableTokenStream-1.html" title="ResumableTokenStream&lt;TToken&gt;" class="">ResumableTokenStream&lt;TToken&gt;</a>
@@ -197,27 +197,34 @@
 
             <div class="col columns">
 <article class="col">
-        <h1 id="Pidgin_Expected_1"><a href="#Pidgin_Expected_1">Class Expected&lt;TToken&gt;
-        </a></h1>
+        <h1 id="Pidgin_Expected_1"><a href="#Pidgin_Expected_1">Struct Expected&lt;TToken&gt;
+</a></h1>
         <div><p>Represents a parsing expectation for error reporting.
 Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
 a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
 or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
 </div>
-            <h5>Inheritance</h5>
-            <ul>
-                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></li>
-                <li>Expected&lt;TToken&gt;</li>
-            </ul>
             <h5>Implements</h5>
             <ul>
                     <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;&gt;</li>
                     <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="Pidgin.Expected-1.html">Expected</a>&lt;TToken&gt;&gt;</li>
             </ul>
-        
-        
+
+            <h5>Inherited Members</h5>
+            <ul>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+                    </li>
+                    <li>
+                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+                    </li>
+            </ul>
+
         <h5>Declaration</h5>
-        <pre><code class="lang-csharp hljs">public sealed class Expected&lt;TToken&gt; : ValueType</code></pre>
+        <pre><code class="lang- hljs">public readonly struct Expected&lt;TToken&gt; : IEquatable&lt;Expected&lt;TToken&gt;&gt;, IComparable&lt;Expected&lt;TToken&gt;&gt;</code></pre>
             <h5>Type Parameters</h5>
             <table>
                 <thead>
@@ -229,29 +236,29 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 <tbody>
                         <tr>
                             <td><p>TToken</p></td>
-                            <td><p>The type of tokens in the parser&apos;s input stream.</p>
+                            <td><p>The type of tokens in the parser's input stream.</p>
 </td>
                         </tr>
                 </tbody>
             </table>
-        
-        
-        
-            <h3 id="properties"><a href="#properties">Properties
-        </a></h3>
 
-                
+
+
+            <h3 id="properties"><a href="#properties">Properties
+</a></h3>
+
+        
                 <a id="Pidgin_Expected_1_IsEof_"></a>
                 <h4 id="Pidgin_Expected_1_IsEof"><a href="#Pidgin_Expected_1_IsEof">IsEof</a></h4>
                 <div><p>Did the parser expect the end of the input stream?.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public bool IsEof { get; }</code></pre>
+                    <pre><code class="lang- hljs">public bool IsEof { get; }</code></pre>
 
-        
-        
-        
-        
+
+
+
+
                         <h5>Property Value</h5>
                         <table>
                             <thead>
@@ -262,30 +269,30 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td><p>True if the parser expected the end of the input stream.</p>
 </td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-                        
-        
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_Label_"></a>
                 <h4 id="Pidgin_Expected_1_Label"><a href="#Pidgin_Expected_1_Label">Label</a></h4>
                 <div><p>The custom name of the parser that produced this error, or null if the expectation was a sequence of tokens.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public string Label { get; }</code></pre>
+                    <pre><code class="lang- hljs">public string? Label { get; }</code></pre>
 
-        
-        
-        
-        
+
+
+
+
                         <h5>Property Value</h5>
                         <table>
                             <thead>
@@ -296,30 +303,30 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p></td>
                                     <td><p>The label.</p>
 </td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-                        
-        
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_Tokens_"></a>
                 <h4 id="Pidgin_Expected_1_Tokens"><a href="#Pidgin_Expected_1_Tokens">Tokens</a></h4>
                 <div><p>The sequence of tokens that were expected at the point of the error, null if the parser had a custom name.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public ImmutableArray&lt;TToken&gt; Tokens { get; }</code></pre>
+                    <pre><code class="lang- hljs">public ImmutableArray&lt;TToken&gt; Tokens { get; }</code></pre>
 
-        
-        
-        
-        
+
+
+
+
                         <h5>Property Value</h5>
                         <table>
                             <thead>
@@ -336,21 +343,25 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-                        
-        
-            <h3 id="methods"><a href="#methods">Methods
-        </a></h3>
+
+
+
 
                 
+
+            <h3 id="methods"><a href="#methods">Methods
+</a></h3>
+
+        
                 <a id="Pidgin_Expected_1_CompareTo_"></a>
                 <h4 id="Pidgin_Expected_1_CompareTo_Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_CompareTo_Pidgin_Expected__0__">CompareTo(Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
+</div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public int CompareTo(Expected&lt;TToken&gt; other)</code></pre>
+                    <pre><code class="lang- hljs">public int CompareTo(Expected&lt;TToken&gt; other)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -369,7 +380,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -380,26 +391,30 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_Equals_"></a>
                 <h4 id="Pidgin_Expected_1_Equals_Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_Equals_Pidgin_Expected__0__">Equals(Expected&lt;TToken&gt;)</a></h4>
-                <div></div>
+                <div><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
+</div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public bool Equals(Expected&lt;TToken&gt; other)</code></pre>
+                    <pre><code class="lang- hljs">public bool Equals(Expected&lt;TToken&gt; other)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -418,7 +433,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -429,26 +444,30 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_Equals_"></a>
-                <h4 id="Pidgin_Expected_1_Equals_System_Object_"><a href="#Pidgin_Expected_1_Equals_System_Object_">Equals(Object)</a></h4>
-                <div></div>
+                <h4 id="Pidgin_Expected_1_Equals_System_Object_"><a href="#Pidgin_Expected_1_Equals_System_Object_">Equals(object?)</a></h4>
+                <div><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
+</div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+                    <pre><code class="lang- hljs">public override bool Equals(object? obj)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -461,13 +480,13 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></p></td>
                                     <td><p>obj</p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -478,28 +497,34 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+                    <h5>Overrides</h5>
+                    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a></div>
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_GetHashCode_"></a>
                 <h4 id="Pidgin_Expected_1_GetHashCode"><a href="#Pidgin_Expected_1_GetHashCode">GetHashCode()</a></h4>
-                <div></div>
+                <div><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
+</div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+                    <pre><code class="lang- hljs">public override int GetHashCode()</code></pre>
 
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -510,28 +535,34 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+                    <h5>Overrides</h5>
+                    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a></div>
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_ToString_"></a>
                 <h4 id="Pidgin_Expected_1_ToString"><a href="#Pidgin_Expected_1_ToString">ToString()</a></h4>
-                <div></div>
+                <div><p>Represents a parsing expectation for error reporting.
+Expected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),
+a custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),
+or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>
+</div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+                    <pre><code class="lang- hljs">public override string ToString()</code></pre>
 
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -542,30 +573,32 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
-            <h3 id="operators"><a href="#operators">Operators
-        </a></h3>
+
+
+
+
+
+                    <h5>Overrides</h5>
+                    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a></div>
+
 
                 
+
+            <h3 id="operators"><a href="#operators">Operators
+</a></h3>
+
+        
                 <a id="Pidgin_Expected_1_op_Equality_"></a>
-                <h4 id="Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__">Equality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__">operator ==(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Equality operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator ==(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator ==(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -591,7 +624,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -602,27 +635,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_op_GreaterThan_"></a>
-                <h4 id="Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__">operator &gt;(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Comparison operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator&gt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator &gt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -648,7 +681,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -659,27 +692,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_op_GreaterThanOrEqual_"></a>
-                <h4 id="Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">operator &gt;=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Comparison operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator &gt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -705,7 +738,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -716,27 +749,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_op_Inequality_"></a>
-                <h4 id="Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__">Inequality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__">operator !=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Inequality operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator !=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator !=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -762,7 +795,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -773,27 +806,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_op_LessThan_"></a>
-                <h4 id="Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__">LessThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__">operator &lt;(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Comparison operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator &lt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator &lt;(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -819,7 +852,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -830,27 +863,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
+
+
+
+
+
+
+
                 
+
+        
                 <a id="Pidgin_Expected_1_op_LessThanOrEqual_"></a>
-                <h4 id="Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">LessThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
+                <h4 id="Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__"><a href="#Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">operator &lt;=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></h4>
                 <div><p>Comparison operator.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
+                    <pre><code class="lang- hljs">public static bool operator &lt;=(Expected&lt;TToken&gt; left, Expected&lt;TToken&gt; right)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -876,7 +909,7 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                                 </tr>
                             </tbody>
                         </table>
-        
+
                         <h5>Returns</h5>
                         <table>
                             <thead>
@@ -887,45 +920,45 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
                         </table>
-        
-        
-        
-        
-        
-        
-        
-                        
-        
-        
+
+
+
+
+
+
+
+                
+
+
         <h3 id="implements"><a href="#implements">Implements</a></h3>
         <div>
-                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
         </div>
         <div>
-                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">System.IComparable&lt;T&gt;</a>
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable&lt;T&gt;</a>
         </div>
-        
 
-        
 
-    </article>
+
+
+</article>
 
 <div class="col col-sm sticky md:hide">
     <h5>In This Article</h5>
     <nav id="local-toc">
         <ul class="active">
             <li>
-                <a class="active" href="#Pidgin_Expected_1">Class Expected&lt;TToken&gt;
-    </a>
+                <a class="active" href="#Pidgin_Expected_1">Struct Expected&lt;TToken&gt;
+</a>
                 <ul class="active">
                         <li>
                             <a href="#properties">Properties
-    </a>
+</a>
 
                             <ul>
                                     <li><a href="#Pidgin_Expected_1_IsEof">IsEof</a></li>
@@ -935,27 +968,27 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                         </li>
                         <li>
                             <a href="#methods">Methods
-    </a>
+</a>
 
                             <ul>
                                     <li><a href="#Pidgin_Expected_1_CompareTo_Pidgin_Expected__0__">CompareTo(Expected&lt;TToken&gt;)</a></li>
                                     <li><a href="#Pidgin_Expected_1_Equals_Pidgin_Expected__0__">Equals(Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_Equals_System_Object_">Equals(Object)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_Equals_System_Object_">Equals(object?)</a></li>
                                     <li><a href="#Pidgin_Expected_1_GetHashCode">GetHashCode()</a></li>
                                     <li><a href="#Pidgin_Expected_1_ToString">ToString()</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#operators">Operators
-    </a>
+</a>
 
                             <ul>
-                                    <li><a href="#Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__">Equality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">GreaterThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__">Inequality(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__">LessThan(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
-                                    <li><a href="#Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">LessThanOrEqual(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_Equality_Pidgin_Expected__0__Pidgin_Expected__0__">operator ==(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_GreaterThan_Pidgin_Expected__0__Pidgin_Expected__0__">operator &gt;(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_GreaterThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">operator &gt;=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_Inequality_Pidgin_Expected__0__Pidgin_Expected__0__">operator !=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_LessThan_Pidgin_Expected__0__Pidgin_Expected__0__">operator &lt;(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1_op_LessThanOrEqual_Pidgin_Expected__0__Pidgin_Expected__0__">operator &lt;=(Expected&lt;TToken&gt;, Expected&lt;TToken&gt;)</a></li>
                             </ul>
                         </li>
                 </ul>
@@ -973,5 +1006,5 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
             <span>Generated by <strong>DocFX</strong></span>
         </footer>
 
-            </body>
+    </body>
 </html>

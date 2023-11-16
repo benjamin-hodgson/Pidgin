@@ -4,25 +4,25 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Namespace Pidgin.Expression
-     | Pidgin </title>
+ | Pidgin </title>
         <meta name="viewport" content="width=device-width">
         <meta name="title" content="Namespace Pidgin.Expression
-     | Pidgin ">
-        <meta name="generator" content="docfx 2.59.2.0">
+ | Pidgin ">
+        <meta name="generator" content="docfx ">
+
     
-        
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut" "icon"="" href="/favicon.ico" type="image/x-icon">
-        
+    
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2.1.1/out/water.min.css" integrity="sha256-QST90Wzz4PEr5KlclQaOCsjc00FTyf86Wrj41oqZB4w=" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/highlight.css">
-        
+    
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script async="" id="highlightjs-script" src="js/third-party/highlight.js"></script>
         <script defer="" src="js/main.js"></script>
-        
-        
+    
+    
     </head>
     <body>
         <header class="row-space">
@@ -67,19 +67,19 @@
                                                             <a href="Pidgin.ParseException.html" title="ParseException" class="">ParseException</a>
                                                     </li>
                                                     <li>
+                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
                                                             <a href="Pidgin.Parser.html" title="Parser" class="">Parser</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
-                                                    </li>
-                                                    <li>
-                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.ParserExtensions.html" title="ParserExtensions" class="">ParserExtensions</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.ParseState-1.html" title="ParseState&lt;TToken&gt;" class="">ParseState&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.Parser-1.html" title="Parser&lt;TToken&gt;" class="">Parser&lt;TToken&gt;</a>
+                                                    </li>
+                                                    <li>
+                                                            <a href="Pidgin.Parser-2.html" title="Parser&lt;TToken, T&gt;" class="">Parser&lt;TToken, T&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.PooledList-1.html" title="PooledList&lt;T&gt;" class="">PooledList&lt;T&gt;</a>
@@ -178,10 +178,10 @@
                                                             <a href="Pidgin.TokenStreams.ListTokenStream-1.html" title="ListTokenStream&lt;TToken&gt;" class="">ListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
+                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html" title="ReadOnlyListTokenStream&lt;TToken&gt;" class="">ReadOnlyListTokenStream&lt;TToken&gt;</a>
+                                                            <a href="Pidgin.TokenStreams.ReaderTokenStream.html" title="ReaderTokenStream" class="">ReaderTokenStream</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.TokenStreams.ResumableTokenStream-1.html" title="ResumableTokenStream&lt;TToken&gt;" class="">ResumableTokenStream&lt;TToken&gt;</a>
@@ -197,16 +197,13 @@
 
             <div class="col columns">
 <article class="col">
-        
+
         <h1 id="Pidgin_Expression"><a href="#Pidgin_Expression">Namespace Pidgin.Expression
-        </a></h1>
+</a></h1>
         <div></div>
         <div></div>
             <h3 id="classes"><a href="#classes">Classes
-        </a></h3>
-                <h4><a class="xref" href="Pidgin.Expression.BinaryOperatorType.html">BinaryOperatorType</a></h4>
-                <section><p>The associativity of the binary operator: left-associative, right-associative, or non-associative.</p>
-</section>
+</a></h3>
                 <h4><a class="xref" href="Pidgin.Expression.ExpressionParser.html">ExpressionParser</a></h4>
                 <section><p>
 Contains tools for parsing expression
@@ -230,10 +227,15 @@ overloads to compile the table of operators into a
                 <section><p>Represents a row in a table of operators.
 Contains a collection of parsers for operators at a single precendence level.</p>
 </section>
+            <h3 id="enums"><a href="#enums">Enums
+</a></h3>
+                <h4><a class="xref" href="Pidgin.Expression.BinaryOperatorType.html">BinaryOperatorType</a></h4>
+                <section><p>The associativity of the binary operator: left-associative, right-associative, or non-associative.</p>
+</section>
                 <h4><a class="xref" href="Pidgin.Expression.UnaryOperatorType.html">UnaryOperatorType</a></h4>
                 <section><p>The type of the unary operator: prefix or postfix.</p>
 </section>
-    </article>
+</article>
 
 <div class="col col-sm sticky md:hide">
     <h5>In This Article</h5>
@@ -241,16 +243,22 @@ Contains a collection of parsers for operators at a single precendence level.</p
         <ul class="active">
             <li>
                 <a class="active" href="#Pidgin_Expression">Namespace Pidgin.Expression
-    </a>
+</a>
                 <ul class="active">
                         <li>
                             <a href="#classes"></a>
 
                             <ul>
-                                    <li><a href="#Pidgin_Expression_BinaryOperatorType">BinaryOperatorType</a></li>
                                     <li><a href="#Pidgin_Expression_ExpressionParser">ExpressionParser</a></li>
                                     <li><a href="#Pidgin_Expression_Operator">Operator</a></li>
                                     <li><a href="#Pidgin_Expression_OperatorTableRow_2">OperatorTableRow&lt;TToken, T&gt;</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#enums"></a>
+
+                            <ul>
+                                    <li><a href="#Pidgin_Expression_BinaryOperatorType">BinaryOperatorType</a></li>
                                     <li><a href="#Pidgin_Expression_UnaryOperatorType">UnaryOperatorType</a></li>
                             </ul>
                         </li>
@@ -269,5 +277,5 @@ Contains a collection of parsers for operators at a single precendence level.</p
             <span>Generated by <strong>DocFX</strong></span>
         </footer>
 
-            </body>
+    </body>
 </html>
