@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 using Pidgin.Examples.Expression;
 
 using Xunit;
