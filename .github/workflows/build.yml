@@ -17,6 +17,5 @@ jobs:
       DOCS_FOLDER: Pidgin.Docs
       # due to a bug in `dotnet format` with `using static`
       CHECK_FORMATTING: false
-      NET8: true
     secrets:
       NUGET_KEY: ${{ secrets.NUGET_KEY }}
