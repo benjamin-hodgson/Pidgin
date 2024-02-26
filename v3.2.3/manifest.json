@@ -1,0 +1,459 @@
+{
+  "source_base_path": "/home/runner/work/Pidgin/Pidgin/artifacts/obj/Pidgin.Docs/release",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Comment.CommentParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Comment.CommentParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Comment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Comment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.CharDefaultConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.CharDefaultConfiguration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.Configuration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.DefaultArrayPoolProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.DefaultArrayPoolProvider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.DefaultConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.DefaultConfiguration-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.IArrayPoolProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.IArrayPoolProvider.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.IConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.IConfiguration-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Configuration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expected-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expected-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.BinaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.BinaryOperatorType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.ExpressionParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.ExpressionParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.Operator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.Operator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.OperatorTableRow-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.OperatorTableRow-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.UnaryOperatorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.UnaryOperatorType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Expression.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Expression.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ITokenStream-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ITokenStream-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Maybe-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Maybe-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Maybe.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Maybe.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ParseError-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ParseError-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ParseException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ParseState-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ParseState-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Parser-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Parser-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Parser-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Parser-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Parser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Parser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ParserExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ParserExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Permutation.PermutationParser-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Permutation.PermutationParser-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Permutation.PermutationParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Permutation.PermutationParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Permutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Permutation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.PooledList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.PooledList-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.ReadOnlySpanFunc-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.ReadOnlySpanFunc-3.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Result-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Result-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.SourcePos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.SourcePos.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.SourcePosDelta.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.SourcePosDelta.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.EnumeratorTokenStream-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.EnumeratorTokenStream-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.ListTokenStream-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.ListTokenStream-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.ReadOnlyListTokenStream-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.ReaderTokenStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.ReaderTokenStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.ResumableTokenStream-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.ResumableTokenStream-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.StreamTokenStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.StreamTokenStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.TokenStreams.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.TokenStreams.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Unit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Unit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
