@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Pidgin.Tests;
 
-public class ReusableTokenStreamTests
+public class ResumableTokenStreamTests
 {
     [Fact]
     public void TestResume()
@@ -46,5 +46,20 @@ public class ReusableTokenStreamTests
         var chunk = new char[20].AsSpan();
         stream.Read(chunk);
         Assert.Equal(new string('a', 16) + "bbcc", chunk.ToString());
+    }
+
+    [Fact]
+    public void TestParseFromResumableTokenStream()
+    {
+        var input = "aaabb";
+        using var stream = new ResumableTokenStream<char>(new ReaderTokenStream(new StringReader(input)));
+
+        var parser = Parser.String("aaa");
+        var result = parser.Parse(stream);
+        Assert.Equal("aaa", result.Value);
+
+        var chunk = new char[2].AsSpan();
+        stream.Read(chunk);
+        Assert.Equal("bb", chunk.ToString());
     }
 }

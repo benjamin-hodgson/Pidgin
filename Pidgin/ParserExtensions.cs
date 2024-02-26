@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 using Pidgin.Configuration;
@@ -35,7 +36,7 @@ public static class ParserExtensions
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <returns>The result of parsing.</returns>
     public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, IList<TToken> input, IConfiguration<TToken>? configuration = null)
-        => DoParse(parser, new ListTokenStream<TToken>(input), configuration);
+        => Parse(parser, new ListTokenStream<TToken>(input), configuration);
 
     /// <summary>
     /// Applies <paramref name="parser"/> to <paramref name="input"/>.
@@ -47,7 +48,7 @@ public static class ParserExtensions
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <returns>The result of parsing.</returns>
     public static Result<TToken, T> ParseReadOnlyList<TToken, T>(this Parser<TToken, T> parser, IReadOnlyList<TToken> input, IConfiguration<TToken>? configuration = null)
-        => DoParse(parser, new ReadOnlyListTokenStream<TToken>(input), configuration);
+        => Parse(parser, new ReadOnlyListTokenStream<TToken>(input), configuration);
 
     /// <summary>
     /// Applies <paramref name="parser"/> to <paramref name="input"/>.
@@ -79,7 +80,7 @@ public static class ParserExtensions
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <returns>The result of parsing.</returns>
     public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, IEnumerator<TToken> input, IConfiguration<TToken>? configuration = null)
-        => DoParse(parser, new EnumeratorTokenStream<TToken>(input), configuration);
+        => Parse(parser, new EnumeratorTokenStream<TToken>(input), configuration);
 
     /// <summary>
     /// Applies <paramref name="parser"/> to <paramref name="input"/>.
@@ -92,7 +93,7 @@ public static class ParserExtensions
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <returns>The result of parsing.</returns>
     public static Result<byte, T> Parse<T>(this Parser<byte, T> parser, Stream input, IConfiguration<byte>? configuration = null)
-        => DoParse(parser, new StreamTokenStream(input), configuration);
+        => Parse(parser, new StreamTokenStream(input), configuration);
 
     /// <summary>
     /// Applies <paramref name="parser"/> to <paramref name="input"/>.
@@ -103,7 +104,7 @@ public static class ParserExtensions
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <returns>The result of parsing.</returns>
     public static Result<char, T> Parse<T>(this Parser<char, T> parser, TextReader input, IConfiguration<char>? configuration = null)
-        => DoParse(parser, new ReaderTokenStream(input), configuration);
+        => Parse(parser, new ReaderTokenStream(input), configuration);
 
     /// <summary>
     /// Applies <paramref name="parser"/> to <paramref name="input"/>.
@@ -134,18 +135,54 @@ public static class ParserExtensions
         }
 
         var state = new ParseState<TToken>(configuration ?? Config.Default<TToken>(), input);
-        var result = DoParse(parser, ref state);
+        var result = Parse(parser, ref state);
         return result;
     }
 
-    private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ITokenStream<TToken> stream, IConfiguration<TToken>? configuration)
+    /// <summary>
+    /// Applies <paramref name="parser"/> to <paramref name="input"/>.
+    /// </summary>
+    /// <param name="parser">A parser.</param>
+    /// <param name="input">An input <see cref="ITokenStream{TToken}" />.</param>
+    /// <param name="configuration">The configuration, or null to use the default configuration.</param>
+    /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <returns>The result of parsing.</returns>
+    public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ITokenStream<TToken> input, IConfiguration<TToken>? configuration = null)
     {
-        var state = new ParseState<TToken>(configuration ?? Config.Default<TToken>(), stream);
-        return DoParse(parser, ref state);
+        if (parser == null)
+        {
+            throw new ArgumentNullException(nameof(parser));
+        }
+
+        if (input == null)
+        {
+            throw new ArgumentNullException(nameof(input));
+        }
+
+        var state = new ParseState<TToken>(configuration ?? Config.Default<TToken>(), input);
+        return Parse(parser, ref state);
     }
 
-    private static Result<TToken, T> DoParse<TToken, T>(Parser<TToken, T> parser, ref ParseState<TToken> state)
+    /// <summary>
+    /// Run the <paramref name="parser"/> on the input <paramref name="state"/>.
+    ///
+    /// WARNING: This API is <strong>unstable</strong>
+    /// and subject to change in future versions of the library.
+    /// </summary>
+    /// <param name="parser">A parser.</param>
+    /// <param name="state">An input <see cref="ParseState{TToken}" />.</param>
+    /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <returns>The result of parsing.</returns>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    public static Result<TToken, T> Parse<TToken, T>(this Parser<TToken, T> parser, ref ParseState<TToken> state)
     {
+        if (parser == null)
+        {
+            throw new ArgumentNullException(nameof(parser));
+        }
+
         var expecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
         var result1 = parser.TryParse(ref state, ref expecteds, out var result)
@@ -270,6 +307,19 @@ public static class ParserExtensions
     /// <exception cref="ParseException">Thrown when an error occurs during parsing.</exception>
     /// <returns>The result of parsing.</returns>
     public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ReadOnlySpan<TToken> input, IConfiguration<TToken>? configuration = null)
+        => GetValueOrThrow(parser.Parse(input, configuration));
+
+    /// <summary>
+    /// Applies <paramref name="parser"/> to <paramref name="input"/>.
+    /// </summary>
+    /// <param name="parser">A parser.</param>
+    /// <param name="input">An input <see cref="ITokenStream{TToken}" />.</param>
+    /// <param name="configuration">The configuration, or null to use the default configuration.</param>
+    /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <exception cref="ParseException">Thrown when an error occurs during parsing.</exception>
+    /// <returns>The result of parsing.</returns>
+    public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ITokenStream<TToken> input, IConfiguration<TToken>? configuration = null)
         => GetValueOrThrow(parser.Parse(input, configuration));
 
     private static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)

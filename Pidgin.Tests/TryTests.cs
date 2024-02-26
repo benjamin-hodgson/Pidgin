@@ -235,8 +235,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))
-],
+                    [new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))],
                     5,
                     new SourcePosDelta(0, 5),
                     null
