@@ -1,6 +1,13 @@
 Changelog
 =========
 
+3.2.3
+-----
+
+### Fixed
+
+* Overloads for parsing from `ITokenStream`s and `ParseState`s have been made public as originally intended. [Thanks @katherinefluxinc](https://github.com/benjamin-hodgson/Pidgin/issues/151)!
+
 3.2.2
 -----
 
