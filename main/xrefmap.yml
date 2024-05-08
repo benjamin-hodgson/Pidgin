@@ -1631,6 +1631,31 @@ references:
   commentId: T:Pidgin.ParseException
   fullName: Pidgin.ParseException
   nameWithType: ParseException
+- uid: Pidgin.ParseException`1
+  name: ParseException<TToken>
+  href: Pidgin.ParseException-1.html
+  commentId: T:Pidgin.ParseException`1
+  name.vb: ParseException(Of TToken)
+  fullName: Pidgin.ParseException<TToken>
+  fullName.vb: Pidgin.ParseException(Of TToken)
+  nameWithType: ParseException<TToken>
+  nameWithType.vb: ParseException(Of TToken)
+- uid: Pidgin.ParseException`1.Error
+  name: Error
+  href: Pidgin.ParseException-1.html#Pidgin_ParseException_1_Error
+  commentId: P:Pidgin.ParseException`1.Error
+  fullName: Pidgin.ParseException<TToken>.Error
+  fullName.vb: Pidgin.ParseException(Of TToken).Error
+  nameWithType: ParseException<TToken>.Error
+  nameWithType.vb: ParseException(Of TToken).Error
+- uid: Pidgin.ParseException`1.Error*
+  name: Error
+  href: Pidgin.ParseException-1.html#Pidgin_ParseException_1_Error_
+  commentId: Overload:Pidgin.ParseException`1.Error
+  fullName: Pidgin.ParseException<TToken>.Error
+  fullName.vb: Pidgin.ParseException(Of TToken).Error
+  nameWithType: ParseException<TToken>.Error
+  nameWithType.vb: ParseException(Of TToken).Error
 - uid: Pidgin.ParseState`1
   name: ParseState<TToken>
   href: Pidgin.ParseState-1.html
