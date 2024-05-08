@@ -323,5 +323,5 @@ public static class ParserExtensions
         => GetValueOrThrow(parser.Parse(input, configuration));
 
     private static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)
-        => result.Success ? result.Value : throw new ParseException(result.Error!.RenderErrorMessage());
+        => result.Success ? result.Value : throw new ParseException<TToken>(result.Error!);
 }

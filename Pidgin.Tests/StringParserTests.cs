@@ -46,6 +46,9 @@ public class StringParserTests : ParserTestBase
             );
             AssertFailure(parser, "", expectedError);
             AssertFailure(parser, "foobar", expectedError);
+
+            var ex = Assert.Throws<ParseException<char>>(() => parser.ParseOrThrow(""));
+            Assert.Equal(expectedError, ex.Error);
         }
     }
 
