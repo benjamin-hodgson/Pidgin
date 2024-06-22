@@ -122,7 +122,8 @@ public static partial class Parser
     }
 }
 
-internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
+// todo: devirtualise for small numbers of parsers (codegen)
+internal readonly struct OneOfParser<TToken, T> : IParser<TToken, T>
 {
     private readonly Parser<TToken, T>[] _parsers;
 
@@ -132,7 +133,7 @@ internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
     }
 
     // see comment about expecteds in ParseState.Error.cs
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         var firstTime = true;
         var err = new InternalError<TToken>(
@@ -190,7 +191,7 @@ internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
         return false;
     }
 
-    internal static OneOfParser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)
+    internal static Parser<TToken, T> Create(IEnumerable<Parser<TToken, T>> parsers)
     {
         // if we know the length of the collection,
         // we know we're going to need at least that much room in the list
@@ -205,9 +206,9 @@ internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
                 throw new ArgumentNullException(nameof(parsers));
             }
 
-            if (p is OneOfParser<TToken, T> o)
+            if (p is BoxParser<TToken, T>.Of<OneOfParser<TToken, T>> o)
             {
-                list.AddRange(o._parsers);
+                list.AddRange(o.Value._parsers);
             }
             else
             {
@@ -215,6 +216,6 @@ internal sealed class OneOfParser<TToken, T> : Parser<TToken, T>
             }
         }
 
-        return new OneOfParser<TToken, T>(list.ToArray());
+        return BoxParser<TToken, T>.Create(new OneOfParser<TToken, T>(list.ToArray()));
     }
 }

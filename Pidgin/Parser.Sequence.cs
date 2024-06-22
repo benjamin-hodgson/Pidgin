@@ -38,7 +38,7 @@ public static partial class Parser<TToken>
             throw new ArgumentNullException(nameof(tokens));
         }
 
-        return new SequenceTokenParser<TToken, TEnumerable>(tokens);
+        return BoxParser<TToken, TEnumerable>.Create(new SequenceTokenParser<TToken, TEnumerable>(tokens));
     }
 
     /// <summary>
@@ -73,11 +73,12 @@ public static partial class Parser<TToken>
             return parsersArray[0].Select(x => new[] { x }.AsEnumerable());
         }
 
-        return new SequenceParser<TToken, T>(parsersArray);
+        return BoxParser<TToken, IEnumerable<T>>.Create(new SequenceParser<TToken, T>(parsersArray));
     }
 }
 
-internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
+// todo: devirtualise for small numbers of parsers
+internal readonly struct SequenceParser<TToken, T> : IParser<TToken, IEnumerable<T>>
 {
     private readonly Parser<TToken, T>[] _parsers;
 
@@ -86,7 +87,7 @@ internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
         _parsers = parsers;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
     {
         var ts = new T[_parsers.Length];
 
@@ -108,7 +109,7 @@ internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
     }
 }
 
-internal sealed class SequenceTokenParser<TToken, TEnumerable> : Parser<TToken, TEnumerable>
+internal readonly struct SequenceTokenParser<TToken, TEnumerable> : IParser<TToken, TEnumerable>
     where TEnumerable : IEnumerable<TToken>
 {
     private readonly TEnumerable _value;
@@ -120,7 +121,7 @@ internal sealed class SequenceTokenParser<TToken, TEnumerable> : Parser<TToken, 
         _valueTokens = value.ToImmutableArray();
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
     {
         var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
 

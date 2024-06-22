@@ -19,33 +19,6 @@ namespace Pidgin
         /// </summary>
         /// <param name="func">A function to apply to the return values of the specified parsers</param>
         /// <param name="parser1">The first parser</param>
-        /// <typeparam name="TToken">The type of tokens in the parser's input stream</typeparam>
-        /// <typeparam name="T1">The return type of the first parser</typeparam>
-        /// <typeparam name="R">The return type of the resulting parser</typeparam>
-        public static Parser<TToken, R> Map<TToken, T1, R>(
-            Func<T1, R> func,
-            Parser<TToken, T1> parser1
-        )
-        {
-            if (func == null)
-            {
-                throw new ArgumentNullException(nameof(func));
-            }
-            if (parser1 == null)
-            {
-                throw new ArgumentNullException(nameof(parser1));
-            }
-
-            return parser1 is MapParserBase<TToken, T1> p
-                ? p.Map(func)
-                : new Map1Parser<TToken, T1, R>(func, parser1);
-        }
-
-        /// <summary>
-        /// Creates a parser that applies the specified parsers sequentially and applies the specified transformation function to their results.
-        /// </summary>
-        /// <param name="func">A function to apply to the return values of the specified parsers</param>
-        /// <param name="parser1">The first parser</param>
         /// <param name="parser2">The second parser</param>
         /// <typeparam name="TToken">The type of tokens in the parser's input stream</typeparam>
         /// <typeparam name="T1">The return type of the first parser</typeparam>
@@ -412,47 +385,6 @@ namespace Pidgin
             return new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
         }
     }
-    internal abstract class MapParserBase<TToken, T> : Parser<TToken, T>
-    {
-        internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
-    }
-    
-    internal sealed class Map1Parser<TToken, T1, R> : MapParserBase<TToken, R>
-    {
-        private readonly Func<T1, R> _func;
-        private readonly Parser<TToken, T1> _p1;
-
-        public Map1Parser(
-            Func<T1, R> func,
-            Parser<TToken, T1> parser1
-        )
-        {
-            _func = func;
-            _p1 = parser1;
-        }
-
-        public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
-        {
-            
-            var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
-            if (!success1)
-            {
-                result = default;
-                return false;
-            }
-
-            result = _func(
-                result1
-            );
-            return true;
-        }
-
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
-            => new Map1Parser<TToken, T1, U>(
-                (x1) => func(_func(x1)),
-                _p1
-            );
-    }
 
     internal sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
     {
@@ -473,7 +405,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -525,7 +457,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -589,7 +521,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -665,7 +597,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -753,7 +685,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -853,7 +785,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -965,7 +897,7 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-            
+
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {

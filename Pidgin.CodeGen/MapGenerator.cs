@@ -11,10 +11,11 @@ internal static class MapGenerator
         File.WriteAllText("Pidgin/Parser.Map.Generated.cs", GenerateFile());
     }
 
+    // todo: figure out how to devirtualise
     private static string GenerateFile()
     {
-        var methods = Enumerable.Range(1, 8).Select(n => GenerateMethod(n));
-        var classes = Enumerable.Range(1, 8).Select(n => GenerateClass(n));
+        var methods = Enumerable.Range(2, 8).Select(n => GenerateMethod(n));
+        var classes = Enumerable.Range(2, 8).Select(n => GenerateClass(n));
 
         return $@"#region GeneratedCode
 using System;

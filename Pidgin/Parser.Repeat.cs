@@ -35,8 +35,15 @@ public static partial class Parser
             throw new ArgumentOutOfRangeException(nameof(count), "Count must be non-negative");
         }
 
-        return new RepeatStringParser<TToken>(parser, count);
+        return parser.Accept(new RepeatStringParserFactory<TToken>(count));
     }
+}
+
+internal class RepeatStringParserFactory<TToken>(int count) : IReboxer<TToken, char, string>
+{
+    public BoxParser<TToken, string> WithBox<Next>(BoxParser<TToken, char>.Of<Next> box)
+        where Next : IParser<TToken, char>
+        => BoxParser<TToken, string>.Create(new RepeatStringParser<Next, TToken>(box, count));
 }
 
 public abstract partial class Parser<TToken, T>
@@ -58,24 +65,25 @@ public abstract partial class Parser<TToken, T>
     }
 }
 
-internal sealed class RepeatStringParser<TToken> : Parser<TToken, string>
+internal readonly struct RepeatStringParser<Next, TToken> : IParser<TToken, string>
+    where Next : IParser<TToken, char>
 {
-    private readonly Parser<TToken, char> _parser;
+    private readonly BoxParser<TToken, char>.Of<Next> _parser;
     private readonly int _count;
 
-    public RepeatStringParser(Parser<TToken, char> parser, int count)
+    public RepeatStringParser(BoxParser<TToken, char>.Of<Next> parser, int count)
     {
         _parser = parser;
         _count = count;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out string result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out string result)
     {
         var builder = new InplaceStringBuilder(_count);
 
         for (var i = 0; i < _count; i++)
         {
-            var success = _parser.TryParse(ref state, ref expecteds, out var result1);
+            var success = _parser.Value.TryParse(ref state, ref expecteds, out var result1);
 
             if (!success)
             {

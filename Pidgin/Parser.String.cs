@@ -36,11 +36,11 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(str));
         }
 
-        return new CIStringParser(str);
+        return BoxParser<char, string>.Create(new CIStringParser(str));
     }
 }
 
-internal sealed class CIStringParser : Parser<char, string>
+internal struct CIStringParser : IParser<char, string>
 {
     private readonly string _value;
     private Expected<char> _expected;
@@ -63,7 +63,7 @@ internal sealed class CIStringParser : Parser<char, string>
         _value = value;
     }
 
-    public sealed override bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, [MaybeNullWhen(false)] out string result)
+    public bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, [MaybeNullWhen(false)] out string result)
     {
         var span = state.LookAhead(_value.Length);  // span.Length <= _valueTokens.Length
 

@@ -6,7 +6,7 @@ public static partial class Parser<TToken>
     /// A parser which returns the current source position.
     /// </summary>
     public static Parser<TToken, SourcePosDelta> CurrentSourcePosDelta { get; }
-        = new CurrentPosParser<TToken>();
+        = BoxParser<TToken, SourcePosDelta>.Create(default(CurrentPosParser<TToken>));
 
     /// <summary>
     /// A parser which returns the current source position.
@@ -15,9 +15,9 @@ public static partial class Parser<TToken>
         = CurrentSourcePosDelta.Select(d => new SourcePos(1, 1) + d);
 }
 
-internal sealed class CurrentPosParser<TToken> : Parser<TToken, SourcePosDelta>
+internal readonly struct CurrentPosParser<TToken> : IParser<TToken, SourcePosDelta>
 {
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePosDelta result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out SourcePosDelta result)
     {
         result = state.ComputeSourcePosDelta();
         return true;

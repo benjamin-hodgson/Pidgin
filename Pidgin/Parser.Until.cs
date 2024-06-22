@@ -99,7 +99,8 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(terminator));
         }
 
-        return new AtLeastOnceThenParser<TToken, T, U>(this, terminator, true)!;
+        return BoxParser<TToken, (IEnumerable<T>?, U)>
+            .Create(new AtLeastOnceThenParser<TToken, T, U>(this, terminator, true))!;
     }
 
     /// <summary>
@@ -205,18 +206,20 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(terminator));
         }
 
-        return new AtLeastOnceThenParser<TToken, T, U>(this, terminator, false).Select(tup => tup.Item2);
+        return BoxParser<TToken, (IEnumerable<T>?, U)>
+            .Create(new AtLeastOnceThenParser<TToken, T, U>(this, terminator, false))
+            .Select(tup => tup.Item2);
     }
 }
 
-internal sealed class AtLeastOnceThenParser<TToken, T, U> : Parser<TToken, (IEnumerable<T>?, U)>
+// todo: devirtualise
+internal readonly struct AtLeastOnceThenParser<TToken, T, U> : IParser<TToken, (IEnumerable<T>?, U)>
 {
     private readonly Parser<TToken, T> _parser;
     private readonly Parser<TToken, U> _terminator;
     private readonly bool _keepResults;
 
     public AtLeastOnceThenParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults)
-        : base()
     {
         _parser = parser;
         _terminator = terminator;
@@ -224,7 +227,7 @@ internal sealed class AtLeastOnceThenParser<TToken, T, U> : Parser<TToken, (IEnu
     }
 
     // see comment about expecteds in ParseState.Error.cs
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out (IEnumerable<T>?, U) result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out (IEnumerable<T>?, U) result)
     {
         var ts = _keepResults ? new List<T>() : null;
 

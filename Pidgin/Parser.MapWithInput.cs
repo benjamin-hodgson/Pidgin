@@ -28,28 +28,37 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(selector));
         }
 
-        return new MapWithInputParser<TToken, T, U>(this, selector);
+        return Accept(new MapWithInputParserFactory<TToken, T, U>(selector));
     }
 }
 
-internal class MapWithInputParser<TToken, T, U> : Parser<TToken, U>
+internal class MapWithInputParserFactory<TToken, T, U>(ReadOnlySpanFunc<TToken, T, U> selector)
+    : IReboxer<TToken, T, U>
 {
-    private readonly Parser<TToken, T> _parser;
+    public BoxParser<TToken, U> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, U>.Create(new MapWithInputParser<Next, TToken, T, U>(box, selector));
+}
+
+internal readonly struct MapWithInputParser<Next, TToken, T, U> : IParser<TToken, U>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly ReadOnlySpanFunc<TToken, T, U> _selector;
 
-    public MapWithInputParser(Parser<TToken, T> parser, ReadOnlySpanFunc<TToken, T, U> selector)
+    public MapWithInputParser(BoxParser<TToken, T>.Of<Next> parser, ReadOnlySpanFunc<TToken, T, U> selector)
     {
         _parser = parser;
         _selector = selector;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
     {
         var start = state.Location;
 
         var bookmark = state.Bookmark();  // don't discard input buffer
 
-        if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+        if (!_parser.Value.TryParse(ref state, ref expecteds, out var result1))
         {
             state.DiscardBookmark(bookmark);
             result = default;

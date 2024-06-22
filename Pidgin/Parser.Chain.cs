@@ -7,9 +7,19 @@ namespace Pidgin;
 
 public partial class Parser<TToken, T>
 {
+    // todo: maybe just write some loops
     internal Parser<TToken, U> ChainAtLeastOnce<U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)
         where TChainer : struct, IChainer<T, U>
-        => new ChainAtLeastOnceLParser<TToken, T, U, TChainer>(this, factory);
+        => Accept(new ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(factory));
+}
+
+internal class ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)
+    : IReboxer<TToken, T, U>
+    where TChainer : struct, IChainer<T, U>
+{
+    public BoxParser<TToken, U> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, U>.Create(new ChainAtLeastOnceLParser<Next, TToken, T, U, TChainer>(box, factory));
 }
 
 internal interface IChainer<in T, out U>
@@ -21,21 +31,22 @@ internal interface IChainer<in T, out U>
     void OnError();
 }
 
-internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, U>
+internal readonly struct ChainAtLeastOnceLParser<Next, TToken, T, U, TChainer> : IParser<TToken, U>
+    where Next : IParser<TToken, T>
     where TChainer : struct, IChainer<T, U>
 {
-    private readonly Parser<TToken, T> _parser;
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly Func<IConfiguration<TToken>, TChainer> _factory;
 
-    public ChainAtLeastOnceLParser(Parser<TToken, T> parser, Func<IConfiguration<TToken>, TChainer> factory)
+    public ChainAtLeastOnceLParser(BoxParser<TToken, T>.Of<Next> parser, Func<IConfiguration<TToken>, TChainer> factory)
     {
         _parser = parser;
         _factory = factory;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out U result)
     {
-        if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+        if (!_parser.Value.TryParse(ref state, ref expecteds, out var result1))
         {
             // state.Error set by _parser
             result = default;
@@ -47,7 +58,7 @@ internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, 
 
         var lastStartLoc = state.Location;
         var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
-        while (_parser.TryParse(ref state, ref childExpecteds, out var childResult))
+        while (_parser.Value.TryParse(ref state, ref childExpecteds, out var childResult))
         {
             var endLoc = state.Location;
             childExpecteds.Clear();

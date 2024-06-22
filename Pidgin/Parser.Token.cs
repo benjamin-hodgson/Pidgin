@@ -13,7 +13,7 @@ public static partial class Parser<TToken>
     /// <param name="token">The token to parse.</param>
     /// <returns>A parser that parses and returns a single token.</returns>
     public static Parser<TToken, TToken> Token(TToken token)
-        => new TokenParser<TToken>(token);
+        => BoxParser<TToken, TToken>.Create(new TokenParser<TToken>(token));
 
     /// <summary>
     /// Creates a parser that parses and returns a single token satisfying a predicate.
@@ -27,11 +27,11 @@ public static partial class Parser<TToken>
             throw new ArgumentNullException(nameof(predicate));
         }
 
-        return new PredicateTokenParser<TToken>(predicate);
+        return BoxParser<TToken, TToken>.Create(new PredicateTokenParser<TToken>(predicate));
     }
 }
 
-internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
+internal struct TokenParser<TToken> : IParser<TToken, TToken>
 {
     private readonly TToken _token;
     private Expected<TToken> _expected;
@@ -54,7 +54,7 @@ internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
         _token = token;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
     {
         if (!state.HasCurrent)
         {
@@ -79,7 +79,7 @@ internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
     }
 }
 
-internal sealed class PredicateTokenParser<TToken> : Parser<TToken, TToken>
+internal readonly struct PredicateTokenParser<TToken> : IParser<TToken, TToken>
 {
     private readonly Func<TToken, bool> _predicate;
 
@@ -88,7 +88,7 @@ internal sealed class PredicateTokenParser<TToken> : Parser<TToken, TToken>
         _predicate = predicate;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TToken result)
     {
         if (!state.HasCurrent)
         {

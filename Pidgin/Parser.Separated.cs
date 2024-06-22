@@ -38,7 +38,7 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(separator));
         }
 
-        return new SeparatedAtLeastOnceParser<TToken, T, U>(this, separator);
+        return BoxParser<TToken, IEnumerable<T>>.Create(new SeparatedAtLeastOnceParser<TToken, T, U>(this, separator));
     }
 
     /// <summary>
@@ -107,11 +107,13 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(separator));
         }
 
-        return new SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U>(this, separator);
+        return BoxParser<TToken, IEnumerable<T>>
+            .Create(new SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U>(this, separator));
     }
 }
 
-internal sealed class SeparatedAtLeastOnceParser<TToken, T, U> : Parser<TToken, IEnumerable<T>>
+// todo: devirtualise
+internal readonly struct SeparatedAtLeastOnceParser<TToken, T, U> : IParser<TToken, IEnumerable<T>>
 {
     private readonly Parser<TToken, T> _parser;
     private readonly Parser<TToken, T> _remainderParser;
@@ -122,7 +124,7 @@ internal sealed class SeparatedAtLeastOnceParser<TToken, T, U> : Parser<TToken, 
         _remainderParser = separator.Then(parser);
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
     {
         if (!_parser.TryParse(ref state, ref expecteds, out var result1))
         {
@@ -176,7 +178,8 @@ internal sealed class SeparatedAtLeastOnceParser<TToken, T, U> : Parser<TToken, 
     }
 }
 
-internal sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U> : Parser<TToken, IEnumerable<T>>
+// todo: devirtualise
+internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U> : IParser<TToken, IEnumerable<T>>
 {
     private readonly Parser<TToken, T> _parser;
     private readonly Parser<TToken, U> _separator;
@@ -187,7 +190,7 @@ internal sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, 
         _separator = separator;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
     {
         if (!_parser.TryParse(ref state, ref expecteds, out var result1))
         {

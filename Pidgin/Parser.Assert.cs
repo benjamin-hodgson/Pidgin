@@ -59,31 +59,40 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(message));
         }
 
-        return new AssertParser<TToken, T>(this, predicate, message);
+        return Accept(new AssertParserFactory<TToken, T>(predicate, message));
     }
 }
 
-internal sealed class AssertParser<TToken, T> : Parser<TToken, T>
+internal class AssertParserFactory<TToken, T>(Func<T, bool> predicate, Func<T, string> message)
+    : IReboxer<TToken, T, T>
+{
+    public BoxParser<TToken, T> WithBox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
+        where TImpl : IParser<TToken, T>
+        => BoxParser<TToken, T>.Create(new AssertParser<TImpl, TToken, T>(box, predicate, message));
+}
+
+internal readonly struct AssertParser<Next, TToken, T> : IParser<TToken, T>
+    where Next : IParser<TToken, T>
 {
     private static readonly Expected<TToken> _expected
         = new("result satisfying assertion");
 
-    private readonly Parser<TToken, T> _parser;
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly Func<T, bool> _predicate;
     private readonly Func<T, string> _message;
 
-    public AssertParser(Parser<TToken, T> parser, Func<T, bool> predicate, Func<T, string> message)
+    public AssertParser(BoxParser<TToken, T>.Of<Next> parser, Func<T, bool> predicate, Func<T, string> message)
     {
         _parser = parser;
         _predicate = predicate;
         _message = message;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
 
-        var success = _parser.TryParse(ref state, ref childExpecteds, out result);
+        var success = _parser.Value.TryParse(ref state, ref childExpecteds, out result);
 
         if (success)
         {
