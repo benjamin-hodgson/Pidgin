@@ -28,12 +28,12 @@ public static partial class Parser
     /// A parser that discards a sequence of whitespace characters.
     /// </summary>
     public static Parser<char, Unit> SkipWhitespaces { get; }
-        = new SkipWhitespacesParser();
+        = BoxParser<char, Unit>.Create(default(SkipWhitespacesParser));
 }
 
-internal class SkipWhitespacesParser : Parser<char, Unit>
+internal readonly struct SkipWhitespacesParser : IParser<char, Unit>
 {
-    public override unsafe bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
+    public unsafe bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)
     {
         const long space = ' ';
         const long fourSpaces = space | space << 16 | space << 32 | space << 48;

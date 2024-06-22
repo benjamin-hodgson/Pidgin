@@ -6,12 +6,12 @@ public static partial class Parser<TToken>
     /// A parser which returns the number of input tokens which have been consumed.
     /// </summary>
     public static Parser<TToken, int> CurrentOffset { get; }
-        = new CurrentOffsetParser<TToken>();
+        = BoxParser<TToken, int>.Create(default(CurrentOffsetParser<TToken>));
 }
 
-internal sealed class CurrentOffsetParser<TToken> : Parser<TToken, int>
+internal readonly struct CurrentOffsetParser<TToken> : IParser<TToken, int>
 {
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out int result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out int result)
     {
         result = state.Location;
         return true;

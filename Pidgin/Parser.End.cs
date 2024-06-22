@@ -8,12 +8,13 @@ public static partial class Parser<TToken>
     /// Creates a parser which parses the end of the input stream.
     /// </summary>
     /// <returns>A parser which parses the end of the input stream and returns <see cref="Unit.Value"/>.</returns>
-    public static Parser<TToken, Unit> End { get; } = new EndParser<TToken>();
+    public static Parser<TToken, Unit> End { get; }
+        = BoxParser<TToken, Unit>.Create(default(EndParser<TToken>));
 }
 
-internal sealed class EndParser<TToken> : Parser<TToken, Unit>
+internal readonly struct EndParser<TToken> : IParser<TToken, Unit>
 {
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)
     {
         if (state.HasCurrent)
         {

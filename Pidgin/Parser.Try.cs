@@ -19,24 +19,39 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser));
         }
 
-        return new TryParser<TToken, T>(parser);
+        return parser.Accept(TryParserFactory<TToken, T>.Instance);
     }
 }
 
-internal sealed class TryParser<TToken, T> : Parser<TToken, T>
+internal class TryParserFactory<TToken, T> : IReboxer<TToken, T, T>
 {
-    private readonly Parser<TToken, T> _parser;
+    private TryParserFactory()
+    {
+    }
 
-    public TryParser(Parser<TToken, T> parser)
+    public BoxParser<TToken, T> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, T>.Create(new TryParser<Next, TToken, T>(box));
+
+    public static TryParserFactory<TToken, T> Instance { get; }
+        = new();
+}
+
+internal readonly struct TryParser<Next, TToken, T> : IParser<TToken, T>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
+
+    public TryParser(BoxParser<TToken, T>.Of<Next> parser)
     {
         _parser = parser;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         // start buffering the input
         var bookmark = state.Bookmark();
-        if (!_parser.TryParse(ref state, ref expecteds, out result))
+        if (!_parser.Value.TryParse(ref state, ref expecteds, out result))
         {
             // return to the start of the buffer and discard the bookmark
             state.Rewind(bookmark);

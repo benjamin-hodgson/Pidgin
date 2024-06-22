@@ -17,26 +17,34 @@ public partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(errorHandler));
         }
 
-        return new RecoverWithParser<TToken, T>(this, errorHandler);
+        return Accept(new RecoverWithParserFactory<TToken, T>(errorHandler));
     }
 }
 
-internal sealed class RecoverWithParser<TToken, T> : Parser<TToken, T>
+internal class RecoverWithParserFactory<TToken, T>(Func<ParseError<TToken>, Parser<TToken, T>> errorHandler) : IReboxer<TToken, T, T>
 {
-    private readonly Parser<TToken, T> _parser;
+    public BoxParser<TToken, T> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, T>.Create(new RecoverWithParser<Next, TToken, T>(box, errorHandler));
+}
+
+internal readonly struct RecoverWithParser<Next, TToken, T> : IParser<TToken, T>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly Func<ParseError<TToken>, Parser<TToken, T>> _errorHandler;
 
-    public RecoverWithParser(Parser<TToken, T> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler)
+    public RecoverWithParser(BoxParser<TToken, T>.Of<Next> parser, Func<ParseError<TToken>, Parser<TToken, T>> errorHandler)
     {
         _parser = parser;
         _errorHandler = errorHandler;
     }
 
     // see comment about expecteds in ParseState.Error.cs
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
-        if (_parser.TryParse(ref state, ref childExpecteds, out result))
+        if (_parser.Value.TryParse(ref state, ref childExpecteds, out result))
         {
             childExpecteds.Dispose();
             return true;

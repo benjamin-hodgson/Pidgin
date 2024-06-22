@@ -43,26 +43,35 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(result));
         }
 
-        return new BindParser<TToken, T, U, R>(this, selector, result);
+        return Accept(new BindParserFactory<TToken, T, U, R>(selector, result));
     }
 }
 
-internal sealed class BindParser<TToken, T, U, R> : Parser<TToken, R>
+internal class BindParserFactory<TToken, T, U, R>(Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
+    : IReboxer<TToken, T, R>
 {
-    private readonly Parser<TToken, T> _parser;
+    public BoxParser<TToken, R> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, R>.Create(new BindParser<Next, TToken, T, U, R>(box, func, result));
+}
+
+internal readonly struct BindParser<Next, TToken, T, U, R> : IParser<TToken, R>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly Func<T, Parser<TToken, U>> _func;
     private readonly Func<T, U, R> _result;
 
-    public BindParser(Parser<TToken, T> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
+    public BindParser(BoxParser<TToken, T>.Of<Next> parser, Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
     {
         _parser = parser;
         _func = func;
         _result = result;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out R result)
     {
-        var success = _parser.TryParse(ref state, ref expecteds, out var childResult);
+        var success = _parser.Value.TryParse(ref state, ref expecteds, out var childResult);
         if (!success)
         {
             // state.Error set by _parser

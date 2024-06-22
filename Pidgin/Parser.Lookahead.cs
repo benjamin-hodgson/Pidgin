@@ -21,24 +21,39 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser));
         }
 
-        return new LookaheadParser<TToken, T>(parser);
+        return parser.Accept(LookaheadParserFactory<TToken, T>.Instance);
     }
 }
 
-internal sealed class LookaheadParser<TToken, T> : Parser<TToken, T>
+internal class LookaheadParserFactory<TToken, T> : IReboxer<TToken, T, T>
 {
-    private readonly Parser<TToken, T> _parser;
+    public LookaheadParserFactory()
+    {
+    }
 
-    public LookaheadParser(Parser<TToken, T> parser)
+    public BoxParser<TToken, T> WithBox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
+        where TImpl : IParser<TToken, T>
+        => BoxParser<TToken, T>.Create(new LookaheadParser<TImpl, TToken, T>(box));
+
+    public static LookaheadParserFactory<TToken, T> Instance { get; }
+        = new();
+}
+
+internal readonly struct LookaheadParser<Next, TToken, T> : IParser<TToken, T>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
+
+    public LookaheadParser(BoxParser<TToken, T>.Of<Next> parser)
     {
         _parser = parser;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         var bookmark = state.Bookmark();
 
-        if (_parser.TryParse(ref state, ref expecteds, out result))
+        if (_parser.Value.TryParse(ref state, ref expecteds, out result))
         {
             state.Rewind(bookmark);
             return true;

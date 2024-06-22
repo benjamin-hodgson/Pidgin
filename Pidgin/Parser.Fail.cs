@@ -19,11 +19,11 @@ public static partial class Parser<TToken>
             throw new ArgumentNullException(nameof(message));
         }
 
-        return new FailParser<TToken, T>(message);
+        return BoxParser<TToken, T>.Create(new FailParser<TToken, T>(message));
     }
 }
 
-internal sealed class FailParser<TToken, T> : Parser<TToken, T>
+internal readonly struct FailParser<TToken, T> : IParser<TToken, T>
 {
     private static readonly Expected<TToken> _expected
         = new(ImmutableArray<TToken>.Empty);
@@ -35,7 +35,7 @@ internal sealed class FailParser<TToken, T> : Parser<TToken, T>
         _message = message;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         state.SetError(Maybe.Nothing<TToken>(), false, state.Location, _message);
         expecteds.Add(_expected);

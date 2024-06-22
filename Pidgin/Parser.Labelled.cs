@@ -25,24 +25,33 @@ public partial class Parser<TToken, T>
     }
 
     internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
-        => new WithExpectedParser<TToken, T>(this, expected);
+        => Accept(new WithExpectedParserFactory<TToken, T>(expected));
 }
 
-internal sealed class WithExpectedParser<TToken, T> : Parser<TToken, T>
+internal class WithExpectedParserFactory<TToken, T>(ImmutableArray<Expected<TToken>> expected)
+    : IReboxer<TToken, T, T>
 {
-    private readonly Parser<TToken, T> _parser;
+    public BoxParser<TToken, T> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+        where Next : IParser<TToken, T>
+        => BoxParser<TToken, T>.Create(new WithExpectedParser<Next, TToken, T>(box, expected));
+}
+
+internal readonly struct WithExpectedParser<Next, TToken, T> : IParser<TToken, T>
+    where Next : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next> _parser;
     private readonly ImmutableArray<Expected<TToken>> _expected;
 
-    public WithExpectedParser(Parser<TToken, T> parser, ImmutableArray<Expected<TToken>> expected)
+    public WithExpectedParser(BoxParser<TToken, T>.Of<Next> parser, ImmutableArray<Expected<TToken>> expected)
     {
         _parser = parser;
         _expected = expected;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
     {
         var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
-        var success = _parser.TryParse(ref state, ref childExpecteds, out result);
+        var success = _parser.Value.TryParse(ref state, ref childExpecteds, out result);
         if (!success)
         {
             expecteds.AddRange(_expected);

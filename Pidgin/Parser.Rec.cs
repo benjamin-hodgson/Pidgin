@@ -85,11 +85,12 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser));
         }
 
-        return new RecParser<TToken, T>(parser);
+        return BoxParser<TToken, T>.Create(new RecParser<TToken, T>(parser));
     }
 }
 
-internal sealed class RecParser<TToken, T> : Parser<TToken, T>
+// todo: devirtualise if lazy has already been created?
+internal readonly struct RecParser<TToken, T> : IParser<TToken, T>
 {
     private readonly Lazy<Parser<TToken, T>> _lazy;
 
@@ -98,6 +99,6 @@ internal sealed class RecParser<TToken, T> : Parser<TToken, T>
         _lazy = lazy;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
         => _lazy.Value.TryParse(ref state, ref expecteds, out result);
 }

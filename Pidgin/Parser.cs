@@ -25,6 +25,15 @@ public static partial class Parser<TToken>
 {
 }
 
+internal interface IParser<TToken, T>
+{
+    bool TryParse(
+        ref ParseState<TToken> state,
+        ref PooledList<Expected<TToken>> expecteds,
+        [MaybeNullWhen(false)] out T result
+    );
+}
+
 /// <summary>
 /// Represents a parser which consumes a stream of values of type <typeparamref name="TToken"/> and returns a value of type <typeparamref name="T"/>.
 /// A parser can either succeed, and return a value of type <typeparamref name="T"/>, or fail and return a <see cref="ParseError{TToken}"/>.
@@ -32,7 +41,7 @@ public static partial class Parser<TToken>
 /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
 /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
 /// <remarks>This type is not intended to be subclassed by users of the library.</remarks>
-public abstract partial class Parser<TToken, T>
+public abstract partial class Parser<TToken, T> : IParser<TToken, T>
 {
     // invariant: state.Error is populated with the error that caused the failure
     // if the result was not successful
@@ -55,6 +64,7 @@ public abstract partial class Parser<TToken, T>
     /// <param name="result">The result.</param>
     /// <returns>True if the parser succeeded, false if it failed.</returns>
     [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [SuppressMessage("Security", "CA2119:Seal methods that satisfy private interfaces", Justification = "no")]
     public abstract bool TryParse(
         ref ParseState<TToken> state,
         ref PooledList<Expected<TToken>> expecteds,

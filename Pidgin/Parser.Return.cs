@@ -9,10 +9,10 @@ public static partial class Parser<TToken>
     /// <typeparam name="T">The type of the value to return.</typeparam>
     /// <returns>A parser which returns the specified value without consuming any input.</returns>
     public static Parser<TToken, T> Return<T>(T value)
-        => new ReturnParser<TToken, T>(value);
+        => BoxParser<TToken, T>.Create(new ReturnParser<TToken, T>(value));
 }
 
-internal sealed class ReturnParser<TToken, T> : Parser<TToken, T>
+internal readonly struct ReturnParser<TToken, T> : IParser<TToken, T>
 {
     private readonly T _value;
 
@@ -21,7 +21,7 @@ internal sealed class ReturnParser<TToken, T> : Parser<TToken, T>
         _value = value;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out T result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out T result)
     {
         result = _value;
         return true;
