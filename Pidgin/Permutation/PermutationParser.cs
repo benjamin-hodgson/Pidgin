@@ -41,9 +41,7 @@ public static class PermutationParser
 /// </summary>
 /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
 /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
-#pragma warning disable SA1402  // "File may only contain a single type"
 public sealed class PermutationParser<TToken, T>
-#pragma warning restore SA1402  // "File may only contain a single type"
 {
     private readonly Func<T>? _exit;
     private readonly ImmutableList<PermutationParserBranch<TToken, T>> _forest;

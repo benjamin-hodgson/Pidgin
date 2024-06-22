@@ -32,11 +32,6 @@ public abstract partial class Parser<TToken, T>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal class MapWithInputParser<TToken, T, U> : Parser<TToken, U>
 {
     private readonly Parser<TToken, T> _parser;

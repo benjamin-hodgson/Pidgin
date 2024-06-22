@@ -11,11 +11,6 @@ public static partial class Parser<TToken>
     public static Parser<TToken, Unit> End { get; } = new EndParser<TToken>();
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class EndParser<TToken> : Parser<TToken, Unit>
 {
     public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out Unit result)

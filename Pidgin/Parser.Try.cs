@@ -23,11 +23,6 @@ public static partial class Parser
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class TryParser<TToken, T> : Parser<TToken, T>
 {
     private readonly Parser<TToken, T> _parser;

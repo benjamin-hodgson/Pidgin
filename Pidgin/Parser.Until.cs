@@ -209,11 +209,6 @@ public abstract partial class Parser<TToken, T>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class AtLeastOnceThenParser<TToken, T, U> : Parser<TToken, (IEnumerable<T>?, U)>
 {
     private readonly Parser<TToken, T> _parser;

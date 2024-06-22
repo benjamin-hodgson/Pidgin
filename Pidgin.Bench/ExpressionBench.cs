@@ -82,7 +82,7 @@ public class ExpressionBench
 
     [Benchmark(Baseline = true)]
     [BenchmarkCategory("Short")]
-    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
+    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "bench")]
     public void ShortInfixL_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseL("1+1");
@@ -90,7 +90,7 @@ public class ExpressionBench
 
     [Benchmark]
     [BenchmarkCategory("Short")]
-    [SuppressMessage("performance", "CA1822:Make member static", Justification = "Must be non-static for BenchmarkDotNet")]
+    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "bench")]
     public void ShortInfixR_FParsec()
     {
         Pidgin.Bench.FParsec.ExpressionParser.parseR("1+1");

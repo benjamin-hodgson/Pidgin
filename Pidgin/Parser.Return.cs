@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Pidgin;
 
 public static partial class Parser<TToken>
@@ -14,11 +12,6 @@ public static partial class Parser<TToken>
         => new ReturnParser<TToken, T>(value);
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class ReturnParser<TToken, T> : Parser<TToken, T>
 {
     private readonly T _value;

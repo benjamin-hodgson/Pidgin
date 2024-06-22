@@ -47,11 +47,6 @@ public abstract partial class Parser<TToken, T>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class BindParser<TToken, T, U, R> : Parser<TToken, R>
 {
     private readonly Parser<TToken, T> _parser;

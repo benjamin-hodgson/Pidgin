@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 using static Pidgin.Parser<char>;
 
@@ -32,11 +31,6 @@ public static partial class Parser
         = new SkipWhitespacesParser();
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal class SkipWhitespacesParser : Parser<char, Unit>
 {
     public override unsafe bool TryParse(ref ParseState<char> state, ref PooledList<Expected<char>> expecteds, out Unit result)

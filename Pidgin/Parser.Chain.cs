@@ -21,11 +21,6 @@ internal interface IChainer<in T, out U>
     void OnError();
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, U>
     where TChainer : struct, IChainer<T, U>
 {

@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Pidgin;
 
 public static partial class Parser<TToken>
@@ -11,11 +9,6 @@ public static partial class Parser<TToken>
         = new CurrentOffsetParser<TToken>();
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class CurrentOffsetParser<TToken> : Parser<TToken, int>
 {
     public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out int result)

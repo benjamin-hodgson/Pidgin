@@ -31,11 +31,6 @@ public static partial class Parser<TToken>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
 {
     private readonly TToken _token;
@@ -84,11 +79,6 @@ internal sealed class TokenParser<TToken> : Parser<TToken, TToken>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class PredicateTokenParser<TToken> : Parser<TToken, TToken>
 {
     private readonly Func<TToken, bool> _predicate;

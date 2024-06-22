@@ -28,11 +28,6 @@ public partial class Parser<TToken, T>
         => new WithExpectedParser<TToken, T>(this, expected);
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class WithExpectedParser<TToken, T> : Parser<TToken, T>
 {
     private readonly Parser<TToken, T> _parser;
@@ -56,8 +51,6 @@ internal sealed class WithExpectedParser<TToken, T> : Parser<TToken, T>
         childExpecteds.Dispose();
 
         // result is not null here
-#pragma warning disable CS8762  // Parameter 'result' must have a non-null value when exiting with 'true'.
         return success;
-#pragma warning restore CS8762
     }
 }

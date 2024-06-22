@@ -77,11 +77,6 @@ public static partial class Parser<TToken>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
 {
     private readonly Parser<TToken, T>[] _parsers;
@@ -113,11 +108,6 @@ internal sealed class SequenceParser<TToken, T> : Parser<TToken, IEnumerable<T>>
     }
 }
 
-[SuppressMessage(
-    "StyleCop.CSharp.MaintainabilityRules",
-    "SA1402:FileMayOnlyContainASingleType",
-    Justification = "This class belongs next to the accompanying API method"
-)]
 internal sealed class SequenceTokenParser<TToken, TEnumerable> : Parser<TToken, TEnumerable>
     where TEnumerable : IEnumerable<TToken>
 {
