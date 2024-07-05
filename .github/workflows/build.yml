@@ -1,5 +1,11 @@
 name: Build
 
+
+permissions:
+  id-token: write
+  attestations: write
+
+
 on:
   push:
     branches: [ main ]
