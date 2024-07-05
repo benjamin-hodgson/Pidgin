@@ -3,7 +3,7 @@
     <ItemGroup>
         <PackageVersion Include="BenchmarkDotNet" Version="0.13.10" />
         <PackageVersion Include="Benjamin.Pizza.DocTest" Version="1.0.1" />
-        <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+        <PackageVersion Include="coverlet.collector" Version="6.0.2" />
         <PackageVersion Include="FParsec" Version="1.1.1" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
         <PackageVersion Include="Sprache" Version="2.3.1" />
