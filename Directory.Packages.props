@@ -1,7 +1,7 @@
 <Project>
 
     <ItemGroup>
-        <PackageVersion Include="BenchmarkDotNet" Version="0.13.10" />
+        <PackageVersion Include="BenchmarkDotNet" Version="0.13.12" />
         <PackageVersion Include="Benjamin.Pizza.DocTest" Version="1.0.1" />
         <PackageVersion Include="coverlet.collector" Version="6.0.2" />
         <PackageVersion Include="FParsec" Version="1.1.1" />
