@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -14,8 +15,8 @@ internal static class MapGenerator
     // todo: figure out how to devirtualise
     private static string GenerateFile()
     {
-        var methods = Enumerable.Range(2, 8).Select(n => GenerateMethod(n));
-        var classes = Enumerable.Range(2, 8).Select(n => GenerateClass(n));
+        var methods = Enumerable.Range(2, 7).Select(n => GenerateMethod(n));
+        var classes = Enumerable.Range(2, 7).Select(n => GenerateClass(n));
 
         return $@"#region GeneratedCode
 using System;
@@ -33,10 +34,6 @@ namespace Pidgin
     // but this lower-level approach saves on allocations
     public static partial class Parser
     {{{string.Join(Environment.NewLine, methods)}
-    }}
-    internal abstract class MapParserBase<TToken, T> : Parser<TToken, T>
-    {{
-        internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
     }}
     {string.Join(Environment.NewLine, classes)}
 }}
@@ -57,7 +54,7 @@ namespace Pidgin
                 throw new ArgumentNullException(nameof({x}));
             }}"));
         var mapReturnExpr = num == 1
-            ? $@"parser1 is MapParserBase<TToken, T1> p
+            ? $@"parser1 is IMapParser<TToken, T1> p
                 ? p.Map(func)
                 : new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})"
             : $"new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})";
@@ -102,7 +99,7 @@ namespace Pidgin
         var funcArgNames = nums.Select(n => "x" + n);
 
         return $@"
-    internal sealed class Map{num}Parser<TToken, {types}, R> : MapParserBase<TToken, R>
+    internal sealed class Map{num}Parser<TToken, {types}, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {{
         private readonly Func<{types}, R> _func;
         {string.Join($"{Environment.NewLine}        ", parserFields)}
@@ -117,8 +114,7 @@ namespace Pidgin
         }}
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
-        {{
-            {string.Join(Environment.NewLine, parts)}
+        {{{string.Join(Environment.NewLine, parts)}
 
             result = _func(
                 {string.Join($",{Environment.NewLine}                ", results)}
@@ -126,7 +122,7 @@ namespace Pidgin
             return true;
         }}
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map{num}Parser<TToken, {types}, U>(
                 ({string.Join(", ", funcArgNames)}) => func(_func({string.Join(", ", funcArgNames)})),
                 {string.Join($",{Environment.NewLine}                ", parserFieldNames)}
@@ -155,7 +151,7 @@ namespace Pidgin
             6 => "sixth",
             7 => "seventh",
             8 => "eighth",
-            _ => throw new ArgumentOutOfRangeException(nameof(num)),
+            _ => throw new ArgumentOutOfRangeException(nameof(num), num.ToString(CultureInfo.InvariantCulture)),
         };
     }
 }

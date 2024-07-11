@@ -30,16 +30,15 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser1));
         }
 
-        return parser1 is MapParserBase<TToken, T1> p
-            ? p.Map(func)
+        return parser1 is IMapParser<TToken, T1> p
+            ? p.MapFast(func)
             : parser1.Accept(new Map1ParserFactory<TToken, T1, R>(func));
     }
 }
 
-// todo: rework this to allow devirtualisation (MapNParser should be a struct)
-internal abstract class MapParserBase<TToken, T> : Parser<TToken, T>
+internal interface IMapParser<TToken, T>
 {
-    internal new abstract MapParserBase<TToken, U> Map<U>(Func<T, U> func);
+    Parser<TToken, U> MapFast<U>(Func<T, U> func);
 }
 
 internal sealed class Map1ParserFactory<TToken, T1, R>(Func<T1, R> func)
@@ -50,7 +49,7 @@ internal sealed class Map1ParserFactory<TToken, T1, R>(Func<T1, R> func)
         => BoxParser<TToken, R>.Create(new Map1Parser<Next, TToken, T1, R>(func, box));
 }
 
-internal sealed class Map1Parser<Next, TToken, T1, R> : MapParserBase<TToken, R>
+internal sealed class Map1Parser<Next, TToken, T1, R> : Parser<TToken, R>, IMapParser<TToken, R>
     where Next : IParser<TToken, T1>
 {
     private readonly Func<T1, R> _func;
@@ -80,7 +79,7 @@ internal sealed class Map1Parser<Next, TToken, T1, R> : MapParserBase<TToken, R>
         return true;
     }
 
-    internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+    Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
         => new Map1Parser<Next, TToken, T1, U>(
             (x1) => func(_func(x1)),
             _p1
