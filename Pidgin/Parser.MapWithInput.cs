@@ -33,9 +33,9 @@ public abstract partial class Parser<TToken, T>
 }
 
 internal class MapWithInputParserFactory<TToken, T, U>(ReadOnlySpanFunc<TToken, T, U> selector)
-    : IReboxer<TToken, T, U>
+    : IUnboxer<TToken, T, BoxParser<TToken, U>>
 {
-    public BoxParser<TToken, U> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, U> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, U>.Create(new MapWithInputParser<Next, TToken, T, U>(box, selector));
 }

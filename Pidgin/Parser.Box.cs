@@ -4,15 +4,15 @@ namespace Pidgin;
 
 public partial class Parser<TToken, T>
 {
-    internal BoxParser<TToken, R> Accept<R>(IReboxer<TToken, T, R> reboxer)
+    internal R Accept<R>(IUnboxer<TToken, T, R> unboxer)
         => this is BoxParser<TToken, T> b
-            ? b.Rebox(reboxer)
-            : BoxParser<TToken, T>.Create(this).Rebox(reboxer);
+            ? b.Unbox(unboxer)
+            : BoxParser<TToken, T>.Create(this).Unbox(unboxer);
 }
 
-internal interface IReboxer<TToken, T, R>
+internal interface IUnboxer<TToken, T, R>
 {
-    BoxParser<TToken, R> WithBox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
+    R Unbox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
         where TImpl : IParser<TToken, T>;
 }
 
@@ -22,7 +22,7 @@ internal abstract class BoxParser<TToken, T> : Parser<TToken, T>
         where TImpl : IParser<TToken, T>
         => new(impl);
 
-    public abstract BoxParser<TToken, R> Rebox<R>(IReboxer<TToken, T, R> reboxer);
+    public abstract R Unbox<R>(IUnboxer<TToken, T, R> unboxer);
 
     public class Of<TImpl> : BoxParser<TToken, T>
         where TImpl : IParser<TToken, T>
@@ -39,7 +39,7 @@ internal abstract class BoxParser<TToken, T> : Parser<TToken, T>
         public override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out T result)
             => Value.TryParse(ref state, ref expecteds, out result);
 
-        public override BoxParser<TToken, R> Rebox<R>(IReboxer<TToken, T, R> reboxer)
-            => reboxer.WithBox(this);
+        public override R Unbox<R>(IUnboxer<TToken, T, R> unboxer)
+            => unboxer.Unbox(this);
     }
 }

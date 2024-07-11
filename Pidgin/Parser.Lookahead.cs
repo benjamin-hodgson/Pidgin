@@ -25,13 +25,13 @@ public static partial class Parser
     }
 }
 
-internal class LookaheadParserFactory<TToken, T> : IReboxer<TToken, T, T>
+internal class LookaheadParserFactory<TToken, T> : IUnboxer<TToken, T, BoxParser<TToken, T>>
 {
     public LookaheadParserFactory()
     {
     }
 
-    public BoxParser<TToken, T> WithBox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
+    public BoxParser<TToken, T> Unbox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
         where TImpl : IParser<TToken, T>
         => BoxParser<TToken, T>.Create(new LookaheadParser<TImpl, TToken, T>(box));
 

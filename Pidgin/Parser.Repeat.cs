@@ -39,9 +39,10 @@ public static partial class Parser
     }
 }
 
-internal class RepeatStringParserFactory<TToken>(int count) : IReboxer<TToken, char, string>
+internal class RepeatStringParserFactory<TToken>(int count)
+    : IUnboxer<TToken, char, BoxParser<TToken, string>>
 {
-    public BoxParser<TToken, string> WithBox<Next>(BoxParser<TToken, char>.Of<Next> box)
+    public BoxParser<TToken, string> Unbox<Next>(BoxParser<TToken, char>.Of<Next> box)
         where Next : IParser<TToken, char>
         => BoxParser<TToken, string>.Create(new RepeatStringParser<Next, TToken>(box, count));
 }

@@ -29,9 +29,9 @@ public partial class Parser<TToken, T>
 }
 
 internal class WithExpectedParserFactory<TToken, T>(ImmutableArray<Expected<TToken>> expected)
-    : IReboxer<TToken, T, T>
+    : IUnboxer<TToken, T, BoxParser<TToken, T>>
 {
-    public BoxParser<TToken, T> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, T> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, T>.Create(new WithExpectedParser<Next, TToken, T>(box, expected));
 }

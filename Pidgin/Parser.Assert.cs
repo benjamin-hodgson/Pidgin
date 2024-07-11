@@ -64,9 +64,9 @@ public abstract partial class Parser<TToken, T>
 }
 
 internal class AssertParserFactory<TToken, T>(Func<T, bool> predicate, Func<T, string> message)
-    : IReboxer<TToken, T, T>
+    : IUnboxer<TToken, T, BoxParser<TToken, T>>
 {
-    public BoxParser<TToken, T> WithBox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
+    public BoxParser<TToken, T> Unbox<TImpl>(BoxParser<TToken, T>.Of<TImpl> box)
         where TImpl : IParser<TToken, T>
         => BoxParser<TToken, T>.Create(new AssertParser<TImpl, TToken, T>(box, predicate, message));
 }

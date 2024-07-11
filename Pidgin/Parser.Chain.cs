@@ -14,10 +14,10 @@ public partial class Parser<TToken, T>
 }
 
 internal class ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)
-    : IReboxer<TToken, T, U>
+    : IUnboxer<TToken, T, BoxParser<TToken, U>>
     where TChainer : struct, IChainer<T, U>
 {
-    public BoxParser<TToken, U> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, U> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, U>.Create(new ChainAtLeastOnceLParser<Next, TToken, T, U, TChainer>(box, factory));
 }

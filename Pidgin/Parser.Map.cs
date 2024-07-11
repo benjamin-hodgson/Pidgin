@@ -42,9 +42,9 @@ internal interface IMapParser<TToken, T>
 }
 
 internal sealed class Map1ParserFactory<TToken, T1, R>(Func<T1, R> func)
-    : IReboxer<TToken, T1, R>
+    : IUnboxer<TToken, T1, BoxParser<TToken, R>>
 {
-    public BoxParser<TToken, R> WithBox<Next>(BoxParser<TToken, T1>.Of<Next> box)
+    public BoxParser<TToken, R> Unbox<Next>(BoxParser<TToken, T1>.Of<Next> box)
         where Next : IParser<TToken, T1>
         => BoxParser<TToken, R>.Create(new Map1Parser<Next, TToken, T1, R>(func, box));
 }
