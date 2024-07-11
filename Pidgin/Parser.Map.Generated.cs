@@ -385,8 +385,8 @@ namespace Pidgin
             return new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
         }
     }
-
-    internal sealed class Map2Parser<TToken, T1, T2, R> : MapParserBase<TToken, R>
+    
+    internal sealed class Map2Parser<TToken, T1, T2, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -405,7 +405,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -427,7 +426,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map2Parser<TToken, T1, T2, U>(
                 (x1, x2) => func(_func(x1, x2)),
                 _p1,
@@ -435,7 +434,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map3Parser<TToken, T1, T2, T3, R> : MapParserBase<TToken, R>
+    internal sealed class Map3Parser<TToken, T1, T2, T3, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -457,7 +456,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -487,7 +485,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map3Parser<TToken, T1, T2, T3, U>(
                 (x1, x2, x3) => func(_func(x1, x2, x3)),
                 _p1,
@@ -496,7 +494,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : MapParserBase<TToken, R>
+    internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, T4, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -521,7 +519,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -559,7 +556,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map4Parser<TToken, T1, T2, T3, T4, U>(
                 (x1, x2, x3, x4) => func(_func(x1, x2, x3, x4)),
                 _p1,
@@ -569,7 +566,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : MapParserBase<TToken, R>
+    internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, T4, T5, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -597,7 +594,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -643,7 +639,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map5Parser<TToken, T1, T2, T3, T4, T5, U>(
                 (x1, x2, x3, x4, x5) => func(_func(x1, x2, x3, x4, x5)),
                 _p1,
@@ -654,7 +650,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : MapParserBase<TToken, R>
+    internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, T4, T5, T6, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -685,7 +681,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -739,7 +734,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, U>(
                 (x1, x2, x3, x4, x5, x6) => func(_func(x1, x2, x3, x4, x5, x6)),
                 _p1,
@@ -751,7 +746,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : MapParserBase<TToken, R>
+    internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, T4, T5, T6, T7, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -785,7 +780,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -847,7 +841,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, U>(
                 (x1, x2, x3, x4, x5, x6, x7) => func(_func(x1, x2, x3, x4, x5, x6, x7)),
                 _p1,
@@ -860,7 +854,7 @@ namespace Pidgin
             );
     }
 
-    internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : MapParserBase<TToken, R>
+    internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Parser<TToken, R>, IMapParser<TToken, R>
     {
         private readonly Func<T1, T2, T3, T4, T5, T6, T7, T8, R> _func;
         private readonly Parser<TToken, T1> _p1;
@@ -897,7 +891,6 @@ namespace Pidgin
 
         public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
         {
-
             var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
             if (!success1)
             {
@@ -967,7 +960,7 @@ namespace Pidgin
             return true;
         }
 
-        internal override MapParserBase<TToken, U> Map<U>(Func<R, U> func)
+        Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
             => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, U>(
                 (x1, x2, x3, x4, x5, x6, x7, x8) => func(_func(x1, x2, x3, x4, x5, x6, x7, x8)),
                 _p1,
