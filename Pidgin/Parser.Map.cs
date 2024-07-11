@@ -36,7 +36,7 @@ public static partial class Parser
     }
 }
 
-internal interface IMapParser<TToken, T>
+internal interface IMapParser<TToken, T> : IParser<TToken, T>
 {
     Parser<TToken, U> MapFast<U>(Func<T, U> func);
 }
@@ -49,7 +49,7 @@ internal sealed class Map1ParserFactory<TToken, T1, R>(Func<T1, R> func)
         => BoxParser<TToken, R>.Create(new Map1Parser<Next, TToken, T1, R>(func, box));
 }
 
-internal sealed class Map1Parser<Next, TToken, T1, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal readonly struct Map1Parser<Next, TToken, T1, R> : IMapParser<TToken, R>
     where Next : IParser<TToken, T1>
 {
     private readonly Func<T1, R> _func;
@@ -64,7 +64,7 @@ internal sealed class Map1Parser<Next, TToken, T1, R> : Parser<TToken, R>, IMapP
         _p1 = parser1;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
         var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
@@ -79,9 +79,12 @@ internal sealed class Map1Parser<Next, TToken, T1, R> : Parser<TToken, R>, IMapP
         return true;
     }
 
-    Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map1Parser<Next, TToken, T1, U>(
-            (x1) => func(_func(x1)),
+    Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> g)
+    {
+        var f = _func;
+        return BoxParser<TToken, U>.Create(new Map1Parser<Next, TToken, T1, U>(
+            (x1) => g(f(x1)),
             _p1
-        );
+        ));
+    }
 }
