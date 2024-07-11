@@ -36,17 +36,21 @@ public static partial class Parser
     }
 }
 
+// todo: devirtualise the remaining (generated) IMapParsers
 internal interface IMapParser<TToken, T> : IParser<TToken, T>
 {
     Parser<TToken, U> MapFast<U>(Func<T, U> func);
 }
 
 internal sealed class Map1ParserFactory<TToken, T1, R>(Func<T1, R> func)
-    : IUnboxer<TToken, T1, BoxParser<TToken, R>>
+    : IUnboxer<TToken, T1, Parser<TToken, R>>
 {
-    public BoxParser<TToken, R> Unbox<Next>(BoxParser<TToken, T1>.Of<Next> box)
+    public Parser<TToken, R> Unbox<Next>(BoxParser<TToken, T1>.Of<Next> box)
         where Next : IParser<TToken, T1>
-        => BoxParser<TToken, R>.Create(new Map1Parser<Next, TToken, T1, R>(func, box));
+        /* `m` is typically a boxed value type, we're building parsers anyway */
+        => box.Value is IMapParser<TToken, T1> m
+            ? m.MapFast(func)
+            : BoxParser<TToken, R>.Create(new Map1Parser<Next, TToken, T1, R>(func, box));
 }
 
 internal readonly struct Map1Parser<Next, TToken, T1, R> : IMapParser<TToken, R>
