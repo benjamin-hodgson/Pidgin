@@ -25,13 +25,13 @@ public static partial class Parser
     }
 }
 
-internal class NegatedParserFactory<TToken, T> : IReboxer<TToken, T, Unit>
+internal class NegatedParserFactory<TToken, T> : IUnboxer<TToken, T, BoxParser<TToken, Unit>>
 {
     private NegatedParserFactory()
     {
     }
 
-    public BoxParser<TToken, Unit> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, Unit> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, Unit>.Create(new NegatedParser<Next, TToken, T>(box));
 

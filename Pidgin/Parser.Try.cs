@@ -23,13 +23,13 @@ public static partial class Parser
     }
 }
 
-internal class TryParserFactory<TToken, T> : IReboxer<TToken, T, T>
+internal class TryParserFactory<TToken, T> : IUnboxer<TToken, T, BoxParser<TToken, T>>
 {
     private TryParserFactory()
     {
     }
 
-    public BoxParser<TToken, T> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, T> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, T>.Create(new TryParser<Next, TToken, T>(box));
 

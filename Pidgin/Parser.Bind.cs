@@ -48,9 +48,9 @@ public abstract partial class Parser<TToken, T>
 }
 
 internal class BindParserFactory<TToken, T, U, R>(Func<T, Parser<TToken, U>> func, Func<T, U, R> result)
-    : IReboxer<TToken, T, R>
+    : IUnboxer<TToken, T, BoxParser<TToken, R>>
 {
-    public BoxParser<TToken, R> WithBox<Next>(BoxParser<TToken, T>.Of<Next> box)
+    public BoxParser<TToken, R> Unbox<Next>(BoxParser<TToken, T>.Of<Next> box)
         where Next : IParser<TToken, T>
         => BoxParser<TToken, R>.Create(new BindParser<Next, TToken, T, U, R>(box, func, result));
 }
