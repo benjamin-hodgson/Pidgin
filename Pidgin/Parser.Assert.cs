@@ -59,7 +59,7 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(message));
         }
 
-        return Accept(new AssertParserFactory<TToken, T>(predicate, message));
+        return new AssertParserFactory<TToken, T>(predicate, message).Unbox(this);
     }
 }
 

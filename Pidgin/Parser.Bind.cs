@@ -43,7 +43,7 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(result));
         }
 
-        return Accept(new BindParserFactory<TToken, T, U, R>(selector, result));
+        return new BindParserFactory<TToken, T, U, R>(selector, result).Unbox(this);
     }
 }
 

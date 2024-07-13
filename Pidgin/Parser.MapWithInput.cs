@@ -28,7 +28,7 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(selector));
         }
 
-        return Accept(new MapWithInputParserFactory<TToken, T, U>(selector));
+        return new MapWithInputParserFactory<TToken, T, U>(selector).Unbox(this);
     }
 }
 

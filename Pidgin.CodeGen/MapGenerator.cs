@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,7 @@ internal static class MapGenerator
     private static string GenerateFile()
     {
         var methods = Enumerable.Range(2, 7).Select(n => GenerateMethod(n));
-        var classes = Enumerable.Range(2, 7).Select(n => GenerateClass(n));
+        var classes = Enumerable.Range(2, 7).Select(n => GenerateParserFactoryClasses(n) + "\n" + GenerateParserClass(n));
 
         return $@"#region GeneratedCode
 using System;
@@ -33,9 +34,9 @@ namespace Pidgin;
 //         select func(x1, x2, ..., xn)
 // but this lower-level approach saves on allocations
 public static partial class Parser
-{{{string.Join(Environment.NewLine, methods)}
+{{{string.Join("\n", methods)}
 }}
-{string.Join(Environment.NewLine, classes)}
+{string.Join("\n", classes)}
 #endregion
 ";
     }
@@ -52,11 +53,7 @@ public static partial class Parser
         {{
             throw new ArgumentNullException(nameof({x}));
         }}"));
-        var mapReturnExpr = num == 1
-            ? $@"parser1 is IMapParser<TToken, T1> p
-                ? p.Map(func)
-                : new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})"
-            : $"new Map{num}Parser<TToken, {types}, R>(func, {string.Join(", ", parserParamNames)})";
+        var mapReturnExpr = $"new Map{num}ParserFactory1<TToken, {types}, R>(func).Unbox({string.Join(").Unbox(", parserParamNames)})";
 
         var typeParamDocs = nums.Select(n => $"<typeparam name=\"T{n}\">The return type of the {EnglishNumber(n)} parser</typeparam>");
         var paramDocs = nums.Select(n => $"<param name=\"parser{n}\">The {EnglishNumber(n)} parser</param>");
@@ -66,13 +63,13 @@ public static partial class Parser
     /// Creates a parser that applies the specified parsers sequentially and applies the specified transformation function to their results.
     /// </summary>
     /// <param name=""func"">A function to apply to the return values of the specified parsers</param>
-    /// {string.Join($"{Environment.NewLine}    /// ", paramDocs)}
+    /// {string.Join("\n    /// ", paramDocs)}
     /// <typeparam name=""TToken"">The type of tokens in the parser's input stream</typeparam>
-    /// {string.Join($"{Environment.NewLine}    /// ", typeParamDocs)}
+    /// {string.Join("\n    /// ", typeParamDocs)}
     /// <typeparam name=""R"">The return type of the resulting parser</typeparam>
     public static Parser<TToken, R> Map<TToken, {types}, R>(
         Func<{types}, R> func,
-        {string.Join($",{Environment.NewLine}        ", parserParams)}
+        {string.Join(",\n        ", parserParams)}
     )
     {{
         if (func == null)
@@ -84,54 +81,95 @@ public static partial class Parser
     }}";
     }
 
-    private static string GenerateClass(int num)
+    private static string GenerateParserFactoryClasses(int num)
+        => string.Join("\n", Enumerable.Range(1, num).Select(n => GenerateParserFactoryClass(num, n)));
+
+    private static string GenerateParserFactoryClass(int parserNum, int factoryNum)
+    {
+        var nums = Enumerable.Range(1, factoryNum);
+        var paramTypes = string.Join(", ", Enumerable.Range(1, parserNum).Select(n => $"T{n}"));
+
+        var nextNums = Enumerable.Range(1, factoryNum - 1);
+        var parserParams = JoinAndPrefix(nextNums.Select(n => $"BoxParser<TToken, T{n}>.Of<Next{n}> parser{n}"), ",\n    ");
+        var parserParamNames = JoinAndPrefix(nextNums.Select(n => $"parser{n}"), ", ");
+        var theseNextTypes = JoinAndPrefix(nextNums.Select(n => $"Next{n}"), ", ");
+        var nextNextTypes = JoinAndPrefix(nums.Select(n => $"Next{n}"), ", ");
+        var whereClauses = nextNums.Select(n => $"where Next{n} : IParser<TToken, T{n}>");
+
+        var resultType = Enumerable.Range(factoryNum, parserNum - factoryNum)
+            .Reverse()
+            .Aggregate("Parser<TToken, R>", (z, n) => $"IUnboxer<TToken, T{n + 1}, {z}>");
+
+        var resultExpr = parserNum == factoryNum
+            ? $"BoxParser<TToken, R>.Create(new Map{parserNum}Parser<TToken, {paramTypes}{nextNextTypes}, R>(func{parserParamNames}, box))"
+            : $"new Map{parserNum}ParserFactory{factoryNum + 1}<TToken, {paramTypes}{nextNextTypes}, R>(func{parserParamNames}, box)";
+
+        return $@"
+internal sealed class Map{parserNum}ParserFactory{factoryNum}<TToken, {paramTypes}{theseNextTypes}, R>(
+    Func<{string.Join(", ", paramTypes)}, R> func{parserParams}
+) : IUnboxer<TToken, T{factoryNum}, {resultType}>
+    {string.Join("\n    ", whereClauses)}
+{{
+    public {resultType} Unbox<Next{factoryNum}>(BoxParser<TToken, T{factoryNum}>.Of<Next{factoryNum}> box)
+        where Next{factoryNum} : IParser<TToken, T{factoryNum}>
+        => {resultExpr};
+}}";
+    }
+
+    private static string GenerateParserClass(int num)
     {
         var nums = Enumerable.Range(1, num);
-        var parserParams = nums.Select(n => $"Parser<TToken, T{n}> parser{n}");
-        var parserFields = nums.Select(n => $"private readonly Parser<TToken, T{n}> _p{n};");
+        var parserParams = nums.Select(n => $"BoxParser<TToken, T{n}>.Of<Next{n}> parser{n}");
+        var whereClauses = nums.Select(n => $"where Next{n} : IParser<TToken, T{n}>");
+        var parserFields = nums.Select(n => $"private readonly BoxParser<TToken, T{n}>.Of<Next{n}> _p{n};");
         var parserParamNames = nums.Select(n => $"parser{n}");
         var parserFieldNames = nums.Select(n => $"_p{n}");
         var parserFieldAssignments = nums.Select(n => $"_p{n} = parser{n};");
         var results = nums.Select(n => $"result{n}");
         var types = string.Join(", ", nums.Select(n => "T" + n));
+        var nextTypes = string.Join(", ", nums.Select(n => "Next" + n));
         var parts = nums.Select(GenerateMethodBodyPart);
         var funcArgNames = nums.Select(n => "x" + n);
 
         return $@"
-internal sealed class Map{num}Parser<TToken, {types}, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal readonly struct Map{num}Parser<TToken, {types}, {nextTypes}, R> : IMapParser<TToken, R>
+    {string.Join("\n    ", whereClauses)}
 {{
     private readonly Func<{types}, R> _func;
-    {string.Join($"{Environment.NewLine}    ", parserFields)}
+    {string.Join("\n    ", parserFields)}
 
     public Map{num}Parser(
         Func<{types}, R> func,
-        {string.Join($",{Environment.NewLine}        ", parserParams)}
+        {string.Join(",\n        ", parserParams)}
     )
     {{
         _func = func;
-        {string.Join($"{Environment.NewLine}        ", parserFieldAssignments)}
+        {string.Join("\n        ", parserFieldAssignments)}
     }}
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
-    {{{string.Join(Environment.NewLine, parts)}
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    {{{string.Join("\n", parts)}
 
         result = _func(
-            {string.Join($",{Environment.NewLine}            ", results)}
+            {string.Join(",\n            ", results)}
         );
         return true;
     }}
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map{num}Parser<TToken, {types}, U>(
-            ({string.Join(", ", funcArgNames)}) => func(_func({string.Join(", ", funcArgNames)})),
-            {string.Join($",{Environment.NewLine}            ", parserFieldNames)}
-        );
+    {{
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map{num}Parser<TToken, {types}, {nextTypes}, U>>(new(
+            ({string.Join(", ", funcArgNames)}) => func(f({string.Join(", ", funcArgNames)})),
+            {string.Join(",\n            ", parserFieldNames)}
+        ));
+    }}
 }}";
     }
 
     private static string GenerateMethodBodyPart(int num)
         => $@"
-        var success{num} = _p{num}.TryParse(ref state, ref expecteds, out var result{num});
+        var success{num} = _p{num}.Value.TryParse(ref state, ref expecteds, out var result{num});
         if (!success{num})
         {{
             result = default;
@@ -151,4 +189,9 @@ internal sealed class Map{num}Parser<TToken, {types}, R> : Parser<TToken, R>, IM
             8 => "eighth",
             _ => throw new ArgumentOutOfRangeException(nameof(num), num.ToString(CultureInfo.InvariantCulture)),
         };
+
+    private static string JoinAndPrefix(IEnumerable<string> enumerable, string joiner)
+        => !enumerable.Any()
+            ? ""
+            : joiner + string.Join(joiner, enumerable);
 }
