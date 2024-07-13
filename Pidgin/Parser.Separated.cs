@@ -38,7 +38,9 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(separator));
         }
 
-        return BoxParser<TToken, IEnumerable<T>>.Create(new SeparatedAtLeastOnceParser<TToken, T, U>(this, separator));
+        return SeparatedAtLeastOnceParserFactory1<TToken, T>.Instance
+            .Unbox(this)
+            .Unbox(separator.Then(this));
     }
 
     /// <summary>
@@ -107,26 +109,50 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(separator));
         }
 
-        return BoxParser<TToken, IEnumerable<T>>
-            .Create(new SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U>(this, separator));
+        return SeparatedAndOptionallyTerminatedAtLeastOnceParserFactory1<TToken, T, U>.Instance
+            .Unbox(this)
+            .Unbox(separator);
     }
 }
 
-// todo: devirtualise
-internal readonly struct SeparatedAtLeastOnceParser<TToken, T, U> : IParser<TToken, IEnumerable<T>>
+internal sealed class SeparatedAtLeastOnceParserFactory1<TToken, T> : IUnboxer<TToken, T, IUnboxer<TToken, T, Parser<TToken, IEnumerable<T>>>>
 {
-    private readonly Parser<TToken, T> _parser;
-    private readonly Parser<TToken, T> _remainderParser;
+    public IUnboxer<TToken, T, Parser<TToken, IEnumerable<T>>> Unbox<Next1>(BoxParser<TToken, T>.Of<Next1> box)
+        where Next1 : IParser<TToken, T>
+        => new SeparatedAtLeastOnceParserFactory2<TToken, T, Next1>(box);
 
-    public SeparatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator)
+    public static IUnboxer<TToken, T, IUnboxer<TToken, T, Parser<TToken, IEnumerable<T>>>> Instance { get; }
+        = new SeparatedAtLeastOnceParserFactory1<TToken, T>();
+}
+
+internal sealed class SeparatedAtLeastOnceParserFactory2<TToken, T, Next1>(
+    BoxParser<TToken, T>.Of<Next1> parser
+) : IUnboxer<TToken, T, Parser<TToken, IEnumerable<T>>>
+    where Next1 : IParser<TToken, T>
+{
+    public Parser<TToken, IEnumerable<T>> Unbox<Next2>(BoxParser<TToken, T>.Of<Next2> box)
+        where Next2 : IParser<TToken, T>
+        => BoxParser<TToken, IEnumerable<T>>.Create(new SeparatedAtLeastOnceParser<TToken, T, Next1, Next2>(parser, box));
+}
+
+internal readonly struct SeparatedAtLeastOnceParser<TToken, T, Next1, Next2> : IParser<TToken, IEnumerable<T>>
+    where Next1 : IParser<TToken, T>
+    where Next2 : IParser<TToken, T>
+{
+    private readonly BoxParser<TToken, T>.Of<Next1> _parser;
+
+    // _remainerParser should be separator.Then(parser)
+    private readonly BoxParser<TToken, T>.Of<Next2> _remainderParser;
+
+    public SeparatedAtLeastOnceParser(BoxParser<TToken, T>.Of<Next1> parser, BoxParser<TToken, T>.Of<Next2> remainder)
     {
         _parser = parser;
-        _remainderParser = separator.Then(parser);
+        _remainderParser = remainder;
     }
 
     public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
     {
-        if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+        if (!_parser.Value.TryParse(ref state, ref expecteds, out var result1))
         {
             // state.Error set by _parser
             result = null;
@@ -134,7 +160,7 @@ internal readonly struct SeparatedAtLeastOnceParser<TToken, T, U> : IParser<TTok
         }
 
         var list = new List<T> { result1 };
-        if (!Rest(_remainderParser, ref state, ref expecteds, list))
+        if (!Rest(ref state, ref expecteds, list))
         {
             result = null;
             return false;
@@ -144,11 +170,14 @@ internal readonly struct SeparatedAtLeastOnceParser<TToken, T, U> : IParser<TTok
         return true;
     }
 
-    private static bool Rest(Parser<TToken, T> parser, ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, List<T> ts)
+    private bool Rest(
+        ref ParseState<TToken> state,
+        ref PooledList<Expected<TToken>> expecteds,
+        List<T> ts)
     {
         var lastStartingLoc = state.Location;
         var childExpecteds = new PooledList<Expected<TToken>>(state.Configuration.ArrayPoolProvider.GetArrayPool<Expected<TToken>>());
-        while (parser.TryParse(ref state, ref childExpecteds, out var result))
+        while (_remainderParser.Value.TryParse(ref state, ref childExpecteds, out var result))
         {
             var endingLoc = state.Location;
             childExpecteds.Clear();
@@ -178,13 +207,35 @@ internal readonly struct SeparatedAtLeastOnceParser<TToken, T, U> : IParser<TTok
     }
 }
 
-// todo: devirtualise
-internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U> : IParser<TToken, IEnumerable<T>>
+internal sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParserFactory1<TToken, T, U>
+    : IUnboxer<TToken, T, IUnboxer<TToken, U, Parser<TToken, IEnumerable<T>>>>
 {
-    private readonly Parser<TToken, T> _parser;
-    private readonly Parser<TToken, U> _separator;
+    public IUnboxer<TToken, U, Parser<TToken, IEnumerable<T>>> Unbox<Next1>(BoxParser<TToken, T>.Of<Next1> box)
+        where Next1 : IParser<TToken, T>
+        => new SeparatedAndOptionallyTerminatedAtLeastOnceParserFactory2<TToken, T, Next1, U>(box);
 
-    public SeparatedAndOptionallyTerminatedAtLeastOnceParser(Parser<TToken, T> parser, Parser<TToken, U> separator)
+    public static IUnboxer<TToken, T, IUnboxer<TToken, U, Parser<TToken, IEnumerable<T>>>> Instance { get; }
+        = new SeparatedAndOptionallyTerminatedAtLeastOnceParserFactory1<TToken, T, U>();
+}
+
+internal sealed class SeparatedAndOptionallyTerminatedAtLeastOnceParserFactory2<TToken, T, Next1, U>(
+    BoxParser<TToken, T>.Of<Next1> parser
+) : IUnboxer<TToken, U, Parser<TToken, IEnumerable<T>>>
+    where Next1 : IParser<TToken, T>
+{
+    public Parser<TToken, IEnumerable<T>> Unbox<Next2>(BoxParser<TToken, U>.Of<Next2> box)
+        where Next2 : IParser<TToken, U>
+        => BoxParser<TToken, IEnumerable<T>>.Create(new SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U, Next1, Next2>(parser, box));
+}
+
+internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToken, T, U, Next1, Next2> : IParser<TToken, IEnumerable<T>>
+    where Next1 : IParser<TToken, T>
+    where Next2 : IParser<TToken, U>
+{
+    private readonly BoxParser<TToken, T>.Of<Next1> _parser;
+    private readonly BoxParser<TToken, U>.Of<Next2> _separator;
+
+    public SeparatedAndOptionallyTerminatedAtLeastOnceParser(BoxParser<TToken, T>.Of<Next1> parser, BoxParser<TToken, U>.Of<Next2> separator)
     {
         _parser = parser;
         _separator = separator;
@@ -192,7 +243,7 @@ internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToke
 
     public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out IEnumerable<T> result)
     {
-        if (!_parser.TryParse(ref state, ref expecteds, out var result1))
+        if (!_parser.Value.TryParse(ref state, ref expecteds, out var result1))
         {
             // state.Error set by _parser
             result = null;
@@ -205,7 +256,7 @@ internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToke
         while (true)
         {
             var sepStartLoc = state.Location;
-            var sepSuccess = _separator.TryParse(ref state, ref childExpecteds, out var _);
+            var sepSuccess = _separator.Value.TryParse(ref state, ref childExpecteds, out var _);
             var sepConsumedInput = state.Location > sepStartLoc;
 
             if (!sepSuccess && sepConsumedInput)
@@ -230,7 +281,7 @@ internal readonly struct SeparatedAndOptionallyTerminatedAtLeastOnceParser<TToke
             }
 
             var itemStartLoc = state.Location;
-            var itemSuccess = _parser.TryParse(ref state, ref childExpecteds, out var itemResult);
+            var itemSuccess = _parser.Value.TryParse(ref state, ref childExpecteds, out var itemResult);
             var itemConsumedInput = state.Location > itemStartLoc;
 
             if (!itemSuccess && itemConsumedInput)
