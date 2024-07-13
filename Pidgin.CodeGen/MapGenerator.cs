@@ -13,7 +13,6 @@ internal static class MapGenerator
         File.WriteAllText("Pidgin/Parser.Map.Generated.cs", GenerateFile());
     }
 
-    // todo: figure out how to devirtualise
     private static string GenerateFile()
     {
         var methods = Enumerable.Range(2, 7).Select(n => GenerateMethod(n));
