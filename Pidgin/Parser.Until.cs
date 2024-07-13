@@ -99,8 +99,9 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(terminator));
         }
 
-        return BoxParser<TToken, (IEnumerable<T>?, U)>
-            .Create(new AtLeastOnceThenParser<TToken, T, U>(this, terminator, true))!;
+        return new AtLeastOnceThenParserFactory1<TToken, T, U>(true)
+            .Unbox(this)
+            .Unbox(terminator)!;
     }
 
     /// <summary>
@@ -206,20 +207,48 @@ public abstract partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(terminator));
         }
 
-        return BoxParser<TToken, (IEnumerable<T>?, U)>
-            .Create(new AtLeastOnceThenParser<TToken, T, U>(this, terminator, false))
+        return new AtLeastOnceThenParserFactory1<TToken, T, U>(false)
+            .Unbox(this)
+            .Unbox(terminator)
             .Select(tup => tup.Item2);
     }
 }
 
-// todo: devirtualise
-internal readonly struct AtLeastOnceThenParser<TToken, T, U> : IParser<TToken, (IEnumerable<T>?, U)>
+internal sealed class AtLeastOnceThenParserFactory1<TToken, T, U>(bool keepResults)
+    : IUnboxer<TToken, T, IUnboxer<TToken, U, Parser<TToken, (IEnumerable<T>?, U)>>>
 {
-    private readonly Parser<TToken, T> _parser;
-    private readonly Parser<TToken, U> _terminator;
+    public IUnboxer<TToken, U, Parser<TToken, (IEnumerable<T>?, U)>> Unbox<Next1>(BoxParser<TToken, T>.Of<Next1> box)
+        where Next1 : IParser<TToken, T>
+        => new AtLeastOnceThenParserFactory2<TToken, T, Next1, U>(keepResults, box);
+}
+
+internal sealed class AtLeastOnceThenParserFactory2<TToken, T, Next1, U>(
+    bool keepResults,
+    BoxParser<TToken, T>.Of<Next1> parser
+) : IUnboxer<TToken, U, Parser<TToken, (IEnumerable<T>?, U)>>
+    where Next1 : IParser<TToken, T>
+{
+    public Parser<TToken, (IEnumerable<T>?, U)> Unbox<Next2>(BoxParser<TToken, U>.Of<Next2> box)
+        where Next2 : IParser<TToken, U>
+        => BoxParser<TToken, (IEnumerable<T>?, U)>.Create(
+            new AtLeastOnceThenParser<TToken, T, Next1, U, Next2>(
+                parser,
+                box,
+                keepResults
+            )
+        );
+}
+
+internal readonly struct AtLeastOnceThenParser<TToken, T, Next1, U, Next2>
+    : IParser<TToken, (IEnumerable<T>?, U)>
+    where Next1 : IParser<TToken, T>
+    where Next2 : IParser<TToken, U>
+{
+    private readonly BoxParser<TToken, T>.Of<Next1> _parser;
+    private readonly BoxParser<TToken, U>.Of<Next2> _terminator;
     private readonly bool _keepResults;
 
-    public AtLeastOnceThenParser(Parser<TToken, T> parser, Parser<TToken, U> terminator, bool keepResults)
+    public AtLeastOnceThenParser(BoxParser<TToken, T>.Of<Next1> parser, BoxParser<TToken, U>.Of<Next2> terminator, bool keepResults)
     {
         _parser = parser;
         _terminator = terminator;
