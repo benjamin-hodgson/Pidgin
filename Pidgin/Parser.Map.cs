@@ -32,11 +32,10 @@ public static partial class Parser
 
         return parser1 is IMapParser<TToken, T1> p
             ? p.MapFast(func)
-            : parser1.Accept(new Map1ParserFactory<TToken, T1, R>(func));
+            : new Map1ParserFactory<TToken, T1, R>(func).Unbox(parser1);
     }
 }
 
-// todo: devirtualise the remaining (generated) IMapParsers
 internal interface IMapParser<TToken, T> : IParser<TToken, T>
 {
     Parser<TToken, U> MapFast<U>(Func<T, U> func);

@@ -21,7 +21,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser));
         }
 
-        return parser.Accept(LookaheadParserFactory<TToken, T>.Instance);
+        return LookaheadParserFactory<TToken, T>.Instance.Unbox(parser);
     }
 }
 

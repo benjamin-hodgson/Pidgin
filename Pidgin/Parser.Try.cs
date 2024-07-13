@@ -19,7 +19,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser));
         }
 
-        return parser.Accept(TryParserFactory<TToken, T>.Instance);
+        return TryParserFactory<TToken, T>.Instance.Unbox(parser);
     }
 }
 

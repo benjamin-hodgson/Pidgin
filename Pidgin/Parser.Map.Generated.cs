@@ -43,7 +43,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser2));
         }
 
-        return new Map2Parser<TToken, T1, T2, R>(func, parser1, parser2);
+        return new Map2ParserFactory1<TToken, T1, T2, R>(func).Unbox(parser1).Unbox(parser2);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser3));
         }
 
-        return new Map3Parser<TToken, T1, T2, T3, R>(func, parser1, parser2, parser3);
+        return new Map3ParserFactory1<TToken, T1, T2, T3, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3);
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser4));
         }
 
-        return new Map4Parser<TToken, T1, T2, T3, T4, R>(func, parser1, parser2, parser3, parser4);
+        return new Map4ParserFactory1<TToken, T1, T2, T3, T4, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3).Unbox(parser4);
     }
 
     /// <summary>
@@ -181,7 +181,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser5));
         }
 
-        return new Map5Parser<TToken, T1, T2, T3, T4, T5, R>(func, parser1, parser2, parser3, parser4, parser5);
+        return new Map5ParserFactory1<TToken, T1, T2, T3, T4, T5, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3).Unbox(parser4).Unbox(parser5);
     }
 
     /// <summary>
@@ -241,7 +241,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser6));
         }
 
-        return new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R>(func, parser1, parser2, parser3, parser4, parser5, parser6);
+        return new Map6ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3).Unbox(parser4).Unbox(parser5).Unbox(parser6);
     }
 
     /// <summary>
@@ -308,7 +308,7 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser7));
         }
 
-        return new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7);
+        return new Map7ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, T7, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3).Unbox(parser4).Unbox(parser5).Unbox(parser6).Unbox(parser7);
     }
 
     /// <summary>
@@ -382,20 +382,43 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(parser8));
         }
 
-        return new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, parser8);
+        return new Map8ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(func).Unbox(parser1).Unbox(parser2).Unbox(parser3).Unbox(parser4).Unbox(parser5).Unbox(parser6).Unbox(parser7).Unbox(parser8);
     }
 }
 
-internal sealed class Map2Parser<TToken, T1, T2, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map2ParserFactory1<TToken, T1, T2, R>(
+    Func<T1, T2, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, Parser<TToken, R>>>
+    
+{
+    public IUnboxer<TToken, T2, Parser<TToken, R>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map2ParserFactory2<TToken, T1, T2, Next1, R>(func, box);
+}
+
+internal sealed class Map2ParserFactory2<TToken, T1, T2, Next1, R>(
+    Func<T1, T2, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+{
+    public Parser<TToken, R> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => BoxParser<TToken, R>.Create(new Map2Parser<TToken, T1, T2, Next1, Next2, R>(func, parser1, box));
+}
+
+internal readonly struct Map2Parser<TToken, T1, T2, Next1, Next2, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
 {
     private readonly Func<T1, T2, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
 
     public Map2Parser(
         Func<T1, T2, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2
     )
     {
         _func = func;
@@ -403,16 +426,16 @@ internal sealed class Map2Parser<TToken, T1, T2, R> : Parser<TToken, R>, IMapPar
         _p2 = parser2;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
@@ -427,25 +450,65 @@ internal sealed class Map2Parser<TToken, T1, T2, R> : Parser<TToken, R>, IMapPar
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map2Parser<TToken, T1, T2, U>(
-            (x1, x2) => func(_func(x1, x2)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map2Parser<TToken, T1, T2, Next1, Next2, U>>(new(
+            (x1, x2) => func(f(x1, x2)),
             _p1,
             _p2
-        );
+        ));
+    }
 }
 
-internal sealed class Map3Parser<TToken, T1, T2, T3, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map3ParserFactory1<TToken, T1, T2, T3, R>(
+    Func<T1, T2, T3, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, Parser<TToken, R>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, Parser<TToken, R>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map3ParserFactory2<TToken, T1, T2, T3, Next1, R>(func, box);
+}
+
+internal sealed class Map3ParserFactory2<TToken, T1, T2, T3, Next1, R>(
+    Func<T1, T2, T3, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, Parser<TToken, R>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map3ParserFactory3<TToken, T1, T2, T3, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map3ParserFactory3<TToken, T1, T2, T3, Next1, Next2, R>(
+    Func<T1, T2, T3, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public Parser<TToken, R> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => BoxParser<TToken, R>.Create(new Map3Parser<TToken, T1, T2, T3, Next1, Next2, Next3, R>(func, parser1, parser2, box));
+}
+
+internal readonly struct Map3Parser<TToken, T1, T2, T3, Next1, Next2, Next3, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
 {
     private readonly Func<T1, T2, T3, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
 
     public Map3Parser(
         Func<T1, T2, T3, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3
     )
     {
         _func = func;
@@ -454,23 +517,23 @@ internal sealed class Map3Parser<TToken, T1, T2, T3, R> : Parser<TToken, R>, IMa
         _p3 = parser3;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
@@ -486,28 +549,84 @@ internal sealed class Map3Parser<TToken, T1, T2, T3, R> : Parser<TToken, R>, IMa
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map3Parser<TToken, T1, T2, T3, U>(
-            (x1, x2, x3) => func(_func(x1, x2, x3)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map3Parser<TToken, T1, T2, T3, Next1, Next2, Next3, U>>(new(
+            (x1, x2, x3) => func(f(x1, x2, x3)),
             _p1,
             _p2,
             _p3
-        );
+        ));
+    }
 }
 
-internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map4ParserFactory1<TToken, T1, T2, T3, T4, R>(
+    Func<T1, T2, T3, T4, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, Parser<TToken, R>>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, Parser<TToken, R>>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map4ParserFactory2<TToken, T1, T2, T3, T4, Next1, R>(func, box);
+}
+
+internal sealed class Map4ParserFactory2<TToken, T1, T2, T3, T4, Next1, R>(
+    Func<T1, T2, T3, T4, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, Parser<TToken, R>>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, IUnboxer<TToken, T4, Parser<TToken, R>>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map4ParserFactory3<TToken, T1, T2, T3, T4, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map4ParserFactory3<TToken, T1, T2, T3, T4, Next1, Next2, R>(
+    Func<T1, T2, T3, T4, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, IUnboxer<TToken, T4, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public IUnboxer<TToken, T4, Parser<TToken, R>> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => new Map4ParserFactory4<TToken, T1, T2, T3, T4, Next1, Next2, Next3, R>(func, parser1, parser2, box);
+}
+
+internal sealed class Map4ParserFactory4<TToken, T1, T2, T3, T4, Next1, Next2, Next3, R>(
+    Func<T1, T2, T3, T4, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3
+) : IUnboxer<TToken, T4, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+{
+    public Parser<TToken, R> Unbox<Next4>(BoxParser<TToken, T4>.Of<Next4> box)
+        where Next4 : IParser<TToken, T4>
+        => BoxParser<TToken, R>.Create(new Map4Parser<TToken, T1, T2, T3, T4, Next1, Next2, Next3, Next4, R>(func, parser1, parser2, parser3, box));
+}
+
+internal readonly struct Map4Parser<TToken, T1, T2, T3, T4, Next1, Next2, Next3, Next4, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
 {
     private readonly Func<T1, T2, T3, T4, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
-    private readonly Parser<TToken, T4> _p4;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
+    private readonly BoxParser<TToken, T4>.Of<Next4> _p4;
 
     public Map4Parser(
         Func<T1, T2, T3, T4, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3,
-        Parser<TToken, T4> parser4
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3,
+        BoxParser<TToken, T4>.Of<Next4> parser4
     )
     {
         _func = func;
@@ -517,30 +636,30 @@ internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : Parser<TToken, R>,
         _p4 = parser4;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
             return false;
         }
 
-        var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+        var success4 = _p4.Value.TryParse(ref state, ref expecteds, out var result4);
         if (!success4)
         {
             result = default;
@@ -557,31 +676,105 @@ internal sealed class Map4Parser<TToken, T1, T2, T3, T4, R> : Parser<TToken, R>,
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map4Parser<TToken, T1, T2, T3, T4, U>(
-            (x1, x2, x3, x4) => func(_func(x1, x2, x3, x4)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map4Parser<TToken, T1, T2, T3, T4, Next1, Next2, Next3, Next4, U>>(new(
+            (x1, x2, x3, x4) => func(f(x1, x2, x3, x4)),
             _p1,
             _p2,
             _p3,
             _p4
-        );
+        ));
+    }
 }
 
-internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map5ParserFactory1<TToken, T1, T2, T3, T4, T5, R>(
+    Func<T1, T2, T3, T4, T5, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map5ParserFactory2<TToken, T1, T2, T3, T4, T5, Next1, R>(func, box);
+}
+
+internal sealed class Map5ParserFactory2<TToken, T1, T2, T3, T4, T5, Next1, R>(
+    Func<T1, T2, T3, T4, T5, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map5ParserFactory3<TToken, T1, T2, T3, T4, T5, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map5ParserFactory3<TToken, T1, T2, T3, T4, T5, Next1, Next2, R>(
+    Func<T1, T2, T3, T4, T5, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => new Map5ParserFactory4<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, R>(func, parser1, parser2, box);
+}
+
+internal sealed class Map5ParserFactory4<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, R>(
+    Func<T1, T2, T3, T4, T5, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3
+) : IUnboxer<TToken, T4, IUnboxer<TToken, T5, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+{
+    public IUnboxer<TToken, T5, Parser<TToken, R>> Unbox<Next4>(BoxParser<TToken, T4>.Of<Next4> box)
+        where Next4 : IParser<TToken, T4>
+        => new Map5ParserFactory5<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, Next4, R>(func, parser1, parser2, parser3, box);
+}
+
+internal sealed class Map5ParserFactory5<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, Next4, R>(
+    Func<T1, T2, T3, T4, T5, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4
+) : IUnboxer<TToken, T5, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+{
+    public Parser<TToken, R> Unbox<Next5>(BoxParser<TToken, T5>.Of<Next5> box)
+        where Next5 : IParser<TToken, T5>
+        => BoxParser<TToken, R>.Create(new Map5Parser<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, Next4, Next5, R>(func, parser1, parser2, parser3, parser4, box));
+}
+
+internal readonly struct Map5Parser<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, Next4, Next5, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
 {
     private readonly Func<T1, T2, T3, T4, T5, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
-    private readonly Parser<TToken, T4> _p4;
-    private readonly Parser<TToken, T5> _p5;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
+    private readonly BoxParser<TToken, T4>.Of<Next4> _p4;
+    private readonly BoxParser<TToken, T5>.Of<Next5> _p5;
 
     public Map5Parser(
         Func<T1, T2, T3, T4, T5, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3,
-        Parser<TToken, T4> parser4,
-        Parser<TToken, T5> parser5
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3,
+        BoxParser<TToken, T4>.Of<Next4> parser4,
+        BoxParser<TToken, T5>.Of<Next5> parser5
     )
     {
         _func = func;
@@ -592,37 +785,37 @@ internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : Parser<TToken,
         _p5 = parser5;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
             return false;
         }
 
-        var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+        var success4 = _p4.Value.TryParse(ref state, ref expecteds, out var result4);
         if (!success4)
         {
             result = default;
             return false;
         }
 
-        var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+        var success5 = _p5.Value.TryParse(ref state, ref expecteds, out var result5);
         if (!success5)
         {
             result = default;
@@ -640,34 +833,128 @@ internal sealed class Map5Parser<TToken, T1, T2, T3, T4, T5, R> : Parser<TToken,
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map5Parser<TToken, T1, T2, T3, T4, T5, U>(
-            (x1, x2, x3, x4, x5) => func(_func(x1, x2, x3, x4, x5)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map5Parser<TToken, T1, T2, T3, T4, T5, Next1, Next2, Next3, Next4, Next5, U>>(new(
+            (x1, x2, x3, x4, x5) => func(f(x1, x2, x3, x4, x5)),
             _p1,
             _p2,
             _p3,
             _p4,
             _p5
-        );
+        ));
+    }
 }
 
-internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map6ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map6ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, Next1, R>(func, box);
+}
+
+internal sealed class Map6ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, Next1, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map6ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map6ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => new Map6ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, R>(func, parser1, parser2, box);
+}
+
+internal sealed class Map6ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3
+) : IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+{
+    public IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>> Unbox<Next4>(BoxParser<TToken, T4>.Of<Next4> box)
+        where Next4 : IParser<TToken, T4>
+        => new Map6ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, R>(func, parser1, parser2, parser3, box);
+}
+
+internal sealed class Map6ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4
+) : IUnboxer<TToken, T5, IUnboxer<TToken, T6, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+{
+    public IUnboxer<TToken, T6, Parser<TToken, R>> Unbox<Next5>(BoxParser<TToken, T5>.Of<Next5> box)
+        where Next5 : IParser<TToken, T5>
+        => new Map6ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, Next5, R>(func, parser1, parser2, parser3, parser4, box);
+}
+
+internal sealed class Map6ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, Next5, R>(
+    Func<T1, T2, T3, T4, T5, T6, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5
+) : IUnboxer<TToken, T6, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+{
+    public Parser<TToken, R> Unbox<Next6>(BoxParser<TToken, T6>.Of<Next6> box)
+        where Next6 : IParser<TToken, T6>
+        => BoxParser<TToken, R>.Create(new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, Next5, Next6, R>(func, parser1, parser2, parser3, parser4, parser5, box));
+}
+
+internal readonly struct Map6Parser<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, Next5, Next6, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
 {
     private readonly Func<T1, T2, T3, T4, T5, T6, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
-    private readonly Parser<TToken, T4> _p4;
-    private readonly Parser<TToken, T5> _p5;
-    private readonly Parser<TToken, T6> _p6;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
+    private readonly BoxParser<TToken, T4>.Of<Next4> _p4;
+    private readonly BoxParser<TToken, T5>.Of<Next5> _p5;
+    private readonly BoxParser<TToken, T6>.Of<Next6> _p6;
 
     public Map6Parser(
         Func<T1, T2, T3, T4, T5, T6, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3,
-        Parser<TToken, T4> parser4,
-        Parser<TToken, T5> parser5,
-        Parser<TToken, T6> parser6
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3,
+        BoxParser<TToken, T4>.Of<Next4> parser4,
+        BoxParser<TToken, T5>.Of<Next5> parser5,
+        BoxParser<TToken, T6>.Of<Next6> parser6
     )
     {
         _func = func;
@@ -679,44 +966,44 @@ internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : Parser<TTo
         _p6 = parser6;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
             return false;
         }
 
-        var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+        var success4 = _p4.Value.TryParse(ref state, ref expecteds, out var result4);
         if (!success4)
         {
             result = default;
             return false;
         }
 
-        var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+        var success5 = _p5.Value.TryParse(ref state, ref expecteds, out var result5);
         if (!success5)
         {
             result = default;
             return false;
         }
 
-        var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+        var success6 = _p6.Value.TryParse(ref state, ref expecteds, out var result6);
         if (!success6)
         {
             result = default;
@@ -735,37 +1022,153 @@ internal sealed class Map6Parser<TToken, T1, T2, T3, T4, T5, T6, R> : Parser<TTo
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map6Parser<TToken, T1, T2, T3, T4, T5, T6, U>(
-            (x1, x2, x3, x4, x5, x6) => func(_func(x1, x2, x3, x4, x5, x6)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map6Parser<TToken, T1, T2, T3, T4, T5, T6, Next1, Next2, Next3, Next4, Next5, Next6, U>>(new(
+            (x1, x2, x3, x4, x5, x6) => func(f(x1, x2, x3, x4, x5, x6)),
             _p1,
             _p2,
             _p3,
             _p4,
             _p5,
             _p6
-        );
+        ));
+    }
 }
 
-internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map7ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, T7, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map7ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, R>(func, box);
+}
+
+internal sealed class Map7ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map7ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map7ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => new Map7ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, R>(func, parser1, parser2, box);
+}
+
+internal sealed class Map7ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3
+) : IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+{
+    public IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>> Unbox<Next4>(BoxParser<TToken, T4>.Of<Next4> box)
+        where Next4 : IParser<TToken, T4>
+        => new Map7ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, R>(func, parser1, parser2, parser3, box);
+}
+
+internal sealed class Map7ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4
+) : IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+{
+    public IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>> Unbox<Next5>(BoxParser<TToken, T5>.Of<Next5> box)
+        where Next5 : IParser<TToken, T5>
+        => new Map7ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, R>(func, parser1, parser2, parser3, parser4, box);
+}
+
+internal sealed class Map7ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5
+) : IUnboxer<TToken, T6, IUnboxer<TToken, T7, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+{
+    public IUnboxer<TToken, T7, Parser<TToken, R>> Unbox<Next6>(BoxParser<TToken, T6>.Of<Next6> box)
+        where Next6 : IParser<TToken, T6>
+        => new Map7ParserFactory7<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, Next6, R>(func, parser1, parser2, parser3, parser4, parser5, box);
+}
+
+internal sealed class Map7ParserFactory7<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, Next6, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5,
+    BoxParser<TToken, T6>.Of<Next6> parser6
+) : IUnboxer<TToken, T7, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
+{
+    public Parser<TToken, R> Unbox<Next7>(BoxParser<TToken, T7>.Of<Next7> box)
+        where Next7 : IParser<TToken, T7>
+        => BoxParser<TToken, R>.Create(new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, Next6, Next7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, box));
+}
+
+internal readonly struct Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, Next6, Next7, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
+    where Next7 : IParser<TToken, T7>
 {
     private readonly Func<T1, T2, T3, T4, T5, T6, T7, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
-    private readonly Parser<TToken, T4> _p4;
-    private readonly Parser<TToken, T5> _p5;
-    private readonly Parser<TToken, T6> _p6;
-    private readonly Parser<TToken, T7> _p7;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
+    private readonly BoxParser<TToken, T4>.Of<Next4> _p4;
+    private readonly BoxParser<TToken, T5>.Of<Next5> _p5;
+    private readonly BoxParser<TToken, T6>.Of<Next6> _p6;
+    private readonly BoxParser<TToken, T7>.Of<Next7> _p7;
 
     public Map7Parser(
         Func<T1, T2, T3, T4, T5, T6, T7, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3,
-        Parser<TToken, T4> parser4,
-        Parser<TToken, T5> parser5,
-        Parser<TToken, T6> parser6,
-        Parser<TToken, T7> parser7
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3,
+        BoxParser<TToken, T4>.Of<Next4> parser4,
+        BoxParser<TToken, T5>.Of<Next5> parser5,
+        BoxParser<TToken, T6>.Of<Next6> parser6,
+        BoxParser<TToken, T7>.Of<Next7> parser7
     )
     {
         _func = func;
@@ -778,51 +1181,51 @@ internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser
         _p7 = parser7;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
             return false;
         }
 
-        var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+        var success4 = _p4.Value.TryParse(ref state, ref expecteds, out var result4);
         if (!success4)
         {
             result = default;
             return false;
         }
 
-        var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+        var success5 = _p5.Value.TryParse(ref state, ref expecteds, out var result5);
         if (!success5)
         {
             result = default;
             return false;
         }
 
-        var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+        var success6 = _p6.Value.TryParse(ref state, ref expecteds, out var result6);
         if (!success6)
         {
             result = default;
             return false;
         }
 
-        var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+        var success7 = _p7.Value.TryParse(ref state, ref expecteds, out var result7);
         if (!success7)
         {
             result = default;
@@ -842,8 +1245,10 @@ internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, U>(
-            (x1, x2, x3, x4, x5, x6, x7) => func(_func(x1, x2, x3, x4, x5, x6, x7)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, Next1, Next2, Next3, Next4, Next5, Next6, Next7, U>>(new(
+            (x1, x2, x3, x4, x5, x6, x7) => func(f(x1, x2, x3, x4, x5, x6, x7)),
             _p1,
             _p2,
             _p3,
@@ -851,31 +1256,169 @@ internal sealed class Map7Parser<TToken, T1, T2, T3, T4, T5, T6, T7, R> : Parser
             _p5,
             _p6,
             _p7
-        );
+        ));
+    }
 }
 
-internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Parser<TToken, R>, IMapParser<TToken, R>
+internal sealed class Map8ParserFactory1<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func
+) : IUnboxer<TToken, T1, IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>>>>
+    
+{
+    public IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>>> Unbox<Next1>(BoxParser<TToken, T1>.Of<Next1> box)
+        where Next1 : IParser<TToken, T1>
+        => new Map8ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, R>(func, box);
+}
+
+internal sealed class Map8ParserFactory2<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1
+) : IUnboxer<TToken, T2, IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>>>
+    where Next1 : IParser<TToken, T1>
+{
+    public IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>> Unbox<Next2>(BoxParser<TToken, T2>.Of<Next2> box)
+        where Next2 : IParser<TToken, T2>
+        => new Map8ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, R>(func, parser1, box);
+}
+
+internal sealed class Map8ParserFactory3<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2
+) : IUnboxer<TToken, T3, IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+{
+    public IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>> Unbox<Next3>(BoxParser<TToken, T3>.Of<Next3> box)
+        where Next3 : IParser<TToken, T3>
+        => new Map8ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, R>(func, parser1, parser2, box);
+}
+
+internal sealed class Map8ParserFactory4<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3
+) : IUnboxer<TToken, T4, IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+{
+    public IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>> Unbox<Next4>(BoxParser<TToken, T4>.Of<Next4> box)
+        where Next4 : IParser<TToken, T4>
+        => new Map8ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, R>(func, parser1, parser2, parser3, box);
+}
+
+internal sealed class Map8ParserFactory5<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4
+) : IUnboxer<TToken, T5, IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+{
+    public IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>> Unbox<Next5>(BoxParser<TToken, T5>.Of<Next5> box)
+        where Next5 : IParser<TToken, T5>
+        => new Map8ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, R>(func, parser1, parser2, parser3, parser4, box);
+}
+
+internal sealed class Map8ParserFactory6<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5
+) : IUnboxer<TToken, T6, IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+{
+    public IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>> Unbox<Next6>(BoxParser<TToken, T6>.Of<Next6> box)
+        where Next6 : IParser<TToken, T6>
+        => new Map8ParserFactory7<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, R>(func, parser1, parser2, parser3, parser4, parser5, box);
+}
+
+internal sealed class Map8ParserFactory7<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5,
+    BoxParser<TToken, T6>.Of<Next6> parser6
+) : IUnboxer<TToken, T7, IUnboxer<TToken, T8, Parser<TToken, R>>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
+{
+    public IUnboxer<TToken, T8, Parser<TToken, R>> Unbox<Next7>(BoxParser<TToken, T7>.Of<Next7> box)
+        where Next7 : IParser<TToken, T7>
+        => new Map8ParserFactory8<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, Next7, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, box);
+}
+
+internal sealed class Map8ParserFactory8<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, Next7, R>(
+    Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
+    BoxParser<TToken, T1>.Of<Next1> parser1,
+    BoxParser<TToken, T2>.Of<Next2> parser2,
+    BoxParser<TToken, T3>.Of<Next3> parser3,
+    BoxParser<TToken, T4>.Of<Next4> parser4,
+    BoxParser<TToken, T5>.Of<Next5> parser5,
+    BoxParser<TToken, T6>.Of<Next6> parser6,
+    BoxParser<TToken, T7>.Of<Next7> parser7
+) : IUnboxer<TToken, T8, Parser<TToken, R>>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
+    where Next7 : IParser<TToken, T7>
+{
+    public Parser<TToken, R> Unbox<Next8>(BoxParser<TToken, T8>.Of<Next8> box)
+        where Next8 : IParser<TToken, T8>
+        => BoxParser<TToken, R>.Create(new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, Next7, Next8, R>(func, parser1, parser2, parser3, parser4, parser5, parser6, parser7, box));
+}
+
+internal readonly struct Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, Next7, Next8, R> : IMapParser<TToken, R>
+    where Next1 : IParser<TToken, T1>
+    where Next2 : IParser<TToken, T2>
+    where Next3 : IParser<TToken, T3>
+    where Next4 : IParser<TToken, T4>
+    where Next5 : IParser<TToken, T5>
+    where Next6 : IParser<TToken, T6>
+    where Next7 : IParser<TToken, T7>
+    where Next8 : IParser<TToken, T8>
 {
     private readonly Func<T1, T2, T3, T4, T5, T6, T7, T8, R> _func;
-    private readonly Parser<TToken, T1> _p1;
-    private readonly Parser<TToken, T2> _p2;
-    private readonly Parser<TToken, T3> _p3;
-    private readonly Parser<TToken, T4> _p4;
-    private readonly Parser<TToken, T5> _p5;
-    private readonly Parser<TToken, T6> _p6;
-    private readonly Parser<TToken, T7> _p7;
-    private readonly Parser<TToken, T8> _p8;
+    private readonly BoxParser<TToken, T1>.Of<Next1> _p1;
+    private readonly BoxParser<TToken, T2>.Of<Next2> _p2;
+    private readonly BoxParser<TToken, T3>.Of<Next3> _p3;
+    private readonly BoxParser<TToken, T4>.Of<Next4> _p4;
+    private readonly BoxParser<TToken, T5>.Of<Next5> _p5;
+    private readonly BoxParser<TToken, T6>.Of<Next6> _p6;
+    private readonly BoxParser<TToken, T7>.Of<Next7> _p7;
+    private readonly BoxParser<TToken, T8>.Of<Next8> _p8;
 
     public Map8Parser(
         Func<T1, T2, T3, T4, T5, T6, T7, T8, R> func,
-        Parser<TToken, T1> parser1,
-        Parser<TToken, T2> parser2,
-        Parser<TToken, T3> parser3,
-        Parser<TToken, T4> parser4,
-        Parser<TToken, T5> parser5,
-        Parser<TToken, T6> parser6,
-        Parser<TToken, T7> parser7,
-        Parser<TToken, T8> parser8
+        BoxParser<TToken, T1>.Of<Next1> parser1,
+        BoxParser<TToken, T2>.Of<Next2> parser2,
+        BoxParser<TToken, T3>.Of<Next3> parser3,
+        BoxParser<TToken, T4>.Of<Next4> parser4,
+        BoxParser<TToken, T5>.Of<Next5> parser5,
+        BoxParser<TToken, T6>.Of<Next6> parser6,
+        BoxParser<TToken, T7>.Of<Next7> parser7,
+        BoxParser<TToken, T8>.Of<Next8> parser8
     )
     {
         _func = func;
@@ -889,58 +1432,58 @@ internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Pa
         _p8 = parser8;
     }
 
-    public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
+    public bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, out R result)
     {
-        var success1 = _p1.TryParse(ref state, ref expecteds, out var result1);
+        var success1 = _p1.Value.TryParse(ref state, ref expecteds, out var result1);
         if (!success1)
         {
             result = default;
             return false;
         }
 
-        var success2 = _p2.TryParse(ref state, ref expecteds, out var result2);
+        var success2 = _p2.Value.TryParse(ref state, ref expecteds, out var result2);
         if (!success2)
         {
             result = default;
             return false;
         }
 
-        var success3 = _p3.TryParse(ref state, ref expecteds, out var result3);
+        var success3 = _p3.Value.TryParse(ref state, ref expecteds, out var result3);
         if (!success3)
         {
             result = default;
             return false;
         }
 
-        var success4 = _p4.TryParse(ref state, ref expecteds, out var result4);
+        var success4 = _p4.Value.TryParse(ref state, ref expecteds, out var result4);
         if (!success4)
         {
             result = default;
             return false;
         }
 
-        var success5 = _p5.TryParse(ref state, ref expecteds, out var result5);
+        var success5 = _p5.Value.TryParse(ref state, ref expecteds, out var result5);
         if (!success5)
         {
             result = default;
             return false;
         }
 
-        var success6 = _p6.TryParse(ref state, ref expecteds, out var result6);
+        var success6 = _p6.Value.TryParse(ref state, ref expecteds, out var result6);
         if (!success6)
         {
             result = default;
             return false;
         }
 
-        var success7 = _p7.TryParse(ref state, ref expecteds, out var result7);
+        var success7 = _p7.Value.TryParse(ref state, ref expecteds, out var result7);
         if (!success7)
         {
             result = default;
             return false;
         }
 
-        var success8 = _p8.TryParse(ref state, ref expecteds, out var result8);
+        var success8 = _p8.Value.TryParse(ref state, ref expecteds, out var result8);
         if (!success8)
         {
             result = default;
@@ -961,8 +1504,10 @@ internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Pa
     }
 
     Parser<TToken, U> IMapParser<TToken, R>.MapFast<U>(Func<R, U> func)
-        => new Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, U>(
-            (x1, x2, x3, x4, x5, x6, x7, x8) => func(_func(x1, x2, x3, x4, x5, x6, x7, x8)),
+    {
+        var f = _func;
+        return new BoxParser<TToken, U>.Of<Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, Next1, Next2, Next3, Next4, Next5, Next6, Next7, Next8, U>>(new(
+            (x1, x2, x3, x4, x5, x6, x7, x8) => func(f(x1, x2, x3, x4, x5, x6, x7, x8)),
             _p1,
             _p2,
             _p3,
@@ -971,6 +1516,7 @@ internal sealed class Map8Parser<TToken, T1, T2, T3, T4, T5, T6, T7, T8, R> : Pa
             _p6,
             _p7,
             _p8
-        );
+        ));
+    }
 }
 #endregion

@@ -25,7 +25,7 @@ public partial class Parser<TToken, T>
     }
 
     internal Parser<TToken, T> WithExpected(ImmutableArray<Expected<TToken>> expected)
-        => Accept(new WithExpectedParserFactory<TToken, T>(expected));
+        => new WithExpectedParserFactory<TToken, T>(expected).Unbox(this);
 }
 
 internal class WithExpectedParserFactory<TToken, T>(ImmutableArray<Expected<TToken>> expected)

@@ -35,7 +35,7 @@ public static partial class Parser
             throw new ArgumentOutOfRangeException(nameof(count), "Count must be non-negative");
         }
 
-        return parser.Accept(new RepeatStringParserFactory<TToken>(count));
+        return new RepeatStringParserFactory<TToken>(count).Unbox(parser);
     }
 }
 

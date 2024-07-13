@@ -10,7 +10,7 @@ public partial class Parser<TToken, T>
     // todo: maybe just write some loops
     internal Parser<TToken, U> ChainAtLeastOnce<U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)
         where TChainer : struct, IChainer<T, U>
-        => Accept(new ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(factory));
+        => new ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(factory).Unbox(this);
 }
 
 internal class ChainAtLeastOnceLParserFactory<TToken, T, U, TChainer>(Func<IConfiguration<TToken>, TChainer> factory)

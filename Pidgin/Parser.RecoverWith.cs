@@ -17,7 +17,7 @@ public partial class Parser<TToken, T>
             throw new ArgumentNullException(nameof(errorHandler));
         }
 
-        return Accept(new RecoverWithParserFactory<TToken, T>(errorHandler));
+        return new RecoverWithParserFactory<TToken, T>(errorHandler).Unbox(this);
     }
 }
 
