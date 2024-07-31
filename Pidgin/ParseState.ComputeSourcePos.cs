@@ -8,7 +8,7 @@ namespace Pidgin;
 
 public partial struct ParseState<TToken>
 {
-    private SourcePosDelta ComputeSourcePosDeltaAt(int location)
+    private SourcePosDelta ComputeSourcePosDeltaAt(long location)
     {
         if (location < _lastSourcePosDeltaLocation)
         {
@@ -27,12 +27,19 @@ public partial struct ParseState<TToken>
         }
         else if (ReferenceEquals(_sourcePosCalculator, DefaultConfiguration<TToken>.Instance.SourcePosCalculator))
         {
+            // expect delta to be small enough to fit in an int since we're subtracting
+            var delta = (int)(location - _lastSourcePosDeltaLocation);
+
             // _sourcePosCalculator just increments the col
-            return new SourcePosDelta(_lastSourcePosDelta.Lines, _lastSourcePosDelta.Cols + location - _lastSourcePosDeltaLocation);
+            return new SourcePosDelta(_lastSourcePosDelta.Lines, _lastSourcePosDelta.Cols + delta);
         }
 
         var pos = _lastSourcePosDelta;
-        for (var i = _lastSourcePosDeltaLocation - _bufferStartLocation; i < location - _bufferStartLocation; i++)
+
+        // expect start and end to be small enough to fit in an int since we're subtracting
+        var start = (int)(_lastSourcePosDeltaLocation - _bufferStartLocation);
+        var end = (int)(location - _bufferStartLocation);
+        for (var i = start; i < end; i++)
         {
             pos += _sourcePosCalculator(_span[i]);
         }
@@ -40,13 +47,17 @@ public partial struct ParseState<TToken>
         return pos;
     }
 
-    private SourcePosDelta ComputeSourcePosAt_CharDefault(int location)
+    private SourcePosDelta ComputeSourcePosAt_CharDefault(long location)
     {
+        // expect start and end to be small enough to fit in an int since we're subtracting
+        var start = (int)(_lastSourcePosDeltaLocation - _bufferStartLocation);
+        var end = (int)(location - _lastSourcePosDeltaLocation);
+
         // coerce _span to Span<char>
         var input = MemoryMarshal.CreateSpan(
             ref Unsafe.As<TToken, char>(ref MemoryMarshal.GetReference(_span)),
             _span.Length
-        ).Slice(_lastSourcePosDeltaLocation - _bufferStartLocation, location - _lastSourcePosDeltaLocation);
+        ).Slice(start, end);
 
         var lines = 0;
         var cols = 0;

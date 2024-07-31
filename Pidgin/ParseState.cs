@@ -34,16 +34,16 @@ public ref partial struct ParseState<TToken>
     private readonly ITokenStream<TToken>? _stream;
     private readonly int _bufferChunkSize;
 
-    private TToken[]? _buffer;
+    private TToken[]? _buffer;  // to return to the pool
     private ReadOnlySpan<TToken> _span;
-    private int _keepFromLocation;  // leftmost bookmark which hasn't been discarded
-    private int _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
-    private int _currentIndex;
+    private long _keepFromLocation;  // leftmost bookmark which hasn't been discarded
+    private long _bufferStartLocation;  // how many tokens had been consumed up to the start of the buffer?
+    private int _currentIndex;  // index into the _span
     private int _bufferedCount;
 
     private int _numberOfBookmarks;
 
-    private int _lastSourcePosDeltaLocation;
+    private long _lastSourcePosDeltaLocation;
     private SourcePosDelta _lastSourcePosDelta;
 
     internal ParseState(IConfiguration<TToken> configuration, ReadOnlySpan<TToken> span)
@@ -104,7 +104,7 @@ public ref partial struct ParseState<TToken>
     /// Returns the total number of tokens which have been consumed.
     /// In other words, the current absolute offset of the input stream.
     /// </summary>
-    public int Location
+    public long Location
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get
@@ -190,13 +190,6 @@ public ref partial struct ParseState<TToken>
         if (readAheadTo >= _bufferedCount && _stream != null)
         {
             // we're about to read past the end of the current chunk. Pull a new chunk from the stream
-            var keepSeenLength = _keepFromLocation >= 0
-                ? Location - _keepFromLocation
-                : 0;
-            var keepFrom = _currentIndex - keepSeenLength;
-            var keepLength = _bufferedCount - keepFrom;
-            var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - _bufferedCount);
-            var newBufferLength = keepLength + amountToRead;
 
             /*                  _currentIndex
             *                        |
@@ -204,7 +197,7 @@ public ref partial struct ParseState<TToken>
             *              keepFrom  |      |
             *                 |      |      | readAheadTo
             *                 |      |      |    |
-            *              abcdefghijklmnopqrstuvwxyz
+            * input:       abcdefghijklmnopqrstuvwxyz
             *       readAhead        |-----------|
             *  keepSeenLength |------|
             *      keepLength |-------------|
@@ -212,6 +205,14 @@ public ref partial struct ParseState<TToken>
             * newBufferLength |------------------|
             */
 
+            // expect keepSeenLength to be small enough to fit in an int since we're subtracting
+            var keepSeenLength = _keepFromLocation >= 0
+                ? (int)(Location - _keepFromLocation)
+                : 0;
+            var keepFrom = _currentIndex - keepSeenLength;
+            var keepLength = _bufferedCount - keepFrom;
+            var amountToRead = Math.Max(_bufferChunkSize, readAheadTo - _bufferedCount);
+            var newBufferLength = keepLength + amountToRead;
             UpdateLastSourcePosDelta();
 
             if (newBufferLength > _buffer!.Length)
@@ -243,7 +244,7 @@ public ref partial struct ParseState<TToken>
 
     /// <summary>Start buffering the input.</summary>
     /// <returns>The location of the bookmark.</returns>
-    public int Bookmark()
+    public long Bookmark()
     {
         if (_keepFromLocation < 0)
         {
@@ -257,7 +258,7 @@ public ref partial struct ParseState<TToken>
 
     /// <summary>Stop buffering the input.</summary>
     /// <param name="bookmark">The location of the bookmark.</param>
-    public void DiscardBookmark(int bookmark)
+    public void DiscardBookmark(long bookmark)
     {
         if (bookmark < _keepFromLocation || bookmark > Location || _numberOfBookmarks <= 0)
         {
@@ -274,9 +275,10 @@ public ref partial struct ParseState<TToken>
 
     /// <summary>Return to a bookmark previously obtained from <see cref="Bookmark"/> and discard it.</summary>
     /// <param name="bookmark">The location of the bookmark.</param>
-    public void Rewind(int bookmark)
+    public void Rewind(long bookmark)
     {
-        var delta = Location - bookmark;
+        // expect delta to be small enough to fit in an int since we're subtracting
+        var delta = (int)(Location - bookmark);
 
         if (delta > _currentIndex)
         {
