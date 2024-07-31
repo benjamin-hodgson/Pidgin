@@ -2,8 +2,10 @@ name: Build
 
 
 permissions:
-  id-token: write
   attestations: write
+  contents: write
+  id-token: write
+  packages: write
 
 
 on:
