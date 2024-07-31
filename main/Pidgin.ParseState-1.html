@@ -363,7 +363,7 @@ and subject to change in future versions of the library.</p>
 In other words, the current absolute offset of the input stream.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public int Location { get; }</code></pre>
+                    <pre><code class="lang- hljs">public long Location { get; }</code></pre>
 
 
 
@@ -379,7 +379,7 @@ In other words, the current absolute offset of the input stream.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
                                     <td></td>
                                 </tr>
                             </tbody>
@@ -435,7 +435,7 @@ In other words, the current absolute offset of the input stream.</p>
                 <div><p>Start buffering the input.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public int Bookmark()</code></pre>
+                    <pre><code class="lang- hljs">public long Bookmark()</code></pre>
 
 
                         <h5>Returns</h5>
@@ -448,7 +448,7 @@ In other words, the current absolute offset of the input stream.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
                                     <td><p>The location of the bookmark.</p>
 </td>
                                 </tr>
@@ -465,11 +465,11 @@ In other words, the current absolute offset of the input stream.</p>
 
         
                 <a id="Pidgin_ParseState_1_DiscardBookmark_"></a>
-                <h4 id="Pidgin_ParseState_1_DiscardBookmark_System_Int32_"><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int32_">DiscardBookmark(int)</a></h4>
+                <h4 id="Pidgin_ParseState_1_DiscardBookmark_System_Int64_"><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int64_">DiscardBookmark(long)</a></h4>
                 <div><p>Stop buffering the input.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public void DiscardBookmark(int bookmark)</code></pre>
+                    <pre><code class="lang- hljs">public void DiscardBookmark(long bookmark)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -482,7 +482,7 @@ In other words, the current absolute offset of the input stream.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
                                     <td><p>bookmark</p></td>
                                     <td><p>The location of the bookmark.</p>
 </td>
@@ -555,11 +555,11 @@ if the parser reaches the end of the input stream.</p>
 
         
                 <a id="Pidgin_ParseState_1_Rewind_"></a>
-                <h4 id="Pidgin_ParseState_1_Rewind_System_Int32_"><a href="#Pidgin_ParseState_1_Rewind_System_Int32_">Rewind(int)</a></h4>
+                <h4 id="Pidgin_ParseState_1_Rewind_System_Int64_"><a href="#Pidgin_ParseState_1_Rewind_System_Int64_">Rewind(long)</a></h4>
                 <div><p>Return to a bookmark previously obtained from <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_Bookmark">Bookmark()</a> and discard it.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public void Rewind(int bookmark)</code></pre>
+                    <pre><code class="lang- hljs">public void Rewind(long bookmark)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -572,7 +572,7 @@ if the parser reaches the end of the input stream.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
                                     <td><p>bookmark</p></td>
                                     <td><p>The location of the bookmark.</p>
 </td>
@@ -591,11 +591,11 @@ if the parser reaches the end of the input stream.</p>
 
         
                 <a id="Pidgin_ParseState_1_SetError_"></a>
-                <h4 id="Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_"><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_">SetError(Maybe&lt;TToken&gt;, bool, int, string?)</a></h4>
+                <h4 id="Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int64_System_String_"><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int64_System_String_">SetError(Maybe&lt;TToken&gt;, bool, long, string?)</a></h4>
                 <div><p>Sets the error. Call this when your parser fails.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public void SetError(Maybe&lt;TToken&gt; unexpected, bool eof, int errorLocation, string? message)</code></pre>
+                    <pre><code class="lang- hljs">public void SetError(Maybe&lt;TToken&gt; unexpected, bool eof, long errorLocation, string? message)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -620,7 +620,7 @@ if the parser reaches the end of the input stream.</p>
 </td>
                                 </tr>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></p></td>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
                                     <td><p>errorLocation</p></td>
                                     <td><p>The location at which the parse error was encountered.</p>
 </td>
@@ -676,10 +676,10 @@ if the parser reaches the end of the input stream.</p>
                             <ul>
                                     <li><a href="#Pidgin_ParseState_1_Advance_System_Int32_">Advance(int)</a></li>
                                     <li><a href="#Pidgin_ParseState_1_Bookmark">Bookmark()</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int32_">DiscardBookmark(int)</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_DiscardBookmark_System_Int64_">DiscardBookmark(long)</a></li>
                                     <li><a href="#Pidgin_ParseState_1_LookAhead_System_Int32_">LookAhead(int)</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_Rewind_System_Int32_">Rewind(int)</a></li>
-                                    <li><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_">SetError(Maybe&lt;TToken&gt;, bool, int, string?)</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_Rewind_System_Int64_">Rewind(long)</a></li>
+                                    <li><a href="#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int64_System_String_">SetError(Maybe&lt;TToken&gt;, bool, long, string?)</a></li>
                             </ul>
                         </li>
                 </ul>

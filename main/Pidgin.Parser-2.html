@@ -3339,7 +3339,7 @@ The transformation function dynamically chooses a second parser, which is applie
                 <h4 id="Pidgin_Parser_2_TryParse_Pidgin_ParseState__0___Pidgin_PooledList_Pidgin_Expected__0_____1__"><a href="#Pidgin_Parser_2_TryParse_Pidgin_ParseState__0___Pidgin_PooledList_Pidgin_Expected__0_____1__">TryParse(ref ParseState&lt;TToken&gt;, ref PooledList&lt;Expected&lt;TToken&gt;&gt;, out T)</a></h4>
                 <div><p>Override this method to implement a custom parser.
 Use this if you can't do what you need using the base parser combinators.</p>
-<p>If your parser fails it should return false and call <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_">SetError(Maybe&lt;TToken&gt;, bool, int, string?)</a>.</p>
+<p>If your parser fails it should return false and call <a class="xref" href="Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int64_System_String_">SetError(Maybe&lt;TToken&gt;, bool, long, string?)</a>.</p>
 <p>WARNING: This API is <strong>unstable</strong>
 and subject to change in future versions of the library.</p>
 </div>

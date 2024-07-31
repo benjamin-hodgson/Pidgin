@@ -1453,6 +1453,22 @@ references:
   fullName.vb: Pidgin.ParseError(Of TToken).ErrorOffset
   nameWithType: ParseError<TToken>.ErrorOffset
   nameWithType.vb: ParseError(Of TToken).ErrorOffset
+- uid: Pidgin.ParseError`1.ErrorOffsetLong
+  name: ErrorOffsetLong
+  href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorOffsetLong
+  commentId: P:Pidgin.ParseError`1.ErrorOffsetLong
+  fullName: Pidgin.ParseError<TToken>.ErrorOffsetLong
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorOffsetLong
+  nameWithType: ParseError<TToken>.ErrorOffsetLong
+  nameWithType.vb: ParseError(Of TToken).ErrorOffsetLong
+- uid: Pidgin.ParseError`1.ErrorOffsetLong*
+  name: ErrorOffsetLong
+  href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorOffsetLong_
+  commentId: Overload:Pidgin.ParseError`1.ErrorOffsetLong
+  fullName: Pidgin.ParseError<TToken>.ErrorOffsetLong
+  fullName.vb: Pidgin.ParseError(Of TToken).ErrorOffsetLong
+  nameWithType: ParseError<TToken>.ErrorOffsetLong
+  nameWithType.vb: ParseError(Of TToken).ErrorOffsetLong
 - uid: Pidgin.ParseError`1.ErrorPos
   name: ErrorPos
   href: Pidgin.ParseError-1.html#Pidgin_ParseError_1_ErrorPos
@@ -1730,15 +1746,15 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).Current
   nameWithType: ParseState<TToken>.Current
   nameWithType.vb: ParseState(Of TToken).Current
-- uid: Pidgin.ParseState`1.DiscardBookmark(System.Int32)
-  name: DiscardBookmark(int)
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_DiscardBookmark_System_Int32_
-  commentId: M:Pidgin.ParseState`1.DiscardBookmark(System.Int32)
-  name.vb: DiscardBookmark(Integer)
-  fullName: Pidgin.ParseState<TToken>.DiscardBookmark(int)
-  fullName.vb: Pidgin.ParseState(Of TToken).DiscardBookmark(Integer)
-  nameWithType: ParseState<TToken>.DiscardBookmark(int)
-  nameWithType.vb: ParseState(Of TToken).DiscardBookmark(Integer)
+- uid: Pidgin.ParseState`1.DiscardBookmark(System.Int64)
+  name: DiscardBookmark(long)
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_DiscardBookmark_System_Int64_
+  commentId: M:Pidgin.ParseState`1.DiscardBookmark(System.Int64)
+  name.vb: DiscardBookmark(Long)
+  fullName: Pidgin.ParseState<TToken>.DiscardBookmark(long)
+  fullName.vb: Pidgin.ParseState(Of TToken).DiscardBookmark(Long)
+  nameWithType: ParseState<TToken>.DiscardBookmark(long)
+  nameWithType.vb: ParseState(Of TToken).DiscardBookmark(Long)
 - uid: Pidgin.ParseState`1.DiscardBookmark*
   name: DiscardBookmark
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_DiscardBookmark_
@@ -1796,15 +1812,15 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).LookAhead
   nameWithType: ParseState<TToken>.LookAhead
   nameWithType.vb: ParseState(Of TToken).LookAhead
-- uid: Pidgin.ParseState`1.Rewind(System.Int32)
-  name: Rewind(int)
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_System_Int32_
-  commentId: M:Pidgin.ParseState`1.Rewind(System.Int32)
-  name.vb: Rewind(Integer)
-  fullName: Pidgin.ParseState<TToken>.Rewind(int)
-  fullName.vb: Pidgin.ParseState(Of TToken).Rewind(Integer)
-  nameWithType: ParseState<TToken>.Rewind(int)
-  nameWithType.vb: ParseState(Of TToken).Rewind(Integer)
+- uid: Pidgin.ParseState`1.Rewind(System.Int64)
+  name: Rewind(long)
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_System_Int64_
+  commentId: M:Pidgin.ParseState`1.Rewind(System.Int64)
+  name.vb: Rewind(Long)
+  fullName: Pidgin.ParseState<TToken>.Rewind(long)
+  fullName.vb: Pidgin.ParseState(Of TToken).Rewind(Long)
+  nameWithType: ParseState<TToken>.Rewind(long)
+  nameWithType.vb: ParseState(Of TToken).Rewind(Long)
 - uid: Pidgin.ParseState`1.Rewind*
   name: Rewind
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_Rewind_
@@ -1813,15 +1829,15 @@ references:
   fullName.vb: Pidgin.ParseState(Of TToken).Rewind
   nameWithType: ParseState<TToken>.Rewind
   nameWithType.vb: ParseState(Of TToken).Rewind
-- uid: Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int32,System.String)
-  name: SetError(Maybe<TToken>, bool, int, string?)
-  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int32_System_String_
-  commentId: M:Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int32,System.String)
-  name.vb: SetError(Maybe(Of TToken), Boolean, Integer, String)
-  fullName: Pidgin.ParseState<TToken>.SetError(Pidgin.Maybe<TToken>, bool, int, string?)
-  fullName.vb: Pidgin.ParseState(Of TToken).SetError(Pidgin.Maybe(Of TToken), Boolean, Integer, String)
-  nameWithType: ParseState<TToken>.SetError(Maybe<TToken>, bool, int, string?)
-  nameWithType.vb: ParseState(Of TToken).SetError(Maybe(Of TToken), Boolean, Integer, String)
+- uid: Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int64,System.String)
+  name: SetError(Maybe<TToken>, bool, long, string?)
+  href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_Pidgin_Maybe__0__System_Boolean_System_Int64_System_String_
+  commentId: M:Pidgin.ParseState`1.SetError(Pidgin.Maybe{`0},System.Boolean,System.Int64,System.String)
+  name.vb: SetError(Maybe(Of TToken), Boolean, Long, String)
+  fullName: Pidgin.ParseState<TToken>.SetError(Pidgin.Maybe<TToken>, bool, long, string?)
+  fullName.vb: Pidgin.ParseState(Of TToken).SetError(Pidgin.Maybe(Of TToken), Boolean, Long, String)
+  nameWithType: ParseState<TToken>.SetError(Maybe<TToken>, bool, long, string?)
+  nameWithType.vb: ParseState(Of TToken).SetError(Maybe(Of TToken), Boolean, Long, String)
 - uid: Pidgin.ParseState`1.SetError*
   name: SetError
   href: Pidgin.ParseState-1.html#Pidgin_ParseState_1_SetError_
@@ -2799,6 +2815,22 @@ references:
   fullName.vb: Pidgin.Parser(Of TToken).CurrentOffset
   nameWithType: Parser<TToken>.CurrentOffset
   nameWithType.vb: Parser(Of TToken).CurrentOffset
+- uid: Pidgin.Parser`1.CurrentOffsetLong
+  name: CurrentOffsetLong
+  href: Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentOffsetLong
+  commentId: P:Pidgin.Parser`1.CurrentOffsetLong
+  fullName: Pidgin.Parser<TToken>.CurrentOffsetLong
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentOffsetLong
+  nameWithType: Parser<TToken>.CurrentOffsetLong
+  nameWithType.vb: Parser(Of TToken).CurrentOffsetLong
+- uid: Pidgin.Parser`1.CurrentOffsetLong*
+  name: CurrentOffsetLong
+  href: Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentOffsetLong_
+  commentId: Overload:Pidgin.Parser`1.CurrentOffsetLong
+  fullName: Pidgin.Parser<TToken>.CurrentOffsetLong
+  fullName.vb: Pidgin.Parser(Of TToken).CurrentOffsetLong
+  nameWithType: Parser<TToken>.CurrentOffsetLong
+  nameWithType.vb: Parser(Of TToken).CurrentOffsetLong
 - uid: Pidgin.Parser`1.CurrentPos
   name: CurrentPos
   href: Pidgin.Parser-1.html#Pidgin_Parser_1_CurrentPos
