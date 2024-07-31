@@ -1,6 +1,19 @@
 Changelog
 =========
 
+3.3.0
+-----
+
+### Fixed
+
+* Use a `long` to track source offsets (not an `int`). This enables using Pidgin with large inputs.
+
+
+### Added
+
+* `Parser.CurrentOffsetLong` (building on the above). [Thanks @wakuflair](https://github.com/benjamin-hodgson/Pidgin/issues/161)!
+
+
 3.2.3
 -----
 
