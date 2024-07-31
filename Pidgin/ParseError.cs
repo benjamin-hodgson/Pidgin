@@ -33,7 +33,12 @@ public class ParseError<TToken> : IEquatable<ParseError<TToken>>
     /// <summary>
     /// The offset in the input stream at which the parse error occurred.
     /// </summary>
-    public int ErrorOffset { get; }
+    public int ErrorOffset => (int)ErrorOffsetLong;
+
+    /// <summary>
+    /// The offset in the input stream at which the parse error occurred.
+    /// </summary>
+    public long ErrorOffsetLong { get; }
 
     /// <summary>
     /// The offset in the input stream at which the parse error occurred.
@@ -55,7 +60,7 @@ public class ParseError<TToken> : IEquatable<ParseError<TToken>>
         Maybe<TToken> unexpected,
         bool eof,
         ImmutableArray<Expected<TToken>> expected,
-        int errorOffset,
+        long errorOffset,
         SourcePosDelta errorPosDelta,
         string? message
     )
@@ -63,7 +68,7 @@ public class ParseError<TToken> : IEquatable<ParseError<TToken>>
         Unexpected = unexpected;
         EOF = eof;
         Expected = expected;
-        ErrorOffset = errorOffset;
+        ErrorOffsetLong = errorOffset;
         ErrorPosDelta = errorPosDelta;
         Message = message;
     }

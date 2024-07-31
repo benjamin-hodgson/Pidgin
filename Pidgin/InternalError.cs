@@ -9,11 +9,11 @@ internal readonly struct InternalError<TToken>
 
     public Maybe<TToken> Unexpected { get; }
 
-    public int ErrorLocation { get; }
+    public long ErrorLocation { get; }
 
     public string? Message { get; }
 
-    public InternalError(Maybe<TToken> unexpected, bool eof, int errorLocation, string? message)
+    public InternalError(Maybe<TToken> unexpected, bool eof, long errorLocation, string? message)
     {
         Unexpected = unexpected;
         EOF = eof;

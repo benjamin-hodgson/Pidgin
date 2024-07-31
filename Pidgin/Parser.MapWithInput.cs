@@ -56,7 +56,8 @@ internal class MapWithInputParser<TToken, T, U> : Parser<TToken, U>
             return false;
         }
 
-        var delta = state.Location - start;
+        // expect delta to be small enough to fit in an int since we're subtracting
+        var delta = (int)(state.Location - start);
         result = _selector(state.LookBehind(delta), result1);
 
         state.DiscardBookmark(bookmark);
