@@ -5,7 +5,7 @@
         <PackageVersion Include="Benjamin.Pizza.DocTest" Version="1.0.2" />
         <PackageVersion Include="coverlet.collector" Version="6.0.2" />
         <PackageVersion Include="FParsec" Version="1.1.1" />
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
         <PackageVersion Include="Sprache" Version="2.3.1" />
         <PackageVersion Include="Superpower" Version="3.0.0" />
         <PackageVersion Include="xunit" Version="2.9.0" />
