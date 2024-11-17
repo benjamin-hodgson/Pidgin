@@ -69,18 +69,7 @@ public static partial class Parser
         }
 
         var cs = chars.ToArray();
-        return Parser<char>.Token(c => Array.IndexOf(cs, c) == -1);
-    }
-
-    /// <summary>
-    /// Creates a parser which parses and returns a character if it is not the specified characters.
-    /// When the character is one of the given characters, the parser fails without consuming input.
-    /// </summary>
-    /// <param name="c">A single characters that should not be matched.</param>
-    /// <returns>A parser which parses and returns a character that does not match the specified character.</returns>
-    public static Parser<char, char> CharExcept(char c)
-    {
-        return Token(ch => ch != c);
+        return cs.Length == 1 ? Token(c => c != cs[0]) : Token(c => Array.IndexOf(cs, c) == -1);
     }
 
     /// <summary>
