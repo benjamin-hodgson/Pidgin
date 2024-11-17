@@ -73,6 +73,17 @@ public static partial class Parser
     }
 
     /// <summary>
+    /// Creates a parser which parses and returns a character if it is not the specified characters.
+    /// When the character is one of the given characters, the parser fails without consuming input.
+    /// </summary>
+    /// <param name="c">A single characters that should not be matched.</param>
+    /// <returns>A parser which parses and returns a character that does not match the specified character.</returns>
+    public static Parser<char, char> CharExcept(char c)
+    {
+        return Token(ch => ch != c);
+    }
+
+    /// <summary>
     /// A parser that parses and returns a single digit character (0-9).
     /// </summary>
     /// <returns>A parser that parses and returns a single digit character.</returns>
