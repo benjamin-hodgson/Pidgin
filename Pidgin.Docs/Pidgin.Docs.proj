@@ -10,6 +10,7 @@
 
     <ItemGroup>
         <ProjectReference Include="../Pidgin/Pidgin.csproj">
+            <SkipGetTargetFrameworkProperties>false</SkipGetTargetFrameworkProperties>
             <OutputItemType>DocumentationAssembly</OutputItemType>
         </ProjectReference>
     </ItemGroup>

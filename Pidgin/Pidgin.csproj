@@ -1,22 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFrameworks>net5.0;net7.0</TargetFrameworks>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>
         <LangVersion>12</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
         <IsAotCompatible>true</IsAotCompatible>
-        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <ItemGroup>
         <InternalsVisibleTo Include="Pidgin.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010031046e659edcddb0cee9090af66041bf505576a8e5054d491217a2f0a91a4e8c6efaec06b570be57a0775df4e8b9d5f3a2c8ca984af823de0bc7ac5bbbd68fa965586b1eac28ec4e30c376b40b4485b62d430aee25749567b1f2af0eca0c0d99d4390ee69fce1f7d1ed592f92013df7e184f27874c807169cf9db863b072d8ac" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-    </PropertyGroup>
 
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath="/"/>

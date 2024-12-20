@@ -1,8 +1,9 @@
 <Project>
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <NoWarn>$(NoWarn);CS1591</NoWarn>  <!-- "Missing XML comment for publicly visible type or member" -->
         <NoWarn>$(NoWarn);SA1217</NoWarn>  <!-- "'using static' directives must be ordered alphabetically." Seems broken though -->
+        <NoWarn>$(NoWarn);CA1515</NoWarn>  <!-- "Because an application's API isn't typically referenced from outside the assembly, types can be made internal" -->
     </PropertyGroup>
 </Project>
