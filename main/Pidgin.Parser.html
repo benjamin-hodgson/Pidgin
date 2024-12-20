@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -12,15 +12,15 @@
 
     
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="shortcut" "icon"="" href="/favicon.ico" type="image/x-icon">
+        <link rel=shortcut "icon" href="/favicon.ico" type="image/x-icon">
     
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2.1.1/out/water.min.css" integrity="sha256-QST90Wzz4PEr5KlclQaOCsjc00FTyf86Wrj41oqZB4w=" crossorigin="anonymous">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/highlight.css">
     
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script async="" id="highlightjs-script" src="js/third-party/highlight.js"></script>
-        <script defer="" src="js/main.js"></script>
+        <script async id="highlightjs-script" src="js/third-party/highlight.js"></script>
+        <script defer src="js/main.js"></script>
     
     
     </head>
@@ -3115,8 +3115,7 @@ The input enumerable is enumerated and copied to a list.</p>
                 <h4 id="Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___"><a href="#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;)</a></h4>
                 <div><p>Creates a parser which passes itself to the supplied function and applies the resulting parser.
 This is the Y combinator for parsers.
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt;)</a>
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt;)</a></p>
+<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt;)</a><a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt;)</a></p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang- hljs">public static Parser&lt;TToken, T&gt; Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt; func)</code></pre>
@@ -3201,8 +3200,7 @@ var many = Rec(self =&gt;
                 <h4 id="Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___"><a href="#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt;)</a></h4>
                 <div><p>Creates a parser which lazily calls the supplied function and applies the resulting parser.
 This is primarily useful to allow mutual recursion in parsers.
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt;)</a>
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;)</a></p>
+<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt;)</a><a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;)</a></p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang- hljs">public static Parser&lt;TToken, T&gt; Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt; parser)</code></pre>
@@ -3284,8 +3282,7 @@ rest = Char(' ').Then(many);</code></pre>
                 <h4 id="Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___"><a href="#Pidgin_Parser_Rec__2_System_Lazy_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt;)</a></h4>
                 <div><p>Creates a parser which lazily calls the supplied function and applies the resulting parser.
 This is primarily useful to allow mutual recursion in parsers.
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt;)</a>
-<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;)</a></p>
+<a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;&gt;)</a><a class="xref" href="Pidgin.Parser.html#Pidgin_Parser_Rec__2_System_Func_Pidgin_Parser___0___1__Pidgin_Parser___0___1___">Rec&lt;TToken, T&gt;(Func&lt;Parser&lt;TToken, T&gt;, Parser&lt;TToken, T&gt;&gt;)</a></p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang- hljs">public static Parser&lt;TToken, T&gt; Rec&lt;TToken, T&gt;(Lazy&lt;Parser&lt;TToken, T&gt;&gt; parser)</code></pre>
@@ -3358,7 +3355,7 @@ This is primarily useful to allow mutual recursion in parsers.
         
                 <a id="Pidgin_Parser_RepeatString_"></a>
                 <h4 id="Pidgin_Parser_RepeatString__1_Pidgin_Parser___0_System_Char__System_Int32_"><a href="#Pidgin_Parser_RepeatString__1_Pidgin_Parser___0_System_Char__System_Int32_">RepeatString&lt;TToken&gt;(Parser&lt;TToken, char&gt;, int)</a></h4>
-                <div><p>Creates a parser which applies <code class="paramref">parser</code> <code class="paramref">count</code> times,
+                <div><p>Creates a parser which applies <code class="paramref">parser</code><code class="paramref">count</code> times,
 packing the resulting <code>char</code>s into a <code>string</code>.</p>
 <p>
 Equivalent to <code>parser.Repeat(count).Select(string.Concat)</code>.
@@ -3403,7 +3400,7 @@ Equivalent to <code>parser.Repeat(count).Select(string.Concat)</code>.
                             <tbody>
                                 <tr>
                                     <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</p></td>
-                                    <td><p>A parser which applies <code class="paramref">parser</code> <code class="paramref">count</code> times,
+                                    <td><p>A parser which applies <code class="paramref">parser</code><code class="paramref">count</code> times,
 packing the resulting <code>char</code>s into a <code>string</code>.</p>
 </td>
                                 </tr>
