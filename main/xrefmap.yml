@@ -4255,13 +4255,13 @@ references:
   nameWithType: ReadOnlySpanFunc<T, TParam, TReturn>
   nameWithType.vb: ReadOnlySpanFunc(Of T, TParam, TReturn)
 - uid: Pidgin.ReadOnlySpanFunc`3.#ctor(System.Object,System.IntPtr)
-  name: ReadOnlySpanFunc(object, IntPtr)
+  name: ReadOnlySpanFunc(object, nint)
   href: Pidgin.ReadOnlySpanFunc-3.html#Pidgin_ReadOnlySpanFunc_3__ctor_System_Object_System_IntPtr_
   commentId: M:Pidgin.ReadOnlySpanFunc`3.#ctor(System.Object,System.IntPtr)
   name.vb: New(Object, IntPtr)
-  fullName: Pidgin.ReadOnlySpanFunc<T, TParam, TReturn>.ReadOnlySpanFunc(object, System.IntPtr)
+  fullName: Pidgin.ReadOnlySpanFunc<T, TParam, TReturn>.ReadOnlySpanFunc(object, nint)
   fullName.vb: Pidgin.ReadOnlySpanFunc(Of T, TParam, TReturn).New(Object, System.IntPtr)
-  nameWithType: ReadOnlySpanFunc<T, TParam, TReturn>.ReadOnlySpanFunc(object, IntPtr)
+  nameWithType: ReadOnlySpanFunc<T, TParam, TReturn>.ReadOnlySpanFunc(object, nint)
   nameWithType.vb: ReadOnlySpanFunc(Of T, TParam, TReturn).New(Object, IntPtr)
 - uid: Pidgin.ReadOnlySpanFunc`3.#ctor*
   name: ReadOnlySpanFunc
