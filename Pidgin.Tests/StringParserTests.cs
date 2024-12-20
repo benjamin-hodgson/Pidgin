@@ -103,6 +103,23 @@ public class StringParserTests : ParserTestBase
         }
 
         {
+            var parser = AnyCharExcept('a');
+            AssertPartialParse(parser, "e", 'e', 1);
+            AssertFailure(
+                parser,
+                "a",
+                new ParseError<char>(
+                    Maybe.Just('a'),
+                    false,
+                    ImmutableArray<Expected<char>>.Empty,
+                    0,
+                    SourcePosDelta.Zero,
+                    null
+                )
+            );
+        }
+
+        {
             var parser = Token('a'.Equals);
             AssertPartialParse(parser, "a", 'a', 1);
             AssertPartialParse(parser, "ab", 'a', 1);
