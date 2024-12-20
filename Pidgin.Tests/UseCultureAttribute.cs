@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Reflection;
-using System.Threading;
 
-using Xunit.Sdk;
+using Xunit.v3;
 
 namespace Pidgin.Tests;
 
@@ -32,18 +31,18 @@ public sealed class UseCultureAttribute : BeforeAfterTestAttribute
         _uiCulture = new(uiCulture);
     }
 
-    public override void Before(MethodInfo methodUnderTest)
+    public override void Before(MethodInfo methodUnderTest, IXunitTest test)
     {
-        _originalCulture = Thread.CurrentThread.CurrentCulture;
-        _originalUICulture = Thread.CurrentThread.CurrentUICulture;
+        _originalCulture = CultureInfo.CurrentCulture;
+        _originalUICulture = CultureInfo.CurrentUICulture;
 
-        Thread.CurrentThread.CurrentCulture = _culture;
-        Thread.CurrentThread.CurrentUICulture = _uiCulture;
+        CultureInfo.CurrentCulture = _culture;
+        CultureInfo.CurrentUICulture = _uiCulture;
     }
 
-    public override void After(MethodInfo methodUnderTest)
+    public override void After(MethodInfo methodUnderTest, IXunitTest test)
     {
-        Thread.CurrentThread.CurrentCulture = _originalCulture!;
-        Thread.CurrentThread.CurrentUICulture = _originalUICulture!;
+        CultureInfo.CurrentCulture = _originalCulture!;
+        CultureInfo.CurrentUICulture = _originalUICulture!;
     }
 }
