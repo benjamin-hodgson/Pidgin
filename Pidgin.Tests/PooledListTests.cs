@@ -28,8 +28,8 @@ public class PooledListTests
         {
             var l = default(PooledList<int>);
             l.Insert(0, -1);
-            Assert.Equal(1, l.Count);
-            Assert.Equal(-1, l[0]);
+            var x = Assert.Single(l);
+            Assert.Equal(-1, x);
         }
 
         {
@@ -59,15 +59,15 @@ public class PooledListTests
         {
             var l = new PooledList<int> { 1 };
             l.RemoveAt(0);
-            Assert.Equal(0, l.Count);
+            Assert.Empty(l);
         }
 
         {
             var l = new PooledList<int> { 1, 2, 5 };
             l.RemoveAt(0);
             l.RemoveAt(1);
-            Assert.Equal(1, l.Count);
-            Assert.Equal(2, l[0]);
+            var x = Assert.Single(l);
+            Assert.Equal(2, x);
         }
 
         {

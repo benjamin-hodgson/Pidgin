@@ -25,6 +25,7 @@ jobs:
       DOCS_FOLDER: Pidgin.Docs
       # due to a bug in `dotnet format` with `using static`
       CHECK_FORMATTING: false
+      TESTPLATFORM: true
     secrets:
       NUGET_KEY: ${{ secrets.NUGET_KEY }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

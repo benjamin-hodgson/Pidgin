@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <Import Project="../Pidgin.BuildTool.props" />
 
     <PropertyGroup>
-        <NoWarn>$(NoWarn);xUnit2013;CA1062;CA2007</NoWarn>
+        <NoWarn>$(NoWarn);CA1062</NoWarn>  <!-- CA1062: Validate parameter is non-null before using it -->
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,9 +13,10 @@
 
     <ItemGroup>
         <PackageReference Include="Benjamin.Pizza.DocTest" />
-        <PackageReference Include="coverlet.collector" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="Microsoft.Testing.Extensions.CodeCoverage" />
+        <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" />
         <PackageReference Include="xunit.v3" />
-        <PackageReference Include="xunit.runner.visualstudio" />
     </ItemGroup>
+
 </Project>
