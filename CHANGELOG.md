@@ -1,6 +1,14 @@
 Changelog
 =========
 
+3.4.0
+-----
+
+### Fixed
+
+* A performance optimisation for `AnyCharExcept` when using only one character. Thank you to @textGamex!
+
+
 3.3.0
 -----
 
