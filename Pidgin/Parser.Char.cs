@@ -68,7 +68,13 @@ public static partial class Parser
             throw new ArgumentNullException(nameof(chars));
         }
 
-        return chars.Length == 1 ? Token(c => c != chars[0]) : Token(c => Array.IndexOf(chars, c) == -1);
+        if (chars.Length == 1)
+        {
+            var c = chars[0];
+            return Token(c2 => c2 != c);
+        }
+
+        return Token(c => Array.IndexOf(chars, c) == -1);
     }
 
     /// <summary>
