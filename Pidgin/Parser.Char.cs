@@ -45,14 +45,14 @@ public static partial class Parser
     /// </summary>
     /// <param name="chars">A sequence of characters that should not be matched.</param>
     /// <returns>A parser which parses and returns a character that does not match one of the specified characters.</returns>
-    public static Parser<char, char> AnyCharExcept(params char[] chars)
+    public static Parser<char, char> AnyCharExcept(IEnumerable<char> chars)
     {
         if (chars == null)
         {
             throw new ArgumentNullException(nameof(chars));
         }
 
-        return AnyCharExcept(chars.AsEnumerable());
+        return AnyCharExcept(chars.ToArray());
     }
 
     /// <summary>
@@ -61,15 +61,20 @@ public static partial class Parser
     /// </summary>
     /// <param name="chars">A sequence of characters that should not be matched.</param>
     /// <returns>A parser which parses and returns a character that does not match one of the specified characters.</returns>
-    public static Parser<char, char> AnyCharExcept(IEnumerable<char> chars)
+    public static Parser<char, char> AnyCharExcept(params char[] chars)
     {
         if (chars == null)
         {
             throw new ArgumentNullException(nameof(chars));
         }
 
-        var cs = chars.ToArray();
-        return Parser<char>.Token(c => Array.IndexOf(cs, c) == -1);
+        if (chars.Length == 1)
+        {
+            var c = chars[0];
+            return Token(c2 => c2 != c);
+        }
+
+        return Token(c => Array.IndexOf(chars, c) == -1);
     }
 
     /// <summary>
