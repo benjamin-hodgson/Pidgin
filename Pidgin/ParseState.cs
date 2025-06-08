@@ -1,5 +1,6 @@
 using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -130,11 +131,73 @@ public ref partial struct ParseState<TToken>
     /// </summary>
     public TToken Current
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get
         {
-            return _span[_currentIndex];
+            return LookAhead(1)[0];
         }
+    }
+
+    // if it returns a span shorter than count it's because you reached the end of the input
+
+    /// <summary>
+    /// Returns a <see cref="Span{TToken}"/> containing the next <paramref name="count"/> tokens.
+    ///
+    /// This method may return a span shorter than <paramref name="count"/>,
+    /// if the parser reaches the end of the input stream.
+    /// </summary>
+    /// <param name="count">The number of tokens to advance.</param>
+    /// <returns>A <see cref="ReadOnlySpan{T}"/> containing the tokens.</returns>
+    public ReadOnlySpan<TToken> LookAhead(int count)
+    {
+        Buffer(count);
+
+        // may have buffered fewer than `count` tokens
+        var span = _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
+
+        if (_onLookaheadActions?.Count > 0)
+        {
+            var lookAheadToLocation = Location + span.Length;
+            foreach (var action in _onLookaheadActions)
+            {
+                action(lookAheadToLocation);
+            }
+        }
+
+        return span;
+    }
+
+    private Stack<Action<long>>? _onLookaheadActions;
+
+    internal void PushOnLookaheadAction(Action<long> action)
+    {
+        if (_onLookaheadActions == null)
+        {
+            _onLookaheadActions = new Stack<Action<long>>();
+        }
+
+        _onLookaheadActions.Push(action);
+    }
+
+    internal void PopOnLookaheadAction(Action<long> action)
+    {
+        if (_onLookaheadActions == null || _onLookaheadActions.Count == 0)
+        {
+            throw new InvalidOperationException("Tried to pop an action from an empty stack. Please report this as a bug in Pidgin!");
+        }
+
+        if (_onLookaheadActions.Peek() != action)
+        {
+            throw new InvalidOperationException("Tried to pop an action that doesn't match the top of the stack. Please report this as a bug in Pidgin!");
+        }
+
+        _onLookaheadActions.Pop();
+    }
+
+    // if it returns a span shorter than count it's because you looked further back than the buffer goes
+    internal ReadOnlySpan<TToken> LookBehind(int count)
+    {
+        var start = Math.Max(0, _currentIndex - count);
+        return _span[start.._currentIndex];
     }
 
     /// <summary>
@@ -158,29 +221,6 @@ public ref partial struct ParseState<TToken>
 
         var bufferedCount = Math.Min(count, _bufferedCount - _currentIndex);
         _currentIndex += bufferedCount;
-    }
-
-    // if it returns a span shorter than count it's because you reached the end of the input
-
-    /// <summary>
-    /// Returns a <see cref="Span{TToken}"/> containing the next <paramref name="count"/> tokens.
-    ///
-    /// This method may return a span shorter than <paramref name="count"/>,
-    /// if the parser reaches the end of the input stream.
-    /// </summary>
-    /// <param name="count">The number of tokens to advance.</param>
-    /// <returns>A <see cref="ReadOnlySpan{T}"/> containing the tokens.</returns>
-    public ReadOnlySpan<TToken> LookAhead(int count)
-    {
-        Buffer(count);
-        return _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
-    }
-
-    // if it returns a span shorter than count it's because you looked further back than the buffer goes
-    internal ReadOnlySpan<TToken> LookBehind(int count)
-    {
-        var start = Math.Max(0, _currentIndex - count);
-        return _span[start.._currentIndex];
     }
 
     // postcondition: bufferedLength >= _currentIndex + min(readAhead, AmountLeft(_stream))

@@ -1305,6 +1305,35 @@ public class StringParserTests : ParserTestBase
     }
 
     [Fact]
+    public void TestObserveLookahead()
+    {
+        {
+            var parser = String("foo").ObserveLookahead();
+            AssertFullParse(parser, "foo", ("foo", 3));
+        }
+
+        {
+            var parser = Try(String("foo")).Or(Return("nope")).ObserveLookahead();
+            AssertPartialParse(parser, "foe", ("nope", 3), 0);
+        }
+
+        {
+            var parser = Try(String("fo").Then(Fail<string>())).Or(Return("nope")).ObserveLookahead();
+            AssertPartialParse(parser, "foo", ("nope", 2), 0);
+        }
+
+        {
+            var parser = Try(String("fo")).Or(String("foo")).ObserveLookahead();
+            AssertPartialParse(parser, "foo", ("fo", 2), 2);
+        }
+
+        {
+            var parser = Try(String("fo").Then(Fail<string>())).Or(String("foo")).ObserveLookahead();
+            AssertFullParse(parser, "foo", ("foo", 3));
+        }
+    }
+
+    [Fact]
     public void TestRecoverWith()
     {
         {
