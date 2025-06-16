@@ -182,6 +182,66 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.EditInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.EditInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.IIncrementalParseResult-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.IIncrementalParseResult-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.IncrementalParseContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.IncrementalParseContext.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.IncrementalParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.IncrementalParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.LocationRange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.LocationRange.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "Pidgin.Incremental.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Pidgin.Incremental.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "Pidgin.Maybe-1.yml",
       "output": {
         ".html": {

@@ -1069,6 +1069,476 @@ references:
   fullName.vb: Pidgin.ITokenStream(Of TToken).Return
   nameWithType: ITokenStream<TToken>.Return
   nameWithType.vb: ITokenStream(Of TToken).Return
+- uid: Pidgin.Incremental
+  name: Pidgin.Incremental
+  href: Pidgin.Incremental.html
+  commentId: N:Pidgin.Incremental
+  fullName: Pidgin.Incremental
+  nameWithType: Pidgin.Incremental
+- uid: Pidgin.Incremental.EditInfo
+  name: EditInfo
+  href: Pidgin.Incremental.EditInfo.html
+  commentId: T:Pidgin.Incremental.EditInfo
+  fullName: Pidgin.Incremental.EditInfo
+  nameWithType: EditInfo
+- uid: Pidgin.Incremental.EditInfo.#ctor(Pidgin.Incremental.EditInfo)
+  name: EditInfo(EditInfo)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo__ctor_Pidgin_Incremental_EditInfo_
+  commentId: M:Pidgin.Incremental.EditInfo.#ctor(Pidgin.Incremental.EditInfo)
+  name.vb: New(EditInfo)
+  fullName: Pidgin.Incremental.EditInfo.EditInfo(Pidgin.Incremental.EditInfo)
+  fullName.vb: Pidgin.Incremental.EditInfo.New(Pidgin.Incremental.EditInfo)
+  nameWithType: EditInfo.EditInfo(EditInfo)
+  nameWithType.vb: EditInfo.New(EditInfo)
+- uid: Pidgin.Incremental.EditInfo.#ctor(Pidgin.Incremental.LocationRange,System.Int64)
+  name: EditInfo(LocationRange, long)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo__ctor_Pidgin_Incremental_LocationRange_System_Int64_
+  commentId: M:Pidgin.Incremental.EditInfo.#ctor(Pidgin.Incremental.LocationRange,System.Int64)
+  name.vb: New(LocationRange, Long)
+  fullName: Pidgin.Incremental.EditInfo.EditInfo(Pidgin.Incremental.LocationRange, long)
+  fullName.vb: Pidgin.Incremental.EditInfo.New(Pidgin.Incremental.LocationRange, Long)
+  nameWithType: EditInfo.EditInfo(LocationRange, long)
+  nameWithType.vb: EditInfo.New(LocationRange, Long)
+- uid: Pidgin.Incremental.EditInfo.#ctor*
+  name: EditInfo
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo__ctor_
+  commentId: Overload:Pidgin.Incremental.EditInfo.#ctor
+  name.vb: New
+  fullName: Pidgin.Incremental.EditInfo.EditInfo
+  fullName.vb: Pidgin.Incremental.EditInfo.New
+  nameWithType: EditInfo.EditInfo
+  nameWithType.vb: EditInfo.New
+- uid: Pidgin.Incremental.EditInfo.Deconstruct(Pidgin.Incremental.LocationRange@,System.Int64@)
+  name: Deconstruct(out LocationRange, out long)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_Deconstruct_Pidgin_Incremental_LocationRange__System_Int64__
+  commentId: M:Pidgin.Incremental.EditInfo.Deconstruct(Pidgin.Incremental.LocationRange@,System.Int64@)
+  name.vb: Deconstruct(LocationRange, Long)
+  fullName: Pidgin.Incremental.EditInfo.Deconstruct(out Pidgin.Incremental.LocationRange, out long)
+  fullName.vb: Pidgin.Incremental.EditInfo.Deconstruct(Pidgin.Incremental.LocationRange, Long)
+  nameWithType: EditInfo.Deconstruct(out LocationRange, out long)
+  nameWithType.vb: EditInfo.Deconstruct(LocationRange, Long)
+- uid: Pidgin.Incremental.EditInfo.Deconstruct*
+  name: Deconstruct
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_Deconstruct_
+  commentId: Overload:Pidgin.Incremental.EditInfo.Deconstruct
+  fullName: Pidgin.Incremental.EditInfo.Deconstruct
+  nameWithType: EditInfo.Deconstruct
+- uid: Pidgin.Incremental.EditInfo.EqualityContract
+  name: EqualityContract
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_EqualityContract
+  commentId: P:Pidgin.Incremental.EditInfo.EqualityContract
+  fullName: Pidgin.Incremental.EditInfo.EqualityContract
+  nameWithType: EditInfo.EqualityContract
+- uid: Pidgin.Incremental.EditInfo.EqualityContract*
+  name: EqualityContract
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_EqualityContract_
+  commentId: Overload:Pidgin.Incremental.EditInfo.EqualityContract
+  fullName: Pidgin.Incremental.EditInfo.EqualityContract
+  nameWithType: EditInfo.EqualityContract
+- uid: Pidgin.Incremental.EditInfo.Equals(Pidgin.Incremental.EditInfo)
+  name: Equals(EditInfo?)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_Equals_Pidgin_Incremental_EditInfo_
+  commentId: M:Pidgin.Incremental.EditInfo.Equals(Pidgin.Incremental.EditInfo)
+  name.vb: Equals(EditInfo)
+  fullName: Pidgin.Incremental.EditInfo.Equals(Pidgin.Incremental.EditInfo?)
+  fullName.vb: Pidgin.Incremental.EditInfo.Equals(Pidgin.Incremental.EditInfo)
+  nameWithType: EditInfo.Equals(EditInfo?)
+  nameWithType.vb: EditInfo.Equals(EditInfo)
+- uid: Pidgin.Incremental.EditInfo.Equals(System.Object)
+  name: Equals(object?)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_Equals_System_Object_
+  commentId: M:Pidgin.Incremental.EditInfo.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: Pidgin.Incremental.EditInfo.Equals(object?)
+  fullName.vb: Pidgin.Incremental.EditInfo.Equals(Object)
+  nameWithType: EditInfo.Equals(object?)
+  nameWithType.vb: EditInfo.Equals(Object)
+- uid: Pidgin.Incremental.EditInfo.Equals*
+  name: Equals
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_Equals_
+  commentId: Overload:Pidgin.Incremental.EditInfo.Equals
+  fullName: Pidgin.Incremental.EditInfo.Equals
+  nameWithType: EditInfo.Equals
+- uid: Pidgin.Incremental.EditInfo.GetHashCode
+  name: GetHashCode()
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_GetHashCode
+  commentId: M:Pidgin.Incremental.EditInfo.GetHashCode
+  fullName: Pidgin.Incremental.EditInfo.GetHashCode()
+  nameWithType: EditInfo.GetHashCode()
+- uid: Pidgin.Incremental.EditInfo.GetHashCode*
+  name: GetHashCode
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_GetHashCode_
+  commentId: Overload:Pidgin.Incremental.EditInfo.GetHashCode
+  fullName: Pidgin.Incremental.EditInfo.GetHashCode
+  nameWithType: EditInfo.GetHashCode
+- uid: Pidgin.Incremental.EditInfo.InputRange
+  name: InputRange
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_InputRange
+  commentId: P:Pidgin.Incremental.EditInfo.InputRange
+  fullName: Pidgin.Incremental.EditInfo.InputRange
+  nameWithType: EditInfo.InputRange
+- uid: Pidgin.Incremental.EditInfo.InputRange*
+  name: InputRange
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_InputRange_
+  commentId: Overload:Pidgin.Incremental.EditInfo.InputRange
+  fullName: Pidgin.Incremental.EditInfo.InputRange
+  nameWithType: EditInfo.InputRange
+- uid: Pidgin.Incremental.EditInfo.NewContentLength
+  name: NewContentLength
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_NewContentLength
+  commentId: P:Pidgin.Incremental.EditInfo.NewContentLength
+  fullName: Pidgin.Incremental.EditInfo.NewContentLength
+  nameWithType: EditInfo.NewContentLength
+- uid: Pidgin.Incremental.EditInfo.NewContentLength*
+  name: NewContentLength
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_NewContentLength_
+  commentId: Overload:Pidgin.Incremental.EditInfo.NewContentLength
+  fullName: Pidgin.Incremental.EditInfo.NewContentLength
+  nameWithType: EditInfo.NewContentLength
+- uid: Pidgin.Incremental.EditInfo.PrintMembers(System.Text.StringBuilder)
+  name: PrintMembers(StringBuilder)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_PrintMembers_System_Text_StringBuilder_
+  commentId: M:Pidgin.Incremental.EditInfo.PrintMembers(System.Text.StringBuilder)
+  fullName: Pidgin.Incremental.EditInfo.PrintMembers(System.Text.StringBuilder)
+  nameWithType: EditInfo.PrintMembers(StringBuilder)
+- uid: Pidgin.Incremental.EditInfo.PrintMembers*
+  name: PrintMembers
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_PrintMembers_
+  commentId: Overload:Pidgin.Incremental.EditInfo.PrintMembers
+  fullName: Pidgin.Incremental.EditInfo.PrintMembers
+  nameWithType: EditInfo.PrintMembers
+- uid: Pidgin.Incremental.EditInfo.ToString
+  name: ToString()
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_ToString
+  commentId: M:Pidgin.Incremental.EditInfo.ToString
+  fullName: Pidgin.Incremental.EditInfo.ToString()
+  nameWithType: EditInfo.ToString()
+- uid: Pidgin.Incremental.EditInfo.ToString*
+  name: ToString
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_ToString_
+  commentId: Overload:Pidgin.Incremental.EditInfo.ToString
+  fullName: Pidgin.Incremental.EditInfo.ToString
+  nameWithType: EditInfo.ToString
+- uid: Pidgin.Incremental.EditInfo.op_Equality(Pidgin.Incremental.EditInfo,Pidgin.Incremental.EditInfo)
+  name: operator ==(EditInfo?, EditInfo?)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_op_Equality_Pidgin_Incremental_EditInfo_Pidgin_Incremental_EditInfo_
+  commentId: M:Pidgin.Incremental.EditInfo.op_Equality(Pidgin.Incremental.EditInfo,Pidgin.Incremental.EditInfo)
+  name.vb: =(EditInfo, EditInfo)
+  fullName: Pidgin.Incremental.EditInfo.operator ==(Pidgin.Incremental.EditInfo?, Pidgin.Incremental.EditInfo?)
+  fullName.vb: Pidgin.Incremental.EditInfo.=(Pidgin.Incremental.EditInfo, Pidgin.Incremental.EditInfo)
+  nameWithType: EditInfo.operator ==(EditInfo?, EditInfo?)
+  nameWithType.vb: EditInfo.=(EditInfo, EditInfo)
+- uid: Pidgin.Incremental.EditInfo.op_Equality*
+  name: operator ==
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_op_Equality_
+  commentId: Overload:Pidgin.Incremental.EditInfo.op_Equality
+  name.vb: =
+  fullName: Pidgin.Incremental.EditInfo.operator ==
+  fullName.vb: Pidgin.Incremental.EditInfo.=
+  nameWithType: EditInfo.operator ==
+  nameWithType.vb: EditInfo.=
+- uid: Pidgin.Incremental.EditInfo.op_Inequality(Pidgin.Incremental.EditInfo,Pidgin.Incremental.EditInfo)
+  name: operator !=(EditInfo?, EditInfo?)
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_op_Inequality_Pidgin_Incremental_EditInfo_Pidgin_Incremental_EditInfo_
+  commentId: M:Pidgin.Incremental.EditInfo.op_Inequality(Pidgin.Incremental.EditInfo,Pidgin.Incremental.EditInfo)
+  name.vb: <>(EditInfo, EditInfo)
+  fullName: Pidgin.Incremental.EditInfo.operator !=(Pidgin.Incremental.EditInfo?, Pidgin.Incremental.EditInfo?)
+  fullName.vb: Pidgin.Incremental.EditInfo.<>(Pidgin.Incremental.EditInfo, Pidgin.Incremental.EditInfo)
+  nameWithType: EditInfo.operator !=(EditInfo?, EditInfo?)
+  nameWithType.vb: EditInfo.<>(EditInfo, EditInfo)
+- uid: Pidgin.Incremental.EditInfo.op_Inequality*
+  name: operator !=
+  href: Pidgin.Incremental.EditInfo.html#Pidgin_Incremental_EditInfo_op_Inequality_
+  commentId: Overload:Pidgin.Incremental.EditInfo.op_Inequality
+  name.vb: <>
+  fullName: Pidgin.Incremental.EditInfo.operator !=
+  fullName.vb: Pidgin.Incremental.EditInfo.<>
+  nameWithType: EditInfo.operator !=
+  nameWithType.vb: EditInfo.<>
+- uid: Pidgin.Incremental.IIncrementalParseResult`1
+  name: IIncrementalParseResult<T>
+  href: Pidgin.Incremental.IIncrementalParseResult-1.html
+  commentId: T:Pidgin.Incremental.IIncrementalParseResult`1
+  name.vb: IIncrementalParseResult(Of T)
+  fullName: Pidgin.Incremental.IIncrementalParseResult<T>
+  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T)
+  nameWithType: IIncrementalParseResult<T>
+  nameWithType.vb: IIncrementalParseResult(Of T)
+- uid: Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy(System.Int64)
+  name: ShiftBy(long)
+  href: Pidgin.Incremental.IIncrementalParseResult-1.html#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_
+  commentId: M:Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy(System.Int64)
+  name.vb: ShiftBy(Long)
+  fullName: Pidgin.Incremental.IIncrementalParseResult<T>.ShiftBy(long)
+  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T).ShiftBy(Long)
+  nameWithType: IIncrementalParseResult<T>.ShiftBy(long)
+  nameWithType.vb: IIncrementalParseResult(Of T).ShiftBy(Long)
+- uid: Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy*
+  name: ShiftBy
+  href: Pidgin.Incremental.IIncrementalParseResult-1.html#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_
+  commentId: Overload:Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy
+  fullName: Pidgin.Incremental.IIncrementalParseResult<T>.ShiftBy
+  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T).ShiftBy
+  nameWithType: IIncrementalParseResult<T>.ShiftBy
+  nameWithType.vb: IIncrementalParseResult(Of T).ShiftBy
+- uid: Pidgin.Incremental.IncrementalParseContext
+  name: IncrementalParseContext
+  href: Pidgin.Incremental.IncrementalParseContext.html
+  commentId: T:Pidgin.Incremental.IncrementalParseContext
+  fullName: Pidgin.Incremental.IncrementalParseContext
+  nameWithType: IncrementalParseContext
+- uid: Pidgin.Incremental.IncrementalParseContext.AddEdit(Pidgin.Incremental.EditInfo)
+  name: AddEdit(EditInfo)
+  href: Pidgin.Incremental.IncrementalParseContext.html#Pidgin_Incremental_IncrementalParseContext_AddEdit_Pidgin_Incremental_EditInfo_
+  commentId: M:Pidgin.Incremental.IncrementalParseContext.AddEdit(Pidgin.Incremental.EditInfo)
+  fullName: Pidgin.Incremental.IncrementalParseContext.AddEdit(Pidgin.Incremental.EditInfo)
+  nameWithType: IncrementalParseContext.AddEdit(EditInfo)
+- uid: Pidgin.Incremental.IncrementalParseContext.AddEdit*
+  name: AddEdit
+  href: Pidgin.Incremental.IncrementalParseContext.html#Pidgin_Incremental_IncrementalParseContext_AddEdit_
+  commentId: Overload:Pidgin.Incremental.IncrementalParseContext.AddEdit
+  fullName: Pidgin.Incremental.IncrementalParseContext.AddEdit
+  nameWithType: IncrementalParseContext.AddEdit
+- uid: Pidgin.Incremental.IncrementalParseContext.Edits
+  name: Edits
+  href: Pidgin.Incremental.IncrementalParseContext.html#Pidgin_Incremental_IncrementalParseContext_Edits
+  commentId: P:Pidgin.Incremental.IncrementalParseContext.Edits
+  fullName: Pidgin.Incremental.IncrementalParseContext.Edits
+  nameWithType: IncrementalParseContext.Edits
+- uid: Pidgin.Incremental.IncrementalParseContext.Edits*
+  name: Edits
+  href: Pidgin.Incremental.IncrementalParseContext.html#Pidgin_Incremental_IncrementalParseContext_Edits_
+  commentId: Overload:Pidgin.Incremental.IncrementalParseContext.Edits
+  fullName: Pidgin.Incremental.IncrementalParseContext.Edits
+  nameWithType: IncrementalParseContext.Edits
+- uid: Pidgin.Incremental.IncrementalParser
+  name: IncrementalParser
+  href: Pidgin.Incremental.IncrementalParser.html
+  commentId: T:Pidgin.Incremental.IncrementalParser
+  fullName: Pidgin.Incremental.IncrementalParser
+  nameWithType: IncrementalParser
+- uid: Pidgin.Incremental.IncrementalParser.Incremental*
+  name: Incremental
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_Incremental_
+  commentId: Overload:Pidgin.Incremental.IncrementalParser.Incremental
+  fullName: Pidgin.Incremental.IncrementalParser.Incremental
+  nameWithType: IncrementalParser.Incremental
+- uid: Pidgin.Incremental.IncrementalParser.Incremental``2(Pidgin.Parser{``0,``1})
+  name: Incremental<TToken, T>(Parser<TToken, T>)
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_Incremental__2_Pidgin_Parser___0___1__
+  commentId: M:Pidgin.Incremental.IncrementalParser.Incremental``2(Pidgin.Parser{``0,``1})
+  name.vb: Incremental(Of TToken, T)(Parser(Of TToken, T))
+  fullName: Pidgin.Incremental.IncrementalParser.Incremental<TToken, T>(Pidgin.Parser<TToken, T>)
+  fullName.vb: Pidgin.Incremental.IncrementalParser.Incremental(Of TToken, T)(Pidgin.Parser(Of TToken, T))
+  nameWithType: IncrementalParser.Incremental<TToken, T>(Parser<TToken, T>)
+  nameWithType.vb: IncrementalParser.Incremental(Of TToken, T)(Parser(Of TToken, T))
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementally*
+  name: ParseIncrementally
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementally_
+  commentId: Overload:Pidgin.Incremental.IncrementalParser.ParseIncrementally
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally
+  nameWithType: IncrementalParser.ParseIncrementally
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name: ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext, IConfiguration<TToken>?)
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally<TToken, T>(Pidgin.Parser<TToken, T>, Pidgin.ITokenStream<TToken>, Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration<TToken>?)
+  fullName.vb: Pidgin.Incremental.IncrementalParser.ParseIncrementally(Of TToken, T)(Pidgin.Parser(Of TToken, T), Pidgin.ITokenStream(Of TToken), Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: IncrementalParser.ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext, IConfiguration<TToken>?)
+  nameWithType.vb: IncrementalParser.ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+- uid: Pidgin.Incremental.LocationRange
+  name: LocationRange
+  href: Pidgin.Incremental.LocationRange.html
+  commentId: T:Pidgin.Incremental.LocationRange
+  fullName: Pidgin.Incremental.LocationRange
+  nameWithType: LocationRange
+- uid: Pidgin.Incremental.LocationRange.#ctor(Pidgin.Incremental.LocationRange)
+  name: LocationRange(LocationRange)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange__ctor_Pidgin_Incremental_LocationRange_
+  commentId: M:Pidgin.Incremental.LocationRange.#ctor(Pidgin.Incremental.LocationRange)
+  name.vb: New(LocationRange)
+  fullName: Pidgin.Incremental.LocationRange.LocationRange(Pidgin.Incremental.LocationRange)
+  fullName.vb: Pidgin.Incremental.LocationRange.New(Pidgin.Incremental.LocationRange)
+  nameWithType: LocationRange.LocationRange(LocationRange)
+  nameWithType.vb: LocationRange.New(LocationRange)
+- uid: Pidgin.Incremental.LocationRange.#ctor(System.Int64,System.Int64)
+  name: LocationRange(long, long)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange__ctor_System_Int64_System_Int64_
+  commentId: M:Pidgin.Incremental.LocationRange.#ctor(System.Int64,System.Int64)
+  name.vb: New(Long, Long)
+  fullName: Pidgin.Incremental.LocationRange.LocationRange(long, long)
+  fullName.vb: Pidgin.Incremental.LocationRange.New(Long, Long)
+  nameWithType: LocationRange.LocationRange(long, long)
+  nameWithType.vb: LocationRange.New(Long, Long)
+- uid: Pidgin.Incremental.LocationRange.#ctor*
+  name: LocationRange
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange__ctor_
+  commentId: Overload:Pidgin.Incremental.LocationRange.#ctor
+  name.vb: New
+  fullName: Pidgin.Incremental.LocationRange.LocationRange
+  fullName.vb: Pidgin.Incremental.LocationRange.New
+  nameWithType: LocationRange.LocationRange
+  nameWithType.vb: LocationRange.New
+- uid: Pidgin.Incremental.LocationRange.Deconstruct(System.Int64@,System.Int64@)
+  name: Deconstruct(out long, out long)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Deconstruct_System_Int64__System_Int64__
+  commentId: M:Pidgin.Incremental.LocationRange.Deconstruct(System.Int64@,System.Int64@)
+  name.vb: Deconstruct(Long, Long)
+  fullName: Pidgin.Incremental.LocationRange.Deconstruct(out long, out long)
+  fullName.vb: Pidgin.Incremental.LocationRange.Deconstruct(Long, Long)
+  nameWithType: LocationRange.Deconstruct(out long, out long)
+  nameWithType.vb: LocationRange.Deconstruct(Long, Long)
+- uid: Pidgin.Incremental.LocationRange.Deconstruct*
+  name: Deconstruct
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Deconstruct_
+  commentId: Overload:Pidgin.Incremental.LocationRange.Deconstruct
+  fullName: Pidgin.Incremental.LocationRange.Deconstruct
+  nameWithType: LocationRange.Deconstruct
+- uid: Pidgin.Incremental.LocationRange.End
+  name: End
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_End
+  commentId: P:Pidgin.Incremental.LocationRange.End
+  fullName: Pidgin.Incremental.LocationRange.End
+  nameWithType: LocationRange.End
+- uid: Pidgin.Incremental.LocationRange.End*
+  name: End
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_End_
+  commentId: Overload:Pidgin.Incremental.LocationRange.End
+  fullName: Pidgin.Incremental.LocationRange.End
+  nameWithType: LocationRange.End
+- uid: Pidgin.Incremental.LocationRange.EqualityContract
+  name: EqualityContract
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_EqualityContract
+  commentId: P:Pidgin.Incremental.LocationRange.EqualityContract
+  fullName: Pidgin.Incremental.LocationRange.EqualityContract
+  nameWithType: LocationRange.EqualityContract
+- uid: Pidgin.Incremental.LocationRange.EqualityContract*
+  name: EqualityContract
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_EqualityContract_
+  commentId: Overload:Pidgin.Incremental.LocationRange.EqualityContract
+  fullName: Pidgin.Incremental.LocationRange.EqualityContract
+  nameWithType: LocationRange.EqualityContract
+- uid: Pidgin.Incremental.LocationRange.Equals(Pidgin.Incremental.LocationRange)
+  name: Equals(LocationRange?)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Equals_Pidgin_Incremental_LocationRange_
+  commentId: M:Pidgin.Incremental.LocationRange.Equals(Pidgin.Incremental.LocationRange)
+  name.vb: Equals(LocationRange)
+  fullName: Pidgin.Incremental.LocationRange.Equals(Pidgin.Incremental.LocationRange?)
+  fullName.vb: Pidgin.Incremental.LocationRange.Equals(Pidgin.Incremental.LocationRange)
+  nameWithType: LocationRange.Equals(LocationRange?)
+  nameWithType.vb: LocationRange.Equals(LocationRange)
+- uid: Pidgin.Incremental.LocationRange.Equals(System.Object)
+  name: Equals(object?)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Equals_System_Object_
+  commentId: M:Pidgin.Incremental.LocationRange.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: Pidgin.Incremental.LocationRange.Equals(object?)
+  fullName.vb: Pidgin.Incremental.LocationRange.Equals(Object)
+  nameWithType: LocationRange.Equals(object?)
+  nameWithType.vb: LocationRange.Equals(Object)
+- uid: Pidgin.Incremental.LocationRange.Equals*
+  name: Equals
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Equals_
+  commentId: Overload:Pidgin.Incremental.LocationRange.Equals
+  fullName: Pidgin.Incremental.LocationRange.Equals
+  nameWithType: LocationRange.Equals
+- uid: Pidgin.Incremental.LocationRange.GetHashCode
+  name: GetHashCode()
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_GetHashCode
+  commentId: M:Pidgin.Incremental.LocationRange.GetHashCode
+  fullName: Pidgin.Incremental.LocationRange.GetHashCode()
+  nameWithType: LocationRange.GetHashCode()
+- uid: Pidgin.Incremental.LocationRange.GetHashCode*
+  name: GetHashCode
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_GetHashCode_
+  commentId: Overload:Pidgin.Incremental.LocationRange.GetHashCode
+  fullName: Pidgin.Incremental.LocationRange.GetHashCode
+  nameWithType: LocationRange.GetHashCode
+- uid: Pidgin.Incremental.LocationRange.Length
+  name: Length
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Length
+  commentId: P:Pidgin.Incremental.LocationRange.Length
+  fullName: Pidgin.Incremental.LocationRange.Length
+  nameWithType: LocationRange.Length
+- uid: Pidgin.Incremental.LocationRange.Length*
+  name: Length
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Length_
+  commentId: Overload:Pidgin.Incremental.LocationRange.Length
+  fullName: Pidgin.Incremental.LocationRange.Length
+  nameWithType: LocationRange.Length
+- uid: Pidgin.Incremental.LocationRange.PrintMembers(System.Text.StringBuilder)
+  name: PrintMembers(StringBuilder)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_PrintMembers_System_Text_StringBuilder_
+  commentId: M:Pidgin.Incremental.LocationRange.PrintMembers(System.Text.StringBuilder)
+  fullName: Pidgin.Incremental.LocationRange.PrintMembers(System.Text.StringBuilder)
+  nameWithType: LocationRange.PrintMembers(StringBuilder)
+- uid: Pidgin.Incremental.LocationRange.PrintMembers*
+  name: PrintMembers
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_PrintMembers_
+  commentId: Overload:Pidgin.Incremental.LocationRange.PrintMembers
+  fullName: Pidgin.Incremental.LocationRange.PrintMembers
+  nameWithType: LocationRange.PrintMembers
+- uid: Pidgin.Incremental.LocationRange.Start
+  name: Start
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Start
+  commentId: P:Pidgin.Incremental.LocationRange.Start
+  fullName: Pidgin.Incremental.LocationRange.Start
+  nameWithType: LocationRange.Start
+- uid: Pidgin.Incremental.LocationRange.Start*
+  name: Start
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Start_
+  commentId: Overload:Pidgin.Incremental.LocationRange.Start
+  fullName: Pidgin.Incremental.LocationRange.Start
+  nameWithType: LocationRange.Start
+- uid: Pidgin.Incremental.LocationRange.ToString
+  name: ToString()
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_ToString
+  commentId: M:Pidgin.Incremental.LocationRange.ToString
+  fullName: Pidgin.Incremental.LocationRange.ToString()
+  nameWithType: LocationRange.ToString()
+- uid: Pidgin.Incremental.LocationRange.ToString*
+  name: ToString
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_ToString_
+  commentId: Overload:Pidgin.Incremental.LocationRange.ToString
+  fullName: Pidgin.Incremental.LocationRange.ToString
+  nameWithType: LocationRange.ToString
+- uid: Pidgin.Incremental.LocationRange.op_Equality(Pidgin.Incremental.LocationRange,Pidgin.Incremental.LocationRange)
+  name: operator ==(LocationRange?, LocationRange?)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_op_Equality_Pidgin_Incremental_LocationRange_Pidgin_Incremental_LocationRange_
+  commentId: M:Pidgin.Incremental.LocationRange.op_Equality(Pidgin.Incremental.LocationRange,Pidgin.Incremental.LocationRange)
+  name.vb: =(LocationRange, LocationRange)
+  fullName: Pidgin.Incremental.LocationRange.operator ==(Pidgin.Incremental.LocationRange?, Pidgin.Incremental.LocationRange?)
+  fullName.vb: Pidgin.Incremental.LocationRange.=(Pidgin.Incremental.LocationRange, Pidgin.Incremental.LocationRange)
+  nameWithType: LocationRange.operator ==(LocationRange?, LocationRange?)
+  nameWithType.vb: LocationRange.=(LocationRange, LocationRange)
+- uid: Pidgin.Incremental.LocationRange.op_Equality*
+  name: operator ==
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_op_Equality_
+  commentId: Overload:Pidgin.Incremental.LocationRange.op_Equality
+  name.vb: =
+  fullName: Pidgin.Incremental.LocationRange.operator ==
+  fullName.vb: Pidgin.Incremental.LocationRange.=
+  nameWithType: LocationRange.operator ==
+  nameWithType.vb: LocationRange.=
+- uid: Pidgin.Incremental.LocationRange.op_Inequality(Pidgin.Incremental.LocationRange,Pidgin.Incremental.LocationRange)
+  name: operator !=(LocationRange?, LocationRange?)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_op_Inequality_Pidgin_Incremental_LocationRange_Pidgin_Incremental_LocationRange_
+  commentId: M:Pidgin.Incremental.LocationRange.op_Inequality(Pidgin.Incremental.LocationRange,Pidgin.Incremental.LocationRange)
+  name.vb: <>(LocationRange, LocationRange)
+  fullName: Pidgin.Incremental.LocationRange.operator !=(Pidgin.Incremental.LocationRange?, Pidgin.Incremental.LocationRange?)
+  fullName.vb: Pidgin.Incremental.LocationRange.<>(Pidgin.Incremental.LocationRange, Pidgin.Incremental.LocationRange)
+  nameWithType: LocationRange.operator !=(LocationRange?, LocationRange?)
+  nameWithType.vb: LocationRange.<>(LocationRange, LocationRange)
+- uid: Pidgin.Incremental.LocationRange.op_Inequality*
+  name: operator !=
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_op_Inequality_
+  commentId: Overload:Pidgin.Incremental.LocationRange.op_Inequality
+  name.vb: <>
+  fullName: Pidgin.Incremental.LocationRange.operator !=
+  fullName.vb: Pidgin.Incremental.LocationRange.<>
+  nameWithType: LocationRange.operator !=
+  nameWithType.vb: LocationRange.<>
 - uid: Pidgin.Maybe
   name: Maybe
   href: Pidgin.Maybe.html

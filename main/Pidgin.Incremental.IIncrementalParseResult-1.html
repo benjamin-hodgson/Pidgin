@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Class Maybe
+        <title>Interface IIncrementalParseResult&lt;T&gt;
  | Pidgin </title>
         <meta name="viewport" content="width=device-width">
-        <meta name="title" content="Class Maybe
+        <meta name="title" content="Interface IIncrementalParseResult&lt;T&gt;
  | Pidgin ">
         <meta name="generator" content="docfx ">
 
@@ -45,9 +45,9 @@
                     </form>
                             <ul id="toc0" class="active active-i">
                                     <li>
-                                            <button type="button" class="link expander active active-i js-expander" aria-controls="toc0_0"></button>
-                                            <a href="Pidgin.html" title="Pidgin" class="active active-i">Pidgin</a>
-                                            <ul id="toc0_0" class="active active-i">
+                                            <button type="button" class="link expander  js-expander" aria-controls="toc0_0"></button>
+                                            <a href="Pidgin.html" title="Pidgin" class="">Pidgin</a>
+                                            <ul id="toc0_0" class="">
                                                     <li>
                                                             <a href="Pidgin.Expected-1.html" title="Expected&lt;TToken&gt;" class="">Expected&lt;TToken&gt;</a>
                                                     </li>
@@ -55,7 +55,7 @@
                                                             <a href="Pidgin.ITokenStream-1.html" title="ITokenStream&lt;TToken&gt;" class="">ITokenStream&lt;TToken&gt;</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.Maybe.html" title="Maybe" class="active active-i">Maybe</a>
+                                                            <a href="Pidgin.Maybe.html" title="Maybe" class="">Maybe</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.Maybe-1.html" title="Maybe&lt;T&gt;" class="">Maybe&lt;T&gt;</a>
@@ -159,14 +159,14 @@
                                             </ul>
                                     </li>
                                     <li>
-                                            <button type="button" class="link expander  js-expander" aria-controls="toc0_4"></button>
-                                            <a href="Pidgin.Incremental.html" title="Pidgin.Incremental" class="">Pidgin.Incremental</a>
-                                            <ul id="toc0_4" class="">
+                                            <button type="button" class="link expander active active-i js-expander" aria-controls="toc0_4"></button>
+                                            <a href="Pidgin.Incremental.html" title="Pidgin.Incremental" class="active active-i">Pidgin.Incremental</a>
+                                            <ul id="toc0_4" class="active active-i">
                                                     <li>
                                                             <a href="Pidgin.Incremental.EditInfo.html" title="EditInfo" class="">EditInfo</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.Incremental.IIncrementalParseResult-1.html" title="IIncrementalParseResult&lt;T&gt;" class="">IIncrementalParseResult&lt;T&gt;</a>
+                                                            <a href="Pidgin.Incremental.IIncrementalParseResult-1.html" title="IIncrementalParseResult&lt;T&gt;" class="active active-i">IIncrementalParseResult&lt;T&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.Incremental.IncrementalParseContext.html" title="IncrementalParseContext" class="">IncrementalParseContext</a>
@@ -221,43 +221,32 @@
 
             <div class="col columns">
 <article class="col">
-        <h1 id="Pidgin_Maybe"><a href="#Pidgin_Maybe">Class Maybe
+        <h1 id="Pidgin_Incremental_IIncrementalParseResult_1"><a href="#Pidgin_Incremental_IIncrementalParseResult_1">Interface IIncrementalParseResult&lt;T&gt;
 </a></h1>
-        <div><p>Constructor functions, extension methods and utilities for working with <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a>.</p>
+        <div><p>Represents the result of an incremental parse operation,
+supporting shifting of locations in response to edits.</p>
 </div>
-            <h5>Inheritance</h5>
-            <ul>
-                    <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></li>
-                <li>Maybe</li>
-            </ul>
 
-            <h5>Inherited Members</h5>
-            <ul>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
-                    </li>
-                    <li>
-                            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
-                    </li>
-            </ul>
 
         <h5>Declaration</h5>
-        <pre><code class="lang- hljs">public static class Maybe</code></pre>
+        <pre><code class="lang- hljs">public interface IIncrementalParseResult&lt;T&gt; where T : class, IIncrementalParseResult&lt;T&gt;</code></pre>
+            <h5>Type Parameters</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><p>T</p></td>
+                            <td><p>The type implementing this interface, which must also
+implement <a class="xref" href="Pidgin.Incremental.IIncrementalParseResult-1.html">IIncrementalParseResult&lt;T&gt;</a>.</p>
+</td>
+                        </tr>
+                </tbody>
+            </table>
 
 
 
@@ -265,12 +254,13 @@
 </a></h3>
 
         
-                <a id="Pidgin_Maybe_Just_"></a>
-                <h4 id="Pidgin_Maybe_Just__1___0_"><a href="#Pidgin_Maybe_Just__1___0_">Just&lt;T&gt;(T)</a></h4>
-                <div><p>Creates a <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a> containing a value.</p>
+                <a id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_"></a>
+                <h4 id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_"><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_">ShiftBy(long)</a></h4>
+                <div><p>Returns a copy of this result with all locations
+shifted by the specified amount.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public static Maybe&lt;T&gt; Just&lt;T&gt;(T value)</code></pre>
+                    <pre><code class="lang- hljs">T ShiftBy(long amount)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -283,43 +273,26 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
+                                    <td><p>amount</p></td>
+                                    <td><p>The amount by which to shift locations.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
                                     <td><p><span class="xref">T</span></p></td>
-                                    <td><p>value</p></td>
-                                    <td><p>The value of the new <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a>.</p>
-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h5>Returns</h5>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><p><a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;T&gt;</p></td>
-                                    <td><p>A <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a> containing the specified value.</p>
-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h5>Type Parameters</h5>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><p>T</p></td>
-                                    <td><p>The type of the contained value.</p>
+                                    <td><p>A new result with shifted locations.</p>
 </td>
                                 </tr>
                             </tbody>
@@ -330,55 +303,11 @@
 
 
 
-                
-
-        
-                <a id="Pidgin_Maybe_Nothing_"></a>
-                <h4 id="Pidgin_Maybe_Nothing__1"><a href="#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a></h4>
-                <div><p>Creates a <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a> containing no value.</p>
+                    <h5 id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64__remarks"><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64__remarks">Remarks</a></h5>
+                    <div><p>An implementation can simply return <code>this</code> if
+the object does not contain any source locations
+that would need shifting.</p>
 </div>
-                <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public static Maybe&lt;T&gt; Nothing&lt;T&gt;()</code></pre>
-
-
-                        <h5>Returns</h5>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><p><a class="xref" href="Pidgin.Maybe-1.html">Maybe</a>&lt;T&gt;</p></td>
-                                    <td><p>A <a class="xref" href="Pidgin.Maybe-1.html">Maybe&lt;T&gt;</a> containing no.</p>
-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h5>Type Parameters</h5>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><p>T</p></td>
-                                    <td><p>The type of the absent value.</p>
-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
-
-
-
 
                 
 
@@ -394,7 +323,7 @@
     <nav id="local-toc">
         <ul class="active">
             <li>
-                <a class="active" href="#Pidgin_Maybe">Class Maybe
+                <a class="active" href="#Pidgin_Incremental_IIncrementalParseResult_1">Interface IIncrementalParseResult&lt;T&gt;
 </a>
                 <ul class="active">
                         <li>
@@ -402,8 +331,7 @@
 </a>
 
                             <ul>
-                                    <li><a href="#Pidgin_Maybe_Just__1___0_">Just&lt;T&gt;(T)</a></li>
-                                    <li><a href="#Pidgin_Maybe_Nothing__1">Nothing&lt;T&gt;()</a></li>
+                                    <li><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_">ShiftBy(long)</a></li>
                             </ul>
                         </li>
                 </ul>
