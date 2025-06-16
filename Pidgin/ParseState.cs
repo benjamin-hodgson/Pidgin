@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 using Pidgin.Configuration;
+using Pidgin.Incremental;
 
 namespace Pidgin;
 
@@ -29,6 +30,11 @@ public ref partial struct ParseState<TToken>
 
     /// <summary>Gets the parser configuration.</summary>
     public IConfiguration<TToken> Configuration { get; }
+
+    // todo: maybe put these two fields in a public "bag of stuff" object
+    internal IncrementalParseContext? IncrementalParseContext { get; set; } = null;
+
+    internal CachedParseResultTable.Builder? NewResultCache { get; set; } = null;
 
     private readonly Func<TToken, SourcePosDelta> _sourcePosCalculator;
     private readonly ArrayPool<TToken>? _arrayPool;
@@ -154,10 +160,10 @@ public ref partial struct ParseState<TToken>
         // may have buffered fewer than `count` tokens
         var span = _span.Slice(_currentIndex, Math.Min(_bufferedCount - _currentIndex, count));
 
-        if (_onLookaheadActions?.Count > 0)
+        if (_onLookahead?.Count > 0)
         {
             var lookAheadToLocation = Location + span.Length;
-            foreach (var action in _onLookaheadActions)
+            foreach (var action in _onLookahead)
             {
                 action(lookAheadToLocation);
             }
@@ -166,31 +172,31 @@ public ref partial struct ParseState<TToken>
         return span;
     }
 
-    private Stack<Action<long>>? _onLookaheadActions;
+    private Stack<Action<long>>? _onLookahead;
 
-    internal void PushOnLookaheadAction(Action<long> action)
+    internal void OnLookahead(Action<long> action)
     {
-        if (_onLookaheadActions == null)
+        if (_onLookahead == null)
         {
-            _onLookaheadActions = new Stack<Action<long>>();
+            _onLookahead = new Stack<Action<long>>();
         }
 
-        _onLookaheadActions.Push(action);
+        _onLookahead.Push(action);
     }
 
-    internal void PopOnLookaheadAction(Action<long> action)
+    internal void OffLookahead(Action<long> action)
     {
-        if (_onLookaheadActions == null || _onLookaheadActions.Count == 0)
+        if (_onLookahead == null || _onLookahead.Count == 0)
         {
             throw new InvalidOperationException("Tried to pop an action from an empty stack. Please report this as a bug in Pidgin!");
         }
 
-        if (_onLookaheadActions.Peek() != action)
+        if (_onLookahead.Peek() != action)
         {
             throw new InvalidOperationException("Tried to pop an action that doesn't match the top of the stack. Please report this as a bug in Pidgin!");
         }
 
-        _onLookaheadActions.Pop();
+        _onLookahead.Pop();
     }
 
     // if it returns a span shorter than count it's because you looked further back than the buffer goes
