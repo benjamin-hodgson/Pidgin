@@ -34,7 +34,7 @@ public class IncrementalParseContext
         // chronological order
         foreach (var edit in Edits)
         {
-            if (edit.InputRange.Overlaps(oldRange))
+            if (edit.InputRange.OverlapsOrExtends(oldRange))
             {
                 return false;
             }

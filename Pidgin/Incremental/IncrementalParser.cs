@@ -65,6 +65,72 @@ public static class IncrementalParser
     /// </returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> or <paramref name="input"/> is null.</exception>
     /// <exception cref="InvalidOperationException">Thrown if the result cache is unexpectedly null.</exception>
+    // todo: ParseIncrementallyOrThrow, overloads for string, span, etc
+    public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow<TToken, T>(
+        this Parser<TToken, T> parser,
+        ReadOnlySpan<TToken> input,
+        IncrementalParseContext? context,
+        IConfiguration<TToken>? configuration = null
+    )
+    {
+        if (parser == null)
+        {
+            throw new ArgumentNullException(nameof(parser));
+        }
+
+        var state = new ParseState<TToken>(configuration ?? Configuration.Configuration.Default<TToken>(), input)
+        {
+            IncrementalParseContext = context,
+            NewResultCache = new()
+        };
+
+        var result = parser.ParseOrThrow(ref state);
+
+        if (state.NewResultCache == null)
+        {
+            throw new InvalidOperationException("NewResultCache was null. Please report this as a bug in Pidgin");
+        }
+
+        var newCtx = new IncrementalParseContext(ImmutableList<EditInfo>.Empty, state.NewResultCache.Build());
+
+        return (newCtx, result);
+    }
+
+    /// <summary>
+    /// Applies <paramref name="parser"/> to <paramref name="input"/>,
+    /// reusing results from the supplied <paramref name="context"/>
+    /// when possible.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// // First parse (no context)
+    /// var (context, result) = parser.ParseIncrementally(input, null).Value;
+    ///
+    /// // ...user edits input, producing newInput and an Edit instance...
+    /// var edit = new Edit(new LocationRange(5, 3), 2); // example edit
+    /// var newContext = context.AddEdit(edit);
+    ///
+    /// // Incremental parse after edit
+    /// var (context2, result2) = parser.ParseIncrementally(newInput, newContext);
+    /// </code>
+    /// </example>
+    /// <typeparam name="TToken">The type of tokens in the input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <param name="parser">The parser to run incrementally.</param>
+    /// <param name="input">The input token stream to parse.</param>
+    /// <param name="context">
+    /// The incremental parse context containing cached results from the previous parse.
+    /// Can be null if this is the first time running this parser.
+    /// </param>
+    /// <param name="configuration">
+    /// The parser configuration, or null to use the default configuration.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Result{TToken, TValue}"/> containing a tuple of the new <see cref="IncrementalParseContext"/> and the parsed value.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> or <paramref name="input"/> is null.</exception>
+    /// <exception cref="InvalidOperationException">Thrown if the result cache is unexpectedly null.</exception>
+    // todo: ParseIncrementallyOrThrow, overloads for string, span, etc
     public static Result<TToken, (IncrementalParseContext Context, T Value)> ParseIncrementally<TToken, T>(
         this Parser<TToken, T> parser,
         ITokenStream<TToken> input,

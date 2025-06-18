@@ -322,6 +322,21 @@ public static class ParserExtensions
     public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ITokenStream<TToken> input, IConfiguration<TToken>? configuration = null)
         => GetValueOrThrow(parser.Parse(input, configuration));
 
+    /// <summary>
+    /// Run the <paramref name="parser"/> on the input <paramref name="state"/>.
+    ///
+    /// WARNING: This API is <strong>unstable</strong>
+    /// and subject to change in future versions of the library.
+    /// </summary>
+    /// <param name="parser">A parser.</param>
+    /// <param name="state">An input <see cref="ParseState{TToken}" />.</param>
+    /// <typeparam name="TToken">The type of the tokens in the parser's input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <exception cref="ParseException">Thrown when an error occurs during parsing.</exception>
+    /// <returns>The result of parsing.</returns>
+    public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ref ParseState<TToken> state)
+        => GetValueOrThrow(parser.Parse(ref state));
+
     private static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)
         => result.Success ? result.Value : throw new ParseException<TToken>(result.Error!);
 }

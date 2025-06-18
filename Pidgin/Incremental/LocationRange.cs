@@ -18,8 +18,19 @@ public record LocationRange(long Start, long Length)
     internal bool Contains(long location)
         => location >= Start && location <= End;
 
-    internal bool Overlaps(LocationRange other)
-        => End >= other.Start && other.End >= Start;
+    // An edit that extends an existing node
+    //     |oldText|
+    //             |edit|
+    // might require reparsing. (eg, "class" -> "classsss")
+    //
+    // However, if the edit that prepends an existing node,
+    //          |oldText|
+    //     |edit|
+    // if the parser consumes the edit and still reaches the
+    // same state (ie, same parser instance) at the end of the
+    // edit, we can use the cached parse of oldText.
+    internal bool OverlapsOrExtends(LocationRange other)
+        => End > other.Start && other.End >= Start;
 
     internal LocationRange ShiftBy(long amount)
         => this with { Start = Start + amount };
