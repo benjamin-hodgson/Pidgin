@@ -655,6 +655,103 @@
 
         
                 <a id="Pidgin_ParserExtensions_ParseOrThrow_"></a>
+                <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__Pidgin_ParseState___0___"><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__Pidgin_ParseState___0___">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ref ParseState&lt;TToken&gt;)</a></h4>
+                <div><p>Run the <code class="paramref">parser</code> on the input <code class="paramref">state</code>.</p>
+<p>WARNING: This API is <strong>unstable</strong>
+and subject to change in future versions of the library.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public static T ParseOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ref ParseState&lt;TToken&gt; state)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
+                                    <td><p>parser</p></td>
+                                    <td><p>A parser.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.ParseState-1.html">ParseState</a>&lt;TToken&gt;</p></td>
+                                    <td><p>state</p></td>
+                                    <td><p>An input <a class="xref" href="Pidgin.ParseState-1.html">ParseState&lt;TToken&gt;</a>.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><span class="xref">T</span></p></td>
+                                    <td><p>The result of parsing.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>TToken</p></td>
+                                    <td><p>The type of the tokens in the parser's input stream.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p>T</p></td>
+                                    <td><p>The type of the value returned by the parser.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                
+                    <h5>Exceptions</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Condition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p><a class="xref" href="Pidgin.ParseException.html">ParseException</a></p></td>
+                                <td><p>Thrown when an error occurs during parsing.</p>
+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+        
+                <a id="Pidgin_ParserExtensions_ParseOrThrow_"></a>
                 <h4 id="Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable___0__Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable___0__Pidgin_Configuration_IConfiguration___0__">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, IConfiguration&lt;TToken&gt;?)</a></h4>
                 <div><p>Applies <code class="paramref">parser</code> to <code class="paramref">input</code>.</p>
 </div>
@@ -2201,6 +2298,7 @@ and subject to change in future versions of the library.</p>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_IO_TextReader_Pidgin_Configuration_IConfiguration_System_Char__">ParseOrThrow&lt;T&gt;(Parser&lt;char, T&gt;, TextReader, IConfiguration&lt;char&gt;?)</a></li>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__1_Pidgin_Parser_System_Char___0__System_String_Pidgin_Configuration_IConfiguration_System_Char__">ParseOrThrow&lt;T&gt;(Parser&lt;char, T&gt;, string, IConfiguration&lt;char&gt;?)</a></li>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Configuration_IConfiguration___0__">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IConfiguration&lt;TToken&gt;?)</a></li>
+                                    <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__Pidgin_ParseState___0___">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ref ParseState&lt;TToken&gt;)</a></li>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable___0__Pidgin_Configuration_IConfiguration___0__">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerable&lt;TToken&gt;, IConfiguration&lt;TToken&gt;?)</a></li>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerator___0__Pidgin_Configuration_IConfiguration___0__">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IEnumerator&lt;TToken&gt;, IConfiguration&lt;TToken&gt;?)</a></li>
                                     <li><a href="#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IList___0__Pidgin_Configuration_IConfiguration___0__">ParseOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, IList&lt;TToken&gt;, IConfiguration&lt;TToken&gt;?)</a></li>

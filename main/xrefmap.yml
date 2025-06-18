@@ -1338,6 +1338,21 @@ references:
   commentId: Overload:Pidgin.Incremental.IncrementalParser.ParseIncrementally
   fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally
   nameWithType: IncrementalParser.ParseIncrementally
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow*
+  name: ParseIncrementallyOrThrow
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow_
+  commentId: Overload:Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow
+  nameWithType: IncrementalParser.ParseIncrementallyOrThrow
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow``2(Pidgin.Parser{``0,``1},System.ReadOnlySpan{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name: ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow``2(Pidgin.Parser{``0,``1},System.ReadOnlySpan{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseIncrementallyOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, System.ReadOnlySpan<TToken>, Pidgin.Incremental.IncrementalParseContext?, Pidgin.Configuration.IConfiguration<TToken>?)
+  fullName.vb: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), System.ReadOnlySpan(Of TToken), Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: IncrementalParser.ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  nameWithType.vb: IncrementalParser.ParseIncrementallyOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
 - uid: Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
   name: ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext, IConfiguration<TToken>?)
   href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
@@ -3063,6 +3078,15 @@ references:
   fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), Pidgin.ITokenStream(Of TToken), Pidgin.Configuration.IConfiguration(Of TToken))
   nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IConfiguration<TToken>?)
   nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IConfiguration(Of TToken))
+- uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},Pidgin.ParseState{``0}@)
+  name: ParseOrThrow<TToken, T>(Parser<TToken, T>, ref ParseState<TToken>)
+  href: Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__Pidgin_ParseState___0___
+  commentId: M:Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},Pidgin.ParseState{``0}@)
+  name.vb: ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ParseState(Of TToken))
+  fullName: Pidgin.ParserExtensions.ParseOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, ref Pidgin.ParseState<TToken>)
+  fullName.vb: Pidgin.ParserExtensions.ParseOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), Pidgin.ParseState(Of TToken))
+  nameWithType: ParserExtensions.ParseOrThrow<TToken, T>(Parser<TToken, T>, ref ParseState<TToken>)
+  nameWithType.vb: ParserExtensions.ParseOrThrow(Of TToken, T)(Parser(Of TToken, T), ParseState(Of TToken))
 - uid: Pidgin.ParserExtensions.ParseOrThrow``2(Pidgin.Parser{``0,``1},System.Collections.Generic.IEnumerable{``0},Pidgin.Configuration.IConfiguration{``0})
   name: ParseOrThrow<TToken, T>(Parser<TToken, T>, IEnumerable<TToken>, IConfiguration<TToken>?)
   href: Pidgin.ParserExtensions.html#Pidgin_ParserExtensions_ParseOrThrow__2_Pidgin_Parser___0___1__System_Collections_Generic_IEnumerable___0__Pidgin_Configuration_IConfiguration___0__
