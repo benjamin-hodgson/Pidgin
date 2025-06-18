@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Interface IIncrementalParseResult&lt;T&gt;
+        <title>Interface IShiftable&lt;T&gt;
  | Pidgin </title>
         <meta name="viewport" content="width=device-width">
-        <meta name="title" content="Interface IIncrementalParseResult&lt;T&gt;
+        <meta name="title" content="Interface IShiftable&lt;T&gt;
  | Pidgin ">
         <meta name="generator" content="docfx ">
 
@@ -166,7 +166,7 @@
                                                             <a href="Pidgin.Incremental.EditInfo.html" title="EditInfo" class="">EditInfo</a>
                                                     </li>
                                                     <li>
-                                                            <a href="Pidgin.Incremental.IIncrementalParseResult-1.html" title="IIncrementalParseResult&lt;T&gt;" class="active active-i">IIncrementalParseResult&lt;T&gt;</a>
+                                                            <a href="Pidgin.Incremental.IShiftable-1.html" title="IShiftable&lt;T&gt;" class="active active-i">IShiftable&lt;T&gt;</a>
                                                     </li>
                                                     <li>
                                                             <a href="Pidgin.Incremental.IncrementalParseContext.html" title="IncrementalParseContext" class="">IncrementalParseContext</a>
@@ -221,7 +221,7 @@
 
             <div class="col columns">
 <article class="col">
-        <h1 id="Pidgin_Incremental_IIncrementalParseResult_1"><a href="#Pidgin_Incremental_IIncrementalParseResult_1">Interface IIncrementalParseResult&lt;T&gt;
+        <h1 id="Pidgin_Incremental_IShiftable_1"><a href="#Pidgin_Incremental_IShiftable_1">Interface IShiftable&lt;T&gt;
 </a></h1>
         <div><p>Represents the result of an incremental parse operation,
 supporting shifting of locations in response to edits.</p>
@@ -229,7 +229,7 @@ supporting shifting of locations in response to edits.</p>
 
 
         <h5>Declaration</h5>
-        <pre><code class="lang- hljs">public interface IIncrementalParseResult&lt;T&gt; where T : class, IIncrementalParseResult&lt;T&gt;</code></pre>
+        <pre><code class="lang- hljs">public interface IShiftable&lt;T&gt; where T : class, IShiftable&lt;T&gt;</code></pre>
             <h5>Type Parameters</h5>
             <table>
                 <thead>
@@ -253,10 +253,10 @@ supporting shifting of locations in response to edits.</p>
 </a></h3>
 
         
-                <a id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_"></a>
-                <h4 id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_"><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_">ShiftBy(long)</a></h4>
-                <div><p>Returns a copy of this result with all locations
-shifted by the specified amount.</p>
+                <a id="Pidgin_Incremental_IShiftable_1_ShiftBy_"></a>
+                <h4 id="Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64_"><a href="#Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64_">ShiftBy(long)</a></h4>
+                <div><p>Returns a copy of this result with all stored
+locations shifted by the specified amount.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang- hljs">T ShiftBy(long amount)</code></pre>
@@ -302,7 +302,7 @@ shifted by the specified amount.</p>
 
 
 
-                    <h5 id="Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64__remarks"><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64__remarks">Remarks</a></h5>
+                    <h5 id="Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64__remarks"><a href="#Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64__remarks">Remarks</a></h5>
                     <div><p>An implementation can simply return <code>this</code> if
 the object does not contain any source locations
 that would need shifting.</p>
@@ -322,7 +322,7 @@ that would need shifting.</p>
     <nav id="local-toc">
         <ul class="active">
             <li>
-                <a class="active" href="#Pidgin_Incremental_IIncrementalParseResult_1">Interface IIncrementalParseResult&lt;T&gt;
+                <a class="active" href="#Pidgin_Incremental_IShiftable_1">Interface IShiftable&lt;T&gt;
 </a>
                 <ul class="active">
                         <li>
@@ -330,7 +330,7 @@ that would need shifting.</p>
 </a>
 
                             <ul>
-                                    <li><a href="#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_">ShiftBy(long)</a></li>
+                                    <li><a href="#Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64_">ShiftBy(long)</a></li>
                             </ul>
                         </li>
                 </ul>

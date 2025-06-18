@@ -1255,32 +1255,32 @@ references:
   fullName.vb: Pidgin.Incremental.EditInfo.<>
   nameWithType: EditInfo.operator !=
   nameWithType.vb: EditInfo.<>
-- uid: Pidgin.Incremental.IIncrementalParseResult`1
-  name: IIncrementalParseResult<T>
-  href: Pidgin.Incremental.IIncrementalParseResult-1.html
-  commentId: T:Pidgin.Incremental.IIncrementalParseResult`1
-  name.vb: IIncrementalParseResult(Of T)
-  fullName: Pidgin.Incremental.IIncrementalParseResult<T>
-  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T)
-  nameWithType: IIncrementalParseResult<T>
-  nameWithType.vb: IIncrementalParseResult(Of T)
-- uid: Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy(System.Int64)
+- uid: Pidgin.Incremental.IShiftable`1
+  name: IShiftable<T>
+  href: Pidgin.Incremental.IShiftable-1.html
+  commentId: T:Pidgin.Incremental.IShiftable`1
+  name.vb: IShiftable(Of T)
+  fullName: Pidgin.Incremental.IShiftable<T>
+  fullName.vb: Pidgin.Incremental.IShiftable(Of T)
+  nameWithType: IShiftable<T>
+  nameWithType.vb: IShiftable(Of T)
+- uid: Pidgin.Incremental.IShiftable`1.ShiftBy(System.Int64)
   name: ShiftBy(long)
-  href: Pidgin.Incremental.IIncrementalParseResult-1.html#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_System_Int64_
-  commentId: M:Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy(System.Int64)
+  href: Pidgin.Incremental.IShiftable-1.html#Pidgin_Incremental_IShiftable_1_ShiftBy_System_Int64_
+  commentId: M:Pidgin.Incremental.IShiftable`1.ShiftBy(System.Int64)
   name.vb: ShiftBy(Long)
-  fullName: Pidgin.Incremental.IIncrementalParseResult<T>.ShiftBy(long)
-  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T).ShiftBy(Long)
-  nameWithType: IIncrementalParseResult<T>.ShiftBy(long)
-  nameWithType.vb: IIncrementalParseResult(Of T).ShiftBy(Long)
-- uid: Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy*
+  fullName: Pidgin.Incremental.IShiftable<T>.ShiftBy(long)
+  fullName.vb: Pidgin.Incremental.IShiftable(Of T).ShiftBy(Long)
+  nameWithType: IShiftable<T>.ShiftBy(long)
+  nameWithType.vb: IShiftable(Of T).ShiftBy(Long)
+- uid: Pidgin.Incremental.IShiftable`1.ShiftBy*
   name: ShiftBy
-  href: Pidgin.Incremental.IIncrementalParseResult-1.html#Pidgin_Incremental_IIncrementalParseResult_1_ShiftBy_
-  commentId: Overload:Pidgin.Incremental.IIncrementalParseResult`1.ShiftBy
-  fullName: Pidgin.Incremental.IIncrementalParseResult<T>.ShiftBy
-  fullName.vb: Pidgin.Incremental.IIncrementalParseResult(Of T).ShiftBy
-  nameWithType: IIncrementalParseResult<T>.ShiftBy
-  nameWithType.vb: IIncrementalParseResult(Of T).ShiftBy
+  href: Pidgin.Incremental.IShiftable-1.html#Pidgin_Incremental_IShiftable_1_ShiftBy_
+  commentId: Overload:Pidgin.Incremental.IShiftable`1.ShiftBy
+  fullName: Pidgin.Incremental.IShiftable<T>.ShiftBy
+  fullName.vb: Pidgin.Incremental.IShiftable(Of T).ShiftBy
+  nameWithType: IShiftable<T>.ShiftBy
+  nameWithType.vb: IShiftable(Of T).ShiftBy
 - uid: Pidgin.Incremental.IncrementalParseContext
   name: IncrementalParseContext
   href: Pidgin.Incremental.IncrementalParseContext.html

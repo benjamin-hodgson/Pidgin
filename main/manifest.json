@@ -192,10 +192,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "Pidgin.Incremental.IIncrementalParseResult-1.yml",
+      "source_relative_path": "Pidgin.Incremental.IShiftable-1.yml",
       "output": {
         ".html": {
-          "relative_path": "Pidgin.Incremental.IIncrementalParseResult-1.html"
+          "relative_path": "Pidgin.Incremental.IShiftable-1.html"
         }
       },
       "version": ""
