@@ -113,12 +113,35 @@ public class IncrementalParsingTests
         ctx1 = ctx1.AddEdit(new(new(1, 0), 5));
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("((foo)(foo))", ctx1);
 
+        // Should rebuild the spine of the expression but reuse unaffected parts
         Assert.NotSame(result1, result2);
         var list21 = Assert.IsType<List>(result2);
         Assert.Equal(2, list21.Children.Length);
         var shifted2 = Assert.IsType<Shifted>(list21.Children[1]);
         Assert.Equal(5, shifted2.Shift);
         Assert.Same(list11.Children[0], shifted2.Unshifted);
+    }
+
+    [Fact]
+    public void TestBacktrackOverCachedResult()
+    {
+        // If an incremental parser succeeds but is later backtracked over,
+        // the result remains cached. As of right now I've convinced myself
+        // that this is all right but perhaps there are scenarios (that I
+        // haven't foreseen) in which this is incorrect.
+        var foo = String("foo").Select(Str).Incremental();
+        var parser = Try(foo.Before(String("bar"))).Or(foo);
+        var (ctx1, result1) = parser.ParseIncrementallyOrThrow("food", null);
+        var nonShifted1 = Assert.IsType<String>(result1);
+        Assert.Equal("foo", nonShifted1.Value);
+
+        // CachedParseResultTable.Search() takes the first result it finds
+        // in the tree (the one that was backtracked over), so you don't
+        // see reuse until the second reparse.
+        // todo: maybe this ought to be fixed (use the last result, not the first?)
+        var (ctx2, result2) = parser.ParseIncrementallyOrThrow("food", ctx1);
+        var (ctx3, result3) = parser.ParseIncrementallyOrThrow("food", ctx2);
+        Assert.Same(result2, result3);
     }
 
     [Fact]
@@ -132,7 +155,7 @@ public class IncrementalParsingTests
     private static Result Str(string value)
         => new String(value);
 
-    private abstract record Result : IIncrementalParseResult<Result>
+    private abstract record Result : IShiftable<Result>
     {
         public virtual Result ShiftBy(long amount)
             => amount != 0 ? new Shifted(this, amount) : this;

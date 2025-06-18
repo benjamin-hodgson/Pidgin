@@ -16,7 +16,7 @@ internal class CachedParseResultTable
     }
 
     public Tree? TryGetValue<TToken, T>(long oldLocation, Parser<TToken, T> key)
-        where T : class, IIncrementalParseResult<T>
+        where T : class, IShiftable<T>
     {
         var result = Tree.Search(_children, oldLocation, key);
         result?.ResolvePendingShifts<T>();
@@ -85,7 +85,7 @@ internal class CachedParseResultTable
 
         // todo: make type safe?
         public void ResolvePendingShifts<T>()
-            where T : class, IIncrementalParseResult<T>
+            where T : class, IShiftable<T>
         {
             if (_kvp != null)
             {

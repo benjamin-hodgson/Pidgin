@@ -21,7 +21,7 @@ public static class IncrementalParser
     /// <returns>A parser which runs <paramref name="parser"/> incrementally.</returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> is null.</exception>
     public static Parser<TToken, T> Incremental<TToken, T>(this Parser<TToken, T> parser)
-        where T : class, IIncrementalParseResult<T>
+        where T : class, IShiftable<T>
     {
         if (parser == null)
         {
@@ -168,7 +168,7 @@ public static class IncrementalParser
 }
 
 internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<TToken, T>
-    where T : class, IIncrementalParseResult<T>
+    where T : class, IShiftable<T>
 {
     private readonly Parser<TToken, T> _parser = parser;
 
@@ -229,7 +229,6 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
             // If we later backtrack over this parser,
             // its parse result will remain cached as if
             // it were a child of the parent parser. I think that's fine.
-            // todo: unit test this scenario
             maxLookahead = Math.Max(maxLookahead, state.Location);
             var lookaroundRange = new LocationRange(startLocation, maxLookahead - startLocation);
             var consumedRange = new LocationRange(startLocation, state.Location - startLocation);

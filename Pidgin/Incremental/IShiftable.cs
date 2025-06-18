@@ -7,13 +7,12 @@ namespace Pidgin.Incremental;
 /// <typeparam name="T">
 /// The type of the object implementing this interface.
 /// </typeparam>
-// todo: rename to IShiftable? IIncrementalParsedValue?
-public interface IIncrementalParseResult<T>
-    where T : class, IIncrementalParseResult<T>
+public interface IShiftable<T>
+    where T : class, IShiftable<T>
 {
     /// <summary>
-    /// Returns a copy of this result with all locations
-    /// shifted by the specified amount.
+    /// Returns a copy of this result with all stored
+    /// locations shifted by the specified amount.
     /// </summary>
     /// <remarks>
     /// An implementation can simply return <c>this</c> if
