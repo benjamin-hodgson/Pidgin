@@ -8,7 +8,7 @@ namespace Pidgin.Incremental;
 /// The starting location of the range.
 /// </param>
 /// <param name="Length">The length of the range.</param>
-public record LocationRange(long Start, long Length)
+public record LocationRange(long Start, long Length) : IShiftable<LocationRange>
 {
     /// <summary>
     /// The location immediately after the end of the range.
@@ -35,6 +35,7 @@ public record LocationRange(long Start, long Length)
     internal bool OverlapsOrExtends(LocationRange other)
         => End > other.Start && other.End >= Start;
 
-    internal LocationRange ShiftBy(long amount)
+    /// <inheritdoc cref="IShiftable{T}.ShiftBy(long)" />
+    public LocationRange ShiftBy(long amount)
         => this with { Start = Start + amount };
 }

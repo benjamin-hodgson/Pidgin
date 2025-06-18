@@ -337,6 +337,6 @@ public static class ParserExtensions
     public static T ParseOrThrow<TToken, T>(this Parser<TToken, T> parser, ref ParseState<TToken> state)
         => GetValueOrThrow(parser.Parse(ref state));
 
-    private static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)
+    internal static T GetValueOrThrow<TToken, T>(Result<TToken, T> result)
         => result.Success ? result.Value : throw new ParseException<TToken>(result.Error!);
 }

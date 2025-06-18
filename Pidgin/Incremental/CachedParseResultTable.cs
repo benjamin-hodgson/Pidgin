@@ -23,11 +23,11 @@ internal class CachedParseResultTable
         return result;
     }
 
-    public class Tree
+    public class Tree : IShiftable<Tree>
     {
         // Target: Parser<TToken, T>
         // Dependent: T
-        private ConditionalWeakReference? _kvp;
+        private readonly ConditionalWeakReference _kvp;
 
         // Children of the tree should be nodes within the ConsumedRange
         private LocationRange _consumedRange;
@@ -36,7 +36,7 @@ internal class CachedParseResultTable
         private long _shift;
 
         public Tree(
-            ConditionalWeakReference? kvp,
+            ConditionalWeakReference kvp,
             LocationRange consumedRange,
             LocationRange lookaroundRange,
             ImmutableArray<Tree> children,
@@ -68,19 +68,15 @@ internal class CachedParseResultTable
             }
         }
 
-        public bool TryGetResult<T>([MaybeNullWhen(false)] out T result)
+        public T GetResult<T>()
         {
             CheckNoPendingShifts();
-            var kvp = _kvp?.TargetAndDependent;
-            if (kvp?.Target == null)
-            {
-                _kvp = null;
-                result = default;
-                return false;
-            }
 
-            result = (T)kvp.Value.Dependent!;
-            return true;
+            // GetResult() is called by the parser instance
+            // that's the target of the ConditionalWeakReference,
+            // so it must be alive. If _kvp has become invalid,
+            // something very strange has happened.
+            return (T)_kvp!.Dependent!;
         }
 
         // todo: thread safety?
@@ -104,7 +100,7 @@ internal class CachedParseResultTable
             _shift = 0;
         }
 
-        // todo: eagerly shift oneself but lazily shift one's children?
+        // Should it eagerly shift oneself but lazily shift one's children?
         // Right now, once a subtree has been found, we shift it and then
         // immediately call ResolvePendingShifts, kind of ugly
         public Tree ShiftBy(long amount)

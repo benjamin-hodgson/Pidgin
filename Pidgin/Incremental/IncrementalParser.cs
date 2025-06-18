@@ -19,14 +19,10 @@ public static class IncrementalParser
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <param name="parser">The parser to run incrementally.</param>
     /// <returns>A parser which runs <paramref name="parser"/> incrementally.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> is null.</exception>
     public static Parser<TToken, T> Incremental<TToken, T>(this Parser<TToken, T> parser)
         where T : class, IShiftable<T>
     {
-        if (parser == null)
-        {
-            throw new ArgumentNullException(nameof(parser));
-        }
+        ArgumentNullException.ThrowIfNull(parser);
 
         return new IncrementalParser<TToken, T>(parser);
     }
@@ -63,20 +59,15 @@ public static class IncrementalParser
     /// <returns>
     /// A <see cref="Result{TToken, TValue}"/> containing a tuple of the new <see cref="IncrementalParseContext"/> and the parsed value.
     /// </returns>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> or <paramref name="input"/> is null.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the result cache is unexpectedly null.</exception>
-    // todo: ParseIncrementallyOrThrow, overloads for string, span, etc
-    public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow<TToken, T>(
+    public static Result<TToken, (IncrementalParseContext Context, T Value)> ParseIncrementally<TToken, T>(
         this Parser<TToken, T> parser,
-        ReadOnlySpan<TToken> input,
+        ITokenStream<TToken> input,
         IncrementalParseContext? context,
         IConfiguration<TToken>? configuration = null
     )
     {
-        if (parser == null)
-        {
-            throw new ArgumentNullException(nameof(parser));
-        }
+        ArgumentNullException.ThrowIfNull(parser);
+        ArgumentNullException.ThrowIfNull(input);
 
         var state = new ParseState<TToken>(configuration ?? Configuration.Configuration.Default<TToken>(), input)
         {
@@ -84,7 +75,7 @@ public static class IncrementalParser
             NewResultCache = new()
         };
 
-        var result = parser.ParseOrThrow(ref state);
+        var result = parser.Parse(ref state);
 
         if (state.NewResultCache == null)
         {
@@ -93,7 +84,7 @@ public static class IncrementalParser
 
         var newCtx = new IncrementalParseContext(ImmutableList<EditInfo>.Empty, state.NewResultCache.Build());
 
-        return (newCtx, result);
+        return result.Select(t => (newCtx, t));
     }
 
     /// <summary>
@@ -117,7 +108,7 @@ public static class IncrementalParser
     /// <typeparam name="TToken">The type of tokens in the input stream.</typeparam>
     /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
     /// <param name="parser">The parser to run incrementally.</param>
-    /// <param name="input">The input token stream to parse.</param>
+    /// <param name="input">The input span to parse.</param>
     /// <param name="context">
     /// The incremental parse context containing cached results from the previous parse.
     /// Can be null if this is the first time running this parser.
@@ -128,25 +119,14 @@ public static class IncrementalParser
     /// <returns>
     /// A <see cref="Result{TToken, TValue}"/> containing a tuple of the new <see cref="IncrementalParseContext"/> and the parsed value.
     /// </returns>
-    /// <exception cref="ArgumentNullException">Thrown if <paramref name="parser"/> or <paramref name="input"/> is null.</exception>
-    /// <exception cref="InvalidOperationException">Thrown if the result cache is unexpectedly null.</exception>
-    // todo: ParseIncrementallyOrThrow, overloads for string, span, etc
     public static Result<TToken, (IncrementalParseContext Context, T Value)> ParseIncrementally<TToken, T>(
         this Parser<TToken, T> parser,
-        ITokenStream<TToken> input,
-        IncrementalParseContext context,
+        ReadOnlySpan<TToken> input,
+        IncrementalParseContext? context,
         IConfiguration<TToken>? configuration = null
     )
     {
-        if (parser == null)
-        {
-            throw new ArgumentNullException(nameof(parser));
-        }
-
-        if (input == null)
-        {
-            throw new ArgumentNullException(nameof(input));
-        }
+        ArgumentNullException.ThrowIfNull(parser);
 
         var state = new ParseState<TToken>(configuration ?? Configuration.Configuration.Default<TToken>(), input)
         {
@@ -165,6 +145,60 @@ public static class IncrementalParser
 
         return result.Select(t => (newCtx, t));
     }
+
+    /// <summary>
+    /// Applies <paramref name="parser"/> to <paramref name="input"/>,
+    /// reusing results from the supplied <paramref name="context"/>
+    /// when possible. Throws an exception if parsing failed.
+    /// </summary>
+    /// <typeparam name="TToken">The type of tokens in the input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <param name="parser">The parser to run incrementally.</param>
+    /// <param name="input">The input span to parse.</param>
+    /// <param name="context">
+    /// The incremental parse context containing cached results from the previous parse.
+    /// Can be null if this is the first time running this parser.
+    /// </param>
+    /// <param name="configuration">
+    /// The parser configuration, or null to use the default configuration.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Result{TToken, TValue}"/> containing a tuple of the new <see cref="IncrementalParseContext"/> and the parsed value.
+    /// </returns>
+    /// <exception cref="ParseException">Thrown when an error occurs during parsing.</exception>
+    public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow<TToken, T>(
+        this Parser<TToken, T> parser,
+        ITokenStream<TToken> input,
+        IncrementalParseContext? context,
+        IConfiguration<TToken>? configuration = null
+    ) => ParserExtensions.GetValueOrThrow(parser.ParseIncrementally(input, context, configuration));
+
+    /// <summary>
+    /// Applies <paramref name="parser"/> to <paramref name="input"/>,
+    /// reusing results from the supplied <paramref name="context"/>
+    /// when possible. Throws an exception if parsing failed.
+    /// </summary>
+    /// <typeparam name="TToken">The type of tokens in the input stream.</typeparam>
+    /// <typeparam name="T">The type of the value returned by the parser.</typeparam>
+    /// <param name="parser">The parser to run incrementally.</param>
+    /// <param name="input">The input span to parse.</param>
+    /// <param name="context">
+    /// The incremental parse context containing cached results from the previous parse.
+    /// Can be null if this is the first time running this parser.
+    /// </param>
+    /// <param name="configuration">
+    /// The parser configuration, or null to use the default configuration.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Result{TToken, TValue}"/> containing a tuple of the new <see cref="IncrementalParseContext"/> and the parsed value.
+    /// </returns>
+    /// <exception cref="ParseException">Thrown when an error occurs during parsing.</exception>
+    public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow<TToken, T>(
+        this Parser<TToken, T> parser,
+        ReadOnlySpan<TToken> input,
+        IncrementalParseContext? context,
+        IConfiguration<TToken>? configuration = null
+    ) => ParserExtensions.GetValueOrThrow(parser.ParseIncrementally(input, context, configuration));
 }
 
 internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<TToken, T>
@@ -197,12 +231,17 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
                     // make the (old) found result align with the (new) current location
                     var shiftedFound = found.ShiftBy(state.Location - found.ConsumedRange.Start);
                     shiftedFound.ResolvePendingShifts<T>();
-                    if (shiftedFound.TryGetResult(out result))
+                    result = shiftedFound.GetResult<T>();
+
+                    if (state.NewResultCache == null)
                     {
-                        state.NewResultCache?.Add(this, shiftedFound);
-                        state.Advance((int)shiftedFound.ConsumedRange.Length);
-                        return true;
+                        throw new InvalidOperationException("NewResultCache was null. Please report this as a bug in Pidgin");
                     }
+
+                    state.NewResultCache.Add(this, shiftedFound);
+                    state.Advance((int)shiftedFound.ConsumedRange.Length);
+                    GC.KeepAlive(this);
+                    return true;
                 }
             }
         }
@@ -212,6 +251,7 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
         if (builder == null)
         {
             // If NewResultCache is null, user is not using ParseIncrementally
+            GC.KeepAlive(this);
             return _parser.TryParse(ref state, ref expecteds, out result);
         }
 
@@ -244,6 +284,7 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
             builder.Discard();
         }
 
+        GC.KeepAlive(this);
         return success;
     }
 }
