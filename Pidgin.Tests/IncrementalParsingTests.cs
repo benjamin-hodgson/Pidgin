@@ -89,8 +89,12 @@ public class IncrementalParsingTests
         var shifted2 = Assert.IsType<Shifted>(result2);
         Assert.Same(nonShifted1, shifted2.Unshifted);
 
-        var (ctx3, result3) = parser.ParseIncrementallyOrThrow("  foo", ctx2);
-        Assert.Same(result2, result3);
+        ctx2 = ctx2.AddEdit(new(new(0, 0), 2));
+
+        var (ctx3, result3) = parser.ParseIncrementallyOrThrow("    foo", ctx2);
+        Assert.NotSame(result2, result3);
+        var shifted3 = Assert.IsType<Shifted>(result3);
+        Assert.Same(nonShifted1, shifted3.Unshifted);
     }
 
     [Fact]
@@ -117,9 +121,38 @@ public class IncrementalParsingTests
         Assert.NotSame(result1, result2);
         var list21 = Assert.IsType<List>(result2);
         Assert.Equal(2, list21.Children.Length);
+        var list22 = Assert.IsType<List>(list21.Children[0]);
+        Assert.NotSame(list11.Children[0], list22);
         var shifted2 = Assert.IsType<Shifted>(list21.Children[1]);
         Assert.Equal(5, shifted2.Shift);
         Assert.Same(list11.Children[0], shifted2.Unshifted);
+    }
+
+    [Fact]
+    public void TestShiftChildResultMultipleTimes()
+    {
+        // test for a bug in Tree.Search
+        var parser = Rec<char, Result>(expr =>
+            Char('(')
+                .Then(expr.Many().Select(xs => new List([.. xs])).Cast<Result>())
+                .Before(Char(')'))
+                .Or(String("foo").Select(Str))
+                .Incremental()
+        );
+
+        var (ctx1, result1) = parser.ParseIncrementallyOrThrow("((foo))", null);
+        var list11 = Assert.IsType<List>(result1);
+        var list12 = Assert.IsType<List>(list11.Children[0]);
+        var nonShifted1 = Assert.IsType<String>(list12.Children[0]);
+        Assert.Equal("foo", nonShifted1.Value);
+
+        ctx1 = ctx1.AddEdit(new(new(1, 0), 5));
+        var (ctx2, result2) = parser.ParseIncrementallyOrThrow("((foo)(foo))", ctx1);
+
+        ctx2 = ctx2.AddEdit(new(new(7, 0), 5));
+        var (ctx3, result3) = parser.ParseIncrementallyOrThrow("((foo)((foo)foo))", ctx2);
+        var reusedChild = ((List)((List)result3).Children[1]).Children[1];
+        Assert.IsType<Shifted>(reusedChild);
     }
 
     [Fact]

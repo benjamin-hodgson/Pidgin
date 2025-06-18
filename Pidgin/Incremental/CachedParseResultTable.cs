@@ -83,10 +83,15 @@ internal class CachedParseResultTable
             return true;
         }
 
-        // todo: make type safe?
+        // todo: thread safety?
         public void ResolvePendingShifts<T>()
             where T : class, IShiftable<T>
         {
+            if (_shift == 0)
+            {
+                return;
+            }
+
             if (_kvp != null)
             {
                 _kvp.Dependent = ((T?)_kvp.Dependent)?.ShiftBy(_shift);
@@ -101,9 +106,11 @@ internal class CachedParseResultTable
 
         // todo: eagerly shift oneself but lazily shift one's children?
         // Right now, once a subtree has been found, we shift it and then
-        // immediately call ResolvePendingShifts
+        // immediately call ResolvePendingShifts, kind of ugly
         public Tree ShiftBy(long amount)
-            => new(_kvp, _consumedRange, _lookaroundRange, _children, _shift + amount);
+            => amount == 0
+                ? this
+                : new(_kvp, _consumedRange, _lookaroundRange, _children, _shift + amount);
 
         public Tree? WithKey<TToken, T>(Parser<TToken, T> newKey)
         {
@@ -130,12 +137,16 @@ internal class CachedParseResultTable
 
         public Tree? Search<TToken, T>(long location, Parser<TToken, T> key)
         {
-            if (!ConsumedRange.Contains(location))
+            // Adjust the location and use the non-shifted _consumedRange.
+            // This saves us from calling ResolvePendingShifts (rebuilds
+            // the tree) while searching.
+            location -= _shift;
+            if (!_consumedRange.Contains(location))
             {
                 return null;
             }
 
-            if (ConsumedRange.Start == location && ReferenceEquals(_kvp?.Target, key))
+            if (_consumedRange.Start == location && ReferenceEquals(_kvp?.Target, key))
             {
                 return this;
             }

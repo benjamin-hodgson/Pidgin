@@ -1,5 +1,3 @@
-using System;
-
 namespace Pidgin.Incremental;
 
 /// <summary>
@@ -23,20 +21,21 @@ public record EditInfo(LocationRange InputRange, long NewContentLength)
     /// a corresponding location in the new (edited) one.
     /// </summary>
     /// <param name="oldLocation">The location in the original input stream.</param>
-    /// <returns>The new location.</returns>
-    internal long Shift(long oldLocation)
+    /// <returns>The new location, or null if the location was edited.</returns>
+    internal long? Shift(long oldLocation)
     {
         if (oldLocation < InputRange.Start)
         {
             return oldLocation;
         }
 
+        // see "NOTE: Edits at ends of cached results" in LocationRange
         if (oldLocation >= InputRange.End)
         {
             return oldLocation + LengthDelta;
         }
 
-        return Math.Min(oldLocation, InputRange.Start + NewContentLength);
+        return null;
     }
 
     /// <summary>
@@ -44,19 +43,23 @@ public record EditInfo(LocationRange InputRange, long NewContentLength)
     /// a corresponding location in the original one.
     /// </summary>
     /// <param name="newLocation">The location in the new (edited) input stream.</param>
-    /// <returns>The corresponding location in the original input stream.</returns>
-    internal long Unshift(long newLocation)
+    /// <returns>
+    /// The corresponding location in the original input stream,
+    /// or null if the location was edited.
+    /// </returns>
+    internal long? Unshift(long newLocation)
     {
         if (newLocation < InputRange.Start)
         {
             return newLocation;
         }
 
+        // see "NOTE: Edits at ends of cached results" in LocationRange
         if (newLocation >= NewEnd)
         {
             return newLocation - LengthDelta;
         }
 
-        return Math.Min(newLocation, InputRange.End);
+        return null;
     }
 }

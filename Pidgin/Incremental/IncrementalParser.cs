@@ -186,18 +186,23 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
         if (ctx != null)
         {
             var unshifted = ctx.Unshift(state.Location);
-            var found = ctx.ResultCache.TryGetValue(unshifted, this);
 
-            if (found != null && ctx.IsValid(found.LookaroundRange))
+            // if unshifted is null, that means we're inside an edit.
+            if (unshifted.HasValue)
             {
-                // make the (old) found result align with the (new) current location
-                var shiftedFound = found.ShiftBy(state.Location - found.ConsumedRange.Start);
-                shiftedFound.ResolvePendingShifts<T>();
-                if (shiftedFound.TryGetResult(out result))
+                var found = ctx.ResultCache.TryGetValue(unshifted.Value, this);
+
+                if (found != null && ctx.IsValid(found.LookaroundRange))
                 {
-                    state.NewResultCache?.Add(this, shiftedFound);
-                    state.Advance((int)shiftedFound.ConsumedRange.Length);
-                    return true;
+                    // make the (old) found result align with the (new) current location
+                    var shiftedFound = found.ShiftBy(state.Location - found.ConsumedRange.Start);
+                    shiftedFound.ResolvePendingShifts<T>();
+                    if (shiftedFound.TryGetResult(out result))
+                    {
+                        state.NewResultCache?.Add(this, shiftedFound);
+                        state.Advance((int)shiftedFound.ConsumedRange.Length);
+                        return true;
+                    }
                 }
             }
         }

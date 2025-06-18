@@ -22,8 +22,13 @@ public class IncrementalParseContext
     }
 
     /// <summary>
-    /// Returns a new <see cref="IncrementalParseContext"/> with the specified edit added to the list of edits.
+    /// Returns a new <see cref="IncrementalParseContext"/> representing
+    /// this instance with an edit applied.
     /// </summary>
+    /// <remarks>
+    /// It is your responsibility to keep the input stream in sync with the <see cref="EditInfo"/>s
+    /// provided to this method.
+    /// </remarks>
     /// <param name="edit">The edit to add.</param>
     /// <returns>A new <see cref="IncrementalParseContext"/> with the edit applied.</returns>
     public IncrementalParseContext AddEdit(EditInfo edit)
@@ -40,9 +45,15 @@ public class IncrementalParseContext
             }
 
             var newStart = edit.Shift(oldRange.Start);
+            if (!newStart.HasValue)
+            {
+                // probably unreachable?
+                return false;
+            }
+
             if (newStart != oldRange.Start)
             {
-                oldRange = oldRange with { Start = newStart };
+                oldRange = oldRange with { Start = newStart.Value };
             }
         }
 
@@ -55,12 +66,18 @@ public class IncrementalParseContext
     /// </summary>
     /// <param name="oldLocation">The location in the original input stream.</param>
     /// <returns>The new location.</returns>
-    internal long Shift(long oldLocation)
+    internal long? Shift(long oldLocation)
     {
         // chronological order
         foreach (var edit in Edits)
         {
-            oldLocation = edit.Shift(oldLocation);
+            var shifted = edit.Shift(oldLocation);
+            if (!shifted.HasValue)
+            {
+                return null;
+            }
+
+            oldLocation = shifted.Value;
         }
 
         return oldLocation;
@@ -72,12 +89,18 @@ public class IncrementalParseContext
     /// </summary>
     /// <param name="newLocation">The location in the new (edited) input stream.</param>
     /// <returns>The corresponding location in the original input stream.</returns>
-    internal long Unshift(long newLocation)
+    internal long? Unshift(long newLocation)
     {
         // reverse chronological order
         foreach (var edit in Edits.Reverse())
         {
-            newLocation = edit.Unshift(newLocation);
+            var unshifted = edit.Unshift(newLocation);
+            if (!unshifted.HasValue)
+            {
+                return null;
+            }
+
+            newLocation = unshifted.Value;
         }
 
         return newLocation;
