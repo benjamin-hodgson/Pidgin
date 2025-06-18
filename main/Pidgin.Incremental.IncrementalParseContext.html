@@ -304,7 +304,8 @@ tracking the list of edits applied to the input and the cache of previous parse 
         
                 <a id="Pidgin_Incremental_IncrementalParseContext_AddEdit_"></a>
                 <h4 id="Pidgin_Incremental_IncrementalParseContext_AddEdit_Pidgin_Incremental_EditInfo_"><a href="#Pidgin_Incremental_IncrementalParseContext_AddEdit_Pidgin_Incremental_EditInfo_">AddEdit(EditInfo)</a></h4>
-                <div><p>Returns a new <a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> with the specified edit added to the list of edits.</p>
+                <div><p>Returns a new <a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> representing
+this instance with an edit applied.</p>
 </div>
                 <h5>Declaration</h5>
                     <pre><code class="lang- hljs">public IncrementalParseContext AddEdit(EditInfo edit)</code></pre>
@@ -350,6 +351,10 @@ tracking the list of edits applied to the input and the cache of previous parse 
 
 
 
+                    <h5 id="Pidgin_Incremental_IncrementalParseContext_AddEdit_Pidgin_Incremental_EditInfo__remarks"><a href="#Pidgin_Incremental_IncrementalParseContext_AddEdit_Pidgin_Incremental_EditInfo__remarks">Remarks</a></h5>
+                    <div><p>It is your responsibility to keep the input stream in sync with the <a class="xref" href="Pidgin.Incremental.EditInfo.html">EditInfo</a>s
+provided to this method.</p>
+</div>
 
                 
 
