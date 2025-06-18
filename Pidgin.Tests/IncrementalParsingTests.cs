@@ -72,7 +72,7 @@ public class IncrementalParsingTests
     }
 
     [Fact]
-    public void TestShiftCachedResult()
+    public void TestShiftCachedResultRight()
     {
         var parser = SkipWhitespaces.Then(String("foo").Select(Str).Incremental());
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("foo", null);
@@ -87,6 +87,7 @@ public class IncrementalParsingTests
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("  foo", ctx1);
         Assert.NotSame(result1, result2);
         var shifted2 = Assert.IsType<Shifted>(result2);
+        Assert.Equal(2, shifted2.Shift);
         Assert.Same(nonShifted1, shifted2.Unshifted);
 
         ctx2 = ctx2.AddEdit(new(new(0, 0), 2));
@@ -94,6 +95,35 @@ public class IncrementalParsingTests
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("    foo", ctx2);
         Assert.NotSame(result2, result3);
         var shifted3 = Assert.IsType<Shifted>(result3);
+        Assert.Equal(4, shifted3.Shift);
+        Assert.Same(nonShifted1, shifted3.Unshifted);
+    }
+
+    [Fact]
+    public void TestShiftCachedResultLeft()
+    {
+        var parser = SkipWhitespaces.Then(String("foo").Select(Str).Incremental());
+        var (ctx1, result1) = parser.ParseIncrementallyOrThrow("    foo", null);
+        var nonShifted1 = Assert.IsType<String>(result1);
+        Assert.Equal("foo", nonShifted1.Value);
+
+        // edit touching the left of the cached range
+        // (should not invalidate cache - see "NOTE:
+        // Edits at ends of cached results" in LocationRange)
+        ctx1 = ctx1.AddEdit(new(new(1, 2), 0));
+
+        var (ctx2, result2) = parser.ParseIncrementallyOrThrow("  foo", ctx1);
+        Assert.NotSame(result1, result2);
+        var shifted2 = Assert.IsType<Shifted>(result2);
+        Assert.Equal(-2, shifted2.Shift);
+        Assert.Same(nonShifted1, shifted2.Unshifted);
+
+        ctx2 = ctx2.AddEdit(new(new(0, 2), 0));
+
+        var (ctx3, result3) = parser.ParseIncrementallyOrThrow("foo", ctx2);
+        Assert.NotSame(result2, result3);
+        var shifted3 = Assert.IsType<Shifted>(result3);
+        Assert.Equal(-4, shifted3.Shift);
         Assert.Same(nonShifted1, shifted3.Unshifted);
     }
 
@@ -152,7 +182,9 @@ public class IncrementalParsingTests
         ctx2 = ctx2.AddEdit(new(new(7, 0), 5));
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("((foo)((foo)foo))", ctx2);
         var reusedChild = ((List)((List)result3).Children[1]).Children[1];
-        Assert.IsType<Shifted>(reusedChild);
+        var shifted = Assert.IsType<Shifted>(reusedChild);
+        Assert.Equal(10, shifted.Shift);
+        Assert.Same(list12.Children[0], shifted.Unshifted);
     }
 
     [Fact]
