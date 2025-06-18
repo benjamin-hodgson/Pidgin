@@ -18,6 +18,9 @@ public record LocationRange(long Start, long Length)
     internal bool Contains(long location)
         => location >= Start && location <= End;
 
+    // NOTE: Edits at ends of cached results
+    // =====================================
+    //
     // An edit that extends an existing node
     //     |oldText|
     //             |edit|

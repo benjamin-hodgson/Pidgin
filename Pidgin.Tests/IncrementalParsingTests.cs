@@ -58,6 +58,8 @@ public class IncrementalParsingTests
 
         // An edit after the consumed range but touching
         // the right side of the lookaround range
+        // (should invalidate cache - see "NOTE: Edits at
+        // ends of cached results" in LocationRange)
         ctx1 = ctx1.AddEdit(new(new(4, 0), 2));
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("footie", ctx1);
@@ -73,12 +75,14 @@ public class IncrementalParsingTests
     public void TestShiftCachedResult()
     {
         var parser = SkipWhitespaces.Then(String("foo").Select(Str).Incremental());
-        var (ctx1, result1) = parser.ParseIncrementallyOrThrow(" foo", null);
+        var (ctx1, result1) = parser.ParseIncrementallyOrThrow("foo", null);
         var nonShifted1 = Assert.IsType<String>(result1);
         Assert.Equal("foo", nonShifted1.Value);
 
-        // edit to the left of the cached range
-        ctx1 = ctx1.AddEdit(new(new(0, 0), 1));
+        // edit touching the left of the cached range
+        // (should not invalidate cache - see "NOTE:
+        // Edits at ends of cached results" in LocationRange)
+        ctx1 = ctx1.AddEdit(new(new(0, 0), 2));
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("  foo", ctx1);
         Assert.NotSame(result1, result2);
@@ -115,6 +119,14 @@ public class IncrementalParsingTests
         var shifted2 = Assert.IsType<Shifted>(list21.Children[1]);
         Assert.Equal(5, shifted2.Shift);
         Assert.Same(list11.Children[0], shifted2.Unshifted);
+    }
+
+    [Fact]
+    public void TestUseIncrementalParserWithNonIncrementalParseMethod()
+    {
+        var parser = String("foo").Select(Str).Incremental();
+        var result = parser.ParseOrThrow("food");
+        Assert.Equal(new String("foo"), result);
     }
 
     private static Result Str(string value)
