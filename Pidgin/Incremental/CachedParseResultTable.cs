@@ -24,6 +24,10 @@ internal class CachedParseResultTable
     public class Tree
     {
         // Avoid retaining parse results for parsers that have been GCed.
+        // Mutable so that we can null it out (make it collectable)
+        // eagerly if the underlying DependentHandle has decayed, since
+        // DHs are somewhat costly to retain.
+        //
         // Target: Parser<TToken, T>
         // Dependent: T
         private ConditionalWeakReference? _cwr;
@@ -77,7 +81,7 @@ internal class CachedParseResultTable
 
             // GetResult() is called by the parser instance
             // that's the target of the ConditionalWeakReference,
-            // so it must be alive. If the CWR has become invalid,
+            // so it must be alive. If the CWR has decayed,
             // something very strange has happened.
             return (T)_cwr!.Dependent!;
         }
