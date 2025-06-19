@@ -339,32 +339,16 @@
 
 
                 
-                    <h5>Exceptions</h5>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Condition</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></p></td>
-                                <td><p>Thrown if <code class="paramref">parser</code> is null.</p>
-</td>
-                            </tr>
-                        </tbody>
-                    </table>
 
         
                 <a id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow_"></a>
-                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementallyOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></h4>
+                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementallyOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></h4>
                 <div><p>Applies <code class="paramref">parser</code> to <code class="paramref">input</code>,
 reusing results from the supplied <code class="paramref">context</code>
-when possible.</p>
+when possible. Throws an exception if parsing failed.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, IncrementalParseContext? context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
+                    <pre><code class="lang- hljs">public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ITokenStream&lt;TToken&gt; input, IncrementalParseContext? context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -383,9 +367,9 @@ when possible.</p>
 </td>
                                 </tr>
                                 <tr>
-                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;TToken&gt;</p></td>
+                                    <td><p><a class="xref" href="Pidgin.ITokenStream-1.html">ITokenStream</a>&lt;TToken&gt;</p></td>
                                     <td><p>input</p></td>
-                                    <td><p>The input token stream to parse.</p>
+                                    <td><p>The input span to parse.</p>
 </td>
                                 </tr>
                                 <tr>
@@ -448,16 +432,115 @@ Can be null if this is the first time running this parser.</p>
 
 
 
-                    <h5 id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0___examples">Examples</h5>
-        <pre><code class="lang-csharp">// First parse (no context)
-var (context, result) = parser.ParseIncrementally(input, null).Value;
+                
+                    <h5>Exceptions</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Condition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p><a class="xref" href="Pidgin.ParseException.html">ParseException</a></p></td>
+                                <td><p>Thrown when an error occurs during parsing.</p>
+</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-// ...user edits input, producing newInput and an Edit instance...
-var edit = new Edit(new LocationRange(5, 3), 2); // example edit
-var newContext = context.AddEdit(edit);
+        
+                <a id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow_"></a>
+                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementallyOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></h4>
+                <div><p>Applies <code class="paramref">parser</code> to <code class="paramref">input</code>,
+reusing results from the supplied <code class="paramref">context</code>
+when possible. Throws an exception if parsing failed.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public static (IncrementalParseContext Context, T Value) ParseIncrementallyOrThrow&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, IncrementalParseContext? context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
 
-// Incremental parse after edit
-var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code></pre>
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
+                                    <td><p>parser</p></td>
+                                    <td><p>The parser to run incrementally.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;TToken&gt;</p></td>
+                                    <td><p>input</p></td>
+                                    <td><p>The input span to parse.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a></p></td>
+                                    <td><p>context</p></td>
+                                    <td><p>The incremental parse context containing cached results from the previous parse.
+Can be null if this is the first time running this parser.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</p></td>
+                                    <td><p>configuration</p></td>
+                                    <td><p>The parser configuration, or null to use the default configuration.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>(<a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-pidgin.incremental.incrementalparsecontext,--1-.context">Context</a>, T <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-pidgin.incremental.incrementalparsecontext,--1-.value">Value</a>)</p></td>
+                                    <td><p>A <a class="xref" href="Pidgin.Result-2.html">Result&lt;TToken, T&gt;</a> containing a tuple of the new <a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> and the parsed value.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>TToken</p></td>
+                                    <td><p>The type of tokens in the input stream.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p>T</p></td>
+                                    <td><p>The type of the value returned by the parser.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
 
                 
                     <h5>Exceptions</h5>
@@ -470,13 +553,8 @@ var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code
                         </thead>
                         <tbody>
                             <tr>
-                                <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></p></td>
-                                <td><p>Thrown if <code class="paramref">parser</code> or <code class="paramref">input</code> is null.</p>
-</td>
-                            </tr>
-                            <tr>
-                                <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p></td>
-                                <td><p>Thrown if the result cache is unexpectedly null.</p>
+                                <td><p><a class="xref" href="Pidgin.ParseException.html">ParseException</a></p></td>
+                                <td><p>Thrown when an error occurs during parsing.</p>
 </td>
                             </tr>
                         </tbody>
@@ -484,13 +562,13 @@ var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code
 
         
                 <a id="Pidgin_Incremental_IncrementalParser_ParseIncrementally_"></a>
-                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext, IConfiguration&lt;TToken&gt;?)</a></h4>
+                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></h4>
                 <div><p>Applies <code class="paramref">parser</code> to <code class="paramref">input</code>,
 reusing results from the supplied <code class="paramref">context</code>
 when possible.</p>
 </div>
                 <h5>Declaration</h5>
-                    <pre><code class="lang- hljs">public static Result&lt;TToken, (IncrementalParseContext Context, T Value)&gt; ParseIncrementally&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ITokenStream&lt;TToken&gt; input, IncrementalParseContext context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
+                    <pre><code class="lang- hljs">public static Result&lt;TToken, (IncrementalParseContext Context, T Value)&gt; ParseIncrementally&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ITokenStream&lt;TToken&gt; input, IncrementalParseContext? context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
 
                         <h5>Parameters</h5>
                         <table>
@@ -586,27 +664,111 @@ var newContext = context.AddEdit(edit);
 var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code></pre>
 
                 
-                    <h5>Exceptions</h5>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Condition</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></p></td>
-                                <td><p>Thrown if <code class="paramref">parser</code> or <code class="paramref">input</code> is null.</p>
+
+        
+                <a id="Pidgin_Incremental_IncrementalParser_ParseIncrementally_"></a>
+                <h4 id="Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__"><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></h4>
+                <div><p>Applies <code class="paramref">parser</code> to <code class="paramref">input</code>,
+reusing results from the supplied <code class="paramref">context</code>
+when possible.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public static Result&lt;TToken, (IncrementalParseContext Context, T Value)&gt; ParseIncrementally&lt;TToken, T&gt;(this Parser&lt;TToken, T&gt; parser, ReadOnlySpan&lt;TToken&gt; input, IncrementalParseContext? context, IConfiguration&lt;TToken&gt;? configuration = null)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Parser-2.html">Parser</a>&lt;TToken, T&gt;</p></td>
+                                    <td><p>parser</p></td>
+                                    <td><p>The parser to run incrementally.</p>
 </td>
-                            </tr>
-                            <tr>
-                                <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></p></td>
-                                <td><p>Thrown if the result cache is unexpectedly null.</p>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;TToken&gt;</p></td>
+                                    <td><p>input</p></td>
+                                    <td><p>The input span to parse.</p>
 </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a></p></td>
+                                    <td><p>context</p></td>
+                                    <td><p>The incremental parse context containing cached results from the previous parse.
+Can be null if this is the first time running this parser.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Configuration.IConfiguration-1.html">IConfiguration</a>&lt;TToken&gt;</p></td>
+                                    <td><p>configuration</p></td>
+                                    <td><p>The parser configuration, or null to use the default configuration.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Result-2.html">Result</a>&lt;TToken, (<a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-pidgin.incremental.incrementalparsecontext,--1-.context">Context</a>, T <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-pidgin.incremental.incrementalparsecontext,--1-.value">Value</a>)&gt;</p></td>
+                                    <td><p>A <a class="xref" href="Pidgin.Result-2.html">Result&lt;TToken, T&gt;</a> containing a tuple of the new <a class="xref" href="Pidgin.Incremental.IncrementalParseContext.html">IncrementalParseContext</a> and the parsed value.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Type Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p>TToken</p></td>
+                                    <td><p>The type of tokens in the input stream.</p>
+</td>
+                                </tr>
+                                <tr>
+                                    <td><p>T</p></td>
+                                    <td><p>The type of the value returned by the parser.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                    <h5 id="Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0___examples">Examples</h5>
+        <pre><code class="lang-csharp">// First parse (no context)
+var (context, result) = parser.ParseIncrementally(input, null).Value;
+
+// ...user edits input, producing newInput and an Edit instance...
+var edit = new Edit(new LocationRange(5, 3), 2); // example edit
+var newContext = context.AddEdit(edit);
+
+// Incremental parse after edit
+var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code></pre>
+
+                
 
 
 
@@ -629,8 +791,10 @@ var (context2, result2) = parser.ParseIncrementally(newInput, newContext);</code
 
                             <ul>
                                     <li><a href="#Pidgin_Incremental_IncrementalParser_Incremental__2_Pidgin_Parser___0___1__">Incremental&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;)</a></li>
+                                    <li><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementallyOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></li>
                                     <li><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementallyOrThrow&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></li>
-                                    <li><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext, IConfiguration&lt;TToken&gt;?)</a></li>
+                                    <li><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ITokenStream&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></li>
+                                    <li><a href="#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__">ParseIncrementally&lt;TToken, T&gt;(Parser&lt;TToken, T&gt;, ReadOnlySpan&lt;TToken&gt;, IncrementalParseContext?, IConfiguration&lt;TToken&gt;?)</a></li>
                             </ul>
                         </li>
                 </ul>

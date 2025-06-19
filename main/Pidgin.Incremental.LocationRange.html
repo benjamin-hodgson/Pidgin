@@ -233,6 +233,7 @@ defined by a start position and a length.</p>
             </ul>
             <h5>Implements</h5>
             <ul>
+                    <li><a class="xref" href="Pidgin.Incremental.IShiftable-1.html">IShiftable</a>&lt;<a class="xref" href="Pidgin.Incremental.LocationRange.html">LocationRange</a>&gt;</li>
                     <li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Pidgin.Incremental.LocationRange.html">LocationRange</a>&gt;</li>
             </ul>
 
@@ -253,7 +254,7 @@ defined by a start position and a length.</p>
             </ul>
 
         <h5>Declaration</h5>
-        <pre><code class="lang- hljs">public record LocationRange : IEquatable&lt;LocationRange&gt;</code></pre>
+        <pre><code class="lang- hljs">public record LocationRange : IShiftable&lt;LocationRange&gt;, IEquatable&lt;LocationRange&gt;</code></pre>
 
 
 
@@ -711,6 +712,64 @@ defined by a start position and a length.</p>
                 
 
         
+                <a id="Pidgin_Incremental_LocationRange_ShiftBy_"></a>
+                <h4 id="Pidgin_Incremental_LocationRange_ShiftBy_System_Int64_"><a href="#Pidgin_Incremental_LocationRange_ShiftBy_System_Int64_">ShiftBy(long)</a></h4>
+                <div><p>Returns a copy of this result with all stored
+locations shifted by the specified amount.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public LocationRange ShiftBy(long amount)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></p></td>
+                                    <td><p>amount</p></td>
+                                    <td><p>The amount by which to shift locations.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Returns</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="Pidgin.Incremental.LocationRange.html">LocationRange</a></p></td>
+                                    <td><p>A new result with shifted locations.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                    <h5 id="Pidgin_Incremental_LocationRange_ShiftBy_System_Int64__remarks"><a href="#Pidgin_Incremental_LocationRange_ShiftBy_System_Int64__remarks">Remarks</a></h5>
+                    <div><p>An implementation can simply return <code>this</code> if
+the object does not contain any source locations
+that would need shifting.</p>
+</div>
+
+                
+
+        
                 <a id="Pidgin_Incremental_LocationRange_ToString_"></a>
                 <h4 id="Pidgin_Incremental_LocationRange_ToString"><a href="#Pidgin_Incremental_LocationRange_ToString">ToString()</a></h4>
                 <div><p>Represents a portion of an input stream,
@@ -864,6 +923,9 @@ defined by a start position and a length.</p>
 
         <h3 id="implements"><a href="#implements">Implements</a></h3>
         <div>
+                <a class="xref" href="Pidgin.Incremental.IShiftable-1.html">IShiftable&lt;T&gt;</a>
+        </div>
+        <div>
                 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
         </div>
 
@@ -910,6 +972,7 @@ defined by a start position and a length.</p>
                                     <li><a href="#Pidgin_Incremental_LocationRange_Equals_System_Object_">Equals(object?)</a></li>
                                     <li><a href="#Pidgin_Incremental_LocationRange_GetHashCode">GetHashCode()</a></li>
                                     <li><a href="#Pidgin_Incremental_LocationRange_PrintMembers_System_Text_StringBuilder_">PrintMembers(StringBuilder)</a></li>
+                                    <li><a href="#Pidgin_Incremental_LocationRange_ShiftBy_System_Int64_">ShiftBy(long)</a></li>
                                     <li><a href="#Pidgin_Incremental_LocationRange_ToString">ToString()</a></li>
                             </ul>
                         </li>

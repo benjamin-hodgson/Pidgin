@@ -1344,6 +1344,15 @@ references:
   commentId: Overload:Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow
   fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow
   nameWithType: IncrementalParser.ParseIncrementallyOrThrow
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name: ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseIncrementallyOrThrow(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow<TToken, T>(Pidgin.Parser<TToken, T>, Pidgin.ITokenStream<TToken>, Pidgin.Incremental.IncrementalParseContext?, Pidgin.Configuration.IConfiguration<TToken>?)
+  fullName.vb: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow(Of TToken, T)(Pidgin.Parser(Of TToken, T), Pidgin.ITokenStream(Of TToken), Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: IncrementalParser.ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  nameWithType.vb: IncrementalParser.ParseIncrementallyOrThrow(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
 - uid: Pidgin.Incremental.IncrementalParser.ParseIncrementallyOrThrow``2(Pidgin.Parser{``0,``1},System.ReadOnlySpan{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
   name: ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
   href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementallyOrThrow__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
@@ -1354,14 +1363,23 @@ references:
   nameWithType: IncrementalParser.ParseIncrementallyOrThrow<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
   nameWithType.vb: IncrementalParser.ParseIncrementallyOrThrow(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
 - uid: Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
-  name: ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext, IConfiguration<TToken>?)
+  name: ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
   href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__Pidgin_ITokenStream___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
   commentId: M:Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},Pidgin.ITokenStream{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
   name.vb: ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
-  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally<TToken, T>(Pidgin.Parser<TToken, T>, Pidgin.ITokenStream<TToken>, Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration<TToken>?)
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally<TToken, T>(Pidgin.Parser<TToken, T>, Pidgin.ITokenStream<TToken>, Pidgin.Incremental.IncrementalParseContext?, Pidgin.Configuration.IConfiguration<TToken>?)
   fullName.vb: Pidgin.Incremental.IncrementalParser.ParseIncrementally(Of TToken, T)(Pidgin.Parser(Of TToken, T), Pidgin.ITokenStream(Of TToken), Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration(Of TToken))
-  nameWithType: IncrementalParser.ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext, IConfiguration<TToken>?)
+  nameWithType: IncrementalParser.ParseIncrementally<TToken, T>(Parser<TToken, T>, ITokenStream<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
   nameWithType.vb: IncrementalParser.ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ITokenStream(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+- uid: Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},System.ReadOnlySpan{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name: ParseIncrementally<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  href: Pidgin.Incremental.IncrementalParser.html#Pidgin_Incremental_IncrementalParser_ParseIncrementally__2_Pidgin_Parser___0___1__System_ReadOnlySpan___0__Pidgin_Incremental_IncrementalParseContext_Pidgin_Configuration_IConfiguration___0__
+  commentId: M:Pidgin.Incremental.IncrementalParser.ParseIncrementally``2(Pidgin.Parser{``0,``1},System.ReadOnlySpan{``0},Pidgin.Incremental.IncrementalParseContext,Pidgin.Configuration.IConfiguration{``0})
+  name.vb: ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
+  fullName: Pidgin.Incremental.IncrementalParser.ParseIncrementally<TToken, T>(Pidgin.Parser<TToken, T>, System.ReadOnlySpan<TToken>, Pidgin.Incremental.IncrementalParseContext?, Pidgin.Configuration.IConfiguration<TToken>?)
+  fullName.vb: Pidgin.Incremental.IncrementalParser.ParseIncrementally(Of TToken, T)(Pidgin.Parser(Of TToken, T), System.ReadOnlySpan(Of TToken), Pidgin.Incremental.IncrementalParseContext, Pidgin.Configuration.IConfiguration(Of TToken))
+  nameWithType: IncrementalParser.ParseIncrementally<TToken, T>(Parser<TToken, T>, ReadOnlySpan<TToken>, IncrementalParseContext?, IConfiguration<TToken>?)
+  nameWithType.vb: IncrementalParser.ParseIncrementally(Of TToken, T)(Parser(Of TToken, T), ReadOnlySpan(Of TToken), IncrementalParseContext, IConfiguration(Of TToken))
 - uid: Pidgin.Incremental.LocationRange
   name: LocationRange
   href: Pidgin.Incremental.LocationRange.html
@@ -1494,6 +1512,21 @@ references:
   commentId: Overload:Pidgin.Incremental.LocationRange.PrintMembers
   fullName: Pidgin.Incremental.LocationRange.PrintMembers
   nameWithType: LocationRange.PrintMembers
+- uid: Pidgin.Incremental.LocationRange.ShiftBy(System.Int64)
+  name: ShiftBy(long)
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_ShiftBy_System_Int64_
+  commentId: M:Pidgin.Incremental.LocationRange.ShiftBy(System.Int64)
+  name.vb: ShiftBy(Long)
+  fullName: Pidgin.Incremental.LocationRange.ShiftBy(long)
+  fullName.vb: Pidgin.Incremental.LocationRange.ShiftBy(Long)
+  nameWithType: LocationRange.ShiftBy(long)
+  nameWithType.vb: LocationRange.ShiftBy(Long)
+- uid: Pidgin.Incremental.LocationRange.ShiftBy*
+  name: ShiftBy
+  href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_ShiftBy_
+  commentId: Overload:Pidgin.Incremental.LocationRange.ShiftBy
+  fullName: Pidgin.Incremental.LocationRange.ShiftBy
+  nameWithType: LocationRange.ShiftBy
 - uid: Pidgin.Incremental.LocationRange.Start
   name: Start
   href: Pidgin.Incremental.LocationRange.html#Pidgin_Incremental_LocationRange_Start
