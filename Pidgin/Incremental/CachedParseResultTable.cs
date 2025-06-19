@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Pidgin.Incremental;
@@ -15,35 +14,39 @@ internal class CachedParseResultTable
         _children = children;
     }
 
-    public Tree? TryGetValue<TToken, T>(long oldLocation, Parser<TToken, T> key)
+    public Tree? FindSubtree<TToken, T>(long oldLocation, Parser<TToken, T> key)
         where T : class, IShiftable<T>
     {
         var result = Tree.Search(_children, oldLocation, key);
-        result?.ResolvePendingShifts<T>();
-        return result;
+        return result?.ResolvePendingShifts<T>();
     }
 
-    public class Tree : IShiftable<Tree>
+    public class Tree
     {
+        // Avoid retaining parse results for parsers that have been GCed.
         // Target: Parser<TToken, T>
         // Dependent: T
-        private readonly ConditionalWeakReference _kvp;
+        private ConditionalWeakReference? _cwr;
 
         // Children of the tree should be nodes within the ConsumedRange
-        private LocationRange _consumedRange;
-        private LocationRange _lookaroundRange;
-        private ImmutableArray<Tree> _children;
-        private long _shift;
+        private readonly LocationRange _consumedRange;
+        private readonly LocationRange _lookaroundRange;
+
+        // NB: it doesn't make sense to put the children behind the CWR.
+        // We want to be able to reuse results from small parsers even
+        // when the big parser has been recycled.
+        private readonly ImmutableArray<Tree> _children;
+        private readonly long _shift;
 
         public Tree(
-            ConditionalWeakReference kvp,
+            ConditionalWeakReference? cwr,
             LocationRange consumedRange,
             LocationRange lookaroundRange,
             ImmutableArray<Tree> children,
             long shift
         )
         {
-            _kvp = kvp;
+            _cwr = cwr;
             _consumedRange = consumedRange;
             _lookaroundRange = lookaroundRange;
             _children = children;
@@ -74,62 +77,57 @@ internal class CachedParseResultTable
 
             // GetResult() is called by the parser instance
             // that's the target of the ConditionalWeakReference,
-            // so it must be alive. If _kvp has become invalid,
+            // so it must be alive. If the CWR has become invalid,
             // something very strange has happened.
-            return (T)_kvp!.Dependent!;
+            return (T)_cwr!.Dependent!;
         }
 
-        // todo: thread safety?
-        public void ResolvePendingShifts<T>()
+        public Tree ResolvePendingShifts<T>()
+            where T : class, IShiftable<T>
+            => ShiftBy<T>(0);
+
+        // Eagerly shift oneself, but lazily shift the children.
+        // Resolve any pending shifts while we're at it.
+        public Tree ShiftBy<T>(long amount)
             where T : class, IShiftable<T>
         {
-            if (_shift == 0)
-            {
-                return;
-            }
-
-            if (_kvp != null)
-            {
-                _kvp.Dependent = ((T?)_kvp.Dependent)?.ShiftBy(_shift);
-            }
-
-            _consumedRange = _consumedRange.ShiftBy(_shift);
-            _lookaroundRange = _lookaroundRange.ShiftBy(_shift);
-            _children = _children.Select(t => t.ShiftBy(_shift)).ToImmutableArray();
-
-            _shift = 0;
-        }
-
-        // Should it eagerly shift oneself but lazily shift one's children?
-        // Right now, once a subtree has been found, we shift it and then
-        // immediately call ResolvePendingShifts, kind of ugly
-        public Tree ShiftBy(long amount)
-            => amount == 0
-                ? this
-                : new(_kvp, _consumedRange, _lookaroundRange, _children, _shift + amount);
-
-        public Tree? WithKey<TToken, T>(Parser<TToken, T> newKey)
-        {
-            var kvp = _kvp;
-            if (kvp == null)
-            {
-                return null;
-            }
-
-            var (target, dependent) = kvp.TargetAndDependent;
-
-            if (target == null)
-            {
-                return null;
-            }
-
-            if (ReferenceEquals(target, newKey))
+            // if both shift and amount are 0 (not their sum), there's nothing to do.
+            if (_shift == 0 && amount == 0)
             {
                 return this;
             }
 
-            return new(new(newKey, dependent), _consumedRange, _lookaroundRange, _children, _shift);
+            ConditionalWeakReference? GetNewCwr()
+            {
+                var (target, dependent) = GetTargetAndDependent();
+                if (target == null)
+                {
+                    return null;
+                }
+
+                var newDependent = ((T?)dependent)?.ShiftBy(_shift + amount);
+
+                // DependentHandles are expensive,
+                // don't allocate a new one if we don't need to
+                return ReferenceEquals(dependent, newDependent)
+                    ? _cwr
+                    : new(target, newDependent);
+            }
+
+            return new(
+                GetNewCwr(),
+                _consumedRange.ShiftBy(_shift + amount),
+                _lookaroundRange.ShiftBy(_shift + amount),
+                _children.Select(t => t.LazyShiftBy(_shift + amount)).ToImmutableArray(),
+                0
+            );
         }
+
+        // We could check whether _cwr is still valid here
+        private Tree LazyShiftBy(long amount)
+            => amount == 0
+                ? this
+                : new(_cwr, _consumedRange, _lookaroundRange, _children, _shift + amount);
 
         public Tree? Search<TToken, T>(long location, Parser<TToken, T> key)
         {
@@ -142,12 +140,48 @@ internal class CachedParseResultTable
                 return null;
             }
 
-            if (_consumedRange.Start == location && ReferenceEquals(_kvp?.Target, key))
+            if (_consumedRange.Start == location && ReferenceEquals(GetTarget(), key))
             {
                 return this;
             }
 
             return Search(_children, location, key);
+        }
+
+        private object? GetTarget()
+        {
+            var cwr = _cwr;
+            if (cwr == null)
+            {
+                return null;
+            }
+
+            var target = cwr.Target;
+            if (target == null)
+            {
+                _cwr = null;
+                return null;
+            }
+
+            return target;
+        }
+
+        private (object?, object?) GetTargetAndDependent()
+        {
+            var cwr = _cwr;
+            if (cwr == null)
+            {
+                return (null, null);
+            }
+
+            var (target, dependent) = cwr.TargetAndDependent;
+            if (target == null)
+            {
+                _cwr = null;
+                return (null, null);
+            }
+
+            return (target, dependent);
         }
 
         private void CheckNoPendingShifts()
@@ -179,14 +213,9 @@ internal class CachedParseResultTable
             _stack.Push(ImmutableArray.CreateBuilder<Tree>());
         }
 
-        public void Add<TToken, T>(Parser<TToken, T> key, Tree subtree)
+        public void Add(Tree subtree)
         {
-            var newSubtree = subtree.WithKey(key);
-
-            if (newSubtree != null)
-            {
-                _stack.Peek().Add(newSubtree);
-            }
+            _stack.Peek().Add(subtree);
         }
 
         public void Discard()

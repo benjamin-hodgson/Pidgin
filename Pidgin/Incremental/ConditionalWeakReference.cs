@@ -25,12 +25,6 @@ internal class ConditionalWeakReference
             GC.KeepAlive(this);
             return result;
         }
-
-        set
-        {
-            _handle.Target = value;
-            GC.KeepAlive(this);
-        }
     }
 
     public object? Dependent
@@ -40,12 +34,6 @@ internal class ConditionalWeakReference
             var result = _handle.Dependent;
             GC.KeepAlive(this);
             return result;
-        }
-
-        set
-        {
-            _handle.Dependent = value;
-            GC.KeepAlive(this);
         }
     }
 

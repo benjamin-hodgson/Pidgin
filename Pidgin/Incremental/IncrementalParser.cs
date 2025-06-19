@@ -224,13 +224,12 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
             // if unshifted is null, that means we're inside an edit.
             if (unshifted.HasValue)
             {
-                var found = ctx.ResultCache.TryGetValue(unshifted.Value, this);
+                var found = ctx.ResultCache.FindSubtree(unshifted.Value, this);
 
                 if (found != null && ctx.IsValid(found.LookaroundRange))
                 {
                     // make the (old) found result align with the (new) current location
-                    var shiftedFound = found.ShiftBy(state.Location - found.ConsumedRange.Start);
-                    shiftedFound.ResolvePendingShifts<T>();
+                    var shiftedFound = found.ShiftBy<T>(state.Location - found.ConsumedRange.Start);
                     result = shiftedFound.GetResult<T>();
 
                     if (state.NewResultCache == null)
@@ -238,7 +237,7 @@ internal class IncrementalParser<TToken, T>(Parser<TToken, T> parser) : Parser<T
                         throw new InvalidOperationException("NewResultCache was null. Please report this as a bug in Pidgin");
                     }
 
-                    state.NewResultCache.Add(this, shiftedFound);
+                    state.NewResultCache.Add(shiftedFound);
                     state.Advance((int)shiftedFound.ConsumedRange.Length);
                     GC.KeepAlive(this);
                     return true;
