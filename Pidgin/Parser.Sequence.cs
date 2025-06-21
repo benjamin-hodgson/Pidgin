@@ -123,22 +123,13 @@ internal sealed class SequenceTokenParser<TToken, TEnumerable> : Parser<TToken, 
     public sealed override bool TryParse(ref ParseState<TToken> state, ref PooledList<Expected<TToken>> expecteds, [MaybeNullWhen(false)] out TEnumerable result)
     {
         var span = state.LookAhead(_valueTokens.Length);  // span.Length <= _valueTokens.Length
+        var commonLength = span.CommonPrefixLength(_valueTokens.AsSpan());
 
-        var errorPos = -1;
-        for (var i = 0; i < span.Length; i++)
-        {
-            if (!EqualityComparer<TToken>.Default.Equals(span[i], _valueTokens[i]))
-            {
-                errorPos = i;
-                break;
-            }
-        }
-
-        if (errorPos != -1)
+        if (commonLength < span.Length)
         {
             // strings didn't match
-            state.Advance(errorPos);
-            state.SetError(Maybe.Just(span[errorPos]), false, state.Location, null);
+            state.Advance(commonLength);
+            state.SetError(Maybe.Just(span[commonLength]), false, state.Location, null);
             expecteds.Add(new Expected<TToken>(_valueTokens));
             result = default;
             return false;
