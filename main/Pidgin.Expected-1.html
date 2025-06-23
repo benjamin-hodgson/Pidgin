@@ -268,6 +268,81 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
 
 
 
+            <h3 id="constructors"><a href="#constructors">Constructors
+</a></h3>
+
+        
+                <a id="Pidgin_Expected_1__ctor_"></a>
+                <h4 id="Pidgin_Expected_1__ctor_System_Collections_Immutable_ImmutableArray__0__"><a href="#Pidgin_Expected_1__ctor_System_Collections_Immutable_ImmutableArray__0__">Expected(ImmutableArray&lt;TToken&gt;)</a></h4>
+                <div><p>Initializes a new instance of the <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a> struct with a sequence of expected tokens.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public Expected(ImmutableArray&lt;TToken&gt; tokens)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;TToken&gt;</p></td>
+                                    <td><p>tokens</p></td>
+                                    <td><p>The sequence of tokens that were expected at the point of the error.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+                
+
+        
+                <a id="Pidgin_Expected_1__ctor_"></a>
+                <h4 id="Pidgin_Expected_1__ctor_System_String_"><a href="#Pidgin_Expected_1__ctor_System_String_">Expected(string)</a></h4>
+                <div><p>Initializes a new instance of the <a class="xref" href="Pidgin.Expected-1.html">Expected&lt;TToken&gt;</a> struct with a custom label.</p>
+</div>
+                <h5>Declaration</h5>
+                    <pre><code class="lang- hljs">public Expected(string label)</code></pre>
+
+                        <h5>Parameters</h5>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></p></td>
+                                    <td><p>label</p></td>
+                                    <td><p>The custom name of the parser that produced this expectation.</p>
+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+                
+
             <h3 id="properties"><a href="#properties">Properties
 </a></h3>
 
@@ -980,6 +1055,15 @@ or the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</c
                 <a class="active" href="#Pidgin_Expected_1">Struct Expected&lt;TToken&gt;
 </a>
                 <ul class="active">
+                        <li>
+                            <a href="#constructors">Constructors
+</a>
+
+                            <ul>
+                                    <li><a href="#Pidgin_Expected_1__ctor_System_Collections_Immutable_ImmutableArray__0__">Expected(ImmutableArray&lt;TToken&gt;)</a></li>
+                                    <li><a href="#Pidgin_Expected_1__ctor_System_String_">Expected(string)</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#properties">Properties
 </a>

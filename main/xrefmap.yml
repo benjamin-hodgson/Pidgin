@@ -348,6 +348,33 @@ references:
   fullName.vb: Pidgin.Expected(Of TToken)
   nameWithType: Expected<TToken>
   nameWithType.vb: Expected(Of TToken)
+- uid: Pidgin.Expected`1.#ctor(System.Collections.Immutable.ImmutableArray{`0})
+  name: Expected(ImmutableArray<TToken>)
+  href: Pidgin.Expected-1.html#Pidgin_Expected_1__ctor_System_Collections_Immutable_ImmutableArray__0__
+  commentId: M:Pidgin.Expected`1.#ctor(System.Collections.Immutable.ImmutableArray{`0})
+  name.vb: New(ImmutableArray(Of TToken))
+  fullName: Pidgin.Expected<TToken>.Expected(System.Collections.Immutable.ImmutableArray<TToken>)
+  fullName.vb: Pidgin.Expected(Of TToken).New(System.Collections.Immutable.ImmutableArray(Of TToken))
+  nameWithType: Expected<TToken>.Expected(ImmutableArray<TToken>)
+  nameWithType.vb: Expected(Of TToken).New(ImmutableArray(Of TToken))
+- uid: Pidgin.Expected`1.#ctor(System.String)
+  name: Expected(string)
+  href: Pidgin.Expected-1.html#Pidgin_Expected_1__ctor_System_String_
+  commentId: M:Pidgin.Expected`1.#ctor(System.String)
+  name.vb: New(String)
+  fullName: Pidgin.Expected<TToken>.Expected(string)
+  fullName.vb: Pidgin.Expected(Of TToken).New(String)
+  nameWithType: Expected<TToken>.Expected(string)
+  nameWithType.vb: Expected(Of TToken).New(String)
+- uid: Pidgin.Expected`1.#ctor*
+  name: Expected
+  href: Pidgin.Expected-1.html#Pidgin_Expected_1__ctor_
+  commentId: Overload:Pidgin.Expected`1.#ctor
+  name.vb: New
+  fullName: Pidgin.Expected<TToken>.Expected
+  fullName.vb: Pidgin.Expected(Of TToken).New
+  nameWithType: Expected<TToken>.Expected
+  nameWithType.vb: Expected(Of TToken).New
 - uid: Pidgin.Expected`1.CompareTo(Pidgin.Expected{`0})
   name: CompareTo(Expected<TToken>)
   href: Pidgin.Expected-1.html#Pidgin_Expected_1_CompareTo_Pidgin_Expected__0__
