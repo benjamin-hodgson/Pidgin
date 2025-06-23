@@ -33,13 +33,21 @@ public readonly struct Expected<TToken> : IEquatable<Expected<TToken>>, ICompara
     /// <returns>True if the parser expected the end of the input stream.</returns>
     public bool IsEof => Label == null && Tokens == null;
 
-    internal Expected(string label)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Expected{TToken}"/> struct with a custom label.
+    /// </summary>
+    /// <param name="label">The custom name of the parser that produced this expectation.</param>
+    public Expected(string label)
     {
         Label = label;
         Tokens = default;
     }
 
-    internal Expected(ImmutableArray<TToken> tokens)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Expected{TToken}"/> struct with a sequence of expected tokens.
+    /// </summary>
+    /// <param name="tokens">The sequence of tokens that were expected at the point of the error.</param>
+    public Expected(ImmutableArray<TToken> tokens)
     {
         Label = null;
         Tokens = tokens;
