@@ -217,6 +217,41 @@ public class IncrementalParsingTests
         Assert.Equal(new String("foo"), result);
     }
 
+    [Fact]
+    public void TestMultipleParsersAtSameStartPosition()
+    {
+        var innerParser = String("foo").Select(Str).Incremental();
+        var outerParser = innerParser.Then(
+            Try(String("bar")).Or(String("baz")).Select(Str),
+            (foo, bar) => new List([foo, bar])
+        )
+            .Cast<Result>()
+            .Incremental();
+
+        var (ctx1, result1) = outerParser.ParseIncrementallyOrThrow("foobar", null);
+        var list1 = Assert.IsType<List>(result1);
+
+        var (ctx2, result2) = outerParser.ParseIncrementallyOrThrow("foobar", ctx1);
+        Assert.Same(result1, result2);
+
+        ctx2 = ctx2.AddEdit(new(new(5, 1), 1));
+        var (ctx3, result3) = outerParser.ParseIncrementallyOrThrow("foobaz", ctx2);
+        Assert.NotSame(result1, result3);
+        Assert.Same(list1.Children[0], Assert.IsType<List>(result3).Children[0]);
+
+        var outerParser2 = innerParser.Then(
+            String("bat").Select(Str),
+            (foo, bar) => new List([foo, bar])
+        )
+            .Cast<Result>()
+            .Incremental();
+
+        ctx3 = ctx3.AddEdit(new(new(5, 1), 1));
+        var (ctx4, result4) = outerParser2.ParseIncrementallyOrThrow("foobat", ctx3);
+        Assert.NotSame(result1, result4);
+        Assert.Same(list1.Children[0], Assert.IsType<List>(result4).Children[0]);
+    }
+
     private static Result Str(string value)
         => new String(value);
 
