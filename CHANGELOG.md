@@ -1,6 +1,23 @@
 Changelog
 =========
 
+3.5.0
+-----
+
+### Added
+
+* Support for _incremental parsing_ - reusing parts of a previous parse when the input has not changed. The new APIs live in the `Pidgin.Incremental` namespace.
+* Made `Expected`'s constructors public. Thank you to @StringEpsilon for the feature request!
+
+### Fixed
+
+* A performance improvement for `String` (and other APIs that use `SequenceTokenParser`). Thank you to @StringEpsilon for the contribution!
+
+### Removed
+
+* Removed support for .NET versions older than .NET 7.
+
+
 3.4.0
 -----
 
