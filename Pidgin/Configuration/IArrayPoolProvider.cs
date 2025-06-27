@@ -10,5 +10,5 @@ public interface IArrayPoolProvider
     /// </summary>
     /// <typeparam name="T">The type of elements in the array pool.</typeparam>
     /// <returns>An <see cref="ArrayPool{T}"/> instance for elements of type <typeparamref name="T"/>.</returns>
-    ArrayPool<T> GetArrayPool<T>();
+    public ArrayPool<T> GetArrayPool<T>();
 }

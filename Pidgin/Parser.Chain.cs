@@ -14,11 +14,11 @@ public partial class Parser<TToken, T>
 
 internal interface IChainer<in T, out U>
 {
-    void Apply(T value);
+    public void Apply(T value);
 
-    U GetResult();
+    public U GetResult();
 
-    void OnError();
+    public void OnError();
 }
 
 internal class ChainAtLeastOnceLParser<TToken, T, U, TChainer> : Parser<TToken, U>

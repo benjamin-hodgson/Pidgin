@@ -21,7 +21,7 @@ public interface ITokenStream<TToken>
     /// </summary>
     /// <param name="buffer">The buffer to read tokens into.</param>
     /// <returns>The actual number of tokens read.</returns>
-    int Read(Span<TToken> buffer);
+    public int Read(Span<TToken> buffer);
 
     /// <summary>
     /// Push some un-consumed tokens back into the stream.
@@ -38,7 +38,7 @@ public interface ITokenStream<TToken>
         "CA1716:Rename member so that it no longer conflicts with a reserved language keyword",
         Justification = "Would be a breaking change"
     )]
-    void Return(ReadOnlySpan<TToken> leftovers)
+    public void Return(ReadOnlySpan<TToken> leftovers)
     {
     }
 
@@ -53,5 +53,5 @@ public interface ITokenStream<TToken>
     /// The default is 1024.
     /// </summary>
     /// <returns>The default number of tokens to request when calling <see cref="Read"/>.</returns>
-    int ChunkSizeHint => 1024;
+    public int ChunkSizeHint => 1024;
 }
