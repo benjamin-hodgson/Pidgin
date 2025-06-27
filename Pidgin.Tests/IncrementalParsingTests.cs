@@ -15,8 +15,7 @@ public class IncrementalParsingTests
     {
         var parser = String("foo").Select(Str).Incremental();
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("food", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("food", ctx1);
         Assert.Same(result1, result2);
@@ -33,16 +32,14 @@ public class IncrementalParsingTests
     {
         var parser = String("foo").Select(Str).Incremental();
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("foo", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         // a no-op edit in the middle of the consumed range
         ctx1 = ctx1.AddEdit(new(new(1, 0), 0));
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("foo", ctx1);
         Assert.NotSame(result1, result2);
-        var nonShifted2 = Assert.IsType<String>(result2);
-        Assert.Equal("foo", nonShifted2.Value);
+        Assert.Equal(result1, result2);
 
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("foo", ctx2);
         Assert.Same(result2, result3);
@@ -53,8 +50,7 @@ public class IncrementalParsingTests
     {
         var parser = Try(String("food")).Or(String("foo")).Select(Str).Incremental();
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("foot", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         // An edit after the consumed range but touching
         // the right side of the lookaround range
@@ -64,8 +60,7 @@ public class IncrementalParsingTests
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("footie", ctx1);
         Assert.NotSame(result1, result2);
-        var nonShifted2 = Assert.IsType<String>(result2);
-        Assert.Equal("foo", nonShifted2.Value);
+        Assert.Equal(result1, result2);
 
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("footie", ctx2);
         Assert.Same(result2, result3);
@@ -76,8 +71,7 @@ public class IncrementalParsingTests
     {
         var parser = SkipWhitespaces.Then(String("foo").Select(Str).Incremental());
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("foo", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         // edit touching the left of the cached range
         // (should not invalidate cache - see "NOTE:
@@ -85,18 +79,16 @@ public class IncrementalParsingTests
         ctx1 = ctx1.AddEdit(new(new(0, 0), 2));
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("  foo", ctx1);
-        Assert.NotSame(result1, result2);
         var shifted2 = Assert.IsType<Shifted>(result2);
         Assert.Equal(2, shifted2.Shift);
-        Assert.Same(nonShifted1, shifted2.Unshifted);
+        Assert.Same(result1, shifted2.Unshifted);
 
         ctx2 = ctx2.AddEdit(new(new(0, 0), 2));
 
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("    foo", ctx2);
-        Assert.NotSame(result2, result3);
         var shifted3 = Assert.IsType<Shifted>(result3);
         Assert.Equal(4, shifted3.Shift);
-        Assert.Same(nonShifted1, shifted3.Unshifted);
+        Assert.Same(result1, shifted3.Unshifted);
     }
 
     [Fact]
@@ -104,8 +96,7 @@ public class IncrementalParsingTests
     {
         var parser = SkipWhitespaces.Then(String("foo").Select(Str).Incremental());
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("    foo", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         // edit touching the left of the cached range
         // (should not invalidate cache - see "NOTE:
@@ -113,18 +104,16 @@ public class IncrementalParsingTests
         ctx1 = ctx1.AddEdit(new(new(1, 2), 0));
 
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("  foo", ctx1);
-        Assert.NotSame(result1, result2);
         var shifted2 = Assert.IsType<Shifted>(result2);
         Assert.Equal(-2, shifted2.Shift);
-        Assert.Same(nonShifted1, shifted2.Unshifted);
+        Assert.Same(result1, shifted2.Unshifted);
 
         ctx2 = ctx2.AddEdit(new(new(0, 2), 0));
 
         var (ctx3, result3) = parser.ParseIncrementallyOrThrow("foo", ctx2);
-        Assert.NotSame(result2, result3);
         var shifted3 = Assert.IsType<Shifted>(result3);
         Assert.Equal(-4, shifted3.Shift);
-        Assert.Same(nonShifted1, shifted3.Unshifted);
+        Assert.Same(result1, shifted3.Unshifted);
     }
 
     [Fact]
@@ -141,8 +130,7 @@ public class IncrementalParsingTests
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("((foo))", null);
         var list11 = Assert.IsType<List>(result1);
         var list12 = Assert.IsType<List>(list11.Children[0]);
-        var nonShifted1 = Assert.IsType<String>(list12.Children[0]);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), list12.Children[0]);
 
         ctx1 = ctx1.AddEdit(new(new(1, 0), 5));
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("((foo)(foo))", ctx1);
@@ -173,8 +161,7 @@ public class IncrementalParsingTests
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("((foo))", null);
         var list11 = Assert.IsType<List>(result1);
         var list12 = Assert.IsType<List>(list11.Children[0]);
-        var nonShifted1 = Assert.IsType<String>(list12.Children[0]);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), list12.Children[0]);
 
         ctx1 = ctx1.AddEdit(new(new(1, 0), 5));
         var (ctx2, result2) = parser.ParseIncrementallyOrThrow("((foo)(foo))", ctx1);
@@ -197,8 +184,7 @@ public class IncrementalParsingTests
         var foo = String("foo").Select(Str).Incremental();
         var parser = Try(foo.Before(String("bar"))).Or(foo);
         var (ctx1, result1) = parser.ParseIncrementallyOrThrow("food", null);
-        var nonShifted1 = Assert.IsType<String>(result1);
-        Assert.Equal("foo", nonShifted1.Value);
+        Assert.Equal(Str("foo"), result1);
 
         // CachedParseResultTable.Search() takes the first result it finds
         // in the tree (the one that was backtracked over), so you don't
@@ -214,7 +200,7 @@ public class IncrementalParsingTests
     {
         var parser = String("foo").Select(Str).Incremental();
         var result = parser.ParseOrThrow("food");
-        Assert.Equal(new String("foo"), result);
+        Assert.Equal(Str("foo"), result);
     }
 
     [Fact]
