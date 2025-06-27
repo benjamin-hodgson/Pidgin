@@ -61,29 +61,6 @@ public class IncrementalParseContext
     }
 
     /// <summary>
-    /// Turn a location in the original input stream into
-    /// a corresponding location in the new (edited) one.
-    /// </summary>
-    /// <param name="oldLocation">The location in the original input stream.</param>
-    /// <returns>The new location.</returns>
-    internal long? Shift(long oldLocation)
-    {
-        // chronological order
-        foreach (var edit in Edits)
-        {
-            var shifted = edit.Shift(oldLocation);
-            if (!shifted.HasValue)
-            {
-                return null;
-            }
-
-            oldLocation = shifted.Value;
-        }
-
-        return oldLocation;
-    }
-
-    /// <summary>
     /// Turn a location in the new (edited) input stream into
     /// a corresponding location in the original one one.
     /// </summary>
