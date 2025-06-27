@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Pidgin.Incremental;
 
+// todo: make this pluggable?
 internal class CachedParseResultTable
 {
     private readonly ImmutableArray<Tree> _children;
