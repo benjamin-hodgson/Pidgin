@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -80,7 +79,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))],
+                    [new Expected<TToken>([.. render("bar")])],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -91,7 +90,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Just(render("g").Single()),
                     false,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))],
+                    [new Expected<TToken>([.. render("bar")])],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -102,7 +101,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("four")))],
+                    [new Expected<TToken>([.. render("four")])],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -114,8 +113,8 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     [
-                        new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))),
-                        new Expected<TToken>(ImmutableArray.CreateRange(render("four"))),
+                        new Expected<TToken>([.. render("foo")]),
+                        new Expected<TToken>([.. render("four")]),
                     ],
                     0,
                     SourcePosDelta.Zero,
@@ -127,7 +126,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Just(render("l").Single()),
                     false,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("four")))],
+                    [new Expected<TToken>([.. render("four")])],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -151,7 +150,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -162,7 +161,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Just(render("g").Single()),
                     false,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     5,
                     new SourcePosDelta(0, 5),
                     null
@@ -173,7 +172,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     4,
                     new SourcePosDelta(0, 4),
                     null
@@ -184,7 +183,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     3,
                     new SourcePosDelta(0, 3),
                     null
@@ -195,7 +194,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     1,
                     SourcePosDelta.OneCol,
                     null
@@ -206,7 +205,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Just(render("u").Single()),
                     false,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))],
+                    [new Expected<TToken>([.. render("foobat")])],
                     2,
                     new SourcePosDelta(0, 2),
                     null
@@ -218,8 +217,8 @@ public class TryTests : ParserTestBase
                     Maybe.Nothing<TToken>(),
                     true,
                     [
-                        new Expected<TToken>(ImmutableArray.CreateRange(render("foo"))),
-                        new Expected<TToken>(ImmutableArray.CreateRange(render("foobat")))
+                        new Expected<TToken>([.. render("foo")]),
+                        new Expected<TToken>([.. render("foobat")])
                     ],
                     0,
                     SourcePosDelta.Zero,
@@ -241,7 +240,7 @@ public class TryTests : ParserTestBase
                 new ParseError<TToken>(
                     Maybe.Nothing<TToken>(),
                     true,
-                    [new Expected<TToken>(ImmutableArray.CreateRange(render("bar")))],
+                    [new Expected<TToken>([.. render("bar")])],
                     5,
                     new SourcePosDelta(0, 5),
                     null
