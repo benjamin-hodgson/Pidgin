@@ -20,9 +20,15 @@ public class TryTests : ParserTestBase
     }
 
     [Fact]
-    public void TestList()
+    public void TestArray()
     {
         DoTest((p, x) => p.Parse(x), x => x, x => x.ToCharArray());
+    }
+
+    [Fact]
+    public void TestList()
+    {
+        DoTest((p, x) => p.Parse(x), x => x, x => x.ToList());
     }
 
     [Fact]
