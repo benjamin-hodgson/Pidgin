@@ -3020,10 +3020,11 @@ public class StringParserTests : ParserTestBase
     }
 
     [Fact]
-    public void TestMapWithInput()
+    public void TestSlice()
     {
+        static void DoTest(Func<Parser<char, IEnumerable<string>>, ReadOnlySpanFunc<char, IEnumerable<string>, (string, int)>, Parser<char, (string, int)>> slice)
         {
-            var parser = String("abc").Many().MapWithInput((input, result) => (input.ToString(), result.Count()));
+            var parser = slice(String("abc").Many(), (input, result) => (input.ToString(), result.Count()));
             AssertFullParse(parser, "abc", ("abc", 1));
             AssertFullParse(parser, "abcabc", ("abcabc", 2));
 
@@ -3047,6 +3048,10 @@ public class StringParserTests : ParserTestBase
                 )
             );
         }
+
+        // Slice and MapWithInput are synonyms
+        DoTest((p, f) => p.Slice(f));
+        DoTest((p, f) => p.MapWithInput(f));
     }
 
     [Fact]
