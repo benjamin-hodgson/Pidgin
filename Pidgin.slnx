@@ -1,0 +1,9 @@
+<Solution>
+    <Project Path="Pidgin.Bench.FParsec/Pidgin.Bench.FParsec.fsproj" />
+    <Project Path="Pidgin.Bench/Pidgin.Bench.csproj" />
+    <Project Path="Pidgin.CodeGen/Pidgin.CodeGen.csproj" />
+    <Project Path="Pidgin.Docs/Pidgin.Docs.proj" Type="C#" />
+    <Project Path="Pidgin.Examples/Pidgin.Examples.csproj" />
+    <Project Path="Pidgin.Tests/Pidgin.Tests.csproj" />
+    <Project Path="Pidgin/Pidgin.csproj" />
+</Solution>
