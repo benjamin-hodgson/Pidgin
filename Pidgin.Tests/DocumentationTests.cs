@@ -17,8 +17,6 @@ public class DocumentationTests
 
     [Theory]
     [DocTestData(typeof(Parser), Preamble = _preamble)]
-    public async Task TestDocumentation(DocTest test)
-    {
-        await test.Run();
-    }
+    public Task TestDocumentation(DocTest test)
+        => test.Run();
 }
