@@ -4,6 +4,7 @@
         <PackageVersion Include="BenchmarkDotNet" Version="0.15.2" />
         <PackageVersion Include="Benjamin.Pizza.DocTest" Version="1.1.0" />
         <PackageVersion Include="FParsec" Version="1.1.1" />
+        <PackageVersion Include="Microsoft.NET.ILLink.Tasks" Version="7.0.100-1.23401.1" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.14.2" />
         <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="1.8.0" />
