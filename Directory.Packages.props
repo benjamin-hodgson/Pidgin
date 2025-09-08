@@ -6,7 +6,7 @@
         <PackageVersion Include="FParsec" Version="1.1.1" />
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.14.2" />
-        <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="1.8.0" />
+        <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="1.8.4" />
         <PackageVersion Include="Sprache" Version="2.3.1" />
         <PackageVersion Include="Superpower" Version="3.1.0" />
         <PackageVersion Include="xunit.v3" Version="3.0.1" />
