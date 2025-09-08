@@ -1,9 +1,9 @@
 {
-    "sdk": {
-        "version": "9.0.304",
-        "rollForward": "latestFeature"
-    },
-    "msbuild-sdks": {
-        "Microsoft.Build.NoTargets": "3.7.56"
-    }
+  "sdk": {
+    "version": "9.0.304",
+    "rollForward": "latestFeature"
+  },
+  "msbuild-sdks": {
+    "Microsoft.Build.NoTargets": "3.7.134"
+  }
 }
