@@ -732,6 +732,30 @@ public class StringParserTests : ParserTestBase
         }
     }
 
+    // https://github.com/benjamin-hodgson/Pidgin/issues/219
+    [Fact]
+    public void TestCIStringWithSurrogates()
+    {
+        {
+            var deseretCapitalLongI = "\U00010400";  // U+10400: Deseret Capital Letter Long I "𐐀"
+            var deseretSmallLongI = "\U00010428";  // U+10400: Deseret Small Letter Long I "𐐀"
+
+            AssertFullParse(CIString(deseretCapitalLongI), deseretSmallLongI, deseretSmallLongI);
+            AssertFullParse(CIString(deseretSmallLongI), deseretCapitalLongI, deseretCapitalLongI);
+        }
+
+        // "a" should compare equal to the fraktur A when doing a
+        // case-insensitive comparison. This is an interesting test
+        // case because the fraktur A is a surrogate pair while the
+        // regular "a" is a single char
+        {
+            var frakturA = "\U0001D504";  // U+1D504: Mathematical Fraktur Capital A "𝔄"
+
+            AssertFullParse(CIString(frakturA), "a", "a");
+            AssertFullParse(CIString("a"), frakturA, frakturA);
+        }
+    }
+
     [Fact]
     public void TestBind()
     {
