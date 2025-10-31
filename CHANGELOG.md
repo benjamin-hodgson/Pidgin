@@ -1,6 +1,14 @@
 Changelog
 =========
 
+3.5.1
+-----
+
+### Fixed
+
+* Fixed a bug in the way `CIString` handles Unicode inputs. Thank you to @fubar-coder for the bug report!
+
+
 3.5.0
 -----
 
