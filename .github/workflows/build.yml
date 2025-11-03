@@ -25,4 +25,3 @@ jobs:
       DOCS_FOLDER: Pidgin.Docs
       # due to a bug in `dotnet format` with `using static`
       CHECK_FORMATTING: false
-      USE_OIDC: true
