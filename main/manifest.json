@@ -18,7 +18,11 @@
           "relative_path": "Pidgin.Comment.CommentParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Comment.CommentParser",
+      "Summary": "<p sourcefile=\"Pidgin.Comment.CommentParser.yml\" sourcestartlinenumber=\"1\">Contains functions to build parsers which skip over comments.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "Pidgin.Comment.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Comment",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "Pidgin.Configuration.CharDefaultConfiguration.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.CharDefaultConfiguration",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.CharDefaultConfiguration.yml\" sourcestartlinenumber=\"1\">A default configuration for textual input.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "Pidgin.Configuration.Configuration.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.Configuration",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.Configuration.yml\" sourcestartlinenumber=\"1\">Methods for creating and updating <xref href=\"Pidgin.Configuration.IConfiguration%601\" data-throw-if-not-resolved=\"false\"></xref>s.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "Pidgin.Configuration.DefaultArrayPoolProvider.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.DefaultArrayPoolProvider",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.DefaultArrayPoolProvider.yml\" sourcestartlinenumber=\"1\">Always returns <xref href=\"System.Buffers.ArrayPool%601.Shared\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "Pidgin.Configuration.DefaultConfiguration-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.DefaultConfiguration<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.DefaultConfiguration-1.yml\" sourcestartlinenumber=\"1\">A default configuration for any token type.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "Pidgin.Configuration.IArrayPoolProvider.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.IArrayPoolProvider",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.IArrayPoolProvider.yml\" sourcestartlinenumber=\"1\">An object which can get <xref href=\"System.Buffers.ArrayPool%601\" data-throw-if-not-resolved=\"false\"></xref> instances for an arbitrary type.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "Pidgin.Configuration.IConfiguration-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration.IConfiguration<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.Configuration.IConfiguration-1.yml\" sourcestartlinenumber=\"1\">Represents a parser configuration.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "Pidgin.Configuration.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Configuration",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "Pidgin.Expected-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expected<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.Expected-1.yml\" sourcestartlinenumber=\"1\">Represents a parsing expectation for error reporting.\nExpected values are either a sequence of expected tokens (in which case <code>Label == null &amp;&amp; Tokens != null</code>),\na custom-named parser (<code>Label != null &amp;&amp; Tokens == null</code>),\nor the end of the input stream (<code>Label == null &amp;&amp; Tokens == null</code>).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "Pidgin.Expression.BinaryOperatorType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression.BinaryOperatorType",
+      "Summary": "<p sourcefile=\"Pidgin.Expression.BinaryOperatorType.yml\" sourcestartlinenumber=\"1\">The associativity of the binary operator: left-associative, right-associative, or non-associative.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "Pidgin.Expression.ExpressionParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression.ExpressionParser",
+      "Summary": "<p>\nContains tools for parsing expression\nlanguages with associative infix operators.\n</p>\n<p>\nTo get started, write a <xref href=\"Pidgin.Parser%602\" data-throw-if-not-resolved=\"false\"></xref>,\nto parse an atomic term in your expression language,\nand use the <xref href=\"Pidgin.Expression.Operator\" data-throw-if-not-resolved=\"false\"></xref> class to create a table\nof operator parsers in order of their precedence.\nThen call one of the\n<xref href=\"Pidgin.Expression.ExpressionParser.Build%60%602(Pidgin.Parser%7b%60%600%2c%60%601%7d%2cSystem.Collections.Generic.IEnumerable%7bPidgin.Expression.OperatorTableRow%7b%60%600%2c%60%601%7d%7d)\" data-throw-if-not-resolved=\"false\"></xref>\noverloads to compile the table of operators into a\n<xref href=\"Pidgin.Parser%602\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "Pidgin.Expression.Operator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression.Operator",
+      "Summary": "<p sourcefile=\"Pidgin.Expression.Operator.yml\" sourcestartlinenumber=\"1\">Methods to create <xref href=\"Pidgin.Expression.OperatorTableRow%602\" data-throw-if-not-resolved=\"false\"></xref> values.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +200,11 @@
           "relative_path": "Pidgin.Expression.OperatorTableRow-2.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression.OperatorTableRow<TToken, T>",
+      "Summary": "<p sourcefile=\"Pidgin.Expression.OperatorTableRow-2.yml\" sourcestartlinenumber=\"1\">Represents a row in a table of operators.\nContains a collection of parsers for operators at a single precendence level.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -158,7 +214,11 @@
           "relative_path": "Pidgin.Expression.UnaryOperatorType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression.UnaryOperatorType",
+      "Summary": "<p sourcefile=\"Pidgin.Expression.UnaryOperatorType.yml\" sourcestartlinenumber=\"1\">The type of the unary operator: prefix or postfix.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -168,7 +228,11 @@
           "relative_path": "Pidgin.Expression.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Expression",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -178,7 +242,11 @@
           "relative_path": "Pidgin.ITokenStream-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ITokenStream<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.ITokenStream-1.yml\" sourcestartlinenumber=\"1\">An interface for streams of <code class=\"typeparamref\">TToken</code>, which can be consumed by <xref href=\"Pidgin.Parser%602\" data-throw-if-not-resolved=\"false\"></xref>s.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -188,7 +256,11 @@
           "relative_path": "Pidgin.Incremental.EditInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental.EditInfo",
+      "Summary": "<p sourcefile=\"Pidgin.Incremental.EditInfo.yml\" sourcestartlinenumber=\"1\">Represents information about an edit to an input stream,\nincluding the range of the original input affected and\nthe length of the new content.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -198,7 +270,11 @@
           "relative_path": "Pidgin.Incremental.IShiftable-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental.IShiftable<T>",
+      "Summary": "<p sourcefile=\"Pidgin.Incremental.IShiftable-1.yml\" sourcestartlinenumber=\"1\">Represents the result of an incremental parse operation,\nsupporting shifting of locations in response to edits.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -208,7 +284,11 @@
           "relative_path": "Pidgin.Incremental.IncrementalParseContext.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental.IncrementalParseContext",
+      "Summary": "<p sourcefile=\"Pidgin.Incremental.IncrementalParseContext.yml\" sourcestartlinenumber=\"1\">Represents the context for an incremental parse operation,\ntracking the list of edits applied to the input and the cache of previous parse results.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -218,7 +298,11 @@
           "relative_path": "Pidgin.Incremental.IncrementalParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental.IncrementalParser",
+      "Summary": "<p sourcefile=\"Pidgin.Incremental.IncrementalParser.yml\" sourcestartlinenumber=\"1\">Extension methods for constructing and running <em>incremental</em> parsers</p>\n<ul sourcefile=\"Pidgin.Incremental.IncrementalParser.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"Pidgin.Incremental.IncrementalParser.yml\" sourcestartlinenumber=\"2\">parsers which reuse the results of previous parses.</li>\n</ul>\n"
     },
     {
       "type": "ManagedReference",
@@ -228,7 +312,11 @@
           "relative_path": "Pidgin.Incremental.LocationRange.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental.LocationRange",
+      "Summary": "<p sourcefile=\"Pidgin.Incremental.LocationRange.yml\" sourcestartlinenumber=\"1\">Represents a portion of an input stream,\ndefined by a start position and a length.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -238,7 +326,11 @@
           "relative_path": "Pidgin.Incremental.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Incremental",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -248,7 +340,11 @@
           "relative_path": "Pidgin.Maybe-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Maybe<T>",
+      "Summary": "<p sourcefile=\"Pidgin.Maybe-1.yml\" sourcestartlinenumber=\"1\">Represents a single possibly absent value. Like <code>Nullable</code> but works for reference types as well as value types.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -258,7 +354,11 @@
           "relative_path": "Pidgin.Maybe.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Maybe",
+      "Summary": "<p sourcefile=\"Pidgin.Maybe.yml\" sourcestartlinenumber=\"1\">Constructor functions, extension methods and utilities for working with <xref href=\"Pidgin.Maybe%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -268,7 +368,11 @@
           "relative_path": "Pidgin.ParseError-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ParseError<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.ParseError-1.yml\" sourcestartlinenumber=\"1\">Represents an error encountered during parsing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -278,7 +382,11 @@
           "relative_path": "Pidgin.ParseException-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ParseException<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.ParseException-1.yml\" sourcestartlinenumber=\"1\">Thrown when a parse error is encountered during parsing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,7 +396,11 @@
           "relative_path": "Pidgin.ParseException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ParseException",
+      "Summary": "<p sourcefile=\"Pidgin.ParseException.yml\" sourcestartlinenumber=\"1\">Thrown when a parse error is encountered during parsing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -298,7 +410,11 @@
           "relative_path": "Pidgin.ParseState-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ParseState<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.ParseState-1.yml\" sourcestartlinenumber=\"1\">Represents the state of a parsing process.\nIncludes functionality managing and buffering the input stream,\nreporting errors, and computing source positions.</p>\n<p sourcefile=\"Pidgin.ParseState-1.yml\" sourcestartlinenumber=\"5\">For efficiency, this object is implemented as a mutable struct\nand is intended to be passed by reference.</p>\n<p sourcefile=\"Pidgin.ParseState-1.yml\" sourcestartlinenumber=\"8\">WARNING: This API is <strong>unstable</strong>\nand subject to change in future versions of the library.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -308,7 +424,11 @@
           "relative_path": "Pidgin.Parser-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Parser<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.Parser-1.yml\" sourcestartlinenumber=\"1\">Constructor functions, extension methods and utilities for <xref href=\"Pidgin.Parser%602\" data-throw-if-not-resolved=\"false\"></xref>\nThis class is intended to be imported statically, with the type parameter set to the type of tokens in your input stream (&quot;using static Pidgin.Parser&lt;char&gt;&quot;).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -318,7 +438,11 @@
           "relative_path": "Pidgin.Parser-2.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Parser<TToken, T>",
+      "Summary": "<p sourcefile=\"Pidgin.Parser-2.yml\" sourcestartlinenumber=\"1\">Represents a parser which consumes a stream of values of type <code class=\"typeparamref\">TToken</code> and returns a value of type <code class=\"typeparamref\">T</code>.\nA parser can either succeed, and return a value of type <code class=\"typeparamref\">T</code>, or fail and return a <xref href=\"Pidgin.ParseError%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -328,7 +452,11 @@
           "relative_path": "Pidgin.Parser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Parser",
+      "Summary": "<p sourcefile=\"Pidgin.Parser.yml\" sourcestartlinenumber=\"1\">Constructor functions, extension methods and utilities for <xref href=\"Pidgin.Parser%602\" data-throw-if-not-resolved=\"false\"></xref>.\nThis class is intended to be imported statically (&quot;using static Pidgin.Parser&quot;).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -338,7 +466,11 @@
           "relative_path": "Pidgin.ParserExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ParserExtensions",
+      "Summary": "<p sourcefile=\"Pidgin.ParserExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for running parsers.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -348,7 +480,11 @@
           "relative_path": "Pidgin.Permutation.PermutationParser-2.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Permutation.PermutationParser<TToken, T>",
+      "Summary": "<p sourcefile=\"Pidgin.Permutation.PermutationParser-2.yml\" sourcestartlinenumber=\"1\">A permutation parser represents a collection of parsers which can be run in an order-insensitive manner.</p>\n<p sourcefile=\"Pidgin.Permutation.PermutationParser-2.yml\" sourcestartlinenumber=\"3\">Declaration modifiers in C# are an example of an order-insensitive grammar.\nModifiers can appear in any order: <code>protected internal static readonly int x;</code>\nmeans the same as <code>internal readonly protected static int x;</code>.</p>\n<p sourcefile=\"Pidgin.Permutation.PermutationParser-2.yml\" sourcestartlinenumber=\"7\">Usage of this class involves calling <xref href=\"Pidgin.Permutation.PermutationParser%602.Add%60%601(Pidgin.Parser%7b%600%2c%60%600%7d)\" data-throw-if-not-resolved=\"false\"></xref>\nor <xref href=\"Pidgin.Permutation.PermutationParser%602.AddOptional%60%601(Pidgin.Parser%7b%600%2c%60%600%7d%2c%60%600)\" data-throw-if-not-resolved=\"false\"></xref> to add parsers to the permutation parser,\nand then calling <xref href=\"Pidgin.Permutation.PermutationParser%602.Build\" data-throw-if-not-resolved=\"false\"></xref> to create a parser which runs them in an order-insensitive manner\nand returns the results in a nested tuple.</p>\n<p sourcefile=\"Pidgin.Permutation.PermutationParser-2.yml\" sourcestartlinenumber=\"12\">Note that the parsers that are added to the permutation parser must always consume input before succeeding.\nIf a parser succeeds on empty input the permutation parser will not work correctly.\nIf you want to run a parser optionally, use <xref href=\"Pidgin.Permutation.PermutationParser%602.AddOptional%60%601(Pidgin.Parser%7b%600%2c%60%600%7d%2c%60%600)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p sourcefile=\"Pidgin.Permutation.PermutationParser-2.yml\" sourcestartlinenumber=\"16\">This class is immutable.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -358,7 +494,11 @@
           "relative_path": "Pidgin.Permutation.PermutationParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Permutation.PermutationParser",
+      "Summary": "<p sourcefile=\"Pidgin.Permutation.PermutationParser.yml\" sourcestartlinenumber=\"1\">Contains tools for running sequences of parsers in an order-insensitive manner.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -368,7 +508,11 @@
           "relative_path": "Pidgin.Permutation.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Permutation",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -378,7 +522,11 @@
           "relative_path": "Pidgin.PooledList-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.PooledList<T>",
+      "Summary": "<p sourcefile=\"Pidgin.PooledList-1.yml\" sourcestartlinenumber=\"1\">A version of <xref href=\"System.Collections.Generic.List%601\" data-throw-if-not-resolved=\"false\"></xref> which uses an array pool.</p>\n<p sourcefile=\"Pidgin.PooledList-1.yml\" sourcestartlinenumber=\"3\">For efficiency, <xref href=\"Pidgin.PooledList%601\" data-throw-if-not-resolved=\"false\"></xref> is implemented as a mutable struct.\nIt's intended to be passed by reference.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -388,7 +536,11 @@
           "relative_path": "Pidgin.ReadOnlySpanFunc-3.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.ReadOnlySpanFunc<T, TParam, TReturn>",
+      "Summary": "<p sourcefile=\"Pidgin.ReadOnlySpanFunc-3.yml\" sourcestartlinenumber=\"1\">A function which computes a result from a <xref href=\"System.ReadOnlySpan%601\" data-throw-if-not-resolved=\"false\"></xref> and an additional argument.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -398,7 +550,11 @@
           "relative_path": "Pidgin.Result-2.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Result<TToken, T>",
+      "Summary": "<p sourcefile=\"Pidgin.Result-2.yml\" sourcestartlinenumber=\"1\">Represents the result of parsing.\nA parse result may be successful (<xref href=\"Pidgin.Result%602.Success\" data-throw-if-not-resolved=\"false\"></xref> == true), in which case it contains a value, or it may be a failure, in which case it contains an error.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -408,7 +564,11 @@
           "relative_path": "Pidgin.SourcePos.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.SourcePos",
+      "Summary": "<p sourcefile=\"Pidgin.SourcePos.yml\" sourcestartlinenumber=\"1\">Represents a (line, col) position in an input stream.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -418,7 +578,11 @@
           "relative_path": "Pidgin.SourcePosDelta.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.SourcePosDelta",
+      "Summary": "<p sourcefile=\"Pidgin.SourcePosDelta.yml\" sourcestartlinenumber=\"1\">Represents a difference in textual lines and columns corresponding to a region of an input stream.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -428,7 +592,11 @@
           "relative_path": "Pidgin.TokenStreams.EnumeratorTokenStream-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.EnumeratorTokenStream<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.EnumeratorTokenStream-1.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation based on an <xref href=\"System.Collections.Generic.IEnumerator%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -438,7 +606,11 @@
           "relative_path": "Pidgin.TokenStreams.ListTokenStream-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.ListTokenStream<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.ListTokenStream-1.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation based on an <xref href=\"System.Collections.Generic.IList%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -448,7 +620,11 @@
           "relative_path": "Pidgin.TokenStreams.ReadOnlyListTokenStream-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.ReadOnlyListTokenStream<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.ReadOnlyListTokenStream-1.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation based on an <xref href=\"System.Collections.Generic.IReadOnlyList%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -458,7 +634,11 @@
           "relative_path": "Pidgin.TokenStreams.ReaderTokenStream.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.ReaderTokenStream",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.ReaderTokenStream.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation based on a <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -468,7 +648,11 @@
           "relative_path": "Pidgin.TokenStreams.ResumableTokenStream-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.ResumableTokenStream<TToken>",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.ResumableTokenStream-1.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation which wraps another <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref>\nand adds support for resumable parsing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -478,7 +662,11 @@
           "relative_path": "Pidgin.TokenStreams.StreamTokenStream.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams.StreamTokenStream",
+      "Summary": "<p sourcefile=\"Pidgin.TokenStreams.StreamTokenStream.yml\" sourcestartlinenumber=\"1\">An <xref href=\"Pidgin.ITokenStream%601\" data-throw-if-not-resolved=\"false\"></xref> implementation based on a <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -488,7 +676,11 @@
           "relative_path": "Pidgin.TokenStreams.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.TokenStreams",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -498,7 +690,11 @@
           "relative_path": "Pidgin.Unit.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin.Unit",
+      "Summary": "<p sourcefile=\"Pidgin.Unit.yml\" sourcestartlinenumber=\"1\">An uninteresting type with only one value (<xref href=\"Pidgin.Unit.Value\" data-throw-if-not-resolved=\"false\"></xref>) and no fields.\nLike <code>void</code>, but valid as a type parameter.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -508,7 +704,11 @@
           "relative_path": "Pidgin.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Pidgin",
+      "Summary": null
     },
     {
       "type": "Conceptual",
