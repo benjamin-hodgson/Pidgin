@@ -1,6 +1,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+#if !NETCOREAPP2_1_OR_GREATER
+using System.Buffers;
+#endif
 
 namespace Pidgin.TokenStreams;
 
@@ -36,5 +39,42 @@ public class ReaderTokenStream : ITokenStream<char>
     /// </summary>
     /// <param name="buffer">The buffer to read tokens into.</param>
     /// <returns>The actual number of tokens read.</returns>
-    public int Read(Span<char> buffer) => _input.Read(buffer);
+    public int Read(Span<char> buffer)
+    {
+#if NETCOREAPP2_1_OR_GREATER
+        return _input.Read(buffer);
+#else
+        var temp = ArrayPool<char>.Shared.Rent(buffer.Length);
+        try
+        {
+            var read = _input.Read(temp, 0, buffer.Length);
+            if (read > 0)
+            {
+                temp.AsSpan(0, read).CopyTo(buffer);
+            }
+
+            return read;
+        }
+        finally
+        {
+            ArrayPool<char>.Shared.Return(temp);
+        }
+#endif
+    }
+
+#if !NETCOREAPP3_0_OR_GREATER
+    /// <summary>
+    /// Push some un-consumed tokens back into the stream.
+    /// <see cref="Parser{TToken, T}"/>s call this method when they are finished parsing.
+    ///
+    /// <see cref="ITokenStream{TToken}"/> implementations may override this
+    /// method if they want to implement resumable parsing.
+    /// (See <see cref="ResumableTokenStream{TToken}"/>.)
+    /// The default implementation does nothing and discards the <paramref name="leftovers"/>.
+    /// </summary>
+    /// <param name="leftovers">The leftovers to push back into the stream.</param>
+    public void Return(ReadOnlySpan<char> leftovers)
+    {
+    }
+#endif
 }

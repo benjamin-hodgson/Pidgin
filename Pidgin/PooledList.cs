@@ -18,7 +18,11 @@ namespace Pidgin;
 [SuppressMessage("performance", "CA1815:Struct should override Equals", Justification = "This type is not meant to be equatable")]
 public struct PooledList<T> : IDisposable, IList<T>
 {
+#if NETCOREAPP2_0_OR_GREATER
     private static readonly bool _needsClear = RuntimeHelpers.IsReferenceOrContainsReferences<T>();
+#else
+    private static readonly bool _needsClear = true;
+#endif
     internal const int InitialCapacity = 16;  // for testing
 
     private ArrayPool<T> _arrayPool;

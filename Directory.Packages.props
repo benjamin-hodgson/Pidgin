@@ -9,11 +9,15 @@
         <PackageVersion Include="Microsoft.Testing.Extensions.TrxReport" Version="2.0.2" />
         <PackageVersion Include="Sprache" Version="2.3.1" />
         <PackageVersion Include="Superpower" Version="3.1.0" />
+        <PackageVersion Include="System.Collections.Immutable" Version="10.0.5" />
+        <PackageVersion Include="System.Memory" Version="4.6.3" />
+        <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
         <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.2" />
     </ItemGroup>
 
     <ItemGroup>
         <GlobalPackageReference Include="Benjamin.Pizza.BuildScripts" Version="2.4.0" />
+		<GlobalPackageReference Include="Meziantou.Polyfill" Version="1.0.110" />
         <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     </ItemGroup>
 

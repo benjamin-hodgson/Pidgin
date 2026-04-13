@@ -1,5 +1,7 @@
 using System;
+#if NET6_0_OR_GREATER
 using System.Runtime;
+#endif
 
 namespace Pidgin.Incremental;
 
@@ -9,6 +11,7 @@ namespace Pidgin.Incremental;
 /// </summary>
 internal class ConditionalWeakReference
 {
+#if NET6_0_OR_GREATER
     // DependentHandle is a mutable struct - don't make this readonly
     private DependentHandle _handle;
 
@@ -55,4 +58,44 @@ internal class ConditionalWeakReference
         // DependentHandle.Dispose is idempotent.
         _handle.Dispose();
     }
+#else
+    private readonly WeakReference _target;
+    private readonly object? _dependent;
+
+    public ConditionalWeakReference(object? target, object? dependent)
+    {
+        _target = new WeakReference(target);
+        _dependent = dependent;
+    }
+
+    public object? Target
+    {
+        get
+        {
+            var result = _target.Target;
+            GC.KeepAlive(this);
+            return result;
+        }
+    }
+
+    public object? Dependent
+    {
+        get
+        {
+            var result = _dependent;
+            GC.KeepAlive(this);
+            return result;
+        }
+    }
+
+    public (object? Target, object? Dependent) TargetAndDependent
+    {
+        get
+        {
+            var result = (_target.Target, _dependent);
+            GC.KeepAlive(this);
+            return result;
+        }
+    }
+#endif
 }
