@@ -1,4 +1,7 @@
 using System;
+using System.Buffers;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 using Xunit;
 
@@ -95,5 +98,26 @@ public class PooledListTests
         var builder = default(PooledList<char>);
         builder.AddRange(expected.AsSpan());
         Assert.Equal(expected, new string(builder.AsSpan()));
+    }
+
+    [Fact]
+    public void TestAddRangeEmptyDoesNotRent()
+    {
+        var l = new PooledList<int>(new ThrowingArrayPool<int>());
+        l.AddRange(ReadOnlySpan<int>.Empty);
+        l.AddRange(ImmutableArray<int>.Empty);
+        l.AddRange(new List<int>());
+        l.AddRange(Array.Empty<int>());
+        Assert.Empty(l);
+        l.Dispose();
+    }
+
+    private sealed class ThrowingArrayPool<T> : ArrayPool<T>
+    {
+        public override T[] Rent(int minimumLength)
+            => throw new InvalidOperationException("Rent should not be called");
+
+        public override void Return(T[] array, bool clearArray = false)
+            => throw new InvalidOperationException("Return should not be called");
     }
 }

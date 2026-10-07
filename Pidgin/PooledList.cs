@@ -87,6 +87,11 @@ public struct PooledList<T> : IDisposable, IList<T>
     /// <param name="items">The items to add.</param>
     public void AddRange(ImmutableArray<T> items)
     {
+        if (items.Length == 0)
+        {
+            return;
+        }
+
         GrowIfNecessary(items.Length);
         items.CopyTo(_items!, Count);
         Count += items.Length;
@@ -96,6 +101,11 @@ public struct PooledList<T> : IDisposable, IList<T>
     /// <param name="items">The items to add.</param>
     public void AddRange(ReadOnlySpan<T> items)
     {
+        if (items.IsEmpty)
+        {
+            return;
+        }
+
         GrowIfNecessary(items.Length);
         items.CopyTo(_items.AsSpan()[Count..]);
         Count += items.Length;
@@ -108,6 +118,11 @@ public struct PooledList<T> : IDisposable, IList<T>
         if (items == null)
         {
             throw new ArgumentNullException(nameof(items));
+        }
+
+        if (items.Count == 0)
+        {
+            return;
         }
 
         GrowIfNecessary(items.Count);
